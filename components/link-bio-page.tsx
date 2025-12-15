@@ -33,7 +33,7 @@ const links = [
   },
   {
     title: "Solana Mobile",
-    description: "Review and Walkthorough",
+    description: "Review and walkthrough",
     href: "https://www.youtube.com/watch?v=ZPReMS8bnlA",
     icon: () => <TokenSOL variant="branded" size={20} />,
   },
