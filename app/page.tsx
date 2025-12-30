@@ -1,5 +1,5 @@
-import { LinkBioPage } from "@/components/link-bio-page"
+import { BentoGrid } from "@/components/bento-grid"
 
 export default function Home() {
-  return <LinkBioPage />
+  return <BentoGrid />
 }
