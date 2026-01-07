@@ -17,11 +17,11 @@ export function LinkCard({ title, description, href, icon: Icon }: LinkCardProps
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative flex w-full items-center gap-4 rounded-[20px] px-4 py-4 overflow-hidden"
+      className="group relative flex w-full items-center gap-4 rounded-[1.25rem] px-4 py-4 overflow-hidden"
       style={{
         background: "rgba(255, 255, 255, 0.45)",
-        backdropFilter: "blur(40px) saturate(180%)",
-        WebkitBackdropFilter: "blur(40px) saturate(180%)",
+        backdropFilter: "blur(2.5rem) saturate(180%)",
+        WebkitBackdropFilter: "blur(2.5rem) saturate(180%)",
         boxShadow: `
           inset 0 1px 1px rgba(255, 255, 255, 0.9),
           inset 0 -1px 1px rgba(255, 255, 255, 0.1),
@@ -62,7 +62,7 @@ export function LinkCard({ title, description, href, icon: Icon }: LinkCardProps
         className="absolute inset-x-0 top-0 h-[50%] pointer-events-none"
         style={{
           background: "linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)",
-          borderRadius: "20px 20px 0 0",
+          borderRadius: "1.25rem 1.25rem 0 0",
         }}
       />
 
@@ -70,13 +70,13 @@ export function LinkCard({ title, description, href, icon: Icon }: LinkCardProps
         className="absolute inset-x-0 bottom-0 h-[30%] pointer-events-none"
         style={{
           background: "linear-gradient(0deg, rgba(0,0,0,0.02) 0%, transparent 100%)",
-          borderRadius: "0 0 20px 20px",
+          borderRadius: "0 0 1.25rem 1.25rem",
         }}
       />
 
       {/* Hover glow effect */}
       <motion.div
-        className="absolute inset-0 pointer-events-none rounded-[20px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className="absolute inset-0 pointer-events-none rounded-[1.25rem] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{
           background: "radial-gradient(ellipse at center, rgba(255,255,255,0.4), transparent 70%)",
         }}
@@ -99,8 +99,8 @@ export function LinkCard({ title, description, href, icon: Icon }: LinkCardProps
       </div>
 
       <div className="relative flex-1 min-w-0">
-        <h3 className="text-[15px] font-semibold text-gray-800 tracking-tight">{title}</h3>
-        {description && <p className="text-[12px] text-gray-500 truncate mt-0.5">{description}</p>}
+        <h3 className="text-sm font-semibold text-gray-800 tracking-tight">{title}</h3>
+        {description && <p className="text-xs text-gray-500 truncate mt-0.5">{description}</p>}
       </div>
 
       <CaretRight

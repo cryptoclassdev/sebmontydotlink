@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 
 interface ProfileSectionProps {
-  name: "Seb"
+  name: string
   bio: string
   imageUrl: string
 }
@@ -22,8 +22,8 @@ export function ProfileSection({ name, bio, imageUrl }: ProfileSectionProps) {
           className="relative h-24 w-24 overflow-hidden rounded-full"
           style={{
             background: "rgba(255, 255, 255, 0.5)",
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
+            backdropFilter: "blur(0.625rem)",
+            WebkitBackdropFilter: "blur(0.625rem)",
             boxShadow: `
               inset 0 2px 4px rgba(255, 255, 255, 0.8),
               0 0 0 2px rgba(255, 255, 255, 0.6),
@@ -39,7 +39,7 @@ export function ProfileSection({ name, bio, imageUrl }: ProfileSectionProps) {
         <div
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{
-            boxShadow: "0 0 40px 8px rgba(120, 119, 198, 0.1)",
+            boxShadow: "0 0 2.5rem 0.5rem rgba(120, 119, 198, 0.1)",
           }}
         />
       </motion.div>
