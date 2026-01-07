@@ -4,7 +4,35 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Apple-inspired off-white/cream palette */
+  /* ========================================
+     SPACING SYSTEM (4px base unit)
+     ======================================== */
+  --space-1: 0.25rem;   /* 4px  - icon gaps, tight elements */
+  --space-2: 0.5rem;    /* 8px  - inline spacing, small gaps */
+  --space-3: 1rem;      /* 16px - card gaps, component spacing */
+  --space-4: 1.5rem;    /* 24px - internal card padding */
+  --space-5: 2rem;      /* 32px - section breathing room */
+  --space-6: 3rem;      /* 48px - major section breaks */
+
+  /* ========================================
+     BORDER RADIUS SYSTEM
+     ======================================== */
+  --radius-sm: 0.5rem;    /* 8px  - small elements, badges */
+  --radius-md: 0.75rem;   /* 12px - buttons, inputs */
+  --radius-lg: 1rem;      /* 16px - cards, containers */
+  --radius-xl: 1.5rem;    /* 24px - hero cards, large sections */
+  --radius-full: 9999px;  /* circular elements */
+
+  /* ========================================
+     TRANSITION SYSTEM
+     ======================================== */
+  --transition-fast: 150ms ease-out;
+  --transition-base: 200ms ease-out;
+  --transition-slow: 300ms ease-out;
+
+  /* ========================================
+     COLORS - Apple-inspired off-white/cream palette
+     ======================================== */
   --background: oklch(0.98 0.005 90);
   --foreground: oklch(0.15 0 0);
   --card: oklch(1 0 0 / 0.7);
@@ -39,12 +67,19 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-  /* converted shadow px values to rem for consistent scaling */
+  /* ========================================
+     SHADOWS & ELEVATION
+     ======================================== */
   --card-shadow: 0 0.25rem 1.5rem -0.25rem rgba(0, 0, 0, 0.08), 0 0.125rem 0.5rem -0.125rem rgba(0, 0, 0, 0.04);
   --card-shadow-hover: 0 0.75rem 2.5rem -0.5rem rgba(0, 0, 0, 0.15), 0 0.25rem 1rem -0.25rem rgba(0, 0, 0, 0.08);
   --card-glow: none;
   --icon-bg: oklch(0.94 0.005 90);
   --icon-shadow: 0 0.125rem 0.5rem -0.125rem rgba(0, 0, 0, 0.1);
+
+  /* Card opacity levels */
+  --card-opacity-solid: 0.95;
+  --card-opacity-medium: 0.90;
+  --card-opacity-light: 0.40;
 }
 
 .dark {
@@ -143,4 +178,98 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* ========================================
+   BENTO GRID COMPONENT STYLES
+   ======================================== */
+
+/* Card base styling */
+.bento-card {
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.90));
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.bento-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Card with link styling */
+.bento-card-link {
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.90));
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-fast);
+  cursor: pointer;
+}
+
+.bento-card-link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.bento-card-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Icon container styling */
+.bento-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--foreground);
+  border-radius: var(--radius-full);
+}
+
+/* Social button styling */
+.bento-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius-full);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.bento-social-btn:hover {
+  transform: scale(1.08);
+  box-shadow: var(--card-shadow);
+}
+
+.bento-social-btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Badge/tag styling */
+.bento-badge {
+  padding: 0.375rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  white-space: nowrap;
+  background: rgba(74, 74, 74, 0.9);
+  border-radius: var(--radius-full);
+}
+
+/* Touch target minimum (44x44px for accessibility) */
+.touch-target {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
 }
