@@ -17,8 +17,8 @@ export function SocialFooter() {
         className="flex items-center gap-2 px-4 py-2 rounded-full"
         style={{
           background: "rgba(255, 255, 255, 0.4)",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
+          backdropFilter: "blur(1rem)",
+          WebkitBackdropFilter: "blur(1rem)",
           boxShadow: `
             inset 0 1px 1px rgba(255, 255, 255, 0.6),
             0 0 0 1px rgba(255, 255, 255, 0.3),
@@ -43,7 +43,7 @@ export function SocialFooter() {
         ))}
       </div>
 
-      <p className="text-[11px] text-gray-400">© sebmonty.link </p>
+      <p className="text-xs text-gray-400">© sebmonty.link </p>
     </div>
   )
 }

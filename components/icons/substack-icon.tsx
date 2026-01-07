@@ -7,7 +7,13 @@ interface SubstackIconProps {
 export function SubstackIcon({ size = 20 }: SubstackIconProps) {
   return (
     <div style={{ width: size, height: size }}>
-      <Image src="/images/design-mode/substack-icon_pyiqpu.png" alt="Substack" width={size} height={size} className="object-contain" />
+      <Image
+        src="/images/icons/substack-icon.png"
+        alt="Substack"
+        width={size}
+        height={size}
+        className="object-contain"
+      />
     </div>
   )
 }

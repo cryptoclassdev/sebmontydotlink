@@ -2,16 +2,20 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { LinkedinLogo, XLogo, EnvelopeSimple, TelegramLogo } from "@phosphor-icons/react"
+import { LinkedinIcon } from "./icons/linkedin-icon"
+import { XIcon } from "./icons/x-icon"
+import { EmailIcon } from "./icons/email-icon"
+import { TelegramIcon } from "./icons/telegram-icon"
 import { YoutubeIcon } from "./icons/youtube-icon"
 import { SubstackIcon } from "./icons/substack-icon"
+import { InfinexIcon } from "./icons/infinex-icon"
 import { ReferralsCarousel } from "./referrals-carousel"
 
 const socialLinks = [
-  { icon: LinkedinLogo, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: XLogo, href: "https://x.com/SebMontgomery", label: "X/Twitter" },
-  { icon: EnvelopeSimple, href: "mailto:contact@example.com", label: "Email" },
-  { icon: TelegramLogo, href: "https://t.me", label: "Telegram" },
+  { icon: () => <LinkedinIcon size={24} />, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: () => <XIcon size={24} />, href: "https://x.com/SebMontgomery", label: "X/Twitter" },
+  { icon: () => <EmailIcon size={24} />, href: "mailto:contact@example.com", label: "Email" },
+  { icon: () => <TelegramIcon size={24} />, href: "https://t.me", label: "Telegram" },
   { icon: () => <YoutubeIcon size={24} />, href: "https://youtube.com/@SebMontgomery", label: "YouTube" },
   { icon: () => <SubstackIcon size={24} />, href: "https://sebmonty.substack.com", label: "Substack" },
 ]
@@ -57,14 +61,14 @@ export function BentoGrid() {
         <div className="absolute w-1 h-1 bg-white rounded-full bottom-[25%] right-[40%] animate-pulse delay-250" />
       </div>
 
-      <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">
+      <div className="max-w-[87.5rem] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">
         <motion.div
           variants={itemVariants}
-          className="lg:col-span-5 bg-gradient-to-br from-white/95 to-white/90 backdrop-blur-sm rounded-3xl overflow-hidden flex flex-col min-h-[500px] lg:min-h-[650px]"
+          className="lg:col-span-5 bg-gradient-to-br from-white/95 to-white/90 backdrop-blur-sm rounded-3xl overflow-hidden flex flex-col min-h-[31.25rem] lg:min-h-[40.625rem]"
         >
           <div className="relative flex-1 bg-black">
             <Image
-              src="https://res.cloudinary.com/di6zkr8of/image/upload/v1764583245/seb-pfp_bs2cit.png"
+              src="/images/design-mode/seb-pfp_bs2cit.png"
               alt="Seb Montgomery"
               fill
               className="object-cover object-top"
@@ -83,7 +87,7 @@ export function BentoGrid() {
         <div className="lg:col-span-4 flex flex-col gap-4 lg:gap-6">
           <motion.div
             variants={itemVariants}
-            className="bg-gradient-to-br from-white/95 to-white/90 backdrop-blur-sm rounded-3xl p-6 lg:p-8 flex-1 min-h-[280px]"
+            className="bg-gradient-to-br from-white/95 to-white/90 backdrop-blur-sm rounded-3xl p-6 lg:p-8 flex-1 min-h-[17.5rem]"
           >
             <div className="flex items-start gap-3 mb-4">
               <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0">
@@ -108,7 +112,7 @@ export function BentoGrid() {
           {/* Fogees Hub Card */}
           <motion.div
             variants={itemVariants}
-            className="bg-gradient-to-br from-white/95 to-white/90 backdrop-blur-sm rounded-3xl p-6 lg:p-8 flex-1 min-h-[280px]"
+            className="bg-gradient-to-br from-white/95 to-white/90 backdrop-blur-sm rounded-3xl p-6 lg:p-8 flex-1 min-h-[17.5rem]"
           >
             <div className="flex items-start gap-3 mb-4">
               <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center flex-shrink-0">
@@ -131,7 +135,7 @@ export function BentoGrid() {
           </motion.div>
         </div>
 
-        <div className="lg:col-span-3 flex flex-col gap-4 lg:gap-6">
+        <div className="lg:col-span-3 flex flex-col gap-4 lg:gap-6 w-full lg:w-fit mx-auto lg:mx-0">
           {/* Social Icons */}
           <motion.div
             variants={itemVariants}
@@ -148,7 +152,7 @@ export function BentoGrid() {
                   className="w-14 h-14 aspect-square bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center hover:scale-110 transition-transform"
                   aria-label={social.label}
                 >
-                  {typeof Icon === "function" ? <Icon /> : <Icon size={24} weight="fill" className="text-black" />}
+                  <Icon />
                 </a>
               )
             })}
@@ -157,7 +161,7 @@ export function BentoGrid() {
           {/* Communication Link Card */}
           <motion.div
             variants={itemVariants}
-            className="bg-gradient-to-br from-white/95 to-white/90 backdrop-blur-sm rounded-3xl p-6 lg:p-8 min-h-[280px] flex flex-col"
+            className="bg-gradient-to-br from-white/95 to-white/90 backdrop-blur-sm rounded-3xl p-6 lg:p-8 min-h-[17.5rem] flex flex-col"
           >
             <div className="flex items-start gap-4 mb-6">
               <Image
@@ -172,7 +176,7 @@ export function BentoGrid() {
                 <p className="text-sm lg:text-base text-black/60">Content & Branding Web 3 Consultancy</p>
               </div>
             </div>
-            <div className="bg-black rounded-2xl flex-1 min-h-[200px] lg:min-h-[280px] flex items-center justify-center">
+            <div className="bg-black rounded-2xl flex-1 min-h-[12.5rem] lg:min-h-[17.5rem] flex items-center justify-center">
               <Image
                 src="/placeholder.svg?height=280&width=400"
                 alt="Communication Link preview"
@@ -187,7 +191,7 @@ export function BentoGrid() {
             <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
-                  <div className="w-6 h-6 bg-[#FF6B35] rounded-sm transform rotate-45" />
+                  <InfinexIcon size={24} />
                 </div>
                 <span className="font-bold text-black text-lg">Infinex Referral</span>
               </div>
@@ -199,7 +203,7 @@ export function BentoGrid() {
             <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
-                  <div className="w-6 h-6 bg-[#FF6B35] rounded-sm transform rotate-45" />
+                  <InfinexIcon size={24} />
                 </div>
                 <span className="font-bold text-black text-lg">Infinex Referral</span>
               </div>
