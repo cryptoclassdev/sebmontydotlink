@@ -6,6 +6,6 @@ interface InfinexIconProps {
 
 export function InfinexIcon({ size = 24 }: InfinexIconProps) {
   return (
-    <Image src="/images/icons/infinex-icon.png" alt="Infinex" width={size} height={size} className="object-contain" />
+    <Image src="/infinex-logo.png" alt="Infinex" width={size} height={size} className="object-contain" />
   )
 }
