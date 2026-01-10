@@ -43,10 +43,10 @@ const FloatingDockMobile = ({
           href={item.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f1f1f1] border-[2.5px] border-white active:scale-95 transition-transform"
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f1f1f1] border-[2.5px] border-white active:scale-90 transition-all duration-150 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
           aria-label={item.title}
         >
-          <div className="h-6 w-6">{item.icon}</div>
+          <div className="h-6 w-6 transition-transform duration-150 active:scale-95">{item.icon}</div>
         </a>
       ))}
     </div>
@@ -107,47 +107,50 @@ function IconContainer({
   );
 
   let width = useSpring(widthTransform, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
+    mass: 0.06,
+    stiffness: 280,
+    damping: 16,
   });
   let height = useSpring(heightTransform, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
+    mass: 0.06,
+    stiffness: 280,
+    damping: 16,
   });
 
   let widthIcon = useSpring(widthTransformIcon, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
+    mass: 0.04,
+    stiffness: 300,
+    damping: 18,
   });
   let heightIcon = useSpring(heightTransformIcon, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
+    mass: 0.04,
+    stiffness: 300,
+    damping: 18,
   });
 
   const [hovered, setHovered] = useState(false);
 
   return (
-    <a href={href}>
+    <a href={href} className="focus-visible:outline-none">
       <motion.div
         ref={ref}
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="relative flex aspect-square items-center justify-center rounded-full bg-[#f1f1f1] border-[2.5px] border-white"
+        className="relative flex aspect-square items-center justify-center rounded-full bg-[#f1f1f1] border-[2.5px] border-white shadow-sm hover:shadow-lg transition-shadow duration-200 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
       >
         <AnimatePresence>
           {hovered && (
             <motion.div
-              initial={{ opacity: 0, y: 10, x: "-50%" }}
-              animate={{ opacity: 1, y: 0, x: "-50%" }}
-              exit={{ opacity: 0, y: 2, x: "-50%" }}
-              className="absolute -top-8 left-1/2 w-fit rounded-md border border-white/20 bg-black/80 px-2 py-0.5 text-xs whitespace-pre text-white"
+              initial={{ opacity: 0, y: 6, x: "-50%", scale: 0.92 }}
+              animate={{ opacity: 1, y: 0, x: "-50%", scale: 1 }}
+              exit={{ opacity: 0, y: 3, x: "-50%", scale: 0.96 }}
+              transition={{ type: "spring", stiffness: 450, damping: 28 }}
+              className="absolute -top-10 left-1/2 w-fit rounded-lg border border-white/[0.08] bg-black/95 backdrop-blur-md px-3 py-1.5 text-xs font-medium whitespace-pre text-white shadow-xl"
             >
               {title}
+              {/* Tooltip arrow */}
+              <div className="absolute left-1/2 -bottom-1 -translate-x-1/2 w-2 h-2 bg-black/95 border-r border-b border-white/[0.08] rotate-45" />
             </motion.div>
           )}
         </AnimatePresence>

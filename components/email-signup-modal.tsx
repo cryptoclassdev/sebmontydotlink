@@ -121,7 +121,7 @@ export function EmailSignupModal({ isOpen, onClose }: EmailSignupModalProps) {
               {/* Close button */}
               <button
                 onClick={onClose}
-                className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/[0.06] hover:bg-white/[0.12] flex items-center justify-center transition-all duration-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-white/30 z-10 group"
+                className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/[0.06] hover:bg-white/[0.12] flex items-center justify-center transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111] z-10 group active:scale-95"
                 aria-label="Close modal"
               >
                 <svg
@@ -129,7 +129,7 @@ export function EmailSignupModal({ isOpen, onClose }: EmailSignupModalProps) {
                   height="14"
                   viewBox="0 0 14 14"
                   fill="none"
-                  className="text-white/50 group-hover:text-white/80 transition-colors"
+                  className="text-white/50 group-hover:text-white/80 transition-colors duration-150"
                 >
                   <path d="M1 1L13 13M1 13L13 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
