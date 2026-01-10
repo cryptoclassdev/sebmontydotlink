@@ -95,7 +95,7 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
                 )}
                 <button
                   onClick={onClose}
-                  className="ml-auto w-9 h-9 rounded-full bg-black/[0.06] hover:bg-black/[0.12] flex items-center justify-center transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20 group"
+                  className="ml-auto w-9 h-9 rounded-full bg-black/[0.06] hover:bg-black/[0.12] flex items-center justify-center transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f5f5f5] group active:scale-95"
                   aria-label="Close modal"
                 >
                   <svg
@@ -103,7 +103,7 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
                     height="14"
                     viewBox="0 0 14 14"
                     fill="none"
-                    className="text-black/40 group-hover:text-black/70 transition-colors"
+                    className="text-black/40 group-hover:text-black/70 transition-colors duration-150"
                   >
                     <path d="M1 1L13 13M1 13L13 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>

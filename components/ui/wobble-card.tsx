@@ -76,21 +76,21 @@ export const WobbleCard = ({
       onClick={handleClick}
       style={{
         transform: isHovering
-          ? `translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0) scale3d(1, 1, 1)`
+          ? `translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0) scale3d(1.006, 1.006, 1)`
           : "translate3d(0px, 0px, 0) scale3d(1, 1, 1)",
-        transition: "transform 0.1s ease-out",
+        transition: "transform 0.18s cubic-bezier(0.23, 1, 0.32, 1)",
       }}
       className={cn(
-        "w-full relative overflow-hidden",
+        "w-full relative overflow-hidden focus-within:ring-2 focus-within:ring-white/40 focus-within:ring-offset-2 focus-within:ring-offset-[#0a0a0a]",
         containerClassName
       )}
     >
       <motion.div
         style={{
           transform: isHovering
-            ? `translate3d(${-mousePosition.x}px, ${-mousePosition.y}px, 0) scale3d(1.02, 1.02, 1)`
+            ? `translate3d(${-mousePosition.x}px, ${-mousePosition.y}px, 0) scale3d(1.015, 1.015, 1)`
             : "translate3d(0px, 0px, 0) scale3d(1, 1, 1)",
-          transition: "transform 0.1s ease-out",
+          transition: "transform 0.15s cubic-bezier(0.23, 1, 0.32, 1)",
         }}
         className={cn("h-full w-full", className)}
       >
