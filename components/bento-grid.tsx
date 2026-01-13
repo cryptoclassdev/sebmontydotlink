@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { Grid3X3 } from "lucide-react"
+import { ExternalLink, ChevronDown } from "lucide-react"
 import { LinkedinIcon } from "./icons/linkedin-icon"
 import { XIcon } from "./icons/x-icon"
 import { AtIcon } from "./icons/at-icon"
@@ -12,11 +12,10 @@ import { YoutubeIcon } from "./icons/youtube-icon"
 import { SubstackIcon } from "./icons/substack-icon"
 import { InfinexIcon } from "./icons/infinex-icon"
 import { KastIcon } from "./icons/kast-icon"
+import { KaitoIcon } from "./icons/kaito-icon"
 import { FloatingDock } from "./ui/floating-dock"
 import { CardContainer, CardBody } from "./ui/3d-card"
 import { WobbleCard } from "./ui/wobble-card"
-import { Modal } from "./ui/modal"
-import { ReferralGrid } from "./referral-grid"
 import { EmailSignupModal } from "./email-signup-modal"
 import { CTAButton } from "./ui/cta-button"
 
@@ -27,6 +26,36 @@ const socialLinks = [
   { title: "Telegram", icon: <TelegramIcon size={24} />, href: "https://t.me" },
   { title: "YouTube", icon: <YoutubeIcon size={24} />, href: "https://youtube.com/@SebMontgomery" },
   { title: "Substack", icon: <SubstackIcon size={24} />, href: "https://sebmonty.substack.com" },
+]
+
+// Featured referrals (highlighted at top) - Hick's Law: Limited to 2 primary options
+const featuredReferrals = [
+  {
+    name: "Infinex Referral",
+    href: "https://infinex.xyz",
+    badge: "Super Bullish",
+    icon: <InfinexIcon size={36} />,
+    iconBg: "transparent",
+  },
+  {
+    name: "Kast Referral",
+    href: "https://kast.gg",
+    badge: "My Personal Card",
+    icon: <KastIcon size={36} />,
+    iconBg: "transparent",
+  },
+]
+
+// Other referrals - Miller's Law: Chunked into groups of 4 for better cognitive load
+const otherReferrals = [
+  { name: "Kaito", href: "https://portal.kaito.ai/auth/entry?referralCode=55E051CF" },
+  { name: "Kamino Finance", href: "https://swap.kamino.finance/?ref=SEBMONTY" },
+  { name: "Ranger Finance", href: "https://www.app.ranger.finance/?ref_code=sebmonty" },
+  { name: "Binance", href: "https://www.binance.com/en/activity/referral/offers/claim?ref=CPA_00R34Q8Y0Q" },
+  { name: "Bluefin", href: "https://trade.bluefin.io/referral/v2-84kt7k" },
+  { name: "Bybit", href: "https://www.bybit.com/invite?ref=JAW8RO" },
+  { name: "Hawk Fi", href: "https://www.hawkfi.ag/" },
+  { name: "Huma Finance", href: "https://app.huma.finance/?ref=bwECKU" },
 ]
 
 const containerVariants = {
@@ -56,8 +85,10 @@ const itemVariants = {
 }
 
 export function BentoGrid() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false)
+  // Progressive disclosure - Hick's Law: Show only 4 referrals initially
+  const [showAllReferrals, setShowAllReferrals] = useState(false)
+  const visibleReferrals = showAllReferrals ? otherReferrals : otherReferrals.slice(0, 4)
 
   return (
     <>
@@ -96,66 +127,121 @@ export function BentoGrid() {
         <div className="absolute w-0.5 h-0.5 bg-white/16 rounded-full bottom-[35%] left-[92%] animate-pulse [animation-duration:5.2s] [animation-delay:0.85s]" />
       </div>
 
-      {/* Desktop Layout */}
+      {/* Desktop Layout - 3 Columns */}
       <div className="max-w-[90rem] mx-auto hidden lg:grid lg:grid-cols-12 gap-5">
-        {/* Left Column - Profile + Email CTA */}
+        {/* ============================================
+            COLUMN 1 (Left) - Profile + Other Projects
+            ============================================ */}
         <div className="lg:col-span-4 flex flex-col gap-5">
-          {/* Hero Card with 3D Effect */}
+          {/* Hero Card with 3D Effect + Badges - Primary focal point, seamless design */}
           <motion.div variants={itemVariants} className="flex-1">
             <CardContainer className="h-full">
-              <CardBody className="bg-[#f1f1f1] rounded-[2rem] overflow-hidden border-[2.5px] border-white shadow-lg w-full h-full flex flex-col">
-                <div className="p-3 lg:p-4 flex-1">
-                  <div className="relative h-full min-h-[20rem] overflow-hidden rounded-[1.25rem] border-2 border-white shadow-[inset_0_2px_8px_rgba(0,0,0,0.06)]">
-                    <Image
-                      src="/images/design-mode/seb-pfp_bs2cit.png"
-                      alt="Seb Montgomery"
-                      fill
-                      className="object-cover object-top transition-transform duration-500 hover:scale-[1.02]"
-                      priority
-                    />
-                    {/* Subtle gradient overlay at bottom for text legibility */}
-                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/[0.04] to-transparent pointer-events-none" />
+              <CardBody className="relative rounded-[2rem] overflow-hidden border-[2.5px] border-white shadow-lg w-full h-full min-h-[24rem]">
+                {/* Full bleed image */}
+                <Image
+                  src="https://res.cloudinary.com/di6zkr8of/image/upload/v1768296580/seb-new-dp_nkb9tp.png"
+                  alt="Seb Montgomery"
+                  fill
+                  className="object-cover object-top transition-transform duration-500 hover:scale-[1.02]"
+                  priority
+                />
+                {/* Gradient overlay for text legibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+
+                {/* Overlaid content at bottom */}
+                <div className="absolute inset-x-0 bottom-0 px-6 pb-6 lg:px-8 lg:pb-8 text-center space-y-4">
+                  <div className="space-y-1">
+                    {/* Typography: using clamp for responsive sizing */}
+                    <h1 className="text-[clamp(1.5rem,4vw,1.875rem)] font-bold text-white lowercase tracking-tight leading-tight drop-shadow-lg">seb montgomery</h1>
+                    <p className="text-sm lg:text-base text-white/80">Crypto Content Creator</p>
                   </div>
-                </div>
-                <div className="px-6 pb-6 lg:px-8 lg:pb-8 text-center">
-                  <h1 className="text-2xl lg:text-4xl font-bold text-black mb-2 lowercase tracking-tight">seb montgomery</h1>
-                  <p className="text-base lg:text-lg font-bold text-[#050505] mb-1">Crypto Content Creator & Educator</p>
-                  <p className="text-sm lg:text-base text-[#050505]/70 leading-relaxed">
-                    Helping the world understand Crypto and Solana, one step at a time
-                  </p>
+
+                  {/* Embedded Badges - Higher visual hierarchy, larger size */}
+                  <div className="flex flex-wrap justify-center gap-2.5">
+                    <a
+                      href="https://validator.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2.5 px-5 py-3 min-h-[48px] bg-white/95 backdrop-blur-sm text-black text-sm font-semibold rounded-full hover:bg-white transition-all duration-200 shadow-lg"
+                    >
+                      <div className="flex gap-[2px]">
+                        <div className="w-[7px] h-[7px] bg-[#1a1a40] rounded-[1px]" />
+                        <div className="w-[7px] h-[7px] bg-[#28c2ec] rounded-[1px]" />
+                        <div className="w-[7px] h-[7px] bg-[#ec5228] rounded-[1px]" />
+                      </div>
+                      Co-founder at validator.com
+                    </a>
+                    <a
+                      href="https://fogees.link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2.5 px-5 py-3 min-h-[48px] bg-white/95 backdrop-blur-sm text-black text-sm font-semibold rounded-full hover:bg-white transition-all duration-200 shadow-lg"
+                    >
+                      <Image src="/fogees-logo.png" alt="" width={18} height={18} className="rounded-full" />
+                      Co-founder at Fogees Hub
+                    </a>
+                  </div>
                 </div>
               </CardBody>
             </CardContainer>
           </motion.div>
 
-          {/* Email CTA Card - Highlighted */}
+          {/* Other Projects Card - Proximity: tighter internal spacing */}
           <motion.div variants={itemVariants}>
-            <CTAButton
-              onClick={() => setIsEmailModalOpen(true)}
-              title="Join the Private Group"
-              subtitle="Get early access to exclusive content"
-            />
+            <WobbleCard containerClassName="rounded-2xl">
+              <a
+                href="https://thecommunication.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-[#f1f1f1] rounded-2xl p-5 lg:p-6 border-[2.5px] border-white/0 hover:border-white/40 transition-all duration-200 group"
+              >
+                {/* Header - Proximity: grouped elements with tight spacing */}
+                <div className="flex items-center gap-3 mb-4">
+                  <Image src="/images/seb-pfp.png" alt="Seb" width={40} height={40} className="rounded-full flex-shrink-0" />
+                  <div className="flex-1 space-y-0.5">
+                    <p className="text-xs text-black/50 font-medium uppercase tracking-wider">Other Projects</p>
+                    <h3 className="text-lg font-bold text-black leading-tight">Founder of thecommunication.link</h3>
+                    <p className="text-xs text-black/70">Content & Branding Web 3 Consultancy</p>
+                  </div>
+                </div>
+                {/* Image - Aesthetic-Usability: consistent border-radius */}
+                <div className="rounded-xl overflow-hidden shadow-[inset_0_1px_4px_rgba(0,0,0,0.04)]">
+                  <Image src="/communication-mockup.png" alt="Communication Link preview" width={420} height={240} className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.01]" />
+                </div>
+              </a>
+            </WobbleCard>
           </motion.div>
         </div>
 
-        {/* Middle Column - Project Cards */}
+        {/* ============================================
+            COLUMN 2 (Middle) - CTA + Feature Cards
+            Hick's Law: One clear primary CTA at top
+            ============================================ */}
         <div className="lg:col-span-4 flex flex-col gap-5">
-          <motion.div variants={itemVariants} className="flex-1 min-h-[20.5rem]">
-            <WobbleCard containerClassName="h-full rounded-[1.75rem]">
-              <a href="https://validator.com" target="_blank" rel="noopener noreferrer" className="block bg-[#f1f1f1] rounded-[1.75rem] p-5 lg:p-6 h-full border-[2.5px] border-white/0 hover:border-white/40 transition-all group">
+          {/* Join the Private Group CTA - Primary focal point */}
+          <motion.div variants={itemVariants}>
+            <CTAButton onClick={() => setIsEmailModalOpen(true)} />
+          </motion.div>
+
+          {/* Co-founder at Validator Card - Consistent spacing & typography */}
+          <motion.div variants={itemVariants} className="flex-1 min-h-[18rem]">
+            <WobbleCard containerClassName="h-full rounded-2xl">
+              <a href="https://validator.com" target="_blank" rel="noopener noreferrer" className="block bg-[#f1f1f1] rounded-2xl p-5 lg:p-6 h-full border-[2.5px] border-white/0 hover:border-white/40 transition-all duration-200 group">
+                {/* Header - Proximity: grouped elements */}
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0 overflow-hidden shadow-sm">
                     <div className="flex gap-[2px]">
                       <div className="w-[7px] h-[7px] bg-[#1a1a40] rounded-[1px]" />
                       <div className="w-[7px] h-[7px] bg-[#28c2ec] rounded-[1px]" />
                       <div className="w-[7px] h-[7px] bg-[#ec5228] rounded-[1px]" />
                     </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-black leading-tight">Co-Founder of validator.com</h3>
-                    <p className="text-[10px] text-black/80">Stake your SOL with us</p>
+                  <div className="space-y-0.5">
+                    <h3 className="text-lg lg:text-xl font-bold text-black leading-tight">Co-Founder of validator.com</h3>
+                    <p className="text-xs text-black/70">Stake your SOL with us</p>
                   </div>
                 </div>
+                {/* Image - consistent border-radius */}
                 <div className="mt-4 rounded-xl overflow-hidden shadow-[inset_0_1px_4px_rgba(0,0,0,0.04)]">
                   <Image src="/validator-mockup.png" alt="validator.com-mockup" width={420} height={240} className="w-full h-auto transition-transform duration-300 group-hover:scale-[1.01]" />
                 </div>
@@ -163,16 +249,19 @@ export function BentoGrid() {
             </WobbleCard>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="flex-1 min-h-[20.5rem]">
-            <WobbleCard containerClassName="h-full rounded-[1.75rem]">
-              <a href="https://fogees.link" target="_blank" rel="noopener noreferrer" className="block bg-[#f1f1f1] rounded-[1.75rem] p-5 lg:p-6 h-full border-[2.5px] border-white/0 hover:border-white/40 transition-all group">
+          {/* Fogees Hub Card - Consistent styling */}
+          <motion.div variants={itemVariants} className="flex-1 min-h-[18rem]">
+            <WobbleCard containerClassName="h-full rounded-2xl">
+              <a href="https://fogees.link" target="_blank" rel="noopener noreferrer" className="block bg-[#f1f1f1] rounded-2xl p-5 lg:p-6 h-full border-[2.5px] border-white/0 hover:border-white/40 transition-all duration-200 group">
+                {/* Header - Proximity: grouped elements */}
                 <div className="flex items-center gap-3 mb-4">
-                  <Image src="/fogees-logo.png" alt="Fogees Hub" width={36} height={36} className="rounded-full flex-shrink-0" />
-                  <div>
-                    <h3 className="text-xl font-bold text-black leading-tight">Co-Founder of Fogees Hub</h3>
-                    <p className="text-[10px] text-black/80">Your Educational Fogo Chain Hub</p>
+                  <Image src="/fogees-logo.png" alt="Fogees Hub" width={40} height={40} className="rounded-full flex-shrink-0 shadow-sm" />
+                  <div className="space-y-0.5">
+                    <h3 className="text-lg lg:text-xl font-bold text-black leading-tight">Co-Founder of Fogees Hub</h3>
+                    <p className="text-xs text-black/70">Your Educational Fogo Chain Hub</p>
                   </div>
                 </div>
+                {/* Image - consistent border-radius */}
                 <div className="mt-4 rounded-xl overflow-hidden shadow-[inset_0_1px_4px_rgba(0,0,0,0.04)]">
                   <Image src="/fogees-mockup.png" alt="fogees hub mockup" width={420} height={240} className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.01]" />
                 </div>
@@ -181,117 +270,161 @@ export function BentoGrid() {
           </motion.div>
         </div>
 
-        {/* Right Column */}
+        {/* ============================================
+            COLUMN 3 (Right) - Social Icons + Links Card
+            Jakob's Law: Familiar patterns for social links
+            ============================================ */}
         <div className="lg:col-span-4 flex flex-col gap-5">
+          {/* Social Icons at Top - Jakob's Law: familiar social icon placement */}
           <motion.div variants={itemVariants} className="w-full">
             <FloatingDock items={socialLinks} desktopClassName="mx-0 w-full justify-evenly" />
           </motion.div>
 
-          <motion.div variants={itemVariants} className="min-h-[22.5rem]">
-            <WobbleCard containerClassName="h-full rounded-[1.75rem]">
-              <a href="https://thecommunication.link" target="_blank" rel="noopener noreferrer" className="block bg-[#f1f1f1] rounded-[1.75rem] p-5 lg:p-6 h-full flex flex-col border-[2.5px] border-white/0 hover:border-white/40 transition-all group">
-                <div className="flex items-center gap-3 mb-4">
-                  <Image src="/images/seb-pfp.png" alt="Seb" width={36} height={36} className="rounded-full flex-shrink-0" />
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-black leading-tight">Founder of thecommunication.link</h3>
-                    <p className="text-[10px] text-black/80">Content & Branding Web 3 Consultancy</p>
-                  </div>
-                </div>
-                <div className="rounded-xl overflow-hidden flex-1 shadow-[inset_0_1px_4px_rgba(0,0,0,0.04)]">
-                  <Image src="/communication-mockup.png" alt="Communication Link preview" width={420} height={240} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.01]" />
-                </div>
-              </a>
-            </WobbleCard>
-          </motion.div>
+          {/* Links Card - Miller's Law: chunked information */}
+          <motion.div variants={itemVariants} className="flex-1">
+            <div className="bg-[#f1f1f1] rounded-2xl p-5 lg:p-6 border-[2.5px] border-white h-full">
+              <h3 className="text-lg font-bold text-black mb-5">Links & Referrals</h3>
 
-          <motion.div variants={itemVariants} className="space-y-3">
-            <WobbleCard containerClassName="rounded-full">
-              <a href="https://infinex.xyz" target="_blank" rel="noopener noreferrer" className="bg-[#f1f1f1] rounded-full px-4 py-3 flex items-center justify-between border-[2.5px] border-white hover:border-white/70 transition-all">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 flex items-center justify-center flex-shrink-0"><InfinexIcon size={36} /></div>
-                  <span className="font-bold text-black text-lg">Infinex Referral</span>
-                </div>
-                <span className="px-5 py-1.5 bg-[#494949] text-white text-sm font-bold rounded-full whitespace-nowrap border border-white">Super Bullish</span>
-              </a>
-            </WobbleCard>
-            <WobbleCard containerClassName="rounded-full">
-              <a href="https://kast.gg" target="_blank" rel="noopener noreferrer" className="bg-[#f1f1f1] rounded-full px-4 py-3 flex items-center justify-between border-[2.5px] border-white hover:border-white/70 transition-all">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 bg-black rounded-full flex items-center justify-center flex-shrink-0"><KastIcon size={20} /></div>
-                  <span className="font-bold text-black text-lg">Kast Referral</span>
-                </div>
-                <span className="px-5 py-1.5 bg-[#494949] text-white text-sm font-bold rounded-full whitespace-nowrap border border-white">My Personal Card</span>
-              </a>
-            </WobbleCard>
-            <WobbleCard containerClassName="rounded-full">
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="w-full bg-[#1a1a1a] rounded-full px-4 py-3 flex items-center justify-between border-[2.5px] border-white/20 hover:border-white/35 transition-all duration-200 group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-white/[0.18] group-hover:scale-105 transition-all duration-200">
-                    <Grid3X3 size={18} className="text-white group-hover:rotate-3 transition-transform duration-200" />
-                  </div>
-                  <span className="font-bold text-white text-lg">More Partners</span>
-                </div>
-                <span className="px-5 py-1.5 bg-white/10 text-white text-sm font-bold rounded-full whitespace-nowrap border border-white/20 group-hover:bg-white/[0.18] group-hover:border-white/30 transition-all duration-200">8 Referrals</span>
-              </button>
-            </WobbleCard>
+              {/* Featured/Highlighted Referrals - Hick's Law: limited primary options */}
+              <div className="space-y-3 mb-6">
+                {featuredReferrals.map((referral) => (
+                  <WobbleCard key={referral.name} containerClassName="rounded-full">
+                    <a
+                      href={referral.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-white rounded-full px-4 py-3.5 min-h-[52px] flex items-center justify-between border-[2px] border-black/5 hover:border-black/15 transition-all duration-200"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
+                          {referral.icon}
+                        </div>
+                        <span className="font-bold text-black text-base">{referral.name}</span>
+                      </div>
+                      <span className="px-4 py-2 bg-[#494949] text-white text-xs font-bold rounded-full whitespace-nowrap border border-white">
+                        {referral.badge}
+                      </span>
+                    </a>
+                  </WobbleCard>
+                ))}
+              </div>
+
+              {/* Divider - Visual separation */}
+              <div className="h-px bg-black/10 mb-5" />
+
+              {/* Other Referrals List - Progressive disclosure with Fitts's Law touch targets */}
+              <div className="space-y-1">
+                {visibleReferrals.map((referral) => (
+                  <a
+                    key={referral.name}
+                    href={referral.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between px-4 py-3 min-h-[48px] rounded-xl hover:bg-white/80 transition-colors duration-200 group"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium text-black/80 group-hover:text-black transition-colors duration-150">
+                        {referral.name}
+                      </span>
+                      {referral.badge && (
+                        <span className="px-2.5 py-1 bg-black/5 text-black/60 text-xs font-semibold rounded-full">
+                          {referral.badge}
+                        </span>
+                      )}
+                    </div>
+                    <ExternalLink size={16} className="text-black/30 group-hover:text-black/60 transition-colors duration-150" />
+                  </a>
+                ))}
+              </div>
+
+              {/* Progressive disclosure toggle - Hick's Law */}
+              {otherReferrals.length > 4 && (
+                <button
+                  onClick={() => setShowAllReferrals(!showAllReferrals)}
+                  className="w-full mt-3 px-4 py-3 min-h-[48px] flex items-center justify-center gap-2 text-sm font-medium text-black/60 hover:text-black hover:bg-white/60 rounded-xl transition-all duration-200"
+                >
+                  <span>{showAllReferrals ? "Show less" : `Show ${otherReferrals.length - 4} more`}</span>
+                  <ChevronDown size={16} className={`transition-transform duration-200 ${showAllReferrals ? "rotate-180" : ""}`} />
+                </button>
+              )}
+            </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Mobile Layout */}
-      <div className="w-full max-w-md mx-auto flex flex-col gap-5 lg:hidden">
-        {/* 1. Seb Montgomery Profile */}
+      {/* Mobile Layout - Optimized for thumb-friendly zones (Fitts's Law) */}
+      <div className="w-full max-w-md mx-auto flex flex-col gap-6 lg:hidden pb-8">
+        {/* 1. CTA - PRIMARY FOCAL POINT (comes first on mobile) */}
+        <motion.div variants={itemVariants}>
+          <CTAButton onClick={() => setIsEmailModalOpen(true)} />
+        </motion.div>
+
+        {/* 2. Seb Montgomery Profile with Badges - Seamless design */}
         <motion.div variants={itemVariants}>
           <CardContainer className="w-full">
-            <CardBody className="bg-[#f1f1f1] rounded-[2rem] overflow-hidden border-[2.5px] border-white shadow-lg w-full">
-              <div className="p-3">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-[1.25rem] border-2 border-white shadow-[inset_0_2px_8px_rgba(0,0,0,0.06)]">
-                  <Image src="/images/design-mode/seb-pfp_bs2cit.png" alt="Seb Montgomery" fill className="object-cover object-top transition-transform duration-500" priority />
-                  {/* Subtle gradient overlay at bottom */}
-                  <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/[0.04] to-transparent pointer-events-none" />
+            <CardBody className="relative rounded-[2rem] overflow-hidden border-[2.5px] border-white shadow-lg w-full aspect-[3/4]">
+              {/* Full bleed image */}
+              <Image src="https://res.cloudinary.com/di6zkr8of/image/upload/v1768296580/seb-new-dp_nkb9tp.png" alt="Seb Montgomery" fill className="object-cover object-top transition-transform duration-500" priority />
+              {/* Gradient overlay for text legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+
+              {/* Overlaid content at bottom */}
+              <div className="absolute inset-x-0 bottom-0 px-5 pb-6 text-center space-y-4">
+                <div className="space-y-1">
+                  <h1 className="text-2xl font-bold text-white lowercase tracking-tight drop-shadow-lg">seb montgomery</h1>
+                  <p className="text-sm text-white/80">Crypto Content Creator</p>
                 </div>
-              </div>
-              <div className="px-5 pb-5 text-center">
-                <h1 className="text-2xl font-bold text-black mb-1 lowercase tracking-tight">seb montgomery</h1>
-                <p className="text-sm font-bold text-[#050505] mb-1">Crypto Content Creator & Educator</p>
-                <p className="text-xs text-[#050505]/70 leading-relaxed">Helping the world understand Crypto and Solana, one step at a time</p>
+
+                {/* Embedded Badges - Higher visual hierarchy, larger size */}
+                <div className="flex flex-wrap justify-center gap-2">
+                  <a
+                    href="https://validator.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[46px] bg-white/95 backdrop-blur-sm text-black text-sm font-semibold rounded-full hover:bg-white active:scale-[0.97] transition-all duration-150 shadow-lg"
+                  >
+                    <div className="flex gap-[2px]">
+                      <div className="w-[6px] h-[6px] bg-[#1a1a40] rounded-[1px]" />
+                      <div className="w-[6px] h-[6px] bg-[#28c2ec] rounded-[1px]" />
+                      <div className="w-[6px] h-[6px] bg-[#ec5228] rounded-[1px]" />
+                    </div>
+                    Co-founder at validator.com
+                  </a>
+                  <a
+                    href="https://fogees.link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[46px] bg-white/95 backdrop-blur-sm text-black text-sm font-semibold rounded-full hover:bg-white active:scale-[0.97] transition-all duration-150 shadow-lg"
+                  >
+                    <Image src="/fogees-logo.png" alt="" width={16} height={16} className="rounded-full" />
+                    Co-founder at Fogees Hub
+                  </a>
+                </div>
               </div>
             </CardBody>
           </CardContainer>
         </motion.div>
 
-        {/* 2. Email CTA Card - Highlighted */}
-        <motion.div variants={itemVariants}>
-          <CTAButton
-            onClick={() => setIsEmailModalOpen(true)}
-            title="Join the Private Group"
-            subtitle="Get early access to exclusive content"
-          />
-        </motion.div>
-
-        {/* 3. Social Footer */}
+        {/* 3. Social Footer - Jakob's Law: familiar social link placement */}
         <motion.div variants={itemVariants}>
           <FloatingDock items={socialLinks} desktopClassName="mx-0 w-full justify-evenly" />
         </motion.div>
 
-        {/* 3. Validator */}
+        {/* 4. Validator - Consistent card styling */}
         <motion.div variants={itemVariants}>
-          <WobbleCard containerClassName="rounded-[1.75rem]">
-            <a href="https://validator.com" target="_blank" rel="noopener noreferrer" className="block bg-[#f1f1f1] rounded-[1.75rem] p-4 border-[2.5px] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
+          <WobbleCard containerClassName="rounded-2xl">
+            <a href="https://validator.com" target="_blank" rel="noopener noreferrer" className="block bg-[#f1f1f1] rounded-2xl p-5 border-[2.5px] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all duration-150">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0 overflow-hidden shadow-sm">
                   <div className="flex gap-[2px]">
                     <div className="w-[6px] h-[6px] bg-[#1a1a40] rounded-[1px]" />
                     <div className="w-[6px] h-[6px] bg-[#28c2ec] rounded-[1px]" />
                     <div className="w-[6px] h-[6px] bg-[#ec5228] rounded-[1px]" />
                   </div>
                 </div>
-                <div>
+                <div className="space-y-0.5">
                   <h3 className="text-lg font-bold text-black leading-tight">Co-Founder of validator.com</h3>
-                  <p className="text-[10px] text-black/80">Stake your SOL with us</p>
+                  <p className="text-xs text-black/70">Stake your SOL with us</p>
                 </div>
               </div>
               <div className="rounded-xl overflow-hidden">
@@ -301,15 +434,15 @@ export function BentoGrid() {
           </WobbleCard>
         </motion.div>
 
-        {/* 4. Fogees Hub */}
+        {/* 5. Fogees Hub - Consistent card styling */}
         <motion.div variants={itemVariants}>
-          <WobbleCard containerClassName="rounded-[1.75rem]">
-            <a href="https://fogees.link" target="_blank" rel="noopener noreferrer" className="block bg-[#f1f1f1] rounded-[1.75rem] p-4 border-[2.5px] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all">
-              <div className="flex items-center gap-3 mb-3">
-                <Image src="/fogees-logo.png" alt="Fogees Hub" width={32} height={32} className="rounded-full flex-shrink-0" />
-                <div>
+          <WobbleCard containerClassName="rounded-2xl">
+            <a href="https://fogees.link" target="_blank" rel="noopener noreferrer" className="block bg-[#f1f1f1] rounded-2xl p-5 border-[2.5px] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all duration-150">
+              <div className="flex items-center gap-3 mb-4">
+                <Image src="/fogees-logo.png" alt="Fogees Hub" width={40} height={40} className="rounded-full flex-shrink-0 shadow-sm" />
+                <div className="space-y-0.5">
                   <h3 className="text-lg font-bold text-black leading-tight">Co-Founder of Fogees Hub</h3>
-                  <p className="text-[10px] text-black/80">Your Educational Fogo Chain Hub</p>
+                  <p className="text-xs text-black/70">Your Educational Fogo Chain Hub</p>
                 </div>
               </div>
               <div className="rounded-xl overflow-hidden">
@@ -319,15 +452,16 @@ export function BentoGrid() {
           </WobbleCard>
         </motion.div>
 
-        {/* 5. Communication Link */}
+        {/* 6. Communication Link - Consistent card styling */}
         <motion.div variants={itemVariants}>
-          <WobbleCard containerClassName="rounded-[1.75rem]">
-            <a href="https://thecommunication.link" target="_blank" rel="noopener noreferrer" className="block bg-[#f1f1f1] rounded-[1.75rem] p-4 border-[2.5px] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all">
-              <div className="flex items-center gap-3 mb-3">
-                <Image src="/images/seb-pfp.png" alt="Seb" width={32} height={32} className="rounded-full flex-shrink-0" />
-                <div>
+          <WobbleCard containerClassName="rounded-2xl">
+            <a href="https://thecommunication.link" target="_blank" rel="noopener noreferrer" className="block bg-[#f1f1f1] rounded-2xl p-5 border-[2.5px] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all duration-150">
+              <div className="flex items-center gap-3 mb-4">
+                <Image src="/images/seb-pfp.png" alt="Seb" width={40} height={40} className="rounded-full flex-shrink-0 shadow-sm" />
+                <div className="space-y-0.5">
+                  <p className="text-xs text-black/50 font-medium uppercase tracking-wider">Other Projects</p>
                   <h3 className="text-lg font-bold text-black leading-tight">Founder of thecommunication.link</h3>
-                  <p className="text-[10px] text-black/80">Content & Branding Web 3 Consultancy</p>
+                  <p className="text-xs text-black/70">Content & Branding Web 3 Consultancy</p>
                 </div>
               </div>
               <div className="rounded-xl overflow-hidden">
@@ -337,55 +471,72 @@ export function BentoGrid() {
           </WobbleCard>
         </motion.div>
 
-        {/* 6. Infinex Referral */}
-        <motion.div variants={itemVariants}>
-          <WobbleCard containerClassName="rounded-full">
-            <a href="https://infinex.xyz" target="_blank" rel="noopener noreferrer" className="bg-[#f1f1f1] rounded-full px-4 py-3 flex items-center justify-between border-[2.5px] border-white hover:border-white/70 active:scale-[0.98] transition-all">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 flex items-center justify-center flex-shrink-0"><InfinexIcon size={32} /></div>
-                <span className="font-bold text-black text-base">Infinex Referral</span>
-              </div>
-              <span className="px-3 py-1 bg-[#494949] text-white text-xs font-bold rounded-full whitespace-nowrap border border-white">Super Bullish</span>
-            </a>
-          </WobbleCard>
-        </motion.div>
-
-        {/* 7. Kast Referral */}
-        <motion.div variants={itemVariants}>
-          <WobbleCard containerClassName="rounded-full">
-            <a href="https://kast.gg" target="_blank" rel="noopener noreferrer" className="bg-[#f1f1f1] rounded-full px-4 py-3 flex items-center justify-between border-[2.5px] border-white hover:border-white/70 active:scale-[0.98] transition-all">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center flex-shrink-0"><KastIcon size={18} /></div>
-                <span className="font-bold text-black text-base">Kast Referral</span>
-              </div>
-              <span className="px-3 py-1 bg-[#494949] text-white text-xs font-bold rounded-full whitespace-nowrap border border-white">My Personal Card</span>
-            </a>
-          </WobbleCard>
-        </motion.div>
-
-        {/* 8. More Partners */}
-        <motion.div variants={itemVariants}>
-          <WobbleCard containerClassName="rounded-full">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="w-full bg-[#1a1a1a] rounded-full px-4 py-3 flex items-center justify-between border-[2.5px] border-white/20 hover:border-white/35 active:scale-[0.98] transition-all duration-200 group"
-            >
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-white/[0.18] group-active:scale-95 transition-all duration-200">
-                  <Grid3X3 size={16} className="text-white group-hover:rotate-3 transition-transform duration-200" />
+        {/* 7. Featured Referrals - Fitts's Law: larger touch targets */}
+        <motion.div variants={itemVariants} className="space-y-3">
+          {featuredReferrals.map((referral) => (
+            <WobbleCard key={referral.name} containerClassName="rounded-full">
+              <a
+                href={referral.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#f1f1f1] rounded-full px-4 py-3.5 min-h-[56px] flex items-center justify-between border-[2.5px] border-white hover:border-white/70 active:scale-[0.98] transition-all duration-150"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
+                    {referral.icon}
+                  </div>
+                  <span className="font-bold text-black text-base">{referral.name}</span>
                 </div>
-                <span className="font-bold text-white text-base">More Partners</span>
-              </div>
-              <span className="px-3 py-1 bg-white/10 text-white text-xs font-bold rounded-full whitespace-nowrap border border-white/20 group-hover:bg-white/[0.18] group-hover:border-white/30 transition-all duration-200">8 Referrals</span>
-            </button>
-          </WobbleCard>
+                <span className="px-4 py-2 bg-[#494949] text-white text-xs font-bold rounded-full whitespace-nowrap border border-white">
+                  {referral.badge}
+                </span>
+              </a>
+            </WobbleCard>
+          ))}
+        </motion.div>
+
+        {/* 8. Other Referrals Card - Progressive disclosure with Miller's Law */}
+        <motion.div variants={itemVariants}>
+          <div className="bg-[#f1f1f1] rounded-2xl p-5 border-[2.5px] border-white">
+            <h3 className="text-base font-bold text-black mb-4">More Referrals</h3>
+            <div className="space-y-1">
+              {visibleReferrals.map((referral) => (
+                <a
+                  key={referral.name}
+                  href={referral.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between px-4 py-3 min-h-[48px] rounded-xl hover:bg-white/80 active:scale-[0.98] transition-all duration-150 group"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-medium text-black/80 group-hover:text-black transition-colors">
+                      {referral.name}
+                    </span>
+                    {referral.badge && (
+                      <span className="px-2.5 py-1 bg-black/5 text-black/60 text-xs font-semibold rounded-full">
+                        {referral.badge}
+                      </span>
+                    )}
+                  </div>
+                  <ExternalLink size={16} className="text-black/30 group-hover:text-black/60 transition-colors" />
+                </a>
+              ))}
+            </div>
+
+            {/* Progressive disclosure toggle - Hick's Law */}
+            {otherReferrals.length > 4 && (
+              <button
+                onClick={() => setShowAllReferrals(!showAllReferrals)}
+                className="w-full mt-3 px-4 py-3 min-h-[48px] flex items-center justify-center gap-2 text-sm font-medium text-black/60 hover:text-black hover:bg-white/60 active:scale-[0.98] rounded-xl transition-all duration-150"
+              >
+                <span>{showAllReferrals ? "Show less" : `Show ${otherReferrals.length - 4} more`}</span>
+                <ChevronDown size={16} className={`transition-transform duration-200 ${showAllReferrals ? "rotate-180" : ""}`} />
+              </button>
+            )}
+          </div>
         </motion.div>
       </div>
     </motion.div>
-
-    <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Partner Referrals">
-      <ReferralGrid />
-    </Modal>
 
     <EmailSignupModal isOpen={isEmailModalOpen} onClose={() => setIsEmailModalOpen(false)} />
     </>

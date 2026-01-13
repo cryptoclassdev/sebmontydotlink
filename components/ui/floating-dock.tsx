@@ -36,17 +36,18 @@ const FloatingDockMobile = ({
   className?: string;
 }) => {
   return (
-    <div className={cn("flex md:hidden items-center justify-evenly gap-2 w-full", className)}>
+    // Fitts's Law: minimum 44x44px touch targets for mobile
+    <div className={cn("flex md:hidden items-center justify-evenly gap-3 w-full", className)}>
       {items.map((item) => (
         <a
           key={item.title}
           href={item.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f1f1f1] border-[2.5px] border-white active:scale-90 transition-all duration-150 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+          className="flex h-[52px] w-[52px] min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-[#f1f1f1] border-[2.5px] border-white active:scale-95 transition-all duration-150 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
           aria-label={item.title}
         >
-          <div className="h-6 w-6 transition-transform duration-150 active:scale-95">{item.icon}</div>
+          <div className="h-6 w-6 transition-transform duration-150">{item.icon}</div>
         </a>
       ))}
     </div>
