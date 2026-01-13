@@ -118,15 +118,15 @@ export function EmailSignupModal({ isOpen, onClose }: EmailSignupModalProps) {
                 }}
               />
 
-              {/* Close button */}
+              {/* Close button - Fitts's Law: minimum 44px touch target */}
               <button
                 onClick={onClose}
-                className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/[0.06] hover:bg-white/[0.12] flex items-center justify-center transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111] z-10 group active:scale-95"
+                className="absolute top-4 right-4 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/[0.06] hover:bg-white/[0.12] flex items-center justify-center transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111] z-10 group active:scale-95"
                 aria-label="Close modal"
               >
                 <svg
-                  width="14"
-                  height="14"
+                  width="16"
+                  height="16"
                   viewBox="0 0 14 14"
                   fill="none"
                   className="text-white/50 group-hover:text-white/80 transition-colors duration-150"
@@ -187,11 +187,11 @@ export function EmailSignupModal({ isOpen, onClose }: EmailSignupModalProps) {
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.3 }}
                     >
-                      {/* Header */}
-                      <div className="text-center mb-8">
+                      {/* Header - Proximity: grouped with tight spacing */}
+                      <div className="text-center mb-8 space-y-3">
                         <h2
                           id="email-modal-title"
-                          className="text-[1.75rem] font-semibold text-white tracking-tight mb-3"
+                          className="text-[clamp(1.5rem,4vw,1.75rem)] font-semibold text-white tracking-tight leading-tight"
                         >
                           Early Access List
                         </h2>
@@ -200,14 +200,14 @@ export function EmailSignupModal({ isOpen, onClose }: EmailSignupModalProps) {
                         </p>
                       </div>
 
-                      {/* Form */}
-                      <form onSubmit={handleSubmit} className="space-y-4">
-                        {/* Input container */}
+                      {/* Form - Proximity: labels grouped with inputs */}
+                      <form onSubmit={handleSubmit} className="space-y-5">
+                        {/* Input container - Fitts's Law: generous touch target */}
                         <div className="relative">
                           <div
                             className={cn(
-                              "relative rounded-xl overflow-hidden transition-all duration-300",
-                              isFocused && "ring-1 ring-white/20"
+                              "relative rounded-xl overflow-hidden transition-all duration-200",
+                              isFocused && "ring-2 ring-white/25"
                             )}
                           >
                             {/* Input background */}
@@ -222,19 +222,19 @@ export function EmailSignupModal({ isOpen, onClose }: EmailSignupModalProps) {
                               onFocus={() => setIsFocused(true)}
                               onBlur={() => setIsFocused(false)}
                               required
-                              className="relative w-full h-14 px-5 bg-transparent text-white placeholder:text-white/30 text-[0.9375rem] focus:outline-none"
+                              className="relative w-full h-14 min-h-[52px] px-5 bg-transparent text-white placeholder:text-white/30 text-base focus:outline-none"
                             />
                           </div>
                         </div>
 
-                        {/* Submit button */}
+                        {/* Submit button - Fitts's Law: min 52px height for comfortable tap */}
                         <motion.button
                           type="submit"
                           disabled={isSubmitting}
                           whileHover={{ scale: 1.01 }}
-                          whileTap={{ scale: 0.99 }}
+                          whileTap={{ scale: 0.98 }}
                           className={cn(
-                            "relative w-full h-14 rounded-xl font-medium text-[0.9375rem] transition-all duration-200",
+                            "relative w-full h-14 min-h-[52px] rounded-xl font-medium text-base transition-all duration-200",
                             "bg-white text-black",
                             "hover:bg-white/90",
                             "disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-white",
@@ -244,7 +244,7 @@ export function EmailSignupModal({ isOpen, onClose }: EmailSignupModalProps) {
                           {isSubmitting ? (
                             <span className="flex items-center justify-center gap-2">
                               <svg
-                                className="animate-spin h-4 w-4"
+                                className="animate-spin h-5 w-5"
                                 viewBox="0 0 24 24"
                                 fill="none"
                               >
@@ -270,8 +270,8 @@ export function EmailSignupModal({ isOpen, onClose }: EmailSignupModalProps) {
                         </motion.button>
                       </form>
 
-                      {/* Footer */}
-                      <p className="text-white/30 text-xs text-center mt-6">
+                      {/* Footer - Visual hierarchy: tertiary information */}
+                      <p className="text-white/30 text-sm text-center mt-6 leading-relaxed">
                         We&apos;ll email you only when invites open.
                       </p>
                     </motion.div>

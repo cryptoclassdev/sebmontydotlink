@@ -1,108 +1,103 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface CTAButtonProps {
   onClick: () => void
-  title: string
-  subtitle: string
   className?: string
 }
 
-export function CTAButton({ onClick, title, subtitle, className }: CTAButtonProps) {
+export function CTAButton({ onClick, className }: CTAButtonProps) {
   return (
     <motion.div
       className={cn("relative group", className)}
       whileHover="hover"
       initial="initial"
     >
-      {/* Animated glow effect - pulses subtly */}
-      <div className="absolute -inset-1 rounded-[2rem] bg-gradient-to-r from-amber-500/20 via-orange-500/30 to-amber-500/20 blur-xl cta-glow-pulse opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+      {/* Pulsing ambient glow (2s loop) */}
+      <div className="absolute -inset-2 rounded-[2.25rem] bg-[#0055FF]/25 blur-2xl cta-glow-pulse pointer-events-none" />
 
       {/* Secondary glow layer for depth */}
-      <div className="absolute -inset-0.5 rounded-[1.875rem] bg-gradient-to-r from-amber-400/0 via-orange-400/20 to-amber-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute -inset-1 rounded-[2.1rem] bg-[#0055FF]/10 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-      {/* Animated border gradient */}
-      <div className="absolute -inset-[2px] rounded-[1.875rem] overflow-hidden">
-        <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0deg,transparent_60deg,rgba(251,191,36,0.4)_120deg,rgba(249,115,22,0.5)_180deg,rgba(251,191,36,0.4)_240deg,transparent_300deg,transparent_360deg)] cta-border-spin" />
+      {/* Spinning border gradient (4s loop) */}
+      <div className="absolute -inset-[2px] rounded-[2.1rem] overflow-hidden">
+        <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0deg,transparent_60deg,rgba(0,85,255,0.5)_120deg,rgba(0,120,255,0.6)_180deg,rgba(0,85,255,0.5)_240deg,transparent_300deg,transparent_360deg)] cta-border-spin" />
         {/* Static subtle border visible always */}
-        <div className="absolute inset-0 bg-gradient-to-r from-amber-500/10 via-orange-500/20 to-amber-500/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0055FF]/15 via-[#0077FF]/25 to-[#0055FF]/15" />
       </div>
 
-      {/* Main button */}
+      {/* Main card - Hick's Law: One clear primary action */}
       <button
         onClick={onClick}
-        className="relative w-full bg-gradient-to-br from-[#1a1a1a] via-[#1f1f1f] to-[#141414] rounded-[1.75rem] p-5 lg:p-6 border border-white/[0.08] text-left overflow-hidden transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+        className="relative w-full bg-[#111] rounded-[2rem] p-6 lg:p-8 border border-white/[0.06] text-left overflow-hidden transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] active:scale-[0.99]"
       >
-        {/* Shimmer effect */}
-        <div className="absolute inset-0 bg-[linear-gradient(105deg,transparent_20%,rgba(255,255,255,0.03)_35%,rgba(255,255,255,0.08)_50%,rgba(255,255,255,0.03)_65%,transparent_80%)] cta-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        {/* Shimmer sweep on hover (2.5s loop) */}
+        <div className="absolute inset-0 bg-[linear-gradient(105deg,transparent_20%,rgba(255,255,255,0.02)_35%,rgba(255,255,255,0.06)_50%,rgba(255,255,255,0.02)_65%,transparent_80%)] opacity-0 group-hover:opacity-100 cta-shimmer pointer-events-none" />
 
         {/* Subtle noise texture */}
         <div
-          className="absolute inset-0 opacity-[0.015] pointer-events-none mix-blend-overlay"
+          className="absolute inset-0 opacity-[0.012] pointer-events-none mix-blend-overlay"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
           }}
         />
 
-        {/* Content */}
-        <div className="relative flex items-center justify-between">
-          <div className="flex-1">
-            <div className="flex items-center gap-2 mb-1">
-              <motion.div
-                variants={{
-                  initial: { rotate: 0, scale: 1 },
-                  hover: { rotate: 15, scale: 1.1 },
-                }}
-                transition={{ type: "spring", stiffness: 400, damping: 15 }}
-              >
-                <Sparkles size={14} className="text-amber-400" />
-              </motion.div>
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-400/90">
-                Exclusive
-              </span>
-            </div>
-            <h3 className="text-lg font-bold text-white mb-1 tracking-tight">
-              {title}
-            </h3>
-            <p className="text-sm text-white/50 group-hover:text-white/60 transition-colors">
-              {subtitle}
+        {/* Content - Visual hierarchy: clear headline, subtitle, CTA */}
+        <div className="relative space-y-6 lg:space-y-8">
+          {/* Text group - Proximity: tight spacing between related elements */}
+          <div className="space-y-2">
+            {/* Headline - Typography: responsive sizing with clamp */}
+            <h2 className="text-[clamp(1.5rem,4vw,1.875rem)] font-bold text-white tracking-tight leading-tight">
+              Join the Private Group
+            </h2>
+
+            {/* Subtitle */}
+            <p className="text-base lg:text-lg text-white/45 leading-relaxed">
+              Get early access to alpha and insights
             </p>
           </div>
 
-          {/* Arrow button with glow */}
-          <div className="relative">
-            {/* Arrow glow */}
-            <div className="absolute inset-0 rounded-full bg-amber-500/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-150" />
+          {/* CTA Button with spring micro-interactions - Fitts's Law: large touch target */}
+          <motion.div
+            variants={{
+              initial: { scale: 1 },
+              hover: { scale: 1.03 },
+            }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            className="relative inline-flex"
+          >
+            {/* Button glow */}
+            <div className="absolute inset-0 rounded-full bg-[#0055FF]/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-110" />
 
-            <motion.div
-              variants={{
-                initial: { scale: 1, x: 0 },
-                hover: { scale: 1.08, x: 2 },
-              }}
-              transition={{ type: "spring", stiffness: 400, damping: 20 }}
-              className="relative w-11 h-11 rounded-full bg-gradient-to-br from-amber-400 via-orange-500 to-amber-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-orange-500/25 group-hover:shadow-orange-500/40 transition-shadow duration-300"
-            >
+            <div className="relative inline-flex items-center gap-3 px-7 py-4 min-h-[52px] bg-[#0055FF] rounded-full text-white font-semibold text-base transition-all duration-200 group-hover:bg-[#0044DD] group-hover:shadow-[0_0_40px_rgba(0,85,255,0.5)]">
               {/* Inner highlight */}
-              <div className="absolute inset-[1px] rounded-full bg-gradient-to-br from-white/20 via-transparent to-transparent" />
+              <div className="absolute inset-[1px] rounded-full bg-gradient-to-b from-white/15 via-transparent to-transparent pointer-events-none" />
 
+              <span className="relative">Join the Waitlist</span>
+
+              {/* Arrow with spring animation - translates right on hover */}
               <motion.div
                 variants={{
                   initial: { x: 0 },
-                  hover: { x: 3 },
+                  hover: { x: 5 },
                 }}
                 transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                className="relative"
               >
-                <ArrowRight size={18} className="text-white drop-shadow-sm" />
+                <ArrowRight size={18} strokeWidth={2.5} />
               </motion.div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
 
+        {/* Corner accent glow */}
+        <div className="absolute top-0 right-0 w-40 h-40 bg-[radial-gradient(circle_at_100%_0%,rgba(0,85,255,0.12),transparent_60%)] pointer-events-none" />
+
         {/* Bottom accent line */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-amber-500/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-[#0055FF]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </button>
     </motion.div>
   )
