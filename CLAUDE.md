@@ -8,12 +8,12 @@ Personal link-in-bio website for Seb Montgomery (crypto content creator). Featur
 
 ## Commands
 
-```bash
+\`\`\`bash
 npm run dev      # Start dev server (Turbopack)
 npm run build    # Production build
 npm run lint     # ESLint
 npm run start    # Production server
-```
+\`\`\`
 
 ## Tech Stack
 
@@ -111,9 +111,9 @@ npm run start    # Production server
 
 ## Path Aliases
 
-```typescript
+\`\`\`typescript
 @/* -> ./*  // e.g., @/components/ui/modal
-```
+\`\`\`
 
 ## Styling Conventions
 
