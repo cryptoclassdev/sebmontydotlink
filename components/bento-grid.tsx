@@ -133,7 +133,7 @@ export function BentoGrid() {
               <CardBody className="relative rounded-[2rem] overflow-hidden border-[2.5px] border-white shadow-lg w-full h-full min-h-0">
                 {/* Full bleed image */}
                 <Image
-                  src="https://res.cloudinary.com/di6zkr8of/image/upload/v1768296580/seb-new-dp_nkb9tp.png"
+                  src="/images/design-mode/seb-new-dp_nkb9tp.png"
                   alt="Seb Montgomery"
                   fill
                   className="object-cover object-top transition-transform duration-500 hover:scale-[1.02]"
@@ -334,7 +334,7 @@ export function BentoGrid() {
           <CardContainer className="w-full">
             <CardBody className="relative rounded-[2rem] overflow-hidden border-[2.5px] border-white shadow-lg w-full aspect-[3/4]">
               {/* Full bleed image */}
-              <Image src="https://res.cloudinary.com/di6zkr8of/image/upload/v1768296580/seb-new-dp_nkb9tp.png" alt="Seb Montgomery" fill className="object-cover object-top transition-transform duration-500" priority />
+              <Image src="/images/design-mode/seb-new-dp_nkb9tp.png" alt="Seb Montgomery" fill className="object-cover object-top transition-transform duration-500" priority />
               {/* Gradient overlay for text legibility */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
