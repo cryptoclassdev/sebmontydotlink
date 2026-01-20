@@ -41,7 +41,7 @@ const featuredReferrals = [
 
 // Other referrals with logos - pill-shaped like featured referrals
 const otherReferrals = [
-  { name: "Kamino Finance", href: "https://swap.kamino.finance/?ref=SEBMONTY", logo: "/referral-logos/kmno.png" },
+  { name: "Kamino Finance", href: "https://swap.kamino.finance/?ref=SEBMONTY", logo: "/referral-logos/KMNO Token PNG.png" },
   { name: "Ranger Finance", href: "https://www.app.ranger.finance/?ref_code=sebmonty", logo: "/referral-logos/ranger-finance.svg" },
   { name: "Binance", href: "https://www.binance.com/en/activity/referral/offers/claim?ref=CPA_00R34Q8Y0Q", logo: "/referral-logos/binance-logo.png" },
   { name: "Bluefin", href: "https://trade.bluefin.io/referral/v2-84kt7k", logo: "/referral-logos/bluefin.jpeg" },
@@ -300,7 +300,7 @@ export function BentoGrid() {
                         <div className="flex items-center gap-3">
                           {referral.logo ? (
                             <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0 bg-white/10">
-                              <Image src={referral.logo} alt={referral.name} width={36} height={36} className="w-full h-full object-cover" />
+                              <Image src={referral.logo || "/placeholder.svg"} alt={referral.name} width={36} height={36} className="w-full h-full object-cover" />
                             </div>
                           ) : (
                             <div className="w-9 h-9 rounded-full flex-shrink-0 bg-white/20 flex items-center justify-center">
@@ -469,7 +469,7 @@ export function BentoGrid() {
                     <div className="flex items-center gap-3">
                       {referral.logo ? (
                         <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0 bg-white/10">
-                          <Image src={referral.logo} alt={referral.name} width={36} height={36} className="w-full h-full object-cover" />
+                          <Image src={referral.logo || "/placeholder.svg"} alt={referral.name} width={36} height={36} className="w-full h-full object-cover" />
                         </div>
                       ) : (
                         <div className="w-9 h-9 rounded-full flex-shrink-0 bg-white/20 flex items-center justify-center">
