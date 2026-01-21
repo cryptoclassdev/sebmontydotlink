@@ -14,34 +14,45 @@ import { WobbleCard } from "./ui/wobble-card"
 import { EmailSignupModal } from "./email-signup-modal"
 import { CTAButton } from "./ui/cta-button"
 
-// Primary social links for profile card
+// Brand colors from Figma
+const brandColors = {
+  navy: "#2d3c59",
+  skyBlue: "#74b4e2",
+  golden: "#e5ba41",
+  sage: "#94a378",
+  coral: "#d1855c",
+}
+
+// Primary social links for profile card with brand colors
 const profileSocialLinks = [
-  { title: "X/Twitter", icon: XIcon, href: "https://x.com/SebMontgomery" },
-  { title: "YouTube", icon: YoutubeIcon, href: "https://youtube.com/@SebMontgomery" },
-  { title: "Telegram", icon: TelegramIcon, href: "https://t.me" },
+  { title: "X/Twitter", icon: XIcon, href: "https://x.com/SebMontgomery", color: brandColors.skyBlue },
+  { title: "YouTube", icon: YoutubeIcon, href: "https://youtube.com/@SebMontgomery", color: brandColors.coral },
+  { title: "Telegram", icon: TelegramIcon, href: "https://t.me", color: brandColors.golden },
 ]
 
-// All referrals - unified list with badges
+// All referrals - unified list with badges and brand colors
 const allReferrals = [
   {
     name: "Infinex Referral",
     href: "https://infinex.xyz",
     badge: "Super Bullish",
+    badgeColor: brandColors.coral,
     icon: <InfinexIcon size={36} />,
   },
   {
     name: "Kast Referral",
     href: "https://kast.gg",
     badge: "My Personal Card",
+    badgeColor: brandColors.golden,
     icon: <KastIcon size={36} />,
   },
-  { name: "Kamino Finance", href: "https://swap.kamino.finance/?ref=SEBMONTY", logo: "/referral-logos/kmno.png", badge: "DeFi" },
-  { name: "Ranger Finance", href: "https://www.app.ranger.finance/?ref_code=sebmonty", logo: "/referral-logos/ranger-finance.svg", badge: "Perps" },
-  { name: "Binance", href: "https://www.binance.com/en/activity/referral/offers/claim?ref=CPA_00R34Q8Y0Q", logo: "/referral-logos/binance-logo.png", badge: "Exchange" },
-  { name: "Bluefin", href: "https://trade.bluefin.io/referral/v2-84kt7k", logo: "/referral-logos/bluefin.jpeg", badge: "Perps" },
-  { name: "Bybit", href: "https://www.bybit.com/invite?ref=JAW8RO", logo: "/referral-logos/bybit-logo.png", badge: "Exchange" },
-  { name: "Hawk Fi", href: "https://www.hawkfi.ag/", logo: "/referral-logos/hawkfi.png", badge: "Yield" },
-  { name: "Huma Finance", href: "https://app.huma.finance/?ref=bwECKU", logo: "/referral-logos/huma.jpeg", badge: "PayFi" },
+  { name: "Kamino Finance", href: "https://swap.kamino.finance/?ref=SEBMONTY", logo: "/referral-logos/kmno.png", badge: "DeFi", badgeColor: brandColors.sage },
+  { name: "Ranger Finance", href: "https://www.app.ranger.finance/?ref_code=sebmonty", logo: "/referral-logos/ranger-finance.svg", badge: "Perps", badgeColor: brandColors.skyBlue },
+  { name: "Binance", href: "https://www.binance.com/en/activity/referral/offers/claim?ref=CPA_00R34Q8Y0Q", logo: "/referral-logos/binance-logo.png", badge: "Exchange", badgeColor: brandColors.golden },
+  { name: "Bluefin", href: "https://trade.bluefin.io/referral/v2-84kt7k", logo: "/referral-logos/bluefin.jpeg", badge: "Perps", badgeColor: brandColors.skyBlue },
+  { name: "Bybit", href: "https://www.bybit.com/invite?ref=JAW8RO", logo: "/referral-logos/bybit-logo.png", badge: "Exchange", badgeColor: brandColors.golden },
+  { name: "Hawk Fi", href: "https://www.hawkfi.ag/", logo: "/referral-logos/hawkfi.png", badge: "Yield", badgeColor: brandColors.sage },
+  { name: "Huma Finance", href: "https://app.huma.finance/?ref=bwECKU", logo: "/referral-logos/huma.jpeg", badge: "PayFi", badgeColor: brandColors.coral },
 ]
 
 const containerVariants = {
@@ -87,29 +98,35 @@ export function BentoGrid() {
       variants={containerVariants}
       className="min-h-screen lg:h-screen lg:max-h-screen bg-[#0a0a0a] p-4 md:p-8 lg:p-[clamp(1rem,2vh,3rem)] relative overflow-hidden flex items-center justify-center"
     >
-      {/* Background ambient effects */}
+      {/* Background ambient effects - Brand colored */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        {/* Subtle radial gradient for depth - warm center glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,255,255,0.035),transparent)]" />
-        {/* Secondary gradient for bottom depth */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_60%_at_50%_120%,rgba(255,255,255,0.015),transparent)]" />
+        {/* Brand gradient - coral/golden warm glow from top */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(209,133,92,0.08),transparent)]" />
+        {/* Sky blue accent from bottom right */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_90%_90%,rgba(116,180,226,0.05),transparent)]" />
+        {/* Golden accent from bottom left */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_10%_80%,rgba(229,186,65,0.04),transparent)]" />
         {/* Soft vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_70%_at_50%_50%,transparent_20%,rgba(0,0,0,0.4))]" />
 
-        {/* Animated stars with varied sizes, opacity, and timing - layered for depth */}
-        {/* Bright foreground stars */}
-        <div className="absolute w-[3px] h-[3px] bg-white/50 rounded-full top-[8%] left-[22%] animate-pulse [animation-duration:2.8s] shadow-[0_0_4px_rgba(255,255,255,0.3)]" />
-        <div className="absolute w-1 h-1 bg-white/45 rounded-full top-[18%] right-[12%] animate-pulse [animation-duration:3.2s] [animation-delay:0.4s] shadow-[0_0_3px_rgba(255,255,255,0.2)]" />
-        <div className="absolute w-[3px] h-[3px] bg-white/40 rounded-full top-[55%] left-[85%] animate-pulse [animation-duration:3.5s] [animation-delay:0.9s] shadow-[0_0_4px_rgba(255,255,255,0.25)]" />
+        {/* Animated stars with brand colors */}
+        {/* Coral stars */}
+        <div className="absolute w-[3px] h-[3px] bg-[#d1855c]/60 rounded-full top-[8%] left-[22%] animate-pulse [animation-duration:2.8s] shadow-[0_0_6px_rgba(209,133,92,0.4)]" />
+        <div className="absolute w-1 h-1 bg-[#d1855c]/50 rounded-full top-[65%] right-[22%] animate-pulse [animation-duration:3.8s] [animation-delay:0.7s] shadow-[0_0_4px_rgba(209,133,92,0.3)]" />
 
-        {/* Mid-layer stars */}
-        <div className="absolute w-1 h-1 bg-white/35 rounded-full top-[32%] left-[58%] animate-pulse [animation-duration:4s] [animation-delay:0.5s]" />
-        <div className="absolute w-0.5 h-0.5 bg-white/30 rounded-full top-[75%] left-[28%] animate-pulse [animation-duration:4.5s] [animation-delay:0.2s]" />
-        <div className="absolute w-1 h-1 bg-white/32 rounded-full top-[65%] right-[22%] animate-pulse [animation-duration:3.8s] [animation-delay:0.7s]" />
-        <div className="absolute w-0.5 h-0.5 bg-white/28 rounded-full bottom-[18%] right-[45%] animate-pulse [animation-duration:4.2s] [animation-delay:1.1s]" />
+        {/* Sky blue stars */}
+        <div className="absolute w-1 h-1 bg-[#74b4e2]/55 rounded-full top-[18%] right-[12%] animate-pulse [animation-duration:3.2s] [animation-delay:0.4s] shadow-[0_0_5px_rgba(116,180,226,0.3)]" />
+        <div className="absolute w-[3px] h-[3px] bg-[#74b4e2]/45 rounded-full top-[55%] left-[85%] animate-pulse [animation-duration:3.5s] [animation-delay:0.9s] shadow-[0_0_6px_rgba(116,180,226,0.35)]" />
 
-        {/* Distant background stars */}
-        <div className="absolute w-0.5 h-0.5 bg-white/20 rounded-full top-[42%] left-[8%] animate-pulse [animation-duration:5s] [animation-delay:0.15s]" />
+        {/* Golden stars */}
+        <div className="absolute w-1 h-1 bg-[#e5ba41]/50 rounded-full top-[32%] left-[58%] animate-pulse [animation-duration:4s] [animation-delay:0.5s] shadow-[0_0_4px_rgba(229,186,65,0.3)]" />
+        <div className="absolute w-0.5 h-0.5 bg-[#e5ba41]/40 rounded-full top-[75%] left-[28%] animate-pulse [animation-duration:4.5s] [animation-delay:0.2s]" />
+
+        {/* Sage green stars */}
+        <div className="absolute w-0.5 h-0.5 bg-[#94a378]/45 rounded-full bottom-[18%] right-[45%] animate-pulse [animation-duration:4.2s] [animation-delay:1.1s]" />
+        <div className="absolute w-0.5 h-0.5 bg-[#94a378]/35 rounded-full top-[42%] left-[8%] animate-pulse [animation-duration:5s] [animation-delay:0.15s]" />
+
+        {/* Subtle white stars for balance */}
         <div className="absolute w-0.5 h-0.5 bg-white/18 rounded-full top-[88%] left-[72%] animate-pulse [animation-duration:5.5s] [animation-delay:1.3s]" />
         <div className="absolute w-0.5 h-0.5 bg-white/22 rounded-full top-[25%] left-[42%] animate-pulse [animation-duration:4.8s] [animation-delay:0.6s]" />
         <div className="absolute w-0.5 h-0.5 bg-white/16 rounded-full bottom-[35%] left-[92%] animate-pulse [animation-duration:5.2s] [animation-delay:0.85s]" />
@@ -144,7 +161,7 @@ export function BentoGrid() {
                     <p className="text-sm lg:text-base text-white/80">Crypto Content Creator</p>
                   </div>
 
-                  {/* Social Icons - Integrated into profile card */}
+                  {/* Social Icons - Integrated into profile card with brand colors */}
                   <div className="flex justify-center gap-3">
                     {profileSocialLinks.map((social) => (
                       <a
@@ -152,10 +169,22 @@ export function BentoGrid() {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group relative flex items-center justify-center w-11 h-11 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 hover:border-white/40 hover:scale-110 transition-all duration-200 shadow-lg"
+                        className="group relative flex items-center justify-center w-11 h-11 rounded-full backdrop-blur-md border-2 hover:scale-110 transition-all duration-200 shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
+                        style={{
+                          backgroundColor: `${social.color}35`,
+                          borderColor: `${social.color}70`,
+                          boxShadow: `0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 ${social.color}40`,
+                        }}
                         aria-label={social.title}
                       >
-                        <social.icon size={20} className="brightness-0 invert" />
+                        <div className="invert brightness-0 invert drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]">
+                          <social.icon size={20} />
+                        </div>
+                        {/* Hover glow effect */}
+                        <div
+                          className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-lg"
+                          style={{ backgroundColor: `${social.color}60` }}
+                        />
                       </a>
                     ))}
                   </div>
@@ -279,7 +308,14 @@ export function BentoGrid() {
                         )}
                         <span className="font-bold text-white text-sm truncate">{referral.name}</span>
                       </div>
-                      <span className="px-2.5 py-1.5 bg-white/20 text-white text-[10px] font-bold rounded-full whitespace-nowrap border border-white/20 flex-shrink-0">
+                      <span
+                        className="px-2.5 py-1.5 text-white text-[10px] font-bold rounded-full whitespace-nowrap flex-shrink-0"
+                        style={{
+                          backgroundColor: `${referral.badgeColor}30`,
+                          borderWidth: '1px',
+                          borderColor: `${referral.badgeColor}60`,
+                        }}
+                      >
                         {referral.badge}
                       </span>
                     </a>
@@ -314,7 +350,7 @@ export function BentoGrid() {
                   <p className="text-sm text-white/80">Crypto Content Creator</p>
                 </div>
 
-                {/* Social Icons - Integrated into profile card */}
+                {/* Social Icons - Integrated into profile card with brand colors */}
                 <div className="flex justify-center gap-3">
                   {profileSocialLinks.map((social) => (
                     <a
@@ -322,10 +358,22 @@ export function BentoGrid() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 active:scale-95 transition-all duration-150 shadow-lg"
+                      className="group relative flex items-center justify-center w-12 h-12 rounded-full backdrop-blur-md border-2 active:scale-95 transition-all duration-150"
+                      style={{
+                        backgroundColor: `${social.color}35`,
+                        borderColor: `${social.color}70`,
+                        boxShadow: `0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 ${social.color}40`,
+                      }}
                       aria-label={social.title}
                     >
-                      <social.icon size={22} className="brightness-0 invert" />
+                      <div className="invert brightness-0 invert drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]">
+                        <social.icon size={22} />
+                      </div>
+                      {/* Hover glow effect */}
+                      <div
+                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-lg"
+                        style={{ backgroundColor: `${social.color}60` }}
+                      />
                     </a>
                   ))}
                 </div>
@@ -429,7 +477,14 @@ export function BentoGrid() {
                         {referral.name}
                       </span>
                     </div>
-                    <span className="px-3 py-1.5 bg-white/20 text-white text-[10px] font-bold rounded-full whitespace-nowrap border border-white/20 flex-shrink-0">
+                    <span
+                      className="px-3 py-1.5 text-white text-[10px] font-bold rounded-full whitespace-nowrap flex-shrink-0"
+                      style={{
+                        backgroundColor: `${referral.badgeColor}30`,
+                        borderWidth: '1px',
+                        borderColor: `${referral.badgeColor}60`,
+                      }}
+                    >
                       {referral.badge}
                     </span>
                   </motion.a>
