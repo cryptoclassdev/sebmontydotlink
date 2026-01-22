@@ -38,6 +38,7 @@ const allReferrals = [
     badge: "Super Bullish",
     badgeColor: brandColors.coral,
     icon: <InfinexIcon size={36} />,
+    highlighted: true, // Discord nameplate effect
   },
   {
     name: "Kast Referral",
@@ -45,6 +46,7 @@ const allReferrals = [
     badge: "My Personal Card",
     badgeColor: brandColors.golden,
     icon: <KastIcon size={36} />,
+    highlighted: true, // Discord nameplate effect
   },
   { name: "Kamino Finance", href: "https://swap.kamino.finance/?ref=SEBMONTY", logo: "/referral-logos/kmno.png", badge: "DeFi", badgeColor: brandColors.sage },
   { name: "Ranger Finance", href: "https://www.app.ranger.finance/?ref_code=sebmonty", logo: "/referral-logos/ranger-finance.svg", badge: "Perps", badgeColor: brandColors.skyBlue },
@@ -283,14 +285,17 @@ export function BentoGrid() {
 
               {/* All Referrals - evenly distributed */}
               <div className="flex flex-col justify-between flex-1 min-h-0">
-                  {allReferrals.map((referral) => (
+                  {allReferrals.map((referral) => {
+                    const isHighlighted = 'highlighted' in referral && referral.highlighted
+                    return (
                     <a
                       key={referral.name}
                       href={referral.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-between px-[clamp(0.75rem,1.5vh,1rem)] py-[clamp(0.5rem,1vh,0.75rem)] min-h-[clamp(40px,5vh,52px)] rounded-full bg-white/10 backdrop-blur-sm border-[2px] border-white/10 hover:border-white/25 hover:bg-white/15 transition-all duration-200 group"
+                      className={`flex items-center justify-between px-[clamp(0.75rem,1.5vh,1rem)] py-[clamp(0.5rem,1vh,0.75rem)] min-h-[clamp(40px,5vh,52px)] rounded-full bg-white/10 backdrop-blur-sm border-[2px] border-white/10 hover:border-white/25 hover:bg-white/15 transition-all duration-200 group ${isHighlighted ? 'discord-nameplate' : ''}`}
                     >
+                      {isHighlighted && <div className="discord-shimmer" />}
                       <div className="flex items-center gap-2 min-w-0 flex-1">
                         {referral.icon ? (
                           <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
@@ -318,7 +323,7 @@ export function BentoGrid() {
                         {referral.badge}
                       </span>
                     </a>
-                  ))}
+                  )})}
               </div>
             </div>
           </motion.div>
@@ -446,7 +451,9 @@ export function BentoGrid() {
             <h3 className="text-base font-bold text-white mb-4">Links & Referrals</h3>
             <div className="relative">
               <div className="space-y-3">
-                {visibleReferrals.map((referral, index) => (
+                {visibleReferrals.map((referral, index) => {
+                  const isHighlighted = 'highlighted' in referral && referral.highlighted
+                  return (
                   <motion.a
                     key={referral.name}
                     href={referral.href}
@@ -455,8 +462,9 @@ export function BentoGrid() {
                     initial={index >= 4 ? { opacity: 0, height: 0 } : false}
                     animate={{ opacity: 1, height: "auto" }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="flex items-center justify-between px-4 py-3 min-h-[52px] rounded-full bg-white/10 backdrop-blur-sm border-[2px] border-white/10 hover:border-white/25 hover:bg-white/15 active:scale-[0.98] transition-all duration-150 group"
+                    className={`flex items-center justify-between px-4 py-3 min-h-[52px] rounded-full bg-white/10 backdrop-blur-sm border-[2px] border-white/10 hover:border-white/25 hover:bg-white/15 active:scale-[0.98] transition-all duration-150 group ${isHighlighted ? 'discord-nameplate' : ''}`}
                   >
+                    {isHighlighted && <div className="discord-shimmer" />}
                     <div className="flex items-center gap-3 min-w-0 flex-1">
                       {referral.icon ? (
                         <div className="w-9 h-9 flex items-center justify-center flex-shrink-0">
@@ -486,7 +494,7 @@ export function BentoGrid() {
                       {referral.badge}
                     </span>
                   </motion.a>
-                ))}
+                )})}
               </div>
 
               {/* Integrated expansion trigger */}
