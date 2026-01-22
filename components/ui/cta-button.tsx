@@ -4,8 +4,8 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-// Single accent color - electric sky blue
-const accentBlue = "#38bdf8"
+// Single accent color - rich deep blue
+const accentBlue = "#2563eb"
 
 interface CTAButtonProps {
   onClick: () => void
@@ -20,28 +20,28 @@ export function CTAButton({ onClick, className }: CTAButtonProps) {
       initial="initial"
     >
       {/* LAYER 1: Outer pulsing ring */}
-      <div className="absolute -inset-2 rounded-[2.25rem] border-2 border-[#38bdf8]/30 animate-pulse [animation-duration:2s] pointer-events-none" />
+      <div className="absolute -inset-2 rounded-[2.25rem] border-2 border-[#2563eb]/35 animate-pulse [animation-duration:2s] pointer-events-none" />
 
       {/* LAYER 2: Large ambient glow */}
-      <div className="absolute -inset-3 rounded-[2.5rem] bg-[#38bdf8]/15 blur-3xl cta-glow-pulse pointer-events-none" />
+      <div className="absolute -inset-3 rounded-[2.5rem] bg-[#2563eb]/20 blur-3xl cta-glow-pulse pointer-events-none" />
 
       {/* LAYER 3: Secondary glow layer */}
-      <div className="absolute -inset-2 rounded-[2.25rem] bg-[#38bdf8]/10 blur-2xl pointer-events-none" />
+      <div className="absolute -inset-2 rounded-[2.25rem] bg-[#2563eb]/15 blur-2xl pointer-events-none" />
 
       {/* LAYER 4: Spinning border gradient (4s loop) - single color */}
       <div className="absolute -inset-[2px] rounded-[2.2rem] overflow-hidden">
-        <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0deg,transparent_60deg,rgba(56,189,248,0.8)_180deg,transparent_300deg,transparent_360deg)] cta-border-spin" />
+        <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0deg,transparent_60deg,rgba(37,99,235,0.85)_180deg,transparent_300deg,transparent_360deg)] cta-border-spin" />
         {/* Static subtle border */}
-        <div className="absolute inset-0 bg-[#38bdf8]/20" />
+        <div className="absolute inset-0 bg-[#2563eb]/25" />
       </div>
 
       {/* Main card */}
       <button
         onClick={onClick}
-        className="relative w-full bg-[#0c0c0c] rounded-[2.15rem] p-5 lg:p-6 border border-white/[0.08] text-left overflow-hidden transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] active:scale-[0.99]"
+        className="relative w-full bg-[#0c0c0c] rounded-[2.15rem] p-5 lg:p-6 border border-white/[0.08] text-left overflow-hidden transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] active:scale-[0.99]"
       >
         {/* Inner gradient for depth */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#38bdf8]/[0.04] via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#2563eb]/[0.06] via-transparent to-transparent pointer-events-none" />
 
         {/* Shimmer sweep on hover */}
         <div className="absolute inset-0 bg-[linear-gradient(105deg,transparent_20%,rgba(255,255,255,0.03)_35%,rgba(255,255,255,0.08)_50%,rgba(255,255,255,0.03)_65%,transparent_80%)] opacity-0 group-hover:opacity-100 cta-shimmer pointer-events-none" />
@@ -79,11 +79,11 @@ export function CTAButton({ onClick, className }: CTAButtonProps) {
             className="relative inline-flex"
           >
             {/* Button glow */}
-            <div className="absolute inset-0 rounded-full bg-[#38bdf8]/40 blur-2xl opacity-70 scale-125" />
+            <div className="absolute inset-0 rounded-full bg-[#2563eb]/50 blur-2xl opacity-80 scale-125" />
 
-            <div className="relative inline-flex items-center gap-3 px-8 py-5 min-h-[60px] bg-[#38bdf8] rounded-full text-white font-bold text-lg shadow-[0_0_30px_rgba(56,189,248,0.4)]">
+            <div className="relative inline-flex items-center gap-3 px-8 py-5 min-h-[60px] bg-[#2563eb] rounded-full text-white font-bold text-lg shadow-[0_0_35px_rgba(37,99,235,0.5)]">
               {/* Inner highlight */}
-              <div className="absolute inset-[1px] rounded-full bg-gradient-to-b from-white/25 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-[1px] rounded-full bg-gradient-to-b from-white/20 via-transparent to-transparent pointer-events-none" />
 
               <span className="relative">Join the Waitlist</span>
 
@@ -103,10 +103,10 @@ export function CTAButton({ onClick, className }: CTAButtonProps) {
         </div>
 
         {/* Corner accent glow */}
-        <div className="absolute top-0 right-0 w-56 h-56 bg-[radial-gradient(circle_at_100%_0%,rgba(56,189,248,0.12),transparent_50%)] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-56 h-56 bg-[radial-gradient(circle_at_100%_0%,rgba(37,99,235,0.15),transparent_50%)] pointer-events-none" />
 
         {/* Bottom accent line */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-[1px] bg-gradient-to-r from-transparent via-[#38bdf8]/40 to-transparent opacity-70" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-[1px] bg-gradient-to-r from-transparent via-[#2563eb]/50 to-transparent opacity-80" />
       </button>
     </motion.div>
   )
