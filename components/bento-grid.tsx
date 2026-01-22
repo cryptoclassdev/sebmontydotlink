@@ -162,28 +162,28 @@ export function BentoGrid() {
                   </div>
 
                   {/* Social Icons - Integrated into profile card with brand colors */}
-                  <div className="flex justify-center gap-3">
+                  <div className="flex justify-center gap-4">
                     {profileSocialLinks.map((social) => (
                       <a
                         key={social.title}
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group relative flex items-center justify-center w-11 h-11 rounded-full backdrop-blur-md border-2 hover:scale-110 transition-all duration-200 shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
+                        className="group relative flex items-center justify-center w-14 h-14 rounded-full backdrop-blur-md border-2 hover:scale-110 transition-all duration-200"
                         style={{
-                          backgroundColor: `${social.color}35`,
-                          borderColor: `${social.color}70`,
-                          boxShadow: `0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 ${social.color}40`,
+                          backgroundColor: `${social.color}50`,
+                          borderColor: `${social.color}90`,
+                          boxShadow: `0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 ${social.color}60, 0 0 20px ${social.color}30`,
                         }}
                         aria-label={social.title}
                       >
-                        <div className="invert brightness-0 invert drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]">
-                          <social.icon size={20} />
+                        <div className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]">
+                          <social.icon size={26} />
                         </div>
                         {/* Hover glow effect */}
                         <div
-                          className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-lg"
-                          style={{ backgroundColor: `${social.color}60` }}
+                          className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl"
+                          style={{ backgroundColor: `${social.color}70` }}
                         />
                       </a>
                     ))}
@@ -351,28 +351,28 @@ export function BentoGrid() {
                 </div>
 
                 {/* Social Icons - Integrated into profile card with brand colors */}
-                <div className="flex justify-center gap-3">
+                <div className="flex justify-center gap-4">
                   {profileSocialLinks.map((social) => (
                     <a
                       key={social.title}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group relative flex items-center justify-center w-12 h-12 rounded-full backdrop-blur-md border-2 active:scale-95 transition-all duration-150"
+                      className="group relative flex items-center justify-center w-14 h-14 rounded-full backdrop-blur-md border-2 active:scale-95 transition-all duration-150"
                       style={{
-                        backgroundColor: `${social.color}35`,
-                        borderColor: `${social.color}70`,
-                        boxShadow: `0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 ${social.color}40`,
+                        backgroundColor: `${social.color}50`,
+                        borderColor: `${social.color}90`,
+                        boxShadow: `0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 ${social.color}60, 0 0 20px ${social.color}30`,
                       }}
                       aria-label={social.title}
                     >
-                      <div className="invert brightness-0 invert drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]">
-                        <social.icon size={22} />
+                      <div className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]">
+                        <social.icon size={28} />
                       </div>
                       {/* Hover glow effect */}
                       <div
-                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-lg"
-                        style={{ backgroundColor: `${social.color}60` }}
+                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl"
+                        style={{ backgroundColor: `${social.color}70` }}
                       />
                     </a>
                   ))}
