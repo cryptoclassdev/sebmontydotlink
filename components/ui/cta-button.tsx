@@ -4,11 +4,8 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-// Brand colors from Figma
-// Sky Blue: #74b4e2 (primary)
-// Golden Yellow: #e5ba41 (hover accent)
-// Coral Orange: #d1855c (secondary)
-// Dark Navy: #2d3c59
+// Single accent color - electric sky blue
+const accentBlue = "#38bdf8"
 
 interface CTAButtonProps {
   onClick: () => void
@@ -22,32 +19,29 @@ export function CTAButton({ onClick, className }: CTAButtonProps) {
       whileHover="hover"
       initial="initial"
     >
-      {/* LAYER 1: Outer pulsing ring - brand sky blue */}
-      <div className="absolute -inset-2 rounded-[2.25rem] border-2 border-[#74b4e2]/25 animate-pulse [animation-duration:2s] pointer-events-none" />
+      {/* LAYER 1: Outer pulsing ring */}
+      <div className="absolute -inset-2 rounded-[2.25rem] border-2 border-[#38bdf8]/30 animate-pulse [animation-duration:2s] pointer-events-none" />
 
-      {/* LAYER 2: Large ambient glow - cool sky blue */}
-      <div className="absolute -inset-3 rounded-[2.5rem] bg-[#74b4e2]/20 blur-3xl cta-glow-pulse pointer-events-none" />
+      {/* LAYER 2: Large ambient glow */}
+      <div className="absolute -inset-3 rounded-[2.5rem] bg-[#38bdf8]/15 blur-3xl cta-glow-pulse pointer-events-none" />
 
-      {/* LAYER 3: Secondary glow layer - golden accent */}
-      <div className="absolute -inset-2 rounded-[2.25rem] bg-[#e5ba41]/10 blur-2xl pointer-events-none" />
+      {/* LAYER 3: Secondary glow layer */}
+      <div className="absolute -inset-2 rounded-[2.25rem] bg-[#38bdf8]/10 blur-2xl pointer-events-none" />
 
-      {/* LAYER 4: Intense hover glow - blue blend */}
-      <div className="absolute -inset-1 rounded-[2.15rem] bg-[#74b4e2]/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-      {/* LAYER 5: Spinning border gradient (4s loop) - brand colors */}
+      {/* LAYER 4: Spinning border gradient (4s loop) - single color */}
       <div className="absolute -inset-[2px] rounded-[2.2rem] overflow-hidden">
-        <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0deg,transparent_45deg,rgba(116,180,226,0.7)_90deg,rgba(229,186,65,0.9)_180deg,rgba(116,180,226,0.7)_270deg,transparent_315deg,transparent_360deg)] cta-border-spin" />
-        {/* Static subtle border visible always */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#74b4e2]/20 via-[#e5ba41]/35 to-[#74b4e2]/20" />
+        <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0deg,transparent_60deg,rgba(56,189,248,0.8)_180deg,transparent_300deg,transparent_360deg)] cta-border-spin" />
+        {/* Static subtle border */}
+        <div className="absolute inset-0 bg-[#38bdf8]/20" />
       </div>
 
       {/* Main card */}
       <button
         onClick={onClick}
-        className="relative w-full bg-[#0c0c0c] rounded-[2.15rem] p-5 lg:p-6 border border-white/[0.08] text-left overflow-hidden transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#74b4e2]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] active:scale-[0.99]"
+        className="relative w-full bg-[#0c0c0c] rounded-[2.15rem] p-5 lg:p-6 border border-white/[0.08] text-left overflow-hidden transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] active:scale-[0.99]"
       >
-        {/* Inner gradient for depth - cool blue tones */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#74b4e2]/[0.04] via-transparent to-[#e5ba41]/[0.02] pointer-events-none" />
+        {/* Inner gradient for depth */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#38bdf8]/[0.04] via-transparent to-transparent pointer-events-none" />
 
         {/* Shimmer sweep on hover */}
         <div className="absolute inset-0 bg-[linear-gradient(105deg,transparent_20%,rgba(255,255,255,0.03)_35%,rgba(255,255,255,0.08)_50%,rgba(255,255,255,0.03)_65%,transparent_80%)] opacity-0 group-hover:opacity-100 cta-shimmer pointer-events-none" />
@@ -75,7 +69,7 @@ export function CTAButton({ onClick, className }: CTAButtonProps) {
             </p>
           </div>
 
-          {/* CTA Button - Brand sky blue with golden hover */}
+          {/* CTA Button - Single color, no hover change */}
           <motion.div
             variants={{
               initial: { scale: 1 },
@@ -84,10 +78,10 @@ export function CTAButton({ onClick, className }: CTAButtonProps) {
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
             className="relative inline-flex"
           >
-            {/* Button glow - cool sky blue */}
-            <div className="absolute inset-0 rounded-full bg-[#74b4e2]/40 blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-300 scale-125" />
+            {/* Button glow */}
+            <div className="absolute inset-0 rounded-full bg-[#38bdf8]/40 blur-2xl opacity-70 scale-125" />
 
-            <div className="relative inline-flex items-center gap-3 px-8 py-5 min-h-[60px] bg-gradient-to-r from-[#74b4e2] to-[#5a9fd4] rounded-full text-white font-bold text-lg transition-all duration-200 group-hover:from-[#e5ba41] group-hover:to-[#d1855c] group-hover:shadow-[0_0_60px_rgba(116,180,226,0.6)]">
+            <div className="relative inline-flex items-center gap-3 px-8 py-5 min-h-[60px] bg-[#38bdf8] rounded-full text-white font-bold text-lg shadow-[0_0_30px_rgba(56,189,248,0.4)]">
               {/* Inner highlight */}
               <div className="absolute inset-[1px] rounded-full bg-gradient-to-b from-white/25 via-transparent to-transparent pointer-events-none" />
 
@@ -108,14 +102,11 @@ export function CTAButton({ onClick, className }: CTAButtonProps) {
           </motion.div>
         </div>
 
-        {/* Corner accent glow - cool sky blue */}
-        <div className="absolute top-0 right-0 w-56 h-56 bg-[radial-gradient(circle_at_100%_0%,rgba(116,180,226,0.15),transparent_50%)] pointer-events-none" />
+        {/* Corner accent glow */}
+        <div className="absolute top-0 right-0 w-56 h-56 bg-[radial-gradient(circle_at_100%_0%,rgba(56,189,248,0.12),transparent_50%)] pointer-events-none" />
 
-        {/* Bottom left accent - golden */}
-        <div className="absolute bottom-0 left-0 w-40 h-40 bg-[radial-gradient(circle_at_0%_100%,rgba(229,186,65,0.08),transparent_60%)] pointer-events-none" />
-
-        {/* Bottom accent line - brand gradient */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-[1px] bg-gradient-to-r from-transparent via-[#74b4e2]/50 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+        {/* Bottom accent line */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-[1px] bg-gradient-to-r from-transparent via-[#38bdf8]/40 to-transparent opacity-70" />
       </button>
     </motion.div>
   )
