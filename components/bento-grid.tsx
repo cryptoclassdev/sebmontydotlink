@@ -278,12 +278,12 @@ export function BentoGrid() {
         <div className="lg:col-span-3 flex flex-col gap-[clamp(0.75rem,1.5vh,1.25rem)] min-h-0">
           {/* Links Card - Dark theme */}
           <motion.div variants={itemVariants} className="flex-1 min-h-0">
-            <div className="bg-[#141414] rounded-2xl p-[clamp(0.75rem,1.5vh,1.5rem)] border-[2px] border-white/10 h-full overflow-hidden flex flex-col">
-              <div className="flex flex-col min-h-0 h-full overflow-y-auto">
+            <div className="bg-[#141414] rounded-2xl p-[clamp(0.75rem,1.5vh,1.5rem)] border-[2px] border-white/10 h-full overflow-hidden flex flex-col justify-center">
+              <div className="flex flex-col">
                 <h3 className="text-lg font-bold text-white mb-[clamp(0.75rem,1.5vh,1.25rem)] flex-shrink-0">Links & Referrals</h3>
 
                 {/* All Referrals - unified styling */}
-                <div className="space-y-[clamp(0.5rem,1vh,0.75rem)] flex-1 min-h-0">
+                <div className="space-y-[clamp(0.5rem,1vh,0.75rem)]">
                   {allReferrals.map((referral) => (
                     <a
                       key={referral.name}
