@@ -23,19 +23,19 @@ export function CTAButton({ onClick, className }: CTAButtonProps) {
       initial="initial"
     >
       {/* LAYER 1: Outer pulsing ring - brand sky blue */}
-      <div className="absolute -inset-4 rounded-[2.5rem] border-2 border-[#74b4e2]/25 animate-pulse [animation-duration:2s] pointer-events-none" />
+      <div className="absolute -inset-2 rounded-[2.25rem] border-2 border-[#74b4e2]/25 animate-pulse [animation-duration:2s] pointer-events-none" />
 
       {/* LAYER 2: Large ambient glow - cool sky blue */}
-      <div className="absolute -inset-6 rounded-[3rem] bg-[#74b4e2]/20 blur-3xl cta-glow-pulse pointer-events-none" />
+      <div className="absolute -inset-3 rounded-[2.5rem] bg-[#74b4e2]/20 blur-3xl cta-glow-pulse pointer-events-none" />
 
       {/* LAYER 3: Secondary glow layer - golden accent */}
-      <div className="absolute -inset-3 rounded-[2.5rem] bg-[#e5ba41]/10 blur-2xl pointer-events-none" />
+      <div className="absolute -inset-2 rounded-[2.25rem] bg-[#e5ba41]/10 blur-2xl pointer-events-none" />
 
       {/* LAYER 4: Intense hover glow - blue blend */}
-      <div className="absolute -inset-2 rounded-[2.25rem] bg-[#74b4e2]/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      <div className="absolute -inset-1 rounded-[2.15rem] bg-[#74b4e2]/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
       {/* LAYER 5: Spinning border gradient (4s loop) - brand colors */}
-      <div className="absolute -inset-[3px] rounded-[2.25rem] overflow-hidden">
+      <div className="absolute -inset-[2px] rounded-[2.2rem] overflow-hidden">
         <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0deg,transparent_45deg,rgba(116,180,226,0.7)_90deg,rgba(229,186,65,0.9)_180deg,rgba(116,180,226,0.7)_270deg,transparent_315deg,transparent_360deg)] cta-border-spin" />
         {/* Static subtle border visible always */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#74b4e2]/20 via-[#e5ba41]/35 to-[#74b4e2]/20" />
@@ -44,7 +44,7 @@ export function CTAButton({ onClick, className }: CTAButtonProps) {
       {/* Main card */}
       <button
         onClick={onClick}
-        className="relative w-full bg-[#0c0c0c] rounded-[2.15rem] p-7 lg:p-10 border border-white/[0.08] text-left overflow-hidden transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#74b4e2]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] active:scale-[0.99]"
+        className="relative w-full bg-[#0c0c0c] rounded-[2.15rem] p-5 lg:p-6 border border-white/[0.08] text-left overflow-hidden transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#74b4e2]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] active:scale-[0.99]"
       >
         {/* Inner gradient for depth - cool blue tones */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#74b4e2]/[0.04] via-transparent to-[#e5ba41]/[0.02] pointer-events-none" />
@@ -61,7 +61,7 @@ export function CTAButton({ onClick, className }: CTAButtonProps) {
         />
 
         {/* Content */}
-        <div className="relative space-y-6 lg:space-y-8">
+        <div className="relative space-y-4 lg:space-y-5">
           {/* Text group */}
           <div className="space-y-3">
             {/* Headline */}
