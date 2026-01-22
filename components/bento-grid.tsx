@@ -219,14 +219,14 @@ export function BentoGrid() {
             ============================================ */}
         <div className="lg:col-span-4 flex flex-col gap-[clamp(0.75rem,1.5vh,1.25rem)] min-h-0">
           {/* Join the Private Group CTA - PRIMARY focal point with isolation for visual hierarchy */}
-          <motion.div variants={itemVariants} className="w-full flex-[1.05] min-h-0">
+          <motion.div variants={itemVariants} className="w-full py-[clamp(0.25rem,0.5vh,0.75rem)] flex-shrink-0">
             <div className="h-full w-full flex items-center px-2">
               <CTAButton onClick={() => setIsEmailModalOpen(true)} />
             </div>
           </motion.div>
 
           {/* Validator Card - Tertiary, minimal, light */}
-          <motion.div variants={itemVariants} className="w-full flex-[1] min-h-0">
+          <motion.div variants={itemVariants} className="w-full flex-1 min-h-0">
             <WobbleCard containerClassName="h-full rounded-xl">
               <a href="https://validator.com" target="_blank" rel="noopener noreferrer" className="flex flex-col h-full bg-[#f1f1f1] rounded-xl p-[clamp(0.5rem,1vh,0.875rem)] border-[2px] border-white/0 hover:border-white/40 transition-all duration-200 group">
                 {/* Header - Minimal */}
