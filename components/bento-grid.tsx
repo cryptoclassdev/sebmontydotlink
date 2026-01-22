@@ -219,7 +219,7 @@ export function BentoGrid() {
             ============================================ */}
         <div className="lg:col-span-4 flex flex-col gap-[clamp(0.75rem,1.5vh,1.25rem)] min-h-0">
           {/* Join the Private Group CTA - PRIMARY focal point with isolation for visual hierarchy */}
-          <motion.div variants={itemVariants} className="w-full py-[clamp(0.5rem,1vh,1.5rem)] flex-shrink-0">
+          <motion.div variants={itemVariants} className="w-full py-[clamp(0.25rem,0.5vh,0.75rem)] flex-shrink-0">
             <div className="h-full w-full flex items-center px-2">
               <CTAButton onClick={() => setIsEmailModalOpen(true)} />
             </div>
