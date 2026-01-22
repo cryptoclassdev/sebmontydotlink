@@ -177,7 +177,7 @@ export function BentoGrid() {
                         }}
                         aria-label={social.title}
                       >
-                        <div className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]">
+                        <div className="brightness-0 invert drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]">
                           <social.icon size={26} />
                         </div>
                         {/* Hover glow effect */}
@@ -366,7 +366,7 @@ export function BentoGrid() {
                       }}
                       aria-label={social.title}
                     >
-                      <div className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]">
+                      <div className="brightness-0 invert drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]">
                         <social.icon size={28} />
                       </div>
                       {/* Hover glow effect */}
