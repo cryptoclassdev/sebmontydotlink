@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { ChevronDown } from "lucide-react"
 import { XIcon } from "./icons/x-icon"
 import { TelegramIcon } from "./icons/telegram-icon"
 import { YoutubeIcon } from "./icons/youtube-icon"
@@ -85,11 +84,6 @@ const itemVariants = {
 
 export function BentoGrid() {
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false)
-  // Progressive disclosure for mobile - Hick's Law: Show only 4 referrals initially
-  const [showAllReferrals, setShowAllReferrals] = useState(false)
-
-  // Mobile: use progressive disclosure (4 items initially)
-  const visibleReferrals = showAllReferrals ? allReferrals : allReferrals.slice(0, 4)
 
   return (
     <>
@@ -384,10 +378,10 @@ export function BentoGrid() {
           </CardContainer>
         </motion.div>
 
-        {/* 4. Validator - Minimal tertiary card - Priority 1 (largest, doesn't shrink) */}
+        {/* 4. Validator - Minimal tertiary card */}
         <motion.div variants={itemVariants}>
           <WobbleCard containerClassName="rounded-xl">
-            <a href="https://validator.com" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#f1f1f1] rounded-xl p-[1rem] border-[0.125rem] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all duration-150 h-[clamp(10rem,25vh,14rem)]">
+            <a href="https://validator.com" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#f1f1f1] rounded-xl p-[1rem] border-[0.125rem] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all duration-150 h-[clamp(11.25rem,24vh,16.25rem)]">
               <div className="flex items-center gap-2.5 mb-3">
                 <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0 overflow-hidden shadow-sm">
                   <div className="flex gap-[0.09375rem]">
@@ -408,10 +402,10 @@ export function BentoGrid() {
           </WobbleCard>
         </motion.div>
 
-        {/* 5. Fogees Hub - Minimal tertiary card, dark - Priority 3 (smallest) */}
+        {/* 5. Fogees Hub - Minimal tertiary card, dark */}
         <motion.div variants={itemVariants}>
           <WobbleCard containerClassName="rounded-xl">
-            <a href="https://fogees.link" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#141414] rounded-xl p-[1rem] border-[0.125rem] border-white/10 hover:border-white/25 active:scale-[0.98] transition-all duration-150 h-[clamp(8rem,20vh,11rem)]">
+            <a href="https://fogees.link" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#141414] rounded-xl p-[1rem] border-[0.125rem] border-white/10 hover:border-white/25 active:scale-[0.98] transition-all duration-150 h-[clamp(11.25rem,24vh,16.25rem)]">
               <div className="flex items-center gap-2.5 mb-3">
                 <Image src="/fogees-logo.png" alt="Fogees Hub" width={32} height={32} className="rounded-full flex-shrink-0 ring-1 ring-white/10" />
                 <div className="space-y-0">
@@ -426,10 +420,10 @@ export function BentoGrid() {
           </WobbleCard>
         </motion.div>
 
-        {/* 6. Communication Link - Minimal tertiary card - Priority 2 (medium) */}
+        {/* 6. Communication Link - Minimal tertiary card */}
         <motion.div variants={itemVariants}>
           <WobbleCard containerClassName="rounded-xl">
-            <a href="https://thecommunication.link" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#f1f1f1] rounded-xl p-[1rem] border-[0.125rem] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all duration-150 h-[clamp(9rem,22vh,12rem)]">
+            <a href="https://thecommunication.link" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#f1f1f1] rounded-xl p-[1rem] border-[0.125rem] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all duration-150 h-[clamp(11.25rem,24vh,16.25rem)]">
               <div className="flex items-center gap-2.5 mb-3">
                 <Image src="/images/seb-pfp.png" alt="Communication Link" width={32} height={32} className="rounded-full flex-shrink-0 shadow-sm" />
                 <div className="space-y-0">
@@ -444,86 +438,52 @@ export function BentoGrid() {
           </WobbleCard>
         </motion.div>
 
-        {/* 7. All Referrals - Progressive disclosure, unified styling */}
+        {/* 7. All Referrals - Show all links */}
         <motion.div variants={itemVariants}>
           <div className="bg-[#141414] rounded-2xl p-5 border-[0.125rem] border-white/10">
             <h3 className="text-base font-bold text-white mb-4">Links & Referrals</h3>
-            <div className="relative">
-              <div className="space-y-3">
-                {visibleReferrals.map((referral, index) => {
-                  const isHighlighted = 'highlighted' in referral && referral.highlighted
-                  return (
-                  <motion.a
-                    key={referral.name}
-                    href={referral.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={index >= 4 ? { opacity: 0, height: 0 } : false}
-                    animate={{ opacity: 1, height: "auto" }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    className={`flex items-center justify-between px-4 py-3 min-h-[3.25rem] rounded-full bg-white/10 backdrop-blur-sm border-[0.125rem] border-white/10 hover:border-white/25 hover:bg-white/15 active:scale-[0.98] transition-all duration-150 group ${isHighlighted ? 'discord-nameplate' : ''}`}
-                  >
-                    {isHighlighted && <div className="discord-shimmer" />}
-                    <div className="flex items-center gap-3 min-w-0 flex-1">
-                      {referral.icon ? (
-                        <div className="w-9 h-9 flex items-center justify-center flex-shrink-0">
-                          {referral.icon}
-                        </div>
-                      ) : referral.logo ? (
-                        <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0 bg-white/10">
-                          <Image src={referral.logo || "/placeholder.svg"} alt={referral.name} width={36} height={36} className="w-full h-full object-cover" />
-                        </div>
-                      ) : (
-                        <div className="w-9 h-9 rounded-full flex-shrink-0 bg-white/20 flex items-center justify-center">
-                          <span className="text-white font-bold text-sm">{referral.name.charAt(0)}</span>
-                        </div>
-                      )}
-                      <span className="font-bold text-white text-sm truncate">
-                        {referral.name}
-                      </span>
-                    </div>
-                    <span
-                      className="px-3 py-1.5 text-white text-[10px] font-bold rounded-full whitespace-nowrap flex-shrink-0"
-                      style={{
-                        backgroundColor: `${referral.badgeColor}30`,
-                        borderWidth: '1px',
-                        borderColor: `${referral.badgeColor}60`,
-                      }}
-                    >
-                      {referral.badge}
-                    </span>
-                  </motion.a>
-                )})}
-              </div>
-
-              {/* Integrated expansion trigger */}
-              {allReferrals.length > 4 && !showAllReferrals && (
-                <div className="relative">
-                  <div className="absolute -top-10 left-0 right-0 h-10 bg-gradient-to-t from-[#141414] to-transparent pointer-events-none" />
-                  <button
-                    onClick={() => setShowAllReferrals(true)}
-                    className="w-full px-4 py-3 flex items-center gap-3 group active:scale-[0.98] transition-transform"
-                  >
-                    <span className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                    <span className="flex items-center gap-1.5 text-xs font-semibold text-white/40 group-hover:text-white/70 transition-colors uppercase tracking-wider">
-                      {allReferrals.length - 4} more
-                      <ChevronDown size={12} />
-                    </span>
-                    <span className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                  </button>
-                </div>
-              )}
-
-              {/* Collapse trigger */}
-              {allReferrals.length > 4 && showAllReferrals && (
-                <button
-                  onClick={() => setShowAllReferrals(false)}
-                  className="w-full mt-2 py-2 flex items-center justify-center gap-1.5 text-xs font-medium text-white/30 hover:text-white/60 active:scale-[0.98] transition-all"
+            <div className="space-y-3">
+              {allReferrals.map((referral) => {
+                const isHighlighted = 'highlighted' in referral && referral.highlighted
+                return (
+                <a
+                  key={referral.name}
+                  href={referral.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex items-center justify-between px-4 py-3 min-h-[3.25rem] rounded-full bg-white/10 backdrop-blur-sm border-[0.125rem] border-white/10 hover:border-white/25 hover:bg-white/15 active:scale-[0.98] transition-all duration-150 group ${isHighlighted ? 'discord-nameplate' : ''}`}
                 >
-                  <ChevronDown size={12} className="rotate-180" />
-                  <span>Show less</span>
-                </button>
-              )}
+                  {isHighlighted && <div className="discord-shimmer" />}
+                  <div className="flex items-center gap-3 min-w-0 flex-1">
+                    {referral.icon ? (
+                      <div className="w-9 h-9 flex items-center justify-center flex-shrink-0">
+                        {referral.icon}
+                      </div>
+                    ) : referral.logo ? (
+                      <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0 bg-white/10">
+                        <Image src={referral.logo || "/placeholder.svg"} alt={referral.name} width={36} height={36} className="w-full h-full object-cover" />
+                      </div>
+                    ) : (
+                      <div className="w-9 h-9 rounded-full flex-shrink-0 bg-white/20 flex items-center justify-center">
+                        <span className="text-white font-bold text-sm">{referral.name.charAt(0)}</span>
+                      </div>
+                    )}
+                    <span className="font-bold text-white text-sm truncate">
+                      {referral.name}
+                    </span>
+                  </div>
+                  <span
+                    className="px-3 py-1.5 text-white text-[10px] font-bold rounded-full whitespace-nowrap flex-shrink-0"
+                    style={{
+                      backgroundColor: `${referral.badgeColor}30`,
+                      borderWidth: '1px',
+                      borderColor: `${referral.badgeColor}60`,
+                    }}
+                  >
+                    {referral.badge}
+                  </span>
+                </a>
+              )})}
             </div>
           </div>
         </motion.div>

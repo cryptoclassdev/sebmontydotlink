@@ -38,7 +38,7 @@ export function CTAButton({ onClick, className }: CTAButtonProps) {
       {/* Main card */}
       <button
         onClick={onClick}
-        className="relative w-full flex-1 bg-[#0c0c0c] rounded-[2.15rem] p-5 lg:p-6 border border-white/[0.08] text-left overflow-hidden transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] active:scale-[0.99]"
+        className="relative w-full flex-1 bg-[#0c0c0c] rounded-[2.15rem] p-4 lg:p-6 border border-white/[0.08] text-left overflow-hidden transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] active:scale-[0.99]"
       >
         {/* Inner gradient for depth */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#2563eb]/[0.06] via-transparent to-transparent pointer-events-none" />
@@ -54,22 +54,22 @@ export function CTAButton({ onClick, className }: CTAButtonProps) {
           }}
         />
 
-        {/* Content */}
-        <div className="relative space-y-4 lg:space-y-5">
+        {/* Content - flex column to prioritize button visibility */}
+        <div className="relative h-full flex flex-col justify-between gap-3">
           {/* Text group */}
-          <div className="space-y-3">
+          <div className="space-y-2 flex-shrink-0">
             {/* Headline */}
-            <h2 className="text-[clamp(1.75rem,5vw,2.5rem)] font-extrabold text-white tracking-tight leading-[1.1]">
+            <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-extrabold text-white tracking-tight leading-[1.1]">
               Join the Private Group
             </h2>
 
-            {/* Subtitle */}
-            <p className="text-base lg:text-xl text-white/50 leading-relaxed max-w-md">
+            {/* Subtitle - hidden only on desktop with constrained height, always visible on mobile */}
+            <p className="[@media(min-width:1024px)_and_(max-height:700px)]:hidden text-sm lg:text-lg text-white/50 leading-relaxed max-w-md">
               Get early access to alpha, insights, and exclusive opportunities
             </p>
           </div>
 
-          {/* CTA Button - Single color, no hover change */}
+          {/* CTA Button - Always visible, primary action */}
           <motion.div
             variants={{
               initial: { scale: 1 },
@@ -81,7 +81,7 @@ export function CTAButton({ onClick, className }: CTAButtonProps) {
             {/* Button glow */}
             <div className="absolute inset-0 rounded-full bg-[#2563eb]/50 blur-2xl opacity-80 scale-125" />
 
-            <div className="relative inline-flex items-center gap-3 px-8 py-5 min-h-[60px] bg-[#2563eb] group-hover:bg-[#1d4ed8] rounded-full text-white font-bold text-lg shadow-[0_0_35px_rgba(37,99,235,0.5)] transition-colors duration-300">
+            <div className="relative inline-flex items-center gap-2 lg:gap-3 px-6 lg:px-8 py-3 lg:py-5 bg-[#2563eb] group-hover:bg-[#1d4ed8] rounded-full text-white font-bold text-base lg:text-lg shadow-[0_0_35px_rgba(37,99,235,0.5)] transition-colors duration-300">
               {/* Inner highlight */}
               <div className="absolute inset-[1px] rounded-full bg-gradient-to-b from-white/20 via-transparent to-transparent pointer-events-none" />
 
