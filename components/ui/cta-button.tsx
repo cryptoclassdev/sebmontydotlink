@@ -81,7 +81,7 @@ export function CTAButton({ onClick, className }: CTAButtonProps) {
             {/* Button glow */}
             <div className="absolute inset-0 rounded-full bg-[#2563eb]/50 blur-2xl opacity-80 scale-125" />
 
-            <div className="relative inline-flex items-center gap-3 px-8 py-5 min-h-[60px] bg-[#2563eb] rounded-full text-white font-bold text-lg shadow-[0_0_35px_rgba(37,99,235,0.5)]">
+            <div className="relative inline-flex items-center gap-3 px-8 py-5 min-h-[60px] bg-[#2563eb] group-hover:bg-[#1d4ed8] rounded-full text-white font-bold text-lg shadow-[0_0_35px_rgba(37,99,235,0.5)] transition-colors duration-300">
               {/* Inner highlight */}
               <div className="absolute inset-[1px] rounded-full bg-gradient-to-b from-white/20 via-transparent to-transparent pointer-events-none" />
 
