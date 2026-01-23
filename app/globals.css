@@ -117,6 +117,20 @@
   --card-opacity-solid: 0.95;
   --card-opacity-medium: 0.90;
   --card-opacity-light: 0.40;
+
+  /* ========================================
+     CARD RESPONSIVE SYSTEM
+     ======================================== */
+  /* Card aspect ratios */
+  --aspect-card-wide: 11 / 5;  /* 2.2:1 - matches current desktop proportions */
+
+  /* Priority-based max heights (mobile) */
+  --card-max-height-priority-1: clamp(10rem, 25vh, 14rem);  /* Validator - largest */
+  --card-max-height-priority-2: clamp(9rem, 22vh, 12rem);   /* Communication.link */
+  --card-max-height-priority-3: clamp(8rem, 20vh, 11rem);   /* Fogees Hub - smallest */
+
+  /* Desktop fixed heights (converted from px) */
+  --card-height-secondary: clamp(11.25rem, 24vh, 16.25rem);  /* 180px-260px */
 }
 
 .dark {
