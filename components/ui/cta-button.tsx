@@ -15,7 +15,7 @@ interface CTAButtonProps {
 export function CTAButton({ onClick, className }: CTAButtonProps) {
   return (
     <motion.div
-      className={cn("relative group w-full", className)}
+      className={cn("relative group w-full flex flex-col", className)}
       whileHover="hover"
       initial="initial"
     >
@@ -38,7 +38,7 @@ export function CTAButton({ onClick, className }: CTAButtonProps) {
       {/* Main card */}
       <button
         onClick={onClick}
-        className="relative w-full bg-[#0c0c0c] rounded-[2.15rem] p-5 lg:p-6 border border-white/[0.08] text-left overflow-hidden transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] active:scale-[0.99]"
+        className="relative w-full flex-1 bg-[#0c0c0c] rounded-[2.15rem] p-5 lg:p-6 border border-white/[0.08] text-left overflow-hidden transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] active:scale-[0.99]"
       >
         {/* Inner gradient for depth */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#2563eb]/[0.06] via-transparent to-transparent pointer-events-none" />

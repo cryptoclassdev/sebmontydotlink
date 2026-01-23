@@ -220,18 +220,18 @@ export function BentoGrid() {
             COLUMN 2 (Middle) - CTA + Validator + Fogees
             ============================================ */}
         <div className="lg:col-span-4 flex flex-col gap-[clamp(0.75rem,1.5vh,1.25rem)] min-h-0">
-          {/* Join the Private Group CTA - PRIMARY focal point with isolation for visual hierarchy */}
-          <motion.div variants={itemVariants} className="w-full py-[clamp(0.25rem,0.5vh,0.75rem)] flex-shrink-0">
-            <div className="h-full w-full flex items-center px-2">
-              <CTAButton onClick={() => setIsEmailModalOpen(true)} />
+          {/* Join the Private Group CTA - shares height with Validator */}
+          <motion.div variants={itemVariants} className="w-full flex-1 min-h-0">
+            <div className="h-full w-full">
+              <CTAButton onClick={() => setIsEmailModalOpen(true)} className="h-full" />
             </div>
           </motion.div>
 
-          {/* Validator Card - Tertiary, minimal, light */}
+          {/* Validator Card - shares height with CTA */}
           <motion.div variants={itemVariants} className="w-full flex-1 min-h-0">
             <WobbleCard containerClassName="h-full rounded-xl">
-              <a href="https://validator.com" target="_blank" rel="noopener noreferrer" className="flex flex-col h-full bg-[#f1f1f1] rounded-xl p-[clamp(0.5rem,1vh,0.875rem)] border-[0.125rem] border-white/0 hover:border-white/40 transition-all duration-200 group">
-                {/* Header - Minimal */}
+              <a href="https://validator.com" target="_blank" rel="noopener noreferrer" className="flex flex-col h-full bg-[#f1f1f1] rounded-xl p-[clamp(0.5rem,1vh,0.75rem)] border-[0.125rem] border-white/0 hover:border-white/40 transition-all duration-200 group">
+                {/* Header */}
                 <div className="flex items-center gap-2.5 mb-[clamp(0.25rem,0.5vh,0.5rem)]">
                   <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center flex-shrink-0 overflow-hidden shadow-sm">
                     <div className="flex gap-[0.09375rem]">
@@ -245,7 +245,7 @@ export function BentoGrid() {
                     <p className="text-[11px] text-black/60">Stake your SOL with us</p>
                   </div>
                 </div>
-                {/* Image - minimal */}
+                {/* Image - fills remaining space */}
                 <div className="rounded-lg overflow-hidden flex-1 min-h-0">
                   <Image src="/validator-mockup.png" alt="validator.com-mockup" width={420} height={180} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.01]" />
                 </div>
@@ -280,11 +280,10 @@ export function BentoGrid() {
         <div className="lg:col-span-3 flex flex-col gap-[clamp(0.75rem,1.5vh,1.25rem)] min-h-0">
           {/* Links Card - Dark theme */}
           <motion.div variants={itemVariants} className="flex-1 min-h-0">
-            <div className="bg-[#141414] rounded-2xl p-[clamp(0.75rem,1.5vh,1.5rem)] border-[0.125rem] border-white/10 h-full overflow-hidden flex flex-col">
-              <h3 className="text-lg font-bold text-white mb-[clamp(0.5rem,1vh,0.75rem)] flex-shrink-0">Links & Referrals</h3>
-
-              {/* All Referrals - evenly distributed */}
-              <div className="flex flex-col justify-between flex-1 min-h-0">
+            <div className="bg-[#141414] rounded-2xl p-[clamp(0.75rem,1.5vh,1.5rem)] border-[0.125rem] border-white/10 h-full overflow-hidden flex flex-col justify-center">
+              {/* All Referrals - centrally aligned with heading */}
+              <div className="flex flex-col gap-[clamp(0.5rem,1vh,0.75rem)]">
+                <h3 className="text-lg font-bold text-white">Links & Referrals</h3>
                   {allReferrals.map((referral) => {
                     const isHighlighted = 'highlighted' in referral && referral.highlighted
                     return (
