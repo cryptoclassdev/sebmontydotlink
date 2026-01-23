@@ -113,12 +113,12 @@ export function BentoGrid() {
 
         {/* Animated stars with brand colors */}
         {/* Coral stars */}
-        <div className="absolute w-[3px] h-[3px] bg-[#d1855c]/60 rounded-full top-[8%] left-[22%] animate-pulse [animation-duration:2.8s] shadow-[0_0_6px_rgba(209,133,92,0.4)]" />
+        <div className="absolute w-[0.1875rem] h-[0.1875rem] bg-[#d1855c]/60 rounded-full top-[8%] left-[22%] animate-pulse [animation-duration:2.8s] shadow-[0_0_6px_rgba(209,133,92,0.4)]" />
         <div className="absolute w-1 h-1 bg-[#d1855c]/50 rounded-full top-[65%] right-[22%] animate-pulse [animation-duration:3.8s] [animation-delay:0.7s] shadow-[0_0_4px_rgba(209,133,92,0.3)]" />
 
         {/* Sky blue stars */}
         <div className="absolute w-1 h-1 bg-[#74b4e2]/55 rounded-full top-[18%] right-[12%] animate-pulse [animation-duration:3.2s] [animation-delay:0.4s] shadow-[0_0_5px_rgba(116,180,226,0.3)]" />
-        <div className="absolute w-[3px] h-[3px] bg-[#74b4e2]/45 rounded-full top-[55%] left-[85%] animate-pulse [animation-duration:3.5s] [animation-delay:0.9s] shadow-[0_0_6px_rgba(116,180,226,0.35)]" />
+        <div className="absolute w-[0.1875rem] h-[0.1875rem] bg-[#74b4e2]/45 rounded-full top-[55%] left-[85%] animate-pulse [animation-duration:3.5s] [animation-delay:0.9s] shadow-[0_0_6px_rgba(116,180,226,0.35)]" />
 
         {/* Golden stars */}
         <div className="absolute w-1 h-1 bg-[#e5ba41]/50 rounded-full top-[32%] left-[58%] animate-pulse [animation-duration:4s] [animation-delay:0.5s] shadow-[0_0_4px_rgba(229,186,65,0.3)]" />
@@ -196,9 +196,9 @@ export function BentoGrid() {
           </motion.div>
 
           {/* Communication Link Card - Tertiary (lower hierarchy), minimal, dark - identical size to Fogees Hub */}
-          <motion.div variants={itemVariants} className="w-full h-[clamp(180px,24vh,260px)] flex-shrink-0">
+          <motion.div variants={itemVariants} className="w-full h-[clamp(11.25rem,24vh,16.25rem)] flex-shrink-0">
             <WobbleCard containerClassName="h-full rounded-xl">
-              <a href="https://thecommunication.link" target="_blank" rel="noopener noreferrer" className="flex flex-col h-full bg-[#141414] rounded-xl p-[clamp(0.375rem,0.75vh,0.625rem)] border-[2px] border-white/10 hover:border-white/25 transition-all duration-200 group">
+              <a href="https://thecommunication.link" target="_blank" rel="noopener noreferrer" className="flex flex-col h-full bg-[#141414] rounded-xl p-[clamp(0.375rem,0.75vh,0.625rem)] border-[0.125rem] border-white/10 hover:border-white/25 transition-all duration-200 group">
                 {/* Header - Compact */}
                 <div className="flex items-center gap-2 mb-[clamp(0.125rem,0.375vh,0.375rem)]">
                   <Image src="/images/seb-pfp.png" alt="Communication Link" width={24} height={24} className="rounded-full flex-shrink-0 ring-1 ring-white/10" />
@@ -230,14 +230,14 @@ export function BentoGrid() {
           {/* Validator Card - Tertiary, minimal, light */}
           <motion.div variants={itemVariants} className="w-full flex-1 min-h-0">
             <WobbleCard containerClassName="h-full rounded-xl">
-              <a href="https://validator.com" target="_blank" rel="noopener noreferrer" className="flex flex-col h-full bg-[#f1f1f1] rounded-xl p-[clamp(0.5rem,1vh,0.875rem)] border-[2px] border-white/0 hover:border-white/40 transition-all duration-200 group">
+              <a href="https://validator.com" target="_blank" rel="noopener noreferrer" className="flex flex-col h-full bg-[#f1f1f1] rounded-xl p-[clamp(0.5rem,1vh,0.875rem)] border-[0.125rem] border-white/0 hover:border-white/40 transition-all duration-200 group">
                 {/* Header - Minimal */}
                 <div className="flex items-center gap-2.5 mb-[clamp(0.25rem,0.5vh,0.5rem)]">
                   <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center flex-shrink-0 overflow-hidden shadow-sm">
-                    <div className="flex gap-[1.5px]">
-                      <div className="w-[5px] h-[5px] bg-[#1a1a40] rounded-[1px]" />
-                      <div className="w-[5px] h-[5px] bg-[#28c2ec] rounded-[1px]" />
-                      <div className="w-[5px] h-[5px] bg-[#ec5228] rounded-[1px]" />
+                    <div className="flex gap-[0.09375rem]">
+                      <div className="w-[0.3125rem] h-[0.3125rem] bg-[#1a1a40] rounded-[0.0625rem]" />
+                      <div className="w-[0.3125rem] h-[0.3125rem] bg-[#28c2ec] rounded-[0.0625rem]" />
+                      <div className="w-[0.3125rem] h-[0.3125rem] bg-[#ec5228] rounded-[0.0625rem]" />
                     </div>
                   </div>
                   <div className="space-y-0">
@@ -254,9 +254,9 @@ export function BentoGrid() {
           </motion.div>
 
           {/* Fogees Hub Card - Tertiary (lower hierarchy), identical size to Communication Link */}
-          <motion.div variants={itemVariants} className="w-full h-[clamp(180px,24vh,260px)] flex-shrink-0">
+          <motion.div variants={itemVariants} className="w-full h-[clamp(11.25rem,24vh,16.25rem)] flex-shrink-0">
             <WobbleCard containerClassName="h-full rounded-xl">
-              <a href="https://fogees.link" target="_blank" rel="noopener noreferrer" className="flex flex-col h-full bg-[#141414] rounded-xl p-[clamp(0.375rem,0.75vh,0.625rem)] border-[2px] border-white/10 hover:border-white/25 transition-all duration-200 group">
+              <a href="https://fogees.link" target="_blank" rel="noopener noreferrer" className="flex flex-col h-full bg-[#141414] rounded-xl p-[clamp(0.375rem,0.75vh,0.625rem)] border-[0.125rem] border-white/10 hover:border-white/25 transition-all duration-200 group">
                 {/* Header - Compact */}
                 <div className="flex items-center gap-2 mb-[clamp(0.125rem,0.375vh,0.375rem)]">
                   <Image src="/fogees-logo.png" alt="Fogees Hub" width={24} height={24} className="rounded-full flex-shrink-0 ring-1 ring-white/10" />
@@ -280,7 +280,7 @@ export function BentoGrid() {
         <div className="lg:col-span-3 flex flex-col gap-[clamp(0.75rem,1.5vh,1.25rem)] min-h-0">
           {/* Links Card - Dark theme */}
           <motion.div variants={itemVariants} className="flex-1 min-h-0">
-            <div className="bg-[#141414] rounded-2xl p-[clamp(0.75rem,1.5vh,1.5rem)] border-[2px] border-white/10 h-full overflow-hidden flex flex-col">
+            <div className="bg-[#141414] rounded-2xl p-[clamp(0.75rem,1.5vh,1.5rem)] border-[0.125rem] border-white/10 h-full overflow-hidden flex flex-col">
               <h3 className="text-lg font-bold text-white mb-[clamp(0.5rem,1vh,0.75rem)] flex-shrink-0">Links & Referrals</h3>
 
               {/* All Referrals - evenly distributed */}
@@ -293,7 +293,7 @@ export function BentoGrid() {
                       href={referral.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex items-center justify-between px-[clamp(0.75rem,1.5vh,1rem)] py-[clamp(0.5rem,1vh,0.75rem)] min-h-[clamp(40px,5vh,52px)] rounded-full bg-white/10 backdrop-blur-sm border-[2px] border-white/10 hover:border-white/25 hover:bg-white/15 transition-all duration-200 group ${isHighlighted ? 'discord-nameplate' : ''}`}
+                      className={`flex items-center justify-between px-[clamp(0.75rem,1.5vh,1rem)] py-[clamp(0.5rem,1vh,0.75rem)] min-h-[clamp(2.5rem,5vh,3.25rem)] rounded-full bg-white/10 backdrop-blur-sm border-[0.125rem] border-white/10 hover:border-white/25 hover:bg-white/15 transition-all duration-200 group ${isHighlighted ? 'discord-nameplate' : ''}`}
                     >
                       {isHighlighted && <div className="discord-shimmer" />}
                       <div className="flex items-center gap-2 min-w-0 flex-1">
@@ -385,16 +385,16 @@ export function BentoGrid() {
           </CardContainer>
         </motion.div>
 
-        {/* 4. Validator - Minimal tertiary card */}
+        {/* 4. Validator - Minimal tertiary card - Priority 1 (largest, doesn't shrink) */}
         <motion.div variants={itemVariants}>
           <WobbleCard containerClassName="rounded-xl">
-            <a href="https://validator.com" target="_blank" rel="noopener noreferrer" className="block bg-[#f1f1f1] rounded-xl p-4 border-[2px] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all duration-150">
+            <a href="https://validator.com" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#f1f1f1] rounded-xl p-[1rem] border-[0.125rem] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all duration-150 h-[clamp(10rem,25vh,14rem)]">
               <div className="flex items-center gap-2.5 mb-3">
                 <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0 overflow-hidden shadow-sm">
-                  <div className="flex gap-[1.5px]">
-                    <div className="w-[5px] h-[5px] bg-[#1a1a40] rounded-[1px]" />
-                    <div className="w-[5px] h-[5px] bg-[#28c2ec] rounded-[1px]" />
-                    <div className="w-[5px] h-[5px] bg-[#ec5228] rounded-[1px]" />
+                  <div className="flex gap-[0.09375rem]">
+                    <div className="w-[0.3125rem] h-[0.3125rem] bg-[#1a1a40] rounded-[0.0625rem]" />
+                    <div className="w-[0.3125rem] h-[0.3125rem] bg-[#28c2ec] rounded-[0.0625rem]" />
+                    <div className="w-[0.3125rem] h-[0.3125rem] bg-[#ec5228] rounded-[0.0625rem]" />
                   </div>
                 </div>
                 <div className="space-y-0">
@@ -402,17 +402,17 @@ export function BentoGrid() {
                   <p className="text-[11px] text-black/60">Stake your SOL with us</p>
                 </div>
               </div>
-              <div className="rounded-lg overflow-hidden">
-                <Image src="/validator-mockup.png" alt="validator.com-mockup" width={420} height={200} className="w-full h-auto" />
+              <div className="rounded-lg overflow-hidden relative flex-1 min-h-0">
+                <Image src="/validator-mockup.png" alt="validator.com-mockup" fill className="object-cover" />
               </div>
             </a>
           </WobbleCard>
         </motion.div>
 
-        {/* 5. Fogees Hub - Minimal tertiary card, dark */}
+        {/* 5. Fogees Hub - Minimal tertiary card, dark - Priority 3 (smallest) */}
         <motion.div variants={itemVariants}>
           <WobbleCard containerClassName="rounded-xl">
-            <a href="https://fogees.link" target="_blank" rel="noopener noreferrer" className="block bg-[#141414] rounded-xl p-4 border-[2px] border-white/10 hover:border-white/25 active:scale-[0.98] transition-all duration-150">
+            <a href="https://fogees.link" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#141414] rounded-xl p-[1rem] border-[0.125rem] border-white/10 hover:border-white/25 active:scale-[0.98] transition-all duration-150 h-[clamp(8rem,20vh,11rem)]">
               <div className="flex items-center gap-2.5 mb-3">
                 <Image src="/fogees-logo.png" alt="Fogees Hub" width={32} height={32} className="rounded-full flex-shrink-0 ring-1 ring-white/10" />
                 <div className="space-y-0">
@@ -420,17 +420,17 @@ export function BentoGrid() {
                   <p className="text-[11px] text-white/50">Your Educational Fogo Chain Hub</p>
                 </div>
               </div>
-              <div className="rounded-lg overflow-hidden ring-1 ring-white/5">
-                <Image src="/fogees-mockup.png" alt="fogees hub mockup" width={420} height={200} className="w-full h-auto object-cover" />
+              <div className="rounded-lg overflow-hidden ring-1 ring-white/5 relative flex-1 min-h-0">
+                <Image src="/fogees-mockup.png" alt="fogees hub mockup" fill className="object-cover" />
               </div>
             </a>
           </WobbleCard>
         </motion.div>
 
-        {/* 6. Communication Link - Minimal tertiary card */}
+        {/* 6. Communication Link - Minimal tertiary card - Priority 2 (medium) */}
         <motion.div variants={itemVariants}>
           <WobbleCard containerClassName="rounded-xl">
-            <a href="https://thecommunication.link" target="_blank" rel="noopener noreferrer" className="block bg-[#f1f1f1] rounded-xl p-4 border-[2px] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all duration-150">
+            <a href="https://thecommunication.link" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#f1f1f1] rounded-xl p-[1rem] border-[0.125rem] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all duration-150 h-[clamp(9rem,22vh,12rem)]">
               <div className="flex items-center gap-2.5 mb-3">
                 <Image src="/images/seb-pfp.png" alt="Communication Link" width={32} height={32} className="rounded-full flex-shrink-0 shadow-sm" />
                 <div className="space-y-0">
@@ -438,8 +438,8 @@ export function BentoGrid() {
                   <p className="text-[11px] text-black/60">Content & Branding Consultancy</p>
                 </div>
               </div>
-              <div className="rounded-lg overflow-hidden">
-                <Image src="/communication-mockup.png" alt="Communication Link preview" width={420} height={200} className="w-full h-auto object-cover" />
+              <div className="rounded-lg overflow-hidden relative flex-1 min-h-0">
+                <Image src="/communication-mockup.png" alt="Communication Link preview" fill className="object-cover" />
               </div>
             </a>
           </WobbleCard>
@@ -447,7 +447,7 @@ export function BentoGrid() {
 
         {/* 7. All Referrals - Progressive disclosure, unified styling */}
         <motion.div variants={itemVariants}>
-          <div className="bg-[#141414] rounded-2xl p-5 border-[2px] border-white/10">
+          <div className="bg-[#141414] rounded-2xl p-5 border-[0.125rem] border-white/10">
             <h3 className="text-base font-bold text-white mb-4">Links & Referrals</h3>
             <div className="relative">
               <div className="space-y-3">
@@ -462,7 +462,7 @@ export function BentoGrid() {
                     initial={index >= 4 ? { opacity: 0, height: 0 } : false}
                     animate={{ opacity: 1, height: "auto" }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className={`flex items-center justify-between px-4 py-3 min-h-[52px] rounded-full bg-white/10 backdrop-blur-sm border-[2px] border-white/10 hover:border-white/25 hover:bg-white/15 active:scale-[0.98] transition-all duration-150 group ${isHighlighted ? 'discord-nameplate' : ''}`}
+                    className={`flex items-center justify-between px-4 py-3 min-h-[3.25rem] rounded-full bg-white/10 backdrop-blur-sm border-[0.125rem] border-white/10 hover:border-white/25 hover:bg-white/15 active:scale-[0.98] transition-all duration-150 group ${isHighlighted ? 'discord-nameplate' : ''}`}
                   >
                     {isHighlighted && <div className="discord-shimmer" />}
                     <div className="flex items-center gap-3 min-w-0 flex-1">
