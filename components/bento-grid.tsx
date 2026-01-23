@@ -129,11 +129,11 @@ export function BentoGrid() {
       </div>
 
       {/* Desktop Layout - 3 Columns (4-4-3 = 11 cols) - Viewport contained, centered */}
-      <div className="max-w-[85rem] w-full mx-auto hidden lg:grid lg:grid-cols-11 gap-[clamp(0.75rem,1.5vh,1.25rem)] h-full max-h-[calc(100vh-clamp(2rem,4vh,6rem))]">
+      <div className="max-w-[85rem] w-full mx-auto hidden lg:grid lg:grid-cols-11 gap-[clamp(1rem,2vh,1.5rem)] h-full max-h-[calc(100vh-clamp(3rem,6vh,8rem))]">
         {/* ============================================
             COLUMN 1 (Left) - Profile + Communication Link
             ============================================ */}
-        <div className="lg:col-span-4 flex flex-col gap-[clamp(0.75rem,1.5vh,1.25rem)] min-h-0">
+        <div className="lg:col-span-4 flex flex-col gap-[clamp(1rem,2vh,1.5rem)] min-h-0">
           {/* Hero Card with 3D Effect - PRIMARY focal point, larger */}
           <motion.div variants={itemVariants} className="w-full flex-[1.6] min-h-0">
             <CardContainer className="h-full">
@@ -213,7 +213,7 @@ export function BentoGrid() {
         {/* ============================================
             COLUMN 2 (Middle) - CTA + Validator + Fogees
             ============================================ */}
-        <div className="lg:col-span-4 flex flex-col gap-[clamp(0.75rem,1.5vh,1.25rem)] min-h-0">
+        <div className="lg:col-span-4 flex flex-col gap-[clamp(1rem,2vh,1.5rem)] min-h-0">
           {/* Join the Private Group CTA - shares height with Validator */}
           <motion.div variants={itemVariants} className="w-full flex-1 min-h-0">
             <div className="h-full w-full">
@@ -271,54 +271,56 @@ export function BentoGrid() {
         {/* ============================================
             COLUMN 3 (Right) - Links Card (narrower)
             ============================================ */}
-        <div className="lg:col-span-3 flex flex-col gap-[clamp(0.75rem,1.5vh,1.25rem)] min-h-0">
-          {/* Links Card - Dark theme */}
+        <div className="lg:col-span-3 flex flex-col gap-[clamp(1rem,2vh,1.5rem)] min-h-0">
+          {/* Links Card - Dark theme with 3D hover effect */}
           <motion.div variants={itemVariants} className="flex-1 min-h-0">
-            <div className="bg-[#141414] rounded-2xl p-[clamp(0.75rem,1.5vh,1.5rem)] border-[0.125rem] border-white/10 h-full overflow-hidden flex flex-col justify-center">
-              {/* All Referrals - centrally aligned with heading */}
-              <div className="flex flex-col gap-[clamp(0.5rem,1vh,0.75rem)]">
-                <h3 className="text-lg font-bold text-white">Links & Referrals</h3>
-                  {allReferrals.map((referral) => {
-                    const isHighlighted = 'highlighted' in referral && referral.highlighted
-                    return (
-                    <a
-                      key={referral.name}
-                      href={referral.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`flex items-center justify-between px-[clamp(0.75rem,1.5vh,1rem)] py-[clamp(0.5rem,1vh,0.75rem)] min-h-[clamp(2.5rem,5vh,3.25rem)] rounded-full bg-white/10 backdrop-blur-sm border-[0.125rem] border-white/10 hover:border-white/25 hover:bg-white/15 transition-all duration-200 group ${isHighlighted ? 'discord-nameplate' : ''}`}
-                    >
-                      {isHighlighted && <div className="discord-shimmer" />}
-                      <div className="flex items-center gap-2 min-w-0 flex-1">
-                        {referral.icon ? (
-                          <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
-                            {referral.icon}
-                          </div>
-                        ) : referral.logo ? (
-                          <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-white/10">
-                            <Image src={referral.logo} alt={referral.name} width={32} height={32} className="w-full h-full object-cover" />
-                          </div>
-                        ) : (
-                          <div className="w-8 h-8 rounded-full flex-shrink-0 bg-white/20 flex items-center justify-center">
-                            <span className="text-white font-bold text-xs">{referral.name.charAt(0)}</span>
-                          </div>
-                        )}
-                        <span className="font-bold text-white text-sm truncate">{referral.name}</span>
-                      </div>
-                      <span
-                        className="px-2.5 py-1.5 text-white text-[10px] font-bold rounded-full whitespace-nowrap flex-shrink-0"
-                        style={{
-                          backgroundColor: `${referral.badgeColor}30`,
-                          borderWidth: '1px',
-                          borderColor: `${referral.badgeColor}60`,
-                        }}
+            <CardContainer className="h-full">
+              <CardBody className="bg-[#141414] rounded-2xl p-[clamp(0.75rem,1.5vh,1.5rem)] border-[0.125rem] border-white/10 h-full overflow-hidden flex flex-col justify-center">
+                {/* All Referrals - centrally aligned with heading */}
+                <div className="flex flex-col gap-[clamp(0.5rem,1vh,0.75rem)]">
+                  <h3 className="text-lg font-bold text-white">Links & Referrals</h3>
+                    {allReferrals.map((referral) => {
+                      const isHighlighted = 'highlighted' in referral && referral.highlighted
+                      return (
+                      <a
+                        key={referral.name}
+                        href={referral.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`flex items-center justify-between px-[clamp(0.75rem,1.5vh,1rem)] py-[clamp(0.5rem,1vh,0.75rem)] min-h-[clamp(2.5rem,5vh,3.25rem)] rounded-full bg-white/10 backdrop-blur-sm border-[0.125rem] border-white/10 hover:border-white/25 hover:bg-white/15 transition-all duration-200 group ${isHighlighted ? 'discord-nameplate' : ''}`}
                       >
-                        {referral.badge}
-                      </span>
-                    </a>
-                  )})}
-              </div>
-            </div>
+                        {isHighlighted && <div className="discord-shimmer" />}
+                        <div className="flex items-center gap-2 min-w-0 flex-1">
+                          {referral.icon ? (
+                            <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
+                              {referral.icon}
+                            </div>
+                          ) : referral.logo ? (
+                            <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-white/10">
+                              <Image src={referral.logo} alt={referral.name} width={32} height={32} className="w-full h-full object-cover" />
+                            </div>
+                          ) : (
+                            <div className="w-8 h-8 rounded-full flex-shrink-0 bg-white/20 flex items-center justify-center">
+                              <span className="text-white font-bold text-xs">{referral.name.charAt(0)}</span>
+                            </div>
+                          )}
+                          <span className="font-bold text-white text-sm truncate">{referral.name}</span>
+                        </div>
+                        <span
+                          className="px-2.5 py-1.5 text-white text-[10px] font-bold rounded-full whitespace-nowrap flex-shrink-0"
+                          style={{
+                            backgroundColor: `${referral.badgeColor}30`,
+                            borderWidth: '1px',
+                            borderColor: `${referral.badgeColor}60`,
+                          }}
+                        >
+                          {referral.badge}
+                        </span>
+                      </a>
+                    )})}
+                </div>
+              </CardBody>
+            </CardContainer>
           </motion.div>
         </div>
       </div>
