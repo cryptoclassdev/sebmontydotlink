@@ -28,7 +28,7 @@ const brandColors = {
 const profileSocialLinks = [
   { title: "X/Twitter", icon: XIcon, href: "https://x.com/SebMontgomery", color: brandColors.skyBlue },
   { title: "YouTube", icon: YoutubeIcon, href: "https://youtube.com/@SebMontgomery", color: brandColors.coral },
-  { title: "Telegram", icon: TelegramIcon, href: "https://t.me", color: brandColors.golden },
+  { title: "Telegram", icon: TelegramIcon, href: "https://t.me/SebMontgomery", color: brandColors.golden },
   { title: "Substack", icon: SubstackIcon, href: "https://sebmonty.substack.com/", color: brandColors.sage },
   { title: "Email", icon: EmailIcon, href: "mailto:support@sebmonty.link", color: brandColors.navy },
 ]
@@ -37,7 +37,7 @@ const profileSocialLinks = [
 const allReferrals = [
   {
     name: "Infinex Referral",
-    href: "https://infinex.xyz",
+    href: "https://app.infinex.xyz?r=JRPD7BF9",
     badge: "Super Bullish",
     badgeColor: brandColors.coral,
     icon: <InfinexIcon size={36} />,
@@ -45,7 +45,7 @@ const allReferrals = [
   },
   {
     name: "Kast Referral",
-    href: "https://kast.gg",
+    href: "https://kastfinance.app.link/SEBMONTY",
     badge: "My Personal Card",
     badgeColor: brandColors.golden,
     icon: <KastIcon size={36} />,
