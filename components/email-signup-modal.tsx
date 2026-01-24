@@ -17,6 +17,7 @@ export function EmailSignupModal({ isOpen, onClose }: EmailSignupModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -66,17 +67,36 @@ export function EmailSignupModal({ isOpen, onClose }: EmailSignupModalProps) {
     if (!email) return
 
     setIsSubmitting(true)
-    console.log("Email submitted:", email)
-    await new Promise((resolve) => setTimeout(resolve, 1200))
+    setError(null)
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      })
 
-    setTimeout(() => {
-      setEmail("")
-      setIsSubmitted(false)
-      onClose()
-    }, 2500)
+      const data = await response.json()
+
+      if (!response.ok) {
+        setError(data.error || "Something went wrong. Please try again.")
+        setIsSubmitting(false)
+        return
+      }
+
+      setIsSubmitting(false)
+      setIsSubmitted(true)
+
+      setTimeout(() => {
+        setEmail("")
+        setIsSubmitted(false)
+        setError(null)
+        onClose()
+      }, 2500)
+    } catch {
+      setError("Unable to connect. Please check your internet and try again.")
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -207,7 +227,8 @@ export function EmailSignupModal({ isOpen, onClose }: EmailSignupModalProps) {
                           <div
                             className={cn(
                               "relative rounded-xl overflow-hidden transition-all duration-200",
-                              isFocused && "ring-2 ring-white/25"
+                              isFocused && "ring-2 ring-white/25",
+                              error && !isFocused && "ring-2 ring-red-500/50"
                             )}
                           >
                             {/* Input background */}
@@ -218,13 +239,31 @@ export function EmailSignupModal({ isOpen, onClose }: EmailSignupModalProps) {
                               type="email"
                               placeholder="you@example.com"
                               value={email}
-                              onChange={(e) => setEmail(e.target.value)}
+                              onChange={(e) => {
+                                setEmail(e.target.value)
+                                if (error) setError(null)
+                              }}
                               onFocus={() => setIsFocused(true)}
                               onBlur={() => setIsFocused(false)}
                               required
                               className="relative w-full h-14 min-h-[52px] px-5 bg-transparent text-white placeholder:text-white/30 text-base focus:outline-none"
                             />
                           </div>
+
+                          {/* Error message */}
+                          <AnimatePresence>
+                            {error && (
+                              <motion.p
+                                initial={{ opacity: 0, y: -4 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -4 }}
+                                transition={{ duration: 0.2 }}
+                                className="text-red-400 text-sm mt-2 px-1"
+                              >
+                                {error}
+                              </motion.p>
+                            )}
+                          </AnimatePresence>
                         </div>
 
                         {/* Submit button - Fitts's Law: min 52px height for comfortable tap */}
