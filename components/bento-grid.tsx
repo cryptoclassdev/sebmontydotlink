@@ -36,28 +36,63 @@ const profileSocialLinks = [
 // All referrals - unified list with badges and brand colors
 const allReferrals = [
   {
-    name: "Infinex Referral",
-    href: "https://app.infinex.xyz?r=JRPD7BF9",
-    badge: "Super Bullish",
-    badgeColor: brandColors.coral,
-    icon: <InfinexIcon size={36} />,
-    highlighted: true, // Discord nameplate effect
-  },
-  {
-    name: "Kast Referral",
+    name: "Kast",
     href: "https://kastfinance.app.link/SEBMONTY",
     badge: "My Personal Card",
     badgeColor: brandColors.golden,
     icon: <KastIcon size={36} />,
-    highlighted: true, // Discord nameplate effect
+    highlighted: true,
   },
-  { name: "Kamino Finance", href: "https://swap.kamino.finance/?ref=SEBMONTY", logo: "/referral-logos/kmno.png", badge: "DeFi", badgeColor: brandColors.sage },
-  { name: "Ranger Finance", href: "https://www.app.ranger.finance/?ref_code=sebmonty", logo: "/referral-logos/ranger-finance.svg", badge: "Perps", badgeColor: brandColors.skyBlue },
-  { name: "Binance", href: "https://www.binance.com/en/activity/referral/offers/claim?ref=CPA_00R34Q8Y0Q", logo: "/referral-logos/binance-logo.png", badge: "Exchange", badgeColor: brandColors.golden },
-  { name: "Bluefin", href: "https://trade.bluefin.io/referral/v2-84kt7k", logo: "/referral-logos/bluefin.jpeg", badge: "Perps", badgeColor: brandColors.skyBlue },
-  { name: "Bybit", href: "https://www.bybit.com/invite?ref=JAW8RO", logo: "/referral-logos/bybit-logo.png", badge: "Exchange", badgeColor: brandColors.golden },
-  { name: "Hawk Fi", href: "https://www.hawkfi.ag/", logo: "/referral-logos/hawkfi.png", badge: "Yield", badgeColor: brandColors.sage },
-  { name: "Huma Finance", href: "https://app.huma.finance/?ref=bwECKU", logo: "/referral-logos/huma.jpeg", badge: "PayFi", badgeColor: brandColors.coral },
+  {
+    name: "Backpack",
+    href: "https://backpack.exchange/join/sebmonty",
+    badge: "My Favourite Exchange",
+    badgeColor: brandColors.golden,
+    logo: "/referral-logos/backpack-logo.png",
+  },
+  {
+    name: "Infinex",
+    href: "https://app.infinex.xyz?r=JRPD7BF9",
+    badge: "Super Bullish",
+    badgeColor: brandColors.coral,
+    icon: <InfinexIcon size={36} />,
+    highlighted: true,
+  },
+  {
+    name: "Jupiter",
+    href: "https://jup.ag/?ref=gufymeueuc23",
+    badge: "DEX",
+    badgeColor: brandColors.sage,
+    logo: "/referral-logos/jupiter-logo.png",
+  },
+  {
+    name: "Paradex",
+    href: "https://app.paradex.trade/r/sebmonty",
+    badge: "Perps",
+    badgeColor: brandColors.skyBlue,
+    logo: "/referral-logos/paradex-logo.png",
+  },
+  {
+    name: "Fogees",
+    href: "https://flames.fogo.io/season-2?af=avgchris?af=sebmontgomery",
+    badge: "Community",
+    badgeColor: brandColors.coral,
+    logo: "/referral-logos/fogees-logo.jpeg",
+  },
+  {
+    name: "Binance",
+    href: "https://www.binance.com/en/activity/referral/offers/claim?ref=CPA_00R34Q8Y0Q",
+    badge: "Exchange",
+    badgeColor: brandColors.golden,
+    logo: "/referral-logos/binance-logo.png",
+  },
+  {
+    name: "Bybit",
+    href: "https://www.bybit.com/invite?ref=JAW8RO",
+    badge: "Exchange",
+    badgeColor: brandColors.golden,
+    logo: "/referral-logos/bybit-logo.png",
+  },
 ]
 
 const containerVariants = {
@@ -426,18 +461,18 @@ export function BentoGrid() {
           </WobbleCard>
         </motion.div>
 
-        {/* 6. Communication Link - Minimal tertiary card */}
+        {/* 6. Communication Link - Minimal tertiary card, dark */}
         <motion.div variants={itemVariants}>
           <WobbleCard containerClassName="rounded-xl">
-            <a href="https://thecommunication.link" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#f1f1f1] rounded-xl p-[1rem] border-[0.125rem] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all duration-150 h-[clamp(11.25rem,24vh,16.25rem)]">
+            <a href="https://thecommunication.link" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#141414] rounded-xl p-[1rem] border-[0.125rem] border-white/10 hover:border-white/25 active:scale-[0.98] transition-all duration-150 h-[clamp(11.25rem,24vh,16.25rem)]">
               <div className="flex items-center gap-2.5 mb-3">
-                <Image src="/images/seb-pfp.png" alt="Communication Link" width={32} height={32} className="rounded-full flex-shrink-0 shadow-sm" />
+                <Image src="/images/seb-pfp.png" alt="Communication Link" width={32} height={32} className="rounded-full flex-shrink-0 ring-1 ring-white/10" />
                 <div className="space-y-0">
-                  <h3 className="text-base font-semibold text-black leading-tight">Founder of thecommunication.link</h3>
-                  <p className="text-[11px] text-black/60">Content & Branding Consultancy</p>
+                  <h3 className="text-base font-semibold text-white leading-tight">Founder of thecommunication.link</h3>
+                  <p className="text-[11px] text-white/50">Content & Branding Consultancy</p>
                 </div>
               </div>
-              <div className="rounded-lg overflow-hidden relative flex-1 min-h-0">
+              <div className="rounded-lg overflow-hidden ring-1 ring-white/5 relative flex-1 min-h-0">
                 <Image src="/communication-mockup.png" alt="Communication Link preview" fill className="object-cover" />
               </div>
             </a>
