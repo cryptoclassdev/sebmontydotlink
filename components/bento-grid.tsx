@@ -422,7 +422,7 @@ export function BentoGrid() {
         {/* 4. Validator - Minimal tertiary card */}
         <motion.div variants={itemVariants}>
           <WobbleCard containerClassName="rounded-xl">
-            <a href="https://validator.com" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#f1f1f1] rounded-xl p-[1rem] border-[0.125rem] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all duration-150 h-[clamp(11.25rem,24vh,16.25rem)]">
+            <a href="https://validator.com" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#f1f1f1] rounded-xl p-[1rem] border-[0.125rem] border-white/0 hover:border-white/40 active:scale-[0.98] transition-all duration-150 h-[clamp(16rem,35vh,22rem)]">
               <div className="flex items-center gap-2.5 mb-3">
                 <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0 overflow-hidden shadow-sm">
                   <div className="flex gap-[0.09375rem]">
@@ -446,7 +446,7 @@ export function BentoGrid() {
         {/* 5. Fogees Hub - Minimal tertiary card, dark */}
         <motion.div variants={itemVariants}>
           <WobbleCard containerClassName="rounded-xl">
-            <a href="https://fogees.link" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#141414] rounded-xl p-[1rem] border-[0.125rem] border-white/10 hover:border-white/25 active:scale-[0.98] transition-all duration-150 h-[clamp(11.25rem,24vh,16.25rem)]">
+            <a href="https://fogees.link" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#141414] rounded-xl p-[1rem] border-[0.125rem] border-white/10 hover:border-white/25 active:scale-[0.98] transition-all duration-150 h-[clamp(16rem,35vh,22rem)]">
               <div className="flex items-center gap-2.5 mb-3">
                 <Image src="/fogees-logo.png" alt="Fogees Hub" width={32} height={32} className="rounded-full flex-shrink-0 ring-1 ring-white/10" />
                 <div className="space-y-0">
@@ -464,7 +464,7 @@ export function BentoGrid() {
         {/* 6. Communication Link - Minimal tertiary card, dark */}
         <motion.div variants={itemVariants}>
           <WobbleCard containerClassName="rounded-xl">
-            <a href="https://thecommunication.link" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#141414] rounded-xl p-[1rem] border-[0.125rem] border-white/10 hover:border-white/25 active:scale-[0.98] transition-all duration-150 h-[clamp(11.25rem,24vh,16.25rem)]">
+            <a href="https://thecommunication.link" target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#141414] rounded-xl p-[1rem] border-[0.125rem] border-white/10 hover:border-white/25 active:scale-[0.98] transition-all duration-150 h-[clamp(16rem,35vh,22rem)]">
               <div className="flex items-center gap-2.5 mb-3">
                 <Image src="/images/seb-pfp.png" alt="Communication Link" width={32} height={32} className="rounded-full flex-shrink-0 ring-1 ring-white/10" />
                 <div className="space-y-0">
