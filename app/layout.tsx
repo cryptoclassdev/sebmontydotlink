@@ -13,10 +13,6 @@ export const metadata: Metadata = {
   title: "Seb Montgomery | Creator",
   description: "Crypto Content Creator. Find all my links in one place.",
   generator: "v0.app",
-  icons: {
-    icon: "/seb-avatar.png",
-    apple: "/seb-avatar.png",
-  },
 }
 
 export const viewport: Viewport = {
