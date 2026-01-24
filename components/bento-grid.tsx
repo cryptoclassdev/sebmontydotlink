@@ -316,17 +316,14 @@ export function BentoGrid() {
                 {/* All Referrals - centrally aligned with heading */}
                 <div className="flex flex-col gap-[clamp(0.5rem,1vh,0.75rem)]">
                   <h3 className="text-lg font-bold text-white">Links & Referrals</h3>
-                    {allReferrals.map((referral) => {
-                      const isHighlighted = 'highlighted' in referral && referral.highlighted
-                      return (
+                    {allReferrals.map((referral) => (
                       <a
                         key={referral.name}
                         href={referral.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`flex items-center justify-between px-[clamp(0.75rem,1.5vh,1rem)] py-[clamp(0.5rem,1vh,0.75rem)] min-h-[clamp(2.5rem,5vh,3.25rem)] rounded-full bg-white/10 backdrop-blur-sm border-[0.125rem] border-white/10 hover:border-white/25 hover:bg-white/15 transition-all duration-200 group ${isHighlighted ? 'discord-nameplate' : ''}`}
+                        className="flex items-center justify-between px-[clamp(0.75rem,1.5vh,1rem)] py-[clamp(0.5rem,1vh,0.75rem)] min-h-[clamp(2.5rem,5vh,3.25rem)] rounded-full bg-white/10 backdrop-blur-sm border-[0.125rem] border-white/10 hover:border-white/25 hover:bg-white/15 transition-all duration-200 group"
                       >
-                        {isHighlighted && <div className="discord-shimmer" />}
                         <div className="flex items-center gap-2 min-w-0 flex-1">
                           {referral.icon ? (
                             <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
@@ -354,7 +351,7 @@ export function BentoGrid() {
                           {referral.badge}
                         </span>
                       </a>
-                    )})}
+                    ))}
                 </div>
               </CardBody>
             </CardContainer>
@@ -482,17 +479,14 @@ export function BentoGrid() {
           <div className="bg-[#141414] rounded-2xl p-5 border-[0.125rem] border-white/10">
             <h3 className="text-base font-bold text-white mb-4">Links & Referrals</h3>
             <div className="space-y-3">
-              {allReferrals.map((referral) => {
-                const isHighlighted = 'highlighted' in referral && referral.highlighted
-                return (
+              {allReferrals.map((referral) => (
                 <a
                   key={referral.name}
                   href={referral.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center justify-between px-4 py-3 min-h-[3.25rem] rounded-full bg-white/10 backdrop-blur-sm border-[0.125rem] border-white/10 hover:border-white/25 hover:bg-white/15 active:scale-[0.98] transition-all duration-150 group ${isHighlighted ? 'discord-nameplate' : ''}`}
+                  className="flex items-center justify-between px-4 py-3 min-h-[3.25rem] rounded-full bg-white/10 backdrop-blur-sm border-[0.125rem] border-white/10 hover:border-white/25 hover:bg-white/15 active:scale-[0.98] transition-all duration-150 group"
                 >
-                  {isHighlighted && <div className="discord-shimmer" />}
                   <div className="flex items-center gap-3 min-w-0 flex-1">
                     {referral.icon ? (
                       <div className="w-9 h-9 flex items-center justify-center flex-shrink-0">
@@ -522,7 +516,7 @@ export function BentoGrid() {
                     {referral.badge}
                   </span>
                 </a>
-              )})}
+              ))}
             </div>
           </div>
         </motion.div>
