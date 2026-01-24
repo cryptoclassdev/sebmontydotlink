@@ -41,7 +41,6 @@ const allReferrals = [
     badge: "My Personal Card",
     badgeColor: brandColors.golden,
     icon: <KastIcon size={36} />,
-    highlighted: true,
   },
   {
     name: "Backpack",
@@ -56,7 +55,6 @@ const allReferrals = [
     badge: "Super Bullish",
     badgeColor: brandColors.coral,
     icon: <InfinexIcon size={36} />,
-    highlighted: true,
   },
   {
     name: "Jupiter",
