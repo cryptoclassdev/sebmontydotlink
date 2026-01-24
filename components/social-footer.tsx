@@ -3,11 +3,26 @@
 import { motion } from "framer-motion"
 import { XLogo, LinkedinLogo, TelegramLogo, At } from "@phosphor-icons/react"
 
+// Custom Substack icon to match Phosphor style
+function SubstackLogo({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z" />
+    </svg>
+  )
+}
+
 const socials = [
   { icon: XLogo, href: "https://x.com/SebMontgomery", label: "Twitter" },
   { icon: At, href: "mailto:seb@validator.com", label: "Email" },
   { icon: TelegramLogo, href: "https://t.me/SebMontgomery", label: "Telegram" },
   { icon: LinkedinLogo, href: "https://www.linkedin.com/in/sebastian-montgomery-3354a245/", label: "Linkedin" },
+  { icon: SubstackLogo, href: "https://sebmonty.substack.com/", label: "Substack" },
 ]
 
 export function SocialFooter() {
