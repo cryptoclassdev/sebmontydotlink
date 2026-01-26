@@ -71,7 +71,7 @@ const allReferrals = [
     logo: "/referral-logos/paradex-logo.png",
   },
   {
-    name: "Fogees",
+    name: "FOGO Flames S2",
     href: "https://flames.fogo.io/season-2?af=avgchris?af=sebmontgomery",
     badge: "Community",
     badgeColor: brandColors.coral,
