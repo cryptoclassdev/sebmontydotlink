@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import Link from "next/link"
 import { XIcon } from "./icons/x-icon"
 import { TelegramIcon } from "./icons/telegram-icon"
 import { SubstackIcon } from "./icons/substack-icon"
@@ -119,7 +120,19 @@ const itemVariants = {
   },
 }
 
-export function BentoGrid() {
+interface LatestPost {
+  title: string
+  slug: string
+  excerpt?: string
+  publishedAt?: string
+  imageUrl?: string | null
+}
+
+interface BentoGridProps {
+  latestPost?: LatestPost | null
+}
+
+export function BentoGrid({ latestPost }: BentoGridProps = {}) {
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false)
 
   return (
@@ -190,7 +203,7 @@ export function BentoGrid() {
                 <div className="absolute inset-x-0 bottom-0 px-6 pb-6 lg:px-8 lg:pb-8 text-center space-y-4">
                   <div className="space-y-1">
                     {/* Typography: using clamp for responsive sizing */}
-                    <h1 className="text-[clamp(1.5rem,4vw,1.875rem)] font-bold text-white lowercase tracking-tight leading-tight drop-shadow-lg">seb montgomery</h1>
+                    <h1 className="text-[clamp(1.5rem,4vw,1.875rem)] font-bold text-white tracking-tight leading-tight drop-shadow-lg">Seb Montgomery</h1>
                     <p className="text-sm lg:text-base text-white/80">Crypto Content Creator</p>
                   </div>
 
@@ -306,16 +319,16 @@ export function BentoGrid() {
         </div>
 
         {/* ============================================
-            COLUMN 3 (Right) - Links Card (narrower)
+            COLUMN 3 (Right) - Links Card (narrower) + Blog Card
             ============================================ */}
         <div className="lg:col-span-3 flex flex-col gap-[clamp(1rem,2vh,1.5rem)] min-h-0">
           {/* Links Card - Dark theme with 3D hover effect */}
           <motion.div variants={itemVariants} className="flex-1 min-h-0">
             <CardContainer className="h-full">
-              <CardBody className="bg-[#141414] rounded-2xl p-[clamp(0.75rem,1.5vh,1.5rem)] border-[0.125rem] border-white/10 h-full overflow-hidden flex flex-col justify-center">
-                {/* All Referrals - centrally aligned with heading */}
-                <div className="flex flex-col gap-[clamp(0.5rem,1vh,0.75rem)]">
-                  <h3 className="text-lg font-bold text-white">Links & Referrals</h3>
+              <CardBody className="bg-[#141414] rounded-2xl p-[clamp(0.75rem,1.5vh,1.5rem)] border-[0.125rem] border-white/10 h-full overflow-hidden flex flex-col">
+                {/* All Referrals - scrollable when constrained */}
+                <div className="flex flex-col gap-[clamp(0.5rem,1vh,0.75rem)] overflow-y-auto overflow-x-hidden pr-1 -mr-1 [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.15)_transparent]">
+                  <h3 className="text-lg font-bold text-white sticky top-0 bg-[#141414] pb-1 z-10">Links & Referrals</h3>
                     {allReferrals.map((referral) => (
                       <a
                         key={referral.name}
@@ -356,6 +369,47 @@ export function BentoGrid() {
               </CardBody>
             </CardContainer>
           </motion.div>
+
+          {/* Blog Card - links to /blog, previews latest post */}
+          <motion.div variants={itemVariants} className="flex-shrink-0">
+            <CardContainer className="w-full">
+              <CardBody className="bg-[#141414] rounded-2xl p-[clamp(0.75rem,1.5vh,1.25rem)] border-[0.125rem] border-white/10 w-full">
+                <Link
+                  href={latestPost ? `/blog/${latestPost.slug}` : "/blog"}
+                  className="flex items-center gap-3 group"
+                  aria-label={latestPost ? `Read latest post: ${latestPost.title}` : "Read the blog"}
+                >
+                  {latestPost?.imageUrl ? (
+                    <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-white/5 border border-white/10">
+                      <Image
+                        src={latestPost.imageUrl}
+                        alt={latestPost.title}
+                        width={56}
+                        height={56}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-14 h-14 rounded-xl flex-shrink-0 bg-white/10 border border-white/10 flex items-center justify-center">
+                      <span className="text-white/70 text-xl" aria-hidden>✎</span>
+                    </div>
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-white/50">
+                      {latestPost ? "Latest Post" : "Blog"}
+                    </div>
+                    <div className="text-sm font-bold text-white truncate mt-0.5">
+                      {latestPost?.title ?? "Read the blog"}
+                    </div>
+                    <div className="text-xs text-white/60 mt-0.5 flex items-center gap-1 group-hover:text-white/90 transition-colors">
+                      <span>{latestPost ? "Read post" : "Browse posts"}</span>
+                      <span aria-hidden>→</span>
+                    </div>
+                  </div>
+                </Link>
+              </CardBody>
+            </CardContainer>
+          </motion.div>
         </div>
       </div>
 
@@ -378,7 +432,7 @@ export function BentoGrid() {
               {/* Overlaid content at bottom */}
               <div className="absolute inset-x-0 bottom-0 px-5 pb-6 text-center space-y-4">
                 <div className="space-y-1">
-                  <h1 className="text-2xl font-bold text-white lowercase tracking-tight drop-shadow-lg">seb montgomery</h1>
+                  <h1 className="text-2xl font-bold text-white tracking-tight drop-shadow-lg">Seb Montgomery</h1>
                   <p className="text-sm text-white/80">Crypto Content Creator</p>
                 </div>
 
@@ -474,7 +528,44 @@ export function BentoGrid() {
           </WobbleCard>
         </motion.div>
 
-        {/* 7. All Referrals - Show all links */}
+        {/* 7. Blog - Latest post teaser / link to /blog */}
+        <motion.div variants={itemVariants}>
+          <Link
+            href={latestPost ? `/blog/${latestPost.slug}` : "/blog"}
+            className="flex items-center gap-3 bg-[#141414] rounded-2xl p-4 border-[0.125rem] border-white/10 hover:border-white/25 active:scale-[0.98] transition-all duration-150"
+            aria-label={latestPost ? `Read latest post: ${latestPost.title}` : "Read the blog"}
+          >
+            {latestPost?.imageUrl ? (
+              <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-white/5 border border-white/10">
+                <Image
+                  src={latestPost.imageUrl}
+                  alt={latestPost.title}
+                  width={56}
+                  height={56}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ) : (
+              <div className="w-14 h-14 rounded-xl flex-shrink-0 bg-white/10 border border-white/10 flex items-center justify-center">
+                <span className="text-white/70 text-xl" aria-hidden>✎</span>
+              </div>
+            )}
+            <div className="min-w-0 flex-1">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-white/50">
+                {latestPost ? "Latest Post" : "Blog"}
+              </div>
+              <div className="text-sm font-bold text-white truncate mt-0.5">
+                {latestPost?.title ?? "Read the blog"}
+              </div>
+              <div className="text-xs text-white/60 mt-0.5 flex items-center gap-1">
+                <span>{latestPost ? "Read post" : "Browse posts"}</span>
+                <span aria-hidden>→</span>
+              </div>
+            </div>
+          </Link>
+        </motion.div>
+
+        {/* 8. All Referrals - Show all links */}
         <motion.div variants={itemVariants}>
           <div className="bg-[#141414] rounded-2xl p-5 border-[0.125rem] border-white/10">
             <h3 className="text-base font-bold text-white mb-4">Links & Referrals</h3>
