@@ -6,7 +6,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { XIcon } from "./icons/x-icon"
 import { TelegramIcon } from "./icons/telegram-icon"
-import { SubstackIcon } from "./icons/substack-icon"
+import { BlogIcon } from "./icons/blog-icon"
 import { EmailIcon } from "./icons/email-icon"
 import { YoutubeIcon } from "./icons/youtube-icon"
 import { InfinexIcon } from "./icons/infinex-icon"
@@ -30,7 +30,7 @@ const profileSocialLinks = [
   { title: "X/Twitter", icon: XIcon, href: "https://x.com/SebMontgomery", color: brandColors.skyBlue },
   { title: "YouTube", icon: YoutubeIcon, href: "https://youtube.com/@SebMontgomery", color: brandColors.coral },
   { title: "Telegram", icon: TelegramIcon, href: "https://t.me/SebMontgomery", color: brandColors.golden },
-  { title: "Substack", icon: SubstackIcon, href: "https://sebmonty.substack.com/", color: brandColors.sage },
+  { title: "Blog", icon: BlogIcon, href: "/blog", color: brandColors.sage },
   { title: "Email", icon: EmailIcon, href: "mailto:support@sebmonty.link", color: brandColors.navy },
 ]
 
