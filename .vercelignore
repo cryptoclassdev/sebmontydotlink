@@ -1,0 +1,25 @@
+# Secrets — provided via Vercel project env vars, never upload local env files
+.env
+.env.*
+
+# Dependencies & build output (Vercel builds fresh)
+node_modules
+.next
+out
+
+# OS / editor cruft
+.DS_Store
+**/.DS_Store
+
+# Local agent/tooling dirs (not part of the app)
+.claude
+.agents
+.windsurf
+.playwright-mcp
+.gstack
+skills
+skills-lock.json
+
+# Stray files parked in public/ that should not be served
+public/referral-logos/parsec-macos.pkg
+public/referral-logos/openclaw_intelligence_report.pdf
