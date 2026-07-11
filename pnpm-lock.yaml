@@ -143,6 +143,9 @@ dependencies:
   input-otp:
     specifier: 1.4.1
     version: 1.4.1(react-dom@19.2.0)(react@19.2.0)
+  jsdom:
+    specifier: ^26.1.0
+    version: 26.1.0
   lucide-react:
     specifier: ^0.454.0
     version: 0.454.0(react@19.2.0)
@@ -2034,6 +2037,16 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@exodus/bytes@1.15.1:
+    resolution: {integrity: sha512-S6mL0yNB/Abt9Ei4tq8gDhcczc4S3+vQ4ra7vxnAf+YHC02srtqxKKZghx2Dq6p0e66THKwR6r8N6P95wEty7Q==}
+    engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
+    peerDependencies:
+      '@noble/hashes': ^1.8.0 || ^2.0.0
+    peerDependenciesMeta:
+      '@noble/hashes':
+        optional: true
+    dev: false
 
   /@exodus/bytes@1.9.0:
     resolution: {integrity: sha512-lagqsvnk09NKogQaN/XrtlWeUF8SRhT12odMvbTIIaVObqzwAogL6jhR4DAp0gPuKoM1AOVrKUshJpRdpMFrww==}
@@ -5030,6 +5043,16 @@ packages:
       - debug
     dev: false
 
+  /@sanity/client@7.23.0:
+    resolution: {integrity: sha512-4VFcLeP/lD0lhe5TD102tSnoW72ERT6xD/ZLb9pdLNMbZgbOciAy3m0hAYvs1vjA6663ZjNM6SLwl1Utq97DHA==}
+    engines: {node: '>=20'}
+    dependencies:
+      '@sanity/eventsource': 5.0.2
+      get-it: 8.8.0
+      nanoid: 3.3.11
+      rxjs: 7.8.2
+    dev: false
+
   /@sanity/codegen@5.5.0:
     resolution: {integrity: sha512-EDCFemcN+3J0VFADpFnGw+3FsaJseQAHj/rkP2GSY9dTgi6m71G4r8EFOZPIuN92lPnPNlj8Zz044jhhsRBPyw==}
     engines: {node: '>=20.19 <22 || >=22.12'}
@@ -5591,11 +5614,9 @@ packages:
     peerDependencies:
       '@types/react': ^19.2
     dependencies:
-      '@sanity/client': 7.14.1(debug@4.4.3)
+      '@sanity/client': 7.23.0
       '@sanity/media-library-types': 1.2.0
       '@types/react': 19.2.9
-    transitivePeerDependencies:
-      - debug
     dev: false
 
   /@sanity/ui@3.1.11(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.0)(react-is@19.2.3)(react@19.2.0)(styled-components@6.3.8):
@@ -6452,7 +6473,7 @@ packages:
       '@rolldown/pluginutils': 1.0.0-beta.53
       '@types/babel__core': 7.20.5
       react-refresh: 0.18.0
-      vite: 7.3.1(@types/node@22.19.7)(tsx@4.21.0)
+      vite: 7.3.1(@types/node@22.19.7)(jiti@2.6.1)
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -6481,7 +6502,7 @@ packages:
       '@vitest/spy': 3.2.4
       estree-walker: 3.0.3
       magic-string: 0.30.21
-      vite: 7.3.1(@types/node@22.19.7)(tsx@4.21.0)
+      vite: 7.3.1(@types/node@22.19.7)(jiti@2.6.1)
     dev: false
 
   /@vitest/pretty-format@3.2.4:
@@ -6827,8 +6848,9 @@ packages:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
     dev: false
 
-  /baseline-browser-mapping@2.9.17:
-    resolution: {integrity: sha512-agD0MgJFUP/4nvjqzIB29zRPUuCF7Ge6mEv9s8dHrtYD7QWXRcx75rOADE/d5ah1NI+0vkDl0yorDd5U852IQQ==}
+  /baseline-browser-mapping@2.10.42:
+    resolution: {integrity: sha512-c/jurFrDLyui7o1J86yLkRu4LMsTYcBohveus7/I2Hzdn9KIP2bdJPTue/lR1KH46enoPbD77GKeSYNdyPoD3Q==}
+    engines: {node: '>=6.0.0'}
     hasBin: true
     dev: false
 
@@ -6888,7 +6910,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      baseline-browser-mapping: 2.9.17
+      baseline-browser-mapping: 2.10.42
       caniuse-lite: 1.0.30001766
       electron-to-chromium: 1.5.278
       node-releases: 2.0.27
@@ -8135,6 +8157,16 @@ packages:
       - debug
     dev: false
 
+  /get-it@8.8.0:
+    resolution: {integrity: sha512-vRyooMBzoIdEbARGT3JcvWqMD67YzC5SKlMqofyfck1ebLh2zzlpD4hVQ3xiuuiADk4jNs0rTezVlxCMqOlZfA==}
+    engines: {node: '>=14.0.0'}
+    dependencies:
+      decompress-response: 7.0.0
+      is-retry-allowed: 2.2.0
+      through2: 4.0.2
+      tunnel-agent: 0.6.0
+    dev: false
+
   /get-latest-version@5.1.0(debug@4.4.3):
     resolution: {integrity: sha512-Q6IBWr/zzw57zIkJmNhI23eRTw3nZ4BWWK034meLwOYU9L3J3IpXiyM73u2pYUwN6U7ahkerCwg2T0jlxiLwsw==}
     engines: {node: '>=14.18'}
@@ -8357,7 +8389,7 @@ packages:
     resolution: {integrity: sha512-CV9TW3Y3f8/wT0BRFc1/KAVQ3TUHiXmaAb6VW9vtiMFf7SLoMd1PdAc4W3KFOFETBJUb90KatHqlsZMWV+R9Gg==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     dependencies:
-      '@exodus/bytes': 1.9.0
+      '@exodus/bytes': 1.15.1
     transitivePeerDependencies:
       - '@noble/hashes'
     dev: false
@@ -10616,7 +10648,7 @@ packages:
       use-hot-module-reload: 2.0.0(react@19.2.0)
       use-sync-external-store: 1.6.0(react@19.2.0)
       uuid: 11.1.0
-      vite: 7.3.1(@types/node@22.19.7)(tsx@4.21.0)
+      vite: 7.3.1(@types/node@22.19.7)(jiti@2.6.1)
       web-vitals: 5.1.0
       which: 5.0.0
       xstate: 5.25.1
@@ -11591,6 +11623,31 @@ packages:
       d3-timer: 3.0.1
     dev: false
 
+  /vite-node@3.2.4(@types/node@22.19.7):
+    resolution: {integrity: sha512-EbKSKh+bh1E1IFxeO0pg1n4dvoOTt0UDiXMd/qn++r98+jPO1xtJilvXldeuQ8giIB5IkpjCgMleHMNEsGH6pg==}
+    engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
+    hasBin: true
+    dependencies:
+      cac: 6.7.14
+      debug: 4.4.3(supports-color@8.1.1)
+      es-module-lexer: 1.7.0
+      pathe: 2.0.3
+      vite: 7.3.1(@types/node@22.19.7)(jiti@2.6.1)
+    transitivePeerDependencies:
+      - '@types/node'
+      - jiti
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - tsx
+      - yaml
+    dev: false
+
   /vite-node@3.2.4(@types/node@22.19.7)(tsx@4.21.0):
     resolution: {integrity: sha512-EbKSKh+bh1E1IFxeO0pg1n4dvoOTt0UDiXMd/qn++r98+jPO1xtJilvXldeuQ8giIB5IkpjCgMleHMNEsGH6pg==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
@@ -11787,8 +11844,8 @@ packages:
       tinyglobby: 0.2.15
       tinypool: 1.1.1
       tinyrainbow: 2.0.0
-      vite: 7.3.1(@types/node@22.19.7)(tsx@4.21.0)
-      vite-node: 3.2.4(@types/node@22.19.7)(tsx@4.21.0)
+      vite: 7.3.1(@types/node@22.19.7)(jiti@2.6.1)
+      vite-node: 3.2.4(@types/node@22.19.7)
       why-is-node-running: 2.3.0
     transitivePeerDependencies:
       - jiti

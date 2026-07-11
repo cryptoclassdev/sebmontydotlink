@@ -20,6 +20,7 @@ export interface Category {
 
 export interface Post {
   _id: string
+  _updatedAt?: string
   title: string
   subtitle?: string
   slug: string
@@ -82,6 +83,16 @@ export interface PortableTextBlock {
   style?: string
   listItem?: string
   level?: number
+  asset?: {
+    _ref: string
+    _type: 'reference'
+  }
+  alt?: string
+  caption?: string
+  credit?: string
+  creditUrl?: string
+  code?: string
+  language?: string
 }
 
 export interface PortableTextSpan {

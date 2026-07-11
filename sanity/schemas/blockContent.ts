@@ -52,11 +52,36 @@ export default defineType({
           name: 'alt',
           type: 'string',
           title: 'Alt Text',
+          description: 'Describe the image for readers using assistive technology.',
         },
         {
           name: 'caption',
           type: 'string',
           title: 'Caption',
+        },
+        {
+          name: 'credit',
+          type: 'string',
+          title: 'Credit',
+        },
+        {
+          name: 'creditUrl',
+          type: 'url',
+          title: 'Credit URL',
+          validation: (Rule) => Rule.uri({ scheme: ['http', 'https'] }),
+        },
+        {
+          name: 'layout',
+          type: 'string',
+          title: 'Layout',
+          initialValue: 'wide',
+          options: {
+            layout: 'radio',
+            list: [
+              { title: 'Reading width', value: 'regular' },
+              { title: 'Wide', value: 'wide' },
+            ],
+          },
         },
       ],
     }),

@@ -10,15 +10,22 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Seb Montgomery | Creator",
-  description: "Crypto Content Creator. Find all my links in one place.",
-  generator: "v0.app",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.sebmonty.link"),
+  title: {
+    default: "Seb Montgomery — Independent research",
+    template: "%s — Seb Montgomery",
+  },
+  description: "Independent research on crypto, markets, and the products reshaping finance.",
+  openGraph: {
+    type: "website",
+    siteName: "Seb Montgomery",
+  },
 }
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fafaf8" },
-    { media: "(prefers-color-scheme: dark)", color: "#1a1a2e" },
+    { media: "(prefers-color-scheme: light)", color: "#fffdf8" },
+    { media: "(prefers-color-scheme: dark)", color: "#171714" },
   ],
   width: "device-width",
   initialScale: 1,

@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 
-interface SubscribeCTAProps {
+type SubscribeCTAProps = {
   publicationName?: string
   description?: string
   variant?: 'inline' | 'card'
@@ -10,68 +10,59 @@ interface SubscribeCTAProps {
 
 export function SubscribeCTA({
   publicationName = 'Blog',
-  description = 'Get the latest posts delivered right to your inbox.',
+  description = 'Get new research delivered to your inbox.',
   variant = 'inline',
 }: SubscribeCTAProps) {
   const [email, setEmail] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [message, setMessage] = useState('')
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!email) return
-
-    setIsSubmitting(true)
-    // TODO: Implement actual subscription logic
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setIsSubmitting(false)
-    setEmail('')
-  }
-
-  if (variant === 'card') {
-    return (
-      <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-        <h3 className="text-lg font-semibold text-gray-900 mb-1">
-          Subscribe to {publicationName}
-        </h3>
-        <p className="text-sm text-gray-600 mb-4">{description}</p>
-        <form onSubmit={handleSubmit} className="flex gap-2">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Type your email..."
-            className="flex-1 px-4 py-2.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-            required
-          />
-          <button
-            type="submit"
-            disabled={isSubmitting || !email}
-            className="px-6 py-2.5 text-sm font-medium text-white bg-[#ff6719] hover:bg-[#e55a14] disabled:bg-gray-300 disabled:cursor-not-allowed rounded-md transition-colors"
-          >
-            {isSubmitting ? 'Subscribing...' : 'Subscribe'}
-          </button>
-        </form>
-      </div>
-    )
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    if (!email || status === 'submitting') return
+    setStatus('submitting')
+    setMessage('')
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      const body = await response.json() as { error?: string }
+      if (!response.ok) throw new Error(body.error || 'Subscription failed')
+      setEmail('')
+      setStatus('success')
+      setMessage('You’re on the list. Check your inbox for the next piece.')
+    } catch (error) {
+      setStatus('error')
+      setMessage(error instanceof Error ? error.message : 'Please try again.')
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Type your email..."
-        className="flex-1 px-4 py-2.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-        required
-      />
-      <button
-        type="submit"
-        disabled={isSubmitting || !email}
-        className="px-6 py-2.5 text-sm font-medium text-white bg-[#ff6719] hover:bg-[#e55a14] disabled:bg-gray-300 disabled:cursor-not-allowed rounded-md transition-colors"
-      >
-        {isSubmitting ? '...' : 'Subscribe'}
-      </button>
-    </form>
+    <div className={`subscribe-cta subscribe-cta--${variant}`}>
+      {variant === 'card' && (
+        <div>
+          <h3>Subscribe to {publicationName}</h3>
+          <p>{description}</p>
+        </div>
+      )}
+      <form onSubmit={handleSubmit}>
+        <label className="sr-only" htmlFor={`subscribe-email-${variant}`}>Email address</label>
+        <input
+          id={`subscribe-email-${variant}`}
+          type="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          placeholder="Email address"
+          autoComplete="email"
+          required
+        />
+        <button type="submit" disabled={status === 'submitting' || !email}>
+          {status === 'submitting' ? 'Joining…' : 'Subscribe'}
+        </button>
+      </form>
+      <p className={`subscribe-cta__status${status === 'error' ? ' is-error' : ''}`} role="status" aria-live="polite">{message}</p>
+    </div>
   )
 }
