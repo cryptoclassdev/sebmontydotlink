@@ -2,7 +2,7 @@
 
 ## Goal
 
-Turn sebmonty.link from a dense link-in-bio dashboard into a clear personal publication and project hub. The first screen should establish who Seb is, make the latest research impossible to miss, and provide direct routes to his work and trusted links.
+Integrate a first-class publication into the complete SebMonty.link experience without replacing the established bento homepage, project cards, referral directory, waitlist flow, motion, or responsive layouts. The latest research should be easy to find while the full personal hub remains intact.
 
 ## Audience
 
@@ -19,11 +19,11 @@ Turn sebmonty.link from a dense link-in-bio dashboard into a clear personal publ
 
 ## Design Requirements
 
-1. Use one warm-paper editorial system across the homepage and blog: cream canvas, dark ink, coral accent, serif headlines, and restrained borders.
-2. Replace the viewport-locked bento dashboard with a normal, scrollable information hierarchy.
-3. Keep one primary action in the hero: read the latest research. Projects and social links remain visible but quieter.
-4. Feature the latest article twice: in primary navigation and as a large editorial card on the homepage.
-5. Group projects separately from referrals so professional proof and affiliate links do not compete.
+1. Preserve the existing dark bento homepage as the primary SebMonty.link experience.
+2. Preserve the private-group waitlist, social links, project cards, referral links, motion, 3D interactions, and mobile ordering.
+3. Keep the homepage's private-group waitlist as the dominant conversion action.
+4. Feature the latest article through the profile's Blog icon and a prominent image-backed research card in the right-hand bento column.
+5. Place the featured research card immediately after the profile on mobile so the blog is discoverable before project and referral lists.
 6. Treat article images as content: preserve natural aspect ratios, captions, credits, keyboard focus, and click-to-enlarge behavior.
 7. Put all source groups inside a native, collapsed `details` disclosure that remains available without JavaScript.
 8. Keep Sanity as the single CMS. The public site should not introduce a second editorial backend.
@@ -32,9 +32,10 @@ Turn sebmonty.link from a dense link-in-bio dashboard into a clear personal publ
 
 ## Component Rules
 
-- Header: brand, Home, Writing, Work, Search, Subscribe. Active state uses both weight and an underline.
+- Homepage: retain the existing bento composition and interaction model; integrate writing as a native card rather than adding a second page shell.
+- Blog header: brand, Home, Writing, Work, Search, Subscribe. Active state uses both weight and an underline.
 - Buttons: solid dark primary, bordered secondary, at least 44px high, action-specific labels.
-- Cards: one level of containment, stable image ratios, no nested wobble/3D effects.
+- Blog cards: one level of containment and stable image ratios. Homepage cards continue using the established 3D and wobble treatments.
 - Figures: entire image is a `button` with a zoom cursor and visible hover/focus affordance.
 - Lightbox: modal semantics, close/previous/next controls, Escape and arrow keys, scroll lock, focus restoration, loading/error states.
 - Sources: native `details/summary`, collapsed by default, grouped headings and links, printable in full.
@@ -50,7 +51,7 @@ Turn sebmonty.link from a dense link-in-bio dashboard into a clear personal publ
 
 ## Acceptance Criteria
 
-- `/` clearly features the RoboStrategy article and links to `/blog` in the first viewport.
+- `/` retains the full SebMonty.link bento homepage, its waitlist modal, projects, referrals, and social links while clearly featuring RoboStrategy and `/blog` in the first viewport.
 - `/blog` presents featured research before archive controls.
 - `/blog/robostrategy-bot-solana` preserves the full Sanity article, natural image geometry, clean captions, and collapsed Sources.
 - Clicking any article or hero image opens a bounded full-screen viewer with gallery navigation.

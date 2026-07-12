@@ -132,6 +132,52 @@ interface BentoGridProps {
   latestPost?: LatestPost | null
 }
 
+function FeaturedBlogCard({ latestPost, mobile = false }: { latestPost?: LatestPost | null; mobile?: boolean }) {
+  const postHref = latestPost ? `/blog/${latestPost.slug}` : "/blog"
+
+  return (
+    <section
+      className={`group relative isolate overflow-hidden rounded-2xl border-[0.125rem] border-white/15 bg-[#141414] ${
+        mobile ? "min-h-[16rem]" : "min-h-[clamp(10rem,20vh,12rem)]"
+      }`}
+      aria-label="Featured writing"
+    >
+      {latestPost?.imageUrl && (
+        <Image
+          src={latestPost.imageUrl}
+          alt=""
+          fill
+          sizes={mobile ? "calc(100vw - 3rem)" : "28vw"}
+          className="-z-20 object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
+        />
+      )}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/75 to-black/20" aria-hidden="true" />
+
+      <div className={`flex min-h-[inherit] flex-col justify-between ${mobile ? "p-5" : "p-[clamp(0.875rem,1.6vh,1.25rem)]"}`}>
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#e5ba41]">Latest research</span>
+          <Link
+            href="/blog"
+            className="inline-flex min-h-9 items-center rounded-full border border-white/20 bg-black/35 px-3 text-[10px] font-bold text-white/80 backdrop-blur-sm transition-colors hover:border-white/40 hover:text-white"
+          >
+            All writing <span className="ml-1" aria-hidden>↗</span>
+          </Link>
+        </div>
+
+        <Link href={postHref} className="group mt-8 block" aria-label={latestPost ? `Read latest post: ${latestPost.title}` : "Read the blog"}>
+          <h2 className={`${mobile ? "text-2xl" : "text-[clamp(1rem,1.35vw,1.35rem)]"} line-clamp-3 font-bold leading-[1.08] tracking-tight text-white drop-shadow-lg`}>
+            {latestPost?.title ?? "Research on crypto, markets, and products"}
+          </h2>
+          <div className="mt-3 flex items-center gap-2 text-xs font-bold text-white/75 transition-colors group-hover:text-white">
+            <span>{latestPost ? "Read the full research" : "Browse the publication"}</span>
+            <span aria-hidden>→</span>
+          </div>
+        </Link>
+      </div>
+    </section>
+  )
+}
+
 export function BentoGrid({ latestPost }: BentoGridProps = {}) {
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false)
 
@@ -370,43 +416,11 @@ export function BentoGrid({ latestPost }: BentoGridProps = {}) {
             </CardContainer>
           </motion.div>
 
-          {/* Blog Card - links to /blog, previews latest post */}
+          {/* Featured research - integrated into the original SebMonty.link bento system */}
           <motion.div variants={itemVariants} className="flex-shrink-0">
             <CardContainer className="w-full">
-              <CardBody className="bg-[#141414] rounded-2xl p-[clamp(0.75rem,1.5vh,1.25rem)] border-[0.125rem] border-white/10 w-full">
-                <Link
-                  href={latestPost ? `/blog/${latestPost.slug}` : "/blog"}
-                  className="flex items-center gap-3 group"
-                  aria-label={latestPost ? `Read latest post: ${latestPost.title}` : "Read the blog"}
-                >
-                  {latestPost?.imageUrl ? (
-                    <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-white/5 border border-white/10">
-                      <Image
-                        src={latestPost.imageUrl}
-                        alt={latestPost.title}
-                        width={56}
-                        height={56}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-14 h-14 rounded-xl flex-shrink-0 bg-white/10 border border-white/10 flex items-center justify-center">
-                      <span className="text-white/70 text-xl" aria-hidden>✎</span>
-                    </div>
-                  )}
-                  <div className="min-w-0 flex-1">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-white/50">
-                      {latestPost ? "Latest Post" : "Blog"}
-                    </div>
-                    <div className="text-sm font-bold text-white truncate mt-0.5">
-                      {latestPost?.title ?? "Read the blog"}
-                    </div>
-                    <div className="text-xs text-white/60 mt-0.5 flex items-center gap-1 group-hover:text-white/90 transition-colors">
-                      <span>{latestPost ? "Read post" : "Browse posts"}</span>
-                      <span aria-hidden>→</span>
-                    </div>
-                  </div>
-                </Link>
+              <CardBody className="w-full rounded-2xl">
+                <FeaturedBlogCard latestPost={latestPost} />
               </CardBody>
             </CardContainer>
           </motion.div>
@@ -468,6 +482,11 @@ export function BentoGrid({ latestPost }: BentoGridProps = {}) {
           </CardContainer>
         </motion.div>
 
+        {/* 3. Featured research - high in the mobile reading order */}
+        <motion.div variants={itemVariants}>
+          <FeaturedBlogCard latestPost={latestPost} mobile />
+        </motion.div>
+
         {/* 4. Validator - Minimal tertiary card */}
         <motion.div variants={itemVariants}>
           <WobbleCard containerClassName="rounded-xl">
@@ -526,43 +545,6 @@ export function BentoGrid({ latestPost }: BentoGridProps = {}) {
               </div>
             </a>
           </WobbleCard>
-        </motion.div>
-
-        {/* 7. Blog - Latest post teaser / link to /blog */}
-        <motion.div variants={itemVariants}>
-          <Link
-            href={latestPost ? `/blog/${latestPost.slug}` : "/blog"}
-            className="flex items-center gap-3 bg-[#141414] rounded-2xl p-4 border-[0.125rem] border-white/10 hover:border-white/25 active:scale-[0.98] transition-all duration-150"
-            aria-label={latestPost ? `Read latest post: ${latestPost.title}` : "Read the blog"}
-          >
-            {latestPost?.imageUrl ? (
-              <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-white/5 border border-white/10">
-                <Image
-                  src={latestPost.imageUrl}
-                  alt={latestPost.title}
-                  width={56}
-                  height={56}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ) : (
-              <div className="w-14 h-14 rounded-xl flex-shrink-0 bg-white/10 border border-white/10 flex items-center justify-center">
-                <span className="text-white/70 text-xl" aria-hidden>✎</span>
-              </div>
-            )}
-            <div className="min-w-0 flex-1">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-white/50">
-                {latestPost ? "Latest Post" : "Blog"}
-              </div>
-              <div className="text-sm font-bold text-white truncate mt-0.5">
-                {latestPost?.title ?? "Read the blog"}
-              </div>
-              <div className="text-xs text-white/60 mt-0.5 flex items-center gap-1">
-                <span>{latestPost ? "Read post" : "Browse posts"}</span>
-                <span aria-hidden>→</span>
-              </div>
-            </div>
-          </Link>
         </motion.div>
 
         {/* 8. All Referrals - Show all links */}
