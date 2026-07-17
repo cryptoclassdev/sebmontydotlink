@@ -22,7 +22,7 @@ export type PriceTimelineFigureProps = {
   ariaLabel?: string
 }
 
-const chart = { width: 760, height: 320, left: 42, right: 18, top: 22, bottom: 42 }
+const chart = { width: 760, height: 280, left: 42, right: 18, top: 24, bottom: 38 }
 
 function x(position: number) {
   return chart.left + position * (chart.width - chart.left - chart.right)
@@ -79,7 +79,6 @@ export function PriceTimelineFigure({
       <div className="article-price-timeline__legend" aria-hidden="true">
         <span><i className="article-price-timeline__swatch article-price-timeline__swatch--price" />{priceLabel}</span>
         <span><i className="article-price-timeline__swatch article-price-timeline__swatch--nav" />{navLabel}</span>
-        <span><i className="article-price-timeline__swatch article-price-timeline__swatch--premium" />Premium to NAV</span>
       </div>
       <svg className="article-price-timeline__chart" viewBox={`0 0 ${chart.width} ${chart.height}`} role="img" aria-label={ariaLabel ?? `${title}. ${caption}`}>
         {yTicks.map((tick) => (

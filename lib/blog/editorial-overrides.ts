@@ -132,7 +132,7 @@ const robostrategyJuly17: EditorialOverride = {
       _key: 'k013d407166',
       _type: 'priceTimeline',
       eyebrow: 'Exhibit 2 · The price path',
-      title: 'The price swung wildly. It never traded near its own NAV.',
+      title: 'BOT fell from $59 to $29.25. NAV was still only $10.51.',
       source: 'Sources: Nasdaq historical prices · RoboStrategy NAV updates',
       sourceUrl: 'https://www.nasdaq.com/market-activity/stocks/bot',
       priceLabel: 'BOT share price',
