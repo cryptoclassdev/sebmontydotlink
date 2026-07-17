@@ -7,6 +7,7 @@ type EditorialOverride = {
   textOverrides: Record<string, string[]>
   linkOverrides?: Record<string, string>
   blockOverrides?: Record<string, PortableTextBlock | null>
+  hiddenTextIncludes?: string[]
 }
 
 const robostrategyJuly17: EditorialOverride = {
@@ -38,6 +39,7 @@ const robostrategyJuly17: EditorialOverride = {
     k918317b579: 'https://www.nasdaq.com/market-activity/stocks/bot',
     k4734ba6f3d: 'https://www.globenewswire.com/news-release/2026/07/08/3324072/0/en/robostrategy-inc-announces-updated-net-asset-value-and-additional-private-placements.html',
   },
+  hiddenTextIncludes: ['meme coins'],
   blockOverrides: {
     kb53b3a3d6a: {
       _key: 'kb53b3a3d6a',
@@ -267,5 +269,9 @@ export function applyArticleEditorialOverride(slug: string, body: PortableTextBl
 
     if (imageOverride) nextBlock = { ...nextBlock, caption: imageOverride.caption }
     return nextBlock
-  }).filter((block): block is PortableTextBlock => block !== null)
+  }).filter((block): block is PortableTextBlock => {
+    if (block === null) return false
+    const text = (block.children || []).map((child) => child.text).join('')
+    return !override.hiddenTextIncludes?.some((fragment) => text.toLowerCase().includes(fragment.toLowerCase()))
+  })
 }
