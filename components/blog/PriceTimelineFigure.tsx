@@ -94,7 +94,7 @@ export function PriceTimelineFigure({
           <g key={`${point.date}-${point.value}`}>
             <circle cx={x(point.position)} cy={y(point.value, maxValue)} r={index === price.length - 1 || point.accent === 'low' ? 5 : 3.5} className={point.accent === 'low' ? 'article-price-timeline__point article-price-timeline__point--low' : 'article-price-timeline__point'} />
             {(point.label || index === price.length - 1 || point.accent === 'low') && (
-              <text x={x(point.position)} y={annotationY(point, maxValue)} textAnchor={point.position > .84 ? 'end' : point.position < .16 ? 'start' : 'middle'} className={point.accent === 'low' ? 'article-price-timeline__annotation article-price-timeline__annotation--low' : 'article-price-timeline__annotation'}>{point.label ?? `$${point.value.toFixed(2)}`}</text>
+              <text x={x(point.position)} dx={point.position === 0 ? 14 : undefined} y={annotationY(point, maxValue)} textAnchor={point.position > .84 ? 'end' : point.position < .16 ? 'start' : 'middle'} className={point.accent === 'low' ? 'article-price-timeline__annotation article-price-timeline__annotation--low' : 'article-price-timeline__annotation'}>{point.label ?? `$${point.value.toFixed(2)}`}</text>
             )}
           </g>
         ))}
