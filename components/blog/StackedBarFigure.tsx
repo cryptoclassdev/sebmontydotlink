@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 
-export type StackedBarTone = 'gauge' | 'sebring' | 'redline' | 'gray-2' | 'gray-3' | 'gray-5'
+export type StackedBarTone = 'gauge' | 'sebring' | 'marigold' | 'redline' | 'infield' | 'pitlane'
 
 export type StackedBarSegment = {
   name: string
@@ -26,10 +26,10 @@ export type StackedBarFigureProps = {
 const toneClasses: Record<StackedBarTone, string> = {
   gauge: 'article-stacked-bar__segment--gauge',
   sebring: 'article-stacked-bar__segment--sebring',
+  marigold: 'article-stacked-bar__segment--marigold',
   redline: 'article-stacked-bar__segment--redline',
-  'gray-2': 'article-stacked-bar__segment--gray-2',
-  'gray-3': 'article-stacked-bar__segment--gray-3',
-  'gray-5': 'article-stacked-bar__segment--gray-5',
+  infield: 'article-stacked-bar__segment--infield',
+  pitlane: 'article-stacked-bar__segment--pitlane',
 }
 
 function segmentValue(segment: StackedBarSegment) {
@@ -110,8 +110,8 @@ export const robostrategyPortfolioWeights: StackedBarFigureProps = {
     { name: 'Figure AI', value: 19.4, displayValue: '19.4%', tone: 'gauge' },
     { name: 'Dyna', value: 19.4, displayValue: '19.4%', tone: 'sebring' },
     { name: 'Apptronik', value: 10.2, displayValue: '10.2%', tone: 'redline' },
-    { name: 'Dexmate', value: 6, displayValue: '~6%', tone: 'gray-3' },
-    { name: 'Smaller names', value: 45, displayValue: '~45%', tone: 'gray-5' },
+    { name: 'Dexmate', value: 6, displayValue: '~6%', tone: 'infield' },
+    { name: 'Smaller names', value: 45, displayValue: '~45%', tone: 'pitlane' },
   ],
   caption: 'Portfolio weights as reported on June 22, 2026. Figures are approximate.',
 }

@@ -361,10 +361,10 @@ export default defineType({
                     list: [
                       { title: 'Gauge', value: 'gauge' },
                       { title: 'Sebring', value: 'sebring' },
+                      { title: 'Marigold', value: 'marigold' },
                       { title: 'Redline', value: 'redline' },
-                      { title: 'Gray 2', value: 'gray-2' },
-                      { title: 'Gray 3', value: 'gray-3' },
-                      { title: 'Gray 5', value: 'gray-5' },
+                      { title: 'Infield', value: 'infield' },
+                      { title: 'Pitlane', value: 'pitlane' },
                     ],
                     layout: 'radio',
                   },

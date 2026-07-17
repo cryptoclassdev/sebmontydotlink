@@ -1188,10 +1188,10 @@
 .article-stacked-bar__segment:last-child { box-shadow: none; }
 .article-stacked-bar__segment--gauge { background: var(--site-gauge); }
 .article-stacked-bar__segment--sebring { background: var(--site-sebring); }
+.article-stacked-bar__segment--marigold { background: var(--site-marigold); }
 .article-stacked-bar__segment--redline { background: var(--site-redline); }
-.article-stacked-bar__segment--gray-2 { background: var(--site-gray-2); }
-.article-stacked-bar__segment--gray-3 { background: var(--site-gray-3); }
-.article-stacked-bar__segment--gray-5 { background: var(--site-gray-5); }
+.article-stacked-bar__segment--infield { background: var(--site-infield); }
+.article-stacked-bar__segment--pitlane { background: var(--site-pitlane); }
 .article-stacked-bar__legend { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; margin: 26px 0 0; padding: 0; list-style: none; }
 .article-stacked-bar__legend li { display: grid; min-width: 0; align-items: center; grid-template-columns: 12px minmax(0, 1fr) auto; gap: 11px; margin: 0; border-bottom: 1px solid var(--site-line); padding: 14px 0; }
 .article-stacked-bar__legend li::marker { content: none; }
