@@ -158,7 +158,7 @@ const robostrategyJuly17: EditorialOverride = {
       _key: 'k47d1e99058',
       _type: 'priceTimeline',
       eyebrow: 'Exhibit 3 · The precedent',
-      title: 'DXYZ ran to 20× book, then collapsed 93 percent in eight weeks.',
+      title: 'DXYZ fell from $105 to $7.75 in eight weeks.',
       source: 'Sources: Nasdaq historical prices · Destiny Tech100 reported NAV',
       sourceUrl: 'https://www.nasdaq.com/market-activity/stocks/dxyz',
       priceLabel: 'DXYZ share price',

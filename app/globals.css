@@ -1319,7 +1319,7 @@ strong.article-stacked-bar__value { font-size: 17px; font-weight: 700; font-vari
 .article-price-timeline__chart { display: block; width: 100%; overflow: visible; font-family: inherit; }
 .article-price-timeline__grid { stroke: var(--site-line); stroke-dasharray: 3 6; }
 .article-price-timeline__axis { fill: var(--site-faint); font-family: inherit; font-size: 12px; font-weight: 500; }
-.article-price-timeline__area { fill: color-mix(in srgb, var(--site-powder) 62%, transparent); }
+.article-price-timeline__area { fill: color-mix(in srgb, var(--site-powder) 34%, transparent); }
 .article-price-timeline__price-line { fill: none; stroke: var(--site-pitlane); stroke-linecap: round; stroke-linejoin: round; stroke-width: 3; }
 .article-price-timeline__nav-line { fill: none; stroke: var(--site-gauge); stroke-linecap: round; stroke-linejoin: round; stroke-width: 3; }
 .article-price-timeline__point { fill: var(--site-pitlane); stroke: var(--site-paper); stroke-width: 2; }
