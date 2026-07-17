@@ -1325,9 +1325,27 @@ strong.article-stacked-bar__value { font-size: 17px; font-weight: 700; font-vari
 .article-price-timeline__point { fill: var(--site-pitlane); stroke: var(--site-paper); stroke-width: 2; }
 .article-price-timeline__point--low { fill: var(--site-redline); }
 .article-price-timeline__nav-point { fill: var(--site-gauge); stroke: var(--site-paper); stroke-width: 2; }
-.article-price-timeline__annotation { fill: var(--site-ink); font-family: inherit; font-size: 12px; font-weight: 700; }
+.article-price-timeline__annotation {
+  fill: var(--site-ink);
+  stroke: var(--site-paper);
+  stroke-linejoin: round;
+  stroke-width: 5px;
+  paint-order: stroke fill;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+}
 .article-price-timeline__annotation--low { fill: var(--site-redline); }
-.article-price-timeline__nav-annotation { fill: var(--site-soft); font-family: inherit; font-size: 12px; font-weight: 600; }
+.article-price-timeline__nav-annotation {
+  fill: var(--site-soft);
+  stroke: var(--site-paper);
+  stroke-linejoin: round;
+  stroke-width: 5px;
+  paint-order: stroke fill;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+}
 
 .article-stat-strip { width: min(920px, calc(100vw - clamp(40px, 8vw, 96px))); margin: 3em 0 3em 50%; transform: translateX(-50%); border: 1px solid var(--site-line-strong); border-radius: 24px; background: var(--site-paper); color: var(--site-ink); overflow: hidden; }
 .article-stat-strip > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; border-bottom: 1px solid var(--site-line); padding: 28px clamp(24px, 4vw, 42px) 22px; }
