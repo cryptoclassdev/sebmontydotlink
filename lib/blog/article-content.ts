@@ -59,7 +59,11 @@ function isImportedCaption(block: PortableTextBlock | undefined) {
   return /^(Figure\b|Brett Adcock\b|Andrew Kang\b|Marc Weinstein\b|The Standard Bots\b|Apptronik’s Apollo\b)/i.test(text)
 }
 
-export function prepareArticleContent(content: PortableTextBlock[], startIndex = 0): PreparedArticleContent {
+export function prepareArticleContent(
+  content: PortableTextBlock[],
+  startIndex = 0,
+  imageOverrides: Record<string, ArticleGalleryImage> = {},
+): PreparedArticleContent {
   const sourceIndex = content.findIndex(isSourcesHeading)
   const mainContent = sourceIndex >= 0 ? content.slice(0, sourceIndex) : content
   const sources = sourceIndex >= 0 ? content.slice(sourceIndex + 1) : []
@@ -79,7 +83,7 @@ export function prepareArticleContent(content: PortableTextBlock[], startIndex =
     const next = mainContent[index + 1]
     const captionBlock = isImportedCaption(next) ? next : undefined
     const caption = block.caption || (captionBlock ? portableTextBlockText(captionBlock) : undefined)
-    const image = sanityImageToGalleryImage(block, `Article image ${imageNumber}`, caption)
+    const image = imageOverrides[block._key] || sanityImageToGalleryImage(block, `Article image ${imageNumber}`, caption)
     const prepared: PreparedImageBlock = { ...block, _articleImage: image, _captionBlock: captionBlock }
     imageIndexes[block._key] = startIndex + gallery.length
     gallery.push(image)

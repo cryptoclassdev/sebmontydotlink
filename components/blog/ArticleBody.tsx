@@ -2,8 +2,18 @@ import { PortableText, type PortableTextComponents } from '@portabletext/react'
 import { ChevronDown } from 'lucide-react'
 
 import { portableTextBlockText, type PreparedArticleContent, type PreparedImageBlock } from '@/lib/blog/article-content'
+import type { PortableTextBlock } from '@/sanity/types'
 import { ArticleImageTrigger } from './ArticleLightbox'
 import { CopyCodeBlock } from './CopyCodeBlock'
+import { MetricGridFigure, type MetricGridFigureProps } from './MetricGridFigure'
+import { PremiumChartFigure, type PremiumChartFigureProps } from './PremiumChartFigure'
+import { PriceTimelineFigure, type PriceTimelineFigureProps } from './PriceTimelineFigure'
+import { SourceQuote } from './SourceQuote'
+import { StackedBarFigure, type StackedBarFigureProps } from './StackedBarFigure'
+import { StatStripFigure, type StatStripFigureProps } from './StatStripFigure'
+import { TokenComparisonFigure, type TokenComparisonFigureProps } from './TokenComparisonFigure'
+import { ValuationGrowthFigure, type ValuationGrowthFigureProps } from './ValuationGrowthFigure'
+import { YouTubeEmbed } from './YouTubeEmbed'
 
 const captionComponents: PortableTextComponents = {
   block: {
@@ -51,6 +61,15 @@ export function ArticleBody({ prepared }: { prepared: PreparedArticleContent }) 
         )
       },
       code: ({ value }) => <CopyCodeBlock code={value?.code || ''} language={value?.language || 'Token mint addresses'} />,
+      metricGrid: ({ value }) => <MetricGridFigure {...(value as unknown as MetricGridFigureProps)} />,
+      premiumChart: ({ value }) => <PremiumChartFigure {...(value as unknown as PremiumChartFigureProps)} />,
+      priceTimeline: ({ value }) => <PriceTimelineFigure {...(value as unknown as PriceTimelineFigureProps)} />,
+      sourceQuote: ({ value }) => <SourceQuote {...(value as PortableTextBlock)} />,
+      stackedBar: ({ value }) => <StackedBarFigure {...(value as unknown as StackedBarFigureProps)} />,
+      statStrip: ({ value }) => <StatStripFigure {...(value as unknown as StatStripFigureProps)} />,
+      tokenComparison: ({ value }) => <TokenComparisonFigure {...(value as unknown as TokenComparisonFigureProps)} />,
+      valuationGrowth: ({ value }) => <ValuationGrowthFigure {...(value as unknown as ValuationGrowthFigureProps)} />,
+      youtube: ({ value }) => <YouTubeEmbed value={value as PortableTextBlock} />,
     },
     block: {
       h2: ({ children, value }) => {
@@ -81,8 +100,8 @@ export function ArticleBody({ prepared }: { prepared: PreparedArticleContent }) 
       code: ({ children }) => <code className="article-inline-code">{children}</code>,
     },
     list: {
-      bullet: ({ children }) => <ul>{children}</ul>,
-      number: ({ children }) => <ol>{children}</ol>,
+      bullet: ({ children }) => <ul className="article-list article-list--bullet">{children}</ul>,
+      number: ({ children }) => <ol className="article-list article-list--number">{children}</ol>,
     },
     listItem: {
       bullet: ({ children }) => <li>{children}</li>,

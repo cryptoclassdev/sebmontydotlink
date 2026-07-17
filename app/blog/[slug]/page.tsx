@@ -7,6 +7,7 @@ import { ArticleBody, AuthorBio, PostCard, SubscribeCTA } from '@/components/blo
 import { ArticleActions } from '@/components/blog/ArticleActions'
 import { ArticleGalleryProvider, ArticleImageTrigger } from '@/components/blog/ArticleLightbox'
 import { prepareArticleContent, sanityImageToGalleryImage } from '@/lib/blog/article-content'
+import { applyArticleEditorialOverride, getArticleEditorialOverride } from '@/lib/blog/editorial-overrides'
 import { client, urlFor } from '@/sanity/client'
 import { popularPostsQuery, postBySlugQuery, postSlugsQuery } from '@/sanity/queries'
 import type { Post } from '@/sanity/types'
@@ -25,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await client.fetch<Post | null>(postBySlugQuery, { slug }).catch(() => null)
   if (!post) return { title: 'Post not found' }
   const description = post.excerpt || post.subtitle
+  const editorialOverride = getArticleEditorialOverride(post.slug)
   return {
     title: post.title,
     description,
@@ -34,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: post.title,
       description,
       publishedTime: post.publishedAt,
-      modifiedTime: post._updatedAt,
+      modifiedTime: editorialOverride?.updatedAt || post._updatedAt,
       images: post.mainImage ? [{ url: urlFor(post.mainImage).width(1200).height(630).fit('crop').auto('format').url() }] : undefined,
     },
   }
@@ -54,9 +56,11 @@ export default async function PostPage({ params }: Props) {
   if (!post) notFound()
 
   const heroImage = post.mainImage ? sanityImageToGalleryImage(post.mainImage, post.title) : null
-  const prepared = prepareArticleContent(post.body || [], heroImage ? 1 : 0)
+  const editorialOverride = getArticleEditorialOverride(post.slug)
+  const body = applyArticleEditorialOverride(post.slug, post.body || [])
+  const prepared = prepareArticleContent(body, heroImage ? 1 : 0, editorialOverride?.imageOverrides)
   const gallery = heroImage ? [heroImage, ...prepared.gallery] : prepared.gallery
-  const date = post.publishedAt || post._updatedAt
+  const date = editorialOverride?.updatedAt || post.publishedAt || post._updatedAt
   const authorImageUrl = post.author?.image ? urlFor(post.author.image).width(96).height(96).fit('crop').url() : '/images/seb-pfp.png'
   const related = relatedPosts.filter((item) => item._id !== post._id).slice(0, 3)
 
