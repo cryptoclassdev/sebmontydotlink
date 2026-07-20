@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { ArticleBody, AuthorBio, PostCard, SubscribeCTA } from '@/components/blog'
+import { ArticleBody, AuthorBio, PostCard } from '@/components/blog'
 import { ArticleActions } from '@/components/blog/ArticleActions'
 import { ArticleGalleryProvider, ArticleImageTrigger } from '@/components/blog/ArticleLightbox'
 import { prepareArticleContent, sanityImageToGalleryImage } from '@/lib/blog/article-content'
@@ -100,10 +100,6 @@ export default async function PostPage({ params }: Props) {
             <p>New work arrives when there is something useful to explain.</p>
           </div>
           <ArticleActions title={post.title} />
-        </section>
-
-        <section className="article-newsletter" id="newsletter">
-          <SubscribeCTA publicationName="Seb Montgomery" description="Get the next piece when it is ready." variant="card" />
         </section>
 
         {post.author && <div className="article-author"><AuthorBio author={post.author} /></div>}

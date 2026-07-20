@@ -27,7 +27,6 @@ export function SiteHeader({ current }: SiteHeaderProps) {
           <Link className="site-icon-button" href="/blog/search" aria-label="Search the publication">
             <Search aria-hidden="true" />
           </Link>
-          <Link className="site-button site-button--small" href="/blog#newsletter">Subscribe</Link>
         </div>
       </div>
     </header>

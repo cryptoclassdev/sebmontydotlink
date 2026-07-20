@@ -6,8 +6,8 @@ import "./globals.css"
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.sebmonty.link"),
   title: {
-    default: "Seb Montgomery — Independent research",
-    template: "%s — Seb Montgomery",
+    default: "Seb Montgomery | Independent research",
+    template: "%s | Seb Montgomery",
   },
   description: "Independent research on crypto, markets, and the products reshaping finance.",
   openGraph: {

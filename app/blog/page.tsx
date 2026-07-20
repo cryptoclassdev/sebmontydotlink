@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Search } from 'lucide-react'
 
-import { CategoryNav, FeaturedPost, PostCard, SubscribeCTA } from '@/components/blog'
+import { CategoryNav, FeaturedPost, PostCard } from '@/components/blog'
 import { client } from '@/sanity/client'
 import { categoriesQuery, featuredPostQuery, postsQuery } from '@/sanity/queries'
 import type { Category, Post } from '@/sanity/types'
@@ -74,17 +74,6 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
           )}
         </section>
       </div>
-
-      <section className="publication-newsletter" id="newsletter" aria-labelledby="publication-newsletter-title">
-        <div className="site-shell publication-newsletter__inner">
-          <div>
-            <span className="site-eyebrow">Stay close to the work</span>
-            <h2 id="publication-newsletter-title">Research worth opening.</h2>
-            <p>One concise email when a new piece is ready. No daily noise.</p>
-          </div>
-          <SubscribeCTA publicationName="Seb Montgomery" variant="card" />
-        </div>
-      </section>
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { Check, Minus } from 'lucide-react'
+import { Check } from 'lucide-react'
 
 type TokenMetric = { label: string; value: string; tone?: 'default' | 'gauge' | 'marigold' | 'redline' }
 
@@ -26,7 +26,7 @@ function TokenRow({ token, primary }: { token: TokenComparisonFigureProps['prima
         {token.metrics.map((metric) => (
           <div key={metric.label} className={`article-token-comparison__metric article-token-comparison__metric--${metric.tone ?? 'default'}`}>
             <dt>{metric.label}</dt>
-            <dd>{metric.value === '—' ? <Minus aria-label="Not available" /> : metric.value}</dd>
+            <dd>{metric.value}</dd>
           </div>
         ))}
       </dl>

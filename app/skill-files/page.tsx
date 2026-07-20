@@ -34,7 +34,7 @@ export default function SkillFilesPage() {
         <section className={styles.skillHero} aria-labelledby="skill-files-title">
           <p className={styles.eyebrow}>Public library · opening soon</p>
           <h1 id="skill-files-title">Skill Files</h1>
-          <p>Practical AI workflows, systems, and working files—made useful enough to steal.</p>
+          <p>Practical AI workflows, systems, and working files made useful enough to steal.</p>
         </section>
 
         <section className={styles.emptyState} aria-labelledby="first-files-title">
