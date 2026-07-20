@@ -128,9 +128,6 @@ export function BentoGrid({ latestPost }: BentoGridProps = {}) {
             <nav className={styles.primaryNav} aria-label="Primary navigation">
               <Link href="/blog">Blog</Link>
               <Link href="/skill-files">Skill Files</Link>
-              <button type="button" onClick={() => setIsEmailModalOpen(true)}>
-                Subscribe
-              </button>
             </nav>
           </header>
 
