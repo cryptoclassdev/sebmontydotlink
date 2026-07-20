@@ -20,6 +20,7 @@ export interface Category {
 
 export interface Post {
   _id: string
+  _updatedAt?: string
   title: string
   subtitle?: string
   slug: string
@@ -82,6 +83,105 @@ export interface PortableTextBlock {
   style?: string
   listItem?: string
   level?: number
+  asset?: {
+    _ref: string
+    _type: 'reference'
+  }
+  alt?: string
+  caption?: string
+  credit?: string
+  creditUrl?: string
+  code?: string
+  language?: string
+  url?: string
+  title?: string
+  eyebrow?: string
+  quote?: string
+  sourceTitle?: string
+  sourceDetail?: string
+  sourceUrl?: string
+  source?: string
+  sharePrice?: {
+    label: string
+    value: number
+    displayValue: string
+  }
+  bookValue?: {
+    label: string
+    value: number
+    displayValue: string
+  }
+  premium?: {
+    label: string
+    value: number
+    displayValue: string
+  }
+  multipleLabel?: string
+  navHistory?: Array<{
+    label: string
+    value: number
+    displayValue: string
+    dateLabel: string
+    tone?: string
+  }>
+  axisTicks?: number[]
+  rows?: Array<{
+    name: string
+    earlierValue?: number
+    earlierLabel?: string
+    latestValue: number
+    latestLabel: string
+    note: string
+  }>
+  maxValue?: number
+  priceLabel?: string
+  navLabel?: string
+  price?: Array<{
+    position: number
+    value: number
+    date: string
+    label?: string
+    accent?: string
+  }>
+  nav?: Array<{
+    position: number
+    value: number
+    date: string
+    label?: string
+  }>
+  primary?: {
+    name: string
+    issuer: string
+    status: string
+    metrics: Array<{ label: string; value: string; tone?: string }>
+  }
+  comparison?: {
+    name: string
+    issuer: string
+    status: string
+    metrics: Array<{ label: string; value: string; tone?: string }>
+  }
+  dateLabel?: string
+  dateTime?: string
+  ariaLabel?: string
+  highlight?: {
+    value: string
+    label: string
+  }
+  segments?: Array<{
+    _key?: string
+    name: string
+    value: number
+    displayValue?: string
+    tone: string
+  }>
+  metrics?: Array<{
+    _key?: string
+    label: string
+    value: string
+    detail: string
+    tone?: string
+  }>
 }
 
 export interface PortableTextSpan {

@@ -1,6 +1,7 @@
 // Reusable post fields
 const postFields = `
   _id,
+  _updatedAt,
   title,
   subtitle,
   "slug": slug.current,

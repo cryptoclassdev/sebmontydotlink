@@ -1,230 +1,119 @@
-import { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { client } from '@/sanity/client'
-import { urlFor } from '@/sanity/client'
-import {
-  postBySlugQuery,
-  postSlugsQuery,
-  popularPostsQuery,
-} from '@/sanity/queries'
-import type { Post } from '@/sanity/types'
-import {
-  ArticleBody,
-  AuthorBio,
-  EngagementBar,
-  PostCard,
-  SubscribeCTA,
-} from '@/components/blog'
+import { notFound } from 'next/navigation'
 
-interface Props {
-  params: Promise<{ slug: string }>
-}
+import { ArticleBody, AuthorBio, PostCard } from '@/components/blog'
+import { ArticleActions } from '@/components/blog/ArticleActions'
+import { ArticleGalleryProvider, ArticleImageTrigger } from '@/components/blog/ArticleLightbox'
+import { prepareArticleContent, sanityImageToGalleryImage } from '@/lib/blog/article-content'
+import { applyArticleEditorialOverride, getArticleEditorialOverride } from '@/lib/blog/editorial-overrides'
+import { client, urlFor } from '@/sanity/client'
+import { popularPostsQuery, postBySlugQuery, postSlugsQuery } from '@/sanity/queries'
+import type { Post } from '@/sanity/types'
+
+type Props = { params: Promise<{ slug: string }> }
+
+export const revalidate = 60
 
 export async function generateStaticParams() {
-  const slugs = await client.fetch<string[]>(postSlugsQuery)
+  const slugs = await client.fetch<string[]>(postSlugsQuery).catch(() => [])
   return slugs.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const post = await client.fetch<Post>(postBySlugQuery, { slug })
-
-  if (!post) {
-    return { title: 'Post Not Found' }
-  }
-
+  const post = await client.fetch<Post | null>(postBySlugQuery, { slug }).catch(() => null)
+  if (!post) return { title: 'Post not found' }
+  const description = post.excerpt || post.subtitle
+  const editorialOverride = getArticleEditorialOverride(post.slug)
   return {
-    title: `${post.title} | Seb Montgomery`,
-    description: post.excerpt || post.subtitle,
-    openGraph: post.mainImage
-      ? {
-          images: [urlFor(post.mainImage).width(1200).height(630).url()],
-        }
-      : undefined,
+    title: post.title,
+    description,
+    alternates: { canonical: `/blog/${post.slug}` },
+    openGraph: {
+      type: 'article',
+      title: post.title,
+      description,
+      publishedTime: post.publishedAt,
+      modifiedTime: editorialOverride?.updatedAt || post._updatedAt,
+      images: post.mainImage ? [{ url: urlFor(post.mainImage).width(1200).height(630).fit('crop').auto('format').url() }] : undefined,
+    },
   }
 }
 
 function formatDate(dateString?: string) {
   if (!dateString) return ''
-  return new Date(dateString).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  })
+  return new Date(dateString).toLocaleDateString('en-GB', { month: 'short', day: 'numeric', year: 'numeric' })
 }
 
 export default async function PostPage({ params }: Props) {
   const { slug } = await params
   const [post, relatedPosts] = await Promise.all([
-    client.fetch<Post>(postBySlugQuery, { slug }),
-    client.fetch<Post[]>(popularPostsQuery),
+    client.fetch<Post | null>(postBySlugQuery, { slug }).catch(() => null),
+    client.fetch<Post[]>(popularPostsQuery).catch(() => []),
   ])
+  if (!post) notFound()
 
-  if (!post) {
-    notFound()
-  }
-
-  const imageUrl = post.mainImage
-    ? urlFor(post.mainImage).width(1200).height(675).url()
-    : null
-
-  const authorImageUrl = post.author?.image
-    ? urlFor(post.author.image).width(80).height(80).url()
-    : null
+  const heroImage = post.mainImage ? sanityImageToGalleryImage(post.mainImage, post.title) : null
+  const editorialOverride = getArticleEditorialOverride(post.slug)
+  const body = applyArticleEditorialOverride(post.slug, post.body || [])
+  const prepared = prepareArticleContent(body, heroImage ? 1 : 0, editorialOverride?.imageOverrides)
+  const gallery = heroImage ? [heroImage, ...prepared.gallery] : prepared.gallery
+  const date = editorialOverride?.updatedAt || post.publishedAt || post._updatedAt
+  const authorImageUrl = post.author?.image ? urlFor(post.author.image).width(96).height(96).fit('crop').url() : '/images/seb-pfp.png'
+  const related = relatedPosts.filter((item) => item._id !== post._id).slice(0, 3)
 
   return (
-    <article className="max-w-[680px] mx-auto px-4 py-8">
-      {/* Post Header */}
-      <header className="mb-8">
-        {/* Title */}
-        <h1 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-gray-900 leading-tight">
-          {post.title}
-        </h1>
+    <ArticleGalleryProvider images={gallery}>
+      <article className="article-page">
+        <header className="article-header">
+          <span className="site-eyebrow">{post.category?.title || 'Research'}</span>
+          <h1>{post.title}</h1>
+          {post.subtitle && <p className="article-deck">{post.subtitle}</p>}
+          <div className="article-byline">
+            <Image src={authorImageUrl} alt="" width={36} height={36} />
+            <span>By <strong>{post.author?.name || 'Seb Montgomery'}</strong></span>
+            {post.author?.xHandle && <a href={`https://x.com/${post.author.xHandle}`} target="_blank" rel="noopener noreferrer">@{post.author.xHandle}</a>}
+            <span aria-hidden="true">·</span>
+            {date && <time dateTime={date}>Updated {formatDate(date)}</time>}
+            <span aria-hidden="true">·</span>
+            <span>{post.readTime || 5} min read</span>
+          </div>
+          <ArticleActions title={post.title} />
+        </header>
 
-        {/* Subtitle */}
-        {post.subtitle && (
-          <p className="text-xl text-gray-600 mt-3 leading-relaxed">
-            {post.subtitle}
-          </p>
+        {heroImage && (
+          <figure className="article-hero">
+            <ArticleImageTrigger image={heroImage} index={0} hero priority />
+          </figure>
         )}
 
-        {/* Author & Meta */}
-        <div className="flex items-center justify-between mt-6 py-4 border-y border-gray-100">
-          <div className="flex items-center gap-3">
-            {/* Author Avatar */}
-            {authorImageUrl ? (
-              <Link
-                href={`/blog?author=${post.author?.slug}`}
-                className="relative w-10 h-10 rounded-full overflow-hidden"
-              >
-                <Image
-                  src={authorImageUrl}
-                  alt={post.author?.name || 'Author'}
-                  fill
-                  className="object-cover"
-                />
-              </Link>
-            ) : (
-              <div className="w-10 h-10 rounded-full bg-gray-200" />
-            )}
-
-            {/* Author Name & Date */}
-            <div>
-              <div className="flex items-center gap-1.5">
-                {post.author?.name && (
-                  <Link
-                    href={`/blog?author=${post.author?.slug}`}
-                    className="font-medium text-gray-900 hover:text-gray-600 transition-colors"
-                  >
-                    {post.author.name}
-                  </Link>
-                )}
-              </div>
-              <div className="text-sm text-gray-500">
-                {post.publishedAt && <time>{formatDate(post.publishedAt)}</time>}
-              </div>
-            </div>
-          </div>
-
-          {/* Engagement */}
-          <EngagementBar
-            likes={post.likes}
-            comments={post.commentCount}
-            size="sm"
-          />
+        <div className="article-layout">
+          <ArticleBody prepared={prepared} />
         </div>
-      </header>
 
-      {/* Featured Image */}
-      {imageUrl && (
-        <figure className="mb-8 -mx-4 md:mx-0">
-          <div className="relative aspect-video md:rounded-lg overflow-hidden">
-            <Image
-              src={imageUrl}
-              alt={post.mainImage?.alt || post.title}
-              fill
-              priority
-              className="object-cover"
-            />
+        <section className="article-end" aria-labelledby="article-end-title">
+          <div>
+            <span className="site-eyebrow">Keep reading</span>
+            <h2 id="article-end-title">Independent research, without the daily noise.</h2>
+            <p>New work arrives when there is something useful to explain.</p>
           </div>
-        </figure>
-      )}
-
-      {/* Article Body */}
-      {post.body && (
-        <div className="prose-substack">
-          <ArticleBody content={post.body} />
-        </div>
-      )}
-
-      {/* Divider */}
-      <hr className="border-gray-200 my-10" />
-
-      {/* Subscribe CTA */}
-      <div className="my-10">
-        <SubscribeCTA variant="card" />
-      </div>
-
-      {/* Engagement Bar (bottom) */}
-      <div className="flex items-center justify-between py-4 border-y border-gray-100">
-        <EngagementBar likes={post.likes} comments={post.commentCount} />
-      </div>
-
-      {/* Navigation */}
-      <div className="flex items-center justify-between py-6">
-        <Link
-          href="/blog"
-          className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors"
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-          Previous
-        </Link>
-        <Link
-          href="/blog"
-          className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors"
-        >
-          Next
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </Link>
-      </div>
-
-      {/* Author Bio */}
-      {post.author && (
-        <div className="my-10">
-          <AuthorBio author={post.author} />
-        </div>
-      )}
-
-      {/* Related Posts */}
-      {relatedPosts && relatedPosts.length > 0 && (
-        <section className="mt-12 pt-8 border-t border-gray-200">
-          <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-6">
-            Top Posts
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {relatedPosts.slice(0, 4).map((relatedPost) => (
-              <PostCard key={relatedPost._id} post={relatedPost} variant="compact" />
-            ))}
-          </div>
-          <div className="mt-6 text-center">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
-            >
-              See all
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
+          <ArticleActions title={post.title} />
         </section>
-      )}
-    </article>
+
+        {post.author && <div className="article-author"><AuthorBio author={post.author} /></div>}
+
+        {related.length > 0 && (
+          <section className="article-related" aria-labelledby="related-posts-title">
+            <div className="site-section-heading">
+              <div><span className="site-eyebrow">From the archive</span><h2 id="related-posts-title">More writing</h2></div>
+              <Link href="/blog">View all <span aria-hidden="true">→</span></Link>
+            </div>
+            <div className="publication-archive__grid">{related.map((item) => <PostCard key={item._id} post={item} variant="grid" />)}</div>
+          </section>
+        )}
+      </article>
+    </ArticleGalleryProvider>
   )
 }

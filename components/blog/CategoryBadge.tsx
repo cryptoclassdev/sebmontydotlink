@@ -12,9 +12,7 @@ export function CategoryBadge({ title, slug, className }: CategoryBadgeProps) {
     <Link
       href={`/blog/category/${slug}`}
       className={cn(
-        'inline-block px-3 py-1 text-xs uppercase tracking-wider',
-        'text-white/80 bg-white/10 rounded-full',
-        'hover:bg-white/20 transition-colors',
+        'publication-category-badge',
         className
       )}
     >

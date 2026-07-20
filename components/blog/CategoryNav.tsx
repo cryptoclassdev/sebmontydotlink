@@ -14,15 +14,15 @@ export function CategoryNav({ categories }: CategoryNavProps) {
   const isAll = pathname === '/blog'
 
   return (
-    <nav className="border-b border-white/10 overflow-x-auto scrollbar-hide">
-      <div className="flex gap-1 min-w-max">
+    <nav className="publication-categories scrollbar-hide" aria-label="Browse writing categories">
+      <div>
         <Link
           href="/blog"
           className={cn(
-            'px-4 py-3 text-sm uppercase tracking-wider whitespace-nowrap border-b-2 transition-colors',
+            'publication-category-link',
             isAll
-              ? 'border-white text-white'
-              : 'border-transparent text-white/50 hover:text-white/80'
+              ? 'is-active'
+              : undefined
           )}
         >
           All
@@ -34,10 +34,10 @@ export function CategoryNav({ categories }: CategoryNavProps) {
               key={cat._id}
               href={`/blog/category/${cat.slug}`}
               className={cn(
-                'px-4 py-3 text-sm uppercase tracking-wider whitespace-nowrap border-b-2 transition-colors',
+                'publication-category-link',
                 isActive
-                  ? 'border-white text-white'
-                  : 'border-transparent text-white/50 hover:text-white/80'
+                  ? 'is-active'
+                  : undefined
               )}
             >
               {cat.title}

@@ -95,7 +95,7 @@ export function LinkCard({ title, description, href, icon: Icon }: LinkCardProps
           border: "1px solid rgba(255, 255, 255, 0.6)",
         }}
       >
-        {typeof Icon === "function" ? <Icon className="h-5 w-5" strokeWidth={1.75} /> : <Icon />}
+        <Icon className="h-5 w-5" strokeWidth={1.75} />
       </div>
 
       <div className="relative flex-1 min-w-0">

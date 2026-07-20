@@ -8,7 +8,13 @@ interface XIconProps {
 export function XIcon({ size = 24, className = "" }: XIconProps) {
   return (
     <div style={{ width: size, height: size }} className="relative">
-      <Image src="/images/icons/x-icon.png" alt="X/Twitter" fill className={`object-contain ${className}`} />
+      <Image
+        src="/images/icons/x-icon.png"
+        alt="X/Twitter"
+        fill
+        sizes={`${size}px`}
+        className={`object-contain ${className}`}
+      />
     </div>
   )
 }
