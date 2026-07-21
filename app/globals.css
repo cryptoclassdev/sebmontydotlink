@@ -906,10 +906,10 @@
 }
 .site-header__inner { display: grid; min-height: 68px; align-items: center; grid-template-columns: 1fr auto 1fr; gap: 24px; }
 .site-brand { display: inline-flex; width: max-content; min-height: 44px; align-items: center; gap: 11px; text-decoration: none; }
-.site-brand__mark { display: grid; width: 36px; height: 36px; place-items: center; border-radius: 50%; background: var(--site-night); color: var(--site-on-night); font-family: inherit; font-size: 14px; font-weight: 600; }
-.site-brand__copy { display: grid; gap: 2px; }
+.site-brand__mark { display: grid; width: 40px; height: 40px; flex: 0 0 40px; place-items: center; overflow: hidden; padding: 3px; border: 1px solid var(--site-line); border-radius: 8px; background: var(--site-paper); box-shadow: 0 5px 14px rgba(33, 29, 22, .1); transform: rotate(-2deg); }
+.site-brand__mark img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.site-brand__copy { display: flex; align-items: center; }
 .site-brand__copy strong { font-family: inherit; font-size: 17px; font-weight: 600; letter-spacing: -.015em; }
-.site-brand__copy small { color: var(--site-faint); font-size: 9px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
 .site-nav { display: flex; height: 68px; align-items: center; gap: 28px; }
 .site-nav a { position: relative; display: inline-flex; height: 100%; align-items: center; color: var(--site-soft); font-size: 13px; font-weight: 600; text-decoration: none; }
 .site-nav a::after { position: absolute; right: 0; bottom: -1px; left: 0; height: 2px; transform: scaleX(0); background: var(--site-accent); content: ""; transition: transform 140ms ease-out; }
@@ -1494,7 +1494,6 @@ strong.article-stacked-bar__value { font-size: 17px; font-weight: 700; font-vari
 @media (max-width: 720px) {
   .site-shell { width: calc(100% - 32px); }
   .site-header__inner { grid-template-columns: 1fr auto auto; gap: 10px; }
-  .site-brand__copy small { display: none; }
   .site-nav { gap: 0; }
   .site-nav a { display: none; padding-inline: 10px; }
   .site-nav a[href="/blog"] { display: inline-flex; }

@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { Search } from "lucide-react"
 
@@ -10,10 +11,11 @@ export function SiteHeader({ current }: SiteHeaderProps) {
     <header className="site-header">
       <div className="site-shell site-header__inner">
         <Link className="site-brand" href="/" aria-label="Seb Montgomery home">
-          <span className="site-brand__mark" aria-hidden="true">SM</span>
+          <span className="site-brand__mark" aria-hidden="true">
+            <Image src="/images/brand/seb-avatar.png" alt="" width={40} height={40} priority />
+          </span>
           <span className="site-brand__copy">
             <strong>Seb Montgomery</strong>
-            <small>Independent research</small>
           </span>
         </Link>
 

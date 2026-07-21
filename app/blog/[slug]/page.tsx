@@ -35,8 +35,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: 'article',
       title: post.title,
       description,
-      publishedTime: post.publishedAt,
-      modifiedTime: editorialOverride?.updatedAt || post._updatedAt,
+      publishedTime: editorialOverride?.publishedAt || post.publishedAt,
+      modifiedTime: post._updatedAt,
       images: post.mainImage ? [{ url: urlFor(post.mainImage).width(1200).height(630).fit('crop').auto('format').url() }] : undefined,
     },
   }
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 function formatDate(dateString?: string) {
   if (!dateString) return ''
-  return new Date(dateString).toLocaleDateString('en-GB', { month: 'short', day: 'numeric', year: 'numeric' })
+  return new Date(dateString).toLocaleDateString('en-GB', { month: 'long', day: 'numeric', year: 'numeric' })
 }
 
 export default async function PostPage({ params }: Props) {
@@ -60,7 +60,7 @@ export default async function PostPage({ params }: Props) {
   const body = applyArticleEditorialOverride(post.slug, post.body || [])
   const prepared = prepareArticleContent(body, heroImage ? 1 : 0, editorialOverride?.imageOverrides)
   const gallery = heroImage ? [heroImage, ...prepared.gallery] : prepared.gallery
-  const date = editorialOverride?.updatedAt || post.publishedAt || post._updatedAt
+  const date = editorialOverride?.publishedAt || post.publishedAt || post._updatedAt
   const authorImageUrl = post.author?.image ? urlFor(post.author.image).width(96).height(96).fit('crop').url() : '/images/seb-pfp.png'
   const related = relatedPosts.filter((item) => item._id !== post._id).slice(0, 3)
 
@@ -76,7 +76,7 @@ export default async function PostPage({ params }: Props) {
             <span>By <strong>{post.author?.name || 'Seb Montgomery'}</strong></span>
             {post.author?.xHandle && <a href={`https://x.com/${post.author.xHandle}`} target="_blank" rel="noopener noreferrer">@{post.author.xHandle}</a>}
             <span aria-hidden="true">·</span>
-            {date && <time dateTime={date}>Updated {formatDate(date)}</time>}
+            {date && <time dateTime={date}>{formatDate(date)}</time>}
             <span aria-hidden="true">·</span>
             <span>{post.readTime || 5} min read</span>
           </div>
