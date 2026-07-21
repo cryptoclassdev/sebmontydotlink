@@ -15,13 +15,14 @@ function formatDate(dateString?: string) {
 
 export function PostCard({ post, variant = 'grid' }: PostCardProps) {
   const editorialOverride = getArticleEditorialOverride(post.slug)
-  const imageUrl = post.mainImage ? urlFor(post.mainImage).width(900).height(600).fit('crop').auto('format').url() : null
+  const imageUrl = post.localMainImage?.src || (post.mainImage ? urlFor(post.mainImage).width(900).height(600).fit('crop').auto('format').url() : null)
+  const imageAlt = post.localMainImage?.alt || post.mainImage?.alt || ''
   return (
     <article className={`publication-card publication-card--${variant}`}>
       <Link href={`/blog/${post.slug}`}>
         {imageUrl && (
           <div className="publication-card__image">
-            <Image src={imageUrl} alt={post.mainImage?.alt || ''} fill sizes={variant === 'list' ? '180px' : '(min-width: 900px) 30vw, calc(100vw - 40px)'} className="object-cover" />
+            <Image src={imageUrl} alt={imageAlt} fill sizes={variant === 'list' ? '180px' : '(min-width: 900px) 30vw, calc(100vw - 40px)'} className="object-cover" />
           </div>
         )}
         <div className="publication-card__copy">

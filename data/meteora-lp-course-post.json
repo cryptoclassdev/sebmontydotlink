@@ -1,0 +1,3111 @@
+{
+  "id": "a7f1219e-f62c-596a-a8cf-57e793be3455",
+  "publicationId": "local-publication",
+  "revisionId": "7107b84b-7b0a-58bc-840b-40ae784820ca",
+  "slug": "complete-meteora-dlmm-liquidity-course",
+  "title": "How to LP on Meteora: A Practical DLMM Guide",
+  "deck": "A decision-by-decision guide to finding a real pool, checking the token, setting a range, and measuring fees against the risk you actually took.",
+  "excerpt": "A decision-by-decision guide to finding a real pool, checking the token, setting a range, and measuring fees against the risk you actually took.",
+  "content": {
+    "type": "doc",
+    "schemaVersion": 1,
+    "content": [
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-7e357db88729"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Meteora can show fee numbers that look almost impossible. Some are real. Some come from a tiny pool, a brief burst of volume, or a token collapsing underneath the LPs who are collecting those fees."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-eb9383e85a0e"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "That is the central lesson of DLMM: "
+          },
+          {
+            "type": "text",
+            "text": "fees are income, not profit",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ". Your result depends on what the position is worth after price moves, what assets you now hold, the fees you collected, and what it cost to enter and exit."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-2b3131aefa15"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "This guide gives you a repeatable workflow for making those decisions. It is written for a first or early Meteora position, not for launching a token or building an automated market-making system. None of it is a promise of profit or financial advice. Start small enough that a complete loss would be tuition, not trauma."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-dda3e480ce75"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "If you are ready to follow along, "
+          },
+          {
+            "type": "text",
+            "text": "open Meteora with my referral link",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://app.meteora.ag/ref/SEBMONTY",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ". This guide contains referral links; I may earn rewards if you use them, at no extra cost to you."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "blockId": "the-workflow-in-60-seconds",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "The workflow in 60 seconds"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "blockId": "ordered-list-13c4eff94a06"
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-ae573cef2c8a"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-ae573cef2c8a-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Shortlist a DLMM pool",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " with real TVL and sustained two-sided volume."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-0e4608abd8aa"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-0e4608abd8aa-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Verify the token",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " by contract address, holders, liquidity, and recent price action."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-3904297cd09e"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-3904297cd09e-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Compare the available pools",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " by fee tier, bin step, depth, and where fees are paid."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-a772ee4cfe74"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-a772ee4cfe74-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Choose a liquidity shape",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " that matches what you want to happen as price moves."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-bebdcc84df86"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-bebdcc84df86-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Set a range you can explain",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " and size the position for the worst plausible outcome."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-44321304c9a4"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-44321304c9a4-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Manage the position by net P&L",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ", not by the fee counter alone."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-bf8baa63c136"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "If any step is unclear, do not deposit yet. High fees do not repair a weak thesis."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-208aa35551e8"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Want AI help applying the checklist? Load my free "
+          },
+          {
+            "type": "text",
+            "text": "Meteora LP Skill File",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/sebmonty/skills/tree/main/meteora-lp-sebmonty",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " into Claude or Codex. It asks about your capital and risk first, then works through the same mechanics, strategy choices, and risk checks. You still need to verify the live pool and transaction yourself."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "blockId": "first-understand-what-the-position-does",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "First: understand what the position does"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-1a85e771cb7a"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "A Meteora DLMM pool divides price into discrete buckets called "
+          },
+          {
+            "type": "text",
+            "text": "bins",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ". You choose a set of bins and decide how to distribute liquidity across them. There is one active bin at the current pool price. As trades consume liquidity, price moves through the bins."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-6f555d6d05c1"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "While price trades inside your selected range, your active liquidity can earn fees. If price leaves the range, the position stops earning until price returns or you change the position."
+          }
+        ]
+      },
+      {
+        "type": "imageFigure",
+        "attrs": {
+          "blockId": "figure-03-2-range-buy-sell-mechanics",
+          "assetId": "8fb5a24a-5790-5d24-ae61-99ccb30bc31b",
+          "alt": "A Meteora position with minimum and maximum price lines around the active range.",
+          "decorative": false,
+          "caption": "Inside the range, trades change your asset mix and can generate fees. Outside it, the position is inactive and holds one side of the pair.",
+          "credit": null,
+          "creditUrl": null,
+          "layout": "wide",
+          "focalX": 0.5,
+          "focalY": 0.5,
+          "lightbox": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-f4d473cc2713"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "The asset mix changes too. A move through the top of the range can leave you holding mostly the quote asset, such as SOL or USDC. A move through the bottom can leave you holding mostly the token that fell. That conversion is not a side effect. It is the position doing exactly what you instructed it to do."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-e281c8db8a4e"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Measure the full result like this: "
+          },
+          {
+            "type": "text",
+            "text": "current position value + claimed fees + unclaimed fees − deposits − transaction and swap costs",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ". The fee percentage on its own is never the answer."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "blockId": "step-1-shortlist-a-pool-with-real-activity",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Step 1: shortlist a pool with real activity"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-2c3f72372d03"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Open the "
+          },
+          {
+            "type": "text",
+            "text": "Meteora app through my referral link",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://app.meteora.ag/ref/SEBMONTY",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " and use Discover or Top Performers. Filter for "
+          },
+          {
+            "type": "text",
+            "text": "DLMM",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " when you are looking for the bin-based strategies covered here. DAMM v2 is a different product."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-dcd4a08d0572"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Choose a recent timeframe and sort by "
+          },
+          {
+            "type": "text",
+            "text": "Fees/Active TVL",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ". This shows fees relative to the capital currently sitting where trades can reach it. It is useful for finding activity, but it is easy to misread."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-d01367ac4f69"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "A nearly empty pool can produce an enormous percentage from a handful of trades. Set a minimum TVL filter to remove obvious noise. A $1,000 floor is a useful first pass for discovery, not a declaration that the pool is safe."
+          }
+        ]
+      },
+      {
+        "type": "imageFigure",
+        "attrs": {
+          "blockId": "figure-02-3-min-tvl-filter-preset",
+          "assetId": "4b61812f-c7f5-5094-af0b-e153548fc34a",
+          "alt": "Meteora's filter panel with a minimum TVL of one thousand dollars.",
+          "decorative": false,
+          "caption": "Use a TVL floor to remove near-empty pools, then compare the survivors on volume, depth, token quality, and fee tier.",
+          "credit": null,
+          "creditUrl": null,
+          "layout": "wide",
+          "focalX": 0.5,
+          "focalY": 0.5,
+          "lightbox": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-c85f03d0a47c"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Before adding a pool to your shortlist, check:"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "attrs": {
+          "blockId": "bullet-list-b1b201882ad2"
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-11475305b95d"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-11475305b95d-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "TVL:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " is there enough depth for ordinary trading?"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-98b6ea395f80"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-98b6ea395f80-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Volume:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " is activity sustained across several windows, or did it arrive in one spike?"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-3e6c20036942"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-3e6c20036942-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Buy and sell flow:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " are trades moving both ways, or is the market only dumping?"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-54e2f4af592f"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-54e2f4af592f-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Pool age:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " is the market established, or still discovering a price?"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-654e4dc000fd"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "The goal is not to find the highest number. It is to find a pool whose fee activity might still exist after your transaction lands."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "blockId": "step-2-vet-the-token-behind-the-pool",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Step 2: vet the token behind the pool"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-484ea62a2d26"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Copy the token's exact contract address from Meteora and paste it into a Solana screener such as "
+          },
+          {
+            "type": "text",
+            "text": "GMGN",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://gmgn.ai/?chain=sol",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ". Never trust the ticker or name. Duplicate-name tokens are common."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-f9cabda2c252"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Run four checks:"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "attrs": {
+          "blockId": "bullet-list-1e5878a58839"
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-ed36ac545ce6"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-ed36ac545ce6-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Contract:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " confirm that the address matches the pool exactly."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-92c0f1a515eb"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-92c0f1a515eb-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Volume:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " compare recent windows instead of relying on a single 24-hour total."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-4224db50c0c1"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-4224db50c0c1-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Holders:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " look for a few wallets or connected clusters controlling a large share."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-2ee051290c45"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-2ee051290c45-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Price:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " avoid entering blindly after a vertical move or during chaotic price discovery."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "imageFigure",
+        "attrs": {
+          "blockId": "figure-04-2-gmgn-holder-clusters",
+          "assetId": "d3ea7c39-9363-53ff-80e9-4346bb088239",
+          "alt": "A holder map showing groups of connected wallets around a Solana token.",
+          "decorative": false,
+          "caption": "Connected holder clusters can sell together. No displayed fee rate compensates for a token you never investigated.",
+          "credit": null,
+          "creditUrl": null,
+          "layout": "wide",
+          "focalX": 0.5,
+          "focalY": 0.5,
+          "lightbox": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-4d0b7bf6e088"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "For a pair such as SOL/USDC, token risk is easier to understand, although range risk and "
+          },
+          {
+            "type": "text",
+            "text": "impermanent loss",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " remain: the LP position can still underperform simply holding the two assets. For a fresh meme coin, work from a harsher assumption: the token can go to zero and the position can finish holding it."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "blockId": "step-3-compare-pools-for-the-same-pair",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Step 3: compare pools for the same pair"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-dbcb72fbc0f2"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "The same token pair can have several DLMM pools. Each can use a different "
+          },
+          {
+            "type": "text",
+            "text": "bin step",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " and fee tier, so choosing the token pair is only half the decision."
+          }
+        ]
+      },
+      {
+        "type": "imageFigure",
+        "attrs": {
+          "blockId": "figure-05-1-bin-step-comparison",
+          "assetId": "d69e02a2-a592-5496-924e-8a30873f4893",
+          "alt": "A Meteora comparison showing four pools for the same token pair with different bin steps, fee tiers, TVL, volume, and fee-to-TVL ratios.",
+          "decorative": false,
+          "caption": "The highest fee tier is not automatically the best pool. Compare it with the volume and liquidity that actually use that pool.",
+          "credit": null,
+          "creditUrl": null,
+          "layout": "wide",
+          "focalX": 0.5,
+          "focalY": 0.5,
+          "lightbox": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-95d8531deb1a"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Bin step sets the percentage gap between neighboring bins. Smaller steps create finer price increments. Larger steps create wider jumps and can cover a broad move with fewer bins. Neither is universally better."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-97bd2540586c"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Compare each candidate on:"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "attrs": {
+          "blockId": "bullet-list-ca295a312010"
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-544d9dc8edb7"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-544d9dc8edb7-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Bin step:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " does it fit the volatility and range you want?"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-d3c0f6ed3d09"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-d3c0f6ed3d09-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Fee tier:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " is it earning from real flow, or is the price deterring ordinary traders?"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-52403b4818a4"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-52403b4818a4-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "TVL and volume:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " is this the pool the market is actually using?"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-a65158dbc617"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-a65158dbc617-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Fee collection mode:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " will fees arrive in both tokens or primarily in the quote token?"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-753ee29eed44"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "When two pools look similar, prefer the one with clearer, repeatable activity over the one with the most dramatic short-window percentage."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "blockId": "step-4-choose-the-right-liquidity-shape",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Step 4: choose the right liquidity shape"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-58a829df0348"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Meteora offers three common shapes. Think of each as an instruction for where your capital should work."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "attrs": {
+          "blockId": "bullet-list-72a1c426b66f"
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-200d286e01ce"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-200d286e01ce-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Spot:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " a balanced distribution across the selected range. Useful when you want broad exposure without concentrating around one level."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-e325cd7964e0"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-e325cd7964e0-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Curve:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " more liquidity near the middle. More capital-efficient if price stays close, but easier to leave behind when price moves."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-e44a64bb3a55"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-e44a64bb3a55-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Bid-ask:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " more liquidity toward the edges. Useful for DCA-style buying below price or selling above it."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-e7220327824f"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "For a volatile token, I often use a small bid-ask position below the current price. The purpose is not to make the interface display the highest yield. It is to define where I am willing to exchange SOL or USDC for the token if price falls."
+          }
+        ]
+      },
+      {
+        "type": "imageFigure",
+        "attrs": {
+          "blockId": "figure-05-2-bid-ask-position-setup",
+          "assetId": "acd65315-6b18-54e8-81a8-e26da9bbdf18",
+          "alt": "Meteora's bid-ask strategy with liquidity distributed below the current pool price.",
+          "decorative": false,
+          "caption": "A bid-ask range can stage progressively more liquidity below price. It is a deliberate buying plan, not automatic downside protection.",
+          "credit": null,
+          "creditUrl": null,
+          "layout": "wide",
+          "focalX": 0.5,
+          "focalY": 0.5,
+          "lightbox": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-78b9e167f384"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "That last distinction matters. Bid-ask is sometimes described as safer, but the shape does not make a bad token safe. If price falls through the entire range, the position can still end up holding the token that collapsed."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "blockId": "step-5-set-a-range-you-can-defend",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Step 5: set a range you can defend"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-f2672586f5e3"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Your range is where the position can earn. A narrow range concentrates capital and can earn more while active, but a modest price move can push it out. A wide range gives price more room, but spreads capital across more bins and reduces concentration."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-3d479afbec09"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Place the boundaries using a reason you can state in one sentence: a recent trading range, an area of repeated support and resistance, or the prices at which you are genuinely willing to buy or sell. Do not drag the handles until the projected return looks exciting."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-08e24bb485b5"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Then run a simple three-outcome test:"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "blockId": "ordered-list-61686af1aea5"
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-d916f6a65149"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-d916f6a65149-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Price exits above:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " what asset will you mostly hold, and are you happy with that?"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-3ac2a53b256a"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-3ac2a53b256a-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Price stays inside:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " is the expected activity enough to justify monitoring the position?"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-4171c36fc570"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-4171c36fc570-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Price exits below:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " what token will you own, and how much could it fall?"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-69bb19982520"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "If one outcome would leave you with an asset you do not want, change the range, change the pair, or walk away."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "blockId": "step-6-open-small-and-check-the-transaction",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Step 6: open small and check the transaction"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-9cc6aae5645d"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Use a dedicated wallet containing only the amount you intend to deploy. Review the pair, strategy, minimum price, maximum price, bin count, asset split, and transaction costs before approving."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-ea9d4e2ae1db"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "When you are ready to open the position, use "
+          },
+          {
+            "type": "text",
+            "text": "my Meteora referral link",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://app.meteora.ag/ref/SEBMONTY",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " and connect the wallet you intend to use."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-5d2b98c4db61"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "For a first position:"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "attrs": {
+          "blockId": "bullet-list-24213a3d8b66"
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-24dd7e8f12b9"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-24dd7e8f12b9-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Use an amount you can lose without needing to win it back."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-1a51b0186b11"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-1a51b0186b11-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Confirm that the live pool price is inside the selected range."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-20243a41e65e"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-20243a41e65e-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Check that the pool price is still close to the wider market price."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-4084b1a3fbbf"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-4084b1a3fbbf-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Verify the position appears in your portfolio after the transaction lands."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-79f437560dc6"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-79f437560dc6-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Wait for real trades and confirm claimable fees begin to change."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "imageFigure",
+        "attrs": {
+          "blockId": "figure-09-3-new-pool-out-of-range",
+          "assetId": "906380cf-d362-5931-982d-a400d8ccc012",
+          "alt": "A fast-moving Meteora pool showing a warning that the pool price differs from the market price while price has moved beyond the selected range.",
+          "decorative": false,
+          "caption": "If the pool price differs from the market or price has already escaped your range, stop. Do not increase slippage simply to force the original plan through.",
+          "credit": null,
+          "creditUrl": null,
+          "layout": "wide",
+          "focalX": 0.5,
+          "focalY": 0.5,
+          "lightbox": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-d1cabdc6a2fc"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "A failed transaction is frustrating. A successful transaction into a stale or badly priced pool can be much more expensive."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "blockId": "step-7-manage-the-position-not-the-fee-counter",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Step 7: manage the position, not the fee counter"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-e8b86d5fe916"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "The pool screen tells you where market liquidity sits, what fee the pool charges, how your range compares with the current price, and whether your position is active."
+          }
+        ]
+      },
+      {
+        "type": "imageFigure",
+        "attrs": {
+          "blockId": "figure-08-2-liquidity-distribution-chart",
+          "assetId": "a8fd7643-18fd-5c83-89f6-d842e7d4da3c",
+          "alt": "A Meteora pool screen showing current price, liquidity distribution, fee settings, several open positions, claimable fees, and P and L.",
+          "decorative": false,
+          "caption": "Read the whole screen together: current price, distribution, fee settings, range, inventory, fees, and P&L.",
+          "credit": null,
+          "creditUrl": null,
+          "layout": "wide",
+          "focalX": 0.5,
+          "focalY": 0.5,
+          "lightbox": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-29e1d907c952"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Every time you check a position, answer four questions:"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "attrs": {
+          "blockId": "bullet-list-6f28a611d736"
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-3e2342ee1590"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-3e2342ee1590-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Is it in range?",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " If not, it is not earning trading fees."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-f98a9a093079"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-f98a9a093079-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "What does it hold now?",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " Price movement may have converted most of the position into one asset."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-b4377358027d"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-b4377358027d-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Why is P&L moving?",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " Separate fees from the changing value of the inventory."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-8bbf9cddf473"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-8bbf9cddf473-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Does the original reason still hold?",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " Reinvesting into a broken setup compounds the mistake."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "imageFigure",
+        "attrs": {
+          "blockId": "figure-10-2-fee-tvl-percentage",
+          "assetId": "ea327449-9d64-5e75-a556-e956e75cb1cb",
+          "alt": "A Meteora portfolio where some volatile pools show very high fee-to-TVL percentages while the corresponding positions remain at a loss.",
+          "decorative": false,
+          "caption": "This is why fees are not profit: the highest Fee/TVL rows can still show negative P&L when the underlying token falls.",
+          "credit": null,
+          "creditUrl": null,
+          "layout": "wide",
+          "focalX": 0.5,
+          "focalY": 0.5,
+          "lightbox": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-a41118ffab57"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Claiming fees is an accounting action, not a rescue strategy. Reinvest only if you would still choose the same token, pool, shape, and range with fresh capital today."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "blockId": "when-to-rebalance-or-close",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "When to rebalance or close"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-b6ab989bef9e"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Decide the exit rules before the position becomes emotional. Consider closing or rebuilding when:"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "attrs": {
+          "blockId": "bullet-list-285f12b20e88"
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-9ed1e9406b9e"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-9ed1e9406b9e-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Price leaves the range and the reason for the range no longer holds."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-a77b59532f39"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-a77b59532f39-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Volume and fees disappear while your capital remains exposed."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-4421f1c23591"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-4421f1c23591-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "The holder distribution or token thesis changes."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-73710b481a87"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-73710b481a87-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "The position has converted into an asset you do not want to keep."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-8aed5feb8c08"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-8aed5feb8c08-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "The net result reaches the loss or profit level you set in advance."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-ae8c00f8f286"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Meteora lets you withdraw or close a position. A zap-out flow may swap the assets during withdrawal, so check price impact and the asset you will receive before approving."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-f50cc2c23f32"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "If you finish in USDC and want to spend it in the real world, use "
+          },
+          {
+            "type": "text",
+            "text": "my Kast referral",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://app.kast.xyz/referral/SEBMONTY",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ". Kast is my favorite crypto debit card, and I have used it for two years."
+          }
+        ]
+      },
+      {
+        "type": "imageFigure",
+        "attrs": {
+          "blockId": "figure-13-3-generate-pnl-card",
+          "assetId": "98558b96-0957-5dfa-8143-d3eaa81fc8d7",
+          "alt": "Meteora's position close screen with a generated profit and loss summary card.",
+          "decorative": false,
+          "caption": "After closing, record the complete result. Fees make a good screenshot; net P&L makes a better decision log.",
+          "credit": null,
+          "creditUrl": null,
+          "layout": "wide",
+          "focalX": 0.5,
+          "focalY": 0.5,
+          "lightbox": true
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "blockId": "a-simple-first-position-plan",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "A simple first-position plan"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-fc2afbd5b4ed"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "There are two sensible ways to learn, depending on what you want from the exercise."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-aeb6584e9e4a"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Mechanics first:",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " choose a more established pair, use a small amount, and give the range enough room to observe how inventory and fees change. The fee rate may be unexciting. That is fine. The purpose is to understand the controls."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-dd96affd9c7b"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Volatility first:",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " choose a volatile pair only after vetting it, use an amount you expect could go to zero, and treat the position as paid training. Monitor it closely. Do not confuse a dramatic fee counter with a sustainable strategy."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-8e61b3732133"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Do not start by creating a brand-new pool. Learn to read and manage an existing one before adding pool creation, price discovery, routing, and arbitrage risk."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-8f43f3d2288f"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "If you keep SOL outside your LP positions, stake your SOL with "
+          },
+          {
+            "type": "text",
+            "text": "validator.com",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://validator.com/",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " to support me and grow your Solana bags through staking rewards. Rewards vary, and staking still carries validator and protocol risk."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "blockId": "pre-deposit-checklist",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Pre-deposit checklist"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "attrs": {
+          "blockId": "bullet-list-fa4c3679e9ff"
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-aa27ab24f81a"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-aa27ab24f81a-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "The contract address matches the intended token."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-c21dcd59f979"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-c21dcd59f979-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "The pool has real TVL and sustained two-sided volume."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-edc4235a900e"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-edc4235a900e-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "The holder map does not reveal a risk you are unwilling to take."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-427ca488425d"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-427ca488425d-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "You compared the available bin steps and fee tiers."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-a28ead69a0f0"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-a28ead69a0f0-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "You know why Spot, Curve, or Bid-Ask fits this position."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-d69055ac1d4d"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-d69055ac1d4d-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "You can explain the minimum and maximum prices."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-e7a9a65b0cd1"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-e7a9a65b0cd1-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "You know what asset you will hold beyond either boundary."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-8176ad993883"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-8176ad993883-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "The current pool price is inside the range and close to the market price."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-0f798917e663"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-0f798917e663-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "The amount is small enough for the worst case."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-0d5057ed0195"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-0d5057ed0195-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "You have a schedule and a rule for closing or rebuilding."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "blockId": "sources",
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Sources"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "attrs": {
+          "blockId": "bullet-list-1060d6b4166f"
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-e04abcfcea76"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-e04abcfcea76-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "My Meteora referral link",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://app.meteora.ag/ref/SEBMONTY",
+                          "target": "_blank",
+                          "rel": "noopener noreferrer"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " for finding and managing positions."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-5b7f619fc0f8"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-5b7f619fc0f8-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Official DLMM overview",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://docs.meteora.ag/core-products/dlmm/what-is-dlmm",
+                          "target": "_blank",
+                          "rel": "noopener noreferrer"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " for bins, dynamic fees, and product mechanics."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-9690249f9dc9"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-9690249f9dc9-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Official strategy guide",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://docs.meteora.ag/core-products/dlmm/strategies-and-use-cases",
+                          "target": "_blank",
+                          "rel": "noopener noreferrer"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " for Spot, Curve, and Bid-Ask use cases."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-25a5f99aec41"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-25a5f99aec41-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "GMGN",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://gmgn.ai/?chain=sol",
+                          "target": "_blank",
+                          "rel": "noopener noreferrer"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " for contract, holder, volume, and chart checks."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-f0be4b9d9b4b"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-f0be4b9d9b4b-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Follow me on X",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://x.com/SebMontgomery",
+                          "target": "_blank",
+                          "rel": "noopener noreferrer"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " for new guides, position updates, and Solana research."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-7738bf17a9a6"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-7738bf17a9a6-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Seb Montgomery on YouTube",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://www.youtube.com/@SebMontgomery",
+                          "target": "_blank",
+                          "rel": "noopener noreferrer"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " for the longer walkthrough."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-99ebaef514ea"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-99ebaef514ea-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Stake SOL with validator.com",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://validator.com/",
+                          "target": "_blank",
+                          "rel": "noopener noreferrer"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " to support me and earn variable staking rewards."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-13f60722ace6"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-13f60722ace6-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Use my Kast referral",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://app.kast.xyz/referral/SEBMONTY",
+                          "target": "_blank",
+                          "rel": "noopener noreferrer"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " when you want to spend USDC in the real world."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "attrs": {
+              "blockId": "list-item-0330de573e0e"
+            },
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "blockId": "list-item-0330de573e0e-paragraph"
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Meteora LP Skill File",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://github.com/sebmonty/skills/tree/main/meteora-lp-sebmonty",
+                          "target": "_blank",
+                          "rel": "noopener noreferrer"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " for mechanics-grounded guidance in Claude or Codex."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "blockId": "paragraph-87da06f185fa"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Published 21 July 2026. Interface details, pool metrics, and the point-in-time figures shown in screenshots will change. Check the live app before acting.",
+            "marks": [
+              {
+                "type": "italic"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "author": {
+    "id": "551d45f5-7f35-5372-ac40-b9e2db996ce2",
+    "slug": "seb-montgomery",
+    "name": "Seb Montgomery",
+    "bio": "Independent research on crypto markets, products, and the systems around them.",
+    "descriptor": "Independent researcher",
+    "avatarUrl": "/images/seb-pfp.png",
+    "xHandle": "SebMontgomery"
+  },
+  "categories": [
+    {
+      "id": "e552c5ff-fc77-5dcf-96ad-993463400cc0",
+      "slug": "solana",
+      "name": "Solana",
+      "description": "Infrastructure, products, and practical notes from the Solana ecosystem.",
+      "postCount": 1
+    }
+  ],
+  "tags": [
+    {
+      "id": "0673306a-e77f-519a-85b4-ac531d81bf9d",
+      "slug": "defi",
+      "name": "DeFi",
+      "description": "Protocols, liquidity, risk, and the mechanics behind on-chain finance.",
+      "postCount": 1
+    },
+    {
+      "id": "c83c5bb7-0793-543b-b86e-c2a023165029",
+      "slug": "meteora",
+      "name": "Meteora",
+      "description": "DLMM pools, liquidity strategies, and risk on Meteora.",
+      "postCount": 1
+    },
+    {
+      "id": "9c1e9c57-63d6-58a8-b6ea-f1bc17b8ec86",
+      "slug": "liquidity-providing",
+      "name": "Liquidity providing",
+      "description": "Practical guides to ranges, fees, pool selection, and LP risk.",
+      "postCount": 1
+    }
+  ],
+  "coverImage": {
+    "assetId": "18a6b825-a279-56f3-ba93-dceca9a7bea4",
+    "src": "/images/meteora-lp/02-2-top-performers-filters.png",
+    "width": 1280,
+    "height": 720,
+    "alt": "Meteora's Top Performers page sorted by fees earned against active TVL over a two-hour window.",
+    "caption": "Top Performers is where the search starts. It is not where the decision ends.",
+    "credit": null,
+    "creditUrl": null
+  },
+  "assets": {
+    "18a6b825-a279-56f3-ba93-dceca9a7bea4": {
+      "id": "18a6b825-a279-56f3-ba93-dceca9a7bea4",
+      "canonicalUrl": "/images/meteora-lp/02-2-top-performers-filters.png",
+      "src": "/images/meteora-lp/02-2-top-performers-filters.png",
+      "fullUrl": "/images/meteora-lp/02-2-top-performers-filters.png",
+      "width": 1280,
+      "height": 720,
+      "alt": "Meteora's Top Performers page sorted by fees earned against active TVL over a two-hour window.",
+      "caption": "Top Performers is where the search starts. It is not where the decision ends.",
+      "credit": null,
+      "creditUrl": null,
+      "mimeType": "image/png",
+      "variants": [
+        {
+          "url": "/images/meteora-lp/02-2-top-performers-filters.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "usages": [
+        {
+          "blockId": "figure-02-2-top-performers-filters",
+          "role": "cover",
+          "src": "/images/meteora-lp/02-2-top-performers-filters.png",
+          "width": 1280,
+          "height": 720,
+          "alt": "Meteora's Top Performers page sorted by fees earned against active TVL over a two-hour window.",
+          "caption": "Top Performers is where the search starts. It is not where the decision ends."
+        }
+      ],
+      "sha256": "7e0c91b28d0453d5582312e5ce7a9cf1a7fceff39e226b596c6c62f2e38dd560"
+    },
+    "8fb5a24a-5790-5d24-ae61-99ccb30bc31b": {
+      "id": "8fb5a24a-5790-5d24-ae61-99ccb30bc31b",
+      "canonicalUrl": "/images/meteora-lp/03-2-range-buy-sell-mechanics.png",
+      "src": "/images/meteora-lp/03-2-range-buy-sell-mechanics.png",
+      "fullUrl": "/images/meteora-lp/03-2-range-buy-sell-mechanics.png",
+      "width": 1280,
+      "height": 720,
+      "alt": "A Meteora position with minimum and maximum price lines around the active range.",
+      "caption": "Inside the range, trades change your asset mix and can generate fees. Outside it, the position is inactive and holds one side of the pair.",
+      "credit": null,
+      "creditUrl": null,
+      "mimeType": "image/png",
+      "variants": [
+        {
+          "url": "/images/meteora-lp/03-2-range-buy-sell-mechanics.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "usages": [
+        {
+          "blockId": "figure-03-2-range-buy-sell-mechanics",
+          "role": "body",
+          "src": "/images/meteora-lp/03-2-range-buy-sell-mechanics.png",
+          "width": 1280,
+          "height": 720,
+          "alt": "A Meteora position with minimum and maximum price lines around the active range.",
+          "caption": "Inside the range, trades change your asset mix and can generate fees. Outside it, the position is inactive and holds one side of the pair."
+        }
+      ],
+      "sha256": "57ec0bb253985da5d2b33a48efef28a1064555ac00de45cf715cabf058b1d5f2"
+    },
+    "4b61812f-c7f5-5094-af0b-e153548fc34a": {
+      "id": "4b61812f-c7f5-5094-af0b-e153548fc34a",
+      "canonicalUrl": "/images/meteora-lp/02-3-min-tvl-filter-preset.png",
+      "src": "/images/meteora-lp/02-3-min-tvl-filter-preset.png",
+      "fullUrl": "/images/meteora-lp/02-3-min-tvl-filter-preset.png",
+      "width": 1280,
+      "height": 720,
+      "alt": "Meteora's filter panel with a minimum TVL of one thousand dollars.",
+      "caption": "Use a TVL floor to remove near-empty pools, then compare the survivors on volume, depth, token quality, and fee tier.",
+      "credit": null,
+      "creditUrl": null,
+      "mimeType": "image/png",
+      "variants": [
+        {
+          "url": "/images/meteora-lp/02-3-min-tvl-filter-preset.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "usages": [
+        {
+          "blockId": "figure-02-3-min-tvl-filter-preset",
+          "role": "body",
+          "src": "/images/meteora-lp/02-3-min-tvl-filter-preset.png",
+          "width": 1280,
+          "height": 720,
+          "alt": "Meteora's filter panel with a minimum TVL of one thousand dollars.",
+          "caption": "Use a TVL floor to remove near-empty pools, then compare the survivors on volume, depth, token quality, and fee tier."
+        }
+      ],
+      "sha256": "3a897590be1dfefa795ec2885c297afece41396af1909e59ca5eb968b4c9b36e"
+    },
+    "d3ea7c39-9363-53ff-80e9-4346bb088239": {
+      "id": "d3ea7c39-9363-53ff-80e9-4346bb088239",
+      "canonicalUrl": "/images/meteora-lp/04-2-gmgn-holder-clusters.png",
+      "src": "/images/meteora-lp/04-2-gmgn-holder-clusters.png",
+      "fullUrl": "/images/meteora-lp/04-2-gmgn-holder-clusters.png",
+      "width": 1280,
+      "height": 720,
+      "alt": "A holder map showing groups of connected wallets around a Solana token.",
+      "caption": "Connected holder clusters can sell together. No displayed fee rate compensates for a token you never investigated.",
+      "credit": null,
+      "creditUrl": null,
+      "mimeType": "image/png",
+      "variants": [
+        {
+          "url": "/images/meteora-lp/04-2-gmgn-holder-clusters.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "usages": [
+        {
+          "blockId": "figure-04-2-gmgn-holder-clusters",
+          "role": "body",
+          "src": "/images/meteora-lp/04-2-gmgn-holder-clusters.png",
+          "width": 1280,
+          "height": 720,
+          "alt": "A holder map showing groups of connected wallets around a Solana token.",
+          "caption": "Connected holder clusters can sell together. No displayed fee rate compensates for a token you never investigated."
+        }
+      ],
+      "sha256": "b03e21d9a3719523f5b42a1f309084141ccecabe4517e1b134808bd13645c8bd"
+    },
+    "d69e02a2-a592-5496-924e-8a30873f4893": {
+      "id": "d69e02a2-a592-5496-924e-8a30873f4893",
+      "canonicalUrl": "/images/meteora-lp/05-1-bin-step-comparison.png",
+      "src": "/images/meteora-lp/05-1-bin-step-comparison.png",
+      "fullUrl": "/images/meteora-lp/05-1-bin-step-comparison.png",
+      "width": 1280,
+      "height": 720,
+      "alt": "A Meteora comparison showing four pools for the same token pair with different bin steps, fee tiers, TVL, volume, and fee-to-TVL ratios.",
+      "caption": "The highest fee tier is not automatically the best pool. Compare it with the volume and liquidity that actually use that pool.",
+      "credit": null,
+      "creditUrl": null,
+      "mimeType": "image/png",
+      "variants": [
+        {
+          "url": "/images/meteora-lp/05-1-bin-step-comparison.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "usages": [
+        {
+          "blockId": "figure-05-1-bin-step-comparison",
+          "role": "body",
+          "src": "/images/meteora-lp/05-1-bin-step-comparison.png",
+          "width": 1280,
+          "height": 720,
+          "alt": "A Meteora comparison showing four pools for the same token pair with different bin steps, fee tiers, TVL, volume, and fee-to-TVL ratios.",
+          "caption": "The highest fee tier is not automatically the best pool. Compare it with the volume and liquidity that actually use that pool."
+        }
+      ],
+      "sha256": "3e17c5afbb120513c4d9475dfc1dba1c0ab53f10da7b8fcd9598bd472f41d006"
+    },
+    "acd65315-6b18-54e8-81a8-e26da9bbdf18": {
+      "id": "acd65315-6b18-54e8-81a8-e26da9bbdf18",
+      "canonicalUrl": "/images/meteora-lp/05-2-bid-ask-position-setup.png",
+      "src": "/images/meteora-lp/05-2-bid-ask-position-setup.png",
+      "fullUrl": "/images/meteora-lp/05-2-bid-ask-position-setup.png",
+      "width": 1280,
+      "height": 720,
+      "alt": "Meteora's bid-ask strategy with liquidity distributed below the current pool price.",
+      "caption": "A bid-ask range can stage progressively more liquidity below price. It is a deliberate buying plan, not automatic downside protection.",
+      "credit": null,
+      "creditUrl": null,
+      "mimeType": "image/png",
+      "variants": [
+        {
+          "url": "/images/meteora-lp/05-2-bid-ask-position-setup.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "usages": [
+        {
+          "blockId": "figure-05-2-bid-ask-position-setup",
+          "role": "body",
+          "src": "/images/meteora-lp/05-2-bid-ask-position-setup.png",
+          "width": 1280,
+          "height": 720,
+          "alt": "Meteora's bid-ask strategy with liquidity distributed below the current pool price.",
+          "caption": "A bid-ask range can stage progressively more liquidity below price. It is a deliberate buying plan, not automatic downside protection."
+        }
+      ],
+      "sha256": "99e568d10db9e0da83741e9dbe169b52ca420f98fcfcceac3f722a91ead266c0"
+    },
+    "906380cf-d362-5931-982d-a400d8ccc012": {
+      "id": "906380cf-d362-5931-982d-a400d8ccc012",
+      "canonicalUrl": "/images/meteora-lp/09-3-new-pool-out-of-range.png",
+      "src": "/images/meteora-lp/09-3-new-pool-out-of-range.png",
+      "fullUrl": "/images/meteora-lp/09-3-new-pool-out-of-range.png",
+      "width": 1280,
+      "height": 720,
+      "alt": "A fast-moving Meteora pool showing a warning that the pool price differs from the market price while price has moved beyond the selected range.",
+      "caption": "If the pool price differs from the market or price has already escaped your range, stop. Do not increase slippage simply to force the original plan through.",
+      "credit": null,
+      "creditUrl": null,
+      "mimeType": "image/png",
+      "variants": [
+        {
+          "url": "/images/meteora-lp/09-3-new-pool-out-of-range.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "usages": [
+        {
+          "blockId": "figure-09-3-new-pool-out-of-range",
+          "role": "body",
+          "src": "/images/meteora-lp/09-3-new-pool-out-of-range.png",
+          "width": 1280,
+          "height": 720,
+          "alt": "A fast-moving Meteora pool showing a warning that the pool price differs from the market price while price has moved beyond the selected range.",
+          "caption": "If the pool price differs from the market or price has already escaped your range, stop. Do not increase slippage simply to force the original plan through."
+        }
+      ],
+      "sha256": "bd57683465335a23ce4e31205dcadbff9b7c033b7638c54ada63517b2536707a"
+    },
+    "a8fd7643-18fd-5c83-89f6-d842e7d4da3c": {
+      "id": "a8fd7643-18fd-5c83-89f6-d842e7d4da3c",
+      "canonicalUrl": "/images/meteora-lp/08-2-liquidity-distribution-chart.png",
+      "src": "/images/meteora-lp/08-2-liquidity-distribution-chart.png",
+      "fullUrl": "/images/meteora-lp/08-2-liquidity-distribution-chart.png",
+      "width": 1280,
+      "height": 720,
+      "alt": "A Meteora pool screen showing current price, liquidity distribution, fee settings, several open positions, claimable fees, and P and L.",
+      "caption": "Read the whole screen together: current price, distribution, fee settings, range, inventory, fees, and P&L.",
+      "credit": null,
+      "creditUrl": null,
+      "mimeType": "image/png",
+      "variants": [
+        {
+          "url": "/images/meteora-lp/08-2-liquidity-distribution-chart.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "usages": [
+        {
+          "blockId": "figure-08-2-liquidity-distribution-chart",
+          "role": "body",
+          "src": "/images/meteora-lp/08-2-liquidity-distribution-chart.png",
+          "width": 1280,
+          "height": 720,
+          "alt": "A Meteora pool screen showing current price, liquidity distribution, fee settings, several open positions, claimable fees, and P and L.",
+          "caption": "Read the whole screen together: current price, distribution, fee settings, range, inventory, fees, and P&L."
+        }
+      ],
+      "sha256": "b8b45ec1e500e7507b86018586b1fa9d576707fe3663b716a5aa36b392efe38b"
+    },
+    "ea327449-9d64-5e75-a556-e956e75cb1cb": {
+      "id": "ea327449-9d64-5e75-a556-e956e75cb1cb",
+      "canonicalUrl": "/images/meteora-lp/10-2-fee-tvl-percentage.png",
+      "src": "/images/meteora-lp/10-2-fee-tvl-percentage.png",
+      "fullUrl": "/images/meteora-lp/10-2-fee-tvl-percentage.png",
+      "width": 1280,
+      "height": 720,
+      "alt": "A Meteora portfolio where some volatile pools show very high fee-to-TVL percentages while the corresponding positions remain at a loss.",
+      "caption": "This is why fees are not profit: the highest Fee/TVL rows can still show negative P&L when the underlying token falls.",
+      "credit": null,
+      "creditUrl": null,
+      "mimeType": "image/png",
+      "variants": [
+        {
+          "url": "/images/meteora-lp/10-2-fee-tvl-percentage.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "usages": [
+        {
+          "blockId": "figure-10-2-fee-tvl-percentage",
+          "role": "body",
+          "src": "/images/meteora-lp/10-2-fee-tvl-percentage.png",
+          "width": 1280,
+          "height": 720,
+          "alt": "A Meteora portfolio where some volatile pools show very high fee-to-TVL percentages while the corresponding positions remain at a loss.",
+          "caption": "This is why fees are not profit: the highest Fee/TVL rows can still show negative P&L when the underlying token falls."
+        }
+      ],
+      "sha256": "25978e33630eb5120f67eda6386231dba5321ca9b55c4e5c160dd8e481f30a22"
+    },
+    "98558b96-0957-5dfa-8143-d3eaa81fc8d7": {
+      "id": "98558b96-0957-5dfa-8143-d3eaa81fc8d7",
+      "canonicalUrl": "/images/meteora-lp/13-3-generate-pnl-card.png",
+      "src": "/images/meteora-lp/13-3-generate-pnl-card.png",
+      "fullUrl": "/images/meteora-lp/13-3-generate-pnl-card.png",
+      "width": 1280,
+      "height": 720,
+      "alt": "Meteora's position close screen with a generated profit and loss summary card.",
+      "caption": "After closing, record the complete result. Fees make a good screenshot; net P&L makes a better decision log.",
+      "credit": null,
+      "creditUrl": null,
+      "mimeType": "image/png",
+      "variants": [
+        {
+          "url": "/images/meteora-lp/13-3-generate-pnl-card.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "usages": [
+        {
+          "blockId": "figure-13-3-generate-pnl-card",
+          "role": "body",
+          "src": "/images/meteora-lp/13-3-generate-pnl-card.png",
+          "width": 1280,
+          "height": 720,
+          "alt": "Meteora's position close screen with a generated profit and loss summary card.",
+          "caption": "After closing, record the complete result. Fees make a good screenshot; net P&L makes a better decision log."
+        }
+      ],
+      "sha256": "b3659d70430d6e0caedbb311d9ee8b815e5b2f4fc94c250e85eeb91bab9af668"
+    }
+  },
+  "featured": false,
+  "visibility": "public",
+  "seo": {
+    "title": "How to LP on Meteora: A Practical DLMM Guide",
+    "description": "A decision-by-decision guide to finding a real pool, checking the token, setting a range, and measuring fees against the risk you actually took.",
+    "canonicalUrl": "https://www.sebmonty.link/blog/complete-meteora-dlmm-liquidity-course",
+    "socialTitle": "How to LP on Meteora: A Practical DLMM Guide",
+    "socialDescription": "A decision-by-decision guide to finding a real pool, checking the token, setting a range, and measuring fees against the risk you actually took.",
+    "socialImageAssetId": "18a6b825-a279-56f3-ba93-dceca9a7bea4",
+    "noindex": false
+  },
+  "firstPublishedAt": "2026-07-21T12:00:00.000Z",
+  "publishedAt": "2026-07-21T12:00:00.000Z",
+  "updatedAt": "2026-07-21T12:00:00.000Z",
+  "wordCount": 2277,
+  "readingTimeMinutes": 11,
+  "checksum": "027f0a54f7e50f2ed9232d85b1b1a36d9d5e0f78dd5dc6ed17ee20d343b9ddaf",
+  "provenance": {
+    "source": "Concise Meteora DLMM guide adapted from Seb Montgomery's course handoff",
+    "sourceFile": "docs/meteora-dlmm-liquidity-guide-source.html",
+    "sourceFileSha256": "ed40b4a77c204c67cde64da7ea5bfb5ea4ece99eb3e465bf86fa5c457744ff64",
+    "importedAt": "2026-07-21T12:00:00.000Z",
+    "videoLinkStatus": "Exact course URL was absent from the handoff; the article links to Seb Montgomery's official YouTube channel."
+  }
+}
