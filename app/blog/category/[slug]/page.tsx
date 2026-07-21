@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 
 import { CategoryNav, PostCard } from '@/components/blog'
+import { METEORA_CATEGORY } from '@/lib/blog/meteora-metadata'
+import { STATIC_BLOG_POSTS } from '@/lib/blog/meteora-post'
 import { client } from '@/sanity/client'
 import { categoriesQuery, categoryBySlugQuery, categorySlugsQuery, postsByCategoryQuery } from '@/sanity/queries'
 import type { Category, Post } from '@/sanity/types'
@@ -12,12 +14,13 @@ type Props = { params: Promise<{ slug: string }> }
 
 export async function generateStaticParams() {
   const slugs = await client.fetch<string[]>(categorySlugsQuery).catch(() => [])
-  return slugs.map((slug) => ({ slug }))
+  return [...new Set([...slugs, METEORA_CATEGORY.slug])].map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const category = await client.fetch<Category | null>(categoryBySlugQuery, { slug }).catch(() => null)
+    || (slug === METEORA_CATEGORY.slug ? METEORA_CATEGORY : null)
   return category
     ? { title: `${category.title} writing`, description: category.description || `Research about ${category.title}` }
     : { title: 'Category not found' }
@@ -25,12 +28,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CategoryPage({ params }: Props) {
   const { slug } = await params
-  const [category, posts, categories] = await Promise.all([
+  const [sanityCategory, sanityPosts, sanityCategories] = await Promise.all([
     client.fetch<Category | null>(categoryBySlugQuery, { slug }).catch(() => null),
     client.fetch<Post[]>(postsByCategoryQuery, { slug }).catch(() => []),
     client.fetch<Category[]>(categoriesQuery).catch(() => []),
   ])
+  const category = sanityCategory || (slug === METEORA_CATEGORY.slug ? METEORA_CATEGORY : null)
   if (!category) notFound()
+  const posts = [
+    ...STATIC_BLOG_POSTS.filter((post) => post.category?.slug === slug),
+    ...sanityPosts,
+  ].filter((post, index, items) => items.findIndex((candidate) => candidate._id === post._id) === index)
+  const categories = [...sanityCategories]
+  if (!categories.some((item) => item.slug === METEORA_CATEGORY.slug)) categories.push(METEORA_CATEGORY)
+  if (slug === METEORA_CATEGORY.slug) category.postCount = posts.length
 
   return (
     <div className="site-shell publication-category-page">

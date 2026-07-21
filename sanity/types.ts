@@ -35,6 +35,16 @@ export interface Post {
   likes?: number
   commentCount?: number
   body?: PortableTextBlock[]
+  localMainImage?: LocalArticleImage
+  hideEyebrowRules?: boolean
+}
+
+export interface LocalArticleImage {
+  src: string
+  width: number
+  height: number
+  alt: string
+  caption?: string
 }
 
 export interface Comment {
@@ -93,6 +103,9 @@ export interface PortableTextBlock {
   creditUrl?: string
   code?: string
   language?: string
+  src?: string
+  width?: number
+  height?: number
   url?: string
   title?: string
   eyebrow?: string

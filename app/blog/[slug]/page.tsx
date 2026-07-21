@@ -8,6 +8,7 @@ import { ArticleActions } from '@/components/blog/ArticleActions'
 import { ArticleGalleryProvider, ArticleImageTrigger } from '@/components/blog/ArticleLightbox'
 import { prepareArticleContent, sanityImageToGalleryImage } from '@/lib/blog/article-content'
 import { applyArticleEditorialOverride, getArticleEditorialOverride } from '@/lib/blog/editorial-overrides'
+import { getStaticBlogPost, STATIC_BLOG_POSTS } from '@/lib/blog/meteora-post'
 import { client, urlFor } from '@/sanity/client'
 import { popularPostsQuery, postBySlugQuery, postSlugsQuery } from '@/sanity/queries'
 import type { Post } from '@/sanity/types'
@@ -18,12 +19,16 @@ export const revalidate = 60
 
 export async function generateStaticParams() {
   const slugs = await client.fetch<string[]>(postSlugsQuery).catch(() => [])
-  return slugs.map((slug) => ({ slug }))
+  return [...new Set([...slugs, ...STATIC_BLOG_POSTS.map((post) => post.slug)])].map((slug) => ({ slug }))
+}
+
+async function getPost(slug: string) {
+  return getStaticBlogPost(slug) || client.fetch<Post | null>(postBySlugQuery, { slug }).catch(() => null)
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const post = await client.fetch<Post | null>(postBySlugQuery, { slug }).catch(() => null)
+  const post = await getPost(slug)
   if (!post) return { title: 'Post not found' }
   const description = post.excerpt || post.subtitle
   const editorialOverride = getArticleEditorialOverride(post.slug)
@@ -37,7 +42,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       publishedTime: editorialOverride?.publishedAt || post.publishedAt,
       modifiedTime: post._updatedAt,
-      images: post.mainImage ? [{ url: urlFor(post.mainImage).width(1200).height(630).fit('crop').auto('format').url() }] : undefined,
+      images: post.localMainImage
+        ? [{ url: post.localMainImage.src, width: post.localMainImage.width, height: post.localMainImage.height, alt: post.localMainImage.alt }]
+        : post.mainImage
+          ? [{ url: urlFor(post.mainImage).width(1200).height(630).fit('crop').auto('format').url() }]
+          : undefined,
     },
   }
 }
@@ -50,23 +59,25 @@ function formatDate(dateString?: string) {
 export default async function PostPage({ params }: Props) {
   const { slug } = await params
   const [post, relatedPosts] = await Promise.all([
-    client.fetch<Post | null>(postBySlugQuery, { slug }).catch(() => null),
+    getPost(slug),
     client.fetch<Post[]>(popularPostsQuery).catch(() => []),
   ])
   if (!post) notFound()
 
-  const heroImage = post.mainImage ? sanityImageToGalleryImage(post.mainImage, post.title) : null
+  const heroImage = post.localMainImage || (post.mainImage ? sanityImageToGalleryImage(post.mainImage, post.title) : null)
   const editorialOverride = getArticleEditorialOverride(post.slug)
   const body = applyArticleEditorialOverride(post.slug, post.body || [])
   const prepared = prepareArticleContent(body, heroImage ? 1 : 0, editorialOverride?.imageOverrides)
   const gallery = heroImage ? [heroImage, ...prepared.gallery] : prepared.gallery
   const date = editorialOverride?.publishedAt || post.publishedAt || post._updatedAt
   const authorImageUrl = post.author?.image ? urlFor(post.author.image).width(96).height(96).fit('crop').url() : '/images/seb-pfp.png'
-  const related = relatedPosts.filter((item) => item._id !== post._id).slice(0, 3)
+  const related = [...STATIC_BLOG_POSTS, ...relatedPosts]
+    .filter((item, index, items) => item._id !== post._id && items.findIndex((candidate) => candidate._id === item._id) === index)
+    .slice(0, 3)
 
   return (
     <ArticleGalleryProvider images={gallery}>
-      <article className="article-page">
+      <article className={`article-page${post.hideEyebrowRules ? ' article-page--no-eyebrow-rules' : ''}`}>
         <header className="article-header">
           <span className="site-eyebrow">{post.category?.title || 'Research'}</span>
           <h1>{post.title}</h1>

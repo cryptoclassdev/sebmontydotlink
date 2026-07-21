@@ -74,6 +74,21 @@ export function prepareArticleContent(
 
   for (let index = 0; index < mainContent.length; index += 1) {
     const block = mainContent[index]
+    if (block._type === "localImage" && block.src && block.width && block.height) {
+      imageNumber += 1
+      const image: ArticleGalleryImage = {
+        src: block.src,
+        width: block.width,
+        height: block.height,
+        alt: block.alt || `Article image ${imageNumber}`,
+        caption: [block.caption, block.credit].filter(Boolean).join(' ') || undefined,
+      }
+      const prepared: PreparedImageBlock = { ...block, _type: 'image', _articleImage: image }
+      imageIndexes[block._key] = startIndex + gallery.length
+      gallery.push(image)
+      body.push(prepared)
+      continue
+    }
     if (block._type !== "image" || !block.asset?._ref) {
       body.push(block)
       continue

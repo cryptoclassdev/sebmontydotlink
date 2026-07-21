@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { Search } from 'lucide-react'
 
 import { CategoryNav, FeaturedPost, PostCard } from '@/components/blog'
+import { METEORA_CATEGORY } from '@/lib/blog/meteora-metadata'
+import { STATIC_BLOG_POSTS } from '@/lib/blog/meteora-post'
 import { client } from '@/sanity/client'
 import { categoriesQuery, featuredPostQuery, postsQuery } from '@/sanity/queries'
 import type { Category, Post } from '@/sanity/types'
@@ -22,10 +24,17 @@ async function getData(sort = 'latest') {
     client.fetch<Post[]>(postsQuery).catch(() => []),
     client.fetch<Category[]>(categoriesQuery).catch(() => []),
   ])
-  const remaining = allPosts.filter((post) => post._id !== featuredPost?._id)
+  const mergedPosts = [...STATIC_BLOG_POSTS, ...allPosts]
+    .filter((post, index, posts) => posts.findIndex((candidate) => candidate._id === post._id) === index)
+  const remaining = mergedPosts.filter((post) => post._id !== featuredPost?._id)
+  remaining.sort((a, b) => new Date(b.publishedAt || b._updatedAt || 0).getTime() - new Date(a.publishedAt || a._updatedAt || 0).getTime())
   if (sort === 'top') remaining.sort((a, b) => (b.likes || 0) - (a.likes || 0))
   if (sort === 'discussions') remaining.sort((a, b) => (b.commentCount || 0) - (a.commentCount || 0))
-  return { featuredPost, posts: remaining, categories }
+  const mergedCategories = [...categories]
+  const solanaCategory = mergedCategories.find((category) => category.slug === METEORA_CATEGORY.slug)
+  if (solanaCategory) solanaCategory.postCount = (solanaCategory.postCount || 0) + 1
+  else mergedCategories.push(METEORA_CATEGORY)
+  return { featuredPost, posts: remaining, categories: mergedCategories }
 }
 
 export default async function BlogPage({ searchParams }: { searchParams: Promise<SearchParams> }) {

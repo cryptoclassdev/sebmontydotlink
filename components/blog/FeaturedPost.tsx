@@ -13,15 +13,16 @@ function formatDate(dateString?: string) {
 
 export function FeaturedPost({ post }: { post: Post }) {
   const editorialOverride = getArticleEditorialOverride(post.slug)
-  const imageUrl = post.mainImage
+  const imageUrl = post.localMainImage?.src || (post.mainImage
     ? urlFor(post.mainImage).width(1400).height(900).fit('crop').auto('format').url()
-    : null
+    : null)
+  const imageAlt = post.localMainImage?.alt || post.mainImage?.alt || ''
   return (
     <article className="publication-feature">
       <Link href={`/blog/${post.slug}`}>
         {imageUrl && (
           <div className="publication-feature__image">
-            <Image src={imageUrl} alt={post.mainImage?.alt || ''} fill priority sizes="(min-width: 900px) 50vw, calc(100vw - 40px)" className="object-cover" />
+            <Image src={imageUrl} alt={imageAlt} fill priority sizes="(min-width: 900px) 50vw, calc(100vw - 40px)" className="object-cover" />
           </div>
         )}
         <div className="publication-feature__copy">
