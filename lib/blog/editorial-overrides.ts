@@ -2,7 +2,7 @@ import type { ArticleGalleryImage } from '@/lib/blog/article-content'
 import type { PortableTextBlock } from '@/sanity/types'
 
 type EditorialOverride = {
-  updatedAt: string
+  publishedAt: string
   imageOverrides: Record<string, ArticleGalleryImage>
   textOverrides: Record<string, string[]>
   linkOverrides?: Record<string, string>
@@ -11,7 +11,7 @@ type EditorialOverride = {
 }
 
 const robostrategyJuly17: EditorialOverride = {
-  updatedAt: '2026-07-20T00:00:00.000Z',
+  publishedAt: '2026-07-20T00:00:00.000Z',
   imageOverrides: {},
   textOverrides: {
     kc81e728d9d: ['Figures as of July 20, 2026. They expire fast. Check before you act.'],

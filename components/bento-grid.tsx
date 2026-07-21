@@ -1,10 +1,6 @@
-"use client"
-
-import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, ArrowUpRight, BookOpenText, FileText, Mail } from "lucide-react"
-import { EmailSignupModal } from "./email-signup-modal"
+import { ArrowRight, ArrowUpRight, BookOpenText, FileText } from "lucide-react"
 import { TelegramIcon } from "./icons/telegram-icon"
 import { XIcon } from "./icons/x-icon"
 import { YoutubeIcon } from "./icons/youtube-icon"
@@ -46,54 +42,65 @@ const projects = [
   },
 ]
 
-const recommendedTools = [
+const referralLinks = [
   {
     name: "Kast",
-    note: "My personal card",
-    href: "https://kastfinance.app.link/SEBMONTY",
+    category: "Crypto card",
+    value: "The crypto card I use personally.",
+    action: "Open Kast",
+    href: "https://app.kast.xyz/referral/SEBMONTY",
     logo: "/kast-logo.png",
+    featured: true,
   },
   {
     name: "Backpack",
-    note: "My favourite exchange",
+    category: "Crypto exchange",
+    value: "My favourite exchange for trading crypto.",
+    action: "Join Backpack",
     href: "https://backpack.exchange/join/sebmonty",
     logo: "/referral-logos/backpack-logo.png",
+    featured: true,
   },
   {
-    name: "Infinex",
-    note: "Super bullish",
-    href: "https://app.infinex.xyz?r=JRPD7BF9",
-    logo: "/infinex-logo.png",
+    name: "Meteora",
+    category: "Solana liquidity",
+    value: "Explore Solana liquidity pools and vaults.",
+    action: "Open Meteora",
+    href: "https://app.meteora.ag/ref/SEBMONTY",
+    logo: "/referral-logos/meteora-logo.svg",
+    featured: true,
   },
   {
-    name: "Jupiter",
-    note: "DEX",
-    href: "https://jup.ag/?ref=gufymeueuc23",
-    logo: "/referral-logos/jupiter-logo.png",
+    name: "JTX",
+    category: "Solana trading",
+    value: "Get early access to the trading experience from Jito.",
+    action: "Join JTX",
+    href: "https://jtx.com/ref/SEBMONTY",
+    logo: "/referral-logos/jtx-logo.svg",
   },
   {
-    name: "Paradex",
-    note: "Perps",
-    href: "https://app.paradex.trade/r/sebmonty",
-    logo: "/referral-logos/paradex-logo.png",
-  },
-  {
-    name: "FOGO Flames S2",
-    note: "Community",
-    href: "https://flames.fogo.io/season-2?af=sebmontgomery",
-    logo: "/referral-logos/fogees-logo.jpeg",
+    name: "Bybit",
+    category: "Crypto exchange",
+    value: "Open my Bybit invitation link.",
+    action: "Join Bybit",
+    href: "https://www.bybit.com/invite?ref=JAW8RO",
+    logo: "/referral-logos/bybit-logo.png",
   },
   {
     name: "Binance",
-    note: "Exchange",
+    category: "Crypto exchange",
+    value: "View the Binance referral offer.",
+    action: "View the offer",
     href: "https://www.binance.com/en/activity/referral/offers/claim?ref=CPA_00R34Q8Y0Q",
     logo: "/referral-logos/binance-logo.png",
   },
   {
-    name: "Bybit",
-    note: "Exchange",
-    href: "https://www.bybit.com/invite?ref=JAW8RO",
-    logo: "/referral-logos/bybit-logo.png",
+    name: "Jupiter",
+    category: "Solana DEX",
+    value: "Swap tokens through Jupiter.",
+    action: "Open Jupiter",
+    href: "https://jup.ag/?ref=gufymeueuc23",
+    logo: "/referral-logos/jupiter-logo.png",
   },
 ]
 
@@ -111,242 +118,281 @@ function formatPublishedDate(value?: string) {
   }).format(date)
 }
 
+function ReferralCard({ referral, compact = false }: { referral: (typeof referralLinks)[number]; compact?: boolean }) {
+  return (
+    <a
+      href={referral.href}
+      target="_blank"
+      rel="sponsored noopener noreferrer"
+      className={compact ? styles.referralCardCompact : styles.referralCardFeatured}
+    >
+      <span className={styles.referralCardTop}>
+        <span className={styles.referralLogo}>
+          <Image src={referral.logo} alt="" width={52} height={52} />
+        </span>
+        <span className={styles.referralReceipt}>Referral link</span>
+      </span>
+      <span className={styles.referralCategory}>{referral.category}</span>
+      <strong>{referral.name}</strong>
+      <span className={styles.referralValue}>{referral.value}</span>
+      <span className={styles.referralAction}>
+        {referral.action}
+        <ArrowUpRight aria-hidden="true" />
+      </span>
+      <span className={styles.srOnly}>Opens in a new tab.</span>
+    </a>
+  )
+}
+
 export function BentoGrid({ latestPost }: BentoGridProps = {}) {
-  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false)
   const postHref = latestPost ? `/blog/${latestPost.slug}` : "/blog"
+  const featuredReferrals = referralLinks.filter((referral) => referral.featured)
+  const directoryReferrals = referralLinks.filter((referral) => !referral.featured)
 
   return (
-    <>
-      <main id="main-content" className={styles.page}>
-        <div className={styles.shell}>
-          <header className={styles.header}>
-            <Link href="/" className={styles.wordmark} aria-label="Seb Montgomery home">
-              <span className={styles.wordmarkDot} aria-hidden="true" />
-              <span>Seb Montgomery</span>
-            </Link>
+    <main id="main-content" className={styles.page}>
+      <div className={styles.shell}>
+        <header className={styles.header}>
+          <Link href="/" className={styles.wordmark} aria-label="Seb Montgomery home">
+            <span className={styles.wordmarkPortrait} aria-hidden="true">
+              <Image src="/images/brand/seb-avatar.png" alt="" width={34} height={34} priority />
+            </span>
+            <span>Seb Montgomery</span>
+          </Link>
 
-            <nav className={styles.primaryNav} aria-label="Primary navigation">
-              <Link href="/blog">Blog</Link>
-              <Link href="/skill-files">Skill Files</Link>
-            </nav>
-          </header>
+          <nav className={styles.primaryNav} aria-label="Primary navigation">
+            <Link href="/blog">Blog</Link>
+            <Link href="/skill-files">Skill Files</Link>
+          </nav>
+        </header>
 
-          <section className={styles.profileCard} aria-labelledby="profile-title">
-            <div className={styles.portraitWrap}>
-              <Image
-                src="/images/design-mode/seb-new-dp_nkb9tp.png"
-                alt="Seb Montgomery smiling at the camera"
-                fill
-                sizes="112px"
-                className={styles.portrait}
-                priority
-              />
+        <div className={styles.heroBento}>
+          <section className={styles.heroCard} aria-labelledby="profile-title">
+            <div className={styles.heroCopy}>
+              <p className={styles.eyebrow}>Crypto · Solana · AI</p>
+              <h1 id="profile-title">Connect the dots.</h1>
+              <p className={styles.heroLede}>
+                Clear, warm research from the friend who already read the whitepaper.
+              </p>
+              <Link href="/blog" className={styles.primaryAction}>
+                Read my research <ArrowRight aria-hidden="true" />
+              </Link>
             </div>
 
-            <p className={styles.eyebrow}>Crypto · Solana · AI</p>
-            <h1 id="profile-title">Seb Montgomery</h1>
-            <p className={styles.profileCopy}>
-              Clear thinking on crypto, technology, and the tools I actually use.
-            </p>
+            <figure className={styles.polaroid}>
+              <div className={styles.portraitMedia}>
+                <Image
+                  src="/images/design-mode/seb-new-dp_nkb9tp.png"
+                  alt="Seb Montgomery smiling at the camera"
+                  width={2000}
+                  height={2800}
+                  sizes="(max-width: 680px) 58vw, 290px"
+                  priority
+                />
+              </div>
+              <figcaption>SEB</figcaption>
+            </figure>
 
-            <div className={styles.socialLinks} aria-label="Find Seb online">
+            <svg className={styles.markerThread} viewBox="0 0 320 28" aria-hidden="true">
+              <path d="M5 18C73 5 141 24 210 12C250 5 281 8 315 4" />
+            </svg>
+          </section>
+
+          <section className={styles.socialCard} aria-labelledby="social-title">
+            <div>
+              <p className={styles.eyebrow}>Find me online</p>
+              <h2 id="social-title">Watch, read, ask.</h2>
+            </div>
+
+            <nav className={styles.socialNav} aria-label="Seb Montgomery on social media">
               <a
                 href="https://x.com/SebMontgomery"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${styles.socialLink} ${styles.socialX}`}
-                aria-label="Seb Montgomery on X"
+                className={styles.xProfileLink}
               >
-                <XIcon size={22} />
-                <span>X</span>
+                <span className={styles.xProfileAvatar}>
+                  <Image src="/images/brand/seb-avatar.png" alt="" width={64} height={64} />
+                </span>
+                <span className={styles.xProfileCopy}>
+                  <small>Daily notes on X</small>
+                  <strong>@SebMontgomery</strong>
+                </span>
+                <span className={styles.socialIcon} aria-hidden="true">
+                  <XIcon size={21} />
+                </span>
+                <span className={styles.srOnly}>Opens in a new tab.</span>
               </a>
-              <a
-                href="https://youtube.com/@SebMontgomery"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${styles.socialLink} ${styles.socialYoutube}`}
-                aria-label="Seb Montgomery on YouTube"
-              >
-                <YoutubeIcon size={24} />
-                <span>YouTube</span>
-              </a>
-              <a
-                href="https://t.me/SebMontgomery"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${styles.socialLink} ${styles.socialTelegram}`}
-                aria-label="Seb Montgomery on Telegram"
-              >
-                <TelegramIcon size={22} />
-                <span>Telegram</span>
-              </a>
-            </div>
-          </section>
 
-          <section className={styles.toolsSection} aria-labelledby="tools-title">
-            <div className={styles.sectionHeading}>
-              <div>
-                <p className={styles.eyebrow}>Recommended links</p>
-                <h2 id="tools-title">Tools I use</h2>
-              </div>
-              <span className={styles.affiliateBadge}>Affiliate links</span>
-            </div>
-            <p className={styles.disclosure}>
-              Products I genuinely use or recommend. Some links may earn me a fee at no extra cost
-              to you.
-            </p>
-
-            <div className={styles.toolsGrid}>
-              {recommendedTools.map((tool) => (
+              <div className={styles.socialSecondary}>
                 <a
-                  key={tool.name}
-                  href={tool.href}
+                  href="https://youtube.com/@SebMontgomery"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.toolRow}
                 >
-                  <span className={styles.toolLogo}>
-                    <Image src={tool.logo} alt={`${tool.name} logo`} width={42} height={42} />
+                  <YoutubeIcon size={22} />
+                  <span>
+                    <small>Long-form</small>
+                    <strong>YouTube</strong>
                   </span>
-                  <span className={styles.toolCopy}>
-                    <strong>{tool.name}</strong>
-                    <small>{tool.note}</small>
-                  </span>
-                  <span className={styles.rowArrow} aria-hidden="true">
-                    <ArrowUpRight />
-                  </span>
+                  <ArrowUpRight aria-hidden="true" />
+                  <span className={styles.srOnly}>Opens in a new tab.</span>
                 </a>
-              ))}
-            </div>
+                <a
+                  href="https://t.me/SebMontgomery"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <TelegramIcon size={21} />
+                  <span>
+                    <small>Message me</small>
+                    <strong>Telegram</strong>
+                  </span>
+                  <ArrowUpRight aria-hidden="true" />
+                  <span className={styles.srOnly}>Opens in a new tab.</span>
+                </a>
+              </div>
+            </nav>
           </section>
 
-          <section className={styles.destinationsSection} aria-labelledby="explore-title">
-            <div className={styles.sectionHeading}>
+          <article className={styles.latestCard}>
+            <div className={styles.latestCardHeader}>
+              <span className={styles.latestCardIcon} aria-hidden="true">
+                <BookOpenText />
+              </span>
               <div>
-                <p className={styles.eyebrow}>Read &amp; download</p>
-                <h2 id="explore-title">Explore</h2>
+                <p className={styles.eyebrow}>Latest research</p>
+                <h2>From the blog</h2>
               </div>
-            </div>
-
-            <div className={styles.destinationGrid}>
-              <article className={styles.blogPanel}>
-                <div className={styles.blogHeader}>
-                  <div className={styles.destinationLabel}>
-                    <span className={styles.destinationIcon} aria-hidden="true">
-                      <BookOpenText />
-                    </span>
-                    <div>
-                      <p className={styles.eyebrow}>Writing &amp; research</p>
-                      <h2>Blog</h2>
-                    </div>
-                  </div>
-                  <Link href="/blog" className={styles.allPostsLink}>
-                    All posts <ArrowRight aria-hidden="true" />
-                  </Link>
-                </div>
-
-                <Link href={postHref} className={styles.latestPost}>
-                  <div className={styles.latestPostCopy}>
-                    <div className={styles.postMeta}>
-                      <span>Latest blog post</span>
-                      <time dateTime={latestPost?.publishedAt}>
-                        {formatPublishedDate(latestPost?.publishedAt)}
-                      </time>
-                    </div>
-                    <h3>
-                      {latestPost?.title ?? "Independent thinking on crypto, markets, and products."}
-                    </h3>
-                    {latestPost?.excerpt && <p>{latestPost.excerpt}</p>}
-                    <span className={styles.inlineAction}>
-                      Read the post <ArrowRight aria-hidden="true" />
-                    </span>
-                  </div>
-                  {latestPost?.imageUrl && (
-                    <div className={styles.postImage}>
-                      <Image
-                        src={latestPost.imageUrl}
-                        alt=""
-                        fill
-                        sizes="(max-width: 640px) 112px, 180px"
-                      />
-                    </div>
-                  )}
-                </Link>
-              </article>
-
-              <Link href="/skill-files" className={styles.skillPanel}>
-                <span className={styles.destinationIcon} aria-hidden="true">
-                  <FileText />
-                </span>
-                <p className={styles.eyebrow}>Free resources</p>
-                <h2>Skill Files</h2>
-                <p>Practical AI workflows, systems, and working files.</p>
-                <span className={styles.inlineAction}>
-                  Open the library <ArrowRight aria-hidden="true" />
-                </span>
+              <Link href="/blog" className={styles.allPostsLink}>
+                All posts <ArrowRight aria-hidden="true" />
               </Link>
             </div>
-          </section>
 
-          <section className={styles.projectsSection} aria-labelledby="projects-title">
-            <div className={styles.sectionHeading}>
-              <div>
-                <p className={styles.eyebrow}>What I’m building</p>
-                <h2 id="projects-title">Projects</h2>
-              </div>
-            </div>
-
-            <div className={styles.projectList}>
-              {projects.map((project) => (
-                <a
-                  key={project.title}
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.projectRow}
-                >
-                  <span className={styles.projectImage}>
-                    <Image src={project.image} alt="" fill sizes="64px" />
-                  </span>
-                  <span className={styles.projectCopy}>
-                    <span className={styles.projectTitleLine}>
-                      <strong>{project.title}</strong>
-                      <small>{project.role}</small>
-                    </span>
-                    <span>{project.description}</span>
-                  </span>
-                  <span className={styles.rowArrow} aria-hidden="true">
-                    <ArrowUpRight />
-                  </span>
-                </a>
-              ))}
-            </div>
-          </section>
-
-          <section className={styles.subscribeCard} aria-labelledby="subscribe-title">
-            <div>
-              <p className={styles.eyebrow}>Private group</p>
-              <h2 id="subscribe-title">Get the useful stuff first.</h2>
-              <p>Early research, practical insights, and selected opportunities.</p>
-            </div>
-            <button type="button" onClick={() => setIsEmailModalOpen(true)}>
-              <Mail aria-hidden="true" />
-              Join the waitlist
-            </button>
-          </section>
-
-          <footer className={styles.footer}>
-            <p>© {new Date().getFullYear()} Seb Montgomery</p>
-            <nav aria-label="Footer navigation">
-              <Link href="/blog">Blog</Link>
-              <Link href="/skill-files">Skill Files</Link>
-              <a href="mailto:support@sebmonty.link">Email</a>
-            </nav>
-          </footer>
+            <Link href={postHref} className={styles.latestPostLink}>
+              <span className={styles.latestPostCopy}>
+                <time dateTime={latestPost?.publishedAt}>{formatPublishedDate(latestPost?.publishedAt)}</time>
+                <strong>
+                  {latestPost?.title ?? "Independent thinking on crypto, markets, and products."}
+                </strong>
+                {latestPost?.excerpt && <span>{latestPost.excerpt}</span>}
+                <span className={styles.inlineAction}>
+                  Read the post <ArrowRight aria-hidden="true" />
+                </span>
+              </span>
+              {latestPost?.imageUrl && (
+                <span className={styles.postImage}>
+                  <Image
+                    src={latestPost.imageUrl}
+                    alt=""
+                    fill
+                    sizes="(max-width: 680px) 34vw, 190px"
+                  />
+                </span>
+              )}
+            </Link>
+          </article>
         </div>
-      </main>
 
-      <EmailSignupModal isOpen={isEmailModalOpen} onClose={() => setIsEmailModalOpen(false)} />
-    </>
+        <section className={styles.referralsSection} aria-labelledby="referrals-title">
+          <div className={styles.referralsHeading}>
+            <div>
+              <p className={styles.eyebrow}>Referral directory</p>
+              <h2 id="referrals-title">Products I use and recommend.</h2>
+            </div>
+            <p>
+              Choose what fits your needs. Every card is clearly labelled and opens a referral
+              link on the partner&apos;s website.
+            </p>
+          </div>
+
+          <div className={styles.featuredReferralGrid}>
+            {featuredReferrals.map((referral) => (
+              <ReferralCard key={referral.name} referral={referral} />
+            ))}
+          </div>
+
+          <div className={styles.directoryHeading}>
+            <h3>More useful links</h3>
+            <span>{directoryReferrals.length} partner websites</span>
+          </div>
+
+          <div className={styles.compactReferralGrid}>
+            {directoryReferrals.map((referral) => (
+              <ReferralCard key={referral.name} referral={referral} compact />
+            ))}
+          </div>
+
+          <p className={styles.disclosure}>
+            I may earn a fee if you use one of these links, at no extra cost to you.
+          </p>
+        </section>
+
+        <section className={styles.resourcesSection} aria-labelledby="resources-title">
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className={styles.eyebrow}>Free resources</p>
+              <h2 id="resources-title">Put the ideas to work.</h2>
+            </div>
+          </div>
+
+          <Link href="/skill-files" className={styles.skillPanel}>
+            <span className={styles.skillIcon} aria-hidden="true">
+              <FileText />
+            </span>
+            <span className={styles.skillCopy}>
+              <span className={styles.eyebrow}>Skill Files</span>
+              <strong>Practical AI workflows, systems, and working files.</strong>
+            </span>
+            <span className={styles.skillAction}>
+              Open the library <ArrowRight aria-hidden="true" />
+            </span>
+          </Link>
+        </section>
+
+        <section className={styles.projectsSection} aria-labelledby="projects-title">
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className={styles.eyebrow}>What I am building</p>
+              <h2 id="projects-title">Projects</h2>
+            </div>
+          </div>
+
+          <div className={styles.projectGrid}>
+            {projects.map((project) => (
+              <a
+                key={project.title}
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.projectCard}
+              >
+                <span className={styles.projectImage}>
+                  <Image src={project.image} alt="" fill sizes="(max-width: 680px) 88px, 120px" />
+                </span>
+                <span className={styles.projectCopy}>
+                  <small>{project.role}</small>
+                  <strong>{project.title}</strong>
+                  <span>{project.description}</span>
+                </span>
+                <span className={styles.projectArrow} aria-hidden="true">
+                  <ArrowUpRight />
+                </span>
+                <span className={styles.srOnly}>Opens in a new tab.</span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <footer className={styles.footer}>
+          <p>© {new Date().getFullYear()} Seb Montgomery</p>
+          <nav aria-label="Footer navigation">
+            <Link href="/blog">Blog</Link>
+            <Link href="/skill-files">Skill Files</Link>
+            <a href="mailto:support@sebmonty.link">Email</a>
+          </nav>
+        </footer>
+      </div>
+    </main>
   )
 }
