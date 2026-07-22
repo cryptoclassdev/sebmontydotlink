@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 
 import { PostCard, SearchInput } from '@/components/blog'
-import { METEORA_CATEGORY, METEORA_POST_CARD } from '@/lib/blog/meteora-metadata'
+import { mergeBlogCategories } from '@/lib/blog/categories'
+import { METEORA_POST_CARD } from '@/lib/blog/meteora-metadata'
 import { client } from '@/sanity/client'
 import { categoriesQuery, searchPostsQuery } from '@/sanity/queries'
 import type { Category, Post } from '@/sanity/types'
@@ -18,13 +19,9 @@ export default function SearchPage() {
   const [hasSearched, setHasSearched] = useState(false)
 
   useEffect(() => {
-    client.fetch<Category[]>(categoriesQuery).then((items) => {
-      const merged = [...items]
-      const solana = merged.find((category) => category.slug === METEORA_CATEGORY.slug)
-      if (solana) solana.postCount = (solana.postCount || 0) + 1
-      else merged.push(METEORA_CATEGORY)
-      setCategories(merged)
-    }).catch(() => setCategories([METEORA_CATEGORY]))
+    client.fetch<Category[]>(categoriesQuery)
+      .then((items) => setCategories(mergeBlogCategories(items, [METEORA_POST_CARD])))
+      .catch(() => setCategories(mergeBlogCategories([], [METEORA_POST_CARD])))
   }, [])
 
   const handleSearch = useCallback(async (searchQuery: string) => {
@@ -53,8 +50,8 @@ export default function SearchPage() {
   return (
     <div className="site-shell publication-search-page">
       <header>
-        <Link className="publication-back-link" href="/blog"><ArrowLeft aria-hidden="true" /> Back to writing</Link>
-        <span className="site-eyebrow">Publication archive</span>
+        <Link className="publication-back-link" href="/blog"><ArrowLeft aria-hidden="true" /> Back to the blog</Link>
+        <span className="site-eyebrow">Blog archive</span>
         <h1>Find the useful part.</h1>
         <p>Search published titles and article text.</p>
         <SearchInput onSearch={handleSearch} />
@@ -71,7 +68,7 @@ export default function SearchPage() {
       {!hasSearched && categories.length > 0 && (
         <section className="publication-browse" aria-labelledby="browse-categories-title">
           <h2 id="browse-categories-title">Browse by category</h2>
-          <div>{categories.map((category) => <Link key={category._id} href={`/blog/category/${category.slug}`}><strong>{category.title}</strong><span>{category.postCount || 0} posts</span></Link>)}</div>
+          <div>{categories.map((category) => <Link key={category._id} href={`/blog?category=${category.slug}`}><strong>{category.title}</strong><span>{category.postCount || 0} posts</span></Link>)}</div>
         </section>
       )}
     </div>

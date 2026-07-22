@@ -16,8 +16,7 @@ export function SiteFooter() {
           <p>Research, products, and practical notes from crypto markets.</p>
         </div>
         <nav aria-label="Footer navigation">
-          <Link href="/blog">Writing</Link>
-          <Link href="/#work">Work</Link>
+          <Link href="/blog">Blog</Link>
           {socialLinks.map((link) => (
             <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
           ))}

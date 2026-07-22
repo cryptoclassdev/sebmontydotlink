@@ -11,7 +11,7 @@ function formatDate(dateString?: string) {
   return new Date(dateString).toLocaleDateString('en-GB', { month: 'short', day: 'numeric', year: 'numeric' })
 }
 
-export function FeaturedPost({ post }: { post: Post }) {
+export function FeaturedPost({ post, headingId = 'featured-post-title' }: { post: Post; headingId?: string }) {
   const editorialOverride = getArticleEditorialOverride(post.slug)
   const imageUrl = post.localMainImage?.src || (post.mainImage
     ? urlFor(post.mainImage).width(1400).height(900).fit('crop').auto('format').url()
@@ -27,14 +27,14 @@ export function FeaturedPost({ post }: { post: Post }) {
         )}
         <div className="publication-feature__copy">
           <span className="publication-kicker">{post.category?.title || 'Research'}</span>
-          <h2 id="featured-post-title">{post.title}</h2>
+          <h2 id={headingId}>{post.title}</h2>
           <p>{post.subtitle || post.excerpt}</p>
           <div className="publication-meta">
             <span>{formatDate(editorialOverride?.publishedAt || post.publishedAt || post._updatedAt)}</span>
             <span aria-hidden="true">·</span>
             <span>{post.readTime || 5} min read</span>
           </div>
-          <span className="publication-read-link">Read the feature <ArrowUpRight aria-hidden="true" /></span>
+          <span className="publication-read-link">Read the story <ArrowUpRight aria-hidden="true" /></span>
         </div>
       </Link>
     </article>

@@ -17,8 +17,8 @@ const postFields = `
   "author": author->{name, image, xHandle, bio, "slug": slug.current}
 `
 
-// All posts (ordered by date)
-export const postsQuery = `*[_type == "post"] | order(publishedAt desc) { ${postFields} }`
+// All posts (ordered by their best available publication date)
+export const postsQuery = `*[_type == "post"] | order(coalesce(publishedAt, _updatedAt) desc) { ${postFields} }`
 
 // Single post by slug (with full body)
 export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
@@ -26,11 +26,8 @@ export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
   body
 }`
 
-// Featured post (or most recent if none featured)
-export const featuredPostQuery = `coalesce(
-  *[_type == "post" && isFeatured == true] | order(publishedAt desc)[0] { ${postFields} },
-  *[_type == "post"] | order(publishedAt desc)[0] { ${postFields} }
-)`
+// Most recent Sanity post. Static posts are merged and sorted in lib/blog/catalog.ts.
+export const featuredPostQuery = `*[_type == "post"] | order(coalesce(publishedAt, _updatedAt) desc)[0] { ${postFields} }`
 
 // Recent posts (excluding featured)
 export const recentPostsQuery = `*[_type == "post" && isFeatured != true] | order(publishedAt desc)[0...10] { ${postFields} }`
@@ -39,7 +36,7 @@ export const recentPostsQuery = `*[_type == "post" && isFeatured != true] | orde
 export const popularPostsQuery = `*[_type == "post"] | order(likes desc)[0...5] { ${postFields} }`
 
 // Posts by category
-export const postsByCategoryQuery = `*[_type == "post" && category->slug.current == $slug] | order(publishedAt desc) { ${postFields} }`
+export const postsByCategoryQuery = `*[_type == "post" && category->slug.current == $slug] | order(coalesce(publishedAt, _updatedAt) desc) { ${postFields} }`
 
 // All categories with post count
 export const categoriesQuery = `*[_type == "category"] | order(order asc) {

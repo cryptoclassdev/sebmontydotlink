@@ -235,8 +235,7 @@
 .subscribeCard,
 .projectCard,
 .toolsSection,
-.skillHero,
-.emptyState {
+.skillHero {
   border: 1px solid var(--hub-line);
   border-radius: 1.5rem;
 }
@@ -557,8 +556,7 @@
 
 .sectionHeading h2,
 .toolsIntro h2,
-.skillHero h1,
-.emptyState h2 {
+.skillHero h1 {
   margin: 0.65rem 0 0;
   font-size: clamp(2.35rem, 5vw, 4.4rem);
   line-height: 1;
@@ -786,11 +784,44 @@
   outline-offset: 3px;
 }
 
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Skill Files page */
 .subpage .shell {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.wordmarkPortrait {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: hidden;
+  padding: 0.16rem;
+  border: 1px solid var(--hub-line);
+  border-radius: 0.52rem;
+  background: var(--hub-bone);
+  box-shadow: 0 0.25rem 0.7rem rgba(33, 29, 22, 0.1);
+  transform: rotate(-2deg);
+}
+
+.wordmarkPortrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .skillHero {
@@ -802,7 +833,7 @@
 }
 
 .skillHero::after {
-  content: "01";
+  content: attr(data-count);
   position: absolute;
   right: clamp(1rem, 5vw, 4rem);
   bottom: -0.22em;
@@ -831,88 +862,321 @@
   line-height: 1.6;
 }
 
-.emptyState {
+.repositoryBanner {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: clamp(2.5rem, 7vw, 7rem);
-  margin: 1rem 0 clamp(4rem, 8vw, 7rem);
-  padding: clamp(2rem, 5vw, 4rem);
-  background: var(--hub-bone);
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 1.6rem);
+  min-height: 9rem;
+  margin-top: 1rem;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  overflow: hidden;
+  border: 1px solid var(--hub-pitlane);
+  border-radius: 1.5rem;
+  color: var(--hub-bone);
+  background: var(--hub-pitlane);
+  box-shadow: 0 1.15rem 2.8rem rgba(48, 71, 90, 0.16);
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
 }
 
-.emptyState h2 {
-  max-width: 11ch;
-  font-size: clamp(2rem, 4vw, 3.35rem);
+.repositoryBanner::after {
+  content: "";
+  position: absolute;
+  right: -5rem;
+  bottom: -8rem;
+  width: 19rem;
+  height: 19rem;
+  border: 2.8rem solid rgba(168, 209, 235, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
-.emptyStateCopy > p {
-  max-width: 31rem;
-  margin: 1.1rem 0 1.65rem;
-  color: var(--hub-muted);
-  font-size: 1rem;
-  line-height: 1.65;
+.repositoryBanner:hover {
+  transform: translateY(-2px);
+  background: var(--hub-ink);
+  box-shadow: 0 1.45rem 3.4rem rgba(48, 71, 90, 0.22);
 }
 
-.emptyActions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
+.repositoryIcon {
+  position: relative;
+  z-index: 1;
+  width: 4rem;
+  height: 4rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 253, 248, 0.28);
+  border-radius: 1.15rem;
+  color: var(--hub-ink);
+  background: var(--hub-powder);
+  transform: rotate(-2deg);
 }
 
-.emptyActions a {
-  min-height: 3.25rem;
+.repositoryIcon svg {
+  width: 1.65rem;
+  height: 1.65rem;
+}
+
+.repositoryCopy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  display: grid;
+}
+
+.repositoryCopy .eyebrow {
+  color: var(--hub-powder);
+}
+
+.repositoryCopy strong {
+  margin-top: 0.4rem;
+  font-size: clamp(1.45rem, 3vw, 2.15rem);
+  line-height: 1.08;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.repositoryCopy > span:last-child {
+  max-width: 37rem;
+  margin-top: 0.45rem;
+  color: rgba(255, 253, 248, 0.7);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.repositoryAction {
+  position: relative;
+  z-index: 1;
+  min-height: 2.9rem;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 0.55rem;
-  padding: 0 1.15rem;
+  padding: 0 1rem;
+  border: 1px solid rgba(255, 253, 248, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.08);
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.repositoryAction svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  transition: transform 180ms ease;
+}
+
+.repositoryBanner:hover .repositoryAction svg {
+  transform: translate(0.16rem, -0.16rem);
+}
+
+.skillLibrary {
+  margin: clamp(4rem, 8vw, 7rem) 0 clamp(4rem, 8vw, 7rem);
+}
+
+.libraryHeading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.libraryHeading h2 {
+  margin: 0.6rem 0 0;
+  font-size: clamp(2.3rem, 5vw, 4.25rem);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.libraryHeading > span {
+  flex: 0 0 auto;
+  padding: 0.55rem 0.8rem;
   border: 1px solid var(--hub-line);
   border-radius: 999px;
-  font-size: 0.8rem;
+  color: var(--hub-muted);
+  background: var(--hub-bone);
+  font-size: 0.72rem;
   font-weight: 600;
 }
 
-.emptyActions a:first-child {
-  background: var(--hub-powder);
+.skillList {
+  display: grid;
+  gap: 0.85rem;
 }
 
-.emptyActions svg {
-  width: 1rem;
-  height: 1rem;
+.skillCard {
+  min-width: 0;
 }
 
-.plannedShelves {
-  align-self: start;
-}
-
-.plannedShelves > p {
-  margin-bottom: 1rem;
-}
-
-.plannedShelves ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--hub-line);
-}
-
-.plannedShelves li {
-  min-height: 4.5rem;
-  display: flex;
+.skillCard > a {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  border-bottom: 1px solid var(--hub-line);
-  font-size: 0.92rem;
-  font-weight: 600;
+  gap: clamp(1rem, 3vw, 2rem);
+  min-height: 13rem;
+  overflow: hidden;
+  padding: clamp(1.35rem, 3vw, 2.15rem);
+  border: 1px solid var(--hub-line);
+  border-radius: 1.5rem;
+  background: var(--hub-bone);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
-.plannedShelves span {
+.skillCard > a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 0.35rem;
+  background: linear-gradient(90deg, var(--hub-powder) 0 58%, var(--hub-sebring) 58% 78%, var(--hub-pitlane) 78% 100%);
+}
+
+.skillCard > a:hover {
+  transform: translateY(-3px);
+  border-color: var(--hub-line-strong);
+  box-shadow: 0 1.2rem 3rem rgba(49, 42, 31, 0.1);
+}
+
+.skillLogo {
+  width: 5rem;
+  height: 5rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--hub-line);
+  border-radius: 1.35rem;
+  background: var(--hub-paper);
+  box-shadow: 0 0.65rem 1.5rem rgba(33, 29, 22, 0.08);
+}
+
+.skillLogo img {
+  width: 3.35rem;
+  height: 3.35rem;
+  object-fit: contain;
+}
+
+.skillCardCopy {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+}
+
+.skillFileLabel {
+  width: fit-content;
+  margin-bottom: 0.65rem;
+  padding: 0.32rem 0.48rem;
+  border-radius: 0.42rem;
+  color: var(--hub-pitlane);
+  background: var(--hub-powder-soft);
+  font-size: 0.62rem;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.skillCategory {
   color: var(--hub-muted);
   font-size: 0.69rem;
+  line-height: 1rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.skillCardCopy > strong {
+  margin-top: 0.35rem;
+  font-size: clamp(1.55rem, 3vw, 2.15rem);
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.skillDescription {
+  max-width: 41rem;
+  margin-top: 0.7rem;
+  color: var(--hub-muted);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.skillDates {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(8.2rem, 1fr));
+  gap: 0.6rem;
+}
+
+.skillDates > span {
+  min-height: 4rem;
+  display: grid;
+  align-content: center;
+  gap: 0.32rem;
+  padding: 0.75rem 0.85rem;
+  border-left: 2px solid var(--hub-powder);
+  background: var(--hub-paper);
+}
+
+.skillDates small {
+  color: var(--hub-muted);
+  font-size: 0.6rem;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.skillDates time {
+  font-size: 0.76rem;
+  line-height: 1.25;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.skillCardAction {
+  width: 2.85rem;
+  height: 2.85rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--hub-line);
+  border-radius: 999px;
+  background: var(--hub-powder-soft);
+}
+
+.skillCardAction svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  transition: transform 180ms ease;
+}
+
+.skillCard > a:hover .skillCardAction svg {
+  transform: translate(0.16rem, -0.16rem);
+}
+
+.backLink {
+  min-height: 2.85rem;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0 0.85rem;
+  border-radius: 999px;
+  color: var(--hub-muted);
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.backLink:hover {
+  color: var(--hub-ink);
+  background: var(--hub-bone);
+}
+
+.backLink svg {
+  width: 0.9rem;
+  height: 0.9rem;
 }
 
 @keyframes polaroid-in {
@@ -1013,13 +1277,45 @@
     padding: 1.25rem 2rem 1.25rem 1.4rem;
   }
 
-  .toolsSection,
-  .emptyState {
+  .toolsSection {
     grid-template-columns: 1fr;
   }
 
   .toolsIntro h2 {
     max-width: none;
+  }
+
+  .repositoryBanner {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .repositoryAction {
+    width: fit-content;
+    grid-column: 2;
+  }
+
+  .skillCard > a {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .skillLogo {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+
+  .skillCardCopy {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .skillDates {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .skillCardAction {
+    grid-column: 3;
+    grid-row: 1 / 3;
   }
 }
 
@@ -1161,7 +1457,8 @@
 
   .toolsSection,
   .skillHero,
-  .emptyState {
+  .repositoryBanner,
+  .skillCard > a {
     border-radius: 1.35rem;
   }
 
@@ -1187,8 +1484,76 @@
     right: 1rem;
   }
 
-  .emptyState {
-    padding: 2rem 1.3rem;
+  .repositoryBanner {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: 1.3rem;
+  }
+
+  .repositoryIcon {
+    width: 3.35rem;
+    height: 3.35rem;
+    border-radius: 1rem;
+  }
+
+  .repositoryCopy strong {
+    font-size: 1.45rem;
+  }
+
+  .repositoryCopy > span:last-child {
+    font-size: 0.78rem;
+  }
+
+  .repositoryAction {
+    width: 100%;
+    justify-content: center;
+    grid-column: 1 / -1;
+  }
+
+  .libraryHeading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .skillCard > a {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1rem;
+    min-height: 0;
+    padding: 1.4rem;
+  }
+
+  .skillLogo {
+    width: 4rem;
+    height: 4rem;
+    grid-column: 1;
+    grid-row: 1;
+    border-radius: 1.05rem;
+  }
+
+  .skillLogo img {
+    width: 2.7rem;
+    height: 2.7rem;
+  }
+
+  .skillCardCopy {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .skillDescription {
+    font-size: 0.8rem;
+  }
+
+  .skillDates {
+    grid-template-columns: 1fr;
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .skillCardAction {
+    grid-column: 2;
+    grid-row: 3;
+    justify-self: end;
   }
 }
 

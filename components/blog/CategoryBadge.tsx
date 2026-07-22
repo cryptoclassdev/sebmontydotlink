@@ -10,7 +10,7 @@ interface CategoryBadgeProps {
 export function CategoryBadge({ title, slug, className }: CategoryBadgeProps) {
   return (
     <Link
-      href={`/blog/category/${slug}`}
+      href={`/blog?category=${slug}`}
       className={cn(
         'publication-category-badge',
         className

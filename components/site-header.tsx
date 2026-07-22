@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Search } from "lucide-react"
 
 type SiteHeaderProps = {
-  current?: "home" | "writing"
+  current?: "home" | "blog"
 }
 
 export function SiteHeader({ current }: SiteHeaderProps) {
@@ -21,12 +21,11 @@ export function SiteHeader({ current }: SiteHeaderProps) {
 
         <nav className="site-nav" aria-label="Primary navigation">
           <Link className={current === "home" ? "is-active" : undefined} href="/" aria-current={current === "home" ? "page" : undefined}>Home</Link>
-          <Link className={current === "writing" ? "is-active" : undefined} href="/blog" aria-current={current === "writing" ? "page" : undefined}>Writing</Link>
-          <Link href="/#work">Work</Link>
+          <Link className={current === "blog" ? "is-active" : undefined} href="/blog" aria-current={current === "blog" ? "page" : undefined}>Blog</Link>
         </nav>
 
         <div className="site-header__actions">
-          <Link className="site-icon-button" href="/blog/search" aria-label="Search the publication">
+          <Link className="site-icon-button" href="/blog/search" aria-label="Search the blog">
             <Search aria-hidden="true" />
           </Link>
         </div>
