@@ -1,44 +1,33 @@
-'use client'
-
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import type { Category } from '@/sanity/types'
 
 interface CategoryNavProps {
   categories: Category[]
+  activeCategory?: string
 }
 
-export function CategoryNav({ categories }: CategoryNavProps) {
-  const pathname = usePathname()
-  const isAll = pathname === '/blog'
-
+export function CategoryNav({ categories, activeCategory }: CategoryNavProps) {
   return (
-    <nav className="publication-categories scrollbar-hide" aria-label="Browse writing categories">
+    <nav className="publication-categories scrollbar-hide" aria-label="Browse blog categories">
       <div>
         <Link
           href="/blog"
-          className={cn(
-            'publication-category-link',
-            isAll
-              ? 'is-active'
-              : undefined
-          )}
+          scroll={false}
+          className={cn('publication-category-link', !activeCategory ? 'is-active' : undefined)}
+          aria-current={!activeCategory ? 'page' : undefined}
         >
           All
         </Link>
         {categories.map((cat) => {
-          const isActive = pathname === `/blog/category/${cat.slug}`
+          const isActive = activeCategory === cat.slug
           return (
             <Link
               key={cat._id}
-              href={`/blog/category/${cat.slug}`}
-              className={cn(
-                'publication-category-link',
-                isActive
-                  ? 'is-active'
-                  : undefined
-              )}
+              href={`/blog?category=${cat.slug}`}
+              scroll={false}
+              className={cn('publication-category-link', isActive ? 'is-active' : undefined)}
+              aria-current={isActive ? 'page' : undefined}
             >
               {cat.title}
             </Link>

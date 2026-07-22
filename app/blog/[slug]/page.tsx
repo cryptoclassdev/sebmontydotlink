@@ -118,7 +118,7 @@ export default async function PostPage({ params }: Props) {
         {related.length > 0 && (
           <section className="article-related" aria-labelledby="related-posts-title">
             <div className="site-section-heading">
-              <div><span className="site-eyebrow">From the archive</span><h2 id="related-posts-title">More writing</h2></div>
+              <div><span className="site-eyebrow">From the archive</span><h2 id="related-posts-title">More from the blog</h2></div>
               <Link href="/blog">View all <span aria-hidden="true">→</span></Link>
             </div>
             <div className="publication-archive__grid">{related.map((item) => <PostCard key={item._id} post={item} variant="grid" />)}</div>

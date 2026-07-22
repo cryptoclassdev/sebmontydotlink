@@ -1,7 +1,7 @@
 import { BentoGrid } from "@/components/bento-grid"
-import { getArticleEditorialOverride } from "@/lib/blog/editorial-overrides"
+import { getPostPublishedAt, mergeBlogPosts } from "@/lib/blog/catalog"
 import { client, urlFor } from "@/sanity/client"
-import { featuredPostQuery } from "@/sanity/queries"
+import { postsQuery } from "@/sanity/queries"
 import type { Post } from "@/sanity/types"
 
 export const revalidate = 60
@@ -15,17 +15,17 @@ const fallbackPost = {
 }
 
 export default async function Home() {
-  const post = await client.fetch<Post | null>(featuredPostQuery).catch(() => null)
-  const editorialOverride = post ? getArticleEditorialOverride(post.slug) : null
+  const sanityPosts = await client.fetch<Post[]>(postsQuery).catch(() => [])
+  const post = mergeBlogPosts(sanityPosts)[0] || null
   const featuredPost = post
     ? {
         title: post.title,
         slug: post.slug,
         excerpt: post.excerpt || post.subtitle || fallbackPost.excerpt,
-        publishedAt: editorialOverride?.publishedAt || post.publishedAt || post._updatedAt || fallbackPost.publishedAt,
-        imageUrl: post.mainImage
+        publishedAt: getPostPublishedAt(post) || fallbackPost.publishedAt,
+        imageUrl: post.localMainImage?.src || (post.mainImage
           ? urlFor(post.mainImage).width(1200).height(675).fit("crop").auto("format").url()
-          : fallbackPost.imageUrl,
+          : fallbackPost.imageUrl),
       }
     : fallbackPost
 

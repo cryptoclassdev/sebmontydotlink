@@ -300,10 +300,6 @@ export function BentoGrid({ latestPost }: BentoGridProps = {}) {
               <p className={styles.eyebrow}>Referral directory</p>
               <h2 id="referrals-title">Products I use and recommend.</h2>
             </div>
-            <p>
-              Choose what fits your needs. Every card is clearly labelled and opens a referral
-              link on the partner&apos;s website.
-            </p>
           </div>
 
           <div className={styles.featuredReferralGrid}>

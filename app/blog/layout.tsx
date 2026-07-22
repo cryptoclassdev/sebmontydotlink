@@ -4,7 +4,7 @@ import { SiteHeader } from '@/components/site-header'
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="publication-page">
-      <SiteHeader current="writing" />
+      <SiteHeader current="blog" />
       <main id="main-content">{children}</main>
       <SiteFooter />
     </div>
