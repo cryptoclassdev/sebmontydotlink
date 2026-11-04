@@ -46,8 +46,8 @@ Newest first. One entry per pull request.
 ### Homepage cleanup: remove Fogees Hub, show full project images
 
 - **Date:** 4 November 2026
-- **Branch:** `ui/homepage-cleanup`
-- **Status:** In review
+- **Pull request:** [#7](https://github.com/cryptoclassdev/sebmontydotlink/pull/7), branch `ui/homepage-cleanup`
+- **Status:** Draft, padding fixes still to be added
 
 **What changed**
 1. Removed the Fogees Hub (Co-founder) project from the homepage Projects section, and deleted its three unused images (`fogees-mockup.png`, `fogees-icon.png`, `fogees-logo.png`).
