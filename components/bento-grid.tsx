@@ -33,13 +33,6 @@ const projects = [
     href: "https://thecommunication.link",
     image: "/communication-mockup.png",
   },
-  {
-    title: "Fogees Hub",
-    role: "Co-founder",
-    description: "Your educational Fogo chain hub.",
-    href: "https://fogees.link",
-    image: "/fogees-mockup.png",
-  },
 ]
 
 const referralLinks = [
@@ -364,7 +357,7 @@ export function BentoGrid({ latestPost }: BentoGridProps = {}) {
                 className={styles.projectCard}
               >
                 <span className={styles.projectImage}>
-                  <Image src={project.image} alt="" fill sizes="(max-width: 680px) 88px, 120px" />
+                  <Image src={project.image} alt="" fill sizes="(max-width: 680px) 92vw, (max-width: 1240px) 46vw, 560px" />
                 </span>
                 <span className={styles.projectCopy}>
                   <small>{project.role}</small>
