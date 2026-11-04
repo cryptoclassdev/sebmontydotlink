@@ -1,0 +1,5 @@
+# Article authors. Every article's `author:` must use one of these slugs (default: seb-montgomery).
+- slug: seb-montgomery
+  name: Seb Montgomery
+  bio: Independent research on crypto markets, products, and the systems around them.
+  xHandle: SebMontgomery

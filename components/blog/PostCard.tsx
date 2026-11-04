@@ -22,11 +22,11 @@ export function PostCard({ post, variant = 'grid' }: PostCardProps) {
       <Link href={`/blog/${post.slug}`}>
         {imageUrl && (
           <div className="publication-card__image">
-            <Image src={imageUrl} alt={imageAlt} fill sizes={variant === 'list' ? '180px' : '(min-width: 900px) 30vw, calc(100vw - 40px)'} className="object-cover" />
+            <Image src={imageUrl} alt={imageAlt} fill sizes={variant === 'list' ? '180px' : '(min-width: 900px) 30vw, calc(100vw - 40px)'} className="object-cover" style={post.localMainImage?.position ? { objectPosition: post.localMainImage.position } : undefined} />
           </div>
         )}
         <div className="publication-card__copy">
-          <span className="publication-kicker">{post.category?.title || 'Research'}</span>
+          <span className="publication-kicker">{post.status === 'draft' ? 'Draft · ' : ''}{post.category?.title || 'Research'}</span>
           <h3>{post.title}</h3>
           {variant !== 'compact' && <p>{post.excerpt || post.subtitle}</p>}
           <div className="publication-meta">

@@ -37,7 +37,7 @@ function headingId(text: string) {
     .replace(/(^-|-$)/g, '')
 }
 
-export function ArticleBody({ prepared }: { prepared: PreparedArticleContent }) {
+export function ArticleBody({ prepared, disclosure }: { prepared: PreparedArticleContent; disclosure?: string }) {
   const components: PortableTextComponents = {
     types: {
       image: ({ value }) => {
@@ -112,6 +112,7 @@ export function ArticleBody({ prepared }: { prepared: PreparedArticleContent }) 
   return (
     <>
       <div className="article-prose"><PortableText value={prepared.body} components={components} /></div>
+      {disclosure && <p className="article-disclosure">{disclosure}</p>}
       {prepared.sources.length > 0 && (
         <details className="article-sources" id="sources">
           <summary>

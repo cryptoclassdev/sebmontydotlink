@@ -4,9 +4,19 @@ This file provides guidance to Claude Code (claude.ai/code) and Cursor IDE (http
 
 ## Project Overview
 
-Personal link-in-bio site for Seb Montgomery (crypto content creator). Bento-grid homepage of referral links and project cards, plus a Sanity-powered blog at `/blog` and Sanity Studio at `/studio`.
+Personal link-in-bio site for Seb Montgomery (crypto content creator). Bento-grid homepage of referral links and project cards, plus a blog at `/blog`.
 
 This repo is synced from v0.app — expect generated components in `components/ui/` and avoid hand-editing files in ways that conflict with the v0 flow unless the user intends to stop using v0.
+
+## Shipping rule
+
+Every change ships as a pull request against `main`; never push to `main` and never merge. Each PR adds an entry to the **Change log** in `README.md` (what changed and why, files touched, how to check it on the Vercel preview, risks, roll back), and the PR description carries the same details.
+
+## Articles (Markdown publisher)
+
+New articles are Markdown files: `content/articles/<slug>.md`, images in `public/articles/<slug>/`. Read `docs/publishing.md` before writing or converting one, and run `pnpm articles:check`. The compiler is `lib/publishing/compile.mjs` (runs from `next.config.mjs` on every dev/build and fails the build on any invalid article); the app reads articles only through `lib/publishing/index.ts`. Each article is also served as Markdown at `/blog/<slug>.md` and listed in `/llms.txt`.
+
+The RoboStrategy post (`robostrategy-bot-solana`) still comes from Sanity (with text overrides in `lib/blog/editorial-overrides.ts`) until it is migrated; Sanity Studio is still at `/studio`.
 
 ## Stack
 

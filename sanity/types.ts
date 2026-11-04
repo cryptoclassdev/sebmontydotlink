@@ -37,6 +37,10 @@ export interface Post {
   body?: PortableTextBlock[]
   localMainImage?: LocalArticleImage
   hideEyebrowRules?: boolean
+  /** Markdown articles only: a closing note shown under the article, above Sources. */
+  disclosure?: string
+  /** Markdown articles only: drafts appear on local and preview builds, never in production. */
+  status?: 'published' | 'draft'
 }
 
 export interface LocalArticleImage {
@@ -45,6 +49,8 @@ export interface LocalArticleImage {
   height: number
   alt: string
   caption?: string
+  /** CSS object-position for cards that crop the cover, e.g. "left". */
+  position?: string
 }
 
 export interface Comment {

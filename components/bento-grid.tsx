@@ -12,6 +12,7 @@ interface LatestPost {
   excerpt?: string
   publishedAt?: string
   imageUrl?: string | null
+  imagePosition?: string
 }
 
 interface BentoGridProps {
@@ -287,6 +288,7 @@ export function BentoGrid({ latestPost }: BentoGridProps = {}) {
                     alt=""
                     fill
                     sizes="(max-width: 680px) 34vw, 190px"
+                    style={latestPost.imagePosition ? { objectPosition: latestPost.imagePosition } : undefined}
                   />
                 </span>
               )}

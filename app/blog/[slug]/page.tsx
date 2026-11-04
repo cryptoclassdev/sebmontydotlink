@@ -8,7 +8,7 @@ import { ArticleActions } from '@/components/blog/ArticleActions'
 import { ArticleGalleryProvider, ArticleImageTrigger } from '@/components/blog/ArticleLightbox'
 import { prepareArticleContent, sanityImageToGalleryImage } from '@/lib/blog/article-content'
 import { applyArticleEditorialOverride, getArticleEditorialOverride } from '@/lib/blog/editorial-overrides'
-import { getStaticBlogPost, STATIC_BLOG_POSTS } from '@/lib/blog/meteora-post'
+import { FILE_ARTICLES, getFileArticle } from '@/lib/publishing'
 import { client, urlFor } from '@/sanity/client'
 import { popularPostsQuery, postBySlugQuery, postSlugsQuery } from '@/sanity/queries'
 import type { Post } from '@/sanity/types'
@@ -19,11 +19,11 @@ export const revalidate = 60
 
 export async function generateStaticParams() {
   const slugs = await client.fetch<string[]>(postSlugsQuery).catch(() => [])
-  return [...new Set([...slugs, ...STATIC_BLOG_POSTS.map((post) => post.slug)])].map((slug) => ({ slug }))
+  return [...new Set([...slugs, ...FILE_ARTICLES.map((post) => post.slug)])].map((slug) => ({ slug }))
 }
 
 async function getPost(slug: string) {
-  return getStaticBlogPost(slug) || client.fetch<Post | null>(postBySlugQuery, { slug }).catch(() => null)
+  return getFileArticle(slug) || client.fetch<Post | null>(postBySlugQuery, { slug }).catch(() => null)
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -35,7 +35,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: post.title,
     description,
-    alternates: { canonical: `/blog/${post.slug}` },
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+      ...(getFileArticle(post.slug) ? { types: { 'text/markdown': `/blog/${post.slug}.md` } } : {}),
+    },
+    robots: post.status === 'draft' ? { index: false, follow: false } : undefined,
     openGraph: {
       type: 'article',
       title: post.title,
@@ -71,7 +75,7 @@ export default async function PostPage({ params }: Props) {
   const gallery = heroImage ? [heroImage, ...prepared.gallery] : prepared.gallery
   const date = editorialOverride?.publishedAt || post.publishedAt || post._updatedAt
   const authorImageUrl = post.author?.image ? urlFor(post.author.image).width(96).height(96).fit('crop').url() : '/images/seb-pfp.png'
-  const related = [...STATIC_BLOG_POSTS, ...relatedPosts]
+  const related = [...FILE_ARTICLES, ...relatedPosts]
     .filter((item, index, items) => item._id !== post._id && items.findIndex((candidate) => candidate._id === item._id) === index)
     .slice(0, 3)
 
@@ -79,7 +83,7 @@ export default async function PostPage({ params }: Props) {
     <ArticleGalleryProvider images={gallery}>
       <article className={`article-page${post.hideEyebrowRules ? ' article-page--no-eyebrow-rules' : ''}`}>
         <header className="article-header">
-          <span className="site-eyebrow">{post.category?.title || 'Research'}</span>
+          <span className="site-eyebrow">{post.status === 'draft' ? 'Draft (not live) · ' : ''}{post.category?.title || 'Research'}</span>
           <h1>{post.title}</h1>
           {post.subtitle && <p className="article-deck">{post.subtitle}</p>}
           <div className="article-byline">
@@ -101,7 +105,7 @@ export default async function PostPage({ params }: Props) {
         )}
 
         <div className="article-layout">
-          <ArticleBody prepared={prepared} />
+          <ArticleBody prepared={prepared} disclosure={post.disclosure} />
         </div>
 
         <section className="article-end" aria-labelledby="article-end-title">
