@@ -55,7 +55,7 @@ Newest first. One entry per pull request.
 ### Markdown article publisher: Meteora guide migrated, Papertrade article added as a draft
 
 - **Date:** 5 November 2026
-- **Pull request:** branch `publisher/markdown-articles`
+- **Pull request:** [#8](https://github.com/cryptoclassdev/sebmontydotlink/pull/8), branch `publisher/markdown-articles`
 - **Status:** Draft
 
 **What changed**
