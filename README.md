@@ -53,11 +53,38 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### New avatar on the X card and in the site header
+
+- **Date:** 5 November 2026
+- **Pull request:** branch `ui/new-x-avatar`.
+- **Status:** Waiting for Seb's approval of the before and after screenshots.
+
+#### What changed
+1. The cartoon avatar next to @SebMontgomery in the homepage "Find me online" card is replaced with the new illustration Seb supplied (the same desk scene, with the new figure on the shelf).
+2. The site header logo uses the same file, so it changes too and stays matched with the X card.
+3. The supplied image is 1920 × 1920 and shows the whole desk. It is cropped to head and shoulders, the same framing as the old avatar, because the avatar shows at 40 to 64 pixels and the face would be too small in the full scene. It is saved at 400 × 400, the same size as the old file (216 KB, was 282 KB).
+
+#### Files touched
+- `public/images/brand/seb-avatar.png` (replaced; same name and size, so no code changes)
+- `README.md` (this entry; the #8 entry's status is updated to merged)
+
+#### How to check it on the Vercel preview
+1. Open the preview homepage. The "Find me online" card shows the new avatar next to @SebMontgomery.
+2. The small logo at the top left of every page (homepage, blog, an article, Skill Files) shows the same new avatar.
+3. Check at phone width as well: the avatar is sharp and the face fills the frame.
+
+#### Risks
+- Very low. One image file is swapped under the same name and size, with no code changes.
+- Browsers and Vercel's image cache may show the old avatar for a short time after the merge, until their cached copies expire.
+
+#### Roll back
+Revert this PR, or restore `public/images/brand/seb-avatar.png` from `main` before the merge.
+
 ### New article publisher, two new articles, homepage cleanup and a visual consistency pass
 
 - **Date:** 5 November 2026
 - **Pull request:** [#8](https://github.com/cryptoclassdev/sebmontydotlink/pull/8), branch `publisher/markdown-articles`. It also contains the homepage cleanup first opened as [#7](https://github.com/cryptoclassdev/sebmontydotlink/pull/7), which is closed in favour of this PR.
-- **Status:** Ready for review. The visual changes were approved by Seb from before and after screenshots on 5 November 2026, and Seb approved releasing both new articles with this PR.
+- **Status:** Merged on 5 November 2026 and checked on the live site the same day: every page loads with no broken images or errors at phone, tablet and desktop widths, and the article text matches the approved version. The visual changes were approved by Seb from before and after screenshots, and Seb approved releasing both new articles with this PR.
 
 #### What changed
 
