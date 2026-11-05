@@ -8,7 +8,6 @@ cover:
   src: banner.jpg
   alt: "Papertrade banner reading: $71.0M lost. PAPER still locked."
   position: left
-status: draft
 disclosure: "I've traded on Papertrade. I also co-founded validator.com, which runs a Solana validator and earns a commission when people delegate to it. This is information, not investment advice."
 ---
 

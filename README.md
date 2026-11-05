@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 
 - **Date:** 5 November 2026
 - **Pull request:** [#8](https://github.com/cryptoclassdev/sebmontydotlink/pull/8), branch `publisher/markdown-articles`. It also contains the homepage cleanup first opened as [#7](https://github.com/cryptoclassdev/sebmontydotlink/pull/7), which is closed in favour of this PR.
-- **Status:** Ready for review. The visual changes were approved by Seb from before and after screenshots on 5 November 2026.
+- **Status:** Ready for review. The visual changes were approved by Seb from before and after screenshots on 5 November 2026, and Seb approved releasing both new articles with this PR.
 
 #### What changed
 
@@ -68,14 +68,14 @@ Newest first. One entry per pull request.
 4. Agent-readable copies: every Markdown article is also served as plain Markdown at `/blog/<slug>.md`, listed in a new `/llms.txt` index, and linked from its page with a `rel="alternate" type="text/markdown"` tag.
 5. An article's `disclosure` field shows in italics after the article, above Sources. Read time counts the article, not the Sources list.
 6. Covers wider than 16:9 show uncropped at the top of the article; narrower covers keep the existing 16:9 crop. An optional `cover.position` field picks which part of the cover stays visible on cards (used by both new banners).
-7. Drafts (`status: draft`) show on local and preview builds with a "Draft" label and are never built into the live site.
+7. Drafts (`status: draft`) show on local and preview builds with a "Draft" label and are never built into the live site. Neither new article is a draft.
 8. The search page is split into a server page and a client component, so article data stays on the server. It searches Markdown and Sanity posts, and now still shows matching Markdown articles if Sanity can't be reached (before, a Sanity error emptied the whole result list).
 9. `AGENTS.md` points coding agents to the publishing guide and states the pull-request rule.
 
 **B. Articles**
 1. **The Meteora guide moved to Markdown** (`content/articles/complete-meteora-dlmm-liquidity-course.md`). Its page is unchanged: checked against the live page, it has the same title, description, all 203 lines of body text, all 10 images with their alt text and captions, and all 16 links. The only difference is the byline fix in C5. The old JSON file, its converter and its hand-typed metadata file are deleted (they remain in git history).
 2. **"How Binance Absorbed the Biggest Hack in Crypto" is published** (`content/articles/binance-hack-6-3-billion.md`, Exchanges category, dated 5 November 2026). Converted from `binance-hack-6-3-billion-3.0.docx`: the author's pre-publish note at the top is removed and the highlighting is dropped; the body text is unchanged. It has the banner, 7 charts with their captions, 56 sources and the validator.com disclosure. It goes live when this PR merges.
-3. **"Papertrade Saga: The Hype, Lock & Exodus" is added as a draft** (`content/articles/papertrade-saga.md`, DeFi category). Converted from `papertrade-final-29Oct.docx`: the full body, the banner, 6 charts with their captions, 20 sources and the disclosure. It shows on the preview but stays off the live site until a follow-up PR publishes it.
+3. **"Papertrade Saga: The Hype, Lock & Exodus" is published** (`content/articles/papertrade-saga.md`, DeFi category, dated 5 November 2026). Converted from `papertrade-final-29Oct.docx`: the full body, the banner, 6 charts with their captions, 20 sources and the disclosure. Its figures are as of 27 to 29 October 2026, as written in the article. It goes live when this PR merges.
 
 **C. Homepage cleanup and visual consistency**
 1. Fogees Hub (Co-founder) is removed from the homepage Projects section, and its three images are deleted.
@@ -96,7 +96,7 @@ Added: `unified`, `remark-parse`, `remark-gfm` (read Markdown), `yaml` (read the
 
 #### Why
 - July's goal was to replace Sanity with an in-house publisher, but only the Meteora guide used a local file, through a converter hard-wired to that one article. Now any article is a file and a pull request, articles are readable by AI agents, and content can no longer be dropped silently.
-- The Binance and Papertrade articles are the next two posts.
+- The Binance and Papertrade articles are the next two posts, released together.
 - Fogees Hub was asked to be removed, the project images were cropping out the brand names and Seb's name, and the page width, header and footer differed between pages.
 
 #### Files touched
@@ -107,10 +107,10 @@ Added: `unified`, `remark-parse`, `remark-gfm` (read Markdown), `yaml` (read the
 #### How to check it on the preview
 Open the Vercel preview link on this PR (it needs a login to the `webdesign-sebmonty` Vercel team).
 1. **Homepage:** the new header and footer, Projects with two full mockups and no Fogees Hub, and "All posts" on the same row as "From the blog" on a phone.
-2. **`/blog`:** the Binance article first, Papertrade labelled "Draft · DeFi" (preview only), and the DeFi and Exchanges filters. On a phone, the category row fades at the right edge.
-3. **`/blog/binance-hack-6-3-billion`:** the full banner, 7 charts that open full screen, the disclosure line in italics, then the collapsed Sources box with 56 links.
+2. **`/blog`:** the Binance article first, then Papertrade and the Meteora guide, and the DeFi and Exchanges filters. On a phone, the category row fades at the right edge.
+3. **`/blog/binance-hack-6-3-billion` and `/blog/papertrade-saga`:** the full banner, the charts (7 and 6) that open full screen, the disclosure line in italics, then the collapsed Sources box (56 and 20 links).
 4. **`/blog/complete-meteora-dlmm-liquidity-course`:** side by side with the live page, it should match (apart from the tidier byline on phones).
-5. **`/blog/complete-meteora-dlmm-liquidity-course.md`, `/blog/binance-hack-6-3-billion.md` and `/llms.txt`:** plain text for AI agents.
+5. **`/blog/binance-hack-6-3-billion.md`, `/blog/papertrade-saga.md`, `/blog/complete-meteora-dlmm-liquidity-course.md` and `/llms.txt`:** plain text for AI agents.
 6. **`/skill-files` on a phone:** the stacked skill card and the aligned "Back to the hub".
 7. **Any page:** the header and footer are the same everywhere, and the logo stays in the same place when you move between pages.
 8. **Search** on `/blog/search` for "binance", "papertrade" and "meteora": each finds its article.
@@ -120,19 +120,16 @@ Open the Vercel preview link on this PR (it needs a login to the `webdesign-sebm
 - Meteora guide: identical to the live page in title, description, body text, images, captions and links; the byline differs only by the removed stray "·".
 - Binance and Papertrade: every word of each .docx body appears on the page, with all chart captions and all source links. The Binance author's note does not appear.
 - A deliberately broken test article failed the check with every problem listed by line.
-- A production-mode build (`VERCEL_ENV=production`) leaves the Papertrade draft out.
+- Draft handling was tested while Papertrade was still a draft: a production-mode build (`VERCEL_ENV=production`) left it out. With both articles published, a production-mode build includes all three articles.
 - Screenshots of 7 pages at 375px, 768px and 1440px: no sideways scrolling anywhere, and every page uses the same page edges.
 - Before and after screenshots of every visual change were reviewed and approved by Seb on 5 November 2026.
 
 #### Risks
 - **Medium.** The blog now reads articles through a new code path, and the header and footer change on every page. The checks above cover both.
 - A broken article now stops the build, and so stops the deploy. That is intended, and the error lists the fix.
-- The Binance article is dated 5 November 2026. If this merges on a later day, update `date:` in its file first.
+- Both new articles are dated 5 November 2026. If this merges on a later day, update `date:` in both files first.
 - Security PR #6 also changes `pnpm-lock.yaml`. Whichever of the two merges second will show a conflict in that file, and the branch needs updating before it can merge.
 - Drafts are hidden on the live site through Vercel's `VERCEL_ENV=production`, which Vercel sets automatically on production builds.
-
-#### Before Papertrade goes live
-Its numbers date from 27 to 29 October. Refresh them, set `status: published` and the publication `date`, and open a small follow-up PR.
 
 #### Roll back
 Revert this PR's merge commit on GitHub (the "Revert" button on the merged PR), then merge the revert PR. That restores the previous homepage, header, footer, Meteora files and search page, and removes the two new articles.
