@@ -56,8 +56,8 @@ Newest first. One entry per pull request.
 ### New avatar on the X card and in the site header
 
 - **Date:** 5 November 2026
-- **Pull request:** branch `ui/new-x-avatar`.
-- **Status:** Waiting for Seb's approval of the before and after screenshots.
+- **Pull request:** [#9](https://github.com/cryptoclassdev/sebmontydotlink/pull/9), branch `ui/new-x-avatar`.
+- **Status:** Ready for review. Seb approved the before and after screenshots on 5 November 2026.
 
 #### What changed
 1. The cartoon avatar next to @SebMontgomery in the homepage "Find me online" card is replaced with the new illustration Seb supplied (the same desk scene, with the new figure on the shelf).
@@ -72,6 +72,10 @@ Newest first. One entry per pull request.
 1. Open the preview homepage. The "Find me online" card shows the new avatar next to @SebMontgomery.
 2. The small logo at the top left of every page (homepage, blog, an article, Skill Files) shows the same new avatar.
 3. Check at phone width as well: the avatar is sharp and the face fills the frame.
+
+#### Checks run
+- `pnpm build` passes.
+- Before and after screenshots of the X card (desktop and phone) and the header logo, compared against the live site; the new avatar loads in both places with no layout change.
 
 #### Risks
 - Very low. One image file is swapped under the same name and size, with no code changes.
