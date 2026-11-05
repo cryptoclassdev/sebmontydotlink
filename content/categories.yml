@@ -9,3 +9,6 @@
 - slug: defi
   title: DeFi
   description: Protocols, liquidity, risk, and the mechanics behind on-chain finance.
+- slug: exchanges
+  title: Exchanges
+  description: Centralised exchanges, custody, and what happens when they are tested.

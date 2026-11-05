@@ -52,7 +52,7 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
-### Markdown article publisher: Meteora guide migrated, Papertrade article added as a draft
+### Markdown article publisher: Meteora guide migrated, Binance article added, Papertrade added as a draft
 
 - **Date:** 5 November 2026
 - **Pull request:** [#8](https://github.com/cryptoclassdev/sebmontydotlink/pull/8), branch `publisher/markdown-articles`
@@ -62,13 +62,14 @@ Newest first. One entry per pull request.
 1. **New article publisher.** Articles are now Markdown files in `content/articles/`, with images in `public/articles/<slug>/`. A compiler (`lib/publishing/compile.mjs`) checks every article each time the site builds: required fields, a known category and author, every image present with alt text, safe links, and no unsupported formatting. Any problem stops the build with the file, line and fix. The old converter silently dropped anything it did not recognise.
 2. **The Meteora guide moved to Markdown** (`content/articles/complete-meteora-dlmm-liquidity-course.md`). Its page is unchanged: checked against the live page, it has the same title, description, header, all 203 lines of body text, all 10 images with their alt text and captions, and all 16 links. The one-off JSON file, its converter and its hand-typed metadata file are deleted (they remain in git history).
 3. **Categories and authors are plain lists** in `content/categories.yml` and `content/authors.yml`. A new DeFi category is added; Stocks and Solana are unchanged.
-4. **"Papertrade Saga: The Hype, Lock & Exodus" is added as a draft** (`status: draft`). Drafts show on preview links with a "Draft" label and do not appear on the live site after this PR merges. It was converted from `papertrade-final-29Oct.docx`: every word of the body, the banner, 6 charts with their captions, 20 sources and the disclosure.
-5. **Agent-readable copies.** Every Markdown article is also served as plain Markdown at `/blog/<slug>.md`, listed in a new `/llms.txt` index, and linked from its page with a `rel="alternate" type="text/markdown"` tag.
-6. **Disclosure line.** An article's `disclosure` field shows in italics after the article, above Sources.
-7. **Wide covers.** Covers wider than 16:9 (like the Papertrade banner) now show uncropped at the top of the article; narrower covers keep the existing 16:9 crop. An optional `cover.position` field picks which part of the cover stays visible on cards.
-8. **Search page.** Split into a server page and a client component so article data is loaded on the server, not shipped to the browser. Search still covers both Markdown and Sanity posts, and now still shows matching Markdown articles if Sanity can't be reached (before, a Sanity error emptied the whole result list).
-9. **Docs.** `docs/publishing.md` explains how to write, check and publish an article. `AGENTS.md` now points coding agents to it and states the PR rule. New command: `pnpm articles:check`.
-10. **New packages:** `unified`, `remark-parse`, `remark-gfm` (read Markdown), `yaml` (read the article header), `image-size` (read image dimensions), `mdast-util-to-string`, and `@types/mdast` (development only).
+4. **"How Binance Absorbed the Biggest Hack in Crypto" is added and set to publish** (`content/articles/binance-hack-6-3-billion.md`, new Exchanges category). Converted from `binance-hack-6-3-billion-3.0.docx`: the author's pre-publish note at the top is removed and the highlighting is dropped; every word of the body is kept as written, with the banner, 7 charts with their captions, 56 sources and the validator.com disclosure. It goes live when this PR merges, dated 5 November 2026.
+5. **"Papertrade Saga: The Hype, Lock & Exodus" is added as a draft** (`status: draft`). Drafts show on preview links with a "Draft" label and do not appear on the live site after this PR merges. It was converted from `papertrade-final-29Oct.docx`: every word of the body, the banner, 6 charts with their captions, 20 sources and the disclosure.
+6. **Agent-readable copies.** Every Markdown article is also served as plain Markdown at `/blog/<slug>.md`, listed in a new `/llms.txt` index, and linked from its page with a `rel="alternate" type="text/markdown"` tag.
+7. **Disclosure line.** An article's `disclosure` field shows in italics after the article, above Sources.
+8. **Wide covers.** Covers wider than 16:9 (like the Papertrade banner) now show uncropped at the top of the article; narrower covers keep the existing 16:9 crop. An optional `cover.position` field picks which part of the cover stays visible on cards.
+9. **Search page.** Split into a server page and a client component so article data is loaded on the server, not shipped to the browser. Search still covers both Markdown and Sanity posts, and now still shows matching Markdown articles if Sanity can't be reached (before, a Sanity error emptied the whole result list).
+10. **Docs.** `docs/publishing.md` explains how to write, check and publish an article. `AGENTS.md` now points coding agents to it and states the PR rule. New command: `pnpm articles:check`.
+11. **New packages:** `unified`, `remark-parse`, `remark-gfm` (read Markdown), `yaml` (read the article header), `image-size` (read image dimensions), `mdast-util-to-string`, and `@types/mdast` (development only).
 
 **Not changed in this PR:** the RoboStrategy post still comes from Sanity, and Sanity Studio stays at `/studio`. Moving that post and removing Sanity is the next PR. The homepage is unchanged apart from honouring `cover.position` on its latest-post card.
 
