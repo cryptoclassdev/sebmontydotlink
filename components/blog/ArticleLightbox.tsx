@@ -125,7 +125,9 @@ export function ArticleImageTrigger({ image, index, hero = false, priority = fal
   return (
     <button
       type="button"
-      className={hero ? 'article-image-trigger article-image-trigger--hero' : 'article-image-trigger'}
+      className={hero
+        ? `article-image-trigger article-image-trigger--hero${image.width / image.height > 1.8 ? ' article-image-trigger--wide' : ''}`
+        : 'article-image-trigger'}
       aria-haspopup="dialog"
       aria-label={`Enlarge ${image.caption || image.alt}`}
       onClick={(event) => gallery?.open(index, event.currentTarget)}

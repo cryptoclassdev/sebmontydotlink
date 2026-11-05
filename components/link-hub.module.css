@@ -20,7 +20,8 @@
 }
 
 .shell {
-  width: min(100% - 3.5rem, 74rem);
+  /* Site-wide page width: 1180px max, 32px side margins, 16px on phones (see app/globals.css .site-shell) */
+  width: min(calc(100% - 64px), 1180px);
   margin: 0 auto;
 }
 
@@ -1162,6 +1163,7 @@
   align-items: center;
   gap: 0.5rem;
   margin-top: 1.5rem;
+  margin-left: -0.85rem;
   padding: 0 0.85rem;
   border-radius: 999px;
   color: var(--hub-muted);
@@ -1209,9 +1211,6 @@
 }
 
 @media (max-width: 820px) {
-  .shell {
-    width: min(100% - 2rem, 44rem);
-  }
 
   .header {
     min-height: 5.5rem;
@@ -1320,9 +1319,6 @@
 }
 
 @media (max-width: 620px) {
-  .shell {
-    width: min(100% - 1.5rem, 35rem);
-  }
 
   .header {
     align-items: flex-start;
@@ -1516,7 +1512,8 @@
   }
 
   .skillCard > a {
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
     gap: 1rem;
     min-height: 0;
     padding: 1.4rem;
@@ -1536,8 +1533,8 @@
   }
 
   .skillCardCopy {
-    grid-column: 2;
-    grid-row: 1;
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 
   .skillDescription {
@@ -1545,14 +1542,14 @@
   }
 
   .skillDates {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-column: 1 / -1;
-    grid-row: 2;
+    grid-row: 3;
   }
 
   .skillCardAction {
     grid-column: 2;
-    grid-row: 3;
+    grid-row: 1;
     justify-self: end;
   }
 }
@@ -1569,5 +1566,11 @@
 
   .markerThread {
     display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .shell {
+    width: calc(100% - 32px);
   }
 }

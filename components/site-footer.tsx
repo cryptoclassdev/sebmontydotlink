@@ -1,12 +1,13 @@
 import Link from "next/link"
 
-const socialLinks = [
+const externalLinks = [
   { label: "X", href: "https://x.com/SebMontgomery" },
   { label: "YouTube", href: "https://youtube.com/@SebMontgomery" },
   { label: "Telegram", href: "https://t.me/SebMontgomery" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/sebastian-montgomery-3354a245/" },
 ]
 
+// The one footer used on every page: homepage, blog, articles, search and Skill Files.
 export function SiteFooter() {
   return (
     <footer className="site-footer">
@@ -17,9 +18,11 @@ export function SiteFooter() {
         </div>
         <nav aria-label="Footer navigation">
           <Link href="/blog">Blog</Link>
-          {socialLinks.map((link) => (
+          <Link href="/skill-files">Skill Files</Link>
+          {externalLinks.map((link) => (
             <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
           ))}
+          <a href="mailto:support@sebmonty.link">Email</a>
         </nav>
       </div>
       <div className="site-shell site-footer__legal">

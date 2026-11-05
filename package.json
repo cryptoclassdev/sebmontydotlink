@@ -8,7 +8,8 @@
     "dev": "next dev",
     "lint": "eslint .",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "node scripts/articles.mjs build && tsc --noEmit",
+    "articles:check": "node scripts/articles.mjs check"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
@@ -56,9 +57,11 @@
     "date-fns": "4.1.0",
     "embla-carousel-react": "8.5.1",
     "framer-motion": "12.23.24",
+    "image-size": "2.0.4",
     "input-otp": "1.4.1",
     "jsdom": "^26.1.0",
     "lucide-react": "^0.454.0",
+    "mdast-util-to-string": "4.0.0",
     "motion": "^12.24.10",
     "next": "16.0.10",
     "next-sanity": "12.0.14",
@@ -69,16 +72,21 @@
     "react-hook-form": "^7.60.0",
     "react-resizable-panels": "^2.1.7",
     "recharts": "2.15.4",
+    "remark-gfm": "4.0.1",
+    "remark-parse": "11.0.0",
     "sanity": "5.5.0",
     "sonner": "^1.7.4",
     "styled-components": "latest",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
+    "unified": "11.0.5",
     "vaul": "^1.1.2",
+    "yaml": "2.9.1",
     "zod": "3.25.76"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.9",
+    "@types/mdast": "4.0.4",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",

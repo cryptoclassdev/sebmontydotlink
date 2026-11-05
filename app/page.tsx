@@ -23,6 +23,7 @@ export default async function Home() {
         slug: post.slug,
         excerpt: post.excerpt || post.subtitle || fallbackPost.excerpt,
         publishedAt: getPostPublishedAt(post) || fallbackPost.publishedAt,
+        imagePosition: post.localMainImage?.position,
         imageUrl: post.localMainImage?.src || (post.mainImage
           ? urlFor(post.mainImage).width(1200).height(675).fit("crop").auto("format").url()
           : fallbackPost.imageUrl),

@@ -1,0 +1,14 @@
+# Blog categories. Every article's `category:` must use one of these slugs.
+# The order here doesn't matter; the blog lists Stocks and Solana first, then A to Z.
+- slug: stocks
+  title: Stocks
+  description: Public companies, listed products, and the markets around them.
+- slug: solana
+  title: Solana
+  description: Infrastructure, products, and practical notes from the Solana ecosystem.
+- slug: defi
+  title: DeFi
+  description: Protocols, liquidity, risk, and the mechanics behind on-chain finance.
+- slug: exchanges
+  title: Exchanges
+  description: Centralised exchanges, custody, and what happens when they are tested.

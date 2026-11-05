@@ -22,11 +22,11 @@ export function FeaturedPost({ post, headingId = 'featured-post-title' }: { post
       <Link href={`/blog/${post.slug}`}>
         {imageUrl && (
           <div className="publication-feature__image">
-            <Image src={imageUrl} alt={imageAlt} fill priority sizes="(min-width: 900px) 50vw, calc(100vw - 40px)" className="object-cover" />
+            <Image src={imageUrl} alt={imageAlt} fill priority sizes="(min-width: 900px) 50vw, calc(100vw - 40px)" className="object-cover" style={post.localMainImage?.position ? { objectPosition: post.localMainImage.position } : undefined} />
           </div>
         )}
         <div className="publication-feature__copy">
-          <span className="publication-kicker">{post.category?.title || 'Research'}</span>
+          <span className="publication-kicker">{post.status === 'draft' ? 'Draft · ' : ''}{post.category?.title || 'Research'}</span>
           <h2 id={headingId}>{post.title}</h2>
           <p>{post.subtitle || post.excerpt}</p>
           <div className="publication-meta">

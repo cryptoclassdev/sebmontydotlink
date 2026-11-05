@@ -27,3 +27,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .gstack/
+
+# compiled articles (built from content/articles by lib/publishing/compile.mjs)
+/lib/publishing/.generated/
