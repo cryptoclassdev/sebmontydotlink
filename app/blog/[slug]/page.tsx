@@ -87,13 +87,16 @@ export default async function PostPage({ params }: Props) {
           <h1>{post.title}</h1>
           {post.subtitle && <p className="article-deck">{post.subtitle}</p>}
           <div className="article-byline">
-            <Image src={authorImageUrl} alt="" width={36} height={36} />
-            <span>By <strong>{post.author?.name || 'Seb Montgomery'}</strong></span>
-            {post.author?.xHandle && <a href={`https://x.com/${post.author.xHandle}`} target="_blank" rel="noopener noreferrer">@{post.author.xHandle}</a>}
-            <span aria-hidden="true">·</span>
-            {date && <time dateTime={date}>{formatDate(date)}</time>}
-            <span aria-hidden="true">·</span>
-            <span>{post.readTime || 5} min read</span>
+            <span className="article-byline__author">
+              <Image src={authorImageUrl} alt="" width={36} height={36} />
+              <span>By <strong>{post.author?.name || 'Seb Montgomery'}</strong></span>
+              {post.author?.xHandle && <a href={`https://x.com/${post.author.xHandle}`} target="_blank" rel="noopener noreferrer">@{post.author.xHandle}</a>}
+            </span>
+            <span className="article-byline__meta">
+              {date && <time dateTime={date}>{formatDate(date)}</time>}
+              <span aria-hidden="true">·</span>
+              <span>{post.readTime || 5} min read</span>
+            </span>
           </div>
           <ArticleActions title={post.title} />
         </header>

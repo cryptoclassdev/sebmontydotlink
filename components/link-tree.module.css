@@ -47,7 +47,8 @@
 }
 
 .shell {
-  width: min(calc(100% - 48px), 1180px);
+  /* Site-wide page width: 1180px max, 32px side margins, 16px on phones (see app/globals.css .site-shell) */
+  width: min(calc(100% - 64px), 1180px);
   margin: 0 auto;
   padding-bottom: 32px;
 }
@@ -1092,9 +1093,6 @@
 }
 
 @media (max-width: 820px) {
-  .shell {
-    width: min(calc(100% - 32px), 1180px);
-  }
 
   .heroCard {
     min-height: 540px;
@@ -1151,9 +1149,6 @@
 }
 
 @media (max-width: 680px) {
-  .shell {
-    width: min(calc(100% - 24px), 1180px);
-  }
 
   .header {
     min-height: 72px;
@@ -1241,13 +1236,19 @@
   }
 
   .latestCardHeader {
-    grid-template-columns: 44px minmax(0, 1fr);
+    grid-template-columns: 44px minmax(0, 1fr) auto;
+    gap: 10px;
+  }
+
+  .latestCardHeader h2 {
+    font-size: 21px;
+    line-height: 26px;
   }
 
   .allPostsLink {
-    width: fit-content;
-    grid-column: 2;
-    margin-left: -10px;
+    margin-right: -8px;
+    padding: 0 8px;
+    font-size: 13px;
   }
 
   .latestPostLink {
@@ -1396,5 +1397,11 @@
   .skillPanel:active,
   .projectCard:active {
     transform: none !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .shell {
+    width: calc(100% - 32px);
   }
 }
