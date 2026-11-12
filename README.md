@@ -30,7 +30,18 @@ pnpm typecheck        # TypeScript check; run before every PR
 pnpm build            # production build; run before every PR
 ```
 
-Environment variables are listed in `.env.example`. The site builds without any of them; the MailerLite keys are only needed for the subscribe endpoint.
+Environment variables are listed in `.env.example`. The site builds without any of them; the MailerLite keys are only needed for the subscribe endpoint, and the Studio variables only for `/studio`.
+
+## Studio (/studio)
+
+The site's own article dashboard: write, schedule and publish articles and moderate comments from the browser, behind a login. Setup, daily use, security and recovery are in [docs/studio.md](docs/studio.md).
+
+```bash
+pnpm studio:migrate            # create/update the Studio's database tables (also runs before every build)
+pnpm studio:import-articles    # copy content/articles/*.md into the Studio (safe to re-run)
+pnpm studio:user list          # account recovery: list | reset-password <email> | make-admin <email>
+pnpm studio:generate           # after changing lib/studio/db/schema.ts: write a new migration
+```
 
 ## Where things live
 
@@ -47,17 +58,70 @@ Environment variables are listed in `.env.example`. The site builds without any 
 | Article components | `components/blog/` |
 | Site-wide colours, page width, header, footer, blog and article styles | `app/globals.css` |
 | Agent-readable copies | `/blog/<slug>.md` (`app/agent/articles/[slug]/route.ts`), `/llms.txt` (`app/llms.txt/route.ts`) |
-| Legacy Sanity content | The RoboStrategy post still comes from Sanity (project `bfn64pgm`, Studio at `/studio`) until it is migrated |
+| Studio (article dashboard) | Pages `app/studio/`, components `components/studio/`, logic and database schema `lib/studio/`, API `app/api/studio/`, migrations `drizzle/`, scripts `scripts/studio/`, login gate `proxy.ts` |
+| Legacy Sanity content | The RoboStrategy post still comes from Sanity (project `bfn64pgm`) until the blog moves to the Studio; it is not being migrated. Sanity's own Studio has been removed from `/studio` |
 
 ## Change log
 
 Newest first. One entry per pull request.
 
+### Studio: the site's own article dashboard at /studio
+
+- **Date:** 12 November 2026
+- **Pull request:** [#10](https://github.com/cryptoclassdev/sebmontydotlink/pull/10), branch `studio/core`.
+- **Status:** Draft, waiting for Seb to approve the screenshots. Step 1 of 3: this PR adds the Studio only. The next PR switches the public blog to read from it; then the same code is copied to validator.com.
+
+#### What changed
+1. **A password-gated dashboard at `/studio`**, built into this site, replacing Sanity's Studio at that address. Articles will be written, scheduled and published there instead of by pull request. It looks and works like Sanity Studio: a post list beside the open document, fields grouped into Content, Details and SEO tabs, autosave, a green Publish button with the save state next to it, and revision history.
+2. **Article fields** match the current Markdown articles: title, slug, deck, excerpt, publish date, updated date, category, author, cover image (alt text, caption, crop position), read time (worked out automatically unless set), disclosure, plus a feature flag and SEO fields (search title, meta description, share image, canonical URL, hide from search engines).
+3. **Article body editor:** Sanity's open-source Portable Text Editor, storing the body in the same block format the blog already renders (`components/blog/ArticleBody.tsx`): paragraphs, Heading 2 to 4, quotes, bold, italic, inline code, links, bulleted and numbered lists, images with alt text, caption and credit, YouTube videos and code blocks. Pasting from Google Docs keeps headings, lists, links and bold/italic. Word count and read time update as you type.
+4. **Publishing:** drafts save automatically and never change the site. Publish checks the post first (title, slug, date, category, author, cover and its alt text, alt text on every image, link formats, the YouTube link) and lists anything missing. A future date schedules the post. Editing a live post shows "Edited" until "Publish changes"; it can be discarded, unpublished or restored from revision history (a snapshot at every publish and every 10 minutes of editing). If two people save the same post, the second save is refused instead of overwriting.
+5. **Media library:** images upload straight from the browser to a Vercel Blob store (JPG, PNG, WebP, GIF, AVIF up to 25 MB), with reusable alt text, caption and credit. Images used in a post can't be deleted.
+6. **Comment moderation:** a public endpoint (`POST /api/studio/comments`) stores reader comments as "waiting"; the Studio's Comments page (with a count in the top bar) approves, rejects, hides, marks as spam or deletes them. The blog's comment form and the display of approved comments come with the next PR.
+7. **Categories and authors** are editable in the Studio. On first setup they are copied from `content/categories.yml` and `content/authors.yml`.
+8. **Logins:** one account per person, email and password, created by an admin on the Team page (there is no sign-up). Roles: admin (manages the team) and editor (everything else). The first admin is created once at `/studio/setup` with a one-time code. Each person can change their own password; admins can set a new one, which signs that person out everywhere.
+9. **Importing the three Markdown articles:** `pnpm studio:import-articles` copies them (with their images) into the Studio. The RoboStrategy post is not imported, as agreed.
+10. **Database:** Postgres (Neon). Tables are prefixed `studio_` and created by migrations in `drizzle/`, which `pnpm build` now applies before building (skipped when `DATABASE_URL` isn't set, so builds work before the database exists).
+
+#### Why
+Seb asked for an in-house replacement for Sanity: a dashboard at sebmonty.link/studio where every new article is posted directly, not through a PR, with three logins (Seb, Chris, Bruno) and comment moderation. validator.com gets its own separate copy later. Research and the options compared: the project doc `claude/blog-studio-research.md`.
+
+#### Files touched
+- New: `app/studio/` (pages: login, setup, posts, media, comments, categories, authors, team, account; `actions.ts`; `studio.css`), `components/studio/` (post editor, body editor, media picker and library, dialogs, top bar, team, comments, categories and authors), `lib/studio/` (database schema and client, sign-in, posts, media, comments, categories/authors, users, document rules), `app/api/studio/` (sign-in, upload tokens, public comments), `drizzle/` (first migration) and `drizzle.config.ts`, `scripts/studio/` (migrate, import articles, account recovery), `proxy.ts` (sends anyone without a Studio session to the login page), `docs/studio.md`.
+- Removed: `app/studio/[[...tool]]/` (the embedded Sanity Studio).
+- Changed: `package.json` and `pnpm-lock.yaml` (new packages: `better-auth`, `drizzle-orm`, `pg`, `@vercel/blob`, `@portabletext/editor`, `server-only`, and `drizzle-kit`/`@types/pg` for development; React and React DOM 19.2.0 → 19.2.9, which the editor requires; `build` runs `studio:migrate` first; new `studio:*` scripts), `.env.example` (Studio variables), `.gitignore` (local upload folder), `README.md` (this entry, a Studio section, Where things live; #9's status set to merged), `AGENTS.md` (Studio section).
+- Not touched: every public page, the blog, the Markdown publisher and the articles.
+
+#### Before this can be used (Vercel setup, once)
+The full steps are in `docs/studio.md` → "One-time setup on Vercel". In short, a team owner connects a **Neon database** and a **Blob store** to the project (Production and Preview), and sets `BETTER_AUTH_SECRET`, `STUDIO_SETUP_TOKEN` and (Production) `BETTER_AUTH_URL`. Without them the site works exactly as now and `/studio` shows "The Studio isn't connected yet".
+
+#### How to check it on the Vercel preview
+1. Public pages are unchanged: homepage, `/blog`, an article, `/blog/papertrade-saga.md`, `/llms.txt`, Skill Files.
+2. Open `/studio`. Without the database it shows "The Studio isn't connected yet" and names the missing settings. With the database and secrets connected to Preview: it opens "Create the admin account"; a wrong setup code is refused; create the admin, sign in (a wrong password is refused).
+3. Posts → New post: type a title, press "From title", write a paragraph with bold and a link, a Heading 2, a list, insert an image (upload one), a YouTube link and a code block. "Saved just now" appears at the bottom. Press Publish: it lists what's missing (category, cover image). Add them, publish, and the badge turns "Published". Change the deck: the badge says "Edited" and the button "Publish changes". ⋯ → Revision history lists the snapshots.
+4. Team → Add person (Chris, Bruno); Comments, Media, Categories, Authors pages open; the account menu signs out, after which every `/studio` page goes back to the login.
+5. At phone width the post list and the editor each take the full screen, with a back arrow.
+
+#### Checks run
+- `pnpm typecheck` and `pnpm build` pass. Without `DATABASE_URL` the build skips migrations and the production server returns 200 for `/`, `/blog`, `/blog/papertrade-saga`, `/blog/papertrade-saga.md`, `/llms.txt` and `/skill-files`; `/studio` shows the "not connected" page and the comment endpoint answers "not available yet".
+- With a local Postgres: migrations create the tables and copy 4 categories and 1 author; `pnpm studio:import-articles` imports the 3 articles (169, 104 and 124 blocks with their images) and a second run skips all three.
+- Browser test of a production build (Playwright, Chrome, 1440 px and 390 px), every step of "How to check" above, plus: the comment endpoint returns 201, then approve and spam both work; media upload and alt-text edit; a pasted HTML snippet keeps its heading, bold, italic, link and both list types; edits survive a reload; no horizontal scrolling at 390 px; no console errors other than the deliberate wrong-password 401.
+- Security checks against the production build: the 9th wrong sign-in from one address within 5 minutes returns 429; the sign-up endpoint answers `EMAIL_PASSWORD_SIGN_UP_DISABLED`; upload tokens are refused without a session; signed-out requests to any `/studio` page redirect to the login.
+
+#### Risks
+- **Build now touches the database:** when `DATABASE_URL` is set, `pnpm build` applies migrations first, and a build fails if the database can't be reached. Migrations only add `studio_` tables.
+- **Sanity Studio is gone from `/studio`:** the RoboStrategy post can no longer be edited (it still shows on the blog until the next PR, which removes it as agreed).
+- **New dependencies** for sign-in, the database, uploads and the editor, and a React patch update (19.2.0 → 19.2.9) that the editor needs; the whole site was rebuilt and checked.
+- **Previews share data only if told to:** connect Neon with a branch per preview so preview testing never writes to the live database.
+
+#### Roll back
+Revert this PR's merge commit. The public site never depended on the Studio, so nothing else changes. The `studio_` tables and the Blob store can stay (unused) or be deleted in Vercel/Neon.
+
 ### New avatar on the X card and in the site header
 
 - **Date:** 5 November 2026
 - **Pull request:** [#9](https://github.com/cryptoclassdev/sebmontydotlink/pull/9), branch `ui/new-x-avatar`.
-- **Status:** Ready for review. Seb approved the before and after screenshots on 5 November 2026.
+- **Status:** Merged by Seb on 5 November 2026 (merge commit `eacbea3`) and checked on the live site. Seb approved the before and after screenshots on 5 November 2026.
 
 #### What changed
 1. The cartoon avatar next to @SebMontgomery in the homepage "Find me online" card is replaced with the new illustration Seb supplied (the same desk scene, with the new figure on the shelf).
