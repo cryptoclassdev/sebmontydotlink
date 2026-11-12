@@ -30,3 +30,6 @@ next-env.d.ts
 
 # compiled articles (built from content/articles by lib/publishing/compile.mjs)
 /lib/publishing/.generated/
+
+# Studio local-dev uploads (production uses Vercel Blob)
+/public/studio-uploads/
