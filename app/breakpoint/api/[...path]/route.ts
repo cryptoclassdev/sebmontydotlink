@@ -4,6 +4,7 @@ import seed from "@/breakpoint/data/seed.json"
 import snapshot from "@/breakpoint/data/luma-snapshot.json"
 import { createApi } from "@/breakpoint/server/api.mjs"
 import { lumaEvents } from "@/breakpoint/server/luma.mjs"
+import { tokenPrices } from "@/breakpoint/server/prices.mjs"
 import { upstashBucketFromEnv } from "@/breakpoint/server/upstash.mjs"
 
 export const runtime = "nodejs"
@@ -21,6 +22,9 @@ const api = createApi(seed, {
       checkedAt: snapshot.checkedAt,
       error: String(error?.message ?? error).slice(0, 200),
     })),
+  // Token prices from Jupiter for projects with a verified mint (30 s cache, keyless
+  // unless JUPITER_API_KEY is set). Shown as context in /api/live and the market status row.
+  loadPrices: () => tokenPrices(seed.projects, { apiKey: process.env.JUPITER_API_KEY }),
 })
 
 // Storage is optional: without Upstash env vars the public guide still works
