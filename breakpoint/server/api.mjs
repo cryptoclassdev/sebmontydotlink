@@ -37,16 +37,18 @@ const byTime=(a,b)=>Date.parse(b.occurredAt)-Date.parse(a.occurredAt);
 /**
  * createApi(seed, {basePath, loadEvents})
  * basePath: URL prefix the app is mounted under, e.g. '/breakpoint'.
- * loadEvents: async () => ({events, source, checkedAt}); falls back to seed.events on failure.
+ * loadEvents: async () => ({events, source, checkedAt, error?}); falls back to seed.events on failure.
+ * error, when present, is the reason live listings could not be refreshed (shown in /api/health).
  * @param {any} seed
- * @param {{basePath?: string, loadEvents?: () => Promise<{events: any[], source?: string, checkedAt?: string}>}} [options]
+ * @param {{basePath?: string, loadEvents?: () => Promise<{events: any[], source?: string, checkedAt?: string, error?: string}>}} [options]
  * @returns {(request: Request, env: {BUCKET?: any, EDITOR_TOKEN?: string, INGEST_TOKEN?: string, AUTO_PUBLISH_PROVISIONAL?: string}) => Promise<Response>}
  */
 export function createApi(seed,{basePath='',loadEvents}={}){
  const projectIds=seed.projects.map(p=>p.id);
  async function events(){
-  if(loadEvents){try{const r=await loadEvents();if(r&&Array.isArray(r.events)&&r.events.length)return r;}catch{}}
-  return {events:seed.events,source:'seed',checkedAt:seed.updatedAt};
+  let error;
+  if(loadEvents){try{const r=await loadEvents();if(r&&Array.isArray(r.events)&&r.events.length)return r;error='No events returned';}catch(e){error=String(e?.message??e).slice(0,200);}}
+  return {events:seed.events,source:'seed',checkedAt:seed.updatedAt,error};
  }
  async function staticData(){const e=await events();return {updatedAt:seed.updatedAt,projects:seed.projects,speakers:seed.speakers,sessions:seed.sessions,breaks:seed.breaks??[],events:e.events,eventsSource:e.source,eventsCheckedAt:e.checkedAt};}
  async function liveData(bucket){
@@ -65,7 +67,7 @@ export function createApi(seed,{basePath='',loadEvents}={}){
     if(path==='/api/bootstrap'){const [s,l]=await Promise.all([staticData(),liveData(bucket)]);const {sessionOverrides,...rest}=l;return json({...s,...rest,sessions:s.sessions.map(x=>sessionOverrides.find(o=>o.id===x.id)??x)},200,CACHE.live);}
     if(path==='/api/calendar'){const id=url.searchParams.get('id')??'';const event=(await events()).events.find(e=>e.id===id);if(!event)throw new HttpError(404,'Event not found');return new Response(makeCalendar(event),{headers:{'content-type':'text/calendar; charset=utf-8','content-disposition':`attachment; filename="${event.id.replace(/[^a-zA-Z0-9_-]/g,'')}.ics"`,'cache-control':CACHE.static}});}
     if(path==='/api/feed'){if(!bucket)throw new HttpError(503,'Durable storage is not connected');const cursor=url.searchParams.get('cursor');if(cursor&&cursor.length>2000)throw new HttpError(400,'Invalid cursor');return json(await entryPage(bucket,true,cursor),200,CACHE.live);}
-    if(path==='/api/health')return json({storage:!!bucket,editorConfigured:!!env.EDITOR_TOKEN,collectorConfigured:!!env.INGEST_TOKEN});
+    if(path==='/api/health'){const e=await events();return json({storage:!!bucket,editorConfigured:!!env.EDITOR_TOKEN,collectorConfigured:!!env.INGEST_TOKEN,events:{source:e.source,checkedAt:e.checkedAt,count:e.events.length,error:e.error??null}});}
    }
    const isEditor=await authorized(request,env.EDITOR_TOKEN);const isCollector=await authorized(request,env.INGEST_TOKEN);
    if(!isEditor&&!isCollector)throw new HttpError(401,'Editor or collector authentication required');

@@ -11,11 +11,16 @@ export const dynamic = "force-dynamic"
 
 // Side events: live from Luma (cached 10 min). If Luma is down or rate-limits a fresh
 // server, fall back to the committed snapshot (scripts/snapshot-luma.mjs), then to the
-// researched list in seed.json.
+// researched list in seed.json. /breakpoint/api/health reports which source is in use and why.
 const api = createApi(seed, {
   basePath: "/breakpoint",
   loadEvents: () =>
-    lumaEvents(seed.events).catch(() => ({ events: snapshot.events, source: "snapshot", checkedAt: snapshot.checkedAt })),
+    lumaEvents(seed.events).catch((error) => ({
+      events: snapshot.events,
+      source: "snapshot",
+      checkedAt: snapshot.checkedAt,
+      error: String(error?.message ?? error).slice(0, 200),
+    })),
 })
 
 // Storage is optional: without Upstash env vars the public guide still works

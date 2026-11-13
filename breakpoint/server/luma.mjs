@@ -13,6 +13,10 @@ const WINDOW_START = '2026-11-01T00:00:00.000Z';
 const WINDOW_END = '2026-12-01T00:00:00.000Z';
 const TTL_MS = 10 * 60 * 1000;
 const SLUG = /^[a-zA-Z0-9_-]{1,100}$/;
+// Luma rate-limits anonymous API clients per user agent. Node's default ("node")
+// shares one limit with every other server on Vercel's network and gets 429s, so
+// the guide identifies itself. This is a name, not a browser disguise.
+export const USER_AGENT = 'sebmonty.link Breakpoint guide (+https://www.sebmonty.link/breakpoint)';
 
 let cache = null; // { at, value }
 
@@ -86,7 +90,7 @@ export function normalizeLumaItem(item, observedAt = new Date().toISOString()) {
 
 async function fetchPage(params, fetchImpl) {
   const url = API + '?' + new URLSearchParams(params).toString();
-  const res = await fetchImpl(url, { headers: { accept: 'application/json' }, next: { revalidate: 600 } });
+  const res = await fetchImpl(url, { headers: { accept: 'application/json', 'user-agent': USER_AGENT }, next: { revalidate: 600 } });
   if (!res.ok) throw new Error(`Luma responded ${res.status}`);
   return res.json();
 }
@@ -137,7 +141,8 @@ export async function lumaEvents(seedEvents = [], { fetchImpl = fetch, now = Dat
     cache = { at: now, value: { events, source: 'luma', checkedAt } };
     return cache.value;
   } catch (error) {
-    if (cache) return cache.value; // serve the last good copy
+    // Serve the last good copy, flagged with why the refresh failed.
+    if (cache) return { ...cache.value, error: String(error?.message ?? error).slice(0, 200) };
     throw error;
   }
 }
