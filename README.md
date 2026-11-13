@@ -69,6 +69,7 @@ Newest first. One entry per pull request.
 6. Programme refreshed against the official agenda on 13 November: 4 new talks (Cloudflare micropayments; London Calling with the Deputy Mayor of London; Superstate; a closing fireside with Michael Lewis), 11 retitled talks, 5 speaker changes, and the agenda's 13 topic tracks (filterable on the Schedule page). Talk links survive renames.
 7. "Now and next" strip on the overview: what is on each stage right now (or the break/lunch), what is next, and how many side events are on at this moment. Before the conference it shows the first talk; after each day it shows the next morning's opener. Worked out in the browser from the programme, so it costs nothing to run. Add `?now=2026-11-16T14:05:00Z` to any preview URL to see it at a given moment.
 8. Side events now load live from Luma on Vercel. The first preview fell back to the saved snapshot because Luma rate-limits requests that use Node's default user agent ("node"), which every server on Vercel's network shares. The API now names itself to Luma (`sebmonty.link Breakpoint guide`, with a link to the page): the same request returned 429 three times out of three with the default and 200 three times out of three with the name. `/breakpoint/api/health` now reports which events source is in use (`luma`, `snapshot` or `seed`), how many events, and why a refresh failed.
+9. Editor and collector tokens ignore spaces and line breaks around them, on the login form and in the Vercel variable. A token copied from Terminal with a trailing space or newline was rejected as "Editor or collector authentication required".
 
 #### Files touched
 - `breakpoint/` (new): page source, server logic, data, collector, scripts, tests, `README.md`
@@ -94,7 +95,7 @@ Newest first. One entry per pull request.
 3. Redeploy the preview, then log in at `/breakpoint#editor` with the editor token.
 
 #### Checks run
-- Guide: 39 Node tests (API on an in-memory store and on the Upstash adapter, Luma normaliser, caching, user agent, health reporting, base path, and the storage layer against a real `redis-server`) and 9 collector tests, all passing. `tsc --noEmit` for the guide.
+- Guide: 40 Node tests (API on an in-memory store and on the Upstash adapter, Luma normaliser, caching, user agent, health reporting, token whitespace, base path, and the storage layer against a real `redis-server`) and 9 collector tests, all passing. `tsc --noEmit` for the guide.
 - Site: `pnpm typecheck` and `pnpm build` pass.
 - Production server run locally: headless Chrome at 1440 px and 390 px across overview, London guide, event dialog and schedule, with no console errors.
 
