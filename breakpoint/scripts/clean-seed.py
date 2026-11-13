@@ -16,7 +16,7 @@ PEOPLE = {
     'Paul-Adrien  Hyppolite': ('Paul-Adrien Hyppolite', None, None),
     'Sir Sajid Javid': (None, 'Former Chancellor of the Exchequer', ''),
     'Boris Johnson': (None, 'Former Prime Minister', ''),
-    'Sol Campbell': (None, 'Footballer', ''),
+    'Michael Lewis': (None, 'Author', ''),
     'Tristan Thompson': (None, 'NBA Champion and Investor', ''),
     'Peter Moore': (None, 'Sports and Video Game Executive', 'Owner, Wisla Krakow Football Club (Poland)'),
 }

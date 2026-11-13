@@ -48,7 +48,7 @@ export function createApi(seed,{basePath='',loadEvents}={}){
   if(loadEvents){try{const r=await loadEvents();if(r&&Array.isArray(r.events)&&r.events.length)return r;}catch{}}
   return {events:seed.events,source:'seed',checkedAt:seed.updatedAt};
  }
- async function staticData(){const e=await events();return {updatedAt:seed.updatedAt,projects:seed.projects,speakers:seed.speakers,sessions:seed.sessions,events:e.events,eventsSource:e.source,eventsCheckedAt:e.checkedAt};}
+ async function staticData(){const e=await events();return {updatedAt:seed.updatedAt,projects:seed.projects,speakers:seed.speakers,sessions:seed.sessions,breaks:seed.breaks??[],events:e.events,eventsSource:e.source,eventsCheckedAt:e.checkedAt};}
  async function liveData(bucket){
   let entries=[],nextCursor=null,heartbeats=[],streams=[],sessions=[],storage='not-configured';
   if(bucket){try{[{entries,nextCursor},heartbeats,streams,sessions]=await Promise.all([entryPage(bucket,true,undefined,LIVE_LIMIT),list(bucket,'health/'),list(bucket,'streams/'),list(bucket,'sessions/')]);storage='ready';}catch{entries=[];nextCursor=null;heartbeats=[];streams=[];sessions=[];storage='unavailable';}}

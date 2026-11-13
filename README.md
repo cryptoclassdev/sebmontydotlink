@@ -61,11 +61,13 @@ Newest first. One entry per pull request.
 - **Status:** Ready for review. Needs the Vercel steps under "Before merging" for the editorial desk; the public guide works without them.
 
 #### What changed
-1. New page at sebmonty.link/breakpoint: one place for everything at Solana Breakpoint 2026 in London. Overview, the full two-stage programme (107 talks, 143 speakers), the London side-events guide with a map, stage livestream slots, a Catch up feed, project watchlists and an LP Army page. Branded Seb Monty with the "Powered by validator.com" line.
+1. New page at sebmonty.link/breakpoint: one place for everything at Solana Breakpoint 2026 in London. Overview with a live "Now and next" strip, the full two-stage programme (111 talks, 149 speakers, 13 tracks), the London side-events guide with a map, stage livestream slots, a Catch up feed, project watchlists and an LP Army page. Branded Seb Monty with the "Powered by validator.com" line.
 2. Side events now come live from the official Breakpoint community calendar on Luma (122 listings for 2026, up from 13 in the first build), refreshed every 10 minutes, grouped by day, with search, a Free filter, availability filter and past events hidden by default. Only venues Luma shows publicly go on the map; guests-only addresses never do. If Luma is down, the page shows a committed snapshot and says so.
 3. The app was first built for Cloudflare Workers. It now runs inside this Next.js site: the page is a self-contained static app in `public/breakpoint/`, the API is a Next route at `/breakpoint/api/*`, and storage for the editorial desk moved from Cloudflare R2 to Upstash Redis (connected through Vercel). Public API responses are cached at the edge (15 s live, 5 min programme) so visitors polling every 20 s do not each hit storage.
 4. Fixed agenda formatting errors: "Luke Truitt - Formation" and "Irene Tse - Graticule Asset Management Asia" split into name and organisation, double spaces in two names, a stray quote mark in a Bitwise talk title, "Payward" listed as a person, and role/organisation swaps for five speakers.
 5. The collector (stage audio transcription and X monitoring, Python) now points at www.sebmonty.link/breakpoint; it stays off until sources, keys and budget are set.
+6. Programme refreshed against the official agenda on 13 November: 4 new talks (Cloudflare micropayments; London Calling with the Deputy Mayor of London; Superstate; a closing fireside with Michael Lewis), 11 retitled talks, 5 speaker changes, and the agenda's 13 topic tracks (filterable on the Schedule page). Talk links survive renames.
+7. "Now and next" strip on the overview: what is on each stage right now (or the break/lunch), what is next, and how many side events are on at this moment. Before the conference it shows the first talk; after each day it shows the next morning's opener. Worked out in the browser from the programme, so it costs nothing to run. Add `?now=2026-11-16T14:05:00Z` to any preview URL to see it at a given moment.
 
 #### Files touched
 - `breakpoint/` (new): page source, server logic, data, collector, scripts, tests, `README.md`
@@ -79,7 +81,7 @@ Newest first. One entry per pull request.
 #### How to check it on the Vercel preview
 1. Open `/breakpoint` on the preview. The overview loads with "122 side events" (or more) in the hero.
 2. London guide: day chips from Mon 9 to Wed 18, map pins only for public venues, search "padel" or a host name, open an event and use Add to calendar.
-3. Schedule: 107 sessions on Mon 16 and Tue 17; open a session and a speaker.
+3. Schedule: 111 sessions on Mon 16 and Tue 17; pick "The AI Stack" in the track filter (10 talks); open a session and a speaker. Then open `/breakpoint?now=2026-11-16T14:05:00Z`: the Now and next strip shows the UK debate on Main Stage and "Star" on Royal Exchange.
 4. Phone width: bottom tab bar, avatar top left, map drags.
 5. `/breakpoint/api/live` returns JSON with `storage: "not-configured"` until Upstash is connected, then `"ready"`.
 6. The homepage and blog look unchanged.

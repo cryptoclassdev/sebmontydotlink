@@ -1,6 +1,6 @@
 # Breakpoint London 2026 guide (sebmonty.link/breakpoint)
 
-One page for everything at Solana Breakpoint 2026 in London: the full two-stage programme (107 talks, 143 speakers), every side event from the official community calendar on a map, stage livestreams, sourced briefings and live coverage, project watchlists and the LP Army corner. Branded Seb Monty, powered by validator.com.
+One page for everything at Solana Breakpoint 2026 in London: the full two-stage programme (111 talks, 149 speakers, 13 tracks), every side event from the official community calendar on a map, stage livestreams, sourced briefings and live coverage, project watchlists and the LP Army corner. Branded Seb Monty, powered by validator.com.
 
 This folder holds everything that belongs to the guide. It started as the "On Solana / Breakpoint Desk" build (handoff dated 12 November 2026) and was moved here from Cloudflare Workers + R2 to run inside this Next.js site on Vercel.
 
@@ -49,7 +49,9 @@ node scripts/snapshot-luma.mjs   # refresh the side-events fallback before a dep
 
 Then from the repo root, `pnpm dev` serves the whole site including `/breakpoint`. Node 20.9+ (site) and Python 3.11+ (collector). The real-Redis test runs only if `redis-server` is installed.
 
-Agenda refresh: export all four day/stage tabs of the official agenda to `research/agenda-rendered.json` (format in `scripts/import-agenda.py`), run `python3 scripts/import-agenda.py` then `python3 scripts/clean-seed.py`, review the diff, rebuild.
+Agenda refresh: the official agenda page blocks headless browsers, so read it in a real browser. On https://solana.com/breakpoint/schedule, click through both days and both stages and save the rows in the compact format described in `scripts/import-agenda.py` (example: `research/agenda-export-2026-11-13.json`). Then run `python3 scripts/import-agenda.py research/<file>.json` and `python3 scripts/clean-seed.py`, review the diff, rebuild. Session ids survive renames (matched by title, then by day, stage and start time).
+
+Preview any moment of the conference by adding `?now=` to the URL, e.g. `/breakpoint?now=2026-11-16T14:05:00Z#overview` shows the Now and next strip as it will look at 14:05 on Day 1.
 
 ## Evidence rules (carried over unchanged)
 
