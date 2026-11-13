@@ -67,7 +67,7 @@ Newest first. One entry per pull request.
 3. Each mint address was checked against the project's own source before being added to the programme data: Jupiter's token docs (JUP), Jito's launch post (JTO), Meteora's tokenomics page (MET), Kamino's app (KMNO), and SOL's native mint as used in Jupiter's own price example. Projects without a verified mint get no price.
 4. Honest failure states: if Jupiter stops answering, the last prices stay for up to 10 minutes marked "Last prices", then the prices disappear instead of showing old numbers. Prices being live never counts as stage coverage being live (the Watch live dot and the overview coverage line still only react to stages and X).
 5. The Projects page notice that said "Market prices are not connected yet" now states the price source and time, and that prices are context, not a trading signal.
-6. All nine projects show their official logo instead of a placeholder letter or drawing: Kamino, Jupiter, Meteora, Jito, Solana, Backpack, Helius, Sunrise and Ledger. Token logos come from each token's own metadata (Jito's checked against jito.network); Backpack, Helius, Sunrise and Ledger use their own website icons. They are stored with the guide as 96 px WebP files (12 KB in total), so no outside image host is involved. Sources are listed in `breakpoint/assets/logos/SOURCES.md`.
+6. All nine projects show their logo instead of a placeholder letter or drawing: Kamino, Jupiter, Meteora, Jito, Solana, Backpack, Helius, Sunrise and Ledger. Each logo is the profile picture on the project's official, verified X account (accounts confirmed from the project's own website where it links one; listed in `breakpoint/assets/logos/SOURCES.md`). They are stored with the guide as 96 px WebP files (under 7 KB in total), so no outside image host is involved.
 7. Backpack, Helius, Sunrise (sunrise.xyz, Wormhole Labs' asset gateway) and Ledger now link to their official websites in the project briefing.
 
 #### Files touched
@@ -85,7 +85,7 @@ Newest first. One entry per pull request.
 3. Open Kamino: price beside $KMNO, "Mint KMNo…o9sS" with "Verified source" and "Solscan" links.
 4. `/breakpoint#watch`: Source health lists "Token prices · Jupiter prices for 5 tokens" with a green dot; the stage rows still say "Awaiting connection".
 5. `/breakpoint/api/live`: `prices.source` is `jupiter` and `health.market.state` is `live`.
-6. Logos: every card on `/breakpoint#projects` shows the project's logo, also in dark mode, in the sidebar after following a project, and in the Token prices panel.
+6. Logos: every card on `/breakpoint#projects` shows the same picture as the project's X profile (Jito is the green "Jito" wordmark, Helius is orange on black, Ledger is white on black), also in dark mode, in the sidebar after following a project, and in the Token prices panel.
 
 #### Checks run
 - Guide: 47 Node tests (7 new for prices: target selection, validation, caching, user agent and key header, stale then empty on failure, market status, `/api/live` output) and 9 collector tests, all passing. `tsc --noEmit` for the guide.
