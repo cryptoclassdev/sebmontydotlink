@@ -1,4 +1,5 @@
 import {HttpError,validateEntry,validateStream,feedVisible,sourceHealth,makeCalendar,jsonBody,authorized,idPattern,iso,safeUrl} from './core.mjs';
+import {marketHealth} from './prices.mjs';
 
 // Public reads are cached at the CDN so polling visitors do not each hit storage.
 // Live data: 15 s at the edge. Programme and events: 5 min. Anything authenticated: never cached.
@@ -39,11 +40,12 @@ const byTime=(a,b)=>Date.parse(b.occurredAt)-Date.parse(a.occurredAt);
  * basePath: URL prefix the app is mounted under, e.g. '/breakpoint'.
  * loadEvents: async () => ({events, source, checkedAt, error?}); falls back to seed.events on failure.
  * error, when present, is the reason live listings could not be refreshed (shown in /api/health).
+ * loadPrices: async () => ({source, checkedAt, stale, error, prices}); token prices for /api/live (see prices.mjs).
  * @param {any} seed
- * @param {{basePath?: string, loadEvents?: () => Promise<{events: any[], source?: string, checkedAt?: string, error?: string}>}} [options]
+ * @param {{basePath?: string, loadEvents?: () => Promise<{events: any[], source?: string, checkedAt?: string, error?: string}>, loadPrices?: () => Promise<any>}} [options]
  * @returns {(request: Request, env: {BUCKET?: any, EDITOR_TOKEN?: string, INGEST_TOKEN?: string, AUTO_PUBLISH_PROVISIONAL?: string}) => Promise<Response>}
  */
-export function createApi(seed,{basePath='',loadEvents}={}){
+export function createApi(seed,{basePath='',loadEvents,loadPrices}={}){
  const projectIds=seed.projects.map(p=>p.id);
  async function events(){
   let error;
@@ -51,10 +53,15 @@ export function createApi(seed,{basePath='',loadEvents}={}){
   return {events:seed.events,source:'seed',checkedAt:seed.updatedAt,error};
  }
  async function staticData(){const e=await events();return {updatedAt:seed.updatedAt,projects:seed.projects,speakers:seed.speakers,sessions:seed.sessions,breaks:seed.breaks??[],events:e.events,eventsSource:e.source,eventsCheckedAt:e.checkedAt};}
+ async function prices(){if(!loadPrices)return null;try{return await loadPrices();}catch{return null;}}
  async function liveData(bucket){
   let entries=[],nextCursor=null,heartbeats=[],streams=[],sessions=[],storage='not-configured';
+  const pricesPromise=prices();
   if(bucket){try{[{entries,nextCursor},heartbeats,streams,sessions]=await Promise.all([entryPage(bucket,true,undefined,LIVE_LIMIT),list(bucket,'health/'),list(bucket,'streams/'),list(bucket,'sessions/')]);storage='ready';}catch{entries=[];nextCursor=null;heartbeats=[];streams=[];sessions=[];storage='unavailable';}}
-  return {nextCursor,entries:[...seed.entries,...entries.filter(feedVisible)].sort(byTime),streams:seed.streams.map(s=>streams.find(x=>x.id===s.id)??s),sessionOverrides:sessions,health:Object.fromEntries(HEALTH_IDS.map(id=>[id,sourceHealth(heartbeats.find(h=>h.id===id))])),storage,serverTime:new Date().toISOString()};
+  const market=await pricesPromise;
+  const health=Object.fromEntries(HEALTH_IDS.map(id=>[id,sourceHealth(heartbeats.find(h=>h.id===id))]));
+  if(loadPrices)health.market=marketHealth(market);
+  return {nextCursor,entries:[...seed.entries,...entries.filter(feedVisible)].sort(byTime),streams:seed.streams.map(s=>streams.find(x=>x.id===s.id)??s),sessionOverrides:sessions,health,prices:market?{source:market.source,checkedAt:market.checkedAt,stale:market.stale,prices:market.prices}:null,storage,serverTime:new Date().toISOString()};
  }
  return async function api(request,env){
   const url=new URL(request.url);let path=url.pathname;

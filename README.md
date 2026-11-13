@@ -54,11 +54,51 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Live token prices on the Breakpoint guide
+
+- **Date:** 13 November 2026
+- **Pull request:** branch `feat/breakpoint-token-prices` (number added once opened).
+- **Status:** Ready for review. Works without any new setting; an optional free Jupiter key raises the rate limit.
+
+#### What changed
+1. The guide shows live prices for the five Breakpoint projects with a token: KMNO, JUP, MET, JTO and SOL. Each shows the USD price and 24h change, from Jupiter's Price API, refreshed about every 30 seconds.
+2. Where prices appear: a new "Token prices" panel on the overview, the three project cards on the overview, every card on the Projects page, and the project briefing (which also shows the mint address with links to its verified source and Solscan). The Watch live page's source status gains a "Token prices" row.
+3. Each mint address was checked against the project's own source before being added to the programme data: Jupiter's token docs (JUP), Jito's launch post (JTO), Meteora's tokenomics page (MET), Kamino's app (KMNO), and SOL's native mint as used in Jupiter's own price example. Projects without a verified mint get no price.
+4. Honest failure states: if Jupiter stops answering, the last prices stay for up to 10 minutes marked "Last prices", then the prices disappear instead of showing old numbers. Prices being live never counts as stage coverage being live (the Watch live dot and the overview coverage line still only react to stages and X).
+5. The Projects page notice that said "Market prices are not connected yet" now states the price source and time, and that prices are context, not a trading signal.
+
+#### Files touched
+- `breakpoint/server/prices.mjs` (new): Jupiter fetch, validation, 30 s cache, stale handling, market status
+- `breakpoint/server/api.mjs`: `/api/live` carries `prices` and a real `market` status
+- `app/breakpoint/api/[...path]/route.ts`: passes `JUPITER_API_KEY` (optional) to the price loader
+- `breakpoint/data/seed.json`: `mintAddress` and `mintSourceUrl` for the five projects; Kamino's note updated
+- `breakpoint/src/main.tsx`, `breakpoint/src/seb.css`: price panel, price tags, mint line, status row
+- `public/breakpoint/` (rebuilt), `breakpoint/tests/prices.test.mjs` (new), `breakpoint/README.md`, `.env.example`, `README.md`
+
+#### How to check it on the Vercel preview
+1. `/breakpoint`: the right column has a "Token prices" panel with five rows and a line saying when Jupiter last updated them. The three project cards under "Projects to keep in view" show a price.
+2. `/breakpoint#projects`: Kamino, Jupiter, Meteora, Jito and Solana cards show price and 24h change; Backpack, Helius, Sunrise and Ledger show none.
+3. Open Kamino: price beside $KMNO, "Mint KMNo…o9sS" with "Verified source" and "Solscan" links.
+4. `/breakpoint#watch`: Source health lists "Token prices · Jupiter prices for 5 tokens" with a green dot; the stage rows still say "Awaiting connection".
+5. `/breakpoint/api/live`: `prices.source` is `jupiter` and `health.market.state` is `live`.
+
+#### Checks run
+- Guide: 47 Node tests (7 new for prices: target selection, validation, caching, user agent and key header, stale then empty on failure, market status, `/api/live` output) and 9 collector tests, all passing. `tsc --noEmit` for the guide.
+- Site: `tsc --noEmit` and `pnpm build` pass.
+- Production build run locally against the real Jupiter API: all five prices returned; screenshots at 1440 px and 390 px of the overview panel, project cards, Projects page, project briefing and source status, with no console errors.
+
+#### Risks
+- Jupiter's keyless access has a low rate limit shared by IP address. Requests are cached (30 s in the function, 15 s at the CDN), so the site makes a few calls a minute. If it is ever rate-limited, the prices go stale and then disappear; the rest of the page is unaffected. Adding a free `JUPITER_API_KEY` in Vercel removes this risk.
+- Prices are for context. The page states the source and time and does not present them as signals.
+
+#### Roll back
+Revert this PR. The guide returns to "Market prices are not connected yet"; nothing else depends on these files.
+
 ### Breakpoint London 2026 guide at /breakpoint
 
 - **Date:** 13 November 2026
 - **Pull request:** [#11](https://github.com/cryptoclassdev/sebmontydotlink/pull/11), branch `feat/breakpoint-guide`.
-- **Status:** Ready for review. Upstash Redis, the editor token and the ingest token are set up on Vercel (13 November); storage reads `ready` on the preview.
+- **Status:** Merged on 13 November 2026. Live at www.sebmonty.link/breakpoint, with Upstash Redis, the editor token and the ingest token set up on Vercel.
 
 #### What changed
 1. New page at sebmonty.link/breakpoint: one place for everything at Solana Breakpoint 2026 in London. Overview with a live "Now and next" strip, the full two-stage programme (111 talks, 149 speakers, 13 tracks), the London side-events guide with a map, stage livestream slots, a Catch up feed, project watchlists and an LP Army page. Branded Seb Monty with the "Powered by validator.com" line.

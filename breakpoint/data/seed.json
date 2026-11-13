@@ -9,10 +9,11 @@
       "xHandle": null,
       "sourceUrl": "https://kamino.com/blog/one-kamino-one-kmno",
       "description": "Lending, liquidity and leverage on Solana.",
-      "mintAddress": null,
+      "mintAddress": "KMNo3nJsBXfcpJTVhZcXLW7RmTwTt4GVFE7suUBo9sS",
+      "mintSourceUrl": "https://kamino.com/liquidity",
       "notes": [
         "The official Nov 2 CEO letter is existing news; do not label a repeat at Breakpoint as a new announcement.",
-        "Token ticker verified; mint address and project X account still require verification."
+        "Token ticker and mint address verified (mint as used in Kamino’s own app, checked 13 Nov 2026); project X account still requires verification."
       ],
       "xHandleCandidates": [
         {
@@ -36,7 +37,8 @@
       "xSourceUrl": "https://jup.ag/",
       "sourceUrl": "https://discuss.jup.ag/t/jup-dao-faq-june-2025-edition/38967",
       "description": "Trading and financial applications on Solana.",
-      "mintAddress": null
+      "mintAddress": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+      "mintSourceUrl": "https://docs.jup.ag/user-docs/more/jup-token"
     },
     {
       "id": "meteora",
@@ -47,7 +49,8 @@
       "xSourceUrl": "https://docs.meteora.ag/get-started",
       "sourceUrl": "https://ir.meteora.ag/",
       "description": "Liquidity infrastructure and the LP Army community.",
-      "mintAddress": null
+      "mintAddress": "METvsvVRapdj9cFLzq4Tr43xK4tAjQfwX76z3n6mWQL",
+      "mintSourceUrl": "https://docs.meteora.ag/protocol/met/tokenomics"
     },
     {
       "id": "jito",
@@ -58,7 +61,8 @@
       "xSourceUrl": "https://www.jito.network/",
       "sourceUrl": "https://www.jito.network/",
       "description": "Solana execution infrastructure, liquid staking and governance.",
-      "mintAddress": null
+      "mintAddress": "jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL",
+      "mintSourceUrl": "https://www.jito.network/blog/jto-airdrop-eligibility-and-allocation-specifications/"
     },
     {
       "id": "solana",
@@ -68,7 +72,8 @@
       "xHandle": "solana",
       "sourceUrl": "https://solana.com/breakpoint",
       "description": "The network hosting the Breakpoint ecosystem.",
-      "mintAddress": null
+      "mintAddress": "So11111111111111111111111111111111111111112",
+      "mintSourceUrl": "https://developers.jup.ag/docs/guides/how-to-get-token-price"
     },
     {
       "id": "backpack",

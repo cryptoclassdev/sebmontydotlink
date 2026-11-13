@@ -12,6 +12,7 @@ This folder holds everything that belongs to the guide. It started as the "On So
 | API | `app/breakpoint/api/[...path]/route.ts` | Thin wrapper; the logic is in `breakpoint/server/`. |
 | Server logic | `breakpoint/server/api.mjs`, `core.mjs` | Validation, auth, revisions, ingest, public reads, calendar files. |
 | Side events | `breakpoint/server/luma.mjs` | Pulls the Luma calendar `BP-SideEvents` every 10 minutes. Falls back to `data/luma-snapshot.json`, then to the researched list in `data/seed.json`. |
+| Token prices | `breakpoint/server/prices.mjs` | Jupiter Price API v3 for projects with a verified `mintAddress` (and `mintSourceUrl`) in `seed.json`: KMNO, JUP, MET, JTO, SOL. Cached 30 s; on failure the last prices show for up to 10 minutes, marked stale, then none. Never estimated. |
 | Storage | `breakpoint/server/upstash.mjs` | Upstash Redis over REST. Optional: without it the public guide works and the editorial desk / live coverage stay off. |
 | Programme data | `breakpoint/data/seed.json` | Official agenda, speakers, projects, researched events, pre-event briefings. |
 | Collector | `breakpoint/collector/` | Python (standard library) + ffmpeg. Runs on an always-on machine, never on Vercel. |
@@ -20,7 +21,7 @@ This folder holds everything that belongs to the guide. It started as the "On So
 API routes (all under `/breakpoint/api`):
 
 - `GET /static`: programme, speakers, projects, side events. Cached 5 min at the CDN.
-- `GET /live`: newest 60 published entries, stream settings, session overrides, source health. Cached 15 s at the CDN, so polling visitors do not each hit storage.
+- `GET /live`: newest 60 published entries, stream settings, session overrides, source health and token prices. Cached 15 s at the CDN, so polling visitors do not each hit storage or Jupiter.
 - `GET /feed?cursor=`: older published entries. `GET /bootstrap`: static + live combined (used by the collector).
 - `GET /calendar?id=`: .ics for one event (hidden venues stay hidden).
 - `POST /ingest` (collector token), `GET /admin`, `POST /admin/entry|stream|session` (editor token). Never cached.
@@ -32,7 +33,10 @@ API routes (all under `/breakpoint/api`):
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Desk, live coverage | Added automatically when an Upstash Redis store is connected to the project (Storage tab). `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` also work. |
 | `BREAKPOINT_EDITOR_TOKEN` | Editorial desk login | Long random string, e.g. `openssl rand -hex 32`. |
 | `BREAKPOINT_INGEST_TOKEN` | Collector | A different long random string. |
+| `JUPITER_API_KEY` | Optional | Free key from developers.jup.ag/portal for a higher Jupiter rate limit. Without it, token prices use Jupiter's keyless access. |
 | `BREAKPOINT_AUTO_PUBLISH_PROVISIONAL` | Optional | `true` lets collector drafts publish as Provisional (the collector must also set `publishProvisional`). Default off. |
+
+To price another project, add its `mintAddress` and a first-party `mintSourceUrl` (the project's own docs or app) in `seed.json`. Never add a mint from a ticker search.
 
 Never paste these values into chat, code or a URL. The collector's copy goes in through `python3 collector/setup.py` (masked macOS popups).
 
