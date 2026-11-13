@@ -1,0 +1,46 @@
+{
+  "siteUrl": "https://www.sebmonty.link/breakpoint",
+  "dailyBudgetUsd": 50,
+  "pollSeconds": 120,
+  "chunkSeconds": 30,
+  "summaryEveryChunks": 2,
+  "transcriptionModel": "gpt-4o-mini-transcribe",
+  "summaryModel": "gpt-4.1-mini",
+  "transcriptionReservePerMinuteUsd": 0.02,
+  "summaryReservePerCallUsd": 0.1,
+  "xPostReadReserveUsd": 0.005,
+  "xQuery": "((Breakpoint OR #Breakpoint2026 OR #SolanaBreakpoint) (Solana OR London)) OR ((from:JupiterExchange OR from:MeteoraAG OR from:jito OR from:SolanaEvents) (Breakpoint OR London)) -is:retweet",
+  "xEnabled": false,
+  "stages": [
+    {
+      "id": "main",
+      "name": "Main Stage",
+      "enabled": false,
+      "audioUrl": "",
+      "sourceUrl": "",
+      "sessionId": "",
+      "sessionConfirmed": false
+    },
+    {
+      "id": "royal",
+      "name": "Royal Exchange",
+      "enabled": false,
+      "audioUrl": "",
+      "sourceUrl": "",
+      "sessionId": "",
+      "sessionConfirmed": false
+    },
+    {
+      "id": "lparmy",
+      "name": "LP Army",
+      "enabled": false,
+      "audioUrl": "",
+      "sourceUrl": "",
+      "sessionId": "",
+      "sessionConfirmed": false
+    }
+  ],
+  "followDeskAssignments": true,
+  "publishProvisional": false,
+  "xMaxResults": 10
+}

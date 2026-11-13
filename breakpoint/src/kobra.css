@@ -1,0 +1,277 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+@source "./";
+
+@theme inline {
+    --raise-duration: 200ms;
+    --ease-raise: cubic-bezier(0.6, 0.6, 0, 1);
+    --ring-duration: 150ms;
+    --push-lift: 5px;
+    --push-travel: 4px;
+    --push-hover: 1px;
+    --push-press: 110ms;
+    --push-release: 190ms;
+    --push-spring: cubic-bezier(0.22, 1.32, 0.36, 1);
+    --color-badge-amber-fg: var(----badge-amber-fg);
+    --color-badge-amber-bg: var(----badge-amber-bg);
+    --color-badge-green-fg: var(----badge-green-fg);
+    --color-badge-green-bg: var(----badge-green-bg);
+    --color-badge-blue-fg: var(----badge-blue-fg);
+    --color-badge-blue-bg: var(----badge-blue-bg);
+}
+
+:root {
+    --badge-blue-bg: oklch(0.62 0.19 258 / 0.12);
+    --badge-blue-fg: oklch(0.48 0.17 258);
+    --badge-green-bg: oklch(0.62 0.16 152 / 0.12);
+    --badge-green-fg: oklch(0.48 0.125 152);
+    --badge-amber-bg: oklch(0.62 0.15 75 / 0.14);
+    --badge-amber-fg: oklch(0.5 0.115 75);
+}
+
+.dark {
+    --badge-blue-bg: oklch(0.62 0.19 258 / 0.2);
+    --badge-blue-fg: oklch(0.72 0.145 258);
+    --badge-green-bg: oklch(0.62 0.16 152 / 0.2);
+    --badge-green-fg: oklch(0.72 0.16 152);
+    --badge-amber-bg: oklch(0.62 0.15 75 / 0.2);
+    --badge-amber-fg: oklch(0.78 0.135 75);
+}
+
+@utility transition-ring {
+    transition-property: color, background-color, border-color, box-shadow, outline-color, outline-offset;
+    transition-duration: var(--ring-duration);
+    transition-timing-function: var(--ease-out);
+  @media (prefers-reduced-motion: reduce) {
+    transition-duration: 0ms;
+    }
+}
+
+.t-push {
+    transition: translate var(--push-release) var(--push-spring), box-shadow var(--push-release) var(--push-spring);
+}
+
+.t-push:active {
+    transition-duration: var(--push-press);
+    transition-timing-function: var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-raise:not(.t-flat)::before {
+    transition-duration: 0ms;
+    }
+}
+
+.t-raise:not(.t-flat)::before {
+    border-width: 0;
+    background-color: var(--raise-fill);
+    box-shadow: var(--raise-shadow);
+    transition: scale var(--raise-duration) var(--ease-raise), filter var(--raise-duration) var(--ease-raise), box-shadow var(--raise-duration) var(--ease-raise);
+}
+
+@media (hover: hover) {
+  .t-raise:not(.t-flat):hover::before {
+    box-shadow: var(--raise-lifted, var(--raise-shadow));
+    filter: var(--raise-lit, none);
+    }
+  .t-raise.t-label:not(.t-flat):is(a, button):hover::before {
+    filter: brightness(0.97);
+    }
+  .dark .t-raise.t-label:not(.t-flat):is(a, button):hover::before {
+    filter: brightness(1.15);
+    }
+}
+
+.t-raise:not(.t-flat)[aria-expanded='true']::before {
+    box-shadow: var(--raise-lifted, var(--raise-shadow));
+    filter: var(--raise-lit, none);
+}
+
+.t-raise:not(.t-flat):active:not([aria-haspopup])::before, .t-raise:not(.t-flat)[data-pressed]::before {
+    box-shadow: var(--raise-shadow);
+}
+
+.t-raise-primary::before {
+    --raise-fill: var(--primary);
+    --raise-shadow: inset 0 1px 0 rgb(255 255 255 / 0.14), inset 0 1px 2px -0.5px rgb(255 255 255 / 0.12), inset 0 8px 24px -4px rgb(255 255 255 / 0.1), inset 0 -4px 12px -4px rgb(255 255 255 / 0.06), 0 0 0 1px color-mix(in oklch, var(--primary), black 40%), 0 0.5px 0.5px rgb(0 0 0 / 0.08), 0 2px 2px -1px rgb(0 0 0 / 0.08), 0 3px 3px -1.5px rgb(0 0 0 / 0.08), 0 5px 5px -2.5px rgb(0 0 0 / 0.07), 0 8px 8px -3px rgb(0 0 0 / 0.06), 0 12px 12px -6px rgb(0 0 0 / 0.05);
+    --raise-lifted: initial;
+    --raise-lit: brightness(1.25);
+    --raise-lip: rgb(255 255 255 / 0.14);
+    --raise-shade: transparent;
+    --raise-edge: color-mix(in oklch, var(--primary), black 40%);
+    --raise-contact: rgb(0 0 0 / 0.08);
+}
+
+.t-raise-outline::before {
+    --raise-fill: var(--background);
+    --raise-shadow: inset 0 -1px 0 rgb(0 0 0 / 0.05), inset 0 -6px 12px -6px rgb(0 0 0 / 0.035), 0 0 0 1px rgb(0 0 0 / 0.07), 0 0.5px 0.5px rgb(0 0 0 / 0.05), 0 2px 2px -1px rgb(0 0 0 / 0.035), 0 3px 3px -1.5px rgb(0 0 0 / 0.03), 0 5px 5px -2.5px rgb(0 0 0 / 0.025), 0 8px 8px -3px rgb(0 0 0 / 0.015), 0 12px 12px -6px rgb(0 0 0 / 0.01);
+    --raise-lifted: inset 0 -1px 0 rgb(0 0 0 / 0.05), inset 0 -6px 12px -6px rgb(0 0 0 / 0.035), 0 0 0 1px rgb(0 0 0 / 0.09), 0 1px 1px -0.5px rgb(0 0 0 / 0.06), 0 3px 3px -1.5px rgb(0 0 0 / 0.045), 0 5px 5px -2.5px rgb(0 0 0 / 0.04), 0 8px 8px -4px rgb(0 0 0 / 0.035), 0 12px 12px -6px rgb(0 0 0 / 0.03), 0 16px 16px -8px rgb(0 0 0 / 0.02);
+    --raise-lit: initial;
+    --raise-lip: transparent;
+    --raise-shade: rgb(0 0 0 / 0.05);
+    --raise-edge: rgb(0 0 0 / 0.07);
+    --raise-contact: rgb(0 0 0 / 0.06);
+}
+
+.t-raise-secondary::before {
+    --raise-fill: var(--secondary);
+    --raise-shadow: inset 0 1px 0 rgb(255 255 255 / 0.9), inset 0 1px 2px -0.5px rgb(255 255 255 / 0.7), inset 0 -6px 12px -6px rgb(0 0 0 / 0.04), inset 0 -1px 0 rgb(0 0 0 / 0.05), 0 0 0 1px rgb(0 0 0 / 0.06), 0 0.5px 0.5px rgb(0 0 0 / 0.04), 0 2px 2px -1px rgb(0 0 0 / 0.03), 0 3px 3px -1.5px rgb(0 0 0 / 0.025), 0 5px 5px -2.5px rgb(0 0 0 / 0.02), 0 8px 8px -3px rgb(0 0 0 / 0.015), 0 12px 12px -6px rgb(0 0 0 / 0.01);
+    --raise-lifted: inset 0 1px 0 rgb(255 255 255 / 0.9), inset 0 1px 2px -0.5px rgb(255 255 255 / 0.7), inset 0 -6px 12px -6px rgb(0 0 0 / 0.04), inset 0 -1px 0 rgb(0 0 0 / 0.05), 0 0 0 1px rgb(0 0 0 / 0.08), 0 1px 1px -0.5px rgb(0 0 0 / 0.05), 0 3px 3px -1.5px rgb(0 0 0 / 0.04), 0 5px 5px -2.5px rgb(0 0 0 / 0.035), 0 8px 8px -4px rgb(0 0 0 / 0.03), 0 12px 12px -6px rgb(0 0 0 / 0.025), 0 16px 16px -8px rgb(0 0 0 / 0.02);
+    --raise-lit: initial;
+    --raise-lip: rgb(255 255 255 / 0.9);
+    --raise-shade: rgb(0 0 0 / 0.05);
+    --raise-edge: rgb(0 0 0 / 0.06);
+    --raise-contact: rgb(0 0 0 / 0.05);
+}
+
+.t-raise-destructive::before {
+    --raise-fill: #c11d22;
+    --raise-shadow: inset 0 1px 2px -0.5px rgb(255 255 255 / 0.12), inset 0 0.5px 0.5px rgb(255 255 255 / 0.16), inset 0 8px 24px -4px rgb(255 255 255 / 0.16), inset 0 -4px 12px -4px rgb(255 255 255 / 0.06), 0 0 0 1px color-mix(in oklch, #c11d22, black 30%), 0 0.5px 0.5px rgb(64 0 0 / 0.08), 0 2px 2px -1px rgb(64 0 0 / 0.07), 0 3px 3px -1.5px rgb(64 0 0 / 0.07), 0 5px 5px -2.5px rgb(64 0 0 / 0.06), 0 8px 8px -3px rgb(64 0 0 / 0.06), 0 12px 12px -6px rgb(64 0 0 / 0.05);
+    --raise-lifted: initial;
+    --raise-lit: brightness(1.1);
+    --raise-lip: rgb(255 255 255 / 0.16);
+    --raise-shade: transparent;
+    --raise-edge: color-mix(in oklch, #c11d22, black 30%);
+    --raise-contact: rgb(64 0 0 / 0.08);
+}
+
+.dark .t-raise-primary::before {
+    --raise-fill: var(--primary);
+    --raise-shadow: inset 0 1px 0 rgb(255 255 255 / 0.95), inset 0 1px 2px -0.5px rgb(255 255 255 / 0.8), inset 0 12px 16px -10px rgb(255 255 255 / 0.7), inset 0 -12px 16px -10px rgb(0 0 0 / 0.24), inset 0 -1px 2px -1px rgb(0 0 0 / 0.14), 0 0 0 1px rgb(0 0 0 / 0.4), 0 0.5px 0.5px rgb(0 0 0 / 0.16), 0 2px 2px -1px rgb(0 0 0 / 0.12), 0 3px 3px -1.5px rgb(0 0 0 / 0.1), 0 5px 5px -2.5px rgb(0 0 0 / 0.08), 0 8px 8px -3px rgb(0 0 0 / 0.06), 0 12px 12px -6px rgb(0 0 0 / 0.05);
+    --raise-lifted: initial;
+    --raise-lit: brightness(1.06);
+    --raise-lip: rgb(255 255 255 / 0.9);
+    --raise-shade: rgb(0 0 0 / 0.14);
+    --raise-edge: rgb(0 0 0 / 0.6);
+    --raise-contact: rgb(0 0 0 / 0.16);
+}
+
+.dark .t-raise-secondary::before {
+    --raise-fill: var(--secondary);
+    --raise-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12), inset 0 1px 2px -0.5px rgb(255 255 255 / 0.1), inset 0 8px 24px -4px rgb(255 255 255 / 0.06), inset 0 -4px 12px -4px rgb(255 255 255 / 0.08), 0 0 0 1px rgb(0 0 0 / 0.35), 0 0.5px 0.5px rgb(0 0 0 / 0.16), 0 2px 2px -1px rgb(0 0 0 / 0.12), 0 3px 3px -1.5px rgb(0 0 0 / 0.1), 0 5px 5px -2.5px rgb(0 0 0 / 0.08), 0 8px 8px -3px rgb(0 0 0 / 0.06), 0 12px 12px -6px rgb(0 0 0 / 0.05);
+    --raise-lifted: initial;
+    --raise-lit: brightness(1.2);
+    --raise-lip: rgb(255 255 255 / 0.12);
+    --raise-shade: transparent;
+    --raise-edge: rgb(0 0 0 / 0.5);
+    --raise-contact: rgb(0 0 0 / 0.16);
+}
+
+.dark .t-raise-outline::before {
+    --raise-fill: color-mix(in oklch, var(--background), white 4%);
+    --raise-shadow: inset 0 8px 24px -4px rgb(255 255 255 / 0.04), inset 0 -4px 12px -4px rgb(255 255 255 / 0.05), inset 0 0 0 1px rgb(255 255 255 / 0.1), 0 0.5px 0.5px rgb(0 0 0 / 0.16), 0 2px 2px -1px rgb(0 0 0 / 0.12), 0 3px 3px -1.5px rgb(0 0 0 / 0.1), 0 5px 5px -2.5px rgb(0 0 0 / 0.08), 0 8px 8px -3px rgb(0 0 0 / 0.06), 0 12px 12px -6px rgb(0 0 0 / 0.05);
+    --raise-lifted: initial;
+    --raise-lit: brightness(1.3);
+    --raise-lip: transparent;
+    --raise-shade: transparent;
+    --raise-edge: rgb(255 255 255 / 0.1);
+    --raise-contact: rgb(0 0 0 / 0.16);
+}
+
+.dark .t-raise-destructive::before {
+    --raise-fill: #c8161b;
+    --raise-shadow: inset 0 1px 2px -0.5px rgb(255 255 255 / 0.12), inset 0 0.5px 0.5px rgb(255 255 255 / 0.16), inset 0 8px 24px -4px rgb(255 255 255 / 0.16), inset 0 -4px 12px -4px rgb(255 255 255 / 0.06), 0 0 0 1px rgb(0 0 0 / 0.35), 0 0.5px 0.5px rgb(0 0 0 / 0.16), 0 2px 2px -1px rgb(0 0 0 / 0.12), 0 3px 3px -1.5px rgb(0 0 0 / 0.1), 0 5px 5px -2.5px rgb(0 0 0 / 0.08), 0 8px 8px -3px rgb(0 0 0 / 0.06), 0 12px 12px -6px rgb(0 0 0 / 0.05);
+    --raise-lifted: initial;
+    --raise-lit: brightness(1.08);
+    --raise-lip: rgb(255 255 255 / 0.16);
+    --raise-shade: transparent;
+    --raise-edge: rgb(0 0 0 / 0.5);
+    --raise-contact: rgb(0 0 0 / 0.16);
+}
+
+.t-raise-info::before {
+    --raise-fill: #e8f1fe;
+    --raise-lip: rgb(255 255 255 / 0.7);
+    --raise-shade: rgb(37 99 235 / 0.12);
+    --raise-edge: rgb(37 99 235 / 0.2);
+    --raise-contact: rgb(37 99 235 / 0.08);
+}
+
+.t-raise-warning::before {
+    --raise-fill: #fef3dc;
+    --raise-lip: rgb(255 255 255 / 0.7);
+    --raise-shade: rgb(217 119 6 / 0.14);
+    --raise-edge: rgb(217 119 6 / 0.24);
+    --raise-contact: rgb(217 119 6 / 0.08);
+}
+
+.t-raise-success::before {
+    --raise-fill: #e7f4ea;
+    --raise-lip: rgb(255 255 255 / 0.7);
+    --raise-shade: rgb(2 135 68 / 0.12);
+    --raise-edge: rgb(2 135 68 / 0.2);
+    --raise-contact: rgb(2 135 68 / 0.08);
+}
+
+.t-raise-danger::before {
+    --raise-fill: #feebe9;
+    --raise-lip: rgb(255 255 255 / 0.7);
+    --raise-shade: rgb(209 16 37 / 0.12);
+    --raise-edge: rgb(209 16 37 / 0.2);
+    --raise-contact: rgb(209 16 37 / 0.08);
+}
+
+.dark .t-raise-info::before {
+    --raise-fill: #1c2842;
+    --raise-lip: rgb(255 255 255 / 0.08);
+    --raise-shade: rgb(0 0 0 / 0.2);
+}
+
+.dark .t-raise-warning::before {
+    --raise-fill: #332712;
+    --raise-lip: rgb(255 255 255 / 0.08);
+    --raise-shade: rgb(0 0 0 / 0.2);
+}
+
+.dark .t-raise-success::before {
+    --raise-fill: #13301c;
+    --raise-lip: rgb(255 255 255 / 0.08);
+    --raise-shade: rgb(0 0 0 / 0.2);
+}
+
+.dark .t-raise-danger::before {
+    --raise-fill: #3e1e1c;
+    --raise-lip: rgb(255 255 255 / 0.08);
+    --raise-shade: rgb(0 0 0 / 0.2);
+}
+
+.t-raise-tint::before {
+    --raise-fill: color-mix(in oklab, currentColor 9%, var(--raise-ground, var(--background)));
+    --raise-lip: rgb(255 255 255 / 0.6);
+    --raise-shade: color-mix(in srgb, currentColor 12%, transparent);
+    --raise-edge: color-mix(in srgb, currentColor 22%, transparent);
+    --raise-contact: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.dark .t-raise-tint::before {
+    --raise-fill: color-mix(in oklab, currentColor 13%, var(--raise-ground, var(--background)));
+    --raise-lip: color-mix(in srgb, currentColor 16%, transparent);
+    --raise-shade: rgb(0 0 0 / 0.2);
+}
+
+.t-raise.t-label:not(.t-flat)::before, .t-raise.t-label:not(.t-flat):hover::before, .t-raise.t-label:not(.t-flat)[aria-expanded='true']::before {
+    box-shadow: inset 0 1px 0 var(--raise-lip), inset 0 -1px 0 var(--raise-shade), 0 0 0 1px var(--raise-edge), 0 0.5px 0.5px var(--raise-contact), 0 1px 1px -0.5px var(--raise-contact), 0 2px 2px -1px var(--raise-contact);
+    filter: none;
+}
+
+.dark .t-raise.t-label::before {
+    --raise-lip: transparent;
+    --raise-shade: transparent;
+    --raise-edge: color-mix(in srgb, currentColor 24%, transparent);
+    --raise-contact: transparent;
+}
+
+@utility focus-field {
+    outline: none;
+    transition-property: color, background-color, border-color, box-shadow;
+    transition-duration: var(--ring-duration);
+    transition-timing-function: var(--ease-out);
+  &:focus-within {
+    border-color: var(--field-focus-color, var(--ring));
+    box-shadow: inset 0 0 0 var(--field-focus-width, 0.5px) var(--field-focus-color, var(--ring));
+    }
+  @media (prefers-reduced-motion: reduce) {
+    transition-duration: 0ms;
+    }
+}

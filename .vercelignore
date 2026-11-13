@@ -23,3 +23,9 @@ skills-lock.json
 # Stray files parked in public/ that should not be served
 public/referral-logos/parsec-macos.pkg
 public/referral-logos/openclaw_intelligence_report.pdf
+
+# Breakpoint guide: collector runs on an operator machine, not on Vercel
+breakpoint/collector
+breakpoint/tests
+breakpoint/node_modules
+breakpoint/.local

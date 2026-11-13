@@ -63,8 +63,37 @@ export default function nextConfig(phase) {
         beforeFiles: [
           // Plain-Markdown copy of each article for AI agents
           { source: '/blog/:slug.md', destination: '/agent/articles/:slug' },
+          // Breakpoint guide: a self-contained page built into public/breakpoint (source in breakpoint/)
+          { source: '/breakpoint', destination: '/breakpoint/index.html' },
         ],
       }
+    },
+    async headers() {
+      return [
+        {
+          // Breakpoint guide page and assets. The API under /breakpoint/api sets its own cache headers.
+          source: '/breakpoint/:path((?!api/).*)?',
+          headers: [
+            { key: 'X-Content-Type-Options', value: 'nosniff' },
+            { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+            { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+            {
+              key: 'Content-Security-Policy',
+              value: [
+                "default-src 'self'",
+                "script-src 'self'",
+                "style-src 'self' 'unsafe-inline'",
+                "img-src 'self' data: https://tile.openstreetmap.org https://images.lumacdn.com",
+                "connect-src 'self'",
+                'frame-src https://www.youtube-nocookie.com https://www.youtube.com https://player.vimeo.com',
+                "object-src 'none'",
+                "base-uri 'self'",
+                "form-action 'self'",
+              ].join('; '),
+            },
+          ],
+        },
+      ]
     },
   }
 }
