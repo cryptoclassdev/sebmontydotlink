@@ -47,11 +47,60 @@ Environment variables are listed in `.env.example`. The site builds without any 
 | Article components | `components/blog/` |
 | Site-wide colours, page width, header, footer, blog and article styles | `app/globals.css` |
 | Agent-readable copies | `/blog/<slug>.md` (`app/agent/articles/[slug]/route.ts`), `/llms.txt` (`app/llms.txt/route.ts`) |
+| Breakpoint London 2026 guide (`/breakpoint`) | Source, data, tests and collector in `breakpoint/` (see `breakpoint/README.md`); built page in `public/breakpoint/`; API in `app/breakpoint/api/[...path]/route.ts` |
 | Legacy Sanity content | The RoboStrategy post still comes from Sanity (project `bfn64pgm`, Studio at `/studio`) until it is migrated |
 
 ## Change log
 
 Newest first. One entry per pull request.
+
+### Breakpoint London 2026 guide at /breakpoint
+
+- **Date:** 13 November 2026
+- **Pull request:** branch `feat/breakpoint-guide` (number added once opened).
+- **Status:** Ready for review. Needs the Vercel steps under "Before merging" for the editorial desk; the public guide works without them.
+
+#### What changed
+1. New page at sebmonty.link/breakpoint: one place for everything at Solana Breakpoint 2026 in London. Overview, the full two-stage programme (107 talks, 143 speakers), the London side-events guide with a map, stage livestream slots, a Catch up feed, project watchlists and an LP Army page. Branded Seb Monty with the "Powered by validator.com" line.
+2. Side events now come live from the official Breakpoint community calendar on Luma (122 listings for 2026, up from 13 in the first build), refreshed every 10 minutes, grouped by day, with search, a Free filter, availability filter and past events hidden by default. Only venues Luma shows publicly go on the map; guests-only addresses never do. If Luma is down, the page shows a committed snapshot and says so.
+3. The app was first built for Cloudflare Workers. It now runs inside this Next.js site: the page is a self-contained static app in `public/breakpoint/`, the API is a Next route at `/breakpoint/api/*`, and storage for the editorial desk moved from Cloudflare R2 to Upstash Redis (connected through Vercel). Public API responses are cached at the edge (15 s live, 5 min programme) so visitors polling every 20 s do not each hit storage.
+4. Fixed agenda formatting errors: "Luke Truitt - Formation" and "Irene Tse - Graticule Asset Management Asia" split into name and organisation, double spaces in two names, a stray quote mark in a Bitwise talk title, "Payward" listed as a person, and role/organisation swaps for five speakers.
+5. The collector (stage audio transcription and X monitoring, Python) now points at www.sebmonty.link/breakpoint; it stays off until sources, keys and budget are set.
+
+#### Files touched
+- `breakpoint/` (new): page source, server logic, data, collector, scripts, tests, `README.md`
+- `public/breakpoint/` (new, built output): `index.html`, `app.js`, `style.css`, `icon.svg`
+- `app/breakpoint/api/[...path]/route.ts` (new)
+- `next.config.mjs`: rewrite `/breakpoint` to the static page; security headers (CSP) for the guide's page and assets
+- `app/globals.css`: two `@source not` lines so the site's Tailwind build ignores the guide's files (checked: no guide classes in the site CSS)
+- `tsconfig.json`: exclude `breakpoint/` from the site typecheck (the guide has its own)
+- `.gitignore`, `.vercelignore`, `.env.example`, `README.md` (this entry and a row in "Where things live")
+
+#### How to check it on the Vercel preview
+1. Open `/breakpoint` on the preview. The overview loads with "122 side events" (or more) in the hero.
+2. London guide: day chips from Mon 9 to Wed 18, map pins only for public venues, search "padel" or a host name, open an event and use Add to calendar.
+3. Schedule: 107 sessions on Mon 16 and Tue 17; open a session and a speaker.
+4. Phone width: bottom tab bar, avatar top left, map drags.
+5. `/breakpoint/api/live` returns JSON with `storage: "not-configured"` until Upstash is connected, then `"ready"`.
+6. The homepage and blog look unchanged.
+
+#### Before merging (Vercel project settings, about 5 minutes)
+1. Storage tab: create an Upstash Redis store (free plan is fine to start) and connect it to this project. This adds `KV_REST_API_URL` and `KV_REST_API_TOKEN`.
+2. Environment variables: add `BREAKPOINT_EDITOR_TOKEN` and `BREAKPOINT_INGEST_TOKEN`, each a different value from `openssl rand -hex 32`. Keep them in a password manager.
+3. Redeploy the preview, then log in at `/breakpoint#editor` with the editor token.
+
+#### Checks run
+- Guide: 37 Node tests (API on an in-memory store and on the Upstash adapter, Luma normaliser, caching, base path, and the storage layer against a real `redis-server`) and 9 collector tests, all passing. `tsc --noEmit` for the guide.
+- Site: `pnpm typecheck` and `pnpm build` pass.
+- Production server run locally: headless Chrome at 1440 px and 390 px across overview, London guide, event dialog and schedule, with no console errors.
+
+#### Risks
+- Luma rate-limits heavy callers. The API asks Luma at most every 10 minutes per server instance and falls back to the last good copy or the snapshot.
+- The page is a separate app with its own stylesheet; it cannot change the rest of the site's styling.
+- Upstash usage rises with live coverage during 15 to 17 November; edge caching keeps it to a few reads per minute per region.
+
+#### Roll back
+Revert the merge commit. Nothing outside `/breakpoint` depends on these files.
 
 ### New avatar on the X card and in the site header
 

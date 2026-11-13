@@ -1,0 +1,5265 @@
+{
+  "updatedAt": "2026-11-12T08:05:40.769Z",
+  "projects": [
+    {
+      "id": "kamino",
+      "name": "Kamino",
+      "symbol": "KMNO",
+      "website": "https://kamino.com/",
+      "xHandle": null,
+      "sourceUrl": "https://kamino.com/blog/one-kamino-one-kmno",
+      "description": "Lending, liquidity and leverage on Solana.",
+      "mintAddress": null,
+      "notes": [
+        "The official Nov 2 CEO letter is existing news; do not label a repeat at Breakpoint as a new announcement.",
+        "Token ticker verified; mint address and project X account still require verification."
+      ],
+      "xHandleCandidates": [
+        {
+          "handle": "kamino",
+          "status": "needs-primary-link-verification",
+          "sourceUrl": "https://zamantika.com/en/profile/kamino"
+        },
+        {
+          "handle": "KaminoFinance",
+          "status": "legacy-handle",
+          "sourceUrl": "https://linktr.ee/kaminofinance"
+        }
+      ]
+    },
+    {
+      "id": "jupiter",
+      "name": "Jupiter",
+      "symbol": "JUP",
+      "website": "https://jup.ag/",
+      "xHandle": "JupiterExchange",
+      "xSourceUrl": "https://jup.ag/",
+      "sourceUrl": "https://discuss.jup.ag/t/jup-dao-faq-june-2025-edition/38967",
+      "description": "Trading and financial applications on Solana.",
+      "mintAddress": null
+    },
+    {
+      "id": "meteora",
+      "name": "Meteora",
+      "symbol": "MET",
+      "website": "https://www.meteora.ag/",
+      "xHandle": "MeteoraAG",
+      "xSourceUrl": "https://docs.meteora.ag/get-started",
+      "sourceUrl": "https://ir.meteora.ag/",
+      "description": "Liquidity infrastructure and the LP Army community.",
+      "mintAddress": null
+    },
+    {
+      "id": "jito",
+      "name": "Jito",
+      "symbol": "JTO",
+      "website": "https://www.jito.network/",
+      "xHandle": "jito",
+      "xSourceUrl": "https://www.jito.network/",
+      "sourceUrl": "https://www.jito.network/",
+      "description": "Solana execution infrastructure, liquid staking and governance.",
+      "mintAddress": null
+    },
+    {
+      "id": "solana",
+      "name": "Solana",
+      "symbol": "SOL",
+      "website": "https://solana.com/",
+      "xHandle": "solana",
+      "sourceUrl": "https://solana.com/breakpoint",
+      "description": "The network hosting the Breakpoint ecosystem.",
+      "mintAddress": null
+    },
+    {
+      "id": "backpack",
+      "name": "Backpack",
+      "description": "Tokenized assets and trading infrastructure.",
+      "symbol": null,
+      "website": null,
+      "xHandle": null,
+      "sourceUrl": "https://solana.com/breakpoint/speakers",
+      "mintAddress": null
+    },
+    {
+      "id": "helius",
+      "name": "Helius",
+      "description": "Developer infrastructure for Solana.",
+      "symbol": null,
+      "website": null,
+      "xHandle": null,
+      "sourceUrl": "https://solana.com/breakpoint/speakers",
+      "mintAddress": null
+    },
+    {
+      "id": "sunrise",
+      "name": "Sunrise",
+      "description": "Onchain access to capital markets.",
+      "symbol": null,
+      "website": null,
+      "xHandle": null,
+      "sourceUrl": "https://solana.com/breakpoint/speakers",
+      "mintAddress": null
+    },
+    {
+      "id": "ledger",
+      "name": "Ledger",
+      "description": "Digital asset security and custody.",
+      "symbol": null,
+      "website": null,
+      "xHandle": null,
+      "sourceUrl": "https://solana.com/breakpoint/speakers",
+      "mintAddress": null
+    }
+  ],
+  "speakers": [
+    {
+      "id": "adam-bergeman",
+      "name": "Adam Bergeman",
+      "role": "Founder",
+      "organization": "Star",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "ahmed-zifzaf",
+      "name": "Ahmed Zifzaf",
+      "role": "Head of Digital Asset Partnerships",
+      "organization": "Ramp",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "alexandra-lang",
+      "name": "Alexandra Lang",
+      "role": "VP, Digital Assets Partnerships & Strategy",
+      "organization": "Zelle",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "amelia-daly",
+      "name": "Amelia Daly",
+      "role": "Moderator · Head of Partnerships",
+      "organization": "Solana Foundation",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "amira-valliani",
+      "name": "Amira Valliani",
+      "role": "Head of Payments Growth",
+      "organization": "Solana Foundation",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "anatoly-yakovenko",
+      "name": "Anatoly Yakovenko",
+      "role": "Co-Founder / CEO",
+      "organization": "Solana / Solana Labs",
+      "projectId": "solana",
+      "xHandle": null,
+      "xUrl": null,
+      "xSourceUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/speakers",
+      "observedAt": "2026-11-12"
+    },
+    {
+      "id": "andrea-griffin-miele",
+      "name": "Andrea Griffin Miele",
+      "role": "Co-Founder & CEO",
+      "organization": "Beezie",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "andrew-fox",
+      "name": "Andrew Fox",
+      "role": "CEO",
+      "organization": "Powerus",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "andrew-price",
+      "name": "Andrew Price",
+      "role": "Director, xStocks & Exchange Partnerships",
+      "organization": "xStocks",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "anna-irrera",
+      "name": "Anna Irrera",
+      "role": "Moderator · Senior Editor",
+      "organization": "Bloomberg News",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "annabel-spring",
+      "name": "Annabel Spring",
+      "role": "CEO",
+      "organization": "Allfunds",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "anthony-soohoo",
+      "name": "Anthony Soohoo",
+      "role": "CEO",
+      "organization": "MoneyGram",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "arizona-muse",
+      "name": "Arizona Muse",
+      "role": "Co-Founder",
+      "organization": "Soilonic",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "armani-ferrante",
+      "name": "Armani Ferrante",
+      "role": "CEO",
+      "organization": "Backpack",
+      "projectId": "backpack",
+      "xHandle": "armaniferrante",
+      "xUrl": "https://x.com/armaniferrante",
+      "xSourceUrl": "https://solana.com/ar/podcasts/lightspeed/episodes/crypto-s-path-forward-in-the-next-10-years-2025-06-27",
+      "sourceUrl": "https://solana.com/breakpoint/speakers",
+      "observedAt": "2026-11-12"
+    },
+    {
+      "id": "arnold-lee",
+      "name": "Arnold Lee",
+      "role": "Co-Founder & CEO",
+      "organization": "Sphere Labs",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "austin-federa",
+      "name": "Austin Federa",
+      "role": "Moderator · Co-Founder",
+      "organization": "DoubleZero",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "ben-brophy",
+      "name": "Ben Brophy",
+      "role": "Moderator · Head of Institutional Growth, Europe",
+      "organization": "Solana Foundation",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "ben-reid",
+      "name": "Ben Reid",
+      "role": "VP, Strategic Initiatives",
+      "organization": "Bitso",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "bill-barhydt",
+      "name": "Bill Barhydt",
+      "role": "CEO",
+      "organization": "Abra",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "boris-johnson",
+      "name": "Boris Johnson",
+      "role": "Former Prime Minister",
+      "organization": "",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "brennan-watt",
+      "name": "Brennan Watt",
+      "role": "CEO",
+      "organization": "Anza",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "carlos-matilla",
+      "name": "Carlos Matilla",
+      "role": "Chief Executive Officer",
+      "organization": "IO Builders",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "cate-clancy",
+      "name": "Cate Clancy",
+      "role": "Managing Director",
+      "organization": "JPMorgan Chase",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "charles-dalton",
+      "name": "Charles Dalton",
+      "role": "Co-Founder",
+      "organization": "MetaDAO",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "chase-barker",
+      "name": "Chase Barker",
+      "role": "Moderator · Head of Founder Success",
+      "organization": "Solana Foundation",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "chris-montagano",
+      "name": "Chris Montagano",
+      "role": "Co-Founder, President",
+      "organization": "Formation Securities",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "chris-osborn",
+      "name": "Chris Osborn",
+      "role": "General Manager, Leap",
+      "organization": "Solana Labs",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "christian-rau",
+      "name": "Christian Rau",
+      "role": "SVP Digital Assets and Blockchain",
+      "organization": "Mastercard",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "david-vatchev",
+      "name": "David Vatchev",
+      "role": "Head of RWA Tokenization",
+      "organization": "Fasanara Capital",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "diogo-monica",
+      "name": "Diogo Monica",
+      "role": "General Partner, Haun Ventures and Co-Founder and Executive Chairman, Anchorage Digital",
+      "organization": "Haun Ventures",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "dom-kwok",
+      "name": "Dom Kwok",
+      "role": "Co-founder",
+      "organization": "EasyA",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "ellie-platis",
+      "name": "Ellie Platis",
+      "role": "Head of Events",
+      "organization": "Solana Foundation",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "erbil-karaman",
+      "name": "Erbil Karaman",
+      "role": "Co-Founder & Co-CEO",
+      "organization": "Huma",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "ersoy-erkazanci",
+      "name": "Ersoy Erkazanci",
+      "role": "UK Country Advisor",
+      "organization": "Invest in Türkiye",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "eugene-chen",
+      "name": "Eugene Chen",
+      "role": "CEO",
+      "organization": "Ellipsis Labs",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "eva-lawrence",
+      "name": "Eva Lawrence",
+      "role": "Head of Revenue",
+      "organization": "Figment",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "fabio-baglio",
+      "name": "Fabio Baglio",
+      "role": "Institutional Expansion Manager",
+      "organization": "Tether",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "farhaj-mayan",
+      "name": "Farhaj Mayan",
+      "role": "Moderator · Co-Founder",
+      "organization": "Forma",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "felix-leupold",
+      "name": "Felix Leupold",
+      "role": "CTO",
+      "organization": "CoW Swap",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "gareth-jenkinson",
+      "name": "Gareth Jenkinson",
+      "role": "Moderator · Head of Multimedia",
+      "organization": "The Block",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "george-ruhana",
+      "name": "George Ruhana",
+      "role": "Partner",
+      "organization": "PEAK6 / Clocked.",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "gordon-corera",
+      "name": "Gordon Corera",
+      "role": "Moderator · Host",
+      "organization": "The Rest Is Classified",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "graham-ferguson",
+      "name": "Graham Ferguson",
+      "role": "Head of Ecosystem",
+      "organization": "Securitize",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "greg-osuri",
+      "name": "Greg Osuri",
+      "role": "Founder",
+      "organization": "Akash",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "halsey-huth",
+      "name": "Halsey Huth",
+      "role": "Global Head, AI & Ecosystems",
+      "organization": "MoonPay",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "harriet-browning",
+      "name": "Harriet Browning",
+      "role": "VP of Commercial",
+      "organization": "Twinstake",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "hester-serafini",
+      "name": "Hester Serafini",
+      "role": "President",
+      "organization": "ICE Clear Europe",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "hitoshi-harada",
+      "name": "Hitoshi Harada",
+      "role": "Co-Founder, CTO & CPO",
+      "organization": "Alpaca",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "ian-rogers",
+      "name": "Ian Rogers",
+      "role": "Chief Human Agency Officer",
+      "organization": "Ledger",
+      "projectId": "ledger",
+      "xHandle": null,
+      "xUrl": null,
+      "xSourceUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/speakers",
+      "observedAt": "2026-11-12"
+    },
+    {
+      "id": "igor-voloshin",
+      "name": "Igor Voloshin",
+      "role": "Moderator · Associate",
+      "organization": "Fenwick",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "illia-polosukhin",
+      "name": "Illia Polosukhin",
+      "role": "Co-Founder",
+      "organization": "NEAR Protocol",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "irene-tse",
+      "name": "Irene Tse",
+      "role": "Partner",
+      "organization": "Graticule Asset Management Asia (GAMA)",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "jack-pearson",
+      "name": "Jack Pearson",
+      "role": "Principal",
+      "organization": "RoboStrategy",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "jacquelyn-melinek",
+      "name": "Jacquelyn Melinek",
+      "role": "Moderator · Founder & CEO",
+      "organization": "StrataMedia",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "jae-kim",
+      "name": "Jae Kim",
+      "role": "Chief Strategy Officer & Managing Director",
+      "organization": "Nodit",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "jake-burden",
+      "name": "Jake Burden",
+      "role": "Moderator · Staking Operations Lead",
+      "organization": "Solana Foundation",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "jamal-raees",
+      "name": "Jamal Raees",
+      "role": "GM, Payments",
+      "organization": "Solana Foundation",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "jasmine-jia",
+      "name": "Jasmine Jia",
+      "role": "Head of Tokenization Ecosystem",
+      "organization": "Fidelity Digital Asset Management",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "jeff-platt",
+      "name": "Jeff Platt",
+      "role": "Moderator · Global Broadcast Talent",
+      "organization": "World Series of Poker",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "jerome-oei",
+      "name": "Jerome Oei",
+      "role": "Head of Commercial Strategy, Singapore",
+      "organization": "BitGo",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "jess-houlgrave",
+      "name": "Jess Houlgrave",
+      "role": "CEO",
+      "organization": "WalletConnect",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "john-hallahan",
+      "name": "John Hallahan",
+      "role": "Director & Head of Business Solutions, Banking",
+      "organization": "Fireblocks",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "john-timoney",
+      "name": "John Timoney",
+      "role": "Head of Strategy",
+      "organization": "Rain",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "jonathan-victor",
+      "name": "Jonathan Victor",
+      "role": "President",
+      "organization": "BitRobot",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "justin-bons",
+      "name": "Justin Bons",
+      "role": "Founder & CIO",
+      "organization": "Cyber Capital",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "kash-dhanda",
+      "name": "Kash Dhanda",
+      "role": "Chief Operating Officer",
+      "organization": "Jupiter",
+      "projectId": "jupiter",
+      "xHandle": "kashdhanda",
+      "xUrl": "https://x.com/kashdhanda",
+      "xSourceUrl": "https://solana.com/es/podcasts/lightspeed/episodes/jupiter-s-push-beyond-crypto-trading-kash-dhanda-2026-05-20",
+      "sourceUrl": "https://solana.com/breakpoint/speakers",
+      "observedAt": "2026-11-12"
+    },
+    {
+      "id": "kathrin-hamilton",
+      "name": "Kathrin Hamilton",
+      "role": "Partner, Digital Assets",
+      "organization": "Baillie Gifford",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "kathy-kriskey",
+      "name": "Kathy Kriskey",
+      "role": "Head of Alternative Product Strategy",
+      "organization": "Invesco",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "keith-a-grossman",
+      "name": "Keith A. Grossman",
+      "role": "President",
+      "organization": "MoonPay",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "krista-lynch",
+      "name": "Krista Lynch",
+      "role": "Head of Trading and Capital Markets",
+      "organization": "Grayscale",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "kristin-smith",
+      "name": "Kristin Smith",
+      "role": "Moderator · President",
+      "organization": "Solana Policy Institute",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "kyle-samani",
+      "name": "Kyle Samani",
+      "role": "Chairman",
+      "organization": "Forward Industries",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "lily-liu",
+      "name": "Lily Liu",
+      "role": "President",
+      "organization": "Solana Foundation",
+      "projectId": "solana",
+      "xHandle": null,
+      "xUrl": null,
+      "xSourceUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/speakers",
+      "observedAt": "2026-11-12"
+    },
+    {
+      "id": "logan-jastremski",
+      "name": "Logan Jastremski",
+      "role": "Moderator · Managing Partner",
+      "organization": "Frictionless Capital",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "lucas-bruder",
+      "name": "Lucas Bruder",
+      "role": "Co-Founder & CEO",
+      "organization": "Jito Labs",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "lucas-jumalon",
+      "name": "Lucas Jumalon",
+      "role": "World Champion",
+      "organization": "World Series of Poker",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "luciana-miranda",
+      "name": "Luciana Miranda",
+      "role": "Moderator · Advisor",
+      "organization": "Solana Foundation",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "luke-truitt",
+      "name": "Luke Truitt",
+      "role": "CEO",
+      "organization": "Orca (Formation)",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "malcolm-clarke",
+      "name": "Malcolm Clarke",
+      "role": "Global Head of Digital Assets",
+      "organization": "Western Union",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "marc-tillement",
+      "name": "Marc Tillement",
+      "role": "Moderator · President & Director",
+      "organization": "Pyth Network / Pyth Data Association",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "mark-studholme",
+      "name": "Mark Studholme",
+      "role": "Co-Founder",
+      "organization": "FairClub",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "martin-gilbert",
+      "name": "Martin Gilbert",
+      "role": "Chairman",
+      "organization": "Revolut",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "matt-hougan",
+      "name": "Matt Hougan",
+      "role": "Chief Investment Officer",
+      "organization": "Bitwise",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "matty-taylor",
+      "name": "Matty Taylor",
+      "role": "Co-Founder & GP",
+      "organization": "Colosseum",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "mert-mumtaz",
+      "name": "Mert Mumtaz",
+      "role": "Co-Founder & CEO",
+      "organization": "Helius",
+      "projectId": "helius",
+      "xHandle": "0xMert_",
+      "xUrl": "https://x.com/0xMert_",
+      "xSourceUrl": "https://solana.com/ja/podcasts/lightspeed/episodes/why-crypto-wallets-are-broken-armani-ferrante-2025-02-13",
+      "sourceUrl": "https://solana.com/breakpoint/speakers",
+      "observedAt": "2026-11-12"
+    },
+    {
+      "id": "michael-coates",
+      "name": "Michael Coates",
+      "role": "Chief Information Security Officer",
+      "organization": "Solana Foundation",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "michael-marcantonio",
+      "name": "Michael Marcantonio",
+      "role": "CEO",
+      "organization": "Temporal",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "michael-repetny",
+      "name": "Michael Repetny",
+      "role": "CEO",
+      "organization": "Marinade Labs",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "michael-weisz",
+      "name": "Michael Weisz",
+      "role": "CEO",
+      "organization": "Kamino",
+      "projectId": "kamino",
+      "xHandle": null,
+      "xUrl": null,
+      "xSourceUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/speakers",
+      "observedAt": "2026-11-12"
+    },
+    {
+      "id": "nass-diba",
+      "name": "Nass Diba",
+      "role": "Co-founder & CEO",
+      "organization": "worm",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "nemil-dalal",
+      "name": "Nemil Dalal",
+      "role": "Moderator · Visiting Partner",
+      "organization": "Y Combinator",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "nicholas-grovell",
+      "name": "Nicholas Grovell",
+      "role": "Director",
+      "organization": "Reflect Money",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "nicholas-lyons",
+      "name": "Nicholas Lyons",
+      "role": "Chairman",
+      "organization": "Standard Life",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "nick-ducoff",
+      "name": "Nick Ducoff",
+      "role": "Moderator · GM, Institutional",
+      "organization": "Solana Foundation",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "nicolas-cabrera",
+      "name": "Nicolas Cabrera",
+      "role": "Chief Product and Technology Officer",
+      "organization": "Tala",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "nikou-asgari",
+      "name": "Nikou Asgari",
+      "role": "Moderator · Digital Markets Correspondent",
+      "organization": "Financial Times",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "pj-bain",
+      "name": "PJ Bain",
+      "role": "CEO",
+      "organization": "PrimeRevenue",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "patrick-corker",
+      "name": "Patrick Corker",
+      "role": "Managing Director, Market Transformation and Innovation",
+      "organization": "BNY",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "patrick-witt",
+      "name": "Patrick Witt",
+      "role": "Former Executive Director, President's Council of Advisors for Digital Assets",
+      "organization": "The White House",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "paul-adrien-hyppolite",
+      "name": "Paul-Adrien Hyppolite",
+      "role": "Co-Founder & CEO",
+      "organization": "Spiko",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "pete-cooling",
+      "name": "Pete Cooling",
+      "role": "Founder & CEO",
+      "organization": "Atum",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "peter-moore",
+      "name": "Peter Moore",
+      "role": "Sports and Video Game Executive",
+      "organization": "Owner, Wisla Krakow Football Club (Poland)",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "phil-kwok",
+      "name": "Phil Kwok",
+      "role": "Co-Founder",
+      "organization": "EasyA",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "plish",
+      "name": "Plish",
+      "role": "CEO",
+      "organization": "Hylo",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "rachel-conlan",
+      "name": "Rachel Conlan",
+      "role": "Chief Strategy Officer",
+      "organization": "Solana Foundation",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "raoul-pal",
+      "name": "Raoul Pal",
+      "role": "Co-Founder / CEO",
+      "organization": "Real Vision / EXPAAM / GMI",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "reid-simon",
+      "name": "Reid Simon",
+      "role": "President, Digital Assets",
+      "organization": "Figure",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "ricardo-brizido",
+      "name": "Ricardo Brizido",
+      "role": "CPTO",
+      "organization": "Stake",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "ross-kempsell",
+      "name": "Ross Kempsell",
+      "role": "Member of the House of Lords",
+      "organization": "House of Lords",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "rowland-berry",
+      "name": "Rowland Berry",
+      "role": "VP, Stablecoin",
+      "organization": "Payoneer",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "ryan-rasmussen",
+      "name": "Ryan Rasmussen",
+      "role": "Director, Head of Research",
+      "organization": "Bitwise",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "ryan-wen",
+      "name": "Ryan Wen",
+      "role": "COO",
+      "organization": "Plume",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "saeed-badreg",
+      "name": "Saeed Badreg",
+      "role": "Co-Founder & CEO",
+      "organization": "Sunrise",
+      "projectId": "sunrise",
+      "xHandle": null,
+      "xUrl": null,
+      "xSourceUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/speakers",
+      "observedAt": "2026-11-12"
+    },
+    {
+      "id": "scott-lucas",
+      "name": "Scott Lucas",
+      "role": "Head of Digital Assets",
+      "organization": "Barclays",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "se-yong-park",
+      "name": "Se Yong Park",
+      "role": "Co-Founder",
+      "organization": "fomo",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "seth-priebatsch",
+      "name": "Seth Priebatsch",
+      "role": "Founder & CEO",
+      "organization": "Groma",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "shayon-sengupta",
+      "name": "Shayon Sengupta",
+      "role": "General Partner",
+      "organization": "Multicoin",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "shinsuke-waka",
+      "name": "Shinsuke Waka",
+      "role": "Executive Coordinator, Head of Digital Finance",
+      "organization": "Mitsui & Co.",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "shola-akinlade",
+      "name": "Shola Akinlade",
+      "role": "CEO / Founder",
+      "organization": "Paystack",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "simon-griffin",
+      "name": "Simon Griffin",
+      "role": "Head of Crypto Distribution",
+      "organization": "SoFi",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "sir-sajid-javid",
+      "name": "Sir Sajid Javid",
+      "role": "Former Chancellor of the Exchequer",
+      "organization": "",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "sol-campbell",
+      "name": "Sol Campbell",
+      "role": "Footballer",
+      "organization": "",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "stepan-simkin",
+      "name": "Stepan Simkin",
+      "role": "CEO",
+      "organization": "Squads",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "stephen-gardner",
+      "name": "Stephen Gardner",
+      "role": "Co-President",
+      "organization": "zerohash",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "stephen-whyman",
+      "name": "Stephen Whyman",
+      "role": "Moderator · Institutional strategy officer",
+      "organization": "Jupiter",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "steve-vassallo",
+      "name": "Steve Vassallo",
+      "role": "General Partner",
+      "organization": "Foundation Capital",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "steven-wager",
+      "name": "Steven Wager",
+      "role": "Head of Product",
+      "organization": "Fiserv Digital Asset Services",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "sue-gray",
+      "name": "Sue Gray",
+      "role": "Chair",
+      "organization": "Baroness Gray of Tottenham",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "susan-li",
+      "name": "Susan Li",
+      "role": "Head of Growth",
+      "organization": "Phantom",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "tad-smith",
+      "name": "Tad Smith",
+      "role": "CEO",
+      "organization": "Candy Digital",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "tee-ganbold",
+      "name": "Tee Ganbold",
+      "role": "Moderator · Co-Founder & CEO",
+      "organization": "Frontier/1",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "thomas-sy",
+      "name": "Thomas Sy",
+      "role": "Head of Multi-Asset & Digital Asset Solutions",
+      "organization": "New York Life Investment Management",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "todd-mcdonald",
+      "name": "Todd McDonald",
+      "role": "Moderator · Co-Founder",
+      "organization": "R3",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "tom-farley",
+      "name": "Tom Farley",
+      "role": "Chairman & CEO",
+      "organization": "Bullish",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "trey-buckingham",
+      "name": "Trey Buckingham",
+      "role": "Digital Assets Practice Manager",
+      "organization": "Aon",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "tristan-thompson",
+      "name": "Tristan Thompson",
+      "role": "NBA Champion and Investor",
+      "organization": "",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "tuom-holmberg",
+      "name": "Tuom Holmberg",
+      "role": "Co-Founder & CEO",
+      "organization": "Collector Crypt",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "tzvi-wiesel",
+      "name": "Tzvi Wiesel",
+      "role": "CEO & Co-founder",
+      "organization": "BAXUS",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "val-wotton",
+      "name": "Val Wotton",
+      "role": "Global Head of Equities Solutions",
+      "organization": "DTCC",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "vibhu-norby",
+      "name": "Vibhu Norby",
+      "role": "Chief Product Officer",
+      "organization": "Solana Foundation",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "vidor-gencel",
+      "name": "Vidor Gencel",
+      "role": "CEO",
+      "organization": "Solflare",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "vinh-tran",
+      "name": "Vinh Tran",
+      "role": "Business Development",
+      "organization": "WisdomTree Onchain",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    },
+    {
+      "id": "zach-abrams",
+      "name": "Zach Abrams",
+      "role": "Founder & CEO",
+      "organization": "Open Standard",
+      "projectId": null,
+      "xHandle": null,
+      "xUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "bp26-welcome",
+      "title": "Welcome to Breakpoint 2026",
+      "time": "10:00",
+      "durationMinutes": 20,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Lily Liu",
+        "Rachel Conlan",
+        "Amira Valliani"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Lily Liu",
+          "role": "President",
+          "project": "Solana Foundation"
+        },
+        {
+          "name": "Rachel Conlan",
+          "role": "Chief Strategy Officer",
+          "project": "Solana Foundation"
+        },
+        {
+          "name": "Amira Valliani",
+          "role": "Head of Payments Growth",
+          "project": "Solana Foundation"
+        }
+      ]
+    },
+    {
+      "id": "bp26-moneygram",
+      "title": "MoneyGram Ramps: Connecting Digital Assets With Cash",
+      "time": "10:20",
+      "durationMinutes": 10,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Anthony Soohoo"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Anthony Soohoo",
+          "role": "CEO",
+          "project": "MoneyGram"
+        }
+      ]
+    },
+    {
+      "id": "bp26-9ec83178a80a07",
+      "title": "Why OUSD Doesn't Care About AUM",
+      "time": "10:30",
+      "durationMinutes": 10,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Zach Abrams"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Zach Abrams",
+          "role": "Founder & CEO",
+          "project": "Open Standard"
+        }
+      ]
+    },
+    {
+      "id": "bp26-74b22b9434a49a",
+      "title": "Zelle Goes Global",
+      "time": "10:40",
+      "durationMinutes": 10,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Alexandra Lang"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Alexandra Lang",
+          "role": "VP, Digital Assets Partnerships & Strategy",
+          "project": "Zelle"
+        }
+      ]
+    },
+    {
+      "id": "bp26-8829c093112ec6",
+      "title": "The Stablecoin Nobody Notices: Moving Money Across 37 Markets in Seconds",
+      "time": "10:50",
+      "durationMinutes": 10,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Malcolm Clarke",
+        "John Timoney"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Malcolm Clarke",
+          "role": "Global Head of Digital Assets",
+          "project": "Western Union"
+        },
+        {
+          "name": "John Timoney",
+          "role": "Head of Strategy",
+          "project": "Rain"
+        }
+      ]
+    },
+    {
+      "id": "bp26-4ab36578d69de6",
+      "title": "Why Should I Use Your Stablecoin?",
+      "time": "11:00",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Rowland Berry",
+        "Ahmed Zifzaf",
+        "Nemil Dalal"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Rowland Berry",
+          "role": "VP, Stablecoin",
+          "project": "Payoneer"
+        },
+        {
+          "name": "Ahmed Zifzaf",
+          "role": "Head of Digital Asset Partnerships",
+          "project": "Ramp"
+        },
+        {
+          "name": "Nemil Dalal",
+          "role": "Moderator · Visiting Partner",
+          "project": "Y Combinator"
+        }
+      ]
+    },
+    {
+      "id": "bp26-a7be968b3b1037",
+      "title": "Stablecoin Doesn't Mean Dollar",
+      "time": "11:30",
+      "durationMinutes": 5,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Christian Rau"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Christian Rau",
+          "role": "SVP Digital Assets and Blockchain",
+          "project": "Mastercard"
+        }
+      ]
+    },
+    {
+      "id": "bp26-f247ff0413e7f6",
+      "title": "The Sleeping Power of the World's Other Stablecoins",
+      "time": "11:35",
+      "durationMinutes": 5,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Ben Reid"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Ben Reid",
+          "role": "VP, Strategic Initiatives",
+          "project": "Bitso"
+        }
+      ]
+    },
+    {
+      "id": "bp26-e1d17e70cc8124",
+      "title": "Bringing Africa's 41 Currencies Onchain",
+      "time": "11:40",
+      "durationMinutes": 5,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Shola Akinlade"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Shola Akinlade",
+          "role": "CEO / Founder",
+          "project": "Paystack"
+        }
+      ]
+    },
+    {
+      "id": "bp26-f68d3b50e600b0",
+      "title": "Bank to the Future: How SoFi Is Preparing for the Digital Assets Era",
+      "time": "11:45",
+      "durationMinutes": 5,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Simon Griffin"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Simon Griffin",
+          "role": "Head of Crypto Distribution",
+          "project": "SoFi"
+        }
+      ]
+    },
+    {
+      "id": "bp26-5e875c736f4b87",
+      "title": "When Banks Become Plugins",
+      "time": "11:50",
+      "durationMinutes": 5,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Stepan Simkin"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Stepan Simkin",
+          "role": "CEO",
+          "project": "Squads"
+        }
+      ]
+    },
+    {
+      "id": "bp26-kamino",
+      "title": "Unlocking the $200T Private Markets Opportunity",
+      "time": "12:00",
+      "durationMinutes": 20,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Michael Weisz",
+        "David Vatchev",
+        "Fabio Baglio"
+      ],
+      "projectIds": [
+        "kamino"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Michael Weisz",
+          "role": "CEO",
+          "project": "Kamino"
+        },
+        {
+          "name": "David Vatchev",
+          "role": "Head of RWA Tokenization",
+          "project": "Fasanara Capital"
+        },
+        {
+          "name": "Fabio Baglio",
+          "role": "Institutional Expansion Manager",
+          "project": "Tether"
+        }
+      ]
+    },
+    {
+      "id": "bp26-272d2f382a9321",
+      "title": "Fractions to Tokens: Real Estate Is Going Onchain",
+      "time": "12:20",
+      "durationMinutes": 5,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Ricardo Brizido"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Ricardo Brizido",
+          "role": "CPTO",
+          "project": "Stake"
+        }
+      ]
+    },
+    {
+      "id": "bp26-ledger",
+      "title": "Ledger Agent Intent, Ledger Atom, & One More Thing",
+      "time": "12:25",
+      "durationMinutes": 5,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Ian Rogers"
+      ],
+      "projectIds": [
+        "ledger"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Ian Rogers",
+          "role": "Chief Human Agency Officer",
+          "project": "Ledger"
+        }
+      ]
+    },
+    {
+      "id": "bp26-dd868bfb6b23fe",
+      "title": "Collector Crypt",
+      "time": "13:00",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Tuom Holmberg"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Tuom Holmberg",
+          "role": "Co-Founder & CEO",
+          "project": "Collector Crypt"
+        }
+      ]
+    },
+    {
+      "id": "bp26-56ec37a70abcdf",
+      "title": "FairClub",
+      "time": "13:15",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Mark Studholme"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Mark Studholme",
+          "role": "Co-Founder",
+          "project": "FairClub"
+        }
+      ]
+    },
+    {
+      "id": "bp26-74aa752d52acf7",
+      "title": "EasyA",
+      "time": "13:30",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Phil Kwok",
+        "Dom Kwok"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Phil Kwok",
+          "role": "Co-Founder",
+          "project": "EasyA"
+        },
+        {
+          "name": "Dom Kwok",
+          "role": "Co-founder",
+          "project": "EasyA"
+        }
+      ]
+    },
+    {
+      "id": "bp26-802cc936d7e18b",
+      "title": "BAXUS",
+      "time": "13:45",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Tzvi Wiesel"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Tzvi Wiesel",
+          "role": "CEO & Co-founder",
+          "project": "BAXUS"
+        }
+      ]
+    },
+    {
+      "id": "bp26-d1fb9c555bace2",
+      "title": "Debate: Crypto Is Key to the UK's Economic Future",
+      "time": "14:00",
+      "durationMinutes": 20,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Ross Kempsell",
+        "Boris Johnson",
+        "Gareth Jenkinson"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Ross Kempsell",
+          "role": "Member of the House of Lords",
+          "project": "House of Lords"
+        },
+        {
+          "name": "Boris Johnson",
+          "role": "Former Prime Minister",
+          "project": ""
+        },
+        {
+          "name": "Gareth Jenkinson",
+          "role": "Moderator · Head of Multimedia",
+          "project": "The Block"
+        }
+      ]
+    },
+    {
+      "id": "bp26-e81c0490bcbd0b",
+      "title": "Star",
+      "time": "14:00",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Adam Bergeman"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Adam Bergeman",
+          "role": "Founder",
+          "project": "Star"
+        }
+      ]
+    },
+    {
+      "id": "bp26-bf8b6cc5ec3cb3",
+      "title": "Hold Forever, Spend Today",
+      "time": "14:15",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Michael Repetny"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Michael Repetny",
+          "role": "CEO",
+          "project": "Marinade Labs"
+        }
+      ]
+    },
+    {
+      "id": "bp26-187797bbbb9ab8",
+      "title": "Product Keynote: Allfunds",
+      "time": "14:20",
+      "durationMinutes": 7,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Annabel Spring"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Annabel Spring",
+          "role": "CEO",
+          "project": "Allfunds"
+        }
+      ]
+    },
+    {
+      "id": "bp26-531d345e1baf5f",
+      "title": "If You Build It, Will Flows Come?",
+      "time": "14:27",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Patrick Corker",
+        "Kathrin Hamilton",
+        "Ben Brophy"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Patrick Corker",
+          "role": "Managing Director, Market Transformation and Innovation",
+          "project": "BNY"
+        },
+        {
+          "name": "Kathrin Hamilton",
+          "role": "Partner, Digital Assets",
+          "project": "Baillie Gifford"
+        },
+        {
+          "name": "Ben Brophy",
+          "role": "Moderator · Head of Institutional Growth, Europe",
+          "project": "Solana Foundation"
+        }
+      ]
+    },
+    {
+      "id": "bp26-f7ab11204a5cd6",
+      "title": "Soilonic",
+      "time": "14:30",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Arizona Muse"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Arizona Muse",
+          "role": "Co-Founder",
+          "project": "Soilonic"
+        }
+      ]
+    },
+    {
+      "id": "bp26-60b7e2593fa2eb",
+      "title": "Why RWAs Need DeFi (and Vice Versa)",
+      "time": "14:42",
+      "durationMinutes": 10,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Cate Clancy",
+        "Todd McDonald"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Cate Clancy",
+          "role": "Managing Director",
+          "project": "JPMorgan Chase"
+        },
+        {
+          "name": "Todd McDonald",
+          "role": "Moderator · Co-Founder",
+          "project": "R3"
+        }
+      ]
+    },
+    {
+      "id": "bp26-15d8a6e6783508",
+      "title": "Worm",
+      "time": "14:45",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Nass Diba"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Nass Diba",
+          "role": "Co-founder & CEO",
+          "project": "worm"
+        }
+      ]
+    },
+    {
+      "id": "bp26-62cbffd95bb468",
+      "title": "The $2.5 Trillion Gap: Bringing Trade Finance Onchain",
+      "time": "14:52",
+      "durationMinutes": 7,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "PJ Bain"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "PJ Bain",
+          "role": "CEO",
+          "project": "PrimeRevenue"
+        }
+      ]
+    },
+    {
+      "id": "bp26-6601a3502be87c",
+      "title": "Keynote: Bullish",
+      "time": "14:59",
+      "durationMinutes": 10,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Tom Farley"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Tom Farley",
+          "role": "Chairman & CEO",
+          "project": "Bullish"
+        }
+      ]
+    },
+    {
+      "id": "bp26-92231faadab9d8",
+      "title": "Phantom",
+      "time": "15:00",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Susan Li"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Susan Li",
+          "role": "Head of Growth",
+          "project": "Phantom"
+        }
+      ]
+    },
+    {
+      "id": "bp26-0b5c7ba0eb1565",
+      "title": "Rewiring the Market: Why the World's Biggest Financial Institutions are Moving Onchain",
+      "time": "15:09",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Val Wotton",
+        "Scott Lucas",
+        "Jacquelyn Melinek"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Val Wotton",
+          "role": "Global Head of Equities Solutions",
+          "project": "DTCC"
+        },
+        {
+          "name": "Scott Lucas",
+          "role": "Head of Digital Assets",
+          "project": "Barclays"
+        },
+        {
+          "name": "Jacquelyn Melinek",
+          "role": "Moderator · Founder & CEO",
+          "project": "StrataMedia"
+        }
+      ]
+    },
+    {
+      "id": "bp26-bef03b8fce07cf",
+      "title": "Fireside: ICE Europe",
+      "time": "15:24",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Hester Serafini",
+        "Luciana Miranda"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Hester Serafini",
+          "role": "President",
+          "project": "ICE Clear Europe"
+        },
+        {
+          "name": "Luciana Miranda",
+          "role": "Moderator · Advisor",
+          "project": "Solana Foundation"
+        }
+      ]
+    },
+    {
+      "id": "bp26-176de3d4319a9b",
+      "title": "The Long and Winding Road: A Life of Risk, Reinvention, and Resilience",
+      "time": "15:30",
+      "durationMinutes": 60,
+      "date": "2026-11-16",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Peter Moore"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Peter Moore",
+          "role": "Sports and Video Game Executive",
+          "project": "Owner, Wisla Krakow Football Club (Poland)"
+        }
+      ]
+    },
+    {
+      "id": "bp26-3c98da8acaeb9c",
+      "title": "From Idle Collateral to Active Capital: TradFi Meets Solana",
+      "time": "15:39",
+      "durationMinutes": 5,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Bill Barhydt"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Bill Barhydt",
+          "role": "CEO",
+          "project": "Abra"
+        }
+      ]
+    },
+    {
+      "id": "bp26-b606378781298e",
+      "title": "Leverage Without Liquidations: Options Onchain",
+      "time": "15:59",
+      "durationMinutes": 5,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "George Ruhana"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "George Ruhana",
+          "role": "Partner",
+          "project": "PEAK6 / Clocked."
+        }
+      ]
+    },
+    {
+      "id": "bp26-sunrise",
+      "title": "The Capital Market Wars",
+      "time": "16:04",
+      "durationMinutes": 7,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Saeed Badreg"
+      ],
+      "projectIds": [
+        "sunrise"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Saeed Badreg",
+          "role": "Co-Founder & CEO",
+          "project": "Sunrise"
+        }
+      ]
+    },
+    {
+      "id": "bp26-8584dadbd83137",
+      "title": "Okay, Traders. Now, Let's Get in Formation",
+      "time": "16:11",
+      "durationMinutes": 7,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Chris Montagano"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Chris Montagano",
+          "role": "Co-Founder, President",
+          "project": "Formation Securities"
+        }
+      ]
+    },
+    {
+      "id": "bp26-jupiter",
+      "title": "Making Tokenisation Useful",
+      "time": "16:18",
+      "durationMinutes": 7,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Kash Dhanda"
+      ],
+      "projectIds": [
+        "jupiter"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Kash Dhanda",
+          "role": "Chief Operating Officer",
+          "project": "Jupiter"
+        }
+      ]
+    },
+    {
+      "id": "bp26-backpack",
+      "title": "Product Keynote: Backpack",
+      "time": "16:25",
+      "durationMinutes": 7,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Armani Ferrante"
+      ],
+      "projectIds": [
+        "backpack"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Armani Ferrante",
+          "role": "CEO",
+          "project": "Backpack"
+        }
+      ]
+    },
+    {
+      "id": "bp26-db64aae698d129",
+      "title": "Founder Stories: Hylo",
+      "time": "16:30",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Plish"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Plish",
+          "role": "CEO",
+          "project": "Hylo"
+        }
+      ]
+    },
+    {
+      "id": "bp26-8a9713b390788f",
+      "title": "Why We Went Onchain on Day 1",
+      "time": "16:32",
+      "durationMinutes": 5,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Andrew Fox"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Andrew Fox",
+          "role": "CEO",
+          "project": "Powerus"
+        }
+      ]
+    },
+    {
+      "id": "bp26-88dc31085f2828",
+      "title": "The City Goes Onchain: From Closing Bell to Always On",
+      "time": "16:37",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Andrew Price",
+        "Payward",
+        "Amelia Daly"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Andrew Price",
+          "role": "Director, xStocks & Exchange Partnerships",
+          "project": "xStocks"
+        },
+        {
+          "name": "Payward",
+          "role": "Speaker name not published",
+          "project": "Payward"
+        },
+        {
+          "name": "Amelia Daly",
+          "role": "Moderator · Head of Partnerships",
+          "project": "Solana Foundation"
+        }
+      ]
+    },
+    {
+      "id": "bp26-eeaeebf8a96b13",
+      "title": "Fireside: The Legend of Armani",
+      "time": "16:45",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Armani Ferrante",
+        "Chase Barker"
+      ],
+      "projectIds": [
+        "solana",
+        "backpack"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Armani Ferrante",
+          "role": "CEO",
+          "project": "Backpack"
+        },
+        {
+          "name": "Chase Barker",
+          "role": "Moderator · Head of Founder Success",
+          "project": "Solana Foundation"
+        }
+      ]
+    },
+    {
+      "id": "bp26-509fe0820c0f9e",
+      "title": "Evading Kim Jong Un's Bot Army: A How To",
+      "time": "16:52",
+      "durationMinutes": 7,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Michael Coates"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Michael Coates",
+          "role": "Chief Information Security Officer",
+          "project": "Solana Foundation"
+        }
+      ]
+    },
+    {
+      "id": "bp26-557793233a3a89",
+      "title": "Defending Markets Against Machines",
+      "time": "16:59",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Michael Coates",
+        "Diogo Monica",
+        "Gordon Corera"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Michael Coates",
+          "role": "Chief Information Security Officer",
+          "project": "Solana Foundation"
+        },
+        {
+          "name": "Diogo Monica",
+          "role": "General Partner, Haun Ventures and Co-Founder and Executive Chairman, Anchorage Digital",
+          "project": "Haun Ventures"
+        },
+        {
+          "name": "Gordon Corera",
+          "role": "Moderator · Host",
+          "project": "The Rest Is Classified"
+        }
+      ]
+    },
+    {
+      "id": "bp26-1201162235c599",
+      "title": "Privacy Fireside: NEAR and Helius",
+      "time": "17:00",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Illia Polosukhin",
+        "Mert Mumtaz"
+      ],
+      "projectIds": [
+        "helius"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Illia Polosukhin",
+          "role": "Co-Founder",
+          "project": "NEAR Protocol"
+        },
+        {
+          "name": "Mert Mumtaz",
+          "role": "Moderator · CEO",
+          "project": "Helius"
+        }
+      ]
+    },
+    {
+      "id": "bp26-d4b9c1baeee314",
+      "title": "Growing Turkiye's Fintech Ecosystem",
+      "time": "17:14",
+      "durationMinutes": 5,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Ersoy Erkazanci"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Ersoy Erkazanci",
+          "role": "UK Country Advisor",
+          "project": "Invest in Türkiye"
+        }
+      ]
+    },
+    {
+      "id": "bp26-788c1c9281c8b1",
+      "title": "Founder Stories: Reflect Money",
+      "time": "17:15",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Nicholas Grovell"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Nicholas Grovell",
+          "role": "Director",
+          "project": "Reflect Money"
+        }
+      ]
+    },
+    {
+      "id": "bp26-bceb651f743757",
+      "title": "The Former White House Crypto Chief on the Future of Digital Assets",
+      "time": "17:19",
+      "durationMinutes": 15,
+      "date": "2026-11-16",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Patrick Witt",
+        "Anna Irrera"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Patrick Witt",
+          "role": "Former Executive Director, President's Council of Advisors for Digital Assets",
+          "project": "The White House"
+        },
+        {
+          "name": "Anna Irrera",
+          "role": "Moderator · Senior Editor",
+          "project": "Bloomberg News"
+        }
+      ]
+    },
+    {
+      "id": "bp26-7769914878c0a7",
+      "title": "Welcome to Breakpoint Day 2",
+      "time": "10:30",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Amira Valliani"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Amira Valliani",
+          "role": "Head of Payments Growth",
+          "project": "Solana Foundation"
+        }
+      ]
+    },
+    {
+      "id": "bp26-8efbc567098f09",
+      "title": "Fireside: Martin Gilbert, Chair, Revolut",
+      "time": "10:35",
+      "durationMinutes": 15,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Martin Gilbert",
+        "Nick Ducoff"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Martin Gilbert",
+          "role": "Chairman",
+          "project": "Revolut"
+        },
+        {
+          "name": "Nick Ducoff",
+          "role": "Moderator · GM, Institutional",
+          "project": "Solana Foundation"
+        }
+      ]
+    },
+    {
+      "id": "bp26-4f2dffb98f4086",
+      "title": "AI and Raising Capital",
+      "time": "10:50",
+      "durationMinutes": 7,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Nemil Dalal"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Nemil Dalal",
+          "role": "Visiting Partner",
+          "project": "Y Combinator"
+        }
+      ]
+    },
+    {
+      "id": "bp26-7e7aec4e525b3c",
+      "title": "An Onchain Compute Order Book",
+      "time": "10:57",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Greg Osuri"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Greg Osuri",
+          "role": "Founder",
+          "project": "Akash"
+        }
+      ]
+    },
+    {
+      "id": "bp26-ef11df8e210405",
+      "title": "Compute Capital Markets",
+      "time": "11:02",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Shayon Sengupta"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Shayon Sengupta",
+          "role": "General Partner",
+          "project": "Multicoin"
+        }
+      ]
+    },
+    {
+      "id": "bp26-25e8b3c536cc98",
+      "title": "The Machine Economy: How Digital Assets Could Help Fund Computing Power, Energy, and Data Centres",
+      "time": "11:07",
+      "durationMinutes": 20,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Krista Lynch",
+        "Steve Vassallo",
+        "Nikou Asgari"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Krista Lynch",
+          "role": "Head of Trading and Capital Markets",
+          "project": "Grayscale"
+        },
+        {
+          "name": "Steve Vassallo",
+          "role": "General Partner",
+          "project": "Foundation Capital"
+        },
+        {
+          "name": "Nikou Asgari",
+          "role": "Moderator · Digital Markets Correspondent",
+          "project": "Financial Times"
+        }
+      ]
+    },
+    {
+      "id": "bp26-21b16ee3c20b04",
+      "title": "The TAM of Crypto Is Now Infinite",
+      "time": "11:27",
+      "durationMinutes": 8,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Raoul Pal"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Raoul Pal",
+          "role": "Co-Founder / CEO",
+          "project": "Real Vision / EXPAAM / GMI"
+        }
+      ]
+    },
+    {
+      "id": "bp26-a043d80e1bc1e5",
+      "title": "The Next 12 Months of AI on Solana",
+      "time": "11:35",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Vibhu Norby"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Vibhu Norby",
+          "role": "Chief Product Officer",
+          "project": "Solana Foundation"
+        }
+      ]
+    },
+    {
+      "id": "bp26-573c1503bf356c",
+      "title": "BitRobot: The World Is the Dataset",
+      "time": "11:55",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Jonathan Victor"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Jonathan Victor",
+          "role": "President",
+          "project": "BitRobot"
+        }
+      ]
+    },
+    {
+      "id": "bp26-b0ccd0cd3562f6",
+      "title": "Humans Welcome: Investing in Physical AI",
+      "time": "12:00",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Jack Pearson"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Jack Pearson",
+          "role": "Principal",
+          "project": "RoboStrategy"
+        }
+      ]
+    },
+    {
+      "id": "bp26-3563109a2e278b",
+      "title": "Thinking in Trillions: Graticule Onchain Asset Management",
+      "time": "12:05",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Irene Tse"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Irene Tse",
+          "role": "Partner",
+          "project": "Graticule Asset Management Asia (GAMA)"
+        }
+      ]
+    },
+    {
+      "id": "bp26-f22b776c884471",
+      "title": "Think Inside the PayBox: Agents on Solana",
+      "time": "12:10",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Halsey Huth"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Halsey Huth",
+          "role": "Global Head, AI & Ecosystems",
+          "project": "MoonPay"
+        }
+      ]
+    },
+    {
+      "id": "bp26-f1d0bc60358879",
+      "title": "Hard Assets, Big Stories: Gold, Copper & Crude Oil",
+      "time": "12:15",
+      "durationMinutes": 7,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Kathy Kriskey"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Kathy Kriskey",
+          "role": "Head of Alternative Product Strategy",
+          "project": "Invesco"
+        }
+      ]
+    },
+    {
+      "id": "bp26-ff979bf2efd803",
+      "title": "Why a Top Japanese Trading House is Bringing Commodities to Solana",
+      "time": "12:22",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Shinsuke Waka"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Shinsuke Waka",
+          "role": "Executive Coordinator, Head of Digital Finance",
+          "project": "Mitsui & Co."
+        }
+      ]
+    },
+    {
+      "id": "bp26-ad64d37c479c25",
+      "title": "Your Money. Your Business.",
+      "time": "12:27",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Vidor Gencel"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Vidor Gencel",
+          "role": "CEO",
+          "project": "Solflare"
+        }
+      ]
+    },
+    {
+      "id": "bp26-d9f58db08370df",
+      "title": "Debate: SOL Is Money",
+      "time": "12:37",
+      "durationMinutes": 17,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Mert Mumtaz",
+        "Anatoly Yakovenko",
+        "Austin Federa"
+      ],
+      "projectIds": [
+        "solana",
+        "helius"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Mert Mumtaz",
+          "role": "CEO",
+          "project": "Helius"
+        },
+        {
+          "name": "Anatoly Yakovenko",
+          "role": "Co-Founder / CEO",
+          "project": "Solana / Solana Labs"
+        },
+        {
+          "name": "Austin Federa",
+          "role": "Moderator · Co-Founder",
+          "project": "DoubleZero"
+        }
+      ]
+    },
+    {
+      "id": "bp26-304d3a1036a4ca",
+      "title": "Breakpoint 2027 Announcement",
+      "time": "12:54",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Ellie Platis",
+        "Anatoly Yakovenko"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Ellie Platis",
+          "role": "Head of Events",
+          "project": "Solana Foundation"
+        },
+        {
+          "name": "Anatoly Yakovenko",
+          "role": "Co-Founder / CEO",
+          "project": "Solana / Solana Labs"
+        }
+      ]
+    },
+    {
+      "id": "bp26-213893a218e7e9",
+      "title": "Follow the Money: Payment Flows as Collateral",
+      "time": "13:00",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": []
+    },
+    {
+      "id": "bp26-957a1ad44478c8",
+      "title": "Trust at Machine Speed: Why Compliance and Privacy Unlock the Enterprise Agent Economy",
+      "time": "13:10",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Arnold Lee"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Arnold Lee",
+          "role": "Co-Founder & CEO",
+          "project": "Sphere Labs"
+        }
+      ]
+    },
+    {
+      "id": "bp26-89cf6b8f031cce",
+      "title": "Huma",
+      "time": "13:20",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Erbil Karaman"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Erbil Karaman",
+          "role": "Co-Founder & Co-CEO",
+          "project": "Huma"
+        }
+      ]
+    },
+    {
+      "id": "bp26-1e735fd3bf5931",
+      "title": "Zerohash",
+      "time": "13:30",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Stephen Gardner"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Stephen Gardner",
+          "role": "Co-President",
+          "project": "zerohash"
+        }
+      ]
+    },
+    {
+      "id": "bp26-f17a3e75786240",
+      "title": "Atum",
+      "time": "13:40",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Pete Cooling"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Pete Cooling",
+          "role": "Founder & CEO",
+          "project": "Atum"
+        }
+      ]
+    },
+    {
+      "id": "bp26-770eb1482fb791",
+      "title": "WalletConnect",
+      "time": "13:50",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Jess Houlgrave"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Jess Houlgrave",
+          "role": "CEO",
+          "project": "WalletConnect"
+        }
+      ]
+    },
+    {
+      "id": "bp26-5ff6d377e53e1f",
+      "title": "Debate: DATs Are Just ETFs With Twitter Accounts and CEOs",
+      "time": "14:00",
+      "durationMinutes": 17,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Kyle Samani",
+        "Matt Hougan",
+        "Kristin Smith"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Kyle Samani",
+          "role": "Chairman",
+          "project": "Forward Industries"
+        },
+        {
+          "name": "Matt Hougan",
+          "role": "Chief Investment Officer",
+          "project": "Bitwise"
+        },
+        {
+          "name": "Kristin Smith",
+          "role": "Moderator · President",
+          "project": "Solana Policy Institute"
+        }
+      ]
+    },
+    {
+      "id": "bp26-0b673687de05f7",
+      "title": "Stablecoins Have Distribution. Now They Need Credit",
+      "time": "14:00",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Nicolas Cabrera"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Nicolas Cabrera",
+          "role": "Chief Product and Technology Officer",
+          "project": "Tala"
+        }
+      ]
+    },
+    {
+      "id": "bp26-62544901595584",
+      "title": "Agents That Pay Anyone, Anywhere: Noah on Solana",
+      "time": "14:10",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": []
+    },
+    {
+      "id": "bp26-c0524cbab17dfa",
+      "title": "Why Enterprises Are Stuck in Pilot Mode: Settlement Is Solved. Treasury Isn’t.",
+      "time": "14:20",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Trey Buckingham"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Trey Buckingham",
+          "role": "Digital Assets Practice Manager",
+          "project": "Aon"
+        }
+      ]
+    },
+    {
+      "id": "bp26-485b0b9599a265",
+      "title": "Tokenisation: Britain's Opportunity to Lead",
+      "time": "14:22",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Nicholas Lyons"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Nicholas Lyons",
+          "role": "Chairman",
+          "project": "Standard Life"
+        }
+      ]
+    },
+    {
+      "id": "bp26-76a733517bcd3e",
+      "title": "Interoperability Across Borders: Scaling Digital Assets for Global Finance",
+      "time": "14:30",
+      "durationMinutes": 20,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Jamal Raees",
+        "John Hallahan",
+        "Steven Wager",
+        "Igor Voloshin"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Jamal Raees",
+          "role": "GM, Payments",
+          "project": "Solana Foundation"
+        },
+        {
+          "name": "John Hallahan",
+          "role": "Director & Head of Business Solutions, Banking",
+          "project": "Fireblocks"
+        },
+        {
+          "name": "Steven Wager",
+          "role": "Head of Product",
+          "project": "Fiserv Digital Asset Services"
+        },
+        {
+          "name": "Igor Voloshin",
+          "role": "Moderator · Associate",
+          "project": "Fenwick"
+        }
+      ]
+    },
+    {
+      "id": "bp26-e6c5c3a2ddaa0c",
+      "title": "What Would It Take for the UK to Win in Tech",
+      "time": "14:32",
+      "durationMinutes": 20,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Sir Sajid Javid",
+        "Sue Gray",
+        "Farhaj Mayan"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Sir Sajid Javid",
+          "role": "Former Chancellor of the Exchequer",
+          "project": ""
+        },
+        {
+          "name": "Sue Gray",
+          "role": "Chair",
+          "project": "Baroness Gray of Tottenham"
+        },
+        {
+          "name": "Farhaj Mayan",
+          "role": "Moderator · Co-Founder",
+          "project": "Forma"
+        }
+      ]
+    },
+    {
+      "id": "bp26-c1ba8b07f2db06",
+      "title": "Champions in Conversation: Sol Campbell and Tristan Thompson on What It Takes To Win",
+      "time": "14:52",
+      "durationMinutes": 20,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Tristan Thompson",
+        "Sol Campbell",
+        "Logan Jastremski"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Tristan Thompson",
+          "role": "NBA Champion and Investor",
+          "project": ""
+        },
+        {
+          "name": "Sol Campbell",
+          "role": "Footballer",
+          "project": ""
+        },
+        {
+          "name": "Logan Jastremski",
+          "role": "Moderator · Managing Partner",
+          "project": "Frictionless Capital"
+        }
+      ]
+    },
+    {
+      "id": "bp26-358ded9e0c1bbc",
+      "title": "The Future of Real Estate Onchain",
+      "time": "15:05",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Seth Priebatsch",
+        "Reid Simon"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Seth Priebatsch",
+          "role": "Founder & CEO",
+          "project": "Groma"
+        },
+        {
+          "name": "Reid Simon",
+          "role": "President, Digital Assets",
+          "project": "Figure"
+        }
+      ]
+    },
+    {
+      "id": "bp26-30a53cc4c95a5b",
+      "title": "Solana as a Decentralized Silicon Valley",
+      "time": "15:12",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Matty Taylor"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Matty Taylor",
+          "role": "Co-Founder & GP",
+          "project": "Colosseum"
+        }
+      ]
+    },
+    {
+      "id": "bp26-49178fc9193a8f",
+      "title": "What Plume and Fidelity Are Building on Solana",
+      "time": "15:15",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Ryan Wen",
+        "Jasmine Jia"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Ryan Wen",
+          "role": "COO",
+          "project": "Plume"
+        },
+        {
+          "name": "Jasmine Jia",
+          "role": "Head of Tokenization Ecosystem",
+          "project": "Fidelity Digital Asset Management"
+        }
+      ]
+    },
+    {
+      "id": "bp26-2a6b4b18ba1839",
+      "title": "The Internet Will Put VCs Out of a Job",
+      "time": "15:17",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Charles Dalton"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Charles Dalton",
+          "role": "Co-Founder",
+          "project": "MetaDAO"
+        }
+      ]
+    },
+    {
+      "id": "bp26-32e1a7ac1a9a21",
+      "title": "What WisdomTree and MoonPay Are Building on Solana",
+      "time": "15:25",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Vinh Tran",
+        "Keith A. Grossman"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Vinh Tran",
+          "role": "Business Development",
+          "project": "WisdomTree Onchain"
+        },
+        {
+          "name": "Keith A. Grossman",
+          "role": "President",
+          "project": "MoonPay"
+        }
+      ]
+    },
+    {
+      "id": "bp26-7d7650fc33aee1",
+      "title": "Corporate Treasury: Scaling Onchain Allocation",
+      "time": "15:35",
+      "durationMinutes": 15,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Thomas Sy",
+        "Paul-Adrien Hyppolite",
+        "Stephen Whyman"
+      ],
+      "projectIds": [
+        "jupiter"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Thomas Sy",
+          "role": "Head of Multi-Asset & Digital Asset Solutions",
+          "project": "New York Life Investment Management"
+        },
+        {
+          "name": "Paul-Adrien Hyppolite",
+          "role": "Co-Founder & CEO",
+          "project": "Spiko"
+        },
+        {
+          "name": "Stephen Whyman",
+          "role": "Moderator · Institutional strategy officer",
+          "project": "Jupiter"
+        }
+      ]
+    },
+    {
+      "id": "bp26-df930d73015be3",
+      "title": "Playing for Millions: Inside the Mind of Poker's 22-Year-Old Champion",
+      "time": "15:37",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Lucas Jumalon",
+        "Jeff Platt"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Lucas Jumalon",
+          "role": "World Champion",
+          "project": "World Series of Poker"
+        },
+        {
+          "name": "Jeff Platt",
+          "role": "Moderator · Global Broadcast Talent",
+          "project": "World Series of Poker"
+        }
+      ]
+    },
+    {
+      "id": "bp26-0e112dfd98430f",
+      "title": "Bringing Equities Onchain: What's the Best Approach?",
+      "time": "15:50",
+      "durationMinutes": 20,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Graham Ferguson",
+        "Jerome Oei",
+        "Hitoshi Harada",
+        "Marc Tillement"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Graham Ferguson",
+          "role": "Head of Ecosystem",
+          "project": "Securitize"
+        },
+        {
+          "name": "Jerome Oei",
+          "role": "Head of Commercial Strategy, Singapore",
+          "project": "BitGo"
+        },
+        {
+          "name": "Hitoshi Harada",
+          "role": "Co-Founder, CTO & CPO",
+          "project": "Alpaca"
+        },
+        {
+          "name": "Marc Tillement",
+          "role": "Moderator · President & Director",
+          "project": "Pyth Network / Pyth Data Association"
+        }
+      ]
+    },
+    {
+      "id": "bp26-d4fdb2f9dfb2f4",
+      "title": "Temporal 2027: Exploring the Frontier",
+      "time": "15:52",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Michael Marcantonio"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Michael Marcantonio",
+          "role": "CEO",
+          "project": "Temporal"
+        }
+      ]
+    },
+    {
+      "id": "bp26-19926fcefac253",
+      "title": "Product Keynote: Phoenix",
+      "time": "15:57",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Eugene Chen"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Eugene Chen",
+          "role": "CEO",
+          "project": "Ellipsis Labs"
+        }
+      ]
+    },
+    {
+      "id": "bp26-aa65c6cb33402d",
+      "title": "The Future of Investing Is Narratives",
+      "time": "16:02",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Lucas Bruder"
+      ],
+      "projectIds": [
+        "jito"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Lucas Bruder",
+          "role": "Co-Founder & CEO",
+          "project": "Jito Labs"
+        }
+      ]
+    },
+    {
+      "id": "bp26-8b47b8796cd17c",
+      "title": "The Data Comes Last",
+      "time": "16:07",
+      "durationMinutes": 7,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Se Yong Park"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Se Yong Park",
+          "role": "Co-Founder",
+          "project": "fomo"
+        }
+      ]
+    },
+    {
+      "id": "bp26-2db5be80f36e9c",
+      "title": "How Europe Is Scaling Adoption: Tokenising at Scale",
+      "time": "16:10",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Carlos Matilla"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Carlos Matilla",
+          "role": "Chief Executive Officer",
+          "project": "IO Builders"
+        }
+      ]
+    },
+    {
+      "id": "bp26-ff4f3b4d64da73",
+      "title": "Leap: The High Performance Trading App",
+      "time": "16:14",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Chris Osborn"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Chris Osborn",
+          "role": "General Manager, Leap",
+          "project": "Solana Labs"
+        }
+      ]
+    },
+    {
+      "id": "bp26-d31d49e3322b64",
+      "title": "$2M Pokemon Cards: Tokenisation Is Making Collectibles Cool Again",
+      "time": "16:19",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Tuom Holmberg"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Tuom Holmberg",
+          "role": "Co-Founder & CEO",
+          "project": "Collector Crypt"
+        }
+      ]
+    },
+    {
+      "id": "bp26-87a53a4e06f409",
+      "title": "The Three Most Important Questions for Valuing Solana",
+      "time": "16:20",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Ryan Rasmussen"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Ryan Rasmussen",
+          "role": "Director, Head of Research",
+          "project": "Bitwise"
+        }
+      ]
+    },
+    {
+      "id": "bp26-34d4847224b531",
+      "title": "Beauty, Fashion, Luxury: A New Kind of Onchain Shopping Experience",
+      "time": "16:24",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Andrea Griffin Miele"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Andrea Griffin Miele",
+          "role": "Co-Founder & CEO",
+          "project": "Beezie"
+        }
+      ]
+    },
+    {
+      "id": "bp26-9d84abe2b914a8",
+      "title": "Product Keynote: Candy Digital",
+      "time": "16:29",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Tad Smith"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Tad Smith",
+          "role": "CEO",
+          "project": "Candy Digital"
+        }
+      ]
+    },
+    {
+      "id": "bp26-9597cd82eb822d",
+      "title": "Understanding Solana's Institutional Delegation Program",
+      "time": "16:30",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Eva Lawrence",
+        "Harriet Browning",
+        "Jake Burden"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Eva Lawrence",
+          "role": "Head of Revenue",
+          "project": "Figment"
+        },
+        {
+          "name": "Harriet Browning",
+          "role": "VP of Commercial",
+          "project": "Twinstake"
+        },
+        {
+          "name": "Jake Burden",
+          "role": "Moderator · Staking Operations Lead",
+          "project": "Solana Foundation"
+        }
+      ]
+    },
+    {
+      "id": "bp26-37a046ecf5c5af",
+      "title": "The Lifetime Value of a Fan",
+      "time": "16:34",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Peter Moore"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Peter Moore",
+          "role": "Sports and Video Game Executive",
+          "project": "Owner, Wisla Krakow Football Club (Poland)"
+        }
+      ]
+    },
+    {
+      "id": "bp26-66e9476f07e477",
+      "title": "Democratizing Access to the Token Supercycle",
+      "time": "16:40",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Felix Leupold"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Felix Leupold",
+          "role": "CTO",
+          "project": "CoW Swap"
+        }
+      ]
+    },
+    {
+      "id": "bp26-0088f2311ceb91",
+      "title": "SOL, ZEC and Privacy",
+      "time": "16:44",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Justin Bons"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Justin Bons",
+          "role": "Founder & CIO",
+          "project": "Cyber Capital"
+        }
+      ]
+    },
+    {
+      "id": "bp26-2c1d33f9e1d647",
+      "title": "State of the Solana Network",
+      "time": "16:49",
+      "durationMinutes": 7,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Brennan Watt"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Brennan Watt",
+          "role": "CEO",
+          "project": "Anza"
+        }
+      ]
+    },
+    {
+      "id": "bp26-7c37760a425413",
+      "title": "DataShare for Solana: The Dataset Behind Institutional RWAs",
+      "time": "16:50",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Jae Kim"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Jae Kim",
+          "role": "Chief Strategy Officer & Managing Director",
+          "project": "Nodit"
+        }
+      ]
+    },
+    {
+      "id": "bp26-d7ed96529ed916",
+      "title": "Inside the Bunker: Are We in Cryptography's End Days?",
+      "time": "16:56",
+      "durationMinutes": 15,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Brennan Watt",
+        "Illia Polosukhin",
+        "Tee Ganbold"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Brennan Watt",
+          "role": "CEO",
+          "project": "Anza"
+        },
+        {
+          "name": "Illia Polosukhin",
+          "role": "Co-Founder",
+          "project": "NEAR Protocol"
+        },
+        {
+          "name": "Tee Ganbold",
+          "role": "Moderator · Co-Founder & CEO",
+          "project": "Frontier/1"
+        }
+      ]
+    },
+    {
+      "id": "bp26-9b32e5984c8be1",
+      "title": "The Frontier of Capital Formation",
+      "time": "17:00",
+      "durationMinutes": 7,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Luke Truitt"
+      ],
+      "projectIds": [],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Luke Truitt",
+          "role": "CEO",
+          "project": "Orca (Formation)"
+        }
+      ]
+    },
+    {
+      "id": "bp26-32629ecc47d8a5",
+      "title": "Tokenized Energy on Solana",
+      "time": "17:14",
+      "durationMinutes": 10,
+      "date": "2026-11-17",
+      "stage": "Royal Exchange",
+      "timezone": "Europe/London",
+      "speakerNames": [],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": []
+    },
+    {
+      "id": "bp26-24c9a16b1d153d",
+      "title": "See You at Breakpoint 2027!",
+      "time": "17:36",
+      "durationMinutes": 5,
+      "date": "2026-11-17",
+      "stage": "Main Stage",
+      "timezone": "Europe/London",
+      "speakerNames": [
+        "Ellie Platis",
+        "Amira Valliani"
+      ],
+      "projectIds": [
+        "solana"
+      ],
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "status": "scheduled",
+      "dateVerified": true,
+      "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+      "speakers": [
+        {
+          "name": "Ellie Platis",
+          "role": "Head of Events",
+          "project": "Solana Foundation"
+        },
+        {
+          "name": "Amira Valliani",
+          "role": "Head of Payments Growth",
+          "project": "Solana Foundation"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "270a0mmj",
+      "title": "BREAKPOINT - Record your podcast or interviews with West Digital Studios",
+      "startsAt": "2026-11-11T09:00:00.000Z",
+      "endsAt": "2026-11-18T19:00:00.000Z",
+      "timezone": "Europe/London",
+      "venue": "West Digital Studios",
+      "address": "West Digital Studios, 59-65 Goldhawk Rd, London W12 8EG, UK",
+      "coordinates": {
+        "longitude": -0.22676900000000003,
+        "latitude": 51.502173
+      },
+      "venuePublic": true,
+      "locationType": "offline",
+      "sourceUrl": "https://luma.com/270a0mmj",
+      "observedAt": "2026-11-12",
+      "organizers": [
+        "Kate Wilson"
+      ],
+      "registrationStatus": "check-organizer",
+      "approvalRequired": true,
+      "price": [
+        {
+          "name": "Standard",
+          "cents": 25000,
+          "currency": "gbp"
+        }
+      ],
+      "tags": [
+        "Creators"
+      ]
+    },
+    {
+      "id": "sol-demo-day",
+      "title": "Solana Demo Day | London 2026",
+      "startsAt": "2026-11-12T10:00:00.000Z",
+      "endsAt": "2026-11-12T18:30:00.000Z",
+      "timezone": "Europe/London",
+      "venue": null,
+      "address": null,
+      "coordinates": null,
+      "venuePublic": false,
+      "locationType": "offline",
+      "sourceUrl": "https://luma.com/sol-demo-day",
+      "observedAt": "2026-11-12",
+      "organizers": [
+        "Solana Foundation",
+        "Superteam UK"
+      ],
+      "registrationStatus": "waitlist",
+      "approvalRequired": true,
+      "price": [
+        {
+          "name": "Standard",
+          "cents": null,
+          "currency": null
+        }
+      ],
+      "tags": [
+        "Builders",
+        "Livestream"
+      ]
+    },
+    {
+      "id": "lo-qqld",
+      "title": "The LOCAL W.M.C - Breakpoint/DAS Edition",
+      "startsAt": "2026-11-12T19:00:00.000Z",
+      "endsAt": "2026-11-13T01:00:00.000Z",
+      "timezone": "Europe/London",
+      "venue": "Bethnal Green Working Men's Club",
+      "address": "Bethnal Green Working Men's Club, 42-46 Pollard Row, London E2 6NB, UK",
+      "coordinates": {
+        "longitude": -0.0638267,
+        "latitude": 51.5280761
+      },
+      "venuePublic": true,
+      "locationType": "offline",
+      "sourceUrl": "https://luma.com/lo-qqld",
+      "observedAt": "2026-11-12",
+      "organizers": [
+        "LO:TECH",
+        "Superteam UK",
+        "Stephen Duffy",
+        "Laurence Lewars",
+        "Arif",
+        "KP"
+      ],
+      "registrationStatus": "sold-out",
+      "approvalRequired": true,
+      "price": [
+        {
+          "name": "Standard",
+          "cents": null,
+          "currency": null
+        }
+      ],
+      "tags": [
+        "Social"
+      ]
+    },
+    {
+      "id": "6xip72je",
+      "title": "200ms",
+      "startsAt": "2026-11-13T09:00:00.000Z",
+      "endsAt": "2026-11-13T18:00:00.000Z",
+      "timezone": "Europe/London",
+      "venue": null,
+      "address": null,
+      "coordinates": null,
+      "venuePublic": false,
+      "locationType": "offline",
+      "sourceUrl": "https://luma.com/6xip72je",
+      "observedAt": "2026-11-12",
+      "organizers": [
+        "Jito Events"
+      ],
+      "registrationStatus": "waitlist",
+      "approvalRequired": true,
+      "price": [
+        {
+          "name": "Standard",
+          "cents": null,
+          "currency": null
+        }
+      ],
+      "tags": [
+        "DeFi",
+        "Trading",
+        "Infrastructure"
+      ]
+    },
+    {
+      "id": "intelligence-summit",
+      "title": "Solana Intelligence Summit",
+      "startsAt": "2026-11-13T10:00:00.000Z",
+      "endsAt": "2026-11-13T18:00:00.000Z",
+      "timezone": "Europe/London",
+      "venue": "Somerset House",
+      "address": "Somerset House, Strand, London WC2R 1LA, UK",
+      "coordinates": {
+        "longitude": -0.11714799999999997,
+        "latitude": 51.511058999999996
+      },
+      "venuePublic": true,
+      "locationType": "offline",
+      "sourceUrl": "https://luma.com/intelligence-summit",
+      "observedAt": "2026-11-12",
+      "organizers": [
+        "Solana Foundation"
+      ],
+      "registrationStatus": "waitlist",
+      "approvalRequired": true,
+      "price": [
+        {
+          "name": "Standard",
+          "cents": null,
+          "currency": null
+        }
+      ],
+      "tags": [
+        "AI",
+        "Builders"
+      ]
+    },
+    {
+      "id": "0j8gx7i1",
+      "title": "The Solana Ecosystem Call | London Special",
+      "startsAt": "2026-11-13T18:00:00.000Z",
+      "endsAt": "2026-11-13T19:00:00.000Z",
+      "timezone": "Europe/London",
+      "venue": null,
+      "address": null,
+      "coordinates": null,
+      "venuePublic": false,
+      "locationType": "twitter",
+      "sourceUrl": "https://luma.com/0j8gx7i1",
+      "observedAt": "2026-11-12",
+      "organizers": [
+        "Solana Foundation",
+        "Eno",
+        "Simon Molitor"
+      ],
+      "registrationStatus": "check-organizer",
+      "approvalRequired": false,
+      "price": [
+        {
+          "name": "Standard",
+          "cents": null,
+          "currency": null
+        }
+      ],
+      "tags": [
+        "Community",
+        "Livestream"
+      ]
+    },
+    {
+      "id": "go26cwv5",
+      "title": "LO:CK'In Dinner (Break Point Edition)",
+      "startsAt": "2026-11-13T18:00:00.000Z",
+      "endsAt": "2026-11-13T19:00:00.000Z",
+      "timezone": "Europe/London",
+      "venue": "Yogi's Kensington",
+      "address": "Yogi's Kensington, 118 Finborough Rd, London SW10 9ED, UK",
+      "coordinates": {
+        "longitude": -0.19009959999999998,
+        "latitude": 51.4865871
+      },
+      "venuePublic": true,
+      "locationType": "offline",
+      "sourceUrl": "https://luma.com/go26cwv5",
+      "observedAt": "2026-11-12",
+      "organizers": [
+        "Laurence Lewars"
+      ],
+      "registrationStatus": "check-organizer",
+      "approvalRequired": true,
+      "price": [
+        {
+          "name": "Standard",
+          "cents": null,
+          "currency": null
+        }
+      ],
+      "tags": [
+        "Social",
+        "Dinner"
+      ]
+    },
+    {
+      "id": "sol-community-awards",
+      "title": "Solana Community Awards 2026",
+      "startsAt": "2026-11-13T18:00:00.000Z",
+      "endsAt": "2026-11-13T21:00:00.000Z",
+      "timezone": "Europe/London",
+      "venue": null,
+      "address": null,
+      "coordinates": null,
+      "venuePublic": false,
+      "locationType": "offline",
+      "sourceUrl": "https://luma.com/sol-community-awards",
+      "observedAt": "2026-11-12",
+      "organizers": [
+        "Solana Foundation",
+        "bangerz"
+      ],
+      "registrationStatus": "check-organizer",
+      "approvalRequired": true,
+      "price": [
+        {
+          "name": "Standard",
+          "cents": null,
+          "currency": null
+        }
+      ],
+      "notes": [
+        "Registration listing starts 18:00; official Solana article identifies the awards ceremony as 19:00–21:00.",
+        "Exact address remains hidden on Luma; article publicly names Somerset House."
+      ],
+      "tags": [
+        "Community",
+        "Livestream"
+      ]
+    },
+    {
+      "id": "n6r4k7vb",
+      "title": "445 CREW x Solana Breakpoint | Community Run",
+      "startsAt": "2026-11-14T09:15:00.000Z",
+      "endsAt": "2026-11-14T11:45:00.000Z",
+      "timezone": "Europe/London",
+      "venue": "Fulham Pier",
+      "address": "Fulham Pier, London SW6 6HH, UK",
+      "coordinates": {
+        "longitude": -0.22236999999999998,
+        "latitude": 51.474759399999996
+      },
+      "venuePublic": true,
+      "locationType": "offline",
+      "sourceUrl": "https://luma.com/n6r4k7vb",
+      "observedAt": "2026-11-12",
+      "organizers": [
+        "Chars 445CREW"
+      ],
+      "registrationStatus": "check-organizer",
+      "approvalRequired": true,
+      "price": [
+        {
+          "name": "Standard",
+          "cents": null,
+          "currency": null
+        }
+      ],
+      "tags": [
+        "Community",
+        "Fitness"
+      ]
+    },
+    {
+      "id": "scale-or-die-26",
+      "title": "Scale or Die",
+      "startsAt": "2026-11-14T09:30:00.000Z",
+      "endsAt": "2026-11-14T18:30:00.000Z",
+      "timezone": "Europe/London",
+      "venue": null,
+      "address": null,
+      "coordinates": null,
+      "venuePublic": false,
+      "locationType": "offline",
+      "sourceUrl": "https://luma.com/scale-or-die-26",
+      "observedAt": "2026-11-12",
+      "organizers": [
+        "Solana Foundation"
+      ],
+      "registrationStatus": "waitlist",
+      "approvalRequired": true,
+      "price": [
+        {
+          "name": "General Admission",
+          "cents": null,
+          "currency": null
+        }
+      ],
+      "tags": [
+        "Builders",
+        "Infrastructure"
+      ]
+    },
+    {
+      "id": "loajg3ik",
+      "title": "Build Across Chains: A Solana Builder Briefing, with NEAR Intents x Aurora Intents",
+      "startsAt": "2026-11-14T15:00:00.000Z",
+      "endsAt": "2026-11-14T17:30:00.000Z",
+      "timezone": "Europe/London",
+      "venue": null,
+      "address": null,
+      "coordinates": null,
+      "venuePublic": false,
+      "locationType": "offline",
+      "sourceUrl": "https://luma.com/loajg3ik",
+      "observedAt": "2026-11-12",
+      "organizers": [
+        "NEAR Foundation",
+        "Aurora Intents",
+        "Encode Club"
+      ],
+      "registrationStatus": "check-organizer",
+      "approvalRequired": true,
+      "price": [
+        {
+          "name": "Standard",
+          "cents": null,
+          "currency": null
+        }
+      ],
+      "tags": [
+        "Builders",
+        "DeFi"
+      ]
+    },
+    {
+      "id": "dmxdc394",
+      "title": "BlockZero 2026",
+      "startsAt": "2026-11-15T09:30:00.000Z",
+      "endsAt": "2026-11-15T17:00:00.000Z",
+      "timezone": "Europe/London",
+      "venue": "International Convention Centre at Olympia (ICC)",
+      "address": "International Convention Centre at Olympia (ICC), Hammersmith Rd, London W14 8UX, UK",
+      "coordinates": {
+        "longitude": -0.21071499999999999,
+        "latitude": 51.4954955
+      },
+      "venuePublic": true,
+      "locationType": "offline",
+      "sourceUrl": "https://luma.com/dmxdc394",
+      "observedAt": "2026-11-12",
+      "organizers": [
+        "Chainflow POS",
+        "Brian Long",
+        "Alejandro M.",
+        "Michael Hubbard"
+      ],
+      "registrationStatus": "check-organizer",
+      "approvalRequired": true,
+      "price": [],
+      "notes": [
+        "Current organiser listing starts 09:30 GMT. An older Solana guide says 08:30; current organiser takes precedence."
+      ],
+      "tags": [
+        "Infrastructure",
+        "Validators"
+      ]
+    },
+    {
+      "id": "breakpoint2026",
+      "title": "Solana Breakpoint 2026",
+      "startsAt": "2026-11-15T16:00:00.000Z",
+      "endsAt": "2026-11-17T19:00:00.000Z",
+      "timezone": "Europe/London",
+      "venue": "Olympia",
+      "address": "Olympia, Hammersmith Rd, London W14 8UX, UK",
+      "coordinates": {
+        "longitude": -0.2107637,
+        "latitude": 51.4963566
+      },
+      "venuePublic": true,
+      "locationType": "offline",
+      "sourceUrl": "https://luma.com/breakpoint2026",
+      "observedAt": "2026-11-12",
+      "organizers": [
+        "Solana Foundation"
+      ],
+      "registrationStatus": "check-organizer",
+      "approvalRequired": false,
+      "price": [
+        {
+          "name": "General Admission",
+          "cents": 55000,
+          "currency": "usd"
+        }
+      ],
+      "tags": [
+        "Conference"
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "id": "brief-agenda",
+      "kind": "briefing",
+      "status": "verified",
+      "title": "The Breakpoint agenda is here. Start building your watchlist.",
+      "body": "The official programme lists 107 talks across Main Stage and Royal Exchange on Monday 16 and Tuesday 17 November. Explore the verified dates, speaker profiles and project links, then build your watchlist. Times can change; each listing links to the official agenda.",
+      "sourceUrl": "https://solana.com/breakpoint/schedule",
+      "sourceName": "Solana · Official agenda",
+      "occurredAt": "2026-11-12T08:05:40.769Z",
+      "receivedAt": "2026-11-12T08:05:40.769Z",
+      "updatedAt": "2026-11-12T08:05:40.769Z",
+      "projectIds": [
+        "kamino",
+        "jupiter",
+        "solana"
+      ],
+      "takeaways": [
+        "Conference dates: 15–17 November at Olympia London.",
+        "107 talks across the two published stages; Monday 16 and Tuesday 17 November.",
+        "Follow projects to find their sessions and subsequent coverage."
+      ],
+      "novelty": "unknown",
+      "tokenImpact": "none",
+      "impactReason": "A scheduled appearance is not an announcement or a token catalyst.",
+      "excerpt": "",
+      "stage": "",
+      "version": 1
+    },
+    {
+      "id": "brief-city",
+      "kind": "briefing",
+      "status": "verified",
+      "title": "Breakpoint starts before the main stage. Explore the week in London.",
+      "body": "Demo Day, technical summits, community meetups and the opening celebration are on the calendar. Check availability with each organiser before travelling. Some addresses are shared only after registration.",
+      "sourceUrl": "https://luma.com/BP-SideEvents",
+      "sourceName": "Breakpoint · Community calendar",
+      "occurredAt": "2026-11-12T07:49:04.571680+00:00",
+      "receivedAt": "2026-11-12T07:49:04.571680+00:00",
+      "updatedAt": "2026-11-12T07:49:04.571680+00:00",
+      "projectIds": [],
+      "takeaways": [
+        "Use the London map for publicly listed venues.",
+        "Download an event to your calendar.",
+        "Hidden venues stay hidden until the organiser shares them."
+      ],
+      "novelty": "unknown",
+      "tokenImpact": "none",
+      "impactReason": "Event guide only.",
+      "excerpt": "",
+      "stage": "",
+      "version": 1
+    },
+    {
+      "id": "brief-meteora",
+      "kind": "briefing",
+      "status": "verified",
+      "title": "Following Meteora? Keep MET and LP Army on your radar.",
+      "body": "Meteora’s official investor relations site identifies MET as its token. We are preparing a dedicated LP Army coverage lane; the final event details and broadcast are not yet verified.",
+      "sourceUrl": "https://ir.meteora.ag/",
+      "sourceName": "Meteora · Investor relations",
+      "occurredAt": "2026-11-12T07:49:04.571680+00:00",
+      "receivedAt": "2026-11-12T07:49:04.571680+00:00",
+      "updatedAt": "2026-11-12T07:49:04.571680+00:00",
+      "projectIds": [
+        "meteora"
+      ],
+      "takeaways": [
+        "MET is the Meteora token ticker.",
+        "LP Army timing, venue and stream remain unconfirmed.",
+        "No new token announcement is implied by this briefing."
+      ],
+      "novelty": "previously-announced",
+      "tokenImpact": "none",
+      "impactReason": "Identity and coverage preparation, not new token news.",
+      "excerpt": "",
+      "stage": "",
+      "version": 1
+    }
+  ],
+  "streams": [
+    {
+      "id": "main",
+      "name": "Main Stage",
+      "embedUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint",
+      "enabled": false
+    },
+    {
+      "id": "royal",
+      "name": "Royal Exchange",
+      "embedUrl": null,
+      "sourceUrl": "https://solana.com/breakpoint",
+      "enabled": false
+    },
+    {
+      "id": "lparmy",
+      "name": "LP Army",
+      "embedUrl": null,
+      "sourceUrl": "https://www.meteora.ag/",
+      "enabled": false
+    }
+  ]
+}
