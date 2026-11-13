@@ -5052,6 +5052,21 @@ blockquote {
   padding: 1px 6px;
   color: var(--foreground);
 }
+.project-mark.has-logo {
+  background: #fff;
+  padding: 0;
+  border: 1px solid var(--border);
+}
+.project-mark.has-logo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.project-mark.logo-pad img {
+  object-fit: contain;
+  padding: 17%;
+}
 @property --tw-translate-x {
   syntax: "*";
   inherits: false;

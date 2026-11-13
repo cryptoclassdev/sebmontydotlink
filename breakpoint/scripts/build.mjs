@@ -3,7 +3,7 @@
 import {build} from 'esbuild';
 import postcss from 'postcss';
 import tailwind from '@tailwindcss/postcss';
-import {readFile,writeFile,mkdir,copyFile} from 'node:fs/promises';
+import {readFile,writeFile,mkdir,copyFile,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
@@ -24,4 +24,7 @@ await writeFile(path.join(out,'app.js'),js);
 await writeFile(path.join(out,'style.css'),css);
 await writeFile(path.join(out,'index.html'),html);
 await copyFile('src/icon.svg',path.join(out,'icon.svg'));
+// Project logos (official marks, see assets/logos/SOURCES.md), served from /breakpoint/logos/.
+await mkdir(path.join(out,'logos'),{recursive:true});
+for(const f of await readdir('assets/logos'))if(f.endsWith('.webp'))await copyFile(path.join('assets/logos',f),path.join(out,'logos',f));
 console.log(`Built /breakpoint: app.js ${Math.round(js.length/1024)} KB, style.css ${Math.round(css.length/1024)} KB`);

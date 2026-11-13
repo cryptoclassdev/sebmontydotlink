@@ -80,7 +80,7 @@
       "name": "Backpack",
       "description": "Tokenized assets and trading infrastructure.",
       "symbol": null,
-      "website": null,
+      "website": "https://backpack.exchange/",
       "xHandle": null,
       "sourceUrl": "https://solana.com/breakpoint/speakers",
       "mintAddress": null
@@ -90,7 +90,7 @@
       "name": "Helius",
       "description": "Developer infrastructure for Solana.",
       "symbol": null,
-      "website": null,
+      "website": "https://www.helius.dev/",
       "xHandle": null,
       "sourceUrl": "https://solana.com/breakpoint/speakers",
       "mintAddress": null
@@ -100,7 +100,7 @@
       "name": "Sunrise",
       "description": "Onchain access to capital markets.",
       "symbol": null,
-      "website": null,
+      "website": "https://sunrise.xyz/",
       "xHandle": null,
       "sourceUrl": "https://solana.com/breakpoint/speakers",
       "mintAddress": null
@@ -110,7 +110,7 @@
       "name": "Ledger",
       "description": "Digital asset security and custody.",
       "symbol": null,
-      "website": null,
+      "website": "https://www.ledger.com/",
       "xHandle": null,
       "sourceUrl": "https://solana.com/breakpoint/speakers",
       "mintAddress": null
