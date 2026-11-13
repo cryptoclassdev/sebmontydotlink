@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### X monitor for Breakpoint alpha
 
 - **Date:** 14 November 2026
-- **Pull request:** branch `feat/breakpoint-x-monitor` (number added once opened).
+- **Pull request:** [#13](https://github.com/cryptoclassdev/sebmontydotlink/pull/13), branch `feat/breakpoint-x-monitor`.
 - **Status:** Ready for review. Goes live only once the Mac Mini runs the monitor and `BREAKPOINT_AUTO_PUBLISH_PROVISIONAL` is `true` on Vercel; merging alone changes almost nothing on the site.
 - **Why:** Seb decided against live transcription. Instead the guide embeds the official YouTube streams and tracks what every company and speaker with a talk posts on X, so real announcements reach the site within minutes.
 
