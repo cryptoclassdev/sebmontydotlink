@@ -67,27 +67,45 @@ Preview any moment of the conference by adding `?now=` to the URL, e.g. `/breakp
 - Hidden or obfuscated venue coordinates never reach the map or calendar files.
 - No fabricated prices, stream URLs, mint addresses, news or countdowns.
 
-## Live coverage: what is still needed
+## Live coverage (decided 13 November 2026)
 
-1. Upstash Redis connected and the two tokens set (above). Then the desk works at `/breakpoint#editor`.
-2. Official stream embeds for Main Stage, Royal Exchange and LP Army, pasted into the desk ("Broadcast connections"). Only YouTube/Vimeo embed URLs are accepted.
-3. For transcription: an approved direct HTTPS audio/HLS URL per stage (a YouTube page URL is not one), an OpenAI key and an X API bearer token on the collector machine, and that machine kept awake.
-4. Budget: $50/day is approved (`collector/config.approved-50usd.json`, all sources off). At the default reservations, full coverage of three stages for eight hours reserves about $185, mostly summary calls ($0.10 each, one per minute per stage). Main Stage only, with summaries every two minutes (`summaryEveryChunks: 4`), plus X checks every two minutes, reserves about $49. Confirm real provider prices before switching anything on; the cap is a local reservation gate, not a provider billing limit.
+Stages: the official YouTube streams, embedded from the desk ("Broadcast connections", tick "Show player"). No transcription.
 
-Collector commands, from `breakpoint/`:
+Alpha: the X monitor below, running on the Mac Mini for the whole event. Seb can also post from the desk at any time.
 
-```bash
-python3 collector/setup.py                                   # store tokens and keys (masked popups)
-cp collector/config.approved-50usd.json .local/collector.json   # then edit sources and stages
-python3 collector/run.py --config .local/collector.json
-python3 scripts/editor-access.py                             # copy the editor token and open the desk
-```
+## X monitor (Breakpoint week)
 
-Operating notes from the original build still apply: change the "current session" in the desk when a talk actually ends (the collector finalises the summary within about 30 seconds); a heartbeat older than three minutes shows as stale; failed provider calls keep their budget reservation; stop with Ctrl+C and wait for ffmpeg to exit.
+What it does: every 2 minutes it searches X (through twitterapi.io) for new posts from the 208 accounts in `data/x-accounts.json`: 87 companies and 121 speakers with a talk at Breakpoint. Replies and retweets are skipped. A small OpenAI model sorts each new post:
+
+- **alpha** (launch, partnership, token news, funding, approval, milestone, dated launch): published straight away as "Provisional", with the post quoted word for word and linked, and tied to the account's talk when posted within 24 hours of it;
+- **maybe**: lands on the editor desk as a draft for Seb to publish or ignore;
+- **skip** (booth, side events, memes, hype): dropped.
+
+Accounts: speaker handles are the ones linked on the official speakers page (saved in `research/speakers-x-2026-11-14.json`); company handles are linked from each company's website or checked on the X profile (name, linked website, verification). Each account's `source` field says which. To add one, add a row to `data/x-accounts.json` with its source.
+
+Cost: twitterapi.io charges $0.15 per 1,000 posts returned, with a minimum per request; OpenAI triage is cents a day. Expected spend is about $1 to $3 a day. The local budget gate in `collector/config.breakpoint-x.json` reserves the worst case for every request and stops the monitor at $30 a day.
+
+### Set up on the Mac Mini (once)
+
+1. Get the code: GitHub, `cryptoclassdev/sebmontydotlink`, Code, Download ZIP (or `git clone`). Unzip it somewhere permanent.
+2. In Vercel (project v0-apple-liquid-glass-link-in-bio-6h), Settings, Environment Variables: add `BREAKPOINT_AUTO_PUBLISH_PROVISIONAL` = `true` for Production. If the ingest token was not saved, generate a new one (`openssl rand -hex 32`), save it in the password manager and replace `BREAKPOINT_INGEST_TOKEN`. Then redeploy the latest Production deployment so the values apply.
+3. In Terminal on the Mac Mini, from the unzipped `breakpoint` folder: `python3 collector/setup.py`. Four masked windows ask for the ingest token, the editor token, the twitterapi.io key and the OpenAI key. Nothing is typed into Terminal or chat.
+4. Test without publishing: `python3 collector/run.py --config collector/config.breakpoint-x.json --check-x`. It shows how many recent posts it found and how the AI sorted up to five of them.
+5. Start it: `caffeinate -dimsu python3 collector/run.py --config collector/config.breakpoint-x.json`. Leave the window open; `caffeinate` keeps the Mac awake. Each pass prints one line (new posts, published, drafts). Stop with Ctrl+C; it resumes where it left off.
+
+Check it on the site: Watch live, Source health, "X monitoring" says "Watching 208 accounts on X". Drafts appear on the desk (`/breakpoint#editor`); published items appear on the overview, in Catch up (filter "From X"), on the project and on the talk.
+
+To pull something back: open it on the desk and withdraw it with a short note. If the model is too eager or too quiet, set `publishProvisional` to `false` in the config to send everything to the desk instead. If OpenAI reports an unknown model, change `xTriageModel` in the config.
+
+### The original transcription collector
+
+Still in `collector/collect.py` and off. It needs a direct HTTPS audio/HLS URL per stage (a YouTube page URL is not one) and its own config (`collector/config.approved-50usd.json`). At default reservations, full coverage of three stages reserves about $185 a day, above the $50 approval.
+
+Operating notes: a heartbeat older than three minutes shows as stale; failed provider calls keep their budget reservation; the outbox and checkpoints survive restarts.
 
 ## Known limits
 
-- Market prices are not connected; watchlists and saved events live on the visitor's device.
+- Watchlists and saved events live on the visitor's device.
 - Browser alerts need permission and an open tab.
 - Project and session views use the newest 60 entries; Catch up pages further back.
 - Luma can rate-limit; the guide then shows the last good copy or the committed snapshot and says so.

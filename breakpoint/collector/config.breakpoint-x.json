@@ -1,0 +1,20 @@
+{
+  "siteUrl": "https://www.sebmonty.link/breakpoint",
+  "dailyBudgetUsd": 30,
+  "pollSeconds": 120,
+  "xEnabled": true,
+  "xProvider": "twitterapi",
+  "xAccountsFile": "data/x-accounts.json",
+  "xFirstLookMinutes": 60,
+  "xOverlapSeconds": 90,
+  "xMaxQueryLength": 480,
+  "xMaxPagesPerBatch": 3,
+  "xReservePerRequestUsd": 0.003,
+  "xTriageModel": "gpt-4.1-mini",
+  "xTriageBatchSize": 10,
+  "xTriageReservePerCallUsd": 0.01,
+  "xMaxPending": 300,
+  "talkWindowHours": 24,
+  "publishProvisional": true,
+  "stages": []
+}

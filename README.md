@@ -54,6 +54,46 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### X monitor for Breakpoint alpha
+
+- **Date:** 14 November 2026
+- **Pull request:** branch `feat/breakpoint-x-monitor` (number added once opened).
+- **Status:** Ready for review. Goes live only once the Mac Mini runs the monitor and `BREAKPOINT_AUTO_PUBLISH_PROVISIONAL` is `true` on Vercel; merging alone changes almost nothing on the site.
+- **Why:** Seb decided against live transcription. Instead the guide embeds the official YouTube streams and tracks what every company and speaker with a talk posts on X, so real announcements reach the site within minutes.
+
+#### What changed
+1. A new X monitor in the collector (`breakpoint/collector/xwatch.py`). Every 2 minutes it searches X through twitterapi.io for new posts from 208 accounts, skipping replies and retweets. A small OpenAI model sorts each post: alpha (launch, partnership, token news, funding, approval, milestone) is published as Provisional, quoting the post word for word with a link; maybe goes to the editor desk as a draft; routine posts are dropped.
+2. Posts are tied to the account's talk when posted within 24 hours of it, and to a project when the account or the post names one, so they show on the talk and the project as well as the overview and Catch up.
+3. The account list (`breakpoint/data/x-accounts.json`): 121 speaker accounts linked on the official Breakpoint speakers page (saved in `breakpoint/research/speakers-x-2026-11-14.json`) and 87 company accounts, each linked from the company's own website or checked on its X profile. Guesses that led to the wrong account were left out.
+4. Spending limits: every paid request is reserved against a daily cap before it is made ($30 a day, worst case); expected real spend is about $1 to $3 a day. Posts are only marked done after their result is queued for the site, so a failed AI call retries instead of losing posts.
+5. Site: announcements that came from X are labelled "ANNOUNCEMENT · VIA X", and the Catch up "From X" filter now includes them.
+6. Key setup asks for the twitterapi.io key (instead of an X API token) alongside the ingest token, editor token and OpenAI key, in masked windows. A `--check-x` test run reports what it finds and publishes nothing.
+7. The guide's operating notes (`breakpoint/README.md`) describe the Mac Mini setup step by step.
+
+#### Files touched
+- `breakpoint/collector/xwatch.py` (new), `breakpoint/collector/config.breakpoint-x.json` (new), `breakpoint/collector/collect.py`, `run.py`, `setup.py`
+- `breakpoint/data/x-accounts.json` (new), `breakpoint/research/speakers-x-2026-11-14.json` (new)
+- `breakpoint/src/main.tsx`, `public/breakpoint/` (rebuilt)
+- `breakpoint/tests/test_xwatch.py` (new), `breakpoint/tests/api.test.mjs`
+- `breakpoint/README.md`, `README.md`
+
+#### How to check it on the Vercel preview
+1. The site looks the same as now; there is nothing new to see until the monitor runs.
+2. `/breakpoint#catchup`, "From X" filter: still works (shows nothing yet).
+3. After the merge and the Mac Mini setup: Watch live, Source health shows "X monitoring · Watching 208 accounts on X", and new items appear on the overview within a few minutes of a qualifying post.
+
+#### Checks run
+- 14 new Python tests for the monitor (account file and query sizes, alpha/maybe/skip handling, strangers, replies and retweets ignored, no duplicates across passes, search window and overlap, page limit, failed AI calls keep posts for retry, AI output validation, budget gate, talk window) plus the 9 existing collector tests; 48 Node tests including a new one proving X entries are accepted from the collector, public only with `AUTO_PUBLISH_PROVISIONAL`, and keep their talk link.
+- `tsc --noEmit` for the guide; site `tsc --noEmit` and `pnpm build`.
+
+#### Risks
+- The AI can misjudge a post. Every published item is labelled Provisional, quotes the post exactly and links to it; Seb can withdraw it from the desk, or set `publishProvisional` to `false` to send everything to the desk first.
+- twitterapi.io is a third-party service, not X itself. If it fails, the monitor reports an error in Source health and retries; the rest of the site is unaffected.
+- A company may post from an account not on the list; it can be added to `data/x-accounts.json` with its source.
+
+#### Roll back
+Stop the monitor on the Mac Mini (Ctrl+C) and set `BREAKPOINT_AUTO_PUBLISH_PROVISIONAL` back to `false`. To undo the code, revert this PR; published items can be withdrawn from the desk.
+
 ### Live token prices and real project logos on the Breakpoint guide
 
 - **Date:** 13 November 2026
