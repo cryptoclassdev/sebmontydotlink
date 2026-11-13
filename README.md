@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Live token prices and real project logos on the Breakpoint guide
 
 - **Date:** 13 November 2026
-- **Pull request:** branch `feat/breakpoint-token-prices` (number added once opened).
+- **Pull request:** [#12](https://github.com/cryptoclassdev/sebmontydotlink/pull/12), branch `feat/breakpoint-token-prices`.
 - **Status:** Ready for review. Works without any new setting; an optional free Jupiter key raises the rate limit.
 - **Why:** Seb asked for live token prices (the plan had a market slot that was never built) and for the real project logos in place of the placeholder letters and drawings.
 
