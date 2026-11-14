@@ -1,7 +1,7 @@
 """Breakpoint X monitor (standard library only).
 
 Watches the X accounts in data/x-accounts.json (companies and speakers with a talk
-at Breakpoint) through twitterapi.io, asks a small OpenAI model which new posts are
+at Breakpoint) through twitterapi.io, asks an AI model which new posts are
 real news (launches, partnerships, token news, funding, milestones), and sends those
 to the guide. Each published item quotes the post word for word and links to it.
 
@@ -15,6 +15,8 @@ Rules:
   of that talk's start.
 - Every paid request is reserved against the daily budget before it is made, and
   posts are only marked processed after their result is queued for the site.
+- The AI model is any OpenAI-compatible chat endpoint: xTriageApiUrl, xTriageModel and
+  xTriageExtraBody in the config (Z.ai GLM 5.2 in config.breakpoint-x.json).
 """
 import datetime as dt, hashlib, json, re, urllib.parse
 
@@ -168,18 +170,40 @@ def validate_triage(result, posts):
     return out
 
 
+def model_json(response):
+    """The JSON object in a chat completion, tolerating code fences around it."""
+    try:
+        content = response['choices'][0]['message'].get('content') or ''
+    except (KeyError, IndexError, TypeError, AttributeError):
+        raise XWatchError('Triage response is not a chat completion') from None
+    start, end = content.find('{'), content.rfind('}')
+    if start < 0 or end < start:
+        raise XWatchError('Triage response is not JSON')
+    try:
+        return json.loads(content[start:end + 1])
+    except ValueError:
+        raise XWatchError('Triage response is not JSON') from None
+
+
 def triage(posts, accounts_by_handle, config, state, key, http):
     state.reserve(float(config.get('xTriageReservePerCallUsd', 0.01)), 'x-triage')
     data = [{'id': p['id'], 'account': accounts_by_handle[p['user'].lower()]['name'], 'accountType': accounts_by_handle[p['user'].lower()]['kind'],
              'organization': accounts_by_handle[p['user'].lower()].get('org'), 'postedAt': p['createdAt'], 'text': p['text']} for p in posts]
+    extra = config.get('xTriageExtraBody') or {}
+    if not isinstance(extra, dict):
+        raise XWatchError('xTriageExtraBody must be an object')
     body = {'model': config.get('xTriageModel', 'gpt-4.1-mini'), 'response_format': {'type': 'json_object'}, 'max_tokens': 2500,
-            'messages': [{'role': 'system', 'content': SYSTEM}, {'role': 'user', 'content': json.dumps({'posts': data}, ensure_ascii=False)}]}
-    response = http(OPENAI_API, 'POST', body, {'Authorization': 'Bearer ' + key})
+            'messages': [{'role': 'system', 'content': SYSTEM}, {'role': 'user', 'content': json.dumps({'posts': data}, ensure_ascii=False)}], **extra}
+    url, headers = config.get('xTriageApiUrl', OPENAI_API), {'Authorization': 'Bearer ' + key}
     try:
-        result = json.loads(response['choices'][0]['message']['content'])
-    except (KeyError, IndexError, TypeError, ValueError):
-        raise XWatchError('Triage response is not JSON') from None
-    return validate_triage(result, posts)
+        response = http(url, 'POST', body, headers)
+    except Exception as e:
+        # A provider that rejects an optional field (HTTP 400) gets one retry without the extras.
+        if not extra or 'HTTP 400' not in str(e):
+            raise
+        state.reserve(float(config.get('xTriageReservePerCallUsd', 0.01)), 'x-triage')
+        response = http(url, 'POST', {k: v for k, v in body.items() if k not in extra}, headers)
+    return validate_triage(model_json(response), posts)
 
 
 def make_entry(post, account, verdict, config, projects):
@@ -244,7 +268,7 @@ def poll(desk, state, config, accounts, projects, keys, http, now=None):
     size = int(config.get('xTriageBatchSize', 10))
     for i in range(0, len(pending), size):
         chunk = pending[i:i + size]
-        verdicts = triage(chunk, by_handle, config, state, keys['openai'], http)
+        verdicts = triage(chunk, by_handle, config, state, keys['triage'], http)
         entries = []
         for p in chunk:
             v = verdicts[p['id']]

@@ -10,9 +10,16 @@
   "xMaxQueryLength": 480,
   "xMaxPagesPerBatch": 3,
   "xReservePerRequestUsd": 0.003,
-  "xTriageModel": "gpt-4.1-mini",
+  "xTriageApiUrl": "https://api.z.ai/api/paas/v4/chat/completions",
+  "xTriageModel": "glm-5.2",
+  "xTriageKeyEnv": "ZAI_API_KEY",
+  "xTriageExtraBody": {
+    "thinking": {
+      "type": "disabled"
+    }
+  },
   "xTriageBatchSize": 10,
-  "xTriageReservePerCallUsd": 0.01,
+  "xTriageReservePerCallUsd": 0.02,
   "xMaxPending": 300,
   "talkWindowHours": 24,
   "publishProvisional": true,

@@ -21,21 +21,23 @@ def tweet(i, user, text, when='Mon Nov 16 12:20:00 +0000 2026', **extra):
 
 class FakeHttp:
     """Answers twitterapi.io searches from a list of pages and OpenAI triage from a verdict map."""
-    def __init__(self, pages, verdicts, fail_triage=False):
+    def __init__(self, pages, verdicts, fail_triage=False, ai_url=None, fence=False):
         self.pages, self.verdicts, self.fail_triage, self.calls = list(pages), verdicts, fail_triage, []
+        self.ai_url, self.fence = ai_url or x.OPENAI_API, fence
 
     def __call__(self, url, method='GET', body=None, headers=None):
         self.calls.append((url, method, body, headers))
         if url.startswith(x.SEARCH_API):
             assert headers == {'X-API-Key': 'tk'}
             return self.pages.pop(0) if self.pages else {'tweets': [], 'has_next_page': False}
-        if url == x.OPENAI_API:
+        if url == self.ai_url:
             assert headers == {'Authorization': 'Bearer ok'}
             if self.fail_triage:
                 raise c.SafeError('HTTP 500')
             posts = json.loads(body['messages'][1]['content'])['posts']
             items = [dict({'id': p['id']}, **self.verdicts.get(p['id'], {'verdict': 'skip'})) for p in posts]
-            return {'choices': [{'message': {'content': json.dumps({'items': items})}}]}
+            content = json.dumps({'items': items})
+            return {'choices': [{'message': {'content': '```json\n' + content + '\n```' if self.fence else content}}]}
         raise AssertionError(url)
 
 
@@ -57,7 +59,7 @@ class Tests(unittest.TestCase):
         self.tmp.cleanup()
 
     def run_poll(self, http, config=None):
-        return x.poll(self.desk, self.state, {**self.config, **(config or {})}, ACCOUNTS, c.PROJECTS, {'twitterapi': 'tk', 'openai': 'ok'}, http, now=NOW)
+        return x.poll(self.desk, self.state, {**self.config, **(config or {})}, ACCOUNTS, c.PROJECTS, {'twitterapi': 'tk', 'triage': 'ok'}, http, now=NOW)
 
     def entries(self):
         return [e for p in self.sent if 'entries' in p for e in p['entries']]
@@ -182,7 +184,43 @@ class Tests(unittest.TestCase):
         self.state = c.State(pathlib.Path(self.tmp.name) / 'b', 0.002)
         page = {'tweets': [tweet(1, 'kamino', 'Live now.')], 'has_next_page': False}
         with self.assertRaises(c.BudgetExceeded):
-            x.poll(self.desk, self.state, {**self.config, 'xReservePerRequestUsd': 0.003}, ACCOUNTS, c.PROJECTS, {'twitterapi': 'tk', 'openai': 'ok'}, FakeHttp([page], {}), now=NOW)
+            x.poll(self.desk, self.state, {**self.config, 'xReservePerRequestUsd': 0.003}, ACCOUNTS, c.PROJECTS, {'twitterapi': 'tk', 'triage': 'ok'}, FakeHttp([page], {}), now=NOW)
+
+    def test_glm_style_endpoint_extra_body_and_fenced_json(self):
+        url = 'https://api.z.ai/api/paas/v4/chat/completions'
+        page = {'tweets': [tweet(1, 'kamino', 'Fixed-rate vaults are live on Kamino.')], 'has_next_page': False}
+        http = FakeHttp([page], {'1': ALPHA}, ai_url=url, fence=True)
+        report = self.run_poll(http, {'xTriageApiUrl': url, 'xTriageModel': 'glm-5.2', 'xTriageExtraBody': {'thinking': {'type': 'disabled'}}})
+        self.assertEqual(report['published'], 1)
+        body = [b for u, m, b, h in http.calls if u == url][0]
+        self.assertEqual((body['model'], body['thinking'], body['response_format']), ('glm-5.2', {'type': 'disabled'}, {'type': 'json_object'}))
+
+    def test_rejected_extra_fields_are_retried_without_them(self):
+        url = 'https://api.z.ai/api/paas/v4/chat/completions'
+        page = {'tweets': [tweet(1, 'kamino', 'Live now.')], 'has_next_page': False}
+        http = FakeHttp([page], {'1': ALPHA}, ai_url=url)
+        real, seen = http.__call__, []
+        def picky(u, method='GET', body=None, headers=None):
+            if u == url:
+                seen.append(dict(body))
+                if 'thinking' in body:
+                    raise c.SafeError('HTTP 400; credentials and provider body withheld')
+            return real(u, method, body, headers)
+        report = self.run_poll(picky, {'xTriageApiUrl': url, 'xTriageExtraBody': {'thinking': {'type': 'disabled'}}})
+        self.assertEqual(report['published'], 1)
+        self.assertEqual(['thinking' in b for b in seen], [True, False])
+
+    def test_model_json_rejects_non_json(self):
+        with self.assertRaises(x.XWatchError):
+            x.model_json({'choices': [{'message': {'content': 'no json here'}}]})
+        with self.assertRaises(x.XWatchError):
+            x.model_json({'choices': []})
+        self.assertEqual(x.model_json({'choices': [{'message': {'content': 'ok {"items": []} done'}}]}), {'items': []})
+
+    def test_shipped_config_is_glm(self):
+        cfg = json.loads((ROOT / 'collector/config.breakpoint-x.json').read_text())
+        self.assertEqual((cfg['xTriageModel'], cfg['xTriageKeyEnv']), ('glm-5.2', 'ZAI_API_KEY'))
+        self.assertTrue(cfg['xTriageApiUrl'].startswith('https://api.z.ai/'))
 
     def test_talk_window(self):
         acc = ACCOUNTS[0]
