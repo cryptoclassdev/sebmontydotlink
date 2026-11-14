@@ -236,6 +236,7 @@ class Tests(unittest.TestCase):
         self.assertEqual((report['published'], report['drafts']), (1, 0))
         body = calls[-1][1]
         self.assertEqual((body['model'], body['tool_choice']), ('claude-haiku-5-5', {'type': 'tool', 'name': 'sort_posts'}))
+        self.assertFalse({'temperature', 'top_p', 'top_k'} & set(body))  # Claude 5.5 rejects these
         self.assertEqual(self.entries()[0]['title'], ALPHA['title'])
         with self.assertRaises(x.XWatchError):
             x.tool_input({'content': [{'type': 'text', 'text': 'no tool'}]})

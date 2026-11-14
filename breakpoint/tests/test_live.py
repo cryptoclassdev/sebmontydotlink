@@ -232,6 +232,7 @@ class Pipeline(unittest.TestCase):
         self.assertEqual(payload['session']['title'], 'Kamino keynote')
         self.assertEqual(self.calls[1][1]['tool_choice'], {'type': 'tool', 'name': 'publish_entries'})
         self.assertEqual(self.calls[1][1]['system'][0]['cache_control'], {'type': 'ephemeral'})
+        self.assertFalse({'temperature', 'top_p', 'top_k'} & set(self.calls[1][1]))  # Claude 5.5 rejects these
         rows = (pathlib.Path(self.tmp.name) / 'costs.csv').read_text().splitlines()
         self.assertEqual(rows[0], 'time,stage,session,provider,model,input,cached,output,usd')
         self.assertEqual(len(rows), 3)

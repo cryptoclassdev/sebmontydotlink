@@ -484,7 +484,8 @@ class LLM:
         reserve = max(float(reserve_usd), estimate_usd(payload_text + system, max_tokens, self.price(model)))
         self.desk.state.reserve(reserve, 'llm')
         if provider == 'anthropic':
-            body = {'model': model, 'max_tokens': max_tokens, 'temperature': 0,
+            # No temperature/top_p/top_k: Claude 5.5 models reject them (HTTP 400). A forced tool call skips thinking.
+            body = {'model': model, 'max_tokens': max_tokens,
                     'system': [{'type': 'text', 'text': system, 'cache_control': {'type': 'ephemeral'}}],
                     'tools': [{'name': 'publish_entries', 'description': 'Publish the factual entries found in the transcript (an empty list when there are none).', 'input_schema': schema}],
                     'tool_choice': {'type': 'tool', 'name': 'publish_entries'},

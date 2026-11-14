@@ -208,7 +208,8 @@ def triage(posts, accounts_by_handle, config, state, key, http):
              'organization': accounts_by_handle[p['user'].lower()].get('org'), 'postedAt': p['createdAt'], 'text': p['text']} for p in posts]
     if config.get('xTriageProvider') == 'anthropic':
         # Claude: the verdicts come back as a forced tool call, so the JSON shape is guaranteed.
-        body = {'model': config.get('xTriageModel', 'claude-haiku-5-5'), 'max_tokens': 2500, 'temperature': 0,
+        # No temperature/top_p/top_k: Claude 5.5 models reject them (HTTP 400). A forced tool call skips thinking.
+        body = {'model': config.get('xTriageModel', 'claude-haiku-5-5'), 'max_tokens': 2500,
                 'system': [{'type': 'text', 'text': SYSTEM, 'cache_control': {'type': 'ephemeral'}}],
                 'tools': [{'name': 'sort_posts', 'description': 'Record one verdict per input post.', 'input_schema': TRIAGE_SCHEMA}],
                 'tool_choice': {'type': 'tool', 'name': 'sort_posts'},
