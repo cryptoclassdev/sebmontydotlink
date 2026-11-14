@@ -340,7 +340,7 @@ class Reload(unittest.TestCase):
             config = json.loads((HERE / 'collector/config.breakpoint-stages.json').read_text())
             path.write_text(json.dumps(config))
             desk = c.Desk(json.loads(path.read_text()), c.State(tmp, 15), '', dry_run=True)
-            watch = c.ConfigWatch(path, desk, {'ANTHROPIC_API_KEY': 'a', 'ZAI_API_KEY': 'z'})
+            watch = c.ConfigWatch(path, desk, {'ANTHROPIC_API_KEY': 'a'})
             config['stages'][0]['scheduleOffsetMinutes'] = 7
             config['dailyBudgetUsd'] = 20
             path.write_text(json.dumps(config))
@@ -378,8 +378,8 @@ class DryRun(unittest.TestCase):
         stage = dict(rehearsal['stages'][0], youtube='https://www.youtube.com/watch?v=dQw4w9WgXcQ')
         c.check_live_stage(rehearsal, stage)
         with self.assertRaises(c.SafeError):
-            c.require_keys(base, {'ANTHROPIC_API_KEY': 'a'})  # fallback key missing
-        c.require_keys(base, {'ANTHROPIC_API_KEY': 'a', 'ZAI_API_KEY': 'z'})
+            c.require_keys(base, {'ZAI_API_KEY': 'z'})
+        c.require_keys(base, {'ANTHROPIC_API_KEY': 'a'})  # Sonnet with a Haiku fallback: one key
         with self.assertRaises(c.SafeError):
             c.validate_config(dict(base, publishKinds=['briefing']))
 

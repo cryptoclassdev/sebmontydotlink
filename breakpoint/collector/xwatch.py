@@ -15,13 +15,14 @@ Rules:
   of that talk's start.
 - Every paid request is reserved against the daily budget before it is made, and
   posts are only marked processed after their result is queued for the site.
-- The AI model is any OpenAI-compatible chat endpoint: xTriageApiUrl, xTriageModel and
-  xTriageExtraBody in the config (Z.ai GLM 5.2 in config.breakpoint-x.json).
+- The AI model is Claude (xTriageProvider "anthropic", Haiku 5.5 in config.breakpoint-x.json) or
+  any OpenAI-compatible chat endpoint (xTriageApiUrl, xTriageModel and xTriageExtraBody, e.g. Z.ai GLM).
 """
 import datetime as dt, hashlib, json, re, urllib.parse
 
 SEARCH_API = 'https://api.twitterapi.io/twitter/tweet/advanced_search'
 OPENAI_API = 'https://api.openai.com/v1/chat/completions'
+ANTHROPIC_API = 'https://api.anthropic.com/v1/messages'
 HANDLE = re.compile(r'^[A-Za-z0-9_]{1,15}$')
 TWEET_ID = re.compile(r'^\d{1,25}$')
 VERDICTS = ('alpha', 'maybe', 'skip')
@@ -185,10 +186,35 @@ def model_json(response):
         raise XWatchError('Triage response is not JSON') from None
 
 
+TRIAGE_SCHEMA = {'type': 'object', 'required': ['items'], 'properties': {'items': {'type': 'array', 'items': {
+    'type': 'object', 'required': ['id', 'verdict'], 'properties': {
+        'id': {'type': 'string'}, 'verdict': {'type': 'string', 'enum': list(VERDICTS)}, 'kind': {'type': 'string', 'enum': ['announcement', 'update']},
+        'title': {'type': 'string'}, 'summary': {'type': 'string'}, 'tokenImpact': {'type': 'string', 'enum': list(IMPACTS)},
+        'impactReason': {'type': 'string'}, 'novelty': {'type': 'string', 'enum': list(NOVELTY)}}}}}}
+
+
+def tool_input(response, name='sort_posts'):
+    """The input of the forced tool call in an Anthropic Messages response."""
+    blocks = response.get('content') if isinstance(response, dict) else None
+    block = next((b for b in blocks or [] if isinstance(b, dict) and b.get('type') == 'tool_use' and b.get('name') == name), None)
+    if not block or not isinstance(block.get('input'), dict):
+        raise XWatchError('Triage response has no ' + name + ' call')
+    return block['input']
+
+
 def triage(posts, accounts_by_handle, config, state, key, http):
     state.reserve(float(config.get('xTriageReservePerCallUsd', 0.01)), 'x-triage')
     data = [{'id': p['id'], 'account': accounts_by_handle[p['user'].lower()]['name'], 'accountType': accounts_by_handle[p['user'].lower()]['kind'],
              'organization': accounts_by_handle[p['user'].lower()].get('org'), 'postedAt': p['createdAt'], 'text': p['text']} for p in posts]
+    if config.get('xTriageProvider') == 'anthropic':
+        # Claude: the verdicts come back as a forced tool call, so the JSON shape is guaranteed.
+        body = {'model': config.get('xTriageModel', 'claude-haiku-5-5'), 'max_tokens': 2500, 'temperature': 0,
+                'system': [{'type': 'text', 'text': SYSTEM, 'cache_control': {'type': 'ephemeral'}}],
+                'tools': [{'name': 'sort_posts', 'description': 'Record one verdict per input post.', 'input_schema': TRIAGE_SCHEMA}],
+                'tool_choice': {'type': 'tool', 'name': 'sort_posts'},
+                'messages': [{'role': 'user', 'content': json.dumps({'posts': data}, ensure_ascii=False)}]}
+        response = http(ANTHROPIC_API, 'POST', body, {'x-api-key': key, 'anthropic-version': '2023-06-01'})
+        return validate_triage(tool_input(response), posts)
     extra = config.get('xTriageExtraBody') or {}
     if not isinstance(extra, dict):
         raise XWatchError('xTriageExtraBody must be an object')

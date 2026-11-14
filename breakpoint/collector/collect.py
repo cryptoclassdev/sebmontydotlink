@@ -583,7 +583,8 @@ def check_x(config,state,accounts,keys):
         try:verdicts=xwatch.triage(posts[:5],by_handle,config,state,keys['triage'],http_json)
         except SafeError as e:
             print(f'AI step failed: {e}. Check the AI key, xTriageApiUrl and xTriageModel in the config.',file=sys.stderr)
-            if 'z.ai' in config.get('xTriageApiUrl',''):print('Z.ai needs a pay-as-you-go API key with a balance (z.ai/manage-apikey). The GLM Coding Plan quota does not cover this use.',file=sys.stderr)
+            if config.get('xTriageProvider')=='anthropic':print('Check the Anthropic API key and its credit balance (console.anthropic.com). A Claude subscription does not cover API calls.',file=sys.stderr)
+            elif 'z.ai' in config.get('xTriageApiUrl',''):print('Z.ai needs a pay-as-you-go API key with a balance (z.ai/manage-apikey). The GLM Coding Plan quota does not cover this use.',file=sys.stderr)
             raise
         for p in posts[:5]:
             v=verdicts[p['id']];print(f"  @{p['user']}: {v['verdict']}"+(f" · {v['title']}" if v['verdict']!='skip' else ''))

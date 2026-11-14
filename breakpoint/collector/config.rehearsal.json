@@ -15,9 +15,10 @@
   "llm": {
     "provider": "anthropic",
     "model": "claude-sonnet-5-5",
-    "fallback": null,
+    "fallback": {"provider": "anthropic", "model": "claude-haiku-5-5"},
     "prices": {
       "claude-sonnet-5-5": {"in": 2.0, "cacheRead": 0.10, "cacheWrite": 2.50, "out": 10.0},
+      "claude-haiku-5-5": {"in": 0.10, "cacheRead": 0.01, "cacheWrite": 0.125, "out": 0.50},
       "glm-5.1": {"in": 1.40, "cacheRead": 0.26, "out": 4.40}
     }
   },
