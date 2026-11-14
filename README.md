@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### X monitor: sort posts with Z.ai GLM 5.2
 
 - **Date:** 14 November 2026
-- **Pull request:** branch `feat/breakpoint-x-glm` (number added once opened).
+- **Pull request:** [#14](https://github.com/cryptoclassdev/sebmontydotlink/pull/14), branch `feat/breakpoint-x-glm`.
 - **Status:** Ready for review. Only the collector on the Mac Mini changes; the website is unaffected.
 - **Why:** Seb has a Z.ai GLM key, not an OpenAI key. The X monitor's AI step was hard-wired to OpenAI.
 
