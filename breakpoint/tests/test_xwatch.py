@@ -217,10 +217,51 @@ class Tests(unittest.TestCase):
             x.model_json({'choices': []})
         self.assertEqual(x.model_json({'choices': [{'message': {'content': 'ok {"items": []} done'}}]}), {'items': []})
 
-    def test_shipped_config_is_glm(self):
+    def test_shipped_config_is_claude_haiku(self):
         cfg = json.loads((ROOT / 'collector/config.breakpoint-x.json').read_text())
-        self.assertEqual((cfg['xTriageModel'], cfg['xTriageKeyEnv']), ('glm-5.2', 'ZAI_API_KEY'))
-        self.assertTrue(cfg['xTriageApiUrl'].startswith('https://api.z.ai/'))
+        self.assertEqual((cfg['xTriageProvider'], cfg['xTriageModel'], cfg['xTriageKeyEnv']), ('anthropic', 'claude-haiku-5-5', 'ANTHROPIC_API_KEY'))
+
+    def test_claude_triage_uses_a_forced_tool_call(self):
+        calls = []
+
+        def http(url, method='GET', body=None, headers=None):
+            calls.append((url, body, headers))
+            if url.startswith(x.SEARCH_API):
+                return {'tweets': [tweet(1, 'kamino', 'Fixed-rate vaults are live on Kamino today'), tweet(2, 'phantom', 'gm')], 'has_next_page': False}
+            assert url == x.ANTHROPIC_API and headers == {'x-api-key': 'ok', 'anthropic-version': '2023-06-01'}
+            posts = json.loads(body['messages'][0]['content'])['posts']
+            items = [dict({'id': p['id']}, **(ALPHA if p['id'] == '1' else {'verdict': 'skip'})) for p in posts]
+            return {'content': [{'type': 'tool_use', 'name': 'sort_posts', 'input': {'items': items}}]}
+        report = self.run_poll(http, {'xTriageProvider': 'anthropic', 'xTriageModel': 'claude-haiku-5-5'})
+        self.assertEqual((report['published'], report['drafts']), (1, 0))
+        body = calls[-1][1]
+        self.assertEqual((body['model'], body['tool_choice']), ('claude-haiku-5-5', {'type': 'tool', 'name': 'sort_posts'}))
+        self.assertFalse({'temperature', 'top_p', 'top_k'} & set(body))  # Claude 5.5 rejects these
+        self.assertEqual(self.entries()[0]['title'], ALPHA['title'])
+        with self.assertRaises(x.XWatchError):
+            x.tool_input({'content': [{'type': 'text', 'text': 'no tool'}]})
+
+    def test_sonnet_triage_uses_auto_tool_choice(self):
+        calls = []
+
+        def http(url, method='GET', body=None, headers=None):
+            calls.append(body)
+            if url.startswith(x.SEARCH_API):
+                return {'tweets': [tweet(1, 'kamino', 'Fixed-rate vaults are live on Kamino today')], 'has_next_page': False}
+            return {'content': [{'type': 'thinking', 'thinking': ''}, {'type': 'tool_use', 'name': 'sort_posts', 'input': {'items': [dict({'id': '1'}, **ALPHA)]}}]}
+        report = self.run_poll(http, {'xTriageProvider': 'anthropic', 'xTriageModel': 'claude-sonnet-5-5'})
+        self.assertEqual(report['published'], 1)
+        self.assertEqual((calls[-1]['tool_choice'], calls[-1]['tools'][0]['strict']), ({'type': 'auto'}, True))
+
+    def test_claude_tool_input_shapes(self):
+        items = [{'id': '1', 'verdict': 'skip'}]
+        call = lambda data, stop='tool_use': {'stop_reason': stop, 'content': [{'type': 'tool_use', 'name': 'sort_posts', 'input': data}]}
+        self.assertEqual(x.tool_input(call({'items': items}))['items'], items)
+        self.assertEqual(x.tool_input(call({'items': json.dumps(items)}))['items'], items)  # list sent as a JSON string
+        self.assertEqual(x.tool_input(call({'verdicts': items}))['items'], items)  # list under another key
+        with self.assertRaises(x.XWatchError) as e:
+            x.tool_input(call({}, 'max_tokens'))
+        self.assertIn('stop_reason max_tokens', str(e.exception))
 
     def test_talk_window(self):
         acc = ACCOUNTS[0]

@@ -67,15 +67,15 @@ Preview any moment of the conference by adding `?now=` to the URL, e.g. `/breakp
 - Hidden or obfuscated venue coordinates never reach the map or calendar files.
 - No fabricated prices, stream URLs, mint addresses, news or countdowns.
 
-## Live coverage (decided 13 November 2026)
+## Live coverage (updated 15 November 2026)
 
-Stages: the official YouTube streams, embedded from the desk ("Broadcast connections", tick "Show player"). No transcription.
+Stages: the official YouTube streams, embedded from the desk ("Broadcast connections", tick "Show player"). The same desk link drives the stage transcription below, which publishes announcements and per-talk recaps as Provisional and sends ordinary discussion notes to the desk.
 
-Alpha: the X monitor below, running on the Mac Mini for the whole event. Seb can also post from the desk at any time.
+Alpha from X: the X monitor below. Both run on the Mac Mini for the whole event, as two separate launchd jobs. Seb can also post from the desk at any time.
 
 ## X monitor (Breakpoint week)
 
-What it does: every 2 minutes it searches X (through twitterapi.io) for new posts from the 208 accounts in `data/x-accounts.json`: 87 companies and 121 speakers with a talk at Breakpoint. Replies and retweets are skipped. An AI model sorts each new post (Z.ai GLM 5.2 by default; any OpenAI-compatible chat endpoint works, set in the config):
+What it does: every 2 minutes it searches X (through twitterapi.io) for new posts from the 208 accounts in `data/x-accounts.json`: 87 companies and 121 speakers with a talk at Breakpoint. Replies and retweets are skipped. An AI model sorts each new post (Claude Haiku 5.5 by default, through the Anthropic key; any OpenAI-compatible chat endpoint such as Z.ai GLM also works, set in the config):
 
 - **alpha** (launch, partnership, token news, funding, approval, milestone, dated launch): published straight away as "Provisional", with the post quoted word for word and linked, and tied to the account's talk when posted within 24 hours of it;
 - **maybe**: lands on the editor desk as a draft for Seb to publish or ignore;
@@ -83,25 +83,69 @@ What it does: every 2 minutes it searches X (through twitterapi.io) for new post
 
 Accounts: speaker handles are the ones linked on the official speakers page (saved in `research/speakers-x-2026-11-14.json`); company handles are linked from each company's website or checked on the X profile (name, linked website, verification). Each account's `source` field says which. To add one, add a row to `data/x-accounts.json` with its source.
 
-Cost: twitterapi.io charges $0.15 per 1,000 posts returned, with a minimum per request; GLM 5.2 sorting is about $1.40 per million input tokens and $4.40 per million output tokens, roughly $1 to $2 a day here. Expected spend is about $2 to $4 a day. The local budget gate in `collector/config.breakpoint-x.json` reserves the worst case for every request and stops the monitor at $30 a day.
+Cost: twitterapi.io charges $0.15 per 1,000 posts returned, with a minimum per request; Claude Haiku 5.5 sorting is $0.10 per million input tokens and $0.50 per million output tokens, about $0.001 per batch of 10 posts. Expected spend is about $1 to $2 a day, almost all of it twitterapi.io. The local budget gate in `collector/config.breakpoint-x.json` reserves the worst case for every request and stops the monitor at $30 a day.
 
 ### Set up on the Mac Mini (once)
 
-1. Get the code: GitHub, `cryptoclassdev/sebmontydotlink`, Code, Download ZIP (or `git clone`). Unzip it somewhere permanent.
-2. In Vercel (project v0-apple-liquid-glass-link-in-bio-6h), Settings, Environment Variables: add `BREAKPOINT_AUTO_PUBLISH_PROVISIONAL` = `true` for Production. If the ingest token was not saved, generate a new one (`openssl rand -hex 32`), save it in the password manager and replace `BREAKPOINT_INGEST_TOKEN`. Then redeploy the latest Production deployment so the values apply.
-3. In Terminal on the Mac Mini, from the unzipped `breakpoint` folder: `python3 collector/setup.py`. Four masked windows ask for the ingest token, the editor token, the twitterapi.io key and the Z.ai API key (pay-as-you-go, from z.ai/manage-apikey, with a few dollars of balance; the GLM Coding Plan quota does not cover this use). Nothing is typed into Terminal or chat.
-4. Test without publishing: `python3 collector/run.py --config collector/config.breakpoint-x.json --check-x`. It shows how many recent posts it found and how the AI sorted up to five of them.
-5. Start it: `caffeinate -dimsu python3 collector/run.py --config collector/config.breakpoint-x.json`. Leave the window open; `caffeinate` keeps the Mac awake. Each pass prints one line (new posts, published, drafts). Stop with Ctrl+C; it resumes where it left off.
+Folder: `~/breakpoint-live/sebmontydotlink` (a git clone; not Documents, Desktop or Downloads, where macOS blocks background jobs). Both processes share it and its `breakpoint/.local/provider-secrets.json`.
+
+1. In Vercel (project v0-apple-liquid-glass-link-in-bio-6h), Settings, Environment Variables: `BREAKPOINT_AUTO_PUBLISH_PROVISIONAL` = `true` for Production (done 14 November), then redeploy Production.
+2. Tools and Python environment: `bash breakpoint/scripts/mac/setup.sh 2>&1 | tee setup.log` from the clone (see "Live stage transcription" below).
+3. Keys, from the `breakpoint` folder: `python3 collector/setup.py`. Masked windows ask for the ingest token, the editor token, the twitterapi.io key, the Z.ai key (optional, unused by default) and the Anthropic API key (console.anthropic.com, API credit; a Claude subscription does not cover API calls). Cancel leaves a saved value unchanged. Nothing is typed into Terminal or chat.
+4. Test without publishing: `python3 collector/run.py --config collector/config.breakpoint-x.json --check-x`. It shows how many recent posts it found and how the AI sorted up to five of them, ending with "AI triage OK (claude-haiku-5-5)".
+5. Start it as a background job: `bash scripts/mac/live.sh start x` (stop: `bash scripts/mac/live.sh stop x`). launchd keeps it running after Terminal closes and restarts it after a crash. Running it in a Terminal tab also works: `caffeinate -dimsu python3 collector/run.py --config collector/config.breakpoint-x.json` (stop with Ctrl+C before starting the launchd job; only one may own its state folder).
 
 Check it on the site: Watch live, Source health, "X monitoring" says "Watching 208 accounts on X". Drafts appear on the desk (`/breakpoint#editor`); published items appear on the overview, in Catch up (filter "From X"), on the project and on the talk.
 
-To pull something back: open it on the desk and withdraw it with a short note. If the model is too eager or too quiet, set `publishProvisional` to `false` in the config to send everything to the desk instead. If the AI step fails, check the Z.ai key and its balance. To use OpenAI instead, set `xTriageApiUrl` to `https://api.openai.com/v1/chat/completions`, `xTriageModel` to an OpenAI model, and remove `xTriageExtraBody`.
+To pull something back: open it on the desk and withdraw it with a short note. If the model is too eager or too quiet, set `publishProvisional` to `false` in the config to send everything to the desk instead. If the AI step fails, the error line ends with "provider says: …" (never the key): check the Anthropic key and its credit. To use Z.ai GLM instead, remove `xTriageProvider` and set `xTriageApiUrl` to `https://api.z.ai/api/paas/v4/chat/completions`, `xTriageModel` to `glm-5.2`, `xTriageKeyEnv` to `ZAI_API_KEY` and `xTriageExtraBody` to `{"thinking": {"type": "disabled"}}`.
 
-### The original transcription collector
+## Live stage transcription (Mac Mini, Breakpoint days)
 
-Still in `collector/collect.py` and off. It needs a direct HTTPS audio/HLS URL per stage (a YouTube page URL is not one) and its own config (`collector/config.approved-50usd.json`). At default reservations, full coverage of three stages reserves about $185 a day, above the $50 approval.
+What it does, per stage (Main Stage and Royal Exchange), all on the Mac Mini:
 
-Operating notes: a heartbeat older than three minutes shows as stale; failed provider calls keep their budget reservation; the outbox and checkpoints survive restarts.
+1. Reads the stage's YouTube link from the desk (`/api/bootstrap`, "Broadcast connections", every 60 s) and resolves the audio with yt-dlp (YouTube blocks datacenter IPs, so this cannot run on a VPS). Signed stream URLs are never logged.
+2. ffmpeg cuts 30-second WAV chunks; mlx-whisper large-v3-turbo transcribes them locally (about 2 s per chunk on the M4), with this talk's speakers and Solana names as a glossary. Silence, Whisper hallucinations and repetition loops are dropped; common name misspellings ("Jupyter") are fixed (`transcriptFixes`).
+3. The current talk comes from the published schedule (Europe/London, desk time overrides included), active from 60 s before its start to 120 s after its end; `scheduleOffsetMinutes` per stage shifts it when a stage runs late (edit the config, no restart). Between talks nothing is transcribed; with more than 20 minutes to the next talk (lunch, overnight) the stream is disconnected and reconnects 10 minutes before it.
+4. Every two chunks Claude Sonnet 5.5 checks the new speech (with the earlier speech of the same talk as context) for announcements. Each item must quote the new speech exactly, or it is dropped; titles already covered for the talk are skipped. When a talk ends (with 3+ minutes captured) one recap is written. Announcements and recaps go out as Provisional, labelled "<Stage> · live transcript (auto)"; ordinary discussion notes go to the desk as drafts. Raw transcript chunks go to the desk too.
+5. Model calls never stop audio capture: a failed call is parked in `failed-jobs/` and the stage carries on. Haiku 5.5 is the fallback after a timeout, 429 or 5xx (one retry first).
+
+Cost: Sonnet 5.5 is $2 in / $10 out per million tokens, with the instructions cached. A check with nothing to report costs about $0.003 (about $0.18 per stage-hour); the Breakpoint 2025 Jupiter keynote, dense with announcements, cost $0.11 for 12 minutes. Expect about $4 to $10 for both days. Every call is reserved against `dailyBudgetUsd` ($15) first and settled to its real cost after; `costs.csv` in the state folder lists every call. Switching `llm.model` to `claude-haiku-5-5` (about 1/20 of the cost; in the replay test it missed one item and its recap) takes effect without a restart.
+
+Files: `collector/collect.py` (stages, jobs, desk), `collector/live.py` (YouTube, schedule, speech filters, model providers), `collector/config.breakpoint-stages.json` (event days), `collector/config.rehearsal.json` (tests), `scripts/rehearsal.mjs` (local copy of the site), `scripts/mac/` (setup, rehearsal runs, launchd jobs).
+
+### Set up (once)
+
+From `~/breakpoint-live/sebmontydotlink`: `bash breakpoint/scripts/mac/setup.sh 2>&1 | tee setup.log`. It installs Homebrew `ffmpeg`, `deno` (yt-dlp needs a JavaScript runtime for YouTube), `node` and `uv`, builds `breakpoint/.venv` with uv's own Python 3.12, installs `mlx-whisper` and `yt-dlp[default]`, downloads the 1.6 GB model and times a test clip. Homebrew's Python is not used for `.venv`: on macOS 26 it cannot load its XML parser (`pyexpat` needs a newer `/usr/lib/libexpat`), which breaks pip and `platform.mac_ver()`. Then add the Anthropic key with `python3 collector/setup.py`.
+
+### Test (rehearsal, never production)
+
+Preview and production share one database, so tests never post to a deployed site. `bash scripts/mac/rehearsal.sh MINUTES [--dry-run] [NAME]` runs the collector with `.local/rehearsal/config-NAME.json` (or `collector/config.rehearsal.json`); without `--dry-run` it also starts the local copy of the site at `http://127.0.0.1:4317/breakpoint` (real API, in-memory storage, provisional entries shown). `rehearsal.sh check [NAME]` checks the test links with yt-dlp. A replay (`simulateLive: true`, a recorded talk played at real speed) stops by itself after its recap. The collector restarts 5 s after a crash, as launchd does.
+
+### Run it on Monday and Tuesday
+
+```bash
+cd ~/breakpoint-live/sebmontydotlink/breakpoint
+bash scripts/mac/live.sh check stages    # 2-minute dry run against the live site: schedule and desk links, posts nothing
+bash scripts/mac/live.sh start stages    # start (launchd; keeps running after Terminal closes, restarts after a crash)
+bash scripts/mac/live.sh status          # both jobs, last log lines, today's model spend
+bash scripts/mac/live.sh logs stages     # follow the log
+bash scripts/mac/live.sh stop stages     # kill switch
+```
+
+When Solana publishes the stream links: desk (`/breakpoint#editor`), Broadcast connections, for each stage paste `https://www.youtube.com/embed/<VIDEO_ID>` (the part after `v=` or `/live/`), tick Show player, save. That one paste drives the player and the transcriber.
+
+| Situation | What to do |
+|---|---|
+| A stage runs more than 2 minutes late | Edit that stage's `scheduleOffsetMinutes` in `collector/config.breakpoint-stages.json`; it applies within a minute |
+| The schedule is badly off | Set `sessionMode` to `"desk"` and assign the current session per stage on the desk |
+| A wrong entry went out | Withdraw it from the desk with a note |
+| Spend runs high | Set `llm.model` to `claude-haiku-5-5`, or lower `dailyBudgetUsd` |
+| "Sign in to confirm you're not a bot" | The Mac Mini's IP was flagged; the backoff retries (15 s, 30 s, 60 s, then every 2 minutes) |
+| "No supported JavaScript runtime" | `brew install deno` |
+| A stage shows "stale" on the site | No heartbeat for 3 minutes: `live.sh status`, then `err.log` in `.local/stages` |
+| Entries arrive as drafts | `BREAKPOINT_AUTO_PUBLISH_PROVISIONAL` is not `true` on Production, or Production was not redeployed |
+
+Operating notes: a heartbeat older than three minutes shows as stale; the outbox and checkpoints survive restarts, so a restart never posts duplicates; failed model jobs are kept in `failed-jobs/`. The pre-November HTTPS-audio and OpenAI options still work (`audioUrl`, `transcriptionProvider` `openai` or `zai`, `llm.provider` `openai` or `zai`).
 
 ## Known limits
 

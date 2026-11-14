@@ -34,4 +34,5 @@ next-env.d.ts
 # Breakpoint guide: its own dependencies and the collector's local state/secrets
 /breakpoint/node_modules/
 /breakpoint/.local/
+/breakpoint/.venv/
 __pycache__/

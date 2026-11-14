@@ -54,6 +54,43 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Live transcription of the Breakpoint stages (Mac Mini), one AI provider
+
+- **Date:** 15 November 2026
+- **Pull request:** [#15](https://github.com/cryptoclassdev/sebmontydotlink/pull/15), branch `feat/breakpoint-live-transcription`.
+- **Status:** Ready for review. Collector, scripts and docs only; the website is unchanged. The collector runs on the Mac Mini, so Monday does not depend on the merge.
+- **Why:** Seb chose to transcribe the official YouTube stage streams on the Mac Mini (YouTube blocks datacenter IPs) and publish announcements and per-talk recaps live, with one Anthropic key instead of Z.ai and OpenAI.
+
+#### What changed
+1. **YouTube audio:** each stage reads its embed link from the desk (or a test URL), resolves audio with yt-dlp before every ffmpeg start, never logs signed URLs, re-resolves after 4 hours at a session boundary and backs off on errors (15 s, 30 s, 60 s, then 2 minutes). Replays of recorded talks (`simulateLive`) play at real speed and stop after their recap.
+2. **Local transcription:** mlx-whisper large-v3-turbo with a per-talk glossary; silence, Whisper hallucinations, repetition loops and prompt echoes are dropped; common name misspellings are fixed. Z.ai and OpenAI speech remain options.
+3. **Sessions from the schedule:** the current talk per stage comes from `/api/bootstrap` in Europe/London time, with per-stage offsets that apply without a restart; idle between talks, disconnected over long gaps.
+4. **Model provider switch:** Anthropic (Sonnet 5.5 for stages, Haiku 5.5 as fallback and for the X monitor), Z.ai or OpenAI; one retry then the fallback on timeout, 429 or 5xx; reservations settled to real cost; `costs.csv`. Claude 5.5 specifics: no `temperature`; Haiku answers through a forced tool call, Sonnet (which rejects forcing) through `tool_choice` auto with a strict schema and minimal thinking; any model that rejects forcing is switched automatically. Provider error reasons are shown, never keys.
+5. **Bug fixes from the old collector:** the same claim could be published up to four times (overlapping windows): checks now see only new speech plus context, get the talk's already-covered titles and are deduplicated locally. One bad model answer used to retry the same paid call every 15 s and stop that stage's audio: invalid items are now dropped one by one, failed jobs are parked in `failed-jobs/`, and model calls run on their own thread per stage.
+6. **Publishing:** announcements and recaps as Provisional ("<Stage> · live transcript (auto)"), discussion notes as desk drafts, raw transcripts to the desk.
+7. **Testing tools:** `--dry-run`, `scripts/rehearsal.mjs` (the real API with in-memory storage and the built page on 127.0.0.1:4317), `scripts/mac/rehearsal.sh` (named runs, auto-restart after a crash), `scripts/mac/setup.sh` (uv's Python 3.12, since Homebrew's cannot load pyexpat on macOS 26), `scripts/mac/live.sh` (launchd start, stop, status, logs and a dry-run check for both jobs).
+8. **X monitor:** sorts posts with Claude Haiku 5.5 (`xTriageProvider: "anthropic"`) using the same Anthropic key; the OpenAI-compatible path (GLM) still works.
+
+#### Files touched
+- `breakpoint/collector/collect.py`, `live.py` (new), `xwatch.py`, `run.py`, `setup.py`, `config.breakpoint-stages.json` (new), `config.rehearsal.json` (new), `config.breakpoint-x.json`
+- `breakpoint/scripts/rehearsal.mjs` (new), `breakpoint/scripts/mac/setup.sh`, `rehearsal.sh`, `live.sh` (new)
+- `breakpoint/tests/test_live.py` (new), `test_collector.py`, `test_xwatch.py`
+- `breakpoint/README.md`, `README.md`, `.gitignore`
+
+#### How to check it
+Nothing changes on the Vercel preview. On the Mac Mini: `bash scripts/mac/live.sh check stages` reads the live schedule and desk links and posts nothing; before the links are pasted both stages say "Waiting for the stream link on the desk".
+
+#### Checks run
+- 60 Python tests (on Python 3.13, 3.9 and the Mac Mini copy) and 48 Node tests. New tests cover the session picker (before, inside and after a talk, overlaps, offsets, lunch gap, London time), embed and page URL parsing, excerpt normalising, title dedupe, junk and loop filters, name fixes, provider parsers, forced and auto tool calls, fallback, failed-job parking, the replay end, config reload and `--dry-run`.
+- On the Mac Mini (M4, macOS 26.2): 30-second chunks transcribe in about 2 s. Replay of the Breakpoint 2025 Jupiter keynote: Sonnet found 11 announcements with exact quotes, no duplicates and a correct recap for $0.11; Haiku found 10 for $0.006 but lost one item and the recap to misquotes. One-hour soak on two live streams (a SpaceX news stream and a Fortnite stream) through the local rehearsal site: 256 chunks at a median 1.8 s each; 127 Sonnet checks for $0.37 (about $0.18 per stage-hour) with no false announcements on non-Solana talk; after a 60-second Wi-Fi cut the dropped stream reconnected by itself within 8 s; after `kill -9` the collector restarted in 5 s, recovered the unfinished chunk on each stage and was transcribing again within 30 s; no duplicates, no failed jobs, empty outbox; peak memory steady at about 1.76 GB for the whole hour. Speech to page: 13 s median and 44 s at most after the chunk holding the announcement ends, plus up to about 35 s of site cache and page refresh.
+
+#### Risks
+- The model can misjudge. Every published item is Provisional, quotes the speech exactly and links to the stream; withdraw it from the desk, or drop `announcement` from `publishKinds` to send everything to the desk.
+- YouTube can flag the Mac Mini's IP ("confirm you're not a bot"); the backoff keeps retrying without hammering. Schedule drift is handled by offsets or by switching to desk-assigned sessions.
+
+#### Roll back
+`bash scripts/mac/live.sh stop stages` stops transcription at once; published items can be withdrawn from the desk. To undo the code, revert this PR (the X monitor would go back to Z.ai GLM).
+
 ### X monitor: sort posts with Z.ai GLM 5.2
 
 - **Date:** 14 November 2026
