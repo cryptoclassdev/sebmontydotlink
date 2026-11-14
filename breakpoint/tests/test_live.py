@@ -355,6 +355,22 @@ class Reload(unittest.TestCase):
             self.assertEqual(desk.config['stages'][0]['scheduleOffsetMinutes'], 7)
 
 
+class ProviderErrors(unittest.TestCase):
+    def test_ai_provider_reason_is_shown_site_body_is_not(self):
+        import io, urllib.error
+        body = b'{"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API."}}'
+        def fail(req, timeout=None):
+            raise urllib.error.HTTPError(req.full_url, 400, 'Bad Request', {}, io.BytesIO(body))
+        with patch.object(c.OPENER, 'open', side_effect=fail):
+            with self.assertRaises(c.SafeError) as ai:
+                c.http_json('https://api.anthropic.com/v1/messages', 'POST', {}, {'x-api-key': 'sk-ant-secret'})
+            with self.assertRaises(c.SafeError) as site:
+                c.http_json('https://www.sebmonty.link/breakpoint/api/ingest', 'POST', {})
+        self.assertIn('credit balance is too low', str(ai.exception))
+        self.assertNotIn('sk-ant', str(ai.exception))
+        self.assertEqual(str(site.exception), 'HTTP 400; credentials and provider body withheld')
+
+
 class DryRun(unittest.TestCase):
     def test_writes_jsonl_and_never_posts(self):
         with tempfile.TemporaryDirectory() as tmp:

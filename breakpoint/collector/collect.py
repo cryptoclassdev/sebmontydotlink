@@ -31,6 +31,7 @@ class SafeError(Exception): pass
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, *args, **kwargs): return None
 OPENER = urllib.request.build_opener(NoRedirect())
+AI_HOSTS = {'api.anthropic.com','api.z.ai','api.openai.com'}
 
 def http_json(url, method='GET', body=None, headers=None):
     # Do not forward bearer credentials through redirects or print response bodies.
@@ -42,7 +43,14 @@ def http_json(url, method='GET', body=None, headers=None):
             if len(raw)>8_000_000: raise SafeError('Provider response exceeded limit')
             return json.loads(raw)
     except urllib.error.HTTPError as e:
-        raise SafeError(f'HTTP {e.code}; credentials and provider body withheld') from None
+        # AI providers' error type and message say what is wrong (e.g. credit balance); they never echo keys.
+        detail=''
+        if urllib.parse.urlparse(url).hostname in AI_HOSTS:
+            try:
+                err=json.loads(e.read(4000) or b'{}').get('error') or {}
+                if isinstance(err,dict):detail=live.redact(' '.join(str(err[k]) for k in ('type','code','message') if err.get(k)))[:240]
+            except (ValueError,OSError,AttributeError):pass
+        raise SafeError(f'HTTP {e.code}; '+(f'provider says: {detail}' if detail else 'credentials and provider body withheld')) from None
     except (OSError,ValueError): raise SafeError('Provider request failed') from None
 
 class State:
