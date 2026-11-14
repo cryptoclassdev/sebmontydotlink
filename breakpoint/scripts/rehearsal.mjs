@@ -72,9 +72,16 @@ const server = http.createServer(async (req, res) => {
       const body = ['GET', 'HEAD'].includes(req.method) ? undefined : Buffer.concat(chunks);
       const response = await api(new Request(url, {method: req.method, headers, body}), env);
       res.writeHead(response.status, {'content-type': response.headers.get('content-type') ?? 'application/json', 'cache-control': 'no-store'});
-      res.end(Buffer.from(await response.arrayBuffer()));
+      const out = Buffer.from(await response.arrayBuffer());
+      res.end(out);
       if (req.method === 'POST' && url.pathname.endsWith('/api/ingest') && response.ok) {
-        try { const sent = JSON.parse(Buffer.concat(chunks).toString('utf8')); for (const e of sent.entries ?? []) console.log(`${new Date().toISOString().slice(11, 19)}Z  entry  ${e.stage || '-'}  ${e.kind} [${e.status}]  ${e.title}`); } catch {}
+        // One line per received entry (with its id, source time and whether it was a duplicate) and per transcript chunk.
+        try {
+          const sent = JSON.parse(Buffer.concat(chunks).toString('utf8')), results = JSON.parse(out.toString('utf8')).results ?? [];
+          const now = new Date().toISOString().slice(11, 19) + 'Z';
+          (sent.entries ?? []).forEach((e, i) => console.log(`${now}  entry  ${e.stage || '-'}  ${e.kind} [${e.status}]  id=${e.id}  occurredAt=${e.occurredAt}${results[i]?.duplicate ? '  DUPLICATE' : ''}  ${e.title}`));
+          if (sent.transcript) console.log(`${now}  transcript  ${sent.transcript.stage}  ${sent.transcript.id}  at=${sent.transcript.at}`);
+        } catch {}
       }
       return;
     }
