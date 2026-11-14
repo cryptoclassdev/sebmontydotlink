@@ -1,0 +1,32 @@
+{
+  "siteUrl": "https://www.sebmonty.link/breakpoint",
+  "dailyBudgetUsd": 15,
+  "pollSeconds": 60,
+  "xEnabled": false,
+  "chunkSeconds": 30,
+  "summaryEveryChunks": 2,
+  "contextChunks": 6,
+  "sessionMode": "schedule",
+  "transcriptionProvider": "mlx",
+  "whisperModel": "mlx-community/whisper-large-v3-turbo",
+  "silenceRms": 150,
+  "ytFormat": "bestaudio/best[height<=360]/worst",
+  "simulateLive": false,
+  "llm": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "fallback": {"provider": "zai", "model": "glm-5.1"},
+    "prices": {
+      "claude-sonnet-5-5": {"in": 2.0, "cacheRead": 0.10, "cacheWrite": 2.50, "out": 10.0},
+      "glm-5.1": {"in": 1.40, "cacheRead": 0.26, "out": 4.40}
+    }
+  },
+  "summaryReservePerCallUsd": 0.02,
+  "publishProvisional": true,
+  "publishKinds": ["announcement", "summary"],
+  "followDeskAssignments": false,
+  "stages": [
+    {"id": "main", "name": "Main Stage", "enabled": true, "youtube": "desk", "scheduleOffsetMinutes": 0},
+    {"id": "royal", "name": "Royal Exchange", "enabled": true, "youtube": "desk", "scheduleOffsetMinutes": 0}
+  ]
+}

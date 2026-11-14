@@ -18,20 +18,20 @@ class Tests(unittest.TestCase):
   with patch.object(self.desk,'send',return_value={'ok':True}):self.desk.flush()
   self.assertEqual(len(list((pathlib.Path(self.tmp.name)/'outbox').glob('*.json'))),0)
  def test_model_needs_verbatim_evidence_known_project(self):
+  # A bad item is dropped with a reason (never raised, so one bad answer cannot stall a stage); good items survive.
   stage={'sessionId':'talk','name':'Main','sourceUrl':'https://solana.com'}
   value={'title':'A launch','body':'Source states this','excerpt':'not in source','projectIds':[]}
-  with self.assertRaises(c.SafeError):c.validate_model({'entries':[value]},'We launched today',stage)
-  value['excerpt']='We launched';value['projectIds']=['invented']
-  with self.assertRaises(c.SafeError):c.validate_model({'entries':[value]},'We launched today',stage)
+  dropped=[];self.assertEqual(c.validate_model({'entries':[value]},'We launched today',stage,dropped=dropped),[]);self.assertEqual(len(dropped),1)
+  value['excerpt']='We launched';value['projectIds']=['invented','kamino']
+  self.assertEqual(c.validate_model({'entries':[value]},'We launched today',stage)[0]['projectIds'],['kamino'])
   value['projectIds']=[]
   self.assertEqual(c.validate_model({'entries':[value]},'We launched today',stage)[0]['status'],'draft')
- def test_summary_job_survives_failure(self):
+ def test_failed_model_job_is_parked_not_retried_forever(self):
   stage={'id':'main','sessionId':'talk','name':'Main','sourceUrl':'https://solana.com'};item={'id':'chunk','text':'Transcript','at':c.utc()}
   c.atomic(pathlib.Path(self.tmp.name)/'transcripts/talk/chunk.json',item);c.queue_summary(self.desk,stage,[item])
-  with patch.object(c,'model_entries',side_effect=c.SafeError('offline')):
-   with self.assertRaises(c.SafeError):c.drain_jobs(self.desk,'key')
-  self.assertEqual(len(list((pathlib.Path(self.tmp.name)/'jobs').glob('*.json'))),1)
-  with patch.object(c,'model_entries',return_value=[]):c.drain_jobs(self.desk,'key')
+  with patch.object(c,'model_entries',side_effect=c.SafeError('offline')),patch.object(self.desk,'send',return_value={'ok':True}):c.drain_jobs(self.desk,'key')
+  self.assertEqual(len(list((pathlib.Path(self.tmp.name)/'jobs').glob('*.json'))),0)
+  self.assertEqual(len(list((pathlib.Path(self.tmp.name)/'failed-jobs').glob('*.json'))),1)
   c.queue_summary(self.desk,stage,[item]);self.assertEqual(len(list((pathlib.Path(self.tmp.name)/'jobs').glob('*.json'))),0)
  def test_stage_requires_explicit_identity(self):
   with self.assertRaises(c.SafeError):c.check_stage({'id':'main','sessionId':'talk','sessionConfirmed':False})
