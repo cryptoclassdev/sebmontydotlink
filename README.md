@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Live transcription of the Breakpoint stages (Mac Mini), one AI provider
 
 - **Date:** 15 November 2026
-- **Pull request:** PR_LINK, branch `feat/breakpoint-live-transcription`.
+- **Pull request:** [#15](https://github.com/cryptoclassdev/sebmontydotlink/pull/15), branch `feat/breakpoint-live-transcription`.
 - **Status:** Ready for review. Collector, scripts and docs only; the website is unchanged. The collector runs on the Mac Mini, so Monday does not depend on the merge.
 - **Why:** Seb chose to transcribe the official YouTube stage streams on the Mac Mini (YouTube blocks datacenter IPs) and publish announcements and per-talk recaps live, with one Anthropic key instead of Z.ai and OpenAI.
 
