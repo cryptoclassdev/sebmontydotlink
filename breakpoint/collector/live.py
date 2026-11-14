@@ -210,8 +210,27 @@ def _words(text):
     return re.findall(r"[a-z0-9']+", str(text).lower())
 
 
-def clean_segments(segments, prompt='', no_speech=0.6):
-    """Speech segments minus Whisper junk: likely silence, known hallucinations, prompt echoes and repeated short lines."""
+TRANSCRIPT_FIXES = {'Jupyter': 'Jupiter', 'Fire Dancer': 'Firedancer', 'Fire dancer': 'Firedancer', 'Solflair': 'Solflare', 'Alpen Glow': 'Alpenglow'}
+
+
+def looping(words):
+    """True for Whisper's repetition loops ("the top of the top of the top ..."): few distinct word triples."""
+    if len(words) < 15:
+        return False
+    triples = list(zip(words, words[1:], words[2:]))
+    return len(set(triples)) / len(triples) < 0.4
+
+
+def fix_names(text, fixes=None):
+    """Known speech-recognition misspellings of project names, as whole words (config transcriptFixes adds more)."""
+    for wrong, right in {**TRANSCRIPT_FIXES, **(fixes or {})}.items():
+        text = re.sub(r'(?<![\w-])' + re.escape(wrong) + r'(?![\w-])', right, text)
+    return text
+
+
+def clean_segments(segments, prompt='', no_speech=0.6, max_ratio=2.4):
+    """Speech segments minus Whisper junk: likely silence, known hallucinations, prompt echoes, repetition loops
+    (Whisper's compression ratio above max_ratio, or few distinct word triples) and repeated short lines."""
     prompt_words = set(_words(prompt))
     out, last = [], None
     for seg in segments or []:
@@ -221,9 +240,13 @@ def clean_segments(segments, prompt='', no_speech=0.6):
         try:
             if float(seg.get('no_speech_prob') or 0) > no_speech:
                 continue
+            if float(seg.get('compression_ratio') or 0) > max_ratio:
+                continue
         except (TypeError, ValueError):
             pass
         words = _words(text)
+        if looping(words):
+            continue
         low = ' '.join(words)
         if len(words) <= 14 and any(j in low for j in JUNK):
             continue

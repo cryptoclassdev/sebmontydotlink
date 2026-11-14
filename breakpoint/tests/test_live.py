@@ -112,6 +112,15 @@ class Filters(unittest.TestCase):
         self.assertFalse(live.enough_words('Okay. Thanks'))
         self.assertTrue(live.enough_words('We shipped it'))
 
+    def test_repetition_loops_and_name_fixes(self):
+        loop = 'And that is why we are looking at ' + 'the top of ' * 60
+        normal = 'Jupiter Lend is officially coming out of beta today, with six audits completed and code that is now open source for everyone.'
+        self.assertEqual(live.clean_segments([{'text': loop}, {'text': normal}]), [normal])
+        self.assertEqual(live.clean_segments([{'text': normal, 'compression_ratio': 3.1}]), [])
+        self.assertEqual(live.fix_names('Nobody ships like Jupyter. Fire Dancer too. jupyter-notebook stays.'),
+                         'Nobody ships like Jupiter. Firedancer too. jupyter-notebook stays.')
+        self.assertEqual(live.fix_names('Kamino Lend', {'Kamino Lend': 'Kamino Lend V2'}), 'Kamino Lend V2')
+
     def test_glossary_puts_this_talk_first_and_stays_short(self):
         g = live.glossary({'speakers': ['Ada Lovelace'], 'organisations': ['Analytical Engines']}, c.PROJECTS)
         self.assertTrue(g.startswith('Ada Lovelace, Analytical Engines, Solana'))
@@ -129,8 +138,8 @@ class Filters(unittest.TestCase):
                 self.assertEqual(c.transcribe(quiet, config, None, {}), '')
             with patch.object(live, 'transcribe_mlx', return_value='Thank you'):
                 self.assertEqual(c.transcribe(tone, config, None, {}), '')  # under 3 words
-            with patch.object(live, 'transcribe_mlx', return_value='Kamino ships vaults today') as mlx:
-                self.assertEqual(c.transcribe(tone, config, None, {}, {'speakers': ['Ada Lovelace']}), 'Kamino ships vaults today')
+            with patch.object(live, 'transcribe_mlx', return_value='Jupyter ships vaults today') as mlx:
+                self.assertEqual(c.transcribe(tone, config, None, {}, {'speakers': ['Ada Lovelace']}), 'Jupiter ships vaults today')
                 self.assertIn('Ada Lovelace', mlx.call_args[0][2])
 
 
