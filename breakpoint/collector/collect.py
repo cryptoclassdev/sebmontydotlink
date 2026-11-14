@@ -711,10 +711,14 @@ def main():
     if llm.enabled():threads+=[threading.Thread(target=job_worker,args=(desk,llm,s['id']),daemon=True) for s in enabled]
     for thread in threads:thread.start()
     log(describe(config,enabled,args.dry_run))
-    watcher=ConfigWatch(config_path,desk,keys);next_poll=0.0;flush_failed=False
+    watcher=ConfigWatch(config_path,desk,keys);next_poll=0.0;flush_failed=False;next_memory=time.monotonic()+600
     try:
         while not STOP.is_set():
             watcher.check()
+            if enabled and time.monotonic()>=next_memory:
+                import resource
+                peak=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/(1048576 if sys.platform=='darwin' else 1024)
+                log(f'Memory: peak {peak:.0f} MB');next_memory=time.monotonic()+600
             try:desk.flush();flush_failed=False
             except SafeError as e:
                 if not flush_failed:log(f'Sending to the site failed ({e}); the outbox keeps everything and retries')
