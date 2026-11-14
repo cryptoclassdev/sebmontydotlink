@@ -441,6 +441,7 @@ class StageRunner:
         elif not want:self.status=('ready','Between sessions'+(f" · next {upcoming['start'].astimezone(live.LONDON).strftime('%H:%M')} {upcoming['title'][:80]}" if upcoming else ''))
         elif self.proc and self.session and time.monotonic()-self.last_audio<120:self.status=('live',('Live transcript: '+self.session.get('title','')[:120]).strip())
         elif self.proc:self.status=('ready','Connected; waiting for the session' if not self.session else 'Connecting to the stream')
+        if self.status!=getattr(self,'logged_status',None):self.logged_status=self.status;self.say(f'Status: {self.status[0]} · {self.status[1]}')
 
     def switch(self,new):
         old=self.session

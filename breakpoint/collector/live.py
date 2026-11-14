@@ -33,8 +33,8 @@ BASE_TERMS = ['Solana', 'Breakpoint', 'Anza', 'Agave', 'Firedancer', 'Alpenglow'
 JUNK = ('thank you for watching', 'thanks for watching', 'thank you so much for watching', 'subtitles by', 'please subscribe',
         'like and subscribe', 'subscribe to my channel', 'subscribe to the channel', 'amara.org', 'transcribed by', 'captions by',
         'see you in the next video', 'see you next time')
-QUOTES = {'‘': "'", '’': "'", '‚': "'", '‛': "'", '′': "'", '“': '"', '”': '"', '„': '"',
-          '‟': '"', '″': '"', '–': '-', '—': '-', '−': '-', ' ': ' '}
+QUOTES = {'\u2018': "'", '\u2019': "'", '\u201a': "'", '\u201b': "'", '\u2032': "'", '\u201c': '"', '\u201d': '"', '\u201e': '"',
+          '\u201f': '"', '\u2033': '"', '\u2013': '-', '\u2014': '-', '\u2212': '-', '\u00a0': ' '}
 EDGE = string.punctuation + string.whitespace + '…'
 
 
