@@ -11,6 +11,8 @@ STOP = threading.Event()
 STATE_LOCK = threading.RLock()
 ID = re.compile(r'^[a-zA-Z0-9_-]{1,100}$')
 PROJECTS = json.loads((ROOT/'data/seed.json').read_text())['projects']
+sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
+import xwatch
 
 def utc(): return dt.datetime.now(dt.timezone.utc).isoformat()
 def digest(text): return hashlib.sha256(text.encode()).hexdigest()[:24]
@@ -267,14 +269,34 @@ def final_summary(desk,session_id,key):
     if not items:raise SafeError('No captured transcript for this session')
     queue_summary(desk,stage,items,True);drain_jobs(desk,key,stage['id'])
 
+def check_x(config,state,accounts,keys):
+    """One search (last 6 hours, first batch) and one triage call. Prints results; publishes nothing."""
+    by_handle={a['handle'].lower():a for a in accounts}
+    group=xwatch.batches([a['handle'] for a in accounts],int(config.get('xMaxQueryLength',480)))[0]
+    since=int(time.time())-6*3600
+    raw=xwatch.search_batch(group,since,{**config,'xMaxPagesPerBatch':1},state,keys['twitterapi'],http_json)
+    posts=[p for p in (xwatch.normalize_post(r,by_handle) for r in raw) if p]
+    print(f'twitterapi.io OK: {len(raw)} results, {len(posts)} usable posts from {len(group)} accounts in the last 6 hours.')
+    if posts:
+        verdicts=xwatch.triage(posts[:5],by_handle,config,state,keys['openai'],http_json)
+        for p in posts[:5]:
+            v=verdicts[p['id']];print(f"  @{p['user']}: {v['verdict']}"+(f" · {v['title']}" if v['verdict']!='skip' else ''))
+        print('OpenAI triage OK. Nothing was published.')
+    else:print('No recent posts to test the AI step with; run again later or start the monitor.')
+
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--config',default=str(ROOT/'.local/collector.json'));parser.add_argument('--state',default=str(ROOT/'.local/collector'));parser.add_argument('--once',action='store_true');parser.add_argument('--finalize');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--config',default=str(ROOT/'.local/collector.json'));parser.add_argument('--state',default=str(ROOT/'.local/collector'));parser.add_argument('--once',action='store_true');parser.add_argument('--finalize');parser.add_argument('--check-x',action='store_true',help='Test the X monitor once without publishing');args=parser.parse_args()
     config=json.loads(pathlib.Path(args.config).read_text())
     if not 10<=int(config.get('xMaxResults',10))<=100:raise SafeError('X page size must be 10–100')
     if not 1<=int(config.get('summaryEveryChunks',2))<=8:raise SafeError('Summary interval must be 1–8 chunks')
     if not 5<=int(config.get('chunkSeconds',30))<=60 or not 30<=int(config.get('pollSeconds',120))<=900:raise SafeError('Chunk or poll interval outside bounds')
     if float(config.get('dailyBudgetUsd',0))<=0:raise SafeError('Paid collection is off. Configure a positive daily budget first.')
-    ingest=os.environ.get('INGEST_TOKEN');key=os.environ.get('OPENAI_API_KEY');xkey=os.environ.get('X_BEARER_TOKEN')
+    ingest=os.environ.get('INGEST_TOKEN');key=os.environ.get('OPENAI_API_KEY');xkey=os.environ.get('X_BEARER_TOKEN');tkey=os.environ.get('TWITTERAPI_IO_KEY')
+    watch=config.get('xEnabled') and config.get('xProvider')=='twitterapi'
+    if watch:
+        if not tkey:raise SafeError('TWITTERAPI_IO_KEY is missing (run collector/setup.py)')
+        if not key:raise SafeError('OPENAI_API_KEY is missing (run collector/setup.py)')
+        accounts=xwatch.load_accounts(ROOT/config.get('xAccountsFile','data/x-accounts.json'))
     if not ingest:raise SafeError('INGEST_TOKEN is missing')
     state=State(args.state,config['dailyBudgetUsd']);lock=open(state.directory/'collector.lock','w')
     try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
@@ -285,7 +307,10 @@ def main():
         final_summary(desk,args.finalize,key);return
     enabled=[s for s in config['stages'] if s.get('enabled')]
     if enabled and not key:raise SafeError('OPENAI_API_KEY is missing')
-    if config.get('xEnabled') and not xkey:raise SafeError('X_BEARER_TOKEN is missing')
+    if args.check_x:
+        if not watch:raise SafeError('Set xEnabled true and xProvider "twitterapi" in the config first')
+        check_x(config,state,accounts,{'twitterapi':tkey,'openai':key});return
+    if config.get('xEnabled') and not watch and not xkey:raise SafeError('X_BEARER_TOKEN is missing')
     for stage in enabled:check_stage(stage)
     for sig in [signal.SIGINT,signal.SIGTERM]:signal.signal(sig,lambda *_:STOP.set())
     threads=[threading.Thread(target=stage_loop,args=(desk,s,key),daemon=True) for s in enabled]
@@ -295,9 +320,13 @@ def main():
         while not STOP.is_set():
             try:
                 desk.flush()
-                if config.get('xEnabled'):poll_x(desk,xkey)
+                if watch:
+                    report=xwatch.poll(desk,state,config,accounts,PROJECTS,{'twitterapi':tkey,'openai':key},http_json)
+                    print(f"{utc()[:19]}Z  X: {report['newPosts']} new posts, {report['published']} published, {report['drafts']} drafts",flush=True)
+                elif config.get('xEnabled'):poll_x(desk,xkey)
             except BudgetExceeded:desk.health('x','paused','Daily operating budget reached');STOP.set()
-            except SafeError:desk.health('x','error','Search or ingestion failed; checkpoint retained')
+            except (SafeError,xwatch.XWatchError) as e:
+                print(f'{utc()[:19]}Z  X check failed: {e}',file=sys.stderr,flush=True);desk.health('x','error','X check failed; will retry')
             if args.once:break
             STOP.wait(config['pollSeconds'])
     finally:
@@ -308,4 +337,4 @@ def main():
 
 if __name__=='__main__':
     try:main()
-    except (SafeError,BudgetExceeded,FileNotFoundError,json.JSONDecodeError) as e:print(str(e),file=sys.stderr);sys.exit(1)
+    except (SafeError,BudgetExceeded,xwatch.XWatchError,FileNotFoundError,json.JSONDecodeError) as e:print(str(e),file=sys.stderr);sys.exit(1)
