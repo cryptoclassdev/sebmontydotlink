@@ -226,14 +226,20 @@ def triage(posts, accounts_by_handle, config, state, key, http):
     data = [{'id': p['id'], 'account': accounts_by_handle[p['user'].lower()]['name'], 'accountType': accounts_by_handle[p['user'].lower()]['kind'],
              'organization': accounts_by_handle[p['user'].lower()].get('org'), 'postedAt': p['createdAt'], 'text': p['text']} for p in posts]
     if config.get('xTriageProvider') == 'anthropic':
-        # Claude: the verdicts come back as a forced tool call, so the JSON shape is guaranteed.
-        # No temperature/top_p/top_k: Claude 5.5 models reject them (HTTP 400). A forced tool call skips thinking.
-        body = {'model': config.get('xTriageModel', 'claude-haiku-5-5'), 'max_tokens': int(config.get('xTriageMaxTokens', 4000)),
-                'system': [{'type': 'text', 'text': SYSTEM, 'cache_control': {'type': 'ephemeral'}}],
-                'tools': [{'name': 'sort_posts', 'description': 'Record one verdict per input post.', 'input_schema': TRIAGE_SCHEMA}],
-                'tool_choice': {'type': 'tool', 'name': 'sort_posts'},
-                'messages': [{'role': 'user', 'content': json.dumps({'posts': data}, ensure_ascii=False)}]}
-        response = http(ANTHROPIC_API, 'POST', body, {'x-api-key': key, 'anthropic-version': '2023-06-01'})
+        # Claude answers through one tool call (live.anthropic_tool_body): forced where the model allows it,
+        # otherwise tool_choice auto with a strict schema (e.g. Sonnet 5.5).
+        import live
+        model, headers = config.get('xTriageModel', 'claude-haiku-5-5'), {'x-api-key': key, 'anthropic-version': '2023-06-01'}
+        user = json.dumps({'posts': data}, ensure_ascii=False)
+        args = (model, SYSTEM, user, 'sort_posts', 'Record one verdict per input post.', TRIAGE_SCHEMA, int(config.get('xTriageMaxTokens', 4000)))
+        forced = model not in live.AUTO_TOOL_MODELS
+        try:
+            response = http(ANTHROPIC_API, 'POST', live.anthropic_tool_body(*args, forced=forced), headers)
+        except Exception as e:
+            if not (forced and 'tool_choice' in str(e)):
+                raise
+            live.AUTO_TOOL_MODELS.add(model)
+            response = http(ANTHROPIC_API, 'POST', live.anthropic_tool_body(*args, forced=False), headers)
         return validate_triage(tool_input(response), posts)
     extra = config.get('xTriageExtraBody') or {}
     if not isinstance(extra, dict):

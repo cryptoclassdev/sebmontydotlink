@@ -168,6 +168,16 @@ class Providers(unittest.TestCase):
         with self.assertRaises(live.ProviderError):
             live.parse_chat(chat_reply('not json'))
 
+    def test_strict_schema(self):
+        strict = live.strict_schema(c.SCHEMA)
+        text = json.dumps(strict)
+        for keyword in live.STRICT_DROP:
+            self.assertNotIn('"' + keyword + '"', text)
+        self.assertFalse(strict['additionalProperties'])
+        self.assertFalse(strict['properties']['entries']['items']['additionalProperties'])
+        self.assertIn('at most 180 characters', strict['properties']['entries']['items']['properties']['title']['description'])
+        self.assertIn('maxLength', json.dumps(c.SCHEMA))  # the original is untouched
+
     def test_cost(self):
         price = {'in': 2.0, 'cacheRead': 0.10, 'cacheWrite': 2.50, 'out': 10.0}
         self.assertAlmostEqual(live.cost_usd({'input': 1_000_000, 'cacheRead': 0, 'cacheWrite': 0, 'output': 0}, price), 2.0)
@@ -236,7 +246,13 @@ class Pipeline(unittest.TestCase):
         self.assertIn('Lend V3', payload['newTranscript'])
         self.assertIn('Lend V2', payload['context'])
         self.assertEqual(payload['session']['title'], 'Kamino keynote')
-        self.assertEqual(self.calls[1][1]['tool_choice'], {'type': 'tool', 'name': 'publish_entries'})
+        body = self.calls[1][1]
+        # Sonnet 5.5 rejects a forced tool call: auto + strict schema + the lowest thinking setting.
+        self.assertEqual((body['tool_choice'], body['tools'][0]['strict'], body['thinking'], body['output_config']),
+                         ({'type': 'auto'}, True, {'type': 'between_tools'}, {'effort': 'low'}))
+        self.assertGreaterEqual(body['max_tokens'], 4000)
+        self.assertNotIn('maxLength', json.dumps(body['tools'][0]['input_schema']))
+        self.assertIn('Always reply by calling the publish_entries tool', body['system'][0]['text'])
         self.assertEqual(self.calls[1][1]['system'][0]['cache_control'], {'type': 'ephemeral'})
         self.assertFalse({'temperature', 'top_p', 'top_k'} & set(self.calls[1][1]))  # Claude 5.5 rejects these
         rows = (pathlib.Path(self.tmp.name) / 'costs.csv').read_text().splitlines()
@@ -255,6 +271,20 @@ class Pipeline(unittest.TestCase):
         lines = [json.loads(x) for x in (pathlib.Path(self.tmp.name) / 'dry-run.jsonl').read_text().splitlines()]
         entries = [e for line in lines for e in line['payload'].get('entries', [])]
         self.assertEqual(sorted((e['title'], e['status']) for e in entries), [('Kamino ships Lend V3', 'provisional'), ('Panel discusses fees', 'draft')])
+
+    def test_forced_tool_for_haiku_and_automatic_switch_when_rejected(self):
+        self.config['llm'] = dict(self.config['llm'], model='claude-haiku-5-5', fallback=None)
+        self.chunks(['Kamino Lend V3 is live on mainnet today', 'and more'])
+        c.drain_jobs(self.desk, self.llm([anthropic_reply([ITEM])]))
+        self.assertEqual(self.calls[-1][1]['tool_choice'], {'type': 'tool', 'name': 'publish_entries'})
+        self.assertNotIn('thinking', self.calls[-1][1])
+        self.config['llm'] = dict(self.config['llm'], model='claude-future-test-model')
+        self.chunks(['third chunk here', 'fourth chunk here'])
+        rejected = live.ProviderError('HTTP 400 invalid_request_error tool_choice: type "tool" and "any" are not supported for this model.', 400, False)
+        c.drain_jobs(self.desk, self.llm([rejected, anthropic_reply([])]))
+        self.assertEqual([b['tool_choice']['type'] for _, b in self.calls[-2:]], ['tool', 'auto'])
+        self.assertIn('claude-future-test-model', live.AUTO_TOOL_MODELS)
+        self.assertEqual(len(list((pathlib.Path(self.tmp.name) / 'failed-jobs').glob('*.json'))), 0)
 
     def test_retry_then_fallback_and_failed_job(self):
         self.chunks(['Kamino Lend V3 is live on mainnet today', 'and more'])

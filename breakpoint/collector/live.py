@@ -364,6 +364,61 @@ def json_from_text(content):
 
 # ---------- Model providers ----------
 
+STRICT_DROP = ('maxLength', 'minLength', 'maxItems', 'minItems', 'minimum', 'maximum')
+# Models that reject a forced tool call (HTTP 400 "tool_choice: type tool and any are not supported").
+# Others are learned at run time from that error.
+AUTO_TOOL_MODELS = {'claude-sonnet-5-5'}
+
+
+def strict_schema(schema):
+    """A JSON Schema for strict tool use: limits moved into descriptions, additionalProperties false on objects."""
+    if isinstance(schema, list):
+        return [strict_schema(x) for x in schema]
+    if not isinstance(schema, dict):
+        return schema
+    out, limits = {}, []
+    for k, v in schema.items():
+        if k in STRICT_DROP:
+            limits.append({'maxLength': f'at most {v} characters', 'minLength': f'at least {v} characters', 'maxItems': f'at most {v} items',
+                           'minItems': f'at least {v} items', 'minimum': f'minimum {v}', 'maximum': f'maximum {v}'}[k])
+        elif k in ('properties',):
+            out[k] = {name: strict_schema(sub) for name, sub in v.items()}
+        else:
+            out[k] = strict_schema(v)
+    if limits:
+        out['description'] = (out.get('description', '') + ' (' + ', '.join(limits) + ')').strip()
+    if out.get('type') == 'object':
+        out['additionalProperties'] = False
+    return out
+
+
+def anthropic_tool_body(model, system, user, tool, description, schema, max_tokens, forced=True):
+    """Messages API body that makes Claude answer through one tool call.
+
+    forced: tool_choice names the tool (no thinking). Otherwise (models that reject forcing, e.g. Sonnet 5.5):
+    tool_choice auto, strict schema, the lowest thinking setting, room for it in max_tokens, and the prompt says
+    to always call the tool. No temperature/top_p/top_k: Claude 5.5 models reject them."""
+    body = {'model': model, 'max_tokens': max_tokens,
+            'system': [{'type': 'text', 'text': system, 'cache_control': {'type': 'ephemeral'}}],
+            'messages': [{'role': 'user', 'content': user}]}
+    if forced:
+        body['tools'] = [{'name': tool, 'description': description, 'input_schema': schema}]
+        body['tool_choice'] = {'type': 'tool', 'name': tool}
+    else:
+        body['system'][0]['text'] = system + f'\n\nAlways reply by calling the {tool} tool exactly once, even when there is nothing to report.'
+        body['tools'] = [{'name': tool, 'description': description, 'input_schema': strict_schema(schema), 'strict': True}]
+        body['tool_choice'] = {'type': 'auto'}
+        body['thinking'] = {'type': 'between_tools'}
+        body['output_config'] = {'effort': 'low'}
+        body['max_tokens'] = max(max_tokens, 4000)
+    return body
+
+
+def rejects_forced_tool(error):
+    return isinstance(error, ProviderError) and error.status == 400 and 'tool_choice' in str(error)
+
+
+
 def parse_anthropic(response, tool='publish_entries', key='entries'):
     """(tool input, usage) from a forced tool call. Tolerates the list arriving as a JSON string or under another
     single key; failures name the stop reason and the input's field types (never content)."""
@@ -502,13 +557,18 @@ class LLM:
         reserve = max(float(reserve_usd), estimate_usd(payload_text + system, max_tokens, self.price(model)))
         self.desk.state.reserve(reserve, 'llm')
         if provider == 'anthropic':
-            # No temperature/top_p/top_k: Claude 5.5 models reject them (HTTP 400). A forced tool call skips thinking.
-            body = {'model': model, 'max_tokens': max_tokens,
-                    'system': [{'type': 'text', 'text': system, 'cache_control': {'type': 'ephemeral'}}],
-                    'tools': [{'name': 'publish_entries', 'description': 'Publish the factual entries found in the transcript (an empty list when there are none).', 'input_schema': schema}],
-                    'tool_choice': {'type': 'tool', 'name': 'publish_entries'},
-                    'messages': [{'role': 'user', 'content': payload_text}]}
-            result, usage = parse_anthropic(self.post(ANTHROPIC_URL, body, {'x-api-key': key, 'anthropic-version': '2023-06-01'}))
+            headers = {'x-api-key': key, 'anthropic-version': '2023-06-01'}
+            description = 'Publish the factual entries found in the transcript (an empty list when there are none).'
+            forced = model not in AUTO_TOOL_MODELS
+            try:
+                response = self.post(ANTHROPIC_URL, anthropic_tool_body(model, system, payload_text, 'publish_entries', description, schema, max_tokens, forced), headers)
+            except ProviderError as e:
+                if not (forced and rejects_forced_tool(e)):
+                    raise
+                AUTO_TOOL_MODELS.add(model)
+                self.log(f'{model} does not accept a forced tool call; using tool_choice auto with a strict schema from now on')
+                response = self.post(ANTHROPIC_URL, anthropic_tool_body(model, system, payload_text, 'publish_entries', description, schema, max_tokens, False), headers)
+            result, usage = parse_anthropic(response)
         else:
             url = ZAI_CHAT_URL if provider == 'zai' else OPENAI_CHAT_URL
             body = {'model': model, 'max_tokens': max_tokens, 'temperature': 0, 'response_format': {'type': 'json_object'},
