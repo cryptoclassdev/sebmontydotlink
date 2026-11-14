@@ -193,13 +193,32 @@ TRIAGE_SCHEMA = {'type': 'object', 'required': ['items'], 'properties': {'items'
         'impactReason': {'type': 'string'}, 'novelty': {'type': 'string', 'enum': list(NOVELTY)}}}}}}
 
 
-def tool_input(response, name='sort_posts'):
-    """The input of the forced tool call in an Anthropic Messages response."""
+def tool_input(response, name='sort_posts', key='items'):
+    """The input of the forced tool call in an Anthropic Messages response, with its list under `key`.
+
+    Tolerates the list arriving as a JSON string or under another single key; otherwise says what came back
+    (stop reason and the input's field types, never content) so a failure can be diagnosed from the log."""
+    stop = response.get('stop_reason') if isinstance(response, dict) else None
     blocks = response.get('content') if isinstance(response, dict) else None
     block = next((b for b in blocks or [] if isinstance(b, dict) and b.get('type') == 'tool_use' and b.get('name') == name), None)
     if not block or not isinstance(block.get('input'), dict):
-        raise XWatchError('Triage response has no ' + name + ' call')
-    return block['input']
+        kinds = ', '.join(str(b.get('type')) for b in blocks or [] if isinstance(b, dict)) or 'none'
+        raise XWatchError(f'Triage response has no {name} call (stop_reason {stop}; content blocks: {kinds})')
+    data = dict(block['input'])
+    value = data.get(key)
+    if isinstance(value, str):
+        try:
+            data[key] = json.loads(value)
+        except ValueError:
+            pass
+    elif value is None:
+        lists = [v for v in data.values() if isinstance(v, list)]
+        if len(lists) == 1:
+            data[key] = lists[0]
+    if not isinstance(data.get(key), list):
+        shape = ', '.join(f'{k}: {type(v).__name__}' for k, v in list(data.items())[:6]) or 'empty'
+        raise XWatchError(f'Triage response has no {key} list (stop_reason {stop}; tool input {shape})')
+    return data
 
 
 def triage(posts, accounts_by_handle, config, state, key, http):
@@ -209,7 +228,7 @@ def triage(posts, accounts_by_handle, config, state, key, http):
     if config.get('xTriageProvider') == 'anthropic':
         # Claude: the verdicts come back as a forced tool call, so the JSON shape is guaranteed.
         # No temperature/top_p/top_k: Claude 5.5 models reject them (HTTP 400). A forced tool call skips thinking.
-        body = {'model': config.get('xTriageModel', 'claude-haiku-5-5'), 'max_tokens': 2500,
+        body = {'model': config.get('xTriageModel', 'claude-haiku-5-5'), 'max_tokens': int(config.get('xTriageMaxTokens', 4000)),
                 'system': [{'type': 'text', 'text': SYSTEM, 'cache_control': {'type': 'ephemeral'}}],
                 'tools': [{'name': 'sort_posts', 'description': 'Record one verdict per input post.', 'input_schema': TRIAGE_SCHEMA}],
                 'tool_choice': {'type': 'tool', 'name': 'sort_posts'},

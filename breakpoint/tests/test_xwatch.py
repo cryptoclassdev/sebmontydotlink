@@ -241,6 +241,16 @@ class Tests(unittest.TestCase):
         with self.assertRaises(x.XWatchError):
             x.tool_input({'content': [{'type': 'text', 'text': 'no tool'}]})
 
+    def test_claude_tool_input_shapes(self):
+        items = [{'id': '1', 'verdict': 'skip'}]
+        call = lambda data, stop='tool_use': {'stop_reason': stop, 'content': [{'type': 'tool_use', 'name': 'sort_posts', 'input': data}]}
+        self.assertEqual(x.tool_input(call({'items': items}))['items'], items)
+        self.assertEqual(x.tool_input(call({'items': json.dumps(items)}))['items'], items)  # list sent as a JSON string
+        self.assertEqual(x.tool_input(call({'verdicts': items}))['items'], items)  # list under another key
+        with self.assertRaises(x.XWatchError) as e:
+            x.tool_input(call({}, 'max_tokens'))
+        self.assertIn('stop_reason max_tokens', str(e.exception))
+
     def test_talk_window(self):
         acc = ACCOUNTS[0]
         self.assertEqual(x.talk_for(acc, '2026-11-15T13:00:00Z', 24), 'bp26-kamino')

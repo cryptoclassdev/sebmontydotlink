@@ -154,6 +154,12 @@ class Providers(unittest.TestCase):
         self.assertEqual(usage, {'input': 900, 'cacheRead': 1200, 'cacheWrite': 0, 'output': 150})
         with self.assertRaises(live.ProviderError):
             live.parse_anthropic({'content': [{'type': 'text', 'text': 'no tool'}]})
+        stringified = anthropic_reply([])
+        stringified['content'][1]['input'] = {'entries': json.dumps([ITEM])}
+        self.assertEqual(live.parse_anthropic(stringified)[0]['entries'][0]['title'], ITEM['title'])
+        with self.assertRaises(live.ProviderError) as e:
+            live.parse_anthropic({'stop_reason': 'max_tokens', 'content': [{'type': 'tool_use', 'name': 'publish_entries', 'input': {}}]})
+        self.assertIn('stop_reason max_tokens', str(e.exception))
         body = json.dumps({'entries': [ITEM]})
         for content in [body, '```json\n' + body + '\n```', 'Here you go:\n' + body]:
             result, usage = live.parse_chat(chat_reply(content))

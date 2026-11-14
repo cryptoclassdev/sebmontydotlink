@@ -364,15 +364,33 @@ def json_from_text(content):
 
 # ---------- Model providers ----------
 
-def parse_anthropic(response, tool='publish_entries'):
+def parse_anthropic(response, tool='publish_entries', key='entries'):
+    """(tool input, usage) from a forced tool call. Tolerates the list arriving as a JSON string or under another
+    single key; failures name the stop reason and the input's field types (never content)."""
+    stop = response.get('stop_reason') if isinstance(response, dict) else None
     blocks = response.get('content') if isinstance(response, dict) else None
     block = next((b for b in blocks or [] if isinstance(b, dict) and b.get('type') == 'tool_use' and b.get('name') == tool), None)
     if not block or not isinstance(block.get('input'), dict):
-        raise ProviderError('Anthropic response has no ' + tool + ' call')
+        kinds = ', '.join(str(b.get('type')) for b in blocks or [] if isinstance(b, dict)) or 'none'
+        raise ProviderError(f'Anthropic response has no {tool} call (stop_reason {stop}; content blocks: {kinds})')
+    data = dict(block['input'])
+    value = data.get(key)
+    if isinstance(value, str):
+        try:
+            data[key] = json.loads(value)
+        except ValueError:
+            pass
+    elif value is None:
+        lists = [v for v in data.values() if isinstance(v, list)]
+        if len(lists) == 1:
+            data[key] = lists[0]
+    if not isinstance(data.get(key), list):
+        shape = ', '.join(f'{k}: {type(v).__name__}' for k, v in list(data.items())[:6]) or 'empty'
+        raise ProviderError(f'Anthropic {tool} call has no {key} list (stop_reason {stop}; tool input {shape})')
     u = response.get('usage') or {}
     usage = {'input': int(u.get('input_tokens') or 0), 'cacheRead': int(u.get('cache_read_input_tokens') or 0),
              'cacheWrite': int(u.get('cache_creation_input_tokens') or 0), 'output': int(u.get('output_tokens') or 0)}
-    return block['input'], usage
+    return data, usage
 
 
 def parse_chat(response):
