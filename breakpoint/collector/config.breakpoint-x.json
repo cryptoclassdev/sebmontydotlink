@@ -12,7 +12,7 @@
   "xReservePerRequestUsd": 0.003,
   "xTriageApiUrl": "https://api.z.ai/api/paas/v4/chat/completions",
   "xTriageModel": "glm-5.2",
-  "xTriageKeyEnv": "TRIAGE_API_KEY",
+  "xTriageKeyEnv": "ZAI_API_KEY",
   "xTriageExtraBody": {
     "thinking": {
       "type": "disabled"

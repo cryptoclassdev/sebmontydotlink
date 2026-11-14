@@ -8,7 +8,7 @@ breakpoint/.local/provider-secrets.json with owner-only permissions.
 import json, os, pathlib, subprocess
 root=pathlib.Path(__file__).resolve().parents[1];path=root/'.local/provider-secrets.json'
 data=json.loads(path.read_text()) if path.exists() else {}
-for key,label in [('INGEST_TOKEN','Breakpoint ingest token (BREAKPOINT_INGEST_TOKEN on Vercel)'),('EDITOR_TOKEN','Breakpoint editor token (BREAKPOINT_EDITOR_TOKEN on Vercel)'),('TWITTERAPI_IO_KEY','twitterapi.io API key'),('TRIAGE_API_KEY','AI key for sorting X posts (your Z.ai GLM API key)')]:
+for key,label in [('INGEST_TOKEN','Breakpoint ingest token (BREAKPOINT_INGEST_TOKEN on Vercel)'),('EDITOR_TOKEN','Breakpoint editor token (BREAKPOINT_EDITOR_TOKEN on Vercel)'),('TWITTERAPI_IO_KEY','twitterapi.io API key'),('ZAI_API_KEY','Z.ai API key, pay-as-you-go (sorts X posts with GLM)')]:
     script='set r to display dialog "'+label+' (Cancel to leave unchanged)" default answer "" with hidden answer buttons {"Cancel", "Save"} default button "Save"\ntext returned of r'
     result=subprocess.run(['osascript','-'],input=script,text=True,capture_output=True)
     if result.returncode==0 and result.stdout.strip():data[key]=result.stdout.strip()

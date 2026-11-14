@@ -219,7 +219,7 @@ class Tests(unittest.TestCase):
 
     def test_shipped_config_is_glm(self):
         cfg = json.loads((ROOT / 'collector/config.breakpoint-x.json').read_text())
-        self.assertEqual((cfg['xTriageModel'], cfg['xTriageKeyEnv']), ('glm-5.2', 'TRIAGE_API_KEY'))
+        self.assertEqual((cfg['xTriageModel'], cfg['xTriageKeyEnv']), ('glm-5.2', 'ZAI_API_KEY'))
         self.assertTrue(cfg['xTriageApiUrl'].startswith('https://api.z.ai/'))
 
     def test_talk_window(self):

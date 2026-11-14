@@ -65,7 +65,7 @@ Newest first. One entry per pull request.
 1. The AI step now calls any OpenAI-compatible chat endpoint set in the config: `xTriageApiUrl`, `xTriageModel`, `xTriageKeyEnv` and optional `xTriageExtraBody`. `config.breakpoint-x.json` uses Z.ai's API with `glm-5.2` and thinking turned off for speed.
 2. If the provider rejects an optional field (HTTP 400), the call is retried once without it, so a model that does not accept "thinking off" still works.
 3. Replies wrapped in code fences are read correctly; anything that is not JSON is still rejected.
-4. Key setup asks for "AI key for sorting X posts" (stored as `TRIAGE_API_KEY`) instead of an OpenAI key. The `--check-x` dry run names the model and, if the AI call fails, says which Z.ai address fits which kind of key (pay-as-you-go API or GLM Coding Plan).
+4. Key setup asks for the Z.ai API key (stored as `ZAI_API_KEY`, the same name the planned live-transcription process uses for its GLM fallback, so the key is entered once) instead of an OpenAI key. It must be a pay-as-you-go key; the GLM Coding Plan quota does not cover this use. The `--check-x` dry run names the model and, if the AI call fails, says so.
 5. The per-call budget reservation rises from $0.01 to $0.02 to match GLM 5.2's prices; the $30 daily cap is unchanged.
 
 #### Files touched
