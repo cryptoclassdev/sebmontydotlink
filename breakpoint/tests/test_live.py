@@ -291,6 +291,14 @@ class Pipeline(unittest.TestCase):
         self.assertEqual([(e['kind'], e['status'], e['id'].startswith('summary-')) for e in entries], [('summary', 'provisional', True)])
 
 
+class FakeProc:
+    def __init__(self, code):
+        self.code = code
+
+    def poll(self):
+        return self.code
+
+
 class FakeBootstrap:
     def __init__(self, value):
         self.value = value
@@ -334,6 +342,23 @@ class RunnerPlan(unittest.TestCase):
         self.assertEqual(self.step('2026-11-16T14:10:00')[:2], ('d', 'running'))
         self.assertEqual(self.step('2026-11-16T14:35:00')[:2], (None, 'running'))     # 15 min gap to e: stay connected
         self.assertEqual(self.step('2026-11-16T14:51:00')[:2], ('e', 'running'))
+
+    def test_replay_end_closes_the_session_once(self):
+        cfg = dict(self.config, sessionMode='fixed', simulateLive=True, llm={'provider': 'anthropic', 'model': 'claude-sonnet-5-5'},
+                   stages=[{'id': 'main', 'name': 'Main Stage', 'enabled': True, 'youtube': 'https://youtu.be/dQw4w9WgXcQ', 'sessionId': 'replay'}])
+        self.desk.config.update(cfg)
+        runner = c.StageRunner(self.desk, cfg['stages'][0], {}, FakeBootstrap({}))
+        runner.start_ffmpeg = lambda: setattr(runner, 'proc', FakeProc(0))
+        closed = []
+        runner.close_session = lambda old: closed.append(old['id'])
+        runner.apply(*runner.plan())
+        self.assertEqual((runner.session['id'], runner.done), ('replay', False))
+        runner.started = c.time.monotonic() - 600
+        runner.watch_ffmpeg()
+        self.assertTrue(runner.done)
+        self.assertEqual(closed, ['replay'])
+        runner.apply(*runner.plan())
+        self.assertEqual((runner.session, runner.proc, closed), (None, None, ['replay']))
 
     def test_missing_desk_link_waits(self):
         self.stream['enabled'] = False

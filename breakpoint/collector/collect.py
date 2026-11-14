@@ -371,6 +371,8 @@ class StageRunner:
         self.status=('ready','Starting');self.stderr=collections.deque(maxlen=12)
 
     def conf(self):return next((s for s in self.desk.config['stages'] if s.get('id')==self.id),self.base)
+    @property
+    def done(self):return self.finished is not None and self.finished==self.source
     def say(self,message):log(message,self.id)
     @property
     def stage(self):return {'id':self.id,'name':self.conf()['name'],'sourceUrl':self.source_url or 'https://solana.com/breakpoint'}
@@ -425,6 +427,7 @@ class StageRunner:
             self.source=source;self.finished=None;self.failures=0;self.retry_at=0.0
             if source and source[0]=='youtube':self.source_url=live.watch_url(source[1]);self.say(f'Stream: YouTube video {source[1]}')
             elif source:self.source_url=self.conf().get('sourceUrl')
+        if self.finished is not None and self.finished==source:active=None  # replay over: keep the session closed
         self.switch(active)
         now=now or dt.datetime.now(dt.timezone.utc);gap=(upcoming['start']-now).total_seconds() if upcoming else None
         # Pre-roll 10 minutes before a talk; keep the connection through gaps of 20 minutes or less.
@@ -500,7 +503,9 @@ class StageRunner:
             tail=' | '.join(list(self.stderr)[-2:]);ran=time.monotonic()-self.started
             self.proc=None;self.consume_rest()
             message=f'ffmpeg exited with code {code} after {int(ran)} s'+(f' ({tail})' if tail else '')
-            if code==0 and self.desk.config.get('simulateLive'):self.finished=self.source;self.say(message+': recording finished');return
+            if code==0 and self.desk.config.get('simulateLive'):
+                # A replayed recording ended: close its session (final recap) and stay idle.
+                self.finished=self.source;self.say(message+': recording finished');self.switch(None);return
             if ran<90 or code!=0:self.backoff(message)
             else:self.say(message+'; reconnecting')
             return
@@ -723,10 +728,14 @@ def main():
                 except (SafeError,xwatch.XWatchError) as e:
                     print(f'{utc()[:19]}Z  X check failed: {e}',file=sys.stderr,flush=True);desk.health('x','error','X check failed; will retry')
             if args.once:break
+            if config.get('simulateLive') and runners and all(r.done for r in runners) and not any((state.directory/'jobs').glob('*.json')):
+                log('All replayed recordings finished and their model checks are done; stopping.');break
             STOP.wait(5)
     finally:
         STOP.set()
         for thread in threads:thread.join(timeout=15)
+        try:desk.flush()
+        except SafeError:pass
         for stage in enabled:desk.health(stage['id'],'paused','Collector stopped')
     print('Collector stopped. Outbox and checkpoints retained.',flush=True)
 
