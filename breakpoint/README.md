@@ -75,7 +75,7 @@ Alpha: the X monitor below, running on the Mac Mini for the whole event. Seb can
 
 ## X monitor (Breakpoint week)
 
-What it does: every 2 minutes it searches X (through twitterapi.io) for new posts from the 208 accounts in `data/x-accounts.json`: 87 companies and 121 speakers with a talk at Breakpoint. Replies and retweets are skipped. A small OpenAI model sorts each new post:
+What it does: every 2 minutes it searches X (through twitterapi.io) for new posts from the 208 accounts in `data/x-accounts.json`: 87 companies and 121 speakers with a talk at Breakpoint. Replies and retweets are skipped. An AI model sorts each new post (Z.ai GLM 5.2 by default; any OpenAI-compatible chat endpoint works, set in the config):
 
 - **alpha** (launch, partnership, token news, funding, approval, milestone, dated launch): published straight away as "Provisional", with the post quoted word for word and linked, and tied to the account's talk when posted within 24 hours of it;
 - **maybe**: lands on the editor desk as a draft for Seb to publish or ignore;
@@ -83,19 +83,19 @@ What it does: every 2 minutes it searches X (through twitterapi.io) for new post
 
 Accounts: speaker handles are the ones linked on the official speakers page (saved in `research/speakers-x-2026-11-14.json`); company handles are linked from each company's website or checked on the X profile (name, linked website, verification). Each account's `source` field says which. To add one, add a row to `data/x-accounts.json` with its source.
 
-Cost: twitterapi.io charges $0.15 per 1,000 posts returned, with a minimum per request; OpenAI triage is cents a day. Expected spend is about $1 to $3 a day. The local budget gate in `collector/config.breakpoint-x.json` reserves the worst case for every request and stops the monitor at $30 a day.
+Cost: twitterapi.io charges $0.15 per 1,000 posts returned, with a minimum per request; GLM 5.2 sorting is about $1.40 per million input tokens and $4.40 per million output tokens, roughly $1 to $2 a day here. Expected spend is about $2 to $4 a day. The local budget gate in `collector/config.breakpoint-x.json` reserves the worst case for every request and stops the monitor at $30 a day.
 
 ### Set up on the Mac Mini (once)
 
 1. Get the code: GitHub, `cryptoclassdev/sebmontydotlink`, Code, Download ZIP (or `git clone`). Unzip it somewhere permanent.
 2. In Vercel (project v0-apple-liquid-glass-link-in-bio-6h), Settings, Environment Variables: add `BREAKPOINT_AUTO_PUBLISH_PROVISIONAL` = `true` for Production. If the ingest token was not saved, generate a new one (`openssl rand -hex 32`), save it in the password manager and replace `BREAKPOINT_INGEST_TOKEN`. Then redeploy the latest Production deployment so the values apply.
-3. In Terminal on the Mac Mini, from the unzipped `breakpoint` folder: `python3 collector/setup.py`. Four masked windows ask for the ingest token, the editor token, the twitterapi.io key and the OpenAI key. Nothing is typed into Terminal or chat.
+3. In Terminal on the Mac Mini, from the unzipped `breakpoint` folder: `python3 collector/setup.py`. Four masked windows ask for the ingest token, the editor token, the twitterapi.io key and the AI key (the Z.ai GLM API key). Nothing is typed into Terminal or chat.
 4. Test without publishing: `python3 collector/run.py --config collector/config.breakpoint-x.json --check-x`. It shows how many recent posts it found and how the AI sorted up to five of them.
 5. Start it: `caffeinate -dimsu python3 collector/run.py --config collector/config.breakpoint-x.json`. Leave the window open; `caffeinate` keeps the Mac awake. Each pass prints one line (new posts, published, drafts). Stop with Ctrl+C; it resumes where it left off.
 
 Check it on the site: Watch live, Source health, "X monitoring" says "Watching 208 accounts on X". Drafts appear on the desk (`/breakpoint#editor`); published items appear on the overview, in Catch up (filter "From X"), on the project and on the talk.
 
-To pull something back: open it on the desk and withdraw it with a short note. If the model is too eager or too quiet, set `publishProvisional` to `false` in the config to send everything to the desk instead. If OpenAI reports an unknown model, change `xTriageModel` in the config.
+To pull something back: open it on the desk and withdraw it with a short note. If the model is too eager or too quiet, set `publishProvisional` to `false` in the config to send everything to the desk instead. If the AI step fails, check the key and `xTriageApiUrl`: a pay-as-you-go Z.ai API key uses `https://api.z.ai/api/paas/v4/chat/completions`, a GLM Coding Plan key uses `https://api.z.ai/api/coding/paas/v4/chat/completions`. To use OpenAI instead, set `xTriageApiUrl` to `https://api.openai.com/v1/chat/completions`, `xTriageModel` to an OpenAI model, and remove `xTriageExtraBody`.
 
 ### The original transcription collector
 

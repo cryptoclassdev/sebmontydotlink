@@ -278,10 +278,14 @@ def check_x(config,state,accounts,keys):
     posts=[p for p in (xwatch.normalize_post(r,by_handle) for r in raw) if p]
     print(f'twitterapi.io OK: {len(raw)} results, {len(posts)} usable posts from {len(group)} accounts in the last 6 hours.')
     if posts:
-        verdicts=xwatch.triage(posts[:5],by_handle,config,state,keys['openai'],http_json)
+        try:verdicts=xwatch.triage(posts[:5],by_handle,config,state,keys['triage'],http_json)
+        except SafeError as e:
+            print(f'AI step failed: {e}. Check the AI key, xTriageApiUrl and xTriageModel in the config.',file=sys.stderr)
+            if 'z.ai' in config.get('xTriageApiUrl',''):print('A GLM Coding Plan key needs xTriageApiUrl https://api.z.ai/api/coding/paas/v4/chat/completions; a pay-as-you-go Z.ai API key uses https://api.z.ai/api/paas/v4/chat/completions.',file=sys.stderr)
+            raise
         for p in posts[:5]:
             v=verdicts[p['id']];print(f"  @{p['user']}: {v['verdict']}"+(f" · {v['title']}" if v['verdict']!='skip' else ''))
-        print('OpenAI triage OK. Nothing was published.')
+        print(f"AI triage OK ({config.get('xTriageModel')}). Nothing was published.")
     else:print('No recent posts to test the AI step with; run again later or start the monitor.')
 
 def main():
@@ -295,7 +299,8 @@ def main():
     watch=config.get('xEnabled') and config.get('xProvider')=='twitterapi'
     if watch:
         if not tkey:raise SafeError('TWITTERAPI_IO_KEY is missing (run collector/setup.py)')
-        if not key:raise SafeError('OPENAI_API_KEY is missing (run collector/setup.py)')
+        akey=os.environ.get(config.get('xTriageKeyEnv','TRIAGE_API_KEY')) or key
+        if not akey:raise SafeError('The AI key for sorting posts is missing (run collector/setup.py)')
         accounts=xwatch.load_accounts(ROOT/config.get('xAccountsFile','data/x-accounts.json'))
     if not ingest:raise SafeError('INGEST_TOKEN is missing')
     state=State(args.state,config['dailyBudgetUsd']);lock=open(state.directory/'collector.lock','w')
@@ -309,7 +314,7 @@ def main():
     if enabled and not key:raise SafeError('OPENAI_API_KEY is missing')
     if args.check_x:
         if not watch:raise SafeError('Set xEnabled true and xProvider "twitterapi" in the config first')
-        check_x(config,state,accounts,{'twitterapi':tkey,'openai':key});return
+        check_x(config,state,accounts,{'twitterapi':tkey,'triage':akey});return
     if config.get('xEnabled') and not watch and not xkey:raise SafeError('X_BEARER_TOKEN is missing')
     for stage in enabled:check_stage(stage)
     for sig in [signal.SIGINT,signal.SIGTERM]:signal.signal(sig,lambda *_:STOP.set())
@@ -321,7 +326,7 @@ def main():
             try:
                 desk.flush()
                 if watch:
-                    report=xwatch.poll(desk,state,config,accounts,PROJECTS,{'twitterapi':tkey,'openai':key},http_json)
+                    report=xwatch.poll(desk,state,config,accounts,PROJECTS,{'twitterapi':tkey,'triage':akey},http_json)
                     print(f"{utc()[:19]}Z  X: {report['newPosts']} new posts, {report['published']} published, {report['drafts']} drafts",flush=True)
                 elif config.get('xEnabled'):poll_x(desk,xkey)
             except BudgetExceeded:desk.health('x','paused','Daily operating budget reached');STOP.set()

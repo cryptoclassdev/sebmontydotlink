@@ -54,6 +54,36 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### X monitor: sort posts with Z.ai GLM 5.2
+
+- **Date:** 14 November 2026
+- **Pull request:** branch `feat/breakpoint-x-glm` (number added once opened).
+- **Status:** Ready for review. Only the collector on the Mac Mini changes; the website is unaffected.
+- **Why:** Seb has a Z.ai GLM key, not an OpenAI key. The X monitor's AI step was hard-wired to OpenAI.
+
+#### What changed
+1. The AI step now calls any OpenAI-compatible chat endpoint set in the config: `xTriageApiUrl`, `xTriageModel`, `xTriageKeyEnv` and optional `xTriageExtraBody`. `config.breakpoint-x.json` uses Z.ai's API with `glm-5.2` and thinking turned off for speed.
+2. If the provider rejects an optional field (HTTP 400), the call is retried once without it, so a model that does not accept "thinking off" still works.
+3. Replies wrapped in code fences are read correctly; anything that is not JSON is still rejected.
+4. Key setup asks for "AI key for sorting X posts" (stored as `TRIAGE_API_KEY`) instead of an OpenAI key. The `--check-x` dry run names the model and, if the AI call fails, says which Z.ai address fits which kind of key (pay-as-you-go API or GLM Coding Plan).
+5. The per-call budget reservation rises from $0.01 to $0.02 to match GLM 5.2's prices; the $30 daily cap is unchanged.
+
+#### Files touched
+- `breakpoint/collector/xwatch.py`, `collect.py`, `run.py`, `setup.py`, `config.breakpoint-x.json`
+- `breakpoint/tests/test_xwatch.py`, `breakpoint/README.md`, `README.md`
+
+#### How to check it
+Nothing changes on the site. On the Mac Mini after updating: `python3 collector/run.py --config collector/config.breakpoint-x.json --check-x` ends with "AI triage OK (glm-5.2)".
+
+#### Checks run
+- 27 Python tests (4 new: GLM-style endpoint with extra fields and fenced JSON, retry without rejected fields, non-JSON rejected, shipped config) on Python 3.13 and on Python 3.9 (the version macOS ships); 48 Node tests unchanged and passing.
+
+#### Risks
+- Z.ai's handling of `thinking` for `glm-5.2` is not confirmed without a key; the retry covers a rejection, and the dry run shows any other error before anything is published.
+
+#### Roll back
+Revert this PR, or point `xTriageApiUrl`, `xTriageModel` and the key back to OpenAI in the config.
+
 ### X monitor for Breakpoint alpha
 
 - **Date:** 14 November 2026
