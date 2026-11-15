@@ -17,6 +17,19 @@ class Tests(unittest.TestCase):
   self.assertEqual(len(list((pathlib.Path(self.tmp.name)/'outbox').glob('*.json'))),1)
   with patch.object(self.desk,'send',return_value={'ok':True}):self.desk.flush()
   self.assertEqual(len(list((pathlib.Path(self.tmp.name)/'outbox').glob('*.json'))),0)
+ def test_slow_source_repeats_its_heartbeat_every_minute(self):
+  # The site calls a source stale after 3 minutes; the X monitor polls every 10, so its last status is resent every minute.
+  sent=[]
+  with patch.object(self.desk,'send',side_effect=lambda p:sent.append(p)):
+   self.desk.keep_alive('x',now=100.0);self.assertEqual(sent,[])
+   self.desk.health('x','live','Watching 208 accounts on X',now=100.0)
+   self.desk.keep_alive('x',now=159.0);self.assertEqual(len(sent),1)
+   self.desk.keep_alive('x',now=160.0);self.assertEqual(len(sent),2)
+   self.assertEqual(sent[-1],{'heartbeat':{'id':'x','state':'live','message':'Watching 208 accounts on X'}})
+   self.desk.keep_alive('x',now=200.0);self.assertEqual(len(sent),2)
+  with patch.object(self.desk,'send',side_effect=c.SafeError('offline')):self.desk.keep_alive('x',now=230.0)
+  self.assertEqual(self.desk.beats['x'][2],230.0)
+  self.assertEqual(c.json.loads((pathlib.Path(__file__).resolve().parents[1]/'collector/config.breakpoint-x.json').read_text())['pollSeconds'],600)
  def test_model_needs_verbatim_evidence_known_project(self):
   # A bad item is dropped with a reason (never raised, so one bad answer cannot stall a stage); good items survive.
   stage={'sessionId':'talk','name':'Main','sourceUrl':'https://solana.com'}

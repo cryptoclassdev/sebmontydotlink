@@ -86,7 +86,7 @@ class State:
 class Desk:
     def __init__(self, config, state, ingest_token, dry_run=False):
         self.config=config;self.state=state;self.token=ingest_token;self.dry_run=dry_run
-        self.flush_lock=threading.Lock()
+        self.flush_lock=threading.Lock();self.beats={}
         self.url=config['siteUrl'].rstrip('/')
         u=urllib.parse.urlparse(self.url)
         if u.scheme!='https' and not (u.scheme=='http' and u.hostname in ['127.0.0.1','localhost']):raise SafeError('Site must use HTTPS (except local rehearsal)')
@@ -108,9 +108,15 @@ class Desk:
             for p in sorted((self.state.directory/'outbox').glob('*.json')):
                 if STOP.is_set():return
                 self.send(json.loads(p.read_text()));p.unlink(missing_ok=True)
-    def health(self,id,state,message):
+    def health(self,id,state,message,now=None):
+        self.beats[id]=(state,message,time.monotonic() if now is None else now)
         try:self.send({'heartbeat':{'id':id,'state':state,'message':message[:200]}})
         except SafeError:pass
+    def keep_alive(self,id,every=60,now=None):
+        # The site marks a source stale after 3 minutes without a heartbeat, so a source that
+        # polls less often (the X monitor, every 10 minutes) repeats its last status every minute.
+        now=time.monotonic() if now is None else now;beat=self.beats.get(id)
+        if beat and now-beat[2]>=every:self.health(id,beat[0],beat[1],now)
 
 class Bootstrap:
     """Shared read of GET /api/bootstrap (streams and schedule with desk overrides), at most once per ttl seconds."""
@@ -716,6 +722,7 @@ def main():
     try:
         while not STOP.is_set():
             watcher.check()
+            if watch:desk.keep_alive('x')
             if enabled and time.monotonic()>=next_memory:
                 import resource
                 peak=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/(1048576 if sys.platform=='darwin' else 1024)
