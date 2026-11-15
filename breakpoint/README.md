@@ -75,7 +75,7 @@ Alpha from X: the X monitor below. Both run on the Mac Mini for the whole event,
 
 ## X monitor (Breakpoint week)
 
-What it does: every 2 minutes it searches X (through twitterapi.io) for new posts from the 208 accounts in `data/x-accounts.json`: 87 companies and 121 speakers with a talk at Breakpoint. Replies and retweets are skipped. An AI model sorts each new post (Claude Haiku 5.5 by default, through the Anthropic key; any OpenAI-compatible chat endpoint such as Z.ai GLM also works, set in the config):
+What it does: every 10 minutes (`pollSeconds` 600 in the config; a change applies on restart) it searches X (through twitterapi.io) for new posts from the 208 accounts in `data/x-accounts.json`: 87 companies and 121 speakers with a talk at Breakpoint. Replies and retweets are skipped. An AI model sorts each new post (Claude Haiku 5.5 by default, through the Anthropic key; any OpenAI-compatible chat endpoint such as Z.ai GLM also works, set in the config):
 
 - **alpha** (launch, partnership, token news, funding, approval, milestone, dated launch): published straight away as "Provisional", with the post quoted word for word and linked, and tied to the account's talk when posted within 24 hours of it;
 - **maybe**: lands on the editor desk as a draft for Seb to publish or ignore;
@@ -83,7 +83,9 @@ What it does: every 2 minutes it searches X (through twitterapi.io) for new post
 
 Accounts: speaker handles are the ones linked on the official speakers page (saved in `research/speakers-x-2026-11-14.json`); company handles are linked from each company's website or checked on the X profile (name, linked website, verification). Each account's `source` field says which. To add one, add a row to `data/x-accounts.json` with its source.
 
-Cost: twitterapi.io charges $0.15 per 1,000 posts returned, with a minimum per request; Claude Haiku 5.5 sorting is $0.10 per million input tokens and $0.50 per million output tokens, about $0.001 per batch of 10 posts. Expected spend is about $1 to $2 a day, almost all of it twitterapi.io. The local budget gate in `collector/config.breakpoint-x.json` reserves the worst case for every request and stops the monitor at $30 a day.
+Cost: twitterapi.io charges $0.15 per 1,000 posts returned, with a minimum per request; Claude Haiku 5.5 sorting is $0.10 per million input tokens and $0.50 per million output tokens, about $0.001 per batch of 10 posts. At one search per account batch every 10 minutes (about 1,600 requests a day) expected spend is well under $1 a day, almost all of it twitterapi.io. The local budget gate in `collector/config.breakpoint-x.json` reserves the worst case ($0.003) for every request, about $5 a day at this interval, and stops the monitor at $30 a day.
+
+Between searches the monitor repeats its last status to the site every minute, because the site marks a source stale after 3 minutes without one; Source health keeps showing "Watching 208 accounts on X". A post can take up to 10 minutes to appear; stage announcements come through live transcription within 1 to 2 minutes.
 
 ### Set up on the Mac Mini (once)
 

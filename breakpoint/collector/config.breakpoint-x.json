@@ -1,7 +1,7 @@
 {
   "siteUrl": "https://www.sebmonty.link/breakpoint",
   "dailyBudgetUsd": 30,
-  "pollSeconds": 120,
+  "pollSeconds": 600,
   "xEnabled": true,
   "xProvider": "twitterapi",
   "xAccountsFile": "data/x-accounts.json",

@@ -54,6 +54,35 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### X monitor: search every 10 minutes
+
+- **Date:** 15 November 2026
+- **Pull request:** PR_LINK, branch `feat/x-monitor-10-min`.
+- **Status:** Ready for review. Collector and docs only; the website is unchanged. The new interval applies on the Mac Mini when the X monitor restarts.
+- **Why:** Seb asked to search X every 10 minutes instead of every 2 to cut spend. In its first 16 hours the monitor made about 300 searches an hour, counted at a cautious $0.003 each (about $0.90 an hour against its $30 daily cap), so a busy event day could have hit the cap and stopped it. At 10 minutes it makes about 1,600 searches a day instead of about 7,200: counted at about $5 a day, and the real twitterapi.io charge (mostly empty searches at $0.00015 each) falls to well under $1 a day.
+
+#### What changed
+1. `pollSeconds` for the X monitor goes from 120 to 600.
+2. The site marks a source stale after 3 minutes without a heartbeat. The collector now repeats the X monitor's last status every minute between searches, so Source health keeps showing "Watching 208 accounts on X" instead of "No recent heartbeat".
+
+#### Files touched
+- `breakpoint/collector/collect.py`, `breakpoint/collector/config.breakpoint-x.json`
+- `breakpoint/tests/test_collector.py`
+- `breakpoint/README.md`, `README.md`
+
+#### How to check it
+Nothing changes on the Vercel preview. On the Mac Mini, after `bash scripts/mac/live.sh start x`, the log prints one "X: ... new posts" line every 10 minutes, and on the site (Watch live, Source health) "X monitoring" stays on "Watching 208 accounts on X" with a green dot between searches.
+
+#### Checks run
+- 61 Python tests and 48 Node tests. New test: the last status is repeated after 60 seconds and not before, a failed send does not cause a burst of retries, and the X config polls every 600 seconds.
+
+#### Risks
+- A post can take up to 10 minutes to reach the site (it was up to 2). Stage announcements are not affected; they come through live transcription within 1 to 2 minutes.
+- Paging is unchanged at 3 pages (60 posts) per batch of accounts per search. If more than 60 original posts from one batch land within 10 minutes, the oldest are missed; unlikely with replies and reposts excluded.
+
+#### Roll back
+Set `pollSeconds` back to 120 in `breakpoint/collector/config.breakpoint-x.json` and restart the X monitor (`bash scripts/mac/live.sh stop x`, then `start x`). The repeated heartbeat is harmless at any interval.
+
 ### Live transcription of the Breakpoint stages (Mac Mini), one AI provider
 
 - **Date:** 15 November 2026
