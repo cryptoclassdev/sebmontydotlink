@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### X monitor: search every 10 minutes
 
 - **Date:** 15 November 2026
-- **Pull request:** PR_LINK, branch `feat/x-monitor-10-min`.
+- **Pull request:** [#16](https://github.com/cryptoclassdev/sebmontydotlink/pull/16), branch `feat/x-monitor-10-min`.
 - **Status:** Ready for review. Collector and docs only; the website is unchanged. The new interval applies on the Mac Mini when the X monitor restarts.
 - **Why:** Seb asked to search X every 10 minutes instead of every 2 to cut spend. In its first 16 hours the monitor made about 300 searches an hour, counted at a cautious $0.003 each (about $0.90 an hour against its $30 daily cap), so a busy event day could have hit the cap and stopped it. At 10 minutes it makes about 1,600 searches a day instead of about 7,200: counted at about $5 a day, and the real twitterapi.io charge (mostly empty searches at $0.00015 each) falls to well under $1 a day.
 
