@@ -1,18 +1,18 @@
 # validator.com logo
 
-The "Powered by" block in the sidebar shows the validator.com logo: the three-block mark with "validator.com" beside it. The page uses the inline component `src/components/validator-logo.tsx`; the two SVGs here are the same logo as standalone files.
+The "Powered by" block in the sidebar shows the official validator.com logo (three blocks and the "validator.com" wordmark) with the tagline "Safe and Trusted Staking" under it. The page uses the inline component `src/components/validator-logo.tsx`; the two SVGs here are the same artwork as standalone files.
 
 | File | Use |
 | --- | --- |
-| `validator-lockup-light.svg` | Light backgrounds: navy, blue and orange blocks, black wordmark |
-| `validator-lockup-dark.svg` | Dark backgrounds: white, blue and orange blocks, white wordmark |
+| `validator-lockup-light.svg` | Light backgrounds: navy, blue and orange blocks, black wordmark (Figma node 2001:2104) |
+| `validator-lockup-dark.svg` | Dark backgrounds: white, blue and orange blocks, white wordmark (Figma node 2001:2140) |
 
-## Where each part comes from
+## Source
 
-- **Blocks:** the geometry of the official mark exported from the "Brand Kits - Validator" Figma file (canvas "Current", node 2116:2), as kept in `SebMontyDepartment/Seb_Validator.com_Infographic_Generator` at `data/brands/validator/assets/validator-logo.svg`: three 84.9 px squares, 7.62 px corner radius, 16.12 px apart.
-- **Colours:** the tricolour lockup on the Assets page ("Logos" group) of the same Figma file, which is the version Seb picked on 16 November 2026: navy `#1A1A40`, blue `#3395EB`, orange `#ED5228`. On dark backgrounds the kit's own dark lockup turns the navy block and the wordmark white.
-- **Wordmark:** "validator.com" in Degular Bold, the typeface validator.com uses for it. It was converted to outlines (paths) so no font file ships. Size and position follow the Figma lockup: the "l" is 0.88 of a block tall, the baseline sits 0.08 of a block above the bottom of the blocks, the word starts 0.61 of a block after the last block and is 7.7 blocks wide (Degular Bold at its normal spacing).
+- **Logo:** the tricolour lockups in the "Brand Kits - Validator" Figma file (file key `oqLqWZh1dYMmWJPSNt7YWm`), Assets page, "Logos New" group: light node 2001:2104, dark node 2001:2140. Exported as SVG through the Figma connector on 16 November 2026. In Figma the wordmark is live text; the SVG export outlines it, so the paths are Figma's own letterforms. Only the surrounding artboard was cropped away (viewBox `235.14 247.154 2034 171.635`); the paths and colours are unedited: navy `#1A1A40`, blue `#3295EB`, orange `#EC5228`, wordmark black, and on dark the first block and the wordmark white.
+- **Component:** the same paths as the light export. The first block and the wordmark carry the classes `vc-block-first` and `vc-wordmark`, and `src/style.css` colours them for light mode and for `.dark`, which reproduces the two exports.
+- **Tagline:** "Safe and Trusted Staking", the line set under validator.com in the same Figma file ("Current" page, for example text node 2249:198). On the page it is HTML text: 11.5 px, bold, in the page's foreground colour.
 
-The live validator.com header draws the blocks with slightly different colours (CSS `oklch`, a lighter cyan). The Figma lockup above is the reference used here.
+Seb approved this block (label, logo at the full sidebar width, tagline) in a local preview on 16 November 2026.
 
-Never redraw, recolour or crop the blocks. To change the logo, export it from the Figma file and replace the component and these files together.
+Never redraw, recolour or crop the artwork. To change the logo, export it from the Figma file again and replace the component and these files together.

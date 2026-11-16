@@ -54,18 +54,19 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
-### Breakpoint: the real validator.com logo in "Powered by"
+### Breakpoint: the official validator.com logo in "Powered by"
 
 - **Date:** 16 November 2026
 - **Pull request:** [#28](https://github.com/cryptoclassdev/sebmontydotlink/pull/28), branch `fix/validator-logo`.
-- **Status:** Ready for review. Breakpoint page only (`/breakpoint`).
-- **Why:** The sidebar's "Powered by" block set "validator.com" as plain bold text, which is not the validator.com logo. Seb asked for the official logo: the three blocks (navy, blue, orange) with the "validator.com" wordmark.
+- **Status:** Ready for review. Breakpoint page only (`/breakpoint`). Seb approved the block in a local preview.
+- **Why:** The sidebar's "Powered by" block set "validator.com" as plain bold text, which is not the validator.com logo. Seb asked for the official lockup (three blocks and the wordmark) and validator.com's own tagline.
 
 #### What changed
-1. The text wordmark is replaced by the validator.com logo: the official three-block mark from the "Brand Kits - Validator" Figma file, in the tricolour lockup's colours, with "validator.com" in Degular Bold converted to outlines. In dark mode it switches to the kit's dark version (white first block, white wordmark).
-2. The logo spans the sidebar's width (about 169 x 14.5 px on a full-width window, 140 x 12 px at the narrowest sidebar), so it stays crisp. The small arrow after it is gone to make room; the whole logo is still the link to validator.com, labelled "opens in a new tab" for screen readers. The "POWERED BY" label and the tagline stay.
-3. The sidebar now scrolls when the window is shorter than its contents. Before, it was fixed with no scroll, so on short windows the bottom of the sidebar, including this block, was cut off.
-4. Where each part comes from, and the light and dark SVG files, are in `breakpoint/assets/brand/`.
+1. **Logo:** the official tricolour lockup exported as SVG from the "Brand Kits - Validator" Figma file (Assets page, "Logos New": light node 2001:2104, dark node 2001:2140), with Figma's own outlined wordmark, cropped to the logo and otherwise unedited. Colours: navy `#1A1A40`, blue `#3295EB`, orange `#EC5228`. In dark mode it uses the kit's dark version (white first block, white wordmark).
+2. **Size:** the logo spans the sidebar's width: about 169 x 14 px on a full-width window, 140 x 12 px at the narrowest sidebar. The small arrow after it is gone; the whole logo is the link to validator.com, labelled "opens in a new tab" for screen readers.
+3. **Tagline:** "Safe and Trusted Staking" (from the same Figma file) sits under the logo in bold, replacing "Independent coverage. Connected to the source." The "POWERED BY" label stays.
+4. **Sidebar scroll:** the sidebar now scrolls when the window is shorter than its contents. Before, it was fixed with no scroll, so on short windows the bottom of the sidebar, including this block, was cut off.
+5. Sources and the standalone light and dark SVGs are in `breakpoint/assets/brand/`.
 
 #### Files touched
 - `breakpoint/src/components/validator-logo.tsx` (new), `breakpoint/src/main.tsx`, `breakpoint/src/style.css`
@@ -74,14 +75,15 @@ Newest first. One entry per pull request.
 - `README.md`
 
 #### How to check it
-On the Vercel preview, open `/breakpoint` on a desktop-width window and look at the bottom of the left sidebar: "POWERED BY", then the three blocks and "validator.com", then the tagline. Switch to dark mode with the moon button: the first block and the wordmark turn white. Clicking the logo opens validator.com in a new tab. Make the window short (under about 850 px tall): the sidebar scrolls and the block is reachable at its bottom.
+On the Vercel preview, open `/breakpoint` on a desktop-width window and look at the bottom of the left sidebar: "POWERED BY", the validator.com logo, then "Safe and Trusted Staking". Switch to dark mode with the moon button: the first block and the wordmark turn white. Clicking the logo opens validator.com in a new tab. Make the window short (under about 850 px tall): the sidebar scrolls and the block is reachable at its bottom. On a phone the sidebar is hidden, as before.
 
 #### Checks run
-- `npm run typecheck` and `npm test` in `breakpoint/` (82 Python tests, 58 Node tests, 1 skipped).
-- Checked in a browser in light and dark mode at 1280, 1100, 900 and 800 px wide and at short heights: the logo fits each sidebar width, is never cut off, and stays sharp when magnified.
+- `npm run typecheck` and `npm test` in `breakpoint/`.
+- In a browser, light and dark, at 1280, 1100, 900 and 800 px wide, at short heights and at phone width: the logo fits each sidebar width and is never cut off. Side by side with the Figma export at 1x and 2x it matches. At the narrowest sidebar (175 px, windows 700 to 960 px wide) the tagline wraps to two lines.
 
 #### Risks
-- The live validator.com header uses a lighter cyan for the middle block than the Figma lockup. This uses the Figma colours, which match the reference Seb gave.
+- The live validator.com header draws its blocks in slightly different colours (a lighter cyan and a more purple navy, in CSS). This uses the Figma brand kit's colours, as Seb approved.
+- PR #29 changes the same import lines in `breakpoint/src/main.tsx`, this change log and the built files in `public/breakpoint/`; whichever merges second needs a rebase and a rebuild (`npm run build` in `breakpoint/`).
 
 #### Roll back
 Revert this PR.
