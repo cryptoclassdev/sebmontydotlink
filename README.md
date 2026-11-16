@@ -54,7 +54,7 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
-### Event-day fixes: a rejected update no longer holds up the rest; the desk accepts any YouTube link
+### Event-day fixes: a rejected update no longer holds up the rest; the desk accepts any YouTube link; LP Army job
 
 - **Date:** 16 November 2026
 - **Pull request:** PR_LINK, branch `fix/collector-outbox-rejects`.
@@ -68,9 +68,10 @@ Newest first. One entry per pull request.
 4. **X monitor status:** a problem sending to the site no longer marks the X check as failed; the main loop retries and reports it.
 5. **Desk, Broadcast connections:** any YouTube link (`watch?v=`, `/live/`, `youtu.be/`, `/shorts/`, the mobile site) is stored in its `/embed/` form. On 16 November the LP Army `/live/` link Seb pasted was refused, with the error shown at the top of the desk, out of view.
 6. **`live.sh`:** `stop` waits until launchd has removed the job, and `start` retries for a few seconds, because `stop x && start x` started nothing on 16 November (launchd was still removing the old job). `start` alone already restarts a running job. Not yet copied to the Mac Mini; to be checked there after the event.
+7. **LP Army (optional third job):** `collector/config.breakpoint-lparmy.json` and `bash scripts/mac/live.sh start lparmy` transcribe the LP Army stream (Meteora) from its desk link. It is not in the published schedule, so it runs one fixed session per day (`lparmy-day1`; change `sessionId` to `lparmy-day2` on Tuesday, which also sends day 1's recap to the desk). Announcements publish as Provisional; recaps go to the desk as drafts. Budget $8 a day. Copied to the Mac Mini on 16 November; started only if Seb says so.
 
 #### Files touched
-- `breakpoint/collector/collect.py`, `breakpoint/collector/xwatch.py`, `breakpoint/server/core.mjs`, `breakpoint/scripts/mac/live.sh`
+- `breakpoint/collector/collect.py`, `breakpoint/collector/xwatch.py`, `breakpoint/collector/config.breakpoint-lparmy.json` (new), `breakpoint/server/core.mjs`, `breakpoint/scripts/mac/live.sh`
 - `breakpoint/tests/test_collector.py`, `breakpoint/tests/test_xwatch.py`, `breakpoint/tests/api.test.mjs`
 - `breakpoint/README.md` (troubleshooting row, desk links, restart), `README.md`
 

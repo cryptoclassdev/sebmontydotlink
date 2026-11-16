@@ -11,6 +11,7 @@
 #
 # stages: collector/config.breakpoint-stages.json, state .local/stages
 # x:      collector/config.breakpoint-x.json,      state .local/collector
+# lparmy: collector/config.breakpoint-lparmy.json, state .local/lparmy (LP Army stream: one fixed session per day, announcements only)
 set -u
 BP="$(cd "$(dirname "$0")/../.." && pwd)"
 PY="$BP/.venv/bin/python"
@@ -19,7 +20,8 @@ job() {
   case "$1" in
     stages) LABEL=link.sebmonty.breakpoint-stages; CONFIG=collector/config.breakpoint-stages.json; STATE=.local/stages ;;
     x)      LABEL=link.sebmonty.breakpoint-x;      CONFIG=collector/config.breakpoint-x.json;      STATE=.local/collector ;;
-    *) echo "Name a job: stages or x"; exit 1 ;;
+    lparmy) LABEL=link.sebmonty.breakpoint-lparmy; CONFIG=collector/config.breakpoint-lparmy.json; STATE=.local/lparmy ;;
+    *) echo "Name a job: stages, x or lparmy"; exit 1 ;;
   esac
   PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
 }
