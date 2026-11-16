@@ -64,7 +64,7 @@ Newest first. One entry per pull request.
 #### What changed
 1. **Out-of-order talks:** an introduction for a talk listed earlier than the current one makes the collector follow that talk for its length plus 3 minutes, leaving the delay unchanged; the next forward introduction ends that and shifts the delay as before. If the talk was already recapped under the wrong slot, it is reopened: its new recap covers only what came after the introduction and is sent as an update that replaces the old recap (unless an editor has saved it).
 2. **Organisation introductions:** "introduce to the stage <name> from MoneyGram" counts for the MoneyGram talk when that organisation (5+ letters, not a generic Solana name) belongs to only one talk in the window.
-3. **X triage repair:** a list sent as text is parsed leniently (raw line breaks inside strings, text around the list, or an object holding it) before the check gives up.
+3. **X triage repair** (made directly on the Mac Mini at 10:53 UTC in another session; this PR brings it into the repo unchanged): a list sent as text is parsed leniently (raw line breaks inside strings, text around the list, a list without its brackets, an object holding it, or a double-encoded string), a malformed answer is asked again once in the same check (`xTriageRetries`, default 1), and a failure note gives the text length and error position, never the content.
 
 #### Files touched
 - `breakpoint/collector/live.py`, `breakpoint/collector/collect.py`, `breakpoint/collector/xwatch.py`
@@ -75,7 +75,7 @@ Newest first. One entry per pull request.
 On the Mac Mini: `bash scripts/mac/live.sh logs stages` shows "out of schedule order; following it until HH:MM" when it happens; X checks stop logging "Triage response has no items list".
 
 #### Checks run
-- 79 Python tests and 55 Node tests. New tests: organisation introductions (and generic names ignored); an earlier-listed talk is followed without changing the delay, its recap reopened, then a forward introduction resumes the schedule with the new delay; a followed talk ends after its length plus 3 minutes; triage lists with raw line breaks, surrounding text or a wrapping object are recovered.
+- 79 Python tests and 55 Node tests. New tests: organisation introductions (and generic names ignored); an earlier-listed talk is followed without changing the delay, its recap reopened, then a forward introduction resumes the schedule with the new delay; a followed talk ends after its length plus 3 minutes; the triage text forms are recovered and a malformed answer is retried once (tests from the Mac Mini fix).
 
 #### Risks
 - A cue followed by the name of an earlier talk's organisation, said in passing, could make the collector follow that talk for one slot; the next introduction or the slot's end ends it.
