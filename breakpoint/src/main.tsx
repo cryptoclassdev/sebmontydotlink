@@ -161,6 +161,25 @@ function NewsMedia({e,ctx,onOpen,onBroken}:{e:Item;ctx:Ctx;onOpen:()=>void;onBro
  const img=pictureOf(e)!;const label=img.kind==='x'?(img.credit||'From X'):`Livestream${img.at?' · '+timeLabel(img.at,ctx.tz):''}`;
  return <button className="news-media" onClick={onOpen} aria-label={`Open: ${e.title}`}><img src={mediaSrc(img)} alt={pictureAlt(e,ctx.tz)} width={640} height={360} loading="lazy" decoding="async" onError={onBroken}/><span className="news-media-tag">{img.kind==='stream'&&<span className="news-media-dot" aria-hidden="true"/>}{label}</span></button>;
 }
+// Every card carries a visual. Without a stored picture, a cover drawn from what is already verified: the project and
+// company logos the note concerns, else the faces of the people it names (or the X account that posted it), else the
+// stage name. Nothing is invented: the same trust rules as the card's people apply (faces only for named speakers).
+function NewsCover({e,ctx,people,author,label,onOpen}:{e:Item;ctx:Ctx;people:Item[];author:{name:string;handle:string}|null;label:string;onOpen:()=>void}){
+ const logos:{src:string;name:string}[]=[];const add=(src:string|undefined,name:string)=>{if(src&&!logos.some(l=>l.src===src)&&logos.length<3)logos.push({src,name});};
+ for(const id of e.projectIds||[])if(LOGOS[id])add(`${BASE}/logos/${id}.webp`,ctx.data.projects.find(p=>p.id===id)?.name||id);
+ for(const p of people){const org=p.project??p.organization;add(avatarSrc(orgOf(ctx,org)?.avatar),org);}
+ const faces=author?[{name:author.name,file:xAvatarOf(ctx,author.handle)}]:people.map(p=>({name:p.name,file:profileOf(ctx,p.name)?.avatar})).filter(f=>f.file).slice(0,3);
+ const variant=author&&faces[0]?.file?'faces':logos.length?'logos':faces.length?'faces':'type';
+ const place=e.stage||(fromX(e)?'X':'Breakpoint 2026');
+ return <button className={cn('news-media news-cover',`cover-${variant}`,e.kind==='summary'&&'cover-summary')} onClick={onOpen} aria-label={`Open: ${e.title}`}>
+  <span className="cover-art" aria-hidden="true">
+   {variant==='logos'&&logos.map(l=><span className="cover-tile" key={l.src}><img src={l.src} alt="" width={96} height={96} loading="lazy" decoding="async"/></span>)}
+   {variant==='faces'&&faces.map(f=><span className="cover-face" key={f.name}><img src={avatarSrc(f.file)} alt="" width={96} height={96} loading="lazy" decoding="async"/></span>)}
+   {variant==='type'&&<span className="cover-word">{place}</span>}
+  </span>
+  <span className="news-media-tag">{label}</span>
+ </button>;
+}
 function NewsCard({item:e,ctx,featured=false}:{item:Item;ctx:Ctx;featured?:boolean}){
  const open=()=>ctx.detail({...e,detailType:'entry'});const [broken,setBroken]=useState(false);const picture=!broken&&!!pictureOf(e);
  const kind=e.kind==='briefing'?(e.sessionId?'Live notes':'Pre-event briefing'):e.kind==='social'?'From X':e.kind==='summary'?'Session summary':fromX(e)?'Announcement · via X':'Announcement';
@@ -170,9 +189,9 @@ function NewsCard({item:e,ctx,featured=false}:{item:Item;ctx:Ctx;featured?:boole
  const trusted=named.size>0||e.kind==='summary';const author=!list.length&&fromX(e)?xAuthor(e):null;const shown=trusted?list.slice(0,3):[];
  const when=e.kind==='briefing'&&!e.sessionId?dateLabel(e.occurredAt,ctx.tz):timeLabel(e.occurredAt,ctx.tz);
  const live=e.kind==='briefing'&&!!e.sessionId;
- return <article className={cn('news-card rich',featured&&'featured',e.kind==='summary'&&'summary',e.status==='withdrawn'&&'withdrawn',(shown.length>0||!!author)&&'has-people',picture&&'has-media')}><div className="news-grid">
+ return <article className={cn('news-card rich',featured&&'featured',e.kind==='summary'&&'summary',e.status==='withdrawn'&&'withdrawn',(shown.length>0||!!author)&&'has-people','has-media')}><div className="news-grid">
   <div className="news-top"><span className={cn('news-kind',live&&'is-live')}>{live&&<span className="news-kind-dot" aria-hidden="true"/>}{kind}</span><span className="news-meta">{stage&&<>{stage}<span aria-hidden="true"> · </span></>}<time dateTime={e.occurredAt}>{when}</time></span>{CORRECTION.includes(e.status)?<Status value={e.status}/>:<button className="details-link" onClick={open}>Full details<ArrowUpRight size={13}/></button>}</div>
-  {picture&&<NewsMedia e={e} ctx={ctx} onOpen={open} onBroken={()=>setBroken(true)}/>}
+  {picture?<NewsMedia e={e} ctx={ctx} onOpen={open} onBroken={()=>setBroken(true)}/>:<NewsCover e={e} ctx={ctx} people={shown} author={fromX(e)?xAuthor(e):null} label={fromX(e)?(xAuthor(e).handle?`@${xAuthor(e).handle} on X`:'From X'):[stage,kind].filter(Boolean).join(' · ')} onOpen={open}/>}
   <button className="article-title" onClick={open}><h3>{e.title}</h3></button>
   {(shown.length>0||author)&&<div className="news-people"><span className="news-people-label">{author?'Posted by':e.kind==='summary'?'Speakers':'On stage'}</span>{shown.map(p=><Person key={p.name} ctx={ctx} person={p} mentioned={named.size?named.has(p.name):undefined}/>)}{shown.length>0&&list.length>shown.length&&<span className="news-more">+{list.length-shown.length} more on stage</span>}{author&&<div className="person person-md"><span className="person-face"><Face name={author.name} file={xAvatarOf(ctx,author.handle)}/></span><div className="person-text"><span className="person-name"><strong>{author.name}</strong>{author.handle&&<a className="person-handle" href={`https://x.com/${author.handle}`} target="_blank" rel="noopener noreferrer">@{author.handle}</a>}</span><span className="person-role">Posted on X</span></div></div>}</div>}
   <p className="news-body">{e.body.length>230?e.body.slice(0,230).replace(/\s+\S*$/,'')+'…':e.body}</p>
