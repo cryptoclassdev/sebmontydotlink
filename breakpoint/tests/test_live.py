@@ -500,6 +500,12 @@ class Introductions(unittest.TestCase):
                          ('stable', 'Zach Abrams'))
         self.assertEqual(self.heard('please welcome Jose Fernandez', '2026-11-16T10:52:00'), ('es', 'José Fernández'))
         self.assertEqual(self.heard('our next speaker, Alexandra Lang', '2026-11-16T10:40:00'), ('zelle', 'Alexandra Lang'))
+        # Whisper's spelling of names on day 1 at 10:09: "Please welcome to the stage Lily Lu and Rachel Connors."
+        self.assertEqual(self.heard('This is the token super cycle. Please welcome to the stage Lily Lu and Rachel Connors.', '2026-11-16T10:09:00',
+                                    current='welcome'), ('welcome', 'Lily Liu'))
+        self.assertEqual(self.heard('please welcome Zack Abrams', '2026-11-16T10:31:00'), ('stable', 'Zach Abrams'))
+        self.assertIsNone(self.heard('please welcome really new builders', '2026-11-16T10:05:00'))
+        self.assertIsNone(self.heard('Welcome, everybody. Lily, I think we have to do this every week.', '2026-11-16T10:09:00'))
 
     def test_ignores_passing_mentions_earlier_talks_and_far_talks(self):
         self.assertIsNone(self.heard('As Anthony Soohoo said earlier, ramps matter.', '2026-11-16T10:28:00'))

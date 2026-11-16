@@ -10,7 +10,7 @@ Used by collect.py for the Breakpoint stage streams:
 Rules: secrets and resolved stream URLs (they carry signed parameters) are never logged.
 Model output and transcripts are untrusted data.
 """
-import array, csv, datetime as dt, json, math, os, re, shutil, string, subprocess, sys, threading, time, unicodedata, urllib.error, urllib.parse, urllib.request, wave
+import array, csv, datetime as dt, difflib, json, math, os, re, shutil, string, subprocess, sys, threading, time, unicodedata, urllib.error, urllib.parse, urllib.request, wave
 from zoneinfo import ZoneInfo
 
 LONDON = ZoneInfo('Europe/London')
@@ -190,6 +190,7 @@ def heard_session(sessions, stage_name, text, now, offset_minutes=0, current_id=
     cues = [m.end() for m in INTRO_CUE.finditer(t)]
     if not cues:
         return None
+    words = [(m.start(), m.group()) for m in re.finditer(r'\S+', t)]
     current_start = None
     for s in sessions or []:
         if isinstance(s, dict) and s.get('id') == current_id:
@@ -210,19 +211,36 @@ def heard_session(sessions, stage_name, text, now, offset_minutes=0, current_id=
         if current_start and start < current_start:
             continue
         for name in session_info(s)['speakers']:
-            parts = plain(name).split()
-            if not parts:
-                continue
-            patterns = [' '.join(parts)] + ([parts[-1]] if len(parts) > 1 and len(parts[-1]) >= 5 else [])
-            for pattern in patterns:
-                for m in re.finditer(r'\b' + re.escape(pattern) + r'\b', t):
-                    if any(0 <= m.start() - c <= cue_chars for c in cues) and (best is None or m.start() > best[0]):
-                        best = (m.start(), s, name)
+            for pos in name_positions(name, t, words):
+                if any(0 <= pos - c <= cue_chars for c in cues) and (best is None or pos > best[0]):
+                    best = (pos, s, name)
     if not best:
         return None
     _, s, name = best
     start, end = session_window(s)
     return session_info(s, start, end), name
+
+
+def name_positions(name, t, words, threshold=0.8):
+    """Character positions in plain text t where a speaker's name is said. Whisper often misspells names
+    ("Lily Lu" for Lily Liu, "Rachel Connors" for Rachel Conlan), so a run of words that sounds close enough counts:
+    a similarity of 0.8 or more overall, with the first name and the surname each close on their own
+    ("Lily, I think" is not Lily Liu). A surname of 5+ letters alone must match exactly."""
+    parts = plain(name).split()
+    if not parts:
+        return []
+    full = ' '.join(parts)
+    found = [m.start() for m in re.finditer(r'\b' + re.escape(full) + r'\b', t)]
+    if len(parts) > 1:
+        similar = lambda x, y: difflib.SequenceMatcher(None, x, y).ratio()
+        for i in range(len(words) - len(parts) + 1):
+            said = [w for _, w in words[i:i + len(parts)]]
+            if (similar(' '.join(said), full) >= threshold and similar(said[0], parts[0]) >= 0.75
+                    and similar(said[-1], parts[-1]) >= 0.6):
+                found.append(words[i][0])
+        if len(parts[-1]) >= 5:
+            found += [m.start() for m in re.finditer(r'\b' + re.escape(parts[-1]) + r'\b', t)]
+    return sorted(set(found))
 
 
 def following_speakers(sessions, stage_name, start, count=2):
