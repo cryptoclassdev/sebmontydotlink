@@ -12,6 +12,7 @@ This folder holds everything that belongs to the guide. It started as the "On So
 | API | `app/breakpoint/api/[...path]/route.ts` | Thin wrapper; the logic is in `breakpoint/server/`. |
 | Server logic | `breakpoint/server/api.mjs`, `core.mjs` | Validation, auth, revisions, ingest, public reads, calendar files. |
 | Side events | `breakpoint/server/luma.mjs` | Pulls the Luma calendar `BP-SideEvents` every 10 minutes. Falls back to `data/luma-snapshot.json`, then to the researched list in `data/seed.json`. |
+| Posts from X | `breakpoint/server/tweets.mjs`, `breakpoint/src/xpost.tsx` | Catch up draws each post the X monitor published like a Discord embed: author, avatar, text with links, photos, a video that plays in the card, link previews and quoted posts. Data comes from X's public embed endpoint (no key, no cost), fetched once per post on the server, kept in storage as `tweets/<id>.json` and attached to the entry as `embed` in `/live` and `/feed`. If X does not answer, the card shows the stored post text and the post is tried again 10 minutes later. |
 | Token prices | `breakpoint/server/prices.mjs` | Jupiter Price API v3 for projects with a verified `mintAddress` (and `mintSourceUrl`) in `seed.json`: KMNO, JUP, MET, JTO, SOL. Cached 30 s; on failure the last prices show for up to 10 minutes, marked stale, then none. Never estimated. |
 | Storage | `breakpoint/server/upstash.mjs` | Upstash Redis over REST. Optional: without it the public guide works and the editorial desk / live coverage stay off. |
 | Programme data | `breakpoint/data/seed.json` | Official agenda, speakers, projects, researched events, pre-event briefings. |
@@ -22,7 +23,7 @@ API routes (all under `/breakpoint/api`):
 
 - `GET /static`: programme, speakers, projects, side events. Cached 5 min at the CDN.
 - `GET /live`: newest 60 published entries, stream settings, session overrides, source health and token prices. Cached 15 s at the CDN, so polling visitors do not each hit storage or Jupiter.
-- `GET /feed?cursor=`: older published entries. `GET /bootstrap`: static + live combined (used by the collector).
+- `GET /feed?cursor=`: older published entries. In `/live` and `/feed`, entries whose source is a post on X carry an `embed` (see `server/tweets.mjs`). `GET /bootstrap`: static + live combined (used by the collector).
 - `GET /calendar?id=`: .ics for one event (hidden venues stay hidden).
 - `POST /ingest` (collector token), `GET /admin`, `POST /admin/entry|stream|session` (editor token). Never cached.
 
