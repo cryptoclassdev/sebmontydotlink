@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Collector: talks out of schedule order, organisation introductions, X triage repair
 
 - **Date:** 16 November 2026
-- **Pull request:** PR_LINK, branch `fix/xwatch-items-repair`.
+- **Pull request:** [#24](https://github.com/cryptoclassdev/sebmontydotlink/pull/24), branch `fix/xwatch-items-repair`.
 - **Status:** Ready for review. Collector, tests and docs only; on the Mac Mini after `bash scripts/mac/live.sh start stages` and `bash scripts/mac/live.sh start x`.
 - **Why:** On day 1 the Main Stage ran Open Standard (listed 10:30) before MoneyGram (listed 10:20), and MoneyGram's speaker was not the one listed. Detection only looked forward and only by speaker name, so the MoneyGram slot recapped Open Standard's talk and the next recap mixed both. Claude repaired those items by hand at 11:05 (two recaps rewritten, five items moved to the right talk, the Zelle recap cleaned). Separately, the X monitor's triage failed four times because Claude Haiku sent its list as text that was not valid JSON.
 
