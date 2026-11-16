@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Session summaries stand out and get their own list on Watch live
 
 - **Date:** 16 November 2026
-- **Pull request:** PR_LINK, branch `feat/session-summaries-panel`.
+- **Pull request:** [#21](https://github.com/cryptoclassdev/sebmontydotlink/pull/21), branch `feat/session-summaries-panel`.
 - **Status:** Ready for review. Page and API; goes live on merge.
 - **Why:** Seb asked for session summary cards to stand apart from the live notes, and for a list of all summaries on the right of the page for readers who only want the recaps, including after many talks have passed.
 
