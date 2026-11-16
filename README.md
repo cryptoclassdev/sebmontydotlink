@@ -132,6 +132,35 @@ On the Vercel preview at `/breakpoint`: Watch live shows each live note with the
 
 #### Roll back
 Revert this PR. The live feed and collector are unaffected either way.
+### Backpack's BP token on the Watchlist
+
+- **Date:** 16 November 2026
+- **Pull request:** [#31](https://github.com/cryptoclassdev/sebmontydotlink/pull/31), branch `feat/backpack-bp-token`.
+- **Status:** Ready for review. Data, one test and docs only; goes live on merge. Nothing to change on the Mac Mini.
+- **Why:** Seb pointed out that Backpack has a token, but its Watchlist card showed no ticker or price.
+
+#### What changed
+1. Backpack's entry in `breakpoint/data/seed.json` now carries the ticker `BP`, the mint address `BPxxfRCXkUVhig4HS1Lh7kZqV6SPJhzfEk4x6fVBjPCy`, the page it was verified on (`mintSourceUrl`) and a note. The existing price code picks up any project with a ticker and a verified mint, so the Backpack card now shows `$BP` with the USD price and 24h change, and Source health counts 6 tokens instead of 5.
+2. The mint comes from Backpack's own Learn page, "What Is BP? Backpack's Official Token Ticker and Contract Address Explained" (published 17 March 2026, updated 9 October 2026). Jupiter lists the same address as verified (name Backpack, symbol BP) and prices it. Third-party sites show other addresses for tokens named Backpack; they were not used.
+3. No page, style or collector code changed.
+
+#### Files touched
+- `breakpoint/data/seed.json`, `breakpoint/tests/prices.test.mjs`, `breakpoint/README.md`, `README.md`
+
+#### How to check it
+On the Vercel preview, open `/breakpoint#projects`: the Backpack card shows `$BP` and a price with its 24h change, like Kamino and Jupiter. `/breakpoint#watch`, Source health: "Jupiter prices for 6 tokens".
+
+#### Checks run
+- `npm test` in `breakpoint/` (the price test now expects Backpack among the priced projects).
+- Jupiter's Price API v3 returns a price for the mint (about $0.83 on 16 November 2026, about $2.8M liquidity).
+- Local preview with the production feed and this seed: the Backpack card showed `$BP $0.8258 +0.4% 24h`.
+
+#### Risks
+- If Jupiter stops pricing BP, the card shows no price (never an estimate); nothing else changes.
+- Token prices are context, not a signal; the Watchlist already says so.
+
+#### Roll back
+Revert this PR. The Backpack card returns to having no ticker or price.
 ### Breakpoint: the official validator.com logo in "Powered by"
 
 - **Date:** 16 November 2026

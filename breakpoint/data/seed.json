@@ -79,11 +79,15 @@
       "id": "backpack",
       "name": "Backpack",
       "description": "Tokenized assets and trading infrastructure.",
-      "symbol": null,
+      "symbol": "BP",
       "website": "https://backpack.exchange/",
       "xHandle": null,
       "sourceUrl": "https://solana.com/breakpoint/speakers",
-      "mintAddress": null
+      "mintAddress": "BPxxfRCXkUVhig4HS1Lh7kZqV6SPJhzfEk4x6fVBjPCy",
+      "mintSourceUrl": "https://learn.backpack.exchange/articles/what-is-bp-backpack-token",
+      "notes": [
+        "Token ticker and mint address verified on Backpack's own Learn page (published 17 Mar 2026, updated 9 Oct 2026; checked 16 Nov 2026). Jupiter lists the same mint as verified. Third-party sites show other addresses for tokens named Backpack; do not use them."
+      ]
     },
     {
       "id": "helius",
