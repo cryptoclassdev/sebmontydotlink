@@ -69,7 +69,7 @@ export function createApi(seed,{basePath='',loadEvents,loadPrices}={}){
   if(loadEvents){try{const r=await loadEvents();if(r&&Array.isArray(r.events)&&r.events.length)return r;error='No events returned';}catch(e){error=String(e?.message??e).slice(0,200);}}
   return {events:seed.events,source:'seed',checkedAt:seed.updatedAt,error};
  }
- async function staticData(){const e=await events();return {updatedAt:seed.updatedAt,projects:seed.projects,speakers:seed.speakers,sessions:seed.sessions,breaks:seed.breaks??[],events:e.events,eventsSource:e.source,eventsCheckedAt:e.checkedAt};}
+ async function staticData(){const e=await events();return {updatedAt:seed.updatedAt,projects:seed.projects,speakers:seed.speakers,organizations:seed.organizations??{},xAvatars:seed.xAvatars??[],sessions:seed.sessions,breaks:seed.breaks??[],events:e.events,eventsSource:e.source,eventsCheckedAt:e.checkedAt};}
  async function prices(){if(!loadPrices)return null;try{return await loadPrices();}catch{return null;}}
  async function liveData(bucket){
   let entries=[],nextCursor=null,heartbeats=[],streams=[],sessions=[],recaps=[],xs=[],storage='not-configured';

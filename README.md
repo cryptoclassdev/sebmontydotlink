@@ -54,6 +54,51 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Breakpoint: speakers' faces, X handles and company logos; richer coverage cards
+
+- **Date:** 16 November 2026
+- **Pull request:** PR_LINK, branch `claude/breakpoint-card-visuals-ac5833`.
+- **Status:** Ready for review. Page, data and scripts only; the collector and X monitor are unchanged.
+- **Why:** Every speaker showed as grey initials ("MW") with no X handle or company logo, and the live-note cards were a label, a headline and grey text with most of the card empty.
+
+#### What changed
+1. **Profile pictures, stored once.** `scripts/fetch-x-avatars.py` reads each verified account's picture through twitterapi.io, resizes it to 96 x 96 WebP and saves it in `breakpoint/assets/avatars/` (229 files, 1 MB; sources and dates in `assets/avatars/SOURCES.md`). `scripts/build.mjs` copies them to `/breakpoint/avatars/`. The page never loads X image URLs.
+2. **Linking.** `scripts/link-x-accounts.py` joins `data/x-accounts.json` to `seed.json`: speakers by name, organisations by normalised name or a short alias list with reasons (Marinade Labs, Pyth, Akash, Reflect Money, Fiserv Digital Asset Services, WisdomTree Onchain, Solana / Solana Labs, plus Ramp and Fidelity Digital Asset Management, which `x-accounts.json` already ties to those talks). It writes `xHandle`, `xUrl` and `avatar` on speakers, an `organizations` map and an `xAvatars` list; `/api/static` passes them on.
+3. **New accounts, picture only.** 20 organisations and 6 speakers that had no account were checked on 16 Nov (the organisation's own site links the account, or a verified profile's name and website match) and added to `data/x-accounts-pictures.json` with the reason for each. The X monitor does not read that file, so it watches the same accounts as before. @MayorofLondon was left out because its picture is the Mayor himself, not the speaker; Bloomberg News, R3 and Invesco were not confirmed.
+4. **Faces everywhere a speaker appears:** session popup, live-note detail, Speakers grid (with the company logo pinned to the photo and the handle in the footer), speaker popup, and "Straight from X" avatars. No verified account means initials, never a guess.
+5. **Coverage cards (`NewsCard`):** a kind pill (green dot for live notes), stage and time on top, a balanced headline, and an "On stage" column with each speaker's photo, linked @handle, role and company logo; the person the note names comes first. Narrow cards (two-column lists, dialogs, phones) stack the people under the headline. Project chips show the project logo where there is one. Excerpts end on a word. A note shows the session's speakers only when it names one of them (or it is the talk's summary), so a note filed under the wrong talk never shows the wrong faces.
+6. Kobra `Avatar` (`src/components/ui/avatar.tsx`, Base UI) for the photos.
+
+#### Coverage
+- Speakers: 116 of 149 have a verified X handle, 114 a picture (@ruh_gw uses X's default picture; @mrstoad returns "user not found"). Still initials: Alexandra Lang, Annabel Spring, Arizona Muse, Carlos Matilla, Cate Clancy, Christian Rau, Dan Phillips, David Vatchev, Fig Gowen, George Ruhana, Harriet Browning, Hester Serafini, Howard Dawber OBE, Igor Voloshin, Irene Tse, Jasmine Jia, Jerome Oei, John Hallahan, John Timoney, Kathrin Hamilton, Kathy Kriskey, Lucas Harris, Michael Lewis, Nikou Asgari, PJ Bain, Patrick Corker, Rowland Berry, Scott Lucas, Sir Nicholas Lyons, Sol Campbell, Stephen Gardner, Stephen Whyman, Steven Wager, Sue Gray, Val Wotton.
+- Organisations (as written on the agenda): 104 of 128 have an account, 102 a logo. No logo: Allfunds, Baroness Gray of Tottenham, Bitwise, Bloomberg News, Cyber Capital, Energy Substantiation, FairClub, Fasanara Capital, Forma, Formation Securities, Former Premier League Player / Golbal360 and Sol Media, Frontier/1, Graticule Asset Management Asia (GAMA), IO Builders, Invesco, Mayor of London, Multicoin, New York Life Investment Management, Open Standard, PEAK6 / Clocked., Powerus, R3, Soilonic, Star, StrataMedia, The Rest Is Classified.
+- @BitwiseInvest and @multicoincap return "user not found" on twitterapi.io today; the X monitor follows both, so it gets nothing from them. Worth checking their handles separately.
+
+#### Screenshot in the card (assessed, not built)
+Feasible, but not with the collector as it is. It asks yt-dlp for an audio-only format and records audio chunks, so it never sees video. It would need to: resolve a low video format (360p) for the same stream; when a note is made, grab one frame with ffmpeg at the note's position (live YouTube keeps a few hours of DVR, so seeking back the 1 to 2 minutes the note takes is possible); resize to about 640 px WebP (around 30 KB); and store it somewhere that serves images. Upstash holds JSON only, so that means Vercel Blob or similar plus a new ingest field and a desk control to drop a bad frame. Expect wide shots or slides as often as the speaker, and the stream belongs to the Solana Foundation, so a frame per note is a rights question as much as an engineering one. A day of work plus a storage decision; too much to add during the conference.
+
+#### Files touched
+- `breakpoint/src/main.tsx`, `breakpoint/src/style.css`, `breakpoint/src/components/ui/avatar.tsx`
+- `breakpoint/scripts/fetch-x-avatars.py`, `breakpoint/scripts/link-x-accounts.py` (new), `breakpoint/scripts/build.mjs`, `breakpoint/scripts/import-agenda.py` (usage line)
+- `breakpoint/server/api.mjs` (`/api/static` adds `organizations` and `xAvatars`)
+- `breakpoint/data/seed.json`, `breakpoint/data/x-accounts-pictures.json` (new), `breakpoint/assets/avatars/` (new)
+- `public/breakpoint/` (built page and avatars), `README.md`
+
+#### How to check it
+On the Vercel preview at `/breakpoint`: Watch live shows each live note with the speaker's photo, @handle and company logo beside the headline (Kamino notes show Michael Weisz and the Kamino logo). Schedule, then any Kamino session, shows the speaker list with photos. Schedule, Speakers shows the grid with faces. Overview, Straight from X shows account pictures. Switch the theme and check on a phone width.
+
+#### Checks run
+- `tsc --noEmit`, `npm run build`, 59 Node tests and 82 Python tests pass.
+- Screenshots of the session popup, a live-note card, the Speakers grid, X posts and a phone width in light and dark from a local copy (this branch's page and seed, live entries read from production).
+
+#### Risks
+- A profile picture can change after it was taken; rerun `fetch-x-avatars.py --refresh <handle>`.
+- Some speakers' verified "account" on the official speakers page is their company's account (Andrew Fox shows the Powerus logo); that is what the official page links.
+- `import-agenda.py` keeps the new speaker fields, but run `link-x-accounts.py` after any re-import.
+
+#### Roll back
+Revert this PR. The live feed and collector are unaffected either way.
+
 ### X reposts make one card; an offline stream is not shown as an error
 
 - **Date:** 16 November 2026

@@ -1,0 +1,214 @@
+{
+  "updatedAt": "2026-11-16",
+  "note": "Accounts used only for profile pictures and handles on the guide; the X monitor does not watch these (it reads data/x-accounts.json). Each was confirmed on 16 Nov 2026 from the organisation's or person's own site linking the account, or from a verified X profile whose name and linked website (or, for people, bio naming the agenda organisation) match. `how` says which. @MayorofLondon was left out: its picture is the Mayor himself, not the speaker (the Deputy Mayor). Bloomberg News, R3 and Invesco were not confirmed.",
+  "accounts": [
+    {
+      "handle": "Barclays",
+      "name": "Barclays",
+      "kind": "company",
+      "org": "Barclays",
+      "source": "https://x.com/Barclays",
+      "how": "Business-verified account, website home.barclays"
+    },
+    {
+      "handle": "Aon_plc",
+      "name": "Aon",
+      "kind": "company",
+      "org": "Aon",
+      "source": "https://www.aon.com",
+      "how": "Linked in footer of aon.com"
+    },
+    {
+      "handle": "BaillieGifford",
+      "name": "Baillie Gifford",
+      "kind": "company",
+      "org": "Baillie Gifford",
+      "source": "https://www.bailliegifford.com",
+      "how": "Linked on bailliegifford.com"
+    },
+    {
+      "handle": "FenwickWest",
+      "name": "Fenwick",
+      "kind": "company",
+      "org": "Fenwick",
+      "source": "https://www.fenwick.com",
+      "how": "Linked in footer of fenwick.com (Follow Us)"
+    },
+    {
+      "handle": "FT",
+      "name": "Financial Times",
+      "kind": "company",
+      "org": "Financial Times",
+      "source": "https://x.com/FT",
+      "how": "Blue-verified, name Financial Times, website ft.com"
+    },
+    {
+      "handle": "UKHouseofLords",
+      "name": "House of Lords",
+      "kind": "company",
+      "org": "House of Lords",
+      "source": "https://x.com/UKHouseofLords",
+      "how": "Government-verified, website parliament.uk"
+    },
+    {
+      "handle": "ICE_Markets",
+      "name": "ICE",
+      "kind": "company",
+      "org": "ICE Clear Europe",
+      "source": "https://www.ice.com/clear-europe",
+      "how": "Linked on ICE Clear Europe page of ice.com (parent ICE's main account)"
+    },
+    {
+      "handle": "InvestTurkey",
+      "name": "Invest in Türkiye",
+      "kind": "company",
+      "org": "Invest in Türkiye",
+      "source": "https://www.invest.gov.tr",
+      "how": "Linked on invest.gov.tr; also government-verified with that website"
+    },
+    {
+      "handle": "jpmorgan",
+      "name": "J.P. Morgan",
+      "kind": "company",
+      "org": "JPMorgan Chase",
+      "source": "https://www.jpmorgan.com/global",
+      "how": "Linked on jpmorgan.com; business-verified (jpmorganchase.com itself links no X)"
+    },
+    {
+      "handle": "mitsuiandco",
+      "name": "Mitsui & Co.",
+      "kind": "company",
+      "org": "Mitsui & Co.",
+      "source": "https://www.mitsui.com/jp/en/",
+      "how": "Linked on mitsui.com; business-verified, website mitsui.com"
+    },
+    {
+      "handle": "WislaKrakowSA",
+      "name": "Wisła Kraków",
+      "kind": "company",
+      "org": "Owner, Wisla Krakow Football Club (Poland)",
+      "source": "https://x.com/WislaKrakowSA",
+      "how": "Blue-verified, name Wisła Kraków, website wislakrakow.com"
+    },
+    {
+      "handle": "Payward",
+      "name": "Payward",
+      "kind": "company",
+      "org": "Payward",
+      "source": "https://x.com/Payward",
+      "how": "Business-verified, website payward.com (Kraken parent)"
+    },
+    {
+      "handle": "RealVision",
+      "name": "Real Vision",
+      "kind": "company",
+      "org": "Real Vision / EXPAAM / GMI",
+      "source": "https://x.com/RealVision",
+      "how": "Business-verified, website realvision.com"
+    },
+    {
+      "handle": "Revolut",
+      "name": "Revolut",
+      "kind": "company",
+      "org": "Revolut",
+      "source": "https://x.com/Revolut",
+      "how": "Business-verified, website revolut.com"
+    },
+    {
+      "handle": "RoboStrategy",
+      "name": "RoboStrategy",
+      "kind": "company",
+      "org": "RoboStrategy",
+      "source": "https://robostrategy.co",
+      "how": "Linked on robostrategy.co; business-verified"
+    },
+    {
+      "handle": "Spiko_finance",
+      "name": "Spiko",
+      "kind": "company",
+      "org": "Spiko",
+      "source": "https://x.com/Spiko_finance",
+      "how": "Blue-verified, name Spiko, website spiko.io"
+    },
+    {
+      "handle": "StandardLifeUK",
+      "name": "Standard Life",
+      "kind": "company",
+      "org": "Standard Life",
+      "source": "https://www.standardlife.co.uk",
+      "how": "Linked on standardlife.co.uk; business-verified"
+    },
+    {
+      "handle": "TheBlockCo",
+      "name": "The Block",
+      "kind": "company",
+      "org": "The Block",
+      "source": "https://www.theblock.co/about",
+      "how": "Linked on theblock.co (Follow us + JSON-LD); business-verified"
+    },
+    {
+      "handle": "WhiteHouse",
+      "name": "The White House",
+      "kind": "company",
+      "org": "The White House",
+      "source": "https://www.whitehouse.gov",
+      "how": "Linked on whitehouse.gov; government-verified"
+    },
+    {
+      "handle": "WSOP",
+      "name": "World Series of Poker",
+      "kind": "company",
+      "org": "World Series of Poker",
+      "source": "https://www.wsop.com",
+      "how": "Linked on wsop.com; business-verified"
+    },
+    {
+      "handle": "Austin_Federa",
+      "name": "Austin Federa",
+      "kind": "speaker",
+      "org": "DoubleZero",
+      "source": "https://x.com/Austin_Federa",
+      "how": "Blue-verified, bio 'cofounder of @doublezero', website doublezero.xyz"
+    },
+    {
+      "handle": "KeithGrossman",
+      "name": "Keith A. Grossman",
+      "kind": "speaker",
+      "org": "MoonPay",
+      "source": "https://x.com/KeithGrossman",
+      "how": "Blue-verified, bio 'President, @MoonPay', website moonpay.com"
+    },
+    {
+      "handle": "gazza_jenks",
+      "name": "Gareth Jenkinson",
+      "kind": "speaker",
+      "org": "The Block",
+      "source": "https://x.com/gazza_jenks",
+      "how": "Blue-verified, bio 'Head of Multimedia @theblockco'"
+    },
+    {
+      "handle": "HalseyHuth",
+      "name": "Halsey Huth",
+      "kind": "speaker",
+      "org": "MoonPay",
+      "source": "https://x.com/HalseyHuth",
+      "how": "Blue-verified, bio 'Building AI @Moonpay' (display name 0xHalsey.eth)"
+    },
+    {
+      "handle": "ShahRamezani",
+      "name": "Shah Ramezani",
+      "kind": "speaker",
+      "org": "Noah",
+      "source": "https://x.com/ShahRamezani",
+      "how": "Blue-verified, bio 'Founder/CEO @Noah_HQ', website noah.com"
+    },
+    {
+      "handle": "fleupold_",
+      "name": "Felix Leupold",
+      "kind": "speaker",
+      "org": "CoW Swap",
+      "source": "https://x.com/fleupold_",
+      "how": "Blue-verified, bio 'Technical Lead @CoWSwap'"
+    }
+  ]
+}

@@ -3,6 +3,7 @@
 Usage (from breakpoint/):
   python3 scripts/import-agenda.py research/agenda-export-2026-11-13.json
   python3 scripts/clean-seed.py
+  python3 scripts/link-x-accounts.py   # X handles, profile pictures and organisation logos
 
 Accepts either export format:
 - compact rows {d, s, t, m, ti, sp:[[name, roleAndProject]], g:[tracks]} (read from the page's

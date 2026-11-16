@@ -123,10 +123,11 @@
       "role": "Founder",
       "organization": "Star",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "adamcreates_",
+      "xUrl": "https://x.com/adamcreates_",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "adamcreates_.webp"
     },
     {
       "id": "ahmed-zifzaf",
@@ -134,10 +135,11 @@
       "role": "Head of Digital Asset Partnerships",
       "organization": "Ramp",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "ahmedzifzaf",
+      "xUrl": "https://x.com/ahmedzifzaf",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "ahmedzifzaf.webp"
     },
     {
       "id": "alexandra-lang",
@@ -148,7 +150,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "amelia-daly",
@@ -156,10 +159,11 @@
       "role": "Moderator · Head of Partnerships",
       "organization": "Solana Foundation",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "ameliamariec",
+      "xUrl": "https://x.com/ameliamariec",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "ameliamariec.webp"
     },
     {
       "id": "amira-valliani",
@@ -167,10 +171,11 @@
       "role": "Head of Payments Growth",
       "organization": "Solana Foundation",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "amiravalliani",
+      "xUrl": "https://x.com/amiravalliani",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "amiravalliani.webp"
     },
     {
       "id": "anatoly-yakovenko",
@@ -178,11 +183,12 @@
       "role": "Co-Founder / CEO",
       "organization": "Solana / Solana Labs",
       "projectId": "solana",
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "toly",
+      "xUrl": "https://x.com/toly",
       "xSourceUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/speakers",
-      "observedAt": "2026-11-12"
+      "observedAt": "2026-11-12",
+      "avatar": "toly.webp"
     },
     {
       "id": "andrea-griffin-miele",
@@ -190,10 +196,11 @@
       "role": "Co-Founder & CEO",
       "organization": "Beezie",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "andreaMYellie",
+      "xUrl": "https://x.com/andreaMYellie",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "andreamyellie.webp"
     },
     {
       "id": "andrew-fox",
@@ -201,10 +208,11 @@
       "role": "CEO",
       "organization": "Powerus",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "powerus_usa",
+      "xUrl": "https://x.com/powerus_usa",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "powerus_usa.webp"
     },
     {
       "id": "andrew-price",
@@ -212,10 +220,11 @@
       "role": "Director, xStocks & Exchange Partnerships",
       "organization": "xStocks",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "ajpprice",
+      "xUrl": "https://x.com/ajpprice",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "ajpprice.webp"
     },
     {
       "id": "anna-irrera",
@@ -223,10 +232,11 @@
       "role": "Moderator · Senior Editor",
       "organization": "Bloomberg News",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "annairrera",
+      "xUrl": "https://x.com/annairrera",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "annairrera.webp"
     },
     {
       "id": "annabel-spring",
@@ -237,7 +247,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "anthony-soohoo",
@@ -245,10 +256,11 @@
       "role": "CEO",
       "organization": "MoneyGram",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "anthonysoohoo",
+      "xUrl": "https://x.com/anthonysoohoo",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "anthonysoohoo.webp"
     },
     {
       "id": "arizona-muse",
@@ -259,7 +271,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "armani-ferrante",
@@ -271,7 +284,8 @@
       "xUrl": "https://x.com/armaniferrante",
       "xSourceUrl": "https://solana.com/ar/podcasts/lightspeed/episodes/crypto-s-path-forward-in-the-next-10-years-2025-06-27",
       "sourceUrl": "https://solana.com/breakpoint/speakers",
-      "observedAt": "2026-11-12"
+      "observedAt": "2026-11-12",
+      "avatar": "armaniferrante.webp"
     },
     {
       "id": "arnold-lee",
@@ -279,10 +293,11 @@
       "role": "Co-Founder & CEO",
       "organization": "Sphere Labs",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "0xdirichlet",
+      "xUrl": "https://x.com/0xdirichlet",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "0xdirichlet.webp"
     },
     {
       "id": "austin-federa",
@@ -290,10 +305,11 @@
       "role": "Moderator · Co-Founder",
       "organization": "DoubleZero",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "Austin_Federa",
+      "xUrl": "https://x.com/Austin_Federa",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "austin_federa.webp"
     },
     {
       "id": "ben-brophy",
@@ -301,10 +317,11 @@
       "role": "Moderator · Head of Institutional Growth, Europe",
       "organization": "Solana Foundation",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "cryptobecool",
+      "xUrl": "https://x.com/cryptobecool",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "cryptobecool.webp"
     },
     {
       "id": "ben-reid",
@@ -312,10 +329,11 @@
       "role": "VP, Strategic Initiatives",
       "organization": "Bitso",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "reidbenj",
+      "xUrl": "https://x.com/reidbenj",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "reidbenj.webp"
     },
     {
       "id": "bill-barhydt",
@@ -323,10 +341,11 @@
       "role": "CEO",
       "organization": "Abra",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "billbar",
+      "xUrl": "https://x.com/billbar",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "billbar.webp"
     },
     {
       "id": "boris-johnson",
@@ -334,10 +353,11 @@
       "role": "Former Prime Minister",
       "organization": "",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "BorisJohnson",
+      "xUrl": "https://x.com/BorisJohnson",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "borisjohnson.webp"
     },
     {
       "id": "brennan-watt",
@@ -345,10 +365,11 @@
       "role": "CEO",
       "organization": "Anza",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "bw_solana",
+      "xUrl": "https://x.com/bw_solana",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "bw_solana.webp"
     },
     {
       "id": "carlos-matilla",
@@ -359,7 +380,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "cate-clancy",
@@ -370,7 +392,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "charles-dalton",
@@ -378,10 +401,11 @@
       "role": "Co-Founder",
       "organization": "MetaDAO",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "metaproph3t",
+      "xUrl": "https://x.com/metaproph3t",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "metaproph3t.webp"
     },
     {
       "id": "chase-barker",
@@ -389,10 +413,11 @@
       "role": "Moderator · Head of Founder Success",
       "organization": "Solana Foundation",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "therealchaseeb",
+      "xUrl": "https://x.com/therealchaseeb",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "therealchaseeb.webp"
     },
     {
       "id": "chris-montagano",
@@ -400,10 +425,11 @@
       "role": "Co-Founder, President",
       "organization": "Formation Securities",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "cpmontagano",
+      "xUrl": "https://x.com/cpmontagano",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "cpmontagano.webp"
     },
     {
       "id": "chris-osborn",
@@ -411,10 +437,11 @@
       "role": "General Manager, Leap",
       "organization": "Solana Labs",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "aliquotchris",
+      "xUrl": "https://x.com/aliquotchris",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "aliquotchris.webp"
     },
     {
       "id": "christian-rau",
@@ -425,7 +452,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "dan-phillips",
@@ -436,7 +464,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-13T12:13:34.440Z"
+      "observedAt": "2026-11-13T12:13:34.440Z",
+      "avatar": null
     },
     {
       "id": "david-vatchev",
@@ -447,7 +476,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "diogo-monica",
@@ -455,10 +485,11 @@
       "role": "General Partner, Haun Ventures and Co-Founder and Executive Chairman, Anchorage Digital",
       "organization": "Haun Ventures",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "diogomonica",
+      "xUrl": "https://x.com/diogomonica",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "diogomonica.webp"
     },
     {
       "id": "dom-kwok",
@@ -466,10 +497,11 @@
       "role": "Co-founder",
       "organization": "EasyA",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "dom_kwok",
+      "xUrl": "https://x.com/dom_kwok",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "dom_kwok.webp"
     },
     {
       "id": "ellie-platis",
@@ -477,10 +509,11 @@
       "role": "Head of Events",
       "organization": "Solana Foundation",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "platis_e",
+      "xUrl": "https://x.com/platis_e",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "platis_e.webp"
     },
     {
       "id": "erbil-karaman",
@@ -488,10 +521,11 @@
       "role": "Co-Founder & Co-CEO",
       "organization": "Huma",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "0xErbil",
+      "xUrl": "https://x.com/0xErbil",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "0xerbil.webp"
     },
     {
       "id": "ersoy-erkazanci",
@@ -499,10 +533,11 @@
       "role": "UK Country Advisor",
       "organization": "Invest in Türkiye",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "ersoyerkazanci",
+      "xUrl": "https://x.com/ersoyerkazanci",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "ersoyerkazanci.webp"
     },
     {
       "id": "eugene-chen",
@@ -510,10 +545,11 @@
       "role": "CEO",
       "organization": "Ellipsis Labs",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "0xshittrader",
+      "xUrl": "https://x.com/0xshittrader",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "0xshittrader.webp"
     },
     {
       "id": "eva-lawrence",
@@ -521,10 +557,11 @@
       "role": "Head of Revenue",
       "organization": "Figment",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "_evalawrence",
+      "xUrl": "https://x.com/_evalawrence",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "_evalawrence.webp"
     },
     {
       "id": "farhaj-mayan",
@@ -532,10 +569,11 @@
       "role": "Moderator · Co-Founder",
       "organization": "Forma",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "farhaj",
+      "xUrl": "https://x.com/farhaj",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "farhaj.webp"
     },
     {
       "id": "felix-leupold",
@@ -543,10 +581,11 @@
       "role": "CTO",
       "organization": "CoW Swap",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "fleupold_",
+      "xUrl": "https://x.com/fleupold_",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "fleupold_.webp"
     },
     {
       "id": "fig-gowen",
@@ -557,7 +596,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-13T12:13:34.440Z"
+      "observedAt": "2026-11-13T12:13:34.440Z",
+      "avatar": null
     },
     {
       "id": "gareth-jenkinson",
@@ -565,10 +605,11 @@
       "role": "Moderator · Head of Multimedia",
       "organization": "The Block",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "gazza_jenks",
+      "xUrl": "https://x.com/gazza_jenks",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "gazza_jenks.webp"
     },
     {
       "id": "george-ruhana",
@@ -576,10 +617,11 @@
       "role": "Partner",
       "organization": "PEAK6 / Clocked.",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "ruh_gw",
+      "xUrl": "https://x.com/ruh_gw",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "gordon-corera",
@@ -587,10 +629,11 @@
       "role": "Moderator · Host",
       "organization": "The Rest Is Classified",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "gordoncorera",
+      "xUrl": "https://x.com/gordoncorera",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "gordoncorera.webp"
     },
     {
       "id": "graham-ferguson",
@@ -598,10 +641,11 @@
       "role": "Head of Ecosystem",
       "organization": "Securitize",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "grahamfergs",
+      "xUrl": "https://x.com/grahamfergs",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "grahamfergs.webp"
     },
     {
       "id": "greg-osuri",
@@ -609,10 +653,11 @@
       "role": "Founder",
       "organization": "Akash",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "gregosuri",
+      "xUrl": "https://x.com/gregosuri",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "gregosuri.webp"
     },
     {
       "id": "halsey-huth",
@@ -620,10 +665,11 @@
       "role": "Global Head, AI & Ecosystems",
       "organization": "MoonPay",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "HalseyHuth",
+      "xUrl": "https://x.com/HalseyHuth",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "halseyhuth.webp"
     },
     {
       "id": "harriet-browning",
@@ -634,7 +680,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "hester-serafini",
@@ -645,7 +692,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "hitoshi-harada",
@@ -653,10 +701,11 @@
       "role": "Co-Founder, CTO & CPO",
       "organization": "Alpaca",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "umitanuki",
+      "xUrl": "https://x.com/umitanuki",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "umitanuki.webp"
     },
     {
       "id": "howard-dawber-obe",
@@ -667,7 +716,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-13T12:13:34.440Z"
+      "observedAt": "2026-11-13T12:13:34.440Z",
+      "avatar": null
     },
     {
       "id": "ian-rogers",
@@ -675,11 +725,12 @@
       "role": "Chief Human Agency Officer",
       "organization": "Ledger",
       "projectId": "ledger",
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "iancr",
+      "xUrl": "https://x.com/iancr",
       "xSourceUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/speakers",
-      "observedAt": "2026-11-12"
+      "observedAt": "2026-11-12",
+      "avatar": "iancr.webp"
     },
     {
       "id": "igor-voloshin",
@@ -690,7 +741,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "illia-polosukhin",
@@ -698,10 +750,11 @@
       "role": "Co-Founder",
       "organization": "NEAR Protocol",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "ilblackdragon",
+      "xUrl": "https://x.com/ilblackdragon",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "ilblackdragon.webp"
     },
     {
       "id": "irene-tse",
@@ -712,7 +765,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-13T12:13:34.440Z"
+      "observedAt": "2026-11-13T12:13:34.440Z",
+      "avatar": null
     },
     {
       "id": "jack-pearson",
@@ -720,10 +774,11 @@
       "role": "Principal",
       "organization": "RoboStrategy",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "jacklouisp",
+      "xUrl": "https://x.com/jacklouisp",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "jacklouisp.webp"
     },
     {
       "id": "jacquelyn-melinek",
@@ -731,10 +786,11 @@
       "role": "Moderator · Founder & CEO",
       "organization": "StrataMedia",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "jacqmelinek",
+      "xUrl": "https://x.com/jacqmelinek",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "jacqmelinek.webp"
     },
     {
       "id": "jae-kim",
@@ -742,10 +798,11 @@
       "role": "Chief Strategy Officer & Managing Director",
       "organization": "Nodit",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "0xjhk",
+      "xUrl": "https://x.com/0xjhk",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "0xjhk.webp"
     },
     {
       "id": "jake-burden",
@@ -753,10 +810,11 @@
       "role": "Moderator · Staking Operations Lead",
       "organization": "Solana Foundation",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "doublespends",
+      "xUrl": "https://x.com/doublespends",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "doublespends.webp"
     },
     {
       "id": "jamal-raees",
@@ -764,10 +822,11 @@
       "role": "GM, Payments",
       "organization": "Solana Foundation",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "proofofjamal",
+      "xUrl": "https://x.com/proofofjamal",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "proofofjamal.webp"
     },
     {
       "id": "jasmine-jia",
@@ -778,7 +837,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "jeff-platt",
@@ -786,10 +846,11 @@
       "role": "Moderator · Global Broadcast Talent",
       "organization": "World Series of Poker",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "jeffplatt",
+      "xUrl": "https://x.com/jeffplatt",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "jeffplatt.webp"
     },
     {
       "id": "jerome-oei",
@@ -800,7 +861,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "jess-houlgrave",
@@ -808,10 +870,11 @@
       "role": "CEO",
       "organization": "WalletConnect",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "Houlgrave",
+      "xUrl": "https://x.com/Houlgrave",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "houlgrave.webp"
     },
     {
       "id": "john-hallahan",
@@ -822,7 +885,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "john-timoney",
@@ -833,7 +897,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "jonathan-victor",
@@ -841,10 +906,11 @@
       "role": "President",
       "organization": "BitRobot",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "jnthnvctr",
+      "xUrl": "https://x.com/jnthnvctr",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "jnthnvctr.webp"
     },
     {
       "id": "justin-bons",
@@ -852,10 +918,11 @@
       "role": "Founder & CIO",
       "organization": "Cyber Capital",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "Justin_Bons",
+      "xUrl": "https://x.com/Justin_Bons",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "justin_bons.webp"
     },
     {
       "id": "kash-dhanda",
@@ -867,7 +934,8 @@
       "xUrl": "https://x.com/kashdhanda",
       "xSourceUrl": "https://solana.com/es/podcasts/lightspeed/episodes/jupiter-s-push-beyond-crypto-trading-kash-dhanda-2026-05-20",
       "sourceUrl": "https://solana.com/breakpoint/speakers",
-      "observedAt": "2026-11-12"
+      "observedAt": "2026-11-12",
+      "avatar": "kashdhanda.webp"
     },
     {
       "id": "kathrin-hamilton",
@@ -875,10 +943,11 @@
       "role": "Partner, Digital Assets",
       "organization": "Baillie Gifford",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "mrstoad",
+      "xUrl": "https://x.com/mrstoad",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "kathy-kriskey",
@@ -889,7 +958,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "keith-a-grossman",
@@ -897,10 +967,11 @@
       "role": "President",
       "organization": "MoonPay",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "KeithGrossman",
+      "xUrl": "https://x.com/KeithGrossman",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "keithgrossman.webp"
     },
     {
       "id": "krista-lynch",
@@ -908,10 +979,11 @@
       "role": "Head of Trading and Capital Markets",
       "organization": "Grayscale",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "Krista_Lynch_",
+      "xUrl": "https://x.com/Krista_Lynch_",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "krista_lynch_.webp"
     },
     {
       "id": "kristin-smith",
@@ -919,10 +991,11 @@
       "role": "Moderator · President",
       "organization": "Solana Policy Institute",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "kristinsmith",
+      "xUrl": "https://x.com/kristinsmith",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "kristinsmith.webp"
     },
     {
       "id": "kyle-samani",
@@ -930,10 +1003,11 @@
       "role": "Chairman",
       "organization": "Forward Industries",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "KyleSamani",
+      "xUrl": "https://x.com/KyleSamani",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "kylesamani.webp"
     },
     {
       "id": "lily-liu",
@@ -941,11 +1015,12 @@
       "role": "President",
       "organization": "Solana Foundation",
       "projectId": "solana",
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "calilyliu",
+      "xUrl": "https://x.com/calilyliu",
       "xSourceUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/speakers",
-      "observedAt": "2026-11-12"
+      "observedAt": "2026-11-12",
+      "avatar": "calilyliu.webp"
     },
     {
       "id": "logan-jastremski",
@@ -953,10 +1028,11 @@
       "role": "Moderator · Managing Partner",
       "organization": "Frictionless Capital",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "loganjastremski",
+      "xUrl": "https://x.com/loganjastremski",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "loganjastremski.webp"
     },
     {
       "id": "lucas-bruder",
@@ -964,10 +1040,11 @@
       "role": "Co-Founder & CEO",
       "organization": "Jito Labs",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "buffalu__",
+      "xUrl": "https://x.com/buffalu__",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "buffalu__.webp"
     },
     {
       "id": "lucas-harris",
@@ -978,7 +1055,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-13T12:13:34.440Z"
+      "observedAt": "2026-11-13T12:13:34.440Z",
+      "avatar": null
     },
     {
       "id": "lucas-jumalon",
@@ -986,10 +1064,11 @@
       "role": "World Champion",
       "organization": "World Series of Poker",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "LukeJu22",
+      "xUrl": "https://x.com/LukeJu22",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "lukeju22.webp"
     },
     {
       "id": "luciana-miranda",
@@ -997,10 +1076,11 @@
       "role": "Moderator · Advisor",
       "organization": "Solana Foundation",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "ludrmiranda",
+      "xUrl": "https://x.com/ludrmiranda",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "ludrmiranda.webp"
     },
     {
       "id": "luke-truitt",
@@ -1008,10 +1088,11 @@
       "role": "CEO",
       "organization": "Orca (Formation)",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "Luketruitt",
+      "xUrl": "https://x.com/Luketruitt",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-13T12:13:34.440Z"
+      "observedAt": "2026-11-13T12:13:34.440Z",
+      "avatar": "luketruitt.webp"
     },
     {
       "id": "malcolm-clarke",
@@ -1019,10 +1100,11 @@
       "role": "Global Head of Digital Assets",
       "organization": "Western Union",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "mjc_101",
+      "xUrl": "https://x.com/mjc_101",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "mjc_101.webp"
     },
     {
       "id": "marc-tillement",
@@ -1030,10 +1112,11 @@
       "role": "Moderator · President & Director",
       "organization": "Pyth Network / Pyth Data Association",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "kemartiti",
+      "xUrl": "https://x.com/kemartiti",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "kemartiti.webp"
     },
     {
       "id": "mark-studholme",
@@ -1041,10 +1124,11 @@
       "role": "Co-Founder",
       "organization": "FairClub",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "StudholmeOne",
+      "xUrl": "https://x.com/StudholmeOne",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "studholmeone.webp"
     },
     {
       "id": "martin-gilbert",
@@ -1052,10 +1136,11 @@
       "role": "Chairman",
       "organization": "Revolut",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "MartinGilbert83",
+      "xUrl": "https://x.com/MartinGilbert83",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "martingilbert83.webp"
     },
     {
       "id": "matt-hougan",
@@ -1063,10 +1148,11 @@
       "role": "Chief Investment Officer",
       "organization": "Bitwise",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "Matt_Hougan",
+      "xUrl": "https://x.com/Matt_Hougan",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "matt_hougan.webp"
     },
     {
       "id": "matty-taylor",
@@ -1074,10 +1160,11 @@
       "role": "Co-Founder & GP",
       "organization": "Colosseum",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "mattytay",
+      "xUrl": "https://x.com/mattytay",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "mattytay.webp"
     },
     {
       "id": "mert-mumtaz",
@@ -1085,11 +1172,12 @@
       "role": "Co-Founder & CEO",
       "organization": "Helius",
       "projectId": "helius",
-      "xHandle": "0xMert_",
-      "xUrl": "https://x.com/0xMert_",
+      "xHandle": "mert",
+      "xUrl": "https://x.com/mert",
       "xSourceUrl": "https://solana.com/ja/podcasts/lightspeed/episodes/why-crypto-wallets-are-broken-armani-ferrante-2025-02-13",
       "sourceUrl": "https://solana.com/breakpoint/speakers",
-      "observedAt": "2026-11-12"
+      "observedAt": "2026-11-12",
+      "avatar": "mert.webp"
     },
     {
       "id": "michael-coates",
@@ -1097,10 +1185,11 @@
       "role": "Chief Information Security Officer",
       "organization": "Solana Foundation",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "_mwc",
+      "xUrl": "https://x.com/_mwc",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "_mwc.webp"
     },
     {
       "id": "michael-lewis",
@@ -1111,7 +1200,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-13T12:13:34.440Z"
+      "observedAt": "2026-11-13T12:13:34.440Z",
+      "avatar": null
     },
     {
       "id": "michael-marcantonio",
@@ -1119,10 +1209,11 @@
       "role": "CEO",
       "organization": "Temporal",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "marcryptonio",
+      "xUrl": "https://x.com/marcryptonio",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "marcryptonio.webp"
     },
     {
       "id": "michael-repetny",
@@ -1130,10 +1221,11 @@
       "role": "CEO",
       "organization": "Marinade Labs",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "repetny",
+      "xUrl": "https://x.com/repetny",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "repetny.webp"
     },
     {
       "id": "michael-weisz",
@@ -1141,11 +1233,12 @@
       "role": "CEO",
       "organization": "Kamino",
       "projectId": "kamino",
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "WeiszM",
+      "xUrl": "https://x.com/WeiszM",
       "xSourceUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/speakers",
-      "observedAt": "2026-11-12"
+      "observedAt": "2026-11-12",
+      "avatar": "weiszm.webp"
     },
     {
       "id": "miller-whitehouse-levine",
@@ -1153,10 +1246,11 @@
       "role": "Founder & CEO",
       "organization": "Solana Policy Institute",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "millercwl",
+      "xUrl": "https://x.com/millercwl",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-13T12:13:34.440Z"
+      "observedAt": "2026-11-13T12:13:34.440Z",
+      "avatar": "millercwl.webp"
     },
     {
       "id": "nass-diba",
@@ -1164,10 +1258,11 @@
       "role": "Co-founder & CEO",
       "organization": "worm",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "NassDiba",
+      "xUrl": "https://x.com/NassDiba",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "nassdiba.webp"
     },
     {
       "id": "nemil-dalal",
@@ -1175,10 +1270,11 @@
       "role": "Moderator · Visiting Partner",
       "organization": "Y Combinator",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "nemild",
+      "xUrl": "https://x.com/nemild",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "nemild.webp"
     },
     {
       "id": "nicholas-grovell",
@@ -1186,10 +1282,11 @@
       "role": "Director",
       "organization": "Reflect Money",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "0xNIC0",
+      "xUrl": "https://x.com/0xNIC0",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "0xnic0.webp"
     },
     {
       "id": "nick-ducoff",
@@ -1197,10 +1294,11 @@
       "role": "Moderator · GM, Institutional",
       "organization": "Solana Foundation",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "nickducoff",
+      "xUrl": "https://x.com/nickducoff",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "nickducoff.webp"
     },
     {
       "id": "nicolas-cabrera",
@@ -1208,10 +1306,11 @@
       "role": "Chief Product and Technology Officer",
       "organization": "Tala",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "nicCabrera_",
+      "xUrl": "https://x.com/nicCabrera_",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "niccabrera_.webp"
     },
     {
       "id": "nikou-asgari",
@@ -1222,7 +1321,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "pj-bain",
@@ -1233,7 +1333,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "patrick-corker",
@@ -1244,7 +1345,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "patrick-witt",
@@ -1252,10 +1354,11 @@
       "role": "Former Executive Director, President's Council of Advisors for Digital Assets",
       "organization": "The White House",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "patrickjwitt",
+      "xUrl": "https://x.com/patrickjwitt",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "patrickjwitt.webp"
     },
     {
       "id": "paul-adrien-hyppolite",
@@ -1263,10 +1366,11 @@
       "role": "Co-Founder & CEO",
       "organization": "Spiko",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "Spiko_finance",
+      "xUrl": "https://x.com/Spiko_finance",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "spiko_finance.webp"
     },
     {
       "id": "pete-cooling",
@@ -1274,10 +1378,11 @@
       "role": "Founder & CEO",
       "organization": "Atum",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "petecooling",
+      "xUrl": "https://x.com/petecooling",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "petecooling.webp"
     },
     {
       "id": "peter-moore",
@@ -1285,10 +1390,11 @@
       "role": "Sports and Video Game Executive",
       "organization": "Owner, Wisla Krakow Football Club (Poland)",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "PeterMooreUSA",
+      "xUrl": "https://x.com/PeterMooreUSA",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "petermooreusa.webp"
     },
     {
       "id": "phil-kwok",
@@ -1296,10 +1402,11 @@
       "role": "Co-Founder",
       "organization": "EasyA",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "kwok_phil",
+      "xUrl": "https://x.com/kwok_phil",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "kwok_phil.webp"
     },
     {
       "id": "plish",
@@ -1307,10 +1414,11 @@
       "role": "CEO",
       "organization": "Hylo",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "0xPlish",
+      "xUrl": "https://x.com/0xPlish",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "0xplish.webp"
     },
     {
       "id": "rachel-conlan",
@@ -1318,10 +1426,11 @@
       "role": "Chief Strategy Officer",
       "organization": "Solana Foundation",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "rachelconlan",
+      "xUrl": "https://x.com/rachelconlan",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "rachelconlan.webp"
     },
     {
       "id": "raoul-pal",
@@ -1329,10 +1438,11 @@
       "role": "Co-Founder / CEO",
       "organization": "Real Vision / EXPAAM / GMI",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "RaoulGMI",
+      "xUrl": "https://x.com/RaoulGMI",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "raoulgmi.webp"
     },
     {
       "id": "ricardo-brizido",
@@ -1340,10 +1450,11 @@
       "role": "CPTO",
       "organization": "Stake",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "rbrizido",
+      "xUrl": "https://x.com/rbrizido",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "rbrizido.webp"
     },
     {
       "id": "rohin-lohe",
@@ -1351,10 +1462,11 @@
       "role": "Product Manager",
       "organization": "Cloudflare",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "rohinlohe",
+      "xUrl": "https://x.com/rohinlohe",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-13T12:13:34.440Z"
+      "observedAt": "2026-11-13T12:13:34.440Z",
+      "avatar": "rohinlohe.webp"
     },
     {
       "id": "ross-kempsell",
@@ -1362,10 +1474,11 @@
       "role": "Member of the House of Lords",
       "organization": "House of Lords",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "rosskempsell",
+      "xUrl": "https://x.com/rosskempsell",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "rosskempsell.webp"
     },
     {
       "id": "rowland-berry",
@@ -1376,7 +1489,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "ryan-rasmussen",
@@ -1384,10 +1498,11 @@
       "role": "Director, Head of Research",
       "organization": "Bitwise",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "RasterlyRock",
+      "xUrl": "https://x.com/RasterlyRock",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "rasterlyrock.webp"
     },
     {
       "id": "ryan-wen",
@@ -1395,10 +1510,11 @@
       "role": "COO",
       "organization": "Plume",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "ryanxwen",
+      "xUrl": "https://x.com/ryanxwen",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "ryanxwen.webp"
     },
     {
       "id": "saeed-badreg",
@@ -1406,11 +1522,12 @@
       "role": "Co-Founder & CEO",
       "organization": "Sunrise",
       "projectId": "sunrise",
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "shadddowfax",
+      "xUrl": "https://x.com/shadddowfax",
       "xSourceUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/speakers",
-      "observedAt": "2026-11-12"
+      "observedAt": "2026-11-12",
+      "avatar": "shadddowfax.webp"
     },
     {
       "id": "scott-lucas",
@@ -1421,7 +1538,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "se-yong-park",
@@ -1429,10 +1547,11 @@
       "role": "Co-Founder",
       "organization": "fomo",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "seyong",
+      "xUrl": "https://x.com/seyong",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "seyong.webp"
     },
     {
       "id": "seth-priebatsch",
@@ -1440,10 +1559,11 @@
       "role": "Founder & CEO",
       "organization": "Groma",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "sethpriebatsch",
+      "xUrl": "https://x.com/sethpriebatsch",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "sethpriebatsch.webp"
     },
     {
       "id": "shah-ramezani",
@@ -1451,10 +1571,11 @@
       "role": "Founder/CEO",
       "organization": "Noah",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "ShahRamezani",
+      "xUrl": "https://x.com/ShahRamezani",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-13T12:13:34.440Z"
+      "observedAt": "2026-11-13T12:13:34.440Z",
+      "avatar": "shahramezani.webp"
     },
     {
       "id": "shayon-sengupta",
@@ -1462,10 +1583,11 @@
       "role": "General Partner",
       "organization": "Multicoin",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "shayonsengupta",
+      "xUrl": "https://x.com/shayonsengupta",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "shayonsengupta.webp"
     },
     {
       "id": "shinsuke-waka",
@@ -1473,10 +1595,11 @@
       "role": "Executive Coordinator, Head of Digital Finance",
       "organization": "Mitsui & Co.",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "shinsukewaka",
+      "xUrl": "https://x.com/shinsukewaka",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "shinsukewaka.webp"
     },
     {
       "id": "shola-akinlade",
@@ -1484,10 +1607,11 @@
       "role": "CEO / Founder",
       "organization": "Paystack",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "shollsman",
+      "xUrl": "https://x.com/shollsman",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "shollsman.webp"
     },
     {
       "id": "simon-griffin",
@@ -1495,10 +1619,11 @@
       "role": "Head of Crypto Distribution",
       "organization": "SoFi",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "griff71931",
+      "xUrl": "https://x.com/griff71931",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "griff71931.webp"
     },
     {
       "id": "sir-nicholas-lyons",
@@ -1509,7 +1634,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-13T12:13:34.440Z"
+      "observedAt": "2026-11-13T12:13:34.440Z",
+      "avatar": null
     },
     {
       "id": "sir-sajid-javid",
@@ -1517,10 +1643,11 @@
       "role": "Former Chancellor of the Exchequer",
       "organization": "",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "sajidjavid",
+      "xUrl": "https://x.com/sajidjavid",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "sajidjavid.webp"
     },
     {
       "id": "sol-campbell",
@@ -1531,7 +1658,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "stepan-simkin",
@@ -1539,10 +1667,11 @@
       "role": "CEO",
       "organization": "Squads",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "SimkinStepan",
+      "xUrl": "https://x.com/SimkinStepan",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "simkinstepan.webp"
     },
     {
       "id": "stephen-gardner",
@@ -1553,7 +1682,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "stephen-whyman",
@@ -1564,7 +1694,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "steve-vassallo",
@@ -1572,10 +1703,11 @@
       "role": "General Partner",
       "organization": "Foundation Capital",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "vassallo",
+      "xUrl": "https://x.com/vassallo",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "vassallo.webp"
     },
     {
       "id": "steven-wager",
@@ -1586,7 +1718,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "sue-gray",
@@ -1597,7 +1730,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "susan-li",
@@ -1605,10 +1739,11 @@
       "role": "Head of Growth",
       "organization": "Phantom",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "cafe_suusiiee",
+      "xUrl": "https://x.com/cafe_suusiiee",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "cafe_suusiiee.webp"
     },
     {
       "id": "tad-smith",
@@ -1616,10 +1751,11 @@
       "role": "CEO",
       "organization": "Candy Digital",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "tadtweets",
+      "xUrl": "https://x.com/tadtweets",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "tadtweets.webp"
     },
     {
       "id": "tee-ganbold",
@@ -1627,10 +1763,11 @@
       "role": "Moderator · Co-Founder & CEO",
       "organization": "Frontier/1",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "tee_ganbold",
+      "xUrl": "https://x.com/tee_ganbold",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "tee_ganbold.webp"
     },
     {
       "id": "thomas-sy",
@@ -1638,10 +1775,11 @@
       "role": "Head of Multi-Asset & Digital Asset Solutions",
       "organization": "New York Life Investment Management",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "ThomasGSy",
+      "xUrl": "https://x.com/ThomasGSy",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "thomasgsy.webp"
     },
     {
       "id": "todd-mcdonald",
@@ -1649,10 +1787,11 @@
       "role": "Moderator · Co-Founder",
       "organization": "R3",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "Mcdtv",
+      "xUrl": "https://x.com/Mcdtv",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "mcdtv.webp"
     },
     {
       "id": "tom-farley",
@@ -1660,10 +1799,11 @@
       "role": "Chairman & CEO",
       "organization": "Bullish",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "ThomasFarley",
+      "xUrl": "https://x.com/ThomasFarley",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "thomasfarley.webp"
     },
     {
       "id": "trey-buckingham",
@@ -1671,10 +1811,11 @@
       "role": "Digital Assets Practice Manager",
       "organization": "Aon",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "treybuckingham",
+      "xUrl": "https://x.com/treybuckingham",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "treybuckingham.webp"
     },
     {
       "id": "tristan-thompson",
@@ -1682,10 +1823,11 @@
       "role": "NBA Champion and Investor",
       "organization": "",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "tthompson",
+      "xUrl": "https://x.com/tthompson",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "tthompson.webp"
     },
     {
       "id": "tuom-holmberg",
@@ -1693,10 +1835,11 @@
       "role": "Co-Founder & CEO",
       "organization": "Collector Crypt",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "tuomholmberg",
+      "xUrl": "https://x.com/tuomholmberg",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "tuomholmberg.webp"
     },
     {
       "id": "tzvi-wiesel",
@@ -1704,10 +1847,11 @@
       "role": "CEO & Co-founder",
       "organization": "BAXUS",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "web4O",
+      "xUrl": "https://x.com/web4O",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "web4o.webp"
     },
     {
       "id": "val-wotton",
@@ -1718,7 +1862,8 @@
       "xHandle": null,
       "xUrl": null,
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": null
     },
     {
       "id": "vibhu-norby",
@@ -1726,10 +1871,11 @@
       "role": "Chief Product Officer",
       "organization": "Solana Foundation",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "vibhu",
+      "xUrl": "https://x.com/vibhu",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "vibhu.webp"
     },
     {
       "id": "vidor-gencel",
@@ -1737,10 +1883,11 @@
       "role": "CEO",
       "organization": "Solflare",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "vidor_solflare",
+      "xUrl": "https://x.com/vidor_solflare",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "vidor_solflare.webp"
     },
     {
       "id": "vinh-tran",
@@ -1748,10 +1895,11 @@
       "role": "Business Development",
       "organization": "WisdomTree Onchain",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "vinhonchain",
+      "xUrl": "https://x.com/vinhonchain",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "vinhonchain.webp"
     },
     {
       "id": "zach-abrams",
@@ -1759,10 +1907,11 @@
       "role": "Founder & CEO",
       "organization": "Open Standard",
       "projectId": null,
-      "xHandle": null,
-      "xUrl": null,
+      "xHandle": "zcabrams",
+      "xUrl": "https://x.com/zcabrams",
       "sourceUrl": "https://solana.com/breakpoint/schedule",
-      "observedAt": "2026-11-12T08:05:40.769Z"
+      "observedAt": "2026-11-12T08:05:40.769Z",
+      "avatar": "zcabrams.webp"
     }
   ],
   "sessions": [
@@ -5841,5 +5990,862 @@
       "durationMinutes": 15,
       "title": "Break"
     }
+  ],
+  "organizations": {
+    "Abra": {
+      "name": "Abra",
+      "xHandle": "AbraGlobal",
+      "xUrl": "https://x.com/AbraGlobal",
+      "avatar": "abraglobal.webp"
+    },
+    "Akash": {
+      "name": "Akash Network",
+      "xHandle": "akashnet",
+      "xUrl": "https://x.com/akashnet",
+      "avatar": "akashnet.webp"
+    },
+    "Alpaca": {
+      "name": "Alpaca",
+      "xHandle": "AlpacaHQ",
+      "xUrl": "https://x.com/AlpacaHQ",
+      "avatar": "alpacahq.webp"
+    },
+    "Anchorage Digital": {
+      "name": "Anchorage Digital",
+      "xHandle": "Anchorage",
+      "xUrl": "https://x.com/Anchorage",
+      "avatar": "anchorage.webp"
+    },
+    "Anza": {
+      "name": "Anza",
+      "xHandle": "anza_xyz",
+      "xUrl": "https://x.com/anza_xyz",
+      "avatar": "anza_xyz.webp"
+    },
+    "Aon": {
+      "name": "Aon",
+      "xHandle": "Aon_plc",
+      "xUrl": "https://x.com/Aon_plc",
+      "avatar": "aon_plc.webp"
+    },
+    "Atum": {
+      "name": "Atum",
+      "xHandle": "atumhq",
+      "xUrl": "https://x.com/atumhq",
+      "avatar": "atumhq.webp"
+    },
+    "BAXUS": {
+      "name": "BAXUS",
+      "xHandle": "BAXUSco",
+      "xUrl": "https://x.com/BAXUSco",
+      "avatar": "baxusco.webp"
+    },
+    "BNY": {
+      "name": "BNY",
+      "xHandle": "BNYglobal",
+      "xUrl": "https://x.com/BNYglobal",
+      "avatar": "bnyglobal.webp"
+    },
+    "Backpack": {
+      "name": "Backpack",
+      "xHandle": "Backpack",
+      "xUrl": "https://x.com/Backpack",
+      "avatar": "backpack.webp"
+    },
+    "Baillie Gifford": {
+      "name": "Baillie Gifford",
+      "xHandle": "BaillieGifford",
+      "xUrl": "https://x.com/BaillieGifford",
+      "avatar": "bailliegifford.webp"
+    },
+    "Barclays": {
+      "name": "Barclays",
+      "xHandle": "Barclays",
+      "xUrl": "https://x.com/Barclays",
+      "avatar": "barclays.webp"
+    },
+    "Beezie": {
+      "name": "Beezie",
+      "xHandle": "beezie",
+      "xUrl": "https://x.com/beezie",
+      "avatar": "beezie.webp"
+    },
+    "BitGo": {
+      "name": "BitGo",
+      "xHandle": "BitGo",
+      "xUrl": "https://x.com/BitGo",
+      "avatar": "bitgo.webp"
+    },
+    "BitRobot": {
+      "name": "BitRobot",
+      "xHandle": "BitRobotNetwork",
+      "xUrl": "https://x.com/BitRobotNetwork",
+      "avatar": "bitrobotnetwork.webp"
+    },
+    "Bitso": {
+      "name": "Bitso",
+      "xHandle": "bitso",
+      "xUrl": "https://x.com/bitso",
+      "avatar": "bitso.webp"
+    },
+    "Bitwise": {
+      "name": "Bitwise",
+      "xHandle": "BitwiseInvest",
+      "xUrl": "https://x.com/BitwiseInvest",
+      "avatar": null
+    },
+    "Bullish": {
+      "name": "Bullish",
+      "xHandle": "Bullish",
+      "xUrl": "https://x.com/Bullish",
+      "avatar": "bullish.webp"
+    },
+    "Candy Digital": {
+      "name": "Candy Digital",
+      "xHandle": "CandyDigital",
+      "xUrl": "https://x.com/CandyDigital",
+      "avatar": "candydigital.webp"
+    },
+    "Cloudflare": {
+      "name": "Cloudflare",
+      "xHandle": "cloudflare",
+      "xUrl": "https://x.com/cloudflare",
+      "avatar": "cloudflare.webp"
+    },
+    "CoW Swap": {
+      "name": "CoW Swap",
+      "xHandle": "CoWSwap",
+      "xUrl": "https://x.com/CoWSwap",
+      "avatar": "cowswap.webp"
+    },
+    "Collector Crypt": {
+      "name": "Collector Crypt",
+      "xHandle": "Collector_Crypt",
+      "xUrl": "https://x.com/Collector_Crypt",
+      "avatar": "collector_crypt.webp"
+    },
+    "Colosseum": {
+      "name": "Colosseum",
+      "xHandle": "colosseum",
+      "xUrl": "https://x.com/colosseum",
+      "avatar": "colosseum.webp"
+    },
+    "DTCC": {
+      "name": "DTCC",
+      "xHandle": "The_DTCC",
+      "xUrl": "https://x.com/The_DTCC",
+      "avatar": "the_dtcc.webp"
+    },
+    "DoubleZero": {
+      "name": "DoubleZero",
+      "xHandle": "doublezero",
+      "xUrl": "https://x.com/doublezero",
+      "avatar": "doublezero.webp"
+    },
+    "EasyA": {
+      "name": "EasyA",
+      "xHandle": "EasyA_App",
+      "xUrl": "https://x.com/EasyA_App",
+      "avatar": "easya_app.webp"
+    },
+    "Ellipsis Labs": {
+      "name": "Ellipsis Labs",
+      "xHandle": "ellipsis_labs",
+      "xUrl": "https://x.com/ellipsis_labs",
+      "avatar": "ellipsis_labs.webp"
+    },
+    "Fenwick": {
+      "name": "Fenwick",
+      "xHandle": "FenwickWest",
+      "xUrl": "https://x.com/FenwickWest",
+      "avatar": "fenwickwest.webp"
+    },
+    "Fidelity Digital Asset Management": {
+      "name": "Fidelity Digital Assets",
+      "xHandle": "digitalassets",
+      "xUrl": "https://x.com/digitalassets",
+      "avatar": "digitalassets.webp"
+    },
+    "Figment": {
+      "name": "Figment",
+      "xHandle": "Figment_io",
+      "xUrl": "https://x.com/Figment_io",
+      "avatar": "figment_io.webp"
+    },
+    "Financial Times": {
+      "name": "Financial Times",
+      "xHandle": "FT",
+      "xUrl": "https://x.com/FT",
+      "avatar": "ft.webp"
+    },
+    "Fireblocks": {
+      "name": "Fireblocks",
+      "xHandle": "FireblocksHQ",
+      "xUrl": "https://x.com/FireblocksHQ",
+      "avatar": "fireblockshq.webp"
+    },
+    "Fiserv Digital Asset Services": {
+      "name": "Fiserv",
+      "xHandle": "Fiserv",
+      "xUrl": "https://x.com/Fiserv",
+      "avatar": "fiserv.webp"
+    },
+    "Forward Industries": {
+      "name": "Forward Industries",
+      "xHandle": "FWDind",
+      "xUrl": "https://x.com/FWDind",
+      "avatar": "fwdind.webp"
+    },
+    "Foundation Capital": {
+      "name": "Foundation Capital",
+      "xHandle": "foundationcap",
+      "xUrl": "https://x.com/foundationcap",
+      "avatar": "foundationcap.webp"
+    },
+    "Frictionless Capital": {
+      "name": "Frictionless Capital",
+      "xHandle": "FrictionlessVC",
+      "xUrl": "https://x.com/FrictionlessVC",
+      "avatar": "frictionlessvc.webp"
+    },
+    "Grayscale": {
+      "name": "Grayscale",
+      "xHandle": "Grayscale",
+      "xUrl": "https://x.com/Grayscale",
+      "avatar": "grayscale.webp"
+    },
+    "Groma": {
+      "name": "Groma",
+      "xHandle": "GromaCorp",
+      "xUrl": "https://x.com/GromaCorp",
+      "avatar": "gromacorp.webp"
+    },
+    "Haun Ventures": {
+      "name": "Haun Ventures",
+      "xHandle": "HaunVentures",
+      "xUrl": "https://x.com/HaunVentures",
+      "avatar": "haunventures.webp"
+    },
+    "Helius": {
+      "name": "Helius",
+      "xHandle": "Helius",
+      "xUrl": "https://x.com/Helius",
+      "avatar": "helius.webp"
+    },
+    "House of Lords": {
+      "name": "House of Lords",
+      "xHandle": "UKHouseofLords",
+      "xUrl": "https://x.com/UKHouseofLords",
+      "avatar": "ukhouseoflords.webp"
+    },
+    "Huma": {
+      "name": "Huma",
+      "xHandle": "humafinance",
+      "xUrl": "https://x.com/humafinance",
+      "avatar": "humafinance.webp"
+    },
+    "Hylo": {
+      "name": "Hylo",
+      "xHandle": "hylo_so",
+      "xUrl": "https://x.com/hylo_so",
+      "avatar": "hylo_so.webp"
+    },
+    "ICE Clear Europe": {
+      "name": "ICE",
+      "xHandle": "ICE_Markets",
+      "xUrl": "https://x.com/ICE_Markets",
+      "avatar": "ice_markets.webp"
+    },
+    "Invest in Türkiye": {
+      "name": "Invest in Türkiye",
+      "xHandle": "InvestTurkey",
+      "xUrl": "https://x.com/InvestTurkey",
+      "avatar": "investturkey.webp"
+    },
+    "JPMorgan Chase": {
+      "name": "J.P. Morgan",
+      "xHandle": "jpmorgan",
+      "xUrl": "https://x.com/jpmorgan",
+      "avatar": "jpmorgan.webp"
+    },
+    "Jito Labs": {
+      "name": "Jito Labs",
+      "xHandle": "jito_labs",
+      "xUrl": "https://x.com/jito_labs",
+      "avatar": "jito_labs.webp"
+    },
+    "Jupiter": {
+      "name": "Jupiter",
+      "xHandle": "JupiterExchange",
+      "xUrl": "https://x.com/JupiterExchange",
+      "avatar": "jupiterexchange.webp"
+    },
+    "Kamino": {
+      "name": "Kamino",
+      "xHandle": "kamino",
+      "xUrl": "https://x.com/kamino",
+      "avatar": "kamino.webp"
+    },
+    "Ledger": {
+      "name": "Ledger",
+      "xHandle": "Ledger",
+      "xUrl": "https://x.com/Ledger",
+      "avatar": "ledger.webp"
+    },
+    "Marinade Labs": {
+      "name": "Marinade",
+      "xHandle": "MarinadeFinance",
+      "xUrl": "https://x.com/MarinadeFinance",
+      "avatar": "marinadefinance.webp"
+    },
+    "Mastercard": {
+      "name": "Mastercard",
+      "xHandle": "Mastercard",
+      "xUrl": "https://x.com/Mastercard",
+      "avatar": "mastercard.webp"
+    },
+    "MetaDAO": {
+      "name": "MetaDAO",
+      "xHandle": "MetaDAOProject",
+      "xUrl": "https://x.com/MetaDAOProject",
+      "avatar": "metadaoproject.webp"
+    },
+    "Mitsui & Co.": {
+      "name": "Mitsui & Co.",
+      "xHandle": "mitsuiandco",
+      "xUrl": "https://x.com/mitsuiandco",
+      "avatar": "mitsuiandco.webp"
+    },
+    "MoneyGram": {
+      "name": "MoneyGram",
+      "xHandle": "MoneyGram",
+      "xUrl": "https://x.com/MoneyGram",
+      "avatar": "moneygram.webp"
+    },
+    "MoonPay": {
+      "name": "MoonPay",
+      "xHandle": "moonpay",
+      "xUrl": "https://x.com/moonpay",
+      "avatar": "moonpay.webp"
+    },
+    "Multicoin": {
+      "name": "Multicoin Capital",
+      "xHandle": "multicoincap",
+      "xUrl": "https://x.com/multicoincap",
+      "avatar": null
+    },
+    "NEAR Protocol": {
+      "name": "NEAR Protocol",
+      "xHandle": "NEARProtocol",
+      "xUrl": "https://x.com/NEARProtocol",
+      "avatar": "nearprotocol.webp"
+    },
+    "Noah": {
+      "name": "Noah",
+      "xHandle": "Noah_HQ",
+      "xUrl": "https://x.com/Noah_HQ",
+      "avatar": "noah_hq.webp"
+    },
+    "Nodit": {
+      "name": "Nodit",
+      "xHandle": "NoditPlatform",
+      "xUrl": "https://x.com/NoditPlatform",
+      "avatar": "noditplatform.webp"
+    },
+    "Orca (Formation)": {
+      "name": "Orca",
+      "xHandle": "orca_so",
+      "xUrl": "https://x.com/orca_so",
+      "avatar": "orca_so.webp"
+    },
+    "Owner, Wisla Krakow Football Club (Poland)": {
+      "name": "Wisła Kraków",
+      "xHandle": "WislaKrakowSA",
+      "xUrl": "https://x.com/WislaKrakowSA",
+      "avatar": "wislakrakowsa.webp"
+    },
+    "Payoneer": {
+      "name": "Payoneer",
+      "xHandle": "Payoneer",
+      "xUrl": "https://x.com/Payoneer",
+      "avatar": "payoneer.webp"
+    },
+    "Paystack": {
+      "name": "Paystack",
+      "xHandle": "paystack",
+      "xUrl": "https://x.com/paystack",
+      "avatar": "paystack.webp"
+    },
+    "Payward": {
+      "name": "Payward",
+      "xHandle": "Payward",
+      "xUrl": "https://x.com/Payward",
+      "avatar": "payward.webp"
+    },
+    "Phantom": {
+      "name": "Phantom",
+      "xHandle": "phantom",
+      "xUrl": "https://x.com/phantom",
+      "avatar": "phantom.webp"
+    },
+    "Plume": {
+      "name": "Plume",
+      "xHandle": "plumenetwork",
+      "xUrl": "https://x.com/plumenetwork",
+      "avatar": "plumenetwork.webp"
+    },
+    "PrimeRevenue": {
+      "name": "PrimeRevenue",
+      "xHandle": "PrimeRevenue",
+      "xUrl": "https://x.com/PrimeRevenue",
+      "avatar": "primerevenue.webp"
+    },
+    "Pyth Network / Pyth Data Association": {
+      "name": "Pyth Network",
+      "xHandle": "PythNetwork",
+      "xUrl": "https://x.com/PythNetwork",
+      "avatar": "pythnetwork.webp"
+    },
+    "Rain": {
+      "name": "Rain",
+      "xHandle": "raincards",
+      "xUrl": "https://x.com/raincards",
+      "avatar": "raincards.webp"
+    },
+    "Ramp": {
+      "name": "Ramp Network",
+      "xHandle": "RampNetwork",
+      "xUrl": "https://x.com/RampNetwork",
+      "avatar": "rampnetwork.webp"
+    },
+    "Real Vision / EXPAAM / GMI": {
+      "name": "Real Vision",
+      "xHandle": "RealVision",
+      "xUrl": "https://x.com/RealVision",
+      "avatar": "realvision.webp"
+    },
+    "Reflect Money": {
+      "name": "Reflect",
+      "xHandle": "reflectmoney",
+      "xUrl": "https://x.com/reflectmoney",
+      "avatar": "reflectmoney.webp"
+    },
+    "Revolut": {
+      "name": "Revolut",
+      "xHandle": "Revolut",
+      "xUrl": "https://x.com/Revolut",
+      "avatar": "revolut.webp"
+    },
+    "RoboStrategy": {
+      "name": "RoboStrategy",
+      "xHandle": "RoboStrategy",
+      "xUrl": "https://x.com/RoboStrategy",
+      "avatar": "robostrategy.webp"
+    },
+    "Securitize": {
+      "name": "Securitize",
+      "xHandle": "Securitize",
+      "xUrl": "https://x.com/Securitize",
+      "avatar": "securitize.webp"
+    },
+    "SoFi": {
+      "name": "SoFi",
+      "xHandle": "SoFi",
+      "xUrl": "https://x.com/SoFi",
+      "avatar": "sofi.webp"
+    },
+    "Solana / Solana Labs": {
+      "name": "Solana",
+      "xHandle": "solana",
+      "xUrl": "https://x.com/solana",
+      "avatar": "solana.webp"
+    },
+    "Solana Foundation": {
+      "name": "Solana Foundation",
+      "xHandle": "SolanaFndn",
+      "xUrl": "https://x.com/SolanaFndn",
+      "avatar": "solanafndn.webp"
+    },
+    "Solana Labs": {
+      "name": "Solana Labs",
+      "xHandle": "solanalabs",
+      "xUrl": "https://x.com/solanalabs",
+      "avatar": "solanalabs.webp"
+    },
+    "Solana Policy Institute": {
+      "name": "Solana Policy Institute",
+      "xHandle": "SolanaInstitute",
+      "xUrl": "https://x.com/SolanaInstitute",
+      "avatar": "solanainstitute.webp"
+    },
+    "Solflare": {
+      "name": "Solflare",
+      "xHandle": "solflare",
+      "xUrl": "https://x.com/solflare",
+      "avatar": "solflare.webp"
+    },
+    "Sphere Labs": {
+      "name": "Sphere Labs",
+      "xHandle": "sphere_labs",
+      "xUrl": "https://x.com/sphere_labs",
+      "avatar": "sphere_labs.webp"
+    },
+    "Spiko": {
+      "name": "Spiko",
+      "xHandle": "Spiko_finance",
+      "xUrl": "https://x.com/Spiko_finance",
+      "avatar": "spiko_finance.webp"
+    },
+    "Squads": {
+      "name": "Squads",
+      "xHandle": "multisig",
+      "xUrl": "https://x.com/multisig",
+      "avatar": "multisig.webp"
+    },
+    "Stake": {
+      "name": "Stake",
+      "xHandle": "hellostake",
+      "xUrl": "https://x.com/hellostake",
+      "avatar": "hellostake.webp"
+    },
+    "Standard Life": {
+      "name": "Standard Life",
+      "xHandle": "StandardLifeUK",
+      "xUrl": "https://x.com/StandardLifeUK",
+      "avatar": "standardlifeuk.webp"
+    },
+    "Sunrise": {
+      "name": "Sunrise",
+      "xHandle": "sunrise",
+      "xUrl": "https://x.com/sunrise",
+      "avatar": "sunrise.webp"
+    },
+    "Superstate": {
+      "name": "Superstate",
+      "xHandle": "superstateinc",
+      "xUrl": "https://x.com/superstateinc",
+      "avatar": "superstateinc.webp"
+    },
+    "Tala": {
+      "name": "Tala",
+      "xHandle": "talamobile",
+      "xUrl": "https://x.com/talamobile",
+      "avatar": "talamobile.webp"
+    },
+    "Temporal": {
+      "name": "Temporal",
+      "xHandle": "temporal_xyz",
+      "xUrl": "https://x.com/temporal_xyz",
+      "avatar": "temporal_xyz.webp"
+    },
+    "The Block": {
+      "name": "The Block",
+      "xHandle": "TheBlockCo",
+      "xUrl": "https://x.com/TheBlockCo",
+      "avatar": "theblockco.webp"
+    },
+    "The White House": {
+      "name": "The White House",
+      "xHandle": "WhiteHouse",
+      "xUrl": "https://x.com/WhiteHouse",
+      "avatar": "whitehouse.webp"
+    },
+    "Twinstake": {
+      "name": "Twinstake",
+      "xHandle": "twinstake_io",
+      "xUrl": "https://x.com/twinstake_io",
+      "avatar": "twinstake_io.webp"
+    },
+    "WalletConnect": {
+      "name": "WalletConnect",
+      "xHandle": "WalletConnect",
+      "xUrl": "https://x.com/WalletConnect",
+      "avatar": "walletconnect.webp"
+    },
+    "Western Union": {
+      "name": "Western Union",
+      "xHandle": "WesternUnion",
+      "xUrl": "https://x.com/WesternUnion",
+      "avatar": "westernunion.webp"
+    },
+    "WisdomTree Onchain": {
+      "name": "WisdomTree",
+      "xHandle": "WisdomTreeFunds",
+      "xUrl": "https://x.com/WisdomTreeFunds",
+      "avatar": "wisdomtreefunds.webp"
+    },
+    "World Series of Poker": {
+      "name": "World Series of Poker",
+      "xHandle": "WSOP",
+      "xUrl": "https://x.com/WSOP",
+      "avatar": "wsop.webp"
+    },
+    "Y Combinator": {
+      "name": "Y Combinator",
+      "xHandle": "ycombinator",
+      "xUrl": "https://x.com/ycombinator",
+      "avatar": "ycombinator.webp"
+    },
+    "Zelle": {
+      "name": "Zelle",
+      "xHandle": "zelle",
+      "xUrl": "https://x.com/zelle",
+      "avatar": "zelle.webp"
+    },
+    "fomo": {
+      "name": "fomo",
+      "xHandle": "fomo",
+      "xUrl": "https://x.com/fomo",
+      "avatar": "fomo.webp"
+    },
+    "worm": {
+      "name": "Worm",
+      "xHandle": "wormwtf",
+      "xUrl": "https://x.com/wormwtf",
+      "avatar": "wormwtf.webp"
+    },
+    "xStocks": {
+      "name": "xStocks",
+      "xHandle": "xstocksfi",
+      "xUrl": "https://x.com/xstocksfi",
+      "avatar": "xstocksfi.webp"
+    },
+    "zerohash": {
+      "name": "zerohash",
+      "xHandle": "ZeroHashX",
+      "xUrl": "https://x.com/ZeroHashX",
+      "avatar": "zerohashx.webp"
+    }
+  },
+  "xAvatars": [
+    "0xdirichlet",
+    "0xerbil",
+    "0xjhk",
+    "0xnic0",
+    "0xplish",
+    "0xshittrader",
+    "_evalawrence",
+    "_mwc",
+    "a_gutierro",
+    "abraglobal",
+    "adamcreates_",
+    "ahmedzifzaf",
+    "ajpprice",
+    "akashnet",
+    "alemartcard",
+    "aliquotchris",
+    "alpacahq",
+    "ameliamariec",
+    "amiravalliani",
+    "anchorage",
+    "andreamyellie",
+    "annairrera",
+    "anthonysoohoo",
+    "anza_xyz",
+    "aon_plc",
+    "archill",
+    "armaniferrante",
+    "atumhq",
+    "austin_federa",
+    "backpack",
+    "bailliegifford",
+    "barclays",
+    "baxusco",
+    "beezie",
+    "billbar",
+    "bitgo",
+    "bitrobotnetwork",
+    "bitso",
+    "bnyglobal",
+    "borisjohnson",
+    "buffalu__",
+    "bullish",
+    "bw_solana",
+    "caddlemaya",
+    "cafe_suusiiee",
+    "cailindoran",
+    "calilyliu",
+    "candydigital",
+    "capinuk",
+    "carlkvogel",
+    "cloudflare",
+    "collector_crypt",
+    "colosseum",
+    "cowswap",
+    "cpmontagano",
+    "cryptobecool",
+    "digitalassets",
+    "diogomonica",
+    "dom_kwok",
+    "doublespends",
+    "doublezero",
+    "drrebekkarevel",
+    "easya_app",
+    "ellipsis_labs",
+    "ersoyerkazanci",
+    "farhaj",
+    "fenwickwest",
+    "figment_io",
+    "fireblockshq",
+    "fiserv",
+    "fleupold_",
+    "fomo",
+    "foundationcap",
+    "frictionlessvc",
+    "ft",
+    "fwdind",
+    "gazza_jenks",
+    "gordoncorera",
+    "grahamfergs",
+    "grayscale",
+    "gregosuri",
+    "griff71931",
+    "gromacorp",
+    "halseyhuth",
+    "haunventures",
+    "helius",
+    "hellostake",
+    "houlgrave",
+    "humafinance",
+    "hylo_so",
+    "iancr",
+    "ice_markets",
+    "ilblackdragon",
+    "investturkey",
+    "ivanhodl",
+    "jacklouisp",
+    "jacqmelinek",
+    "jeffplatt",
+    "jito",
+    "jito_labs",
+    "jnthnvctr",
+    "jpmorgan",
+    "jupiterexchange",
+    "justin_bons",
+    "k_superteam",
+    "kamino",
+    "kashdhanda",
+    "keithgrossman",
+    "kemartiti",
+    "krista_lynch_",
+    "kristinsmith",
+    "kwok_phil",
+    "kylesamani",
+    "ledger",
+    "loganjastremski",
+    "ludrmiranda",
+    "lukeju22",
+    "luketruitt",
+    "marcryptonio",
+    "marinadefinance",
+    "martingilbert83",
+    "mastercard",
+    "matt_hougan",
+    "mattytay",
+    "mcdtv",
+    "mert",
+    "metadaoproject",
+    "metaproph3t",
+    "meteoraag",
+    "millercwl",
+    "mitsuiandco",
+    "mjc_101",
+    "moneygram",
+    "moonpay",
+    "multisig",
+    "nassdiba",
+    "nearprotocol",
+    "nemild",
+    "niccabrera_",
+    "nickducoff",
+    "noah_hq",
+    "noditplatform",
+    "orca_so",
+    "patrickjwitt",
+    "payoneer",
+    "paystack",
+    "payward",
+    "petecooling",
+    "petermooreusa",
+    "phantom",
+    "platis_e",
+    "plumenetwork",
+    "powerus_usa",
+    "primerevenue",
+    "proofofjamal",
+    "pythnetwork",
+    "rachelconlan",
+    "raincards",
+    "rampnetwork",
+    "raoulgmi",
+    "rasterlyrock",
+    "rbrizido",
+    "realrockychung",
+    "realvision",
+    "reflectmoney",
+    "reidbenj",
+    "repetny",
+    "revolut",
+    "robostrategy",
+    "rohinlohe",
+    "rosskempsell",
+    "ryanxwen",
+    "sajidjavid",
+    "securitize",
+    "sethpriebatsch",
+    "seyong",
+    "shadddowfax",
+    "shahramezani",
+    "shayonsengupta",
+    "shinsukewaka",
+    "shollsman",
+    "simkinstepan",
+    "sofi",
+    "solana",
+    "solanafndn",
+    "solanainstitute",
+    "solanalabs",
+    "solflare",
+    "sphere_labs",
+    "spiko_finance",
+    "standardlifeuk",
+    "studholmeone",
+    "sunrise",
+    "superstateinc",
+    "tadtweets",
+    "talamobile",
+    "tee_ganbold",
+    "temporal_xyz",
+    "the_dtcc",
+    "theblockco",
+    "therealchaseeb",
+    "thomasfarley",
+    "thomasgsy",
+    "titan_exchange",
+    "toly",
+    "treybuckingham",
+    "tthompson",
+    "tuomholmberg",
+    "twinstake_io",
+    "ukhouseoflords",
+    "umitanuki",
+    "vassallo",
+    "vibhu",
+    "vidor_solflare",
+    "vinhonchain",
+    "walletconnect",
+    "web4o",
+    "weiszm",
+    "westernunion",
+    "whitehouse",
+    "wisdomtreefunds",
+    "wislakrakowsa",
+    "wormwtf",
+    "wsop",
+    "xstocksfi",
+    "ycombinator",
+    "zcabrams",
+    "zelle",
+    "zerohashx"
   ]
 }
