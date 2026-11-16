@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Key points go live; Watch live shows the talk now and next; announcements gain detail as the talk goes on
 
 - **Date:** 16 November 2026
-- **Pull request:** PR_LINK, branch `feat/watch-now-and-next` (built on PR #18, which it includes).
+- **Pull request:** [#19](https://github.com/cryptoclassdev/sebmontydotlink/pull/19), branch `feat/watch-now-and-next` (built on PR #18, which it includes).
 - **Status:** Ready for review. The page and API change go live on merge; the collector part on the Mac Mini when the stages job restarts (`bash scripts/mac/live.sh start stages`).
 - **Why:** On day 1 Seb saw "No session currently assigned" under the Main Stage player although the Mac knew the talk, and the first Main Stage announcement ("Solana moves from Mainnet Beta to Mainnet 1.0") was written from its first minute, ending "No technical details, dates or protocol changes were given", while the numbers (stake, transactions, Alpenglow finality) came a minute later.
 
