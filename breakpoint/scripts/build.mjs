@@ -13,7 +13,9 @@ const BASE='/breakpoint';
 const out=path.resolve(root,'../public/breakpoint');
 await mkdir(out,{recursive:true});
 
-const result=await build({entryPoints:['src/main.tsx'],bundle:true,write:false,minify:true,format:'esm',target:'es2022',define:{'process.env.NODE_ENV':'"production"','__BP_BASE__':JSON.stringify(BASE)},loader:{'.svg':'dataurl'},tsconfig:'tsconfig.json',legalComments:'none'});
+// Optional speaker photos added by the site owner: assets/speakers/<speaker-id>.webp (ids as in data/seed.json).
+const speakerPhotos=(await readdir('assets/speakers').catch(()=>[])).filter(f=>/^[a-z0-9-]{1,80}\.webp$/.test(f)).sort();
+const result=await build({entryPoints:['src/main.tsx'],bundle:true,write:false,minify:true,format:'esm',target:'es2022',define:{'process.env.NODE_ENV':'"production"','__BP_BASE__':JSON.stringify(BASE),'__BP_SPEAKER_PHOTOS__':JSON.stringify(speakerPhotos.map(f=>f.slice(0,-5)))},loader:{'.svg':'dataurl'},tsconfig:'tsconfig.json',legalComments:'none'});
 const js=result.outputFiles[0].text;
 const source=['src/kobra.css','src/style.css','src/seb.css'];
 const css=(await postcss([tailwind({base:root})]).process((await Promise.all(source.map(f=>readFile(f,'utf8')))).join('\n'),{from:path.join(root,'src/kobra.css')})).css;
@@ -27,4 +29,5 @@ await copyFile('src/icon.svg',path.join(out,'icon.svg'));
 // Project logos (official marks, see assets/logos/SOURCES.md), served from /breakpoint/logos/.
 await mkdir(path.join(out,'logos'),{recursive:true});
 for(const f of await readdir('assets/logos'))if(f.endsWith('.webp'))await copyFile(path.join('assets/logos',f),path.join(out,'logos',f));
-console.log(`Built /breakpoint: app.js ${Math.round(js.length/1024)} KB, style.css ${Math.round(css.length/1024)} KB`);
+if(speakerPhotos.length){await mkdir(path.join(out,'speakers'),{recursive:true});for(const f of speakerPhotos)await copyFile(path.join('assets/speakers',f),path.join(out,'speakers',f));}
+console.log(`Built /breakpoint: app.js ${Math.round(js.length/1024)} KB, style.css ${Math.round(css.length/1024)} KB, ${speakerPhotos.length} speaker photo(s)`);
