@@ -18,6 +18,7 @@ sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
 import xwatch, live
 
 def utc(): return dt.datetime.now(dt.timezone.utc).isoformat()
+def london_day(): return dt.datetime.now(live.LONDON).date().isoformat()
 def digest(text): return hashlib.sha256(text.encode()).hexdigest()[:24]
 def log(message, stage=None):
     print(f"{dt.datetime.now(dt.timezone.utc).strftime('%H:%M:%S')}Z  {('['+stage+'] ') if stage else ''}{message}",flush=True)
@@ -412,8 +413,30 @@ class StageRunner:
         self.proc=None;self.run_dir=None;self.source=None;self.source_url=stage.get('sourceUrl');self.session=None;self.finished=None
         self.started=self.resolved_at=self.last_chunk=self.last_audio=self.retry_at=self.next_plan=self.last_beat=0.0;self.failures=0
         self.status=('ready','Starting');self.stderr=collections.deque(maxlen=12)
+        # Offset learned from speaker introductions today (minutes, and the configured offset it was learned under).
+        learned=desk.state.value.get('learnedOffsets',{}).get(self.id) or {}
+        self.learned=(learned['minutes'],learned['configOffset']) if learned.get('day')==london_day() else None;self.prev_text=''
 
     def conf(self):return next((s for s in self.desk.config['stages'] if s.get('id')==self.id),self.base)
+    def offset(self):
+        """Schedule offset in minutes: the one learned from speaker introductions, unless the config offset was changed since."""
+        configured=float(self.conf().get('scheduleOffsetMinutes',0) or 0)
+        if self.learned and self.learned[1]==configured:return self.learned[0]
+        if self.learned:self.say(f'scheduleOffsetMinutes changed to {configured:g}; using it instead of the offset learned from introductions');self.learned=None
+        return configured
+    def learn(self,text,now=None):
+        """When a scheduled speaker is introduced on stage, take that moment as the talk's start and shift the schedule to match."""
+        joined=(self.prev_text[-300:]+' '+text).strip();self.prev_text=text
+        try:boot=self.bootstrap.get()
+        except SafeError:return
+        now=now or dt.datetime.now(dt.timezone.utc);current=self.offset()
+        hit=live.heard_session(boot.get('sessions',[]),self.conf()['name'],joined,now,current,(self.session or {}).get('id'))
+        if not hit:return
+        info,name=hit;minutes=max(-180,min(180,round((now-info['start']).total_seconds()/60)))
+        if abs(minutes-current)<2:return
+        configured=float(self.conf().get('scheduleOffsetMinutes',0) or 0);self.learned=(minutes,configured)
+        self.desk.state.change(lambda s:s.setdefault('learnedOffsets',{}).__setitem__(self.id,{'minutes':minutes,'configOffset':configured,'day':london_day(),'at':utc(),'speaker':name,'sessionId':info['id']}))
+        self.say(f'Heard {name} introduced: "{info["title"][:80]}" starts now, so the schedule is shifted {minutes:+d} min (was {current:+g})');self.next_plan=0.0
     @property
     def done(self):return self.finished is not None and self.finished==self.source
     def say(self,message):log(message,self.id)
@@ -455,7 +478,8 @@ class StageRunner:
         else:source=('audio',st['audioUrl'])
         upcoming=None
         if mode=='schedule':
-            active,upcoming=live.pick_session(boot.get('sessions',[]),st['name'],now,st.get('scheduleOffsetMinutes',0))
+            active,upcoming=live.pick_session(boot.get('sessions',[]),st['name'],now,self.offset())
+            if active:active['hints']=live.following_speakers(boot.get('sessions',[]),st['name'],active['start']-dt.timedelta(minutes=self.offset()))
         elif mode=='desk':
             sid=(record or {}).get('sessionId') or (None if yt else st.get('sessionId'))
             match=next((s for s in boot.get('sessions',[]) if isinstance(s,dict) and s.get('id')==sid),None)
@@ -480,7 +504,9 @@ class StageRunner:
         if waiting:self.status=('ready',waiting)
         elif self.finished==source:self.status=('paused','Recording finished')
         elif not want:self.status=('ready','Between sessions'+(f" · next {upcoming['start'].astimezone(live.LONDON).strftime('%H:%M')} {upcoming['title'][:80]}" if upcoming else ''))
-        elif self.proc and self.session and time.monotonic()-self.last_audio<120:self.status=('live',('Live transcript: '+self.session.get('title','')[:120]).strip())
+        elif self.proc and self.session and time.monotonic()-self.last_audio<120:
+            late=round(self.offset()) if session_mode(self.desk.config)=='schedule' else 0
+            self.status=('live',('Live transcript: '+self.session.get('title','')[:120]).strip()+(f' · running {late} min behind schedule' if late>=2 else f' · running {-late} min ahead of schedule' if late<=-2 else ''))
         elif self.proc:self.status=('ready','Connected; waiting for the session' if not self.session else 'Connecting to the stream')
         if self.status!=getattr(self,'logged_status',None):self.logged_status=self.status;self.say(f'Status: {self.status[0]} · {self.status[1]}')
 
@@ -570,7 +596,9 @@ class StageRunner:
             else:f.unlink(missing_ok=True)  # between sessions: discard, no transcription, no model calls
 
     def consume(self,f,session,stage=None):
-        try:consume_audio(self.desk,stage or self.stage,f,self.keys,session)
+        try:
+            transcript=consume_audio(self.desk,stage or self.stage,f,self.keys,session)
+            if transcript and stage is None and session_mode(self.desk.config)=='schedule':self.learn(transcript['text'])
         except BudgetExceeded:raise
         except Exception as e:  # one bad chunk never stops the stage
             self.say(f'Chunk {f.name} failed ({type(e).__name__}: {live.redact(e)[:160]}); skipped');f.unlink(missing_ok=True)
@@ -615,7 +643,7 @@ class StageRunner:
         try:boot=self.bootstrap.get()
         except SafeError:return None
         at=dt.datetime.fromtimestamp(f.stat().st_mtime,dt.timezone.utc)
-        return live.pick_session(boot.get('sessions',[]),self.conf()['name'],at,self.conf().get('scheduleOffsetMinutes',0))[0]
+        return live.pick_session(boot.get('sessions',[]),self.conf()['name'],at,self.offset())[0]
 
     def beat(self):
         self.last_beat=time.monotonic();self.desk.health(self.id,*self.status)

@@ -473,3 +473,96 @@ class DryRun(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+def talk(id, time, minutes, speakers, stage='Main Stage'):
+    return {'id': id, 'title': 'Talk ' + id, 'date': '2026-11-16', 'time': time, 'durationMinutes': minutes, 'stage': stage,
+            'dateVerified': True, 'speakerNames': speakers, 'speakers': [{'name': n} for n in speakers]}
+
+
+DAY = [talk('welcome', '10:00', 20, ['Lily Liu']), talk('mg', '10:20', 10, ['Anthony Soohoo']), talk('stable', '10:30', 10, ['Zach Abrams']),
+       talk('zelle', '10:40', 10, ['Alexandra Lang']), talk('es', '10:50', 10, ['José Fernández']),
+       talk('rx', '10:30', 10, ['Zach Abrams'], stage='Royal Exchange')]
+
+
+class Introductions(unittest.TestCase):
+    """16 Nov: talks start when their speaker is introduced, not on the published minute."""
+
+    def heard(self, text, when, offset=0, current=None):
+        hit = live.heard_session(DAY, 'Main Stage', text, at(when), offset, current)
+        return hit and (hit[0]['id'], hit[1])
+
+    def test_finds_the_talk_whose_speaker_is_introduced(self):
+        self.assertEqual(self.heard('Please welcome to the stage the CEO of MoneyGram, Anthony Soohoo!', '2026-11-16T10:28:00', current='welcome'),
+                         ('mg', 'Anthony Soohoo'))
+        self.assertEqual(self.heard('Up next, please give it up for Mr. Soohoo', '2026-11-16T10:28:00'), ('mg', 'Anthony Soohoo'))
+        self.assertEqual(self.heard('Thank you Anthony Soohoo. And now please welcome Zach Abrams.', '2026-11-16T10:41:00', current='mg'),
+                         ('stable', 'Zach Abrams'))
+        self.assertEqual(self.heard('please welcome Jose Fernandez', '2026-11-16T10:52:00'), ('es', 'José Fernández'))
+        self.assertEqual(self.heard('our next speaker, Alexandra Lang', '2026-11-16T10:40:00'), ('zelle', 'Alexandra Lang'))
+
+    def test_ignores_passing_mentions_earlier_talks_and_far_talks(self):
+        self.assertIsNone(self.heard('As Anthony Soohoo said earlier, ramps matter.', '2026-11-16T10:28:00'))
+        self.assertIsNone(self.heard('welcome back, Anthony Soohoo made a great point', '2026-11-16T10:35:00', current='stable'))
+        self.assertIsNone(self.heard('please welcome Anthony Soohoo', '2026-11-16T12:00:00'))
+        self.assertIsNone(self.heard('please welcome Lang', '2026-11-16T10:40:00'))  # a 4-letter surname alone is not enough
+        self.assertEqual(self.heard('please welcome Anthony Soohoo', '2026-11-16T12:00:00', offset=95), ('mg', 'Anthony Soohoo'))
+
+    def test_next_speakers_go_into_the_speech_prompt(self):
+        names = live.following_speakers(DAY, 'Main Stage', at('2026-11-16T10:20:00'))
+        self.assertEqual(names, ['Zach Abrams', 'Alexandra Lang'])
+        self.assertIn('Zach Abrams', live.glossary({'speakers': ['Anthony Soohoo'], 'hints': names}, []))
+
+
+class LearnedOffset(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.config = {'siteUrl': 'https://www.sebmonty.link/breakpoint', 'sessionMode': 'schedule', 'llm': {'provider': 'none'},
+                       'stages': [{'id': 'main', 'name': 'Main Stage', 'enabled': True, 'youtube': 'desk', 'scheduleOffsetMinutes': 0}]}
+        self.desk = c.Desk(self.config, c.State(self.tmp.name, 1), '', dry_run=True)
+        self.boot = FakeBootstrap({'streams': [{'id': 'main', 'name': 'Main Stage', 'embedUrl': 'https://www.youtube.com/embed/l8Sk-jInOHo', 'enabled': True}],
+                                   'sessions': DAY})
+        self.runner = self.make()
+
+    def make(self):
+        runner = c.StageRunner(self.desk, self.config['stages'][0], {}, self.boot)
+        runner.start_ffmpeg = lambda: setattr(runner, 'proc', 'running')
+        runner.stop_ffmpeg = lambda consume=True: setattr(runner, 'proc', None)
+        runner.close_session = lambda old: None
+        return runner
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def step(self, when, runner=None):
+        runner = runner or self.runner
+        now = at(when)
+        runner.apply(*runner.plan(now), now=now)
+        return (runner.session or {}).get('id')
+
+    def test_an_introduction_shifts_the_schedule_and_survives_a_restart(self):
+        self.assertEqual(self.step('2026-11-16T10:21:00'), 'mg')                  # published time: MoneyGram
+        self.assertIn('Zach Abrams', self.runner.session['hints'])
+        self.runner.learn('Lily, thank you. Please welcome to the stage Anthony Soohoo.', now=at('2026-11-16T10:28:00'))
+        self.assertEqual(self.runner.offset(), 8)
+        self.assertEqual(self.step('2026-11-16T10:36:00'), 'mg')                  # still MoneyGram: it started 8 min late
+        self.assertEqual(self.step('2026-11-16T10:37:30'), 'stable')              # 10:30 + 8, with the one-minute lead
+        self.runner.proc = 'running'
+        self.runner.last_audio = c.time.monotonic()
+        self.step('2026-11-16T10:39:00')
+        self.assertEqual(self.runner.status, ('live', 'Live transcript: Talk stable · running 8 min behind schedule'))
+        self.assertEqual(self.desk.state.value['learnedOffsets']['main']['minutes'], 8)
+        self.assertEqual(self.make().offset(), 8)                                  # a restart keeps it for the day
+        self.runner.learn('next up, Alexandra Lang', now=at('2026-11-16T10:49:00'))  # 9 min late: under 2 min of change, kept
+        self.assertEqual(self.runner.offset(), 8)
+        self.config['stages'][0]['scheduleOffsetMinutes'] = 3                    # a manual change wins
+        self.assertEqual(self.runner.offset(), 3)
+
+    def test_chunks_feed_the_detector_only_for_live_audio_in_schedule_mode(self):
+        heard = []
+        self.runner.learn = lambda text, now=None: heard.append(text)
+        transcript = {'text': 'please welcome Zach Abrams'}
+        with patch.object(c, 'consume_audio', return_value=transcript):
+            self.runner.consume(pathlib.Path('x.wav'), {'id': 'mg'})
+            self.runner.consume(pathlib.Path('y.wav'), {'id': 'mg'}, stage={'id': 'main', 'name': 'Main Stage', 'sourceUrl': 'x'})  # recovery
+        self.assertEqual(heard, ['please welcome Zach Abrams'])

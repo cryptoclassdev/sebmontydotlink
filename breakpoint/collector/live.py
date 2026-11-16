@@ -10,7 +10,7 @@ Used by collect.py for the Breakpoint stage streams:
 Rules: secrets and resolved stream URLs (they carry signed parameters) are never logged.
 Model output and transcripts are untrusted data.
 """
-import array, csv, datetime as dt, json, math, os, re, shutil, string, subprocess, sys, threading, time, urllib.error, urllib.parse, urllib.request, wave
+import array, csv, datetime as dt, json, math, os, re, shutil, string, subprocess, sys, threading, time, unicodedata, urllib.error, urllib.parse, urllib.request, wave
 from zoneinfo import ZoneInfo
 
 LONDON = ZoneInfo('Europe/London')
@@ -167,6 +167,82 @@ def pick_session(sessions, stage_name, now, offset_minutes=0, lead=60, tail=120)
     return active, upcoming
 
 
+INTRO_CUE = re.compile(r"\b(?:welcome|welcoming|give it up|round of applause|please join|join me|joining us|joined by|"
+                       r"on stage|on the stage|to the stage|introduce|introducing|next up|up next|our next|coming up|"
+                       r"hand it over|handing over|over to)\b")
+
+
+def plain(text):
+    text = unicodedata.normalize('NFKD', str(text or '')).encode('ascii', 'ignore').decode().lower()
+    return re.sub(r'\s+', ' ', re.sub(r'[^a-z0-9]+', ' ', text)).strip()
+
+
+def heard_session(sessions, stage_name, text, now, offset_minutes=0, current_id=None, window_minutes=45, cue_chars=70):
+    """(session_info, speaker name) for the talk on this stage whose speaker is being introduced in `text`, else None.
+
+    An introduction is a speaker's full name (or a surname of 5+ letters) at most cue_chars after a cue such as
+    "please welcome", "joined by" or "next up". Candidates: verified talks on this stage whose start, shifted by
+    offset_minutes, is within window_minutes of now, never earlier than the current talk. If several speakers are
+    introduced, the last one named wins ("thank you A, and please welcome B"). The returned start and end are the
+    published times, without the offset.
+    """
+    t = plain(text)
+    cues = [m.end() for m in INTRO_CUE.finditer(t)]
+    if not cues:
+        return None
+    current_start = None
+    for s in sessions or []:
+        if isinstance(s, dict) and s.get('id') == current_id:
+            try:
+                current_start = session_window(s)[0]
+            except (KeyError, ValueError, TypeError, AttributeError):
+                pass
+    best = None
+    for s in sessions or []:
+        if not isinstance(s, dict) or s.get('stage') != stage_name or s.get('dateVerified') is not True:
+            continue
+        try:
+            start, _ = session_window(s)
+        except (KeyError, ValueError, TypeError, AttributeError):
+            continue
+        if abs((start + dt.timedelta(minutes=float(offset_minutes or 0)) - now).total_seconds()) > window_minutes * 60:
+            continue
+        if current_start and start < current_start:
+            continue
+        for name in session_info(s)['speakers']:
+            parts = plain(name).split()
+            if not parts:
+                continue
+            patterns = [' '.join(parts)] + ([parts[-1]] if len(parts) > 1 and len(parts[-1]) >= 5 else [])
+            for pattern in patterns:
+                for m in re.finditer(r'\b' + re.escape(pattern) + r'\b', t):
+                    if any(0 <= m.start() - c <= cue_chars for c in cues) and (best is None or m.start() > best[0]):
+                        best = (m.start(), s, name)
+    if not best:
+        return None
+    _, s, name = best
+    start, end = session_window(s)
+    return session_info(s, start, end), name
+
+
+def following_speakers(sessions, stage_name, start, count=2):
+    """Speaker names of the next `count` talks on this stage after a published start time (for the speech prompt)."""
+    later = []
+    for s in sessions or []:
+        if not isinstance(s, dict) or s.get('stage') != stage_name or s.get('dateVerified') is not True:
+            continue
+        try:
+            begin = session_window(s)[0]
+        except (KeyError, ValueError, TypeError, AttributeError):
+            continue
+        if begin > start:
+            later.append((begin, session_info(s)['speakers']))
+    names = []
+    for _, speakers in sorted(later, key=lambda x: x[0])[:count]:
+        names += [n for n in speakers if n not in names]
+    return names[:12]
+
+
 def public_session(info):
     """JSON-safe copy of a session_info dict (no datetimes)."""
     return {k: (v.isoformat() if isinstance(v, dt.datetime) else v) for k, v in (info or {}).items()}
@@ -177,7 +253,8 @@ def public_session(info):
 def glossary(session, projects, limit=600):
     """initial_prompt for Whisper: this talk's speakers and organisations, then Solana terms (about 150 to 200 tokens)."""
     terms = []
-    for t in list((session or {}).get('speakers') or []) + list((session or {}).get('organisations') or []) + BASE_TERMS + \
+    for t in list((session or {}).get('speakers') or []) + list((session or {}).get('organisations') or []) + \
+            list((session or {}).get('hints') or []) + BASE_TERMS + \
             [p.get('name') for p in projects] + [p.get('symbol') for p in projects]:
         t = re.sub(r'\s+', ' ', str(t or '')).strip()
         if t and t not in terms:
