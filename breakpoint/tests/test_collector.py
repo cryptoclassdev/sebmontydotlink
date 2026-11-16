@@ -1,4 +1,4 @@
-import importlib.util, pathlib, tempfile, unittest
+import importlib.util, json, pathlib, tempfile, unittest
 from unittest.mock import patch
 spec=importlib.util.spec_from_file_location('collect',pathlib.Path(__file__).resolve().parents[1]/'collector/collect.py');c=importlib.util.module_from_spec(spec);spec.loader.exec_module(c)
 class Tests(unittest.TestCase):
@@ -17,6 +17,31 @@ class Tests(unittest.TestCase):
   self.assertEqual(len(list((pathlib.Path(self.tmp.name)/'outbox').glob('*.json'))),1)
   with patch.object(self.desk,'send',return_value={'ok':True}):self.desk.flush()
   self.assertEqual(len(list((pathlib.Path(self.tmp.name)/'outbox').glob('*.json'))),0)
+ def test_rejected_payload_is_set_aside_and_does_not_block_the_queue(self):
+  # 15 Nov: one X post with emoji was 4003 UTF-16 units long; the site answered 400 and 15 later updates waited behind it for 15 hours.
+  import os
+  out=pathlib.Path(self.tmp.name)/'outbox'
+  self.desk.queue({'entries':[{'id':'bad'}]});self.desk.queue({'entries':[{'id':'good'}]})
+  for i,f in enumerate(sorted(out.glob('*.json'),key=lambda f:json.loads(f.read_text())['entries'][0]['id']!='bad')):os.utime(f,(1000+i,1000+i))
+  sent=[]
+  def send(p):
+   if p['entries'][0]['id']=='bad':raise c.SafeError('HTTP 400; site says: Invalid excerpt',400)
+   sent.append(p)
+  with patch.object(self.desk,'send',side_effect=send):self.desk.flush()
+  self.assertEqual([p['entries'][0]['id'] for p in sent],['good'])
+  self.assertEqual(list(out.glob('*.json')),[])
+  self.assertEqual(len(list((pathlib.Path(self.tmp.name)/'outbox-rejected').glob('*.json'))),1)
+  # A server or network error keeps the payload for a retry.
+  self.desk.queue({'entries':[{'id':'later'}]})
+  with patch.object(self.desk,'send',side_effect=c.SafeError('HTTP 503',503)):
+   with self.assertRaises(c.SafeError):self.desk.flush()
+  self.assertEqual(len(list(out.glob('*.json'))),1)
+ def test_entries_are_trimmed_to_site_limits_in_utf16_units(self):
+  self.assertEqual(c.fit('abc',3),'abc');self.assertEqual(c.fit('ab\U0001F680',3),'ab');self.assertEqual(c.fit('ab\U0001F680',4),'ab\U0001F680')
+  self.desk.queue({'entries':[{'id':'long','excerpt':'a'*3999+'\U0001F680'*3,'title':'t'*200,'takeaways':['x']*20,'projectIds':['solana']*12}]})
+  e=json.loads(next((pathlib.Path(self.tmp.name)/'outbox').glob('*.json')).read_text())['entries'][0]
+  self.assertEqual(len(e['excerpt'].encode('utf-16-le'))//2,3999);self.assertEqual(len(e['title']),180)
+  self.assertEqual(len(e['takeaways']),12);self.assertEqual(len(e['projectIds']),10)
  def test_slow_source_repeats_its_heartbeat_every_minute(self):
   # The site calls a source stale after 3 minutes; the X monitor polls every 10, so its last status is resent every minute.
   sent=[]

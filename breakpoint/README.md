@@ -128,17 +128,18 @@ Preview and production share one database, so tests never post to a deployed sit
 ```bash
 cd ~/breakpoint-live/sebmontydotlink/breakpoint
 bash scripts/mac/live.sh check stages    # 2-minute dry run against the live site: schedule and desk links, posts nothing
-bash scripts/mac/live.sh start stages    # start (launchd; keeps running after Terminal closes, restarts after a crash)
+bash scripts/mac/live.sh start stages    # start, or restart if running (launchd; keeps running after Terminal closes, restarts after a crash)
 bash scripts/mac/live.sh status          # both jobs, last log lines, today's model spend
 bash scripts/mac/live.sh logs stages     # follow the log
 bash scripts/mac/live.sh stop stages     # kill switch
 ```
 
-When Solana publishes the stream links: desk (`/breakpoint#editor`), Broadcast connections, for each stage paste `https://www.youtube.com/embed/<VIDEO_ID>` (the part after `v=` or `/live/`), tick Show player, save. That one paste drives the player and the transcriber.
+When Solana publishes the stream links: desk (`/breakpoint#editor`), Broadcast connections, for each stage paste the YouTube link in any form (`watch?v=`, `/live/`, `youtu.be/` or `/embed/`; the site stores the embed form), tick Show player, save. If a save fails, the reason shows at the top of the desk. That one paste drives the player and the transcriber.
 
 | Situation | What to do |
 |---|---|
 | A stage runs more than 2 minutes late | Edit that stage's `scheduleOffsetMinutes` in `collector/config.breakpoint-stages.json`; it applies within a minute |
+| The log says "The site rejected a queued update" | The site refused that one update as invalid and gave its reason in the log line; the file is in `.local/<job>/outbox-rejected/` and everything queued after it still goes out. Fix the field and move the file back into `outbox/`, or leave it |
 | The schedule is badly off | Set `sessionMode` to `"desk"` and assign the current session per stage on the desk |
 | A wrong entry went out | Withdraw it from the desk with a note |
 | Spend runs high | Set `llm.model` to `claude-haiku-5-5`, or lower `dailyBudgetUsd` |

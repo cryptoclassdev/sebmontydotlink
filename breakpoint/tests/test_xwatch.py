@@ -64,6 +64,19 @@ class Tests(unittest.TestCase):
     def entries(self):
         return [e for p in self.sent if 'entries' in p for e in p['entries']]
 
+    def test_site_error_does_not_fail_the_x_check(self):
+        # Publishing problems are retried by the main loop; the X check itself still succeeds and reports live.
+        def send(payload):
+            if 'entries' in payload:
+                raise c.SafeError('HTTP 503', 503)
+            self.sent.append(payload)
+        self.desk.send = send
+        http = FakeHttp([{'tweets': [tweet(1, 'kamino', 'Fixed-rate vaults are live')], 'has_next_page': False}], {'1': ALPHA})
+        report = self.run_poll(http)
+        self.assertEqual(report['published'], 1)
+        self.assertEqual(len(list((pathlib.Path(self.tmp.name) / 'outbox').glob('*.json'))), 1)
+        self.assertEqual([p for p in self.sent if 'heartbeat' in p][-1]['heartbeat']['state'], 'live')
+
     def test_accounts_file_is_valid_and_queries_fit(self):
         accounts = x.load_accounts(ROOT / 'data/x-accounts.json')
         self.assertGreater(len(accounts), 150)

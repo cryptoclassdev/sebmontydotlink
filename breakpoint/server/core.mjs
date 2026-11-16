@@ -17,10 +17,18 @@ export function validateEntry(raw,projectIds){
  if(['corrected','withdrawn'].includes(entry.status)&&!entry.correctionNote)throw new HttpError(400,'A correction note is required');
  return entry;
 }
+// Any YouTube link people copy (watch?v=, /live/, youtu.be/, /shorts/, the mobile site) becomes its /embed/ form.
+function youtubeEmbed(u){
+ if(u.protocol!=='https:'||u.username||u.password)return null;
+ const host=u.hostname.replace(/^(m|music)\./,'www.').replace(/^youtube\.com$/,'www.youtube.com');let id=null;
+ if(host==='youtu.be')id=u.pathname.slice(1);
+ else if(host==='www.youtube.com'){const m=u.pathname.match(/^\/(live|shorts)\/([\w-]+)\/?$/);id=m?m[2]:u.pathname==='/watch'?u.searchParams.get('v'):null;}
+ return id&&/^[\w-]{6,20}$/.test(id)?new URL(`https://www.youtube.com/embed/${id}`):null;
+}
 export function validateStream(raw){
  if(!['main','royal','lparmy'].includes(raw.id))throw new HttpError(400,'Unknown stage');
  let embedUrl=null;
- if(raw.embedUrl){let u;try{u=new URL(raw.embedUrl);}catch{throw new HttpError(400,'Use a supported YouTube/Vimeo embed URL');}if(u.protocol!=='https:'||!['www.youtube-nocookie.com','www.youtube.com','player.vimeo.com'].includes(u.hostname)||!/^\/(embed\/[\w-]+|video\/\d+)$/.test(u.pathname)||u.username||u.password)throw new HttpError(400,'Use a supported YouTube/Vimeo embed URL');embedUrl=u.origin+u.pathname;}
+ if(raw.embedUrl){let u;try{u=new URL(String(raw.embedUrl).trim());}catch{throw new HttpError(400,'Use a supported YouTube/Vimeo embed URL');}u=youtubeEmbed(u)??u;if(u.protocol!=='https:'||!['www.youtube-nocookie.com','www.youtube.com','player.vimeo.com'].includes(u.hostname)||!/^\/(embed\/[\w-]+|video\/\d+)$/.test(u.pathname)||u.username||u.password)throw new HttpError(400,'Use a supported YouTube/Vimeo embed URL');embedUrl=u.origin+u.pathname;}
  const sourceUrl=raw.sourceUrl?safeUrl(raw.sourceUrl):null;if(raw.sourceUrl&&!sourceUrl)throw new HttpError(400,'Invalid stream source');
  return {id:raw.id,name:str(raw.name,80,'stage name'),embedUrl,sourceUrl,sessionId:raw.sessionId&&idPattern.test(raw.sessionId)?raw.sessionId:null,enabled:raw.enabled===true};
 }

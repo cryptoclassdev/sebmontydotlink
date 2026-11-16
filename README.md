@@ -54,6 +54,40 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Event-day fixes: a rejected update no longer holds up the rest; the desk accepts any YouTube link; LP Army job
+
+- **Date:** 16 November 2026
+- **Pull request:** [#17](https://github.com/cryptoclassdev/sebmontydotlink/pull/17), branch `fix/collector-outbox-rejects`.
+- **Status:** Ready for review. The collector part has run on the Mac Mini since 08:04 UTC on 16 November (both jobs restarted); the desk part changes the site's API and goes live on merge.
+- **Why:** On 15 November at 17:06 UTC the X monitor queued a long Solana weekly recap whose excerpt was 4,000 characters in Python but 4,003 in JavaScript, which counts each emoji twice. The site answered 400 (excerpt too long). The outbox sends in a fixed order and stopped at the first failure, so the 15 updates queued after it (Solflare Private Mode, Meteora DLMM Pro, Reflect Build and others) waited about 15 hours, and every X check reported "X check failed" because the poll's own send hit the same item. On 16 November at 07:41 UTC Claude trimmed that excerpt on the Mac Mini and the queue emptied within seconds. The same flaw would have stopped stage announcements during the event.
+
+#### What changed
+1. **Outbox:** sends oldest first. An update the site rejects as invalid (HTTP 400, 413 or 422) is moved to `outbox-rejected/` with a log line giving the site's reason, and the rest carry on. Network, sign-in and server errors still keep the update for a retry.
+2. **Field limits:** every entry is trimmed to the site's limits (title 180, body 10,000, excerpt 4,000 and so on) counted the way JavaScript counts, before it is queued.
+3. **Clearer errors:** a rejection from the site now shows the site's own reason (for example "Invalid excerpt"); a failed request names the host and the error type instead of "Provider request failed". Keys and provider bodies are still never logged.
+4. **X monitor status:** a problem sending to the site no longer marks the X check as failed; the main loop retries and reports it.
+5. **Desk, Broadcast connections:** any YouTube link (`watch?v=`, `/live/`, `youtu.be/`, `/shorts/`, the mobile site) is stored in its `/embed/` form. On 16 November the LP Army `/live/` link Seb pasted was refused, with the error shown at the top of the desk, out of view.
+6. **`live.sh`:** `stop` waits until launchd has removed the job, and `start` retries for a few seconds, because `stop x && start x` started nothing on 16 November (launchd was still removing the old job). `start` alone already restarts a running job. Not yet copied to the Mac Mini; to be checked there after the event.
+7. **LP Army (optional third job):** `collector/config.breakpoint-lparmy.json` and `bash scripts/mac/live.sh start lparmy` transcribe the LP Army stream (Meteora) from its desk link. It is not in the published schedule, so it runs one fixed session per day (`lparmy-day1`; change `sessionId` to `lparmy-day2` on Tuesday, which also sends day 1's recap to the desk). Announcements publish as Provisional; recaps go to the desk as drafts. Budget $8 a day. Copied to the Mac Mini on 16 November; started only if Seb says so.
+
+#### Files touched
+- `breakpoint/collector/collect.py`, `breakpoint/collector/xwatch.py`, `breakpoint/collector/config.breakpoint-lparmy.json` (new), `breakpoint/server/core.mjs`, `breakpoint/scripts/mac/live.sh`
+- `breakpoint/tests/test_collector.py`, `breakpoint/tests/test_xwatch.py`, `breakpoint/tests/api.test.mjs`
+- `breakpoint/README.md` (troubleshooting row, desk links, restart), `README.md`
+
+#### How to check it
+On the Vercel preview: open the desk, paste `https://www.youtube.com/live/<VIDEO_ID>` for a stage and save (preview and production share storage, so use the LP Army row with its current video, then check it reads `https://www.youtube.com/embed/<VIDEO_ID>` after a refresh). On the Mac Mini: `bash scripts/mac/live.sh status` shows both jobs running, and Watch live, Source health, "X monitoring" reads "Watching 208 accounts on X".
+
+#### Checks run
+- 64 Python tests and 49 Node tests. New tests: a rejected update is set aside while the next one is sent and a 503 keeps the queue; text with emoji is trimmed to the limit in UTF-16 units; an X check still succeeds and reports live when the site cannot be reached; six YouTube link forms become the embed link, and other hosts and paths are still refused. `bash -n` on `live.sh` (launchd itself cannot run here).
+- On the Mac Mini after the restart at 08:04 UTC: the first X search published 1 item with an empty outbox.
+
+#### Risks
+- An update set aside is not retried automatically. The log line names the file and the reason; it can be fixed and moved back into `outbox/`.
+
+#### Roll back
+Revert this PR and restart both jobs with `start`. The outbox format is unchanged; stored embed links stay valid.
+
 ### X monitor: search every 10 minutes
 
 - **Date:** 15 November 2026
