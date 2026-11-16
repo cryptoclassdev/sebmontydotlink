@@ -54,6 +54,34 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Cards show "Full details" instead of review labels
+
+- **Date:** 16 November 2026
+- **Pull request:** PR_LINK, branch `feat/cards-full-details`.
+- **Status:** Ready for review. Page only; goes live on merge.
+- **Why:** Seb asked for no review labels on the public cards ("Provisional", "Source checked" and the like); the status stays on the desk, and readers get a "Full details" link instead.
+
+#### What changed
+1. News cards: the status badge in the top-right corner is replaced by a "Full details" link that opens the item; the arrow next to the title is gone (the title still opens it).
+2. Item details: the status and novelty labels are gone.
+3. Kept on purpose: a "Corrected" or "Withdrawn" label still shows, on the card and in the details, so a retracted claim never reads as current. The editor desk still lists every status.
+
+#### Files touched
+- `breakpoint/src/main.tsx`, `breakpoint/src/style.css`, `public/breakpoint/` (rebuilt)
+- `README.md`
+
+#### How to check it
+On the Vercel preview: Overview, Catch up and Watch live cards show "Full details" at the top right and no "Provisional" badge; opening one shows no status labels. The desk (`#editor`) still shows Draft, Provisional and Source checked.
+
+#### Checks run
+- `tsc --noEmit`, page build, 53 Node tests.
+
+#### Risks
+- Readers can no longer tell an automatic item from one an editor checked; every item still names its source ("live transcript (auto)" or the X account).
+
+#### Roll back
+Revert this PR.
+
 ### Key points go live; Watch live shows the talk now and next; announcements gain detail as the talk goes on
 
 - **Date:** 16 November 2026

@@ -10,3 +10,5 @@
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.hero-big{transform:none}}
 
 .london-map{touch-action:pan-y}.london-map svg{touch-action:none;cursor:grab}.london-map svg:active{cursor:grabbing}
+
+.details-link{display:inline-flex;align-items:center;gap:3px;border:0;background:none;padding:0;font-size:11px;font-weight:600;color:var(--muted-foreground);cursor:pointer;white-space:nowrap}.details-link:hover{color:var(--foreground)}.details-link:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:4px}
