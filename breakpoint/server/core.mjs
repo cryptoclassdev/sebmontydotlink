@@ -12,10 +12,29 @@ export function validateEntry(raw,projectIds){
  if(Date.parse(raw.occurredAt)>Date.now()+300000)throw new HttpError(400,'Source time cannot be in the future');
  if(!Array.isArray(raw.projectIds)||raw.projectIds.length>10||raw.projectIds.some(x=>!projectIds.includes(x)))throw new HttpError(400,'Unknown project');
  const takeaways=raw.takeaways??[];if(!Array.isArray(takeaways)||takeaways.length>12)throw new HttpError(400,'Invalid takeaways');
- const entry={id:raw.id,kind:raw.kind,status:raw.status,title:str(raw.title,180,'title'),body:str(raw.body,10000,'body'),sourceUrl,sourceName:str(raw.sourceName,160,'source name'),occurredAt:raw.occurredAt,projectIds:[...new Set(raw.projectIds)],takeaways:takeaways.map(x=>str(x,1000,'takeaway')),tokenImpact:['direct','indirect','unclear','none'].includes(raw.tokenImpact)?raw.tokenImpact:'unclear',impactReason:str(raw.impactReason??'',1500,'impact reason',false),novelty:['new','previously-announced','unknown'].includes(raw.novelty)?raw.novelty:'unknown',excerpt:str(raw.excerpt??'',4000,'excerpt',false),stage:str(raw.stage??'',80,'stage',false),sessionId:raw.sessionId&&idPattern.test(raw.sessionId)?raw.sessionId:null,correctionNote:str(raw.correctionNote??'',1500,'correction note',false)};
+ const entry={id:raw.id,kind:raw.kind,status:raw.status,title:str(raw.title,180,'title'),body:str(raw.body,10000,'body'),sourceUrl,sourceName:str(raw.sourceName,160,'source name'),occurredAt:raw.occurredAt,projectIds:[...new Set(raw.projectIds)],takeaways:takeaways.map(x=>str(x,1000,'takeaway')),tokenImpact:['direct','indirect','unclear','none'].includes(raw.tokenImpact)?raw.tokenImpact:'unclear',impactReason:str(raw.impactReason??'',1500,'impact reason',false),novelty:['new','previously-announced','unknown'].includes(raw.novelty)?raw.novelty:'unknown',excerpt:str(raw.excerpt??'',4000,'excerpt',false),stage:str(raw.stage??'',80,'stage',false),sessionId:raw.sessionId&&idPattern.test(raw.sessionId)?raw.sessionId:null,correctionNote:str(raw.correctionNote??'',1500,'correction note',false),image:validateImage(raw.image)};
  if(['announcement','summary'].includes(entry.kind)&&!entry.excerpt)throw new HttpError(400,'Announcement and summary records require a source excerpt');
  if(['corrected','withdrawn'].includes(entry.status)&&!entry.correctionNote)throw new HttpError(400,'A correction note is required');
  return entry;
+}
+// A picture attached to an entry: a still from the stage livestream (kind "stream") or the X post's own picture ("x").
+// The bytes live in storage under media/<id>.json and are served at /api/media/<id>; a bad value is dropped, never fatal.
+export const mediaIdPattern=/^[fx][a-f0-9]{32}$/;
+export function validateImage(raw){
+ if(!raw||typeof raw!=='object'||!mediaIdPattern.test(raw.id)||!['stream','x'].includes(raw.kind))return null;
+ const credit=typeof raw.credit==='string'?raw.credit.trim().slice(0,120):'';
+ return {id:raw.id,kind:raw.kind,at:iso(raw.at)?raw.at:null,credit};
+}
+// Image bytes sent by the collector: WebP or JPEG only (checked from the bytes), at most MEDIA_MAX_BYTES.
+export const MEDIA_MAX_BYTES=150000;
+export function validateMedia(raw){
+ if(!raw||typeof raw!=='object'||!mediaIdPattern.test(raw.id)||!['stream','x'].includes(raw.kind)||typeof raw.data!=='string'||raw.data.length>Math.ceil(MEDIA_MAX_BYTES/3)*4+4)throw new HttpError(400,'Invalid media');
+ let bytes;try{bytes=Uint8Array.from(atob(raw.data),c=>c.charCodeAt(0));}catch{throw new HttpError(400,'Invalid media');}
+ const webp=bytes.length>12&&String.fromCharCode(...bytes.slice(0,4))==='RIFF'&&String.fromCharCode(...bytes.slice(8,12))==='WEBP';
+ const jpeg=bytes[0]===0xff&&bytes[1]===0xd8&&bytes[2]===0xff;
+ const type=webp?'image/webp':jpeg?'image/jpeg':null;
+ if(!type||type!==raw.type||bytes.length<1000||bytes.length>MEDIA_MAX_BYTES)throw new HttpError(400,'Media must be a WebP or JPEG image under 150 KB');
+ return {id:raw.id,kind:raw.kind,type,data:raw.data,bytes:bytes.length,at:iso(raw.at)?raw.at:null};
 }
 // Any YouTube link people copy (watch?v=, /live/, youtu.be/, /shorts/, the mobile site) becomes its /embed/ form.
 function youtubeEmbed(u){
