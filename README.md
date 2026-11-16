@@ -54,6 +54,34 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Watch a talk from its card; Now and next follows the stage's delay
+
+- **Date:** 16 November 2026
+- **Pull request:** [#22](https://github.com/cryptoclassdev/sebmontydotlink/pull/22), branch `feat/watch-from-session`.
+- **Status:** Ready for review. Page only; goes live on merge.
+- **Why:** Seb clicked "On now" on the Overview, got the talk's card, and had no way to the live stream from there. The same block also showed the published slot ("Zelle Goes Global, until 10:50") while the Main Stage was running 9 minutes late on an earlier talk.
+
+#### What changed
+1. **Talk card:** a "Watch live now" button when the stage's audio is live on this talk, otherwise "Watch the <stage> stream", whenever that stage has a player on the desk. It closes the card and opens Watch live on that stage.
+2. **Watch live** opens on the stage named in the link (`#watch?stage=royal`), also when already open.
+3. **Overview, Now and next:** uses the talk the Mac hears on each stage and shifts the published times by the stage's reported delay ("ON NOW · UNTIL 10:59 · 9 MIN LATE", next talk time shifted too).
+
+#### Files touched
+- `breakpoint/src/main.tsx`, `breakpoint/src/style.css`, `public/breakpoint/` (rebuilt)
+- `README.md`
+
+#### How to check it
+On the live site after merge: Overview, click the Main Stage "On now" card: the card shows "Watch live now" and opens Watch live on the Main Stage. The On now card names the same talk as the Watch live caption.
+
+#### Checks run
+- `tsc --noEmit`, page build.
+
+#### Risks
+- With no heartbeat (Mac off), Now and next falls back to the published times, as before.
+
+#### Roll back
+Revert this PR.
+
 ### Session summaries stand out and get their own list on Watch live
 
 - **Date:** 16 November 2026
