@@ -85,11 +85,14 @@ async function mediaResponse(bucket,id){
  * loadEvents: async () => ({events, source, checkedAt, error?}); falls back to seed.events on failure.
  * error, when present, is the reason live listings could not be refreshed (shown in /api/health).
  * loadPrices: async () => ({source, checkedAt, stale, error, prices}); token prices for /api/live (see prices.mjs).
+ * attachEmbeds: async (bucket, entries) => entries with `embed` added to posts from X (see tweets.mjs). Optional.
  * @param {any} seed
- * @param {{basePath?: string, loadEvents?: () => Promise<{events: any[], source?: string, checkedAt?: string, error?: string}>, loadPrices?: () => Promise<any>}} [options]
+ * @param {{basePath?: string, loadEvents?: () => Promise<{events: any[], source?: string, checkedAt?: string, error?: string}>, loadPrices?: () => Promise<any>, attachEmbeds?: (bucket: any, entries: any[]) => Promise<any[]>}} [options]
  * @returns {(request: Request, env: {BUCKET?: any, EDITOR_TOKEN?: string, INGEST_TOKEN?: string, AUTO_PUBLISH_PROVISIONAL?: string}) => Promise<Response>}
  */
-export function createApi(seed,{basePath='',loadEvents,loadPrices}={}){
+export function createApi(seed,{basePath='',loadEvents,loadPrices,attachEmbeds}={}){
+ // Post embeds never block or break a read: on any failure the entries go out as they are.
+ const withEmbeds=async(bucket,entries)=>{if(!attachEmbeds)return entries;try{return await attachEmbeds(bucket,entries);}catch{return entries;}};
  const projectIds=seed.projects.map(p=>p.id);
  async function events(){
   let error;
@@ -107,7 +110,11 @@ export function createApi(seed,{basePath='',loadEvents,loadPrices}={}){
   const market=await pricesPromise;
   const health=Object.fromEntries(HEALTH_IDS.map(id=>[id,sourceHealth(heartbeats.find(h=>h.id===id))]));
   if(loadPrices)health.market=marketHealth(market);
-  return {nextCursor,entries:[...seed.entries,...entries.filter(feedVisible)].sort(byTime),summaries,xPosts,streams:seed.streams.map(s=>streams.find(x=>x.id===s.id)??s),sessionOverrides:sessions,health,prices:market?{source:market.source,checkedAt:market.checkedAt,stale:market.stale,prices:market.prices}:null,storage,serverTime:new Date().toISOString()};
+  // Posts from X carry an embed (author, avatar, media) in the feed and in Straight from X; one lookup for both.
+  const listed=[...seed.entries,...entries.filter(feedVisible)].sort(byTime);
+  const embedded=new Map((await withEmbeds(storage==='ready'?bucket:null,[...listed,...xPosts])).map(e=>[e.id,e]));
+  const withEmbed=e=>embedded.get(e.id)??e;
+  return {nextCursor,entries:listed.map(withEmbed),summaries,xPosts:xPosts.map(withEmbed),streams:seed.streams.map(s=>streams.find(x=>x.id===s.id)??s),sessionOverrides:sessions,health,prices:market?{source:market.source,checkedAt:market.checkedAt,stale:market.stale,prices:market.prices}:null,storage,serverTime:new Date().toISOString()};
  }
  return async function api(request,env){
   const url=new URL(request.url);let path=url.pathname;
@@ -120,7 +127,7 @@ export function createApi(seed,{basePath='',loadEvents,loadPrices}={}){
     if(path==='/api/live')return json(await liveData(bucket),200,CACHE.live);
     if(path==='/api/bootstrap'){const [s,l]=await Promise.all([staticData(),liveData(bucket)]);const {sessionOverrides,...rest}=l;return json({...s,...rest,sessions:s.sessions.map(x=>sessionOverrides.find(o=>o.id===x.id)??x)},200,CACHE.live);}
     if(path==='/api/calendar'){const id=url.searchParams.get('id')??'';const event=(await events()).events.find(e=>e.id===id);if(!event)throw new HttpError(404,'Event not found');return new Response(makeCalendar(event),{headers:{'content-type':'text/calendar; charset=utf-8','content-disposition':`attachment; filename="${event.id.replace(/[^a-zA-Z0-9_-]/g,'')}.ics"`,'cache-control':CACHE.static}});}
-    if(path==='/api/feed'){if(!bucket)throw new HttpError(503,'Durable storage is not connected');const cursor=url.searchParams.get('cursor');if(cursor&&cursor.length>2000)throw new HttpError(400,'Invalid cursor');return json(await entryPage(bucket,true,cursor),200,CACHE.live);}
+    if(path==='/api/feed'){if(!bucket)throw new HttpError(503,'Durable storage is not connected');const cursor=url.searchParams.get('cursor');if(cursor&&cursor.length>2000)throw new HttpError(400,'Invalid cursor');const page=await entryPage(bucket,true,cursor);return json({...page,entries:await withEmbeds(bucket,page.entries)},200,CACHE.live);}
     if(path==='/api/health'){const e=await events();return json({storage:!!bucket,editorConfigured:!!env.EDITOR_TOKEN,collectorConfigured:!!env.INGEST_TOKEN,events:{source:e.source,checkedAt:e.checkedAt,count:e.events.length,error:e.error??null}});}
    }
    const isEditor=await authorized(request,env.EDITOR_TOKEN);const isCollector=await authorized(request,env.INGEST_TOKEN);

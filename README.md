@@ -67,7 +67,8 @@ Newest first. One entry per pull request.
 3. **Storage and API.** Pictures go to the existing Upstash database as their own ingest payload (`media`, WebP or JPEG checked from the bytes, at most 150 KB) and are served at `/breakpoint/api/media/<id>` with a one-year immutable cache. Entries carry `image: {id, kind, at, credit}`; an image whose bytes were never stored is dropped. An `attach` ingest operation adds a picture to an already published entry only when it has none and an editor has not removed one. Expected size for both days: 3 to 6 MB.
 4. **Page.** Cards show the picture with a "Livestream · 13:02" or "@handle on X" tag: on top on phones and in narrow lists, a left column on wide cards (with the speakers column kept on the right on the widest). The detail view shows it larger with its time; "Straight from X" posts show theirs. The desk's entry editor shows it with "Remove picture".
 5. **A visual on every card, now.** A card with no stored picture, or one that fails to load, gets a cover from verified assets already in the repo (PR #29's logos and avatars): the tagged projects' and named speakers' companies' logos, else the named speakers' photos (the posting account's picture for X), else the stage name. It needs no stored image, so every entry already published shows one as soon as this deploys, with capture still off. No generated or stock imagery.
-6. **Backfill** (`collector/backfill_frames.py`, dry run unless `--send`). Stills for notes published before capture was on, from the stream's DVR (YouTube keeps the last hour of a live stream) or, after the day, from the recording.
+6. **With #26 (merged via #29).** Posts from X on cards are #26's embed (author, text, photos, video): that embed is their visual, so they get no stored picture or cover, and the detail view shows #26's "The post" rather than a separate still. #26 already loads X media straight from `pbs.twimg.com`, so this PR's X picture capture (`xMedia`) only adds a stored copy for "Straight from X": leave it off unless that copy is wanted. Owner-added speaker photos from #26 also take priority in the covers.
+7. **Backfill** (`collector/backfill_frames.py`, dry run unless `--send`). Stills for notes published before capture was on, from the stream's DVR (YouTube keeps the last hour of a live stream) or, after the day, from the recording.
 
 #### Files touched
 - `breakpoint/collector/live.py`, `collect.py`, `xwatch.py`, `backfill_frames.py` (new), `config.breakpoint-stages.json`, `config.breakpoint-x.json`, `scripts/mac/setup.sh` (adds Pillow)
@@ -100,6 +101,7 @@ Turn `frames` and `xMedia` off in the configs (no restart needed), or revert thi
 4. **Faces everywhere a speaker appears:** session popup, live-note detail, Speakers grid (with the company logo pinned to the photo and the handle in the footer), speaker popup, and "Straight from X" avatars. No verified account means initials, never a guess.
 5. **Coverage cards (`NewsCard`):** a kind pill (green dot for live notes), stage and time on top, a balanced headline, and an "On stage" column with each speaker's photo, linked @handle, role and company logo; the person the note names comes first. Narrow cards (two-column lists, dialogs, phones) stack the people under the headline. Project chips show the project logo where there is one. Excerpts end on a word. A note shows the session's speakers only when it names one of them (or it is the talk's summary), so a note filed under the wrong talk never shows the wrong faces.
 6. Kobra `Avatar` (`src/components/ui/avatar.tsx`, Base UI) for the photos.
+7. **Merged with #26.** Posts from X on cards show #26's embed (no separate "Posted by" column); talk recaps keep this PR's Speakers column instead of #26's face byline; #26's owner-added speaker photos take priority in the faces; Straight from X uses the stored avatar, then the embed's, then the initial; the entry detail shows both the speaker list and #26's post embed.
 
 #### Coverage
 - Speakers: 116 of 149 have a verified X handle, 114 a picture (@ruh_gw uses X's default picture; @mrstoad returns "user not found"). Still initials: Alexandra Lang, Annabel Spring, Arizona Muse, Carlos Matilla, Cate Clancy, Christian Rau, Dan Phillips, David Vatchev, Fig Gowen, George Ruhana, Harriet Browning, Hester Serafini, Howard Dawber OBE, Igor Voloshin, Irene Tse, Jasmine Jia, Jerome Oei, John Hallahan, John Timoney, Kathrin Hamilton, Kathy Kriskey, Lucas Harris, Michael Lewis, Nikou Asgari, PJ Bain, Patrick Corker, Rowland Berry, Scott Lucas, Sir Nicholas Lyons, Sol Campbell, Stephen Gardner, Stephen Whyman, Steven Wager, Sue Gray, Val Wotton.
@@ -130,6 +132,45 @@ On the Vercel preview at `/breakpoint`: Watch live shows each live note with the
 
 #### Roll back
 Revert this PR. The live feed and collector are unaffected either way.
+
+### Catch up: posts from X as embeds, faces on talk recaps
+
+- **Date:** 16 November 2026
+- **Pull request:** [#26](https://github.com/cryptoclassdev/sebmontydotlink/pull/26), branch `feat/catchup-x-embeds`.
+- **Status:** Ready for review. Page, API and page security policy; goes live on merge. Nothing to change on the Mac Mini.
+- **Why:** Seb asked for the Catch up cards to look more like the tweet embeds in our Discord dashboard, and, if possible, for talk summaries to show the speakers.
+
+#### What changed
+1. Every card whose source is a post on X now shows the post the way Discord embeds it: avatar, name, verified badge, @handle, the text with working links, mentions and cashtags, photos, a link preview, a quoted post, and the post time. The card keeps the desk headline above it; the post replaces the summary paragraph (the summary is still in Full details). The Full details dialog shows the post in full in place of the source excerpt.
+2. Videos and GIFs show their poster with the duration and play inside the card. X's video server refuses requests that name another site, so the page fetches the video without a referrer when the reader presses play. Videos over 3 minutes, or any that fail, open on X instead.
+3. Data comes from X's public embed endpoint (the one behind publish.twitter.com embeds): no key and no cost. The server fetches each post once, keeps it in storage as `tweets/<id>.json`, and adds it to the entry as `embed` in `/breakpoint/api/live` and `/feed`. At most 12 new posts are fetched per request (2.5 s timeout); a post X does not return is retried after 10 minutes; stored posts are re-checked every 6 hours (so a deletion shows). Entries themselves are not changed.
+4. If X does not answer, the card draws the same layout from what the X monitor stored (account name, handle, post text) with an initials avatar. A post deleted since is marked as deleted.
+5. Talk summaries show who gave the talk: overlapping initials avatars in a colour per speaker, the company logo badge where we have it, names, company, and the talk title and stage. Clicking it opens the talk.
+6. Straight from X on the Overview (#25) also gets the embed: its cards show the account's real avatar. `/api/live` attaches embeds to `entries` and `xPosts` in one lookup.
+7. Speaker photos: optional. A photo added at `breakpoint/assets/speakers/<speaker-id>.webp` replaces that speaker's initials after a rebuild (see the README there). None are included.
+8. Page security policy (`next.config.mjs`, `/breakpoint` only): images from `pbs.twimg.com`, fetches from `video.twimg.com`, and `blob:` media.
+
+#### Files touched
+- `breakpoint/server/tweets.mjs` (new), `breakpoint/server/api.mjs`, `app/breakpoint/api/[...path]/route.ts`
+- `breakpoint/src/xpost.tsx` (new), `breakpoint/src/main.tsx`, `breakpoint/src/seb.css`, `breakpoint/scripts/build.mjs`, `public/breakpoint/` (rebuilt)
+- `breakpoint/tests/tweets.test.mjs`, `breakpoint/tests/fixtures/x/` (new: six real embed responses)
+- `breakpoint/assets/speakers/README.md`, `breakpoint/README.md`, `next.config.mjs`, `README.md`
+
+#### How to check it
+On the Vercel preview, open `/breakpoint#catchup` and pick From X: each card shows the post with avatar, text and media. Press play on a video card; it plays in place. Open Full details on an X card: the post shows in full. Pick Talk summaries: each card shows the speakers and the talk. `/breakpoint/api/live` shows `embed` on X entries.
+
+#### Checks run
+- Rebased on main after #24 and #25; main merged in again after #27 (only this change-log section overlapped). `npm test` in `breakpoint/` (66 JS tests including 7 new, 80 Python tests), `tsc --noEmit` for the page, page build.
+- Local preview with the production feed passed through the new embed step, in Chrome at desktop, phone and dark mode: all 13 X posts in the feed got embeds (photo, video, link preview and quoted posts all render); a video played in the card under the new security policy with no policy errors; with embeds switched off, the fallback cards render; Straight from X shows real avatars and `#catchup?kind=social` opens on From X. A real deleted post (Solana's first Western Union post, reposted a minute later) shows the deleted note.
+
+#### Risks
+- X's embed endpoint is unofficial and could change or stop. Then cards fall back to the stored text; nothing else breaks (an embed failure never fails `/live`).
+- The preview and production share the Upstash database, so previewing this branch writes `tweets/<id>.json` records. They are a cache in the final format and harmless.
+- Readers' browsers load avatars and media from X's servers (`pbs.twimg.com`), and `video.twimg.com` when they press play.
+- Cards with media are taller, so the two-column grid has more uneven rows.
+
+#### Roll back
+Revert this PR. Stored `tweets/` records are then unused and can stay.
 
 ### X reposts make one card; an offline stream is not shown as an error
 
