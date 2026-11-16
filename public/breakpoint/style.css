@@ -5684,6 +5684,36 @@ blockquote {
 .news-cover {
   container-type: inline-size;
 }
+.chip-group .chip-past {
+  opacity: .42;
+}
+.chip-group .chip-past:hover,.chip-group .chip-past:focus-visible,.chip-group .chip-past[aria-pressed="true"] {
+  opacity: .8;
+}
+.map-venue {
+  cursor: pointer;
+  outline-offset: 6px;
+}
+.map-venue-halo {
+  fill: #657c3b;
+  opacity: .28;
+}
+.map-venue-dot {
+  fill: #657c3b;
+  stroke: #fff;
+  stroke-width: 3;
+  filter: drop-shadow(0 2px 2px #0005);
+}
+.map-venue rect {
+  fill: #242b23;
+  filter: drop-shadow(0 2px 3px #0004);
+}
+.map-venue text {
+  fill: #fff;
+  font-size: 11.5px;
+  font-weight: 700;
+  pointer-events: none;
+}
 .seb-brand {
   gap: 11px;
   font-size: 21px;

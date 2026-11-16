@@ -54,6 +54,35 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### London guide: Breakpoint days first, past days greyed, Olympia on the map
+
+- **Date:** 16 November 2026
+- **Pull request:** #PR_NUMBER, branch `feat/london-guide-days`.
+- **Status:** Ready for review. Page only; goes live on merge. Nothing to change on the Mac Mini.
+- **Why:** Seb asked for the London guide's day filter to lead with the Breakpoint days, for the days already over to look finished but stay clickable, and for the map to show where Breakpoint itself is.
+
+#### What changed
+1. Day filter order is now Upcoming, All week, Mon 16, Tue 17, Wed 18, then Mon 9 to Sun 15. Before, the days ran Mon 9 to Wed 18, so the Breakpoint days sat at the far right.
+2. A day that is over (London time) is greyed out and carries the tooltip "This day is over". It is still a normal button: clicking it lists that day's events and shows them on the map. Today that greys Mon 9 to Sun 15; tomorrow Mon 16 greys too, and stays in its place on the left.
+3. The map always shows a marker labelled "Breakpoint · Olympia London" at the venue (51.4964, -0.2108, the coordinates already shown in the Overview hero), whichever day or filter is chosen. Clicking it centres and zooms the map on Olympia.
+
+#### Files touched
+- `breakpoint/src/main.tsx`, `breakpoint/src/style.css`, `public/breakpoint/` (rebuilt), `README.md`
+
+#### How to check it
+On the Vercel preview, open `/breakpoint#events`: the chips read Upcoming, All week, Mon 16, Tue 17, Wed 18, then the greyed Mon 9 to Sun 15. Click a greyed day: its events list and its pins appear. The map shows the "Breakpoint · Olympia London" marker in west London; click it to zoom in.
+
+#### Checks run
+- `npm test` in `breakpoint/` (69 JS tests, 93 Python tests), `tsc --noEmit`, page build.
+- Local preview with the production feed: chip order and greying as above; clicking Thu 12 listed its 2 events and showed its pin; the Olympia marker stayed on the map throughout.
+
+#### Risks
+- The Olympia label can overlap event pins clustered around the venue; it is drawn on top so it stays readable.
+- Not checked on a phone-width screen in this pass.
+
+#### Roll back
+Revert this PR.
+
 ### Breakpoint: a picture on every coverage card (stage livestream stills, X post pictures), opt-in
 
 - **Date:** 16 November 2026
