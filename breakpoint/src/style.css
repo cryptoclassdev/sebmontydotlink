@@ -148,3 +148,11 @@
 .map-venue-dot{fill:#657c3b;stroke:#fff;stroke-width:3;filter:drop-shadow(0 2px 2px #0005)}
 .map-venue rect{fill:#242b23;filter:drop-shadow(0 2px 3px #0004)}
 .map-venue text{fill:#fff;font-size:11.5px;font-weight:700;pointer-events:none}
+.map-venue-area{fill:#657c3b;fill-opacity:.2;stroke:#657c3b;stroke-width:2.5;stroke-dasharray:7 4;pointer-events:none}
+.map-controls .map-venue-jump{color:#4d6130}
+/* London guide: events already under way lead the Upcoming list. */
+.event-day-title.event-day-now{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.event-day-title.event-day-now .status-dot{margin:0;width:8px;height:8px;animation:bp-now 2s ease-in-out infinite}
+@keyframes bp-now{50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){.event-day-title.event-day-now .status-dot{animation:none}}
+.event-day-title.event-day-now small{flex-basis:100%;font-size:11px;font-weight:400;color:var(--muted-foreground);letter-spacing:0}
