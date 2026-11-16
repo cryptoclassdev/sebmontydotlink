@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Event-day fixes: a rejected update no longer holds up the rest; the desk accepts any YouTube link; LP Army job
 
 - **Date:** 16 November 2026
-- **Pull request:** PR_LINK, branch `fix/collector-outbox-rejects`.
+- **Pull request:** [#17](https://github.com/cryptoclassdev/sebmontydotlink/pull/17), branch `fix/collector-outbox-rejects`.
 - **Status:** Ready for review. The collector part has run on the Mac Mini since 08:04 UTC on 16 November (both jobs restarted); the desk part changes the site's API and goes live on merge.
 - **Why:** On 15 November at 17:06 UTC the X monitor queued a long Solana weekly recap whose excerpt was 4,000 characters in Python but 4,003 in JavaScript, which counts each emoji twice. The site answered 400 (excerpt too long). The outbox sends in a fixed order and stopped at the first failure, so the 15 updates queued after it (Solflare Private Mode, Meteora DLMM Pro, Reflect Build and others) waited about 15 hours, and every X check reported "X check failed" because the poll's own send hit the same item. On 16 November at 07:41 UTC Claude trimmed that excerpt on the Mac Mini and the queue emptied within seconds. The same flaw would have stopped stage announcements during the event.
 
