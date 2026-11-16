@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Cards show "Full details" instead of review labels
 
 - **Date:** 16 November 2026
-- **Pull request:** PR_LINK, branch `feat/cards-full-details`.
+- **Pull request:** [#20](https://github.com/cryptoclassdev/sebmontydotlink/pull/20), branch `feat/cards-full-details`.
 - **Status:** Ready for review. Page only; goes live on merge.
 - **Why:** Seb asked for no review labels on the public cards ("Provisional", "Source checked" and the like); the status stays on the desk, and readers get a "Full details" link instead.
 
