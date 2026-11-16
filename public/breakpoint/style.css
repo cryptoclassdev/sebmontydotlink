@@ -4741,6 +4741,64 @@ blockquote {
   outline-offset: 2px;
   border-radius: 4px;
 }
+.news-card.summary {
+  background: #7c9871;
+  @supports (color: color-mix(in lab, red, red)) {
+    background: color-mix(in oklab,#7c9871 9%,var(--surface));
+  }
+  border-color: #7c9871;
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab,#7c9871 45%,var(--border));
+  }
+}
+.news-card.summary .eyebrow {
+  color: #5f7f53;
+}
+.summary-list {
+  margin-bottom: 12px;
+}
+.summary-row {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 11px 0;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+.summary-row:last-child {
+  border-bottom: 0;
+}
+.summary-row strong {
+  display: block;
+  font-size: 12px;
+  line-height: 1.45;
+  font-weight: 600;
+}
+.summary-row small {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.summary-row:hover strong {
+  text-decoration: underline;
+}
+.summary-row:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.summary-empty {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  padding: 8px 0;
+}
+.dark .news-card.summary .eyebrow {
+  color: #9db78f;
+}
 .seb-brand {
   gap: 11px;
   font-size: 21px;

@@ -54,6 +54,36 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Session summaries stand out and get their own list on Watch live
+
+- **Date:** 16 November 2026
+- **Pull request:** PR_LINK, branch `feat/session-summaries-panel`.
+- **Status:** Ready for review. Page and API; goes live on merge.
+- **Why:** Seb asked for session summary cards to stand apart from the live notes, and for a list of all summaries on the right of the page for readers who only want the recaps, including after many talks have passed.
+
+#### What changed
+1. **Summary cards** have a light green tint and border (with a matching eyebrow), in light and dark mode, wherever cards show.
+2. **Watch live, right column:** a "Session summaries" panel above Source health lists every talk recap, newest first, with stage and time; each opens the full recap.
+3. **API:** recaps get their own index (`summary-index/`), and `/api/live` returns `summaries` (up to 80, withdrawn ones left out), so the list keeps the morning's recaps after the latest-60 feed has filled with live notes. Recaps saved before this change are picked up from the feed.
+4. **LP Army caption:** with no published schedule, the caption shows "Now · <what the stage is transcribing>" from its status instead of "No session currently assigned".
+
+#### Files touched
+- `breakpoint/server/api.mjs`, `breakpoint/src/main.tsx`, `breakpoint/src/style.css`, `public/breakpoint/` (rebuilt)
+- `breakpoint/tests/api.test.mjs`
+- `README.md`
+
+#### How to check it
+On the live site after merge: Watch live shows "Session summaries" at the top of the right column with the welcome recap; summary cards in Live notes have the green tint; the LP Army caption reads "Now · LP Army (Meteora), Breakpoint day 1".
+
+#### Checks run
+- 55 Node tests (new: a recap stays in `summaries` after 62 newer items push it out of the feed, and drops out when withdrawn), `tsc --noEmit`, page build.
+
+#### Risks
+- None for data: one extra index key per recap.
+
+#### Roll back
+Revert this PR.
+
 ### Cards show "Full details" instead of review labels
 
 - **Date:** 16 November 2026
