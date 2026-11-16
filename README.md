@@ -54,6 +54,33 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Sidebar sections open in a new browser tab
+
+- **Date:** 16 November 2026
+- **Pull request:** [#23](https://github.com/cryptoclassdev/sebmontydotlink/pull/23), branch `feat/sidebar-new-tabs`.
+- **Status:** Ready for review. Page only; goes live on merge.
+- **Why:** Seb asked for the sidebar sections (Overview, Watch live, Catch up, Schedule, London guide, Watchlist) to open in a new tab instead of replacing the page, so a stream playing on Watch live keeps running.
+
+#### What changed
+1. Desktop sidebar links open their section in a new browser tab (`target="_blank"`, `rel="noopener"`).
+2. Kept as it was: the phone's bottom bar still switches sections in place, since new tabs are awkward on a phone; buttons inside pages ("Watch the stages", "Full programme") also stay in place.
+
+#### Files touched
+- `breakpoint/src/main.tsx`, `public/breakpoint/` (rebuilt)
+- `README.md`
+
+#### How to check it
+On the live site after merge, desktop: click Catch up in the sidebar; it opens in a new tab and the original tab (for example Watch live with a playing stream) stays as it was.
+
+#### Checks run
+- `tsc --noEmit`, page build.
+
+#### Risks
+- Readers who click around a lot collect tabs.
+
+#### Roll back
+Revert this PR.
+
 ### Watch a talk from its card; Now and next follows the stage's delay
 
 - **Date:** 16 November 2026
