@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Stage transcription follows the room: speaker introductions shift the schedule
 
 - **Date:** 16 November 2026
-- **Pull request:** PR_LINK, branch `feat/stage-schedule-from-intros`.
+- **Pull request:** [#18](https://github.com/cryptoclassdev/sebmontydotlink/pull/18), branch `feat/stage-schedule-from-intros`.
 - **Status:** Ready for review. Collector, tests and docs only; the website is unchanged. Takes effect on the Mac Mini when the stages job restarts (`bash scripts/mac/live.sh start stages`).
 - **Why:** Seb asked for the talk to be recognised from the transcript, since every talk starts with its speaker being introduced. On day 1 the Main Stage stream was still on "Breakpoint will begin shortly" at 10:04 for a 10:00 start, and many talks are 5 to 10 minutes long, so a fixed schedule would credit announcements to the wrong talk.
 
