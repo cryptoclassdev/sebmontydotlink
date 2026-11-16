@@ -74,11 +74,11 @@ On the Vercel preview, open `/breakpoint#events`: the chips read Upcoming, All w
 
 #### Checks run
 - `npm test` in `breakpoint/` (69 JS tests, 93 Python tests), `tsc --noEmit`, page build.
-- Local preview with the production feed: chip order and greying as above; clicking Thu 12 listed its 2 events and showed its pin; the Olympia marker stayed on the map throughout.
+- Local preview with the production feed: chip order and greying as above; clicking Thu 12 listed its 2 events and showed its pin; the Olympia marker stayed on the map throughout. Also checked at phone width (375 px): the chips scroll sideways with the Breakpoint days first.
 
 #### Risks
 - The Olympia label can overlap event pins clustered around the venue; it is drawn on top so it stays readable.
-- Not checked on a phone-width screen in this pass.
+- At phone width the Olympia marker sits at the left edge of the default map view (the map is centred on central London); it is visible, and one drag or a tap on it brings it to the middle.
 
 #### Roll back
 Revert this PR.
