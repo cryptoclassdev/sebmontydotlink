@@ -29,5 +29,8 @@ await copyFile('src/icon.svg',path.join(out,'icon.svg'));
 // Project logos (official marks, see assets/logos/SOURCES.md), served from /breakpoint/logos/.
 await mkdir(path.join(out,'logos'),{recursive:true});
 for(const f of await readdir('assets/logos'))if(f.endsWith('.webp'))await copyFile(path.join('assets/logos',f),path.join(out,'logos',f));
+// Speaker and company X profile pictures (see assets/avatars/SOURCES.md), served from /breakpoint/avatars/.
+await mkdir(path.join(out,'avatars'),{recursive:true});
+for(const f of await readdir('assets/avatars'))if(f.endsWith('.webp'))await copyFile(path.join('assets/avatars',f),path.join(out,'avatars',f));
 if(speakerPhotos.length){await mkdir(path.join(out,'speakers'),{recursive:true});for(const f of speakerPhotos)await copyFile(path.join('assets/speakers',f),path.join(out,'speakers',f));}
 console.log(`Built /breakpoint: app.js ${Math.round(js.length/1024)} KB, style.css ${Math.round(css.length/1024)} KB, ${speakerPhotos.length} speaker photo(s)`);

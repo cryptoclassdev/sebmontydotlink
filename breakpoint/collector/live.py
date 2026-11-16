@@ -121,6 +121,66 @@ def resolve_audio(video_id, fmt, timeout=60, run=subprocess.run):
     return urls[0], fmt_id[:40], {'True': True, 'False': False}.get(live_flag)
 
 
+# ---------- Stage frames (opt-in: config "frames") ----------
+# One still per transcribed chunk, taken from a low video format of the same stream, kept on disk for a few hours.
+# When a note is written from a chunk, its frame goes to the site with it. Stream URLs are signed: never logged.
+
+FRAME_FORMAT = 'best[height<=480][vcodec!=none]/bv*[height<=480]/worst[vcodec!=none]'
+FRAME_MIN_BYTES = 4000  # a black or blank frame compresses to less than this
+
+
+def grab_frame(url, out_path, seek=None, width=640, timeout=45, run=None, segments_back=None):
+    """One frame of url as a JPEG (scaled to width) at out_path. seek: seconds into a recording. On a live stream
+    (where ffmpeg cannot seek) segments_back picks a point in its DVR window, counted in HLS segments from the live
+    edge; neither takes the live edge."""
+    run = run or subprocess.run
+    cmd = ['ffmpeg', '-nostdin', '-hide_banner', '-loglevel', 'error', '-y']
+    if segments_back is not None:
+        cmd += ['-live_start_index', str(-max(1, int(segments_back)))]
+    elif seek is not None:
+        cmd += ['-ss', f'{max(0.0, float(seek)):.2f}']
+    cmd += ['-i', url, '-frames:v', '1', '-vf', f'scale={int(width)}:-2', '-q:v', '4', '-f', 'image2', str(out_path)]
+    try:
+        r = run(cmd, capture_output=True, text=True, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        raise LiveError('ffmpeg frame grab timed out') from None
+    if r.returncode != 0:
+        lines = [x for x in (r.stderr or '').splitlines() if x.strip()]
+        raise LiveError('ffmpeg frame grab failed: ' + redact(lines[-1] if lines else 'no detail')[:200])
+    return out_path
+
+
+def to_webp(src, dst, width=640, quality=62, run=None):
+    """src image -> WebP at dst, at most width wide. Pillow when installed, else cwebp; returns the MIME type written.
+    Without either, dst is a JPEG copy (the site accepts both) and 'image/jpeg' is returned."""
+    try:
+        from PIL import Image  # optional: uv pip install --python .venv/bin/python pillow
+        with Image.open(src) as im:
+            im = im.convert('RGB')
+            if im.width > width:
+                im = im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)
+            im.save(dst, 'WEBP', quality=quality, method=5)
+        return 'image/webp'
+    except ImportError:
+        pass
+    exe = shutil.which('cwebp')
+    if exe:
+        r = (run or subprocess.run)([exe, '-quiet', '-q', str(quality), '-resize', str(int(width)), '0', str(src), '-o', str(dst)], capture_output=True, text=True, timeout=30)
+        if r.returncode == 0:
+            return 'image/webp'
+    shutil.copyfile(src, dst)
+    return 'image/jpeg'
+
+
+def image_kind(data):
+    """'image/webp', 'image/jpeg' or None, from the file's first bytes."""
+    if len(data) >= 12 and data[:4] == b'RIFF' and data[8:12] == b'WEBP':
+        return 'image/webp'
+    if data[:3] == b'\xff\xd8\xff':
+        return 'image/jpeg'
+    return None
+
+
 # ---------- Schedule ----------
 
 def session_window(s, offset_minutes=0):

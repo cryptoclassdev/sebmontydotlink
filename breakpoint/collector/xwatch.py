@@ -104,8 +104,23 @@ def normalize_post(raw, by_handle):
     if not text:
         return None
     account = by_handle[user.lower()]
-    return {'id': tid, 'user': account['handle'], 'text': text[:4000], 'createdAt': iso(parse_time(raw.get('createdAt'))),
+    post = {'id': tid, 'user': account['handle'], 'text': text[:4000], 'createdAt': iso(parse_time(raw.get('createdAt'))),
             'url': f'https://x.com/{account["handle"]}/status/{tid}', 'quoted': bool(raw.get('quoted_tweet'))}
+    picture = post_picture(raw)
+    if picture:
+        post['media'] = picture
+    return post
+
+
+def post_picture(raw):
+    """The post's own first picture (a photo, or the still of its video or GIF) on pbs.twimg.com, else None.
+    Link-preview cards are other sites' images and are never used."""
+    media = ((raw.get('extendedEntities') or {}).get('media') or (raw.get('entities') or {}).get('media') or [])
+    for m in media if isinstance(media, list) else []:
+        url = m.get('media_url_https') if isinstance(m, dict) else None
+        if isinstance(url, str) and re.fullmatch(r'https://pbs\.twimg\.com/[\w./-]{1,200}\.(jpg|jpeg|png|webp)', url):
+            return url
+    return None
 
 
 def talk_for(account, created_iso, window_hours):
@@ -338,8 +353,9 @@ def search_batch(handles, since_unix, config, state, key, http):
     return posts
 
 
-def poll(desk, state, config, accounts, projects, keys, http, now=None):
-    """One pass over every batch. Returns a small report dict."""
+def poll(desk, state, config, accounts, projects, keys, http, now=None, media=None):
+    """One pass over every batch. Returns a small report dict.
+    media(entry, url), when given (config xMedia), attaches the post's own picture to its entry."""
     now = now or dt.datetime.now(dt.timezone.utc)
     by_handle = {a['handle'].lower(): a for a in accounts}
     xs = state.value.setdefault('xwatch', {'since': {}, 'pending': [], 'stats': {}})
@@ -380,6 +396,8 @@ def poll(desk, state, config, accounts, projects, keys, http, now=None):
                 seen_texts.add(same)
                 texts.append({'h': same[0], 'k': same[1], 'at': p['createdAt']})
                 e = make_entry(p, by_handle[p['user'].lower()], v, config, projects)
+                if media and p.get('media'):
+                    media(e, p['media'])
                 entries.append(e)
                 published += e['status'] == 'provisional'
                 drafted += e['status'] == 'draft'

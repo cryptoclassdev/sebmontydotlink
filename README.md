@@ -54,6 +54,113 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Breakpoint: a picture on every coverage card (stage livestream stills, X post pictures), opt-in
+
+- **Date:** 16 November 2026
+- **Pull request:** [#30](https://github.com/cryptoclassdev/sebmontydotlink/pull/30), branch `claude/breakpoint-desk-visuals-847210`, based on #29 (`claude/breakpoint-card-visuals-ac5833`); merge #29 first.
+- **Status:** Ready for review. Capture is off until switched on on the Mac Mini (steps in `breakpoint/README.md`, "Pictures on coverage cards"). Merging gives every card its cover straight away; stills start only once capture is on.
+- **Why:** Seb wants a visual attached to each item "From the desk", ideally a frame of the stage feed at the moment the note was made.
+
+#### What changed
+1. **Collector, stage stills** (`"frames"` in `collector/config.breakpoint-stages.json`, off). For each transcribed 30-second chunk a separate thread takes one frame of the same YouTube stream (480p video format, ffmpeg, live edge), shrinks it to a 640 px WebP of 6 to 15 KB and keeps it for 6 hours. A note gets the still of the chunk its excerpt was heard in; a recap gets one from a third of the way into the talk. Failures skip the picture, never the note, and never hold up audio. Signed stream URLs are never logged.
+2. **Collector, X pictures** (`"xMedia"` in `collector/config.breakpoint-x.json`, off). The post's own photo or video still from `pbs.twimg.com` (never a link-preview card), read from the twitterapi.io result the monitor already gets: no extra API calls.
+3. **Storage and API.** Pictures go to the existing Upstash database as their own ingest payload (`media`, WebP or JPEG checked from the bytes, at most 150 KB) and are served at `/breakpoint/api/media/<id>` with a one-year immutable cache. Entries carry `image: {id, kind, at, credit}`; an image whose bytes were never stored is dropped. An `attach` ingest operation adds a picture to an already published entry only when it has none and an editor has not removed one. Expected size for both days: 3 to 6 MB.
+4. **Page.** Cards show the picture with a "Livestream · 13:02" or "@handle on X" tag: on top on phones and in narrow lists, a left column on wide cards (with the speakers column kept on the right on the widest). The detail view shows it larger with its time; "Straight from X" posts show theirs. The desk's entry editor shows it with "Remove picture".
+5. **A visual on every card, now.** A card with no stored picture, or one that fails to load, gets a cover from verified assets already in the repo (PR #29's logos and avatars): the tagged projects' and named speakers' companies' logos, else the named speakers' photos (the posting account's picture for X), else the stage name. It needs no stored image, so every entry already published shows one as soon as this deploys, with capture still off. No generated or stock imagery.
+6. **With #26 (merged via #29).** Posts from X on cards are #26's embed (author, text, photos, video): that embed is their visual, so they get no stored picture or cover, and the detail view shows #26's "The post" rather than a separate still. #26 already loads X media straight from `pbs.twimg.com`, so this PR's X picture capture (`xMedia`) only adds a stored copy for "Straight from X": leave it off unless that copy is wanted. Owner-added speaker photos from #26 also take priority in the covers.
+7. **Backfill** (`collector/backfill_frames.py`, dry run unless `--send`). Stills for notes published before capture was on, from the stream's DVR (YouTube keeps the last hour of a live stream) or, after the day, from the recording.
+
+#### Files touched
+- `breakpoint/collector/live.py`, `collect.py`, `xwatch.py`, `backfill_frames.py` (new), `config.breakpoint-stages.json`, `config.breakpoint-x.json`, `scripts/mac/setup.sh` (adds Pillow)
+- `breakpoint/server/api.mjs`, `breakpoint/server/core.mjs`
+- `breakpoint/src/main.tsx`, `breakpoint/src/style.css`, `public/breakpoint/` (built page)
+- `breakpoint/tests/api.test.mjs`, `breakpoint/tests/test_frames.py` (new), `breakpoint/README.md`, `README.md`
+
+#### How to check it on the Vercel preview
+Preview and production share one database and capture is off, so every card shows its cover (logos, faces or stage name) and no stills yet: check Overview, Catch up and a session popup in light and dark and at phone width. `/breakpoint/api/media/f00000000000000000000000000000000` answers 404. The pictures themselves were checked on the local rehearsal copy (screenshots in the PR).
+
+#### Risks
+- **Rights.** The stills are frames of the Solana Foundation's YouTube broadcast, republished as thumbnails on a commercial-adjacent page. Short, credited stills used to illustrate news coverage are a common practice, but YouTube's terms do not grant a licence to copy frames, and this has not been cleared with the Foundation. Get their OK before turning `frames` on, or keep it off. X pictures belong to the posting account and are shown with a link to the post.
+- Wide shots, slides and holding slates appear as often as the speaker; the editor can remove any picture.
+- Upstash holds the bytes base64-encoded in JSON (a third larger); fine at this size, not for video.
+
+#### Roll back
+Turn `frames` and `xMedia` off in the configs (no restart needed), or revert this PR. Entries keep an `image` field the old page ignores.
+
+### Breakpoint: speakers' faces, X handles and company logos; richer coverage cards
+
+- **Date:** 16 November 2026
+- **Pull request:** [#29](https://github.com/cryptoclassdev/sebmontydotlink/pull/29), branch `claude/breakpoint-card-visuals-ac5833`.
+- **Status:** Ready for review. Page, data and scripts only; the collector and X monitor are unchanged.
+- **Why:** Every speaker showed as grey initials ("MW") with no X handle or company logo, and the live-note cards were a label, a headline and grey text with most of the card empty.
+
+#### What changed
+1. **Profile pictures, stored once.** `scripts/fetch-x-avatars.py` reads each verified account's picture through twitterapi.io, resizes it to 96 x 96 WebP and saves it in `breakpoint/assets/avatars/` (229 files, 1 MB; sources and dates in `assets/avatars/SOURCES.md`). `scripts/build.mjs` copies them to `/breakpoint/avatars/`. The page never loads X image URLs.
+2. **Linking.** `scripts/link-x-accounts.py` joins `data/x-accounts.json` to `seed.json`: speakers by name, organisations by normalised name or a short alias list with reasons (Marinade Labs, Pyth, Akash, Reflect Money, Fiserv Digital Asset Services, WisdomTree Onchain, Solana / Solana Labs, plus Ramp and Fidelity Digital Asset Management, which `x-accounts.json` already ties to those talks). It writes `xHandle`, `xUrl` and `avatar` on speakers, an `organizations` map and an `xAvatars` list; `/api/static` passes them on.
+3. **New accounts, picture only.** 20 organisations and 6 speakers that had no account were checked on 16 Nov (the organisation's own site links the account, or a verified profile's name and website match) and added to `data/x-accounts-pictures.json` with the reason for each. The X monitor does not read that file, so it watches the same accounts as before. @MayorofLondon was left out because its picture is the Mayor himself, not the speaker; Bloomberg News, R3 and Invesco were not confirmed.
+4. **Faces everywhere a speaker appears:** session popup, live-note detail, Speakers grid (with the company logo pinned to the photo and the handle in the footer), speaker popup, and "Straight from X" avatars. No verified account means initials, never a guess.
+5. **Coverage cards (`NewsCard`):** a kind pill (green dot for live notes), stage and time on top, a balanced headline, and an "On stage" column with each speaker's photo, linked @handle, role and company logo; the person the note names comes first. Narrow cards (two-column lists, dialogs, phones) stack the people under the headline. Project chips show the project logo where there is one. Excerpts end on a word. A note shows the session's speakers only when it names one of them (or it is the talk's summary), so a note filed under the wrong talk never shows the wrong faces.
+6. Kobra `Avatar` (`src/components/ui/avatar.tsx`, Base UI) for the photos.
+7. **Merged with #26.** Posts from X on cards show #26's embed (no separate "Posted by" column); talk recaps keep this PR's Speakers column instead of #26's face byline; #26's owner-added speaker photos take priority in the faces; Straight from X uses the stored avatar, then the embed's, then the initial; the entry detail shows both the speaker list and #26's post embed.
+
+#### Coverage
+- Speakers: 116 of 149 have a verified X handle, 114 a picture (@ruh_gw uses X's default picture; @mrstoad returns "user not found"). Still initials: Alexandra Lang, Annabel Spring, Arizona Muse, Carlos Matilla, Cate Clancy, Christian Rau, Dan Phillips, David Vatchev, Fig Gowen, George Ruhana, Harriet Browning, Hester Serafini, Howard Dawber OBE, Igor Voloshin, Irene Tse, Jasmine Jia, Jerome Oei, John Hallahan, John Timoney, Kathrin Hamilton, Kathy Kriskey, Lucas Harris, Michael Lewis, Nikou Asgari, PJ Bain, Patrick Corker, Rowland Berry, Scott Lucas, Sir Nicholas Lyons, Sol Campbell, Stephen Gardner, Stephen Whyman, Steven Wager, Sue Gray, Val Wotton.
+- Organisations (as written on the agenda): 104 of 128 have an account, 102 a logo. No logo: Allfunds, Baroness Gray of Tottenham, Bitwise, Bloomberg News, Cyber Capital, Energy Substantiation, FairClub, Fasanara Capital, Forma, Formation Securities, Former Premier League Player / Golbal360 and Sol Media, Frontier/1, Graticule Asset Management Asia (GAMA), IO Builders, Invesco, Mayor of London, Multicoin, New York Life Investment Management, Open Standard, PEAK6 / Clocked., Powerus, R3, Soilonic, Star, StrataMedia, The Rest Is Classified.
+- @BitwiseInvest and @multicoincap return "user not found" on twitterapi.io today; the X monitor follows both, so it gets nothing from them. Worth checking their handles separately.
+
+#### Screenshot in the card (assessed, not built)
+Feasible, but not with the collector as it is. It asks yt-dlp for an audio-only format and records audio chunks, so it never sees video. It would need to: resolve a low video format (360p) for the same stream; when a note is made, grab one frame with ffmpeg at the note's position (live YouTube keeps a few hours of DVR, so seeking back the 1 to 2 minutes the note takes is possible); resize to about 640 px WebP (around 30 KB); and store it somewhere that serves images. Upstash holds JSON only, so that means Vercel Blob or similar plus a new ingest field and a desk control to drop a bad frame. Expect wide shots or slides as often as the speaker, and the stream belongs to the Solana Foundation, so a frame per note is a rights question as much as an engineering one. A day of work plus a storage decision; too much to add during the conference.
+
+#### Files touched
+- `breakpoint/src/main.tsx`, `breakpoint/src/style.css`, `breakpoint/src/components/ui/avatar.tsx`
+- `breakpoint/scripts/fetch-x-avatars.py`, `breakpoint/scripts/link-x-accounts.py` (new), `breakpoint/scripts/build.mjs`, `breakpoint/scripts/import-agenda.py` (usage line)
+- `breakpoint/server/api.mjs` (`/api/static` adds `organizations` and `xAvatars`)
+- `breakpoint/data/seed.json`, `breakpoint/data/x-accounts-pictures.json` (new), `breakpoint/assets/avatars/` (new)
+- `public/breakpoint/` (built page and avatars), `README.md`
+
+#### How to check it
+On the Vercel preview at `/breakpoint`: Watch live shows each live note with the speaker's photo, @handle and company logo beside the headline (Kamino notes show Michael Weisz and the Kamino logo). Schedule, then any Kamino session, shows the speaker list with photos. Schedule, Speakers shows the grid with faces. Overview, Straight from X shows account pictures. Switch the theme and check on a phone width.
+
+#### Checks run
+- `tsc --noEmit`, `npm run build`, 59 Node tests and 82 Python tests pass.
+- Screenshots of the session popup, a live-note card, the Speakers grid, X posts and a phone width in light and dark from a local copy (this branch's page and seed, live entries read from production).
+
+#### Risks
+- A profile picture can change after it was taken; rerun `fetch-x-avatars.py --refresh <handle>`.
+- Some speakers' verified "account" on the official speakers page is their company's account (Andrew Fox shows the Powerus logo); that is what the official page links.
+- `import-agenda.py` keeps the new speaker fields, but run `link-x-accounts.py` after any re-import.
+
+#### Roll back
+Revert this PR. The live feed and collector are unaffected either way.
+### Backpack's BP token on the Watchlist
+
+- **Date:** 16 November 2026
+- **Pull request:** [#31](https://github.com/cryptoclassdev/sebmontydotlink/pull/31), branch `feat/backpack-bp-token`.
+- **Status:** Ready for review. Data, one test and docs only; goes live on merge. Nothing to change on the Mac Mini.
+- **Why:** Seb pointed out that Backpack has a token, but its Watchlist card showed no ticker or price.
+
+#### What changed
+1. Backpack's entry in `breakpoint/data/seed.json` now carries the ticker `BP`, the mint address `BPxxfRCXkUVhig4HS1Lh7kZqV6SPJhzfEk4x6fVBjPCy`, the page it was verified on (`mintSourceUrl`) and a note. The existing price code picks up any project with a ticker and a verified mint, so the Backpack card now shows `$BP` with the USD price and 24h change, and Source health counts 6 tokens instead of 5.
+2. The mint comes from Backpack's own Learn page, "What Is BP? Backpack's Official Token Ticker and Contract Address Explained" (published 17 March 2026, updated 9 October 2026). Jupiter lists the same address as verified (name Backpack, symbol BP) and prices it. Third-party sites show other addresses for tokens named Backpack; they were not used.
+3. No page, style or collector code changed.
+
+#### Files touched
+- `breakpoint/data/seed.json`, `breakpoint/tests/prices.test.mjs`, `breakpoint/README.md`, `README.md`
+
+#### How to check it
+On the Vercel preview, open `/breakpoint#projects`: the Backpack card shows `$BP` and a price with its 24h change, like Kamino and Jupiter. `/breakpoint#watch`, Source health: "Jupiter prices for 6 tokens".
+
+#### Checks run
+- `npm test` in `breakpoint/` (the price test now expects Backpack among the priced projects).
+- Jupiter's Price API v3 returns a price for the mint (about $0.83 on 16 November 2026, about $2.8M liquidity).
+- Local preview with the production feed and this seed: the Backpack card showed `$BP $0.8258 +0.4% 24h`.
+
+#### Risks
+- If Jupiter stops pricing BP, the card shows no price (never an estimate); nothing else changes.
+- Token prices are context, not a signal; the Watchlist already says so.
+
+#### Roll back
+Revert this PR. The Backpack card returns to having no ticker or price.
 ### Breakpoint: the official validator.com logo in "Powered by"
 
 - **Date:** 16 November 2026

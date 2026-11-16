@@ -12,6 +12,7 @@
   "silenceRms": 150,
   "ytFormat": "bestaudio/best[height<=360]/worst",
   "simulateLive": false,
+  "frames": {"enabled": false, "width": 640, "quality": 62, "keepHours": 6},
   "llm": {
     "provider": "anthropic",
     "model": "claude-sonnet-5-5",

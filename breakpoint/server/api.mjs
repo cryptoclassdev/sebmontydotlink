@@ -1,9 +1,9 @@
-import {HttpError,validateEntry,validateStream,feedVisible,sourceHealth,makeCalendar,jsonBody,authorized,idPattern,iso,safeUrl} from './core.mjs';
+import {HttpError,validateEntry,validateStream,validateMedia,validateImage,feedVisible,sourceHealth,makeCalendar,jsonBody,authorized,idPattern,iso,safeUrl} from './core.mjs';
 import {marketHealth} from './prices.mjs';
 
 // Public reads are cached at the CDN so polling visitors do not each hit storage.
 // Live data: 15 s at the edge. Programme and events: 5 min. Anything authenticated: never cached.
-export const CACHE={live:'public, max-age=0, s-maxage=15, stale-while-revalidate=45',static:'public, max-age=60, s-maxage=300, stale-while-revalidate=600',none:'no-store'};
+export const CACHE={live:'public, max-age=0, s-maxage=15, stale-while-revalidate=45',static:'public, max-age=60, s-maxage=300, stale-while-revalidate=600',none:'no-store',media:'public, max-age=31536000, s-maxage=31536000, immutable'};
 export const LIVE_LIMIT=60;
 const HEALTH_IDS=['main','royal','lparmy','x','market'];
 const json=(data,status=200,cache=CACHE.none)=>new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':cache,'x-content-type-options':'nosniff'}});
@@ -28,8 +28,10 @@ async function saveEntry(bucket,entry,expectedVersion,role,update=false){
  const key=`entries/${entry.id}.json`,old=await get(bucket,key);
  if(role==='ingest'&&old){
   if(!update||!collectorOwned(old.value)||old.value.status==='withdrawn'){await indexEntry(bucket,old.value);return {id:entry.id,duplicate:true};}
-  entry={...entry,status:old.value.status,occurredAt:old.value.occurredAt};expectedVersion=old.value.version;
+  entry={...entry,status:old.value.status,occurredAt:old.value.occurredAt,image:entry.image??old.value.image??null};expectedVersion=old.value.version;
  }
+ // An editor who removes a picture keeps it removed: the collector never attaches one to that entry again.
+ entry={...entry,imageRemoved:role==='editor'?!entry.image&&!!(old?.value.image||old?.value.imageRemoved):!!old?.value.imageRemoved};
  if(old&&expectedVersion!==old.value.version)throw new HttpError(409,'This entry changed. Reload before editing.');
  if(!old&&expectedVersion!=null&&expectedVersion!==0)throw new HttpError(409,'Entry no longer exists');
  const now=new Date().toISOString();const saved={...entry,createdAt:old?.value.createdAt??now,receivedAt:old?.value.receivedAt??now,updatedAt:now,version:(old?.value.version??0)+1,lastEditor:role};
@@ -51,6 +53,31 @@ export const xSourced=e=>/^https:\/\/(x|twitter)\.com\//.test(e?.sourceUrl||'');
 async function backfillX(bucket){let cursor;for(let i=0;i<4;i++){const page=await entryPage(bucket,true,cursor);await Promise.all(page.entries.filter(e=>xSourced(e)&&Number.isFinite(Date.parse(e.createdAt))).map(e=>bucket.put(`x-index/${indexSuffix(e)}`,JSON.stringify({id:e.id}))));cursor=page.nextCursor;if(!cursor)break;}await bucket.put(X_BACKFILLED,JSON.stringify({at:new Date().toISOString()}));}
 async function xPage(bucket,limit=X_LIMIT*3){if(!(await bucket.get(X_BACKFILLED)))await backfillX(bucket);const page=await bucket.list({prefix:'x-index/',limit});const ids=[...new Set(page.objects.map(x=>indexId(x.key)).filter(Boolean))];return ids.length?(await getMany(bucket,ids.map(id=>`entries/${id}.json`))).filter(Boolean).map(x=>x.value):[];}
 const byTime=(a,b)=>Date.parse(b.occurredAt)-Date.parse(a.occurredAt);
+// Pictures: the bytes are stored once under media/<id>.json (ids are content hashes, so a stored picture never changes),
+// with a small marker under media-ok/ so an entry can be checked against it without reading the image.
+const mediaStored=async(bucket,id)=>!!(await bucket.get(`media-ok/${id}.json`));
+async function saveMedia(bucket,raw){const m=validateMedia(raw);if(!(await mediaStored(bucket,m.id))){await bucket.put(`media/${m.id}.json`,JSON.stringify({...m,receivedAt:new Date().toISOString()}));await bucket.put(`media-ok/${m.id}.json`,JSON.stringify({id:m.id,bytes:m.bytes}));}return {media:m.id};}
+async function checkedImage(bucket,image){return image&&await mediaStored(bucket,image.id)?image:null;}
+// attach: a picture for an entry that is already published (the backfill script). Only when the entry has none and an
+// editor has not removed one; the entry's text, status and owner stay as they are.
+async function attachImage(bucket,raw){
+ if(!raw||!idPattern.test(raw.entryId))throw new HttpError(400,'Invalid attach');
+ const image=validateImage(raw.image);if(!image)throw new HttpError(400,'Invalid attach');
+ const key=`entries/${raw.entryId}.json`,old=await get(bucket,key);
+ if(!old)return {id:raw.entryId,attached:false,reason:'not found'};
+ if(old.value.image||old.value.imageRemoved)return {id:raw.entryId,attached:false,reason:'has a picture or one was removed'};
+ if(!(await mediaStored(bucket,image.id)))return {id:raw.entryId,attached:false,reason:'picture not stored'};
+ const saved={...old.value,image,updatedAt:new Date().toISOString(),version:old.value.version+1};
+ if(!(await put(bucket,key,saved,old.etag)))throw new HttpError(409,'Concurrent update. Retry.');
+ await bucket.put(`revisions/${saved.id}/${String(saved.version).padStart(6,'0')}.json`,JSON.stringify(saved));
+ return {id:raw.entryId,attached:true};
+}
+async function mediaResponse(bucket,id){
+ const o=bucket?await get(bucket,`media/${id}.json`):null;
+ if(!o)return new Response('Not found',{status:404,headers:{'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=60, s-maxage=60'}});
+ const bytes=Buffer.from(o.value.data,'base64');
+ return new Response(bytes,{headers:{'content-type':o.value.type,'content-length':String(bytes.length),'cache-control':CACHE.media,'x-content-type-options':'nosniff','content-security-policy':"default-src 'none'"}});
+}
 
 /**
  * createApi(seed, {basePath, loadEvents})
@@ -72,7 +99,7 @@ export function createApi(seed,{basePath='',loadEvents,loadPrices,attachEmbeds}=
   if(loadEvents){try{const r=await loadEvents();if(r&&Array.isArray(r.events)&&r.events.length)return r;error='No events returned';}catch(e){error=String(e?.message??e).slice(0,200);}}
   return {events:seed.events,source:'seed',checkedAt:seed.updatedAt,error};
  }
- async function staticData(){const e=await events();return {updatedAt:seed.updatedAt,projects:seed.projects,speakers:seed.speakers,sessions:seed.sessions,breaks:seed.breaks??[],events:e.events,eventsSource:e.source,eventsCheckedAt:e.checkedAt};}
+ async function staticData(){const e=await events();return {updatedAt:seed.updatedAt,projects:seed.projects,speakers:seed.speakers,organizations:seed.organizations??{},xAvatars:seed.xAvatars??[],sessions:seed.sessions,breaks:seed.breaks??[],events:e.events,eventsSource:e.source,eventsCheckedAt:e.checkedAt};}
  async function prices(){if(!loadPrices)return null;try{return await loadPrices();}catch{return null;}}
  async function liveData(bucket){
   let entries=[],nextCursor=null,heartbeats=[],streams=[],sessions=[],recaps=[],xs=[],storage='not-configured';
@@ -96,6 +123,7 @@ export function createApi(seed,{basePath='',loadEvents,loadPrices,attachEmbeds}=
   try{
    if(request.method==='GET'){
     if(path==='/api/static')return json(await staticData(),200,CACHE.static);
+    {const m=/^\/api\/media\/([fx][a-f0-9]{32})(?:\.(?:webp|jpg))?$/.exec(path);if(m)return await mediaResponse(bucket,m[1]);}
     if(path==='/api/live')return json(await liveData(bucket),200,CACHE.live);
     if(path==='/api/bootstrap'){const [s,l]=await Promise.all([staticData(),liveData(bucket)]);const {sessionOverrides,...rest}=l;return json({...s,...rest,sessions:s.sessions.map(x=>sessionOverrides.find(o=>o.id===x.id)??x)},200,CACHE.live);}
     if(path==='/api/calendar'){const id=url.searchParams.get('id')??'';const event=(await events()).events.find(e=>e.id===id);if(!event)throw new HttpError(404,'Event not found');return new Response(makeCalendar(event),{headers:{'content-type':'text/calendar; charset=utf-8','content-disposition':`attachment; filename="${event.id.replace(/[^a-zA-Z0-9_-]/g,'')}.ics"`,'cache-control':CACHE.static}});}
@@ -107,7 +135,9 @@ export function createApi(seed,{basePath='',loadEvents,loadPrices,attachEmbeds}=
    if(!bucket)throw new HttpError(503,'Durable storage is not connected');
    if(path==='/api/ingest'&&request.method==='POST'){
     const body=await jsonBody(request);const results=[];
-    if(body.entries){if(!Array.isArray(body.entries)||body.entries.length>30)throw new HttpError(400,'At most 30 entries per batch');for(const raw of body.entries){const entry=validateEntry({...raw,status:raw.status==='provisional'&&env.AUTO_PUBLISH_PROVISIONAL==='true'?'provisional':'draft'},projectIds);results.push(await saveEntry(bucket,entry,null,'ingest',raw.update===true));}}
+    if(body.media)results.push(await saveMedia(bucket,body.media));
+    if(body.entries){if(!Array.isArray(body.entries)||body.entries.length>30)throw new HttpError(400,'At most 30 entries per batch');for(const raw of body.entries){const entry=validateEntry({...raw,status:raw.status==='provisional'&&env.AUTO_PUBLISH_PROVISIONAL==='true'?'provisional':'draft'},projectIds);entry.image=await checkedImage(bucket,entry.image);results.push(await saveEntry(bucket,entry,null,'ingest',raw.update===true));}}
+    if(body.attach){if(!Array.isArray(body.attach)||body.attach.length>30)throw new HttpError(400,'At most 30 pictures per batch');for(const raw of body.attach)results.push(await attachImage(bucket,raw));}
     if(body.transcript){const t=body.transcript;if(!idPattern.test(t.id)||!idPattern.test(t.sessionId)||!iso(t.at)||!safeUrl(t.sourceUrl)||typeof t.stage!=='string'||t.stage.length>80||typeof t.text!=='string'||t.text.length>50000)throw new HttpError(400,'Invalid transcript');await put(bucket,`transcripts/${t.sessionId}/${t.id}.json`,{id:t.id,sessionId:t.sessionId,stage:t.stage,text:t.text,at:t.at,receivedAt:new Date().toISOString(),sourceUrl:t.sourceUrl});}
     if(body.heartbeat){const h=body.heartbeat;if(!HEALTH_IDS.includes(h.id)||!['live','error','paused','ready'].includes(h.state))throw new HttpError(400,'Invalid heartbeat');const extra={};for(const k of ['sessionId','nextSessionId'])if(h[k]!=null){if(!idPattern.test(String(h[k])))throw new HttpError(400,'Invalid heartbeat');extra[k]=String(h[k]);}if(h.delayMinutes!=null){const d=Number(h.delayMinutes);if(!Number.isFinite(d)||Math.abs(d)>240)throw new HttpError(400,'Invalid heartbeat');extra.delayMinutes=Math.round(d);}await bucket.put(`health/${h.id}.json`,JSON.stringify({id:h.id,state:h.state,at:new Date().toISOString(),message:String(h.message??'').slice(0,200),...extra}));}
     return json({ok:true,results});

@@ -13,7 +13,7 @@ This folder holds everything that belongs to the guide. It started as the "On So
 | Server logic | `breakpoint/server/api.mjs`, `core.mjs` | Validation, auth, revisions, ingest, public reads, calendar files. |
 | Side events | `breakpoint/server/luma.mjs` | Pulls the Luma calendar `BP-SideEvents` every 10 minutes. Falls back to `data/luma-snapshot.json`, then to the researched list in `data/seed.json`. |
 | Posts from X | `breakpoint/server/tweets.mjs`, `breakpoint/src/xpost.tsx` | Catch up draws each post the X monitor published like a Discord embed: author, avatar, text with links, photos, a video that plays in the card, link previews and quoted posts. Data comes from X's public embed endpoint (no key, no cost), fetched once per post on the server, kept in storage as `tweets/<id>.json` and attached to the entry as `embed` in `/live` and `/feed`. If X does not answer, the card shows the stored post text and the post is tried again 10 minutes later. |
-| Token prices | `breakpoint/server/prices.mjs` | Jupiter Price API v3 for projects with a verified `mintAddress` (and `mintSourceUrl`) in `seed.json`: KMNO, JUP, MET, JTO, SOL. Cached 30 s; on failure the last prices show for up to 10 minutes, marked stale, then none. Never estimated. |
+| Token prices | `breakpoint/server/prices.mjs` | Jupiter Price API v3 for projects with a verified `mintAddress` (and `mintSourceUrl`) in `seed.json`: KMNO, JUP, MET, JTO, SOL, BP. Cached 30 s; on failure the last prices show for up to 10 minutes, marked stale, then none. Never estimated. |
 | Storage | `breakpoint/server/upstash.mjs` | Upstash Redis over REST. Optional: without it the public guide works and the editorial desk / live coverage stay off. |
 | Programme data | `breakpoint/data/seed.json` | Official agenda, speakers, projects, researched events, pre-event briefings. |
 | Collector | `breakpoint/collector/` | Python (standard library) + ffmpeg. Runs on an always-on machine, never on Vercel. |
@@ -152,6 +152,34 @@ When Solana publishes the stream links: desk (`/breakpoint#editor`), Broadcast c
 | Entries arrive as drafts | `BREAKPOINT_AUTO_PUBLISH_PROVISIONAL` is not `true` on Production, or Production was not redeployed |
 
 Operating notes: a heartbeat older than three minutes shows as stale; the outbox and checkpoints survive restarts, so a restart never posts duplicates; failed model jobs are kept in `failed-jobs/`. The pre-November HTTPS-audio and OpenAI options still work (`audioUrl`, `transcriptionProvider` `openai` or `zai`, `llm.provider` `openai` or `zai`).
+
+## Pictures on coverage cards (opt-in)
+
+Every coverage card carries a visual. Stage notes, announcements and recaps can carry a still from the stage livestream, taken while the note's words were spoken; posts from X can carry the post's own picture. Cards show it beside the headline (on top on phones) and the detail view shows it larger with its time. A card with no stored picture (capture off, a briefing, an X post without media, anything published earlier) gets a cover drawn from what is already verified in the repo: the logos of the projects it is tagged with and of the named speakers' companies, else the named speakers' photos (or the posting account's picture for X), else the stage name. Same trust rule as the people column: faces only for speakers the note names. Nothing is generated or invented.
+
+- **Stage stills** (`"frames"` in `config.breakpoint-stages.json`). For every transcribed 30-second chunk, a separate thread resolves a 480p video format of the same stream (yt-dlp, once per 3 hours) and has ffmpeg take one frame at the live edge, about where the chunk ended (a replay seeks to the chunk's middle). It is shrunk to 640 px WebP (6 to 15 KB) and kept in `<state>/frames/<stage>/` for `keepHours`. When a note is written, it gets the still of the chunk its excerpt was heard in; a recap gets one from a third of the way into the talk. A failed or blank frame is skipped and logged at most every 10 minutes: the note goes out without a picture, and audio capture never waits on video.
+- **X pictures** (`"xMedia"` in `config.breakpoint-x.json`). The post's own first photo, or the still of its video, from `pbs.twimg.com` only (never a link-preview card), downloaded at X's small size and shrunk to WebP.
+- **Storage.** The bytes go to the site as their own ingest payload (`{"media": …}`, WebP or JPEG, at most 150 KB, checked from the bytes) and are stored in the same Upstash database under `media/<id>.json`; ids are content hashes. `GET /breakpoint/api/media/<id>` serves them with a one-year immutable cache, so the CDN reads each picture from Upstash about once per region. An entry's `image` field (`{id, kind: "stream" | "x", at, credit}`) is dropped if its picture was never stored. Both event days, both stages and X come to roughly 200 to 400 pictures, 3 to 6 MB.
+- **Desk.** Editing an entry shows its picture with "Remove picture"; once removed, nothing adds one again.
+- **WebP encoder.** Pillow in `.venv` (`setup.sh` installs it), else `cwebp` (`brew install webp`); without either the still goes as JPEG (about twice the size), which the site also accepts.
+
+### Turn it on (Mac Mini, at a break between talks)
+
+```bash
+cd ~/breakpoint-live/sebmontydotlink && git pull                       # once this is merged and deployed
+uv pip install --python breakpoint/.venv/bin/python pillow              # WebP encoder; safe while the collector runs
+cd breakpoint
+# set "frames": {"enabled": true, ...} in collector/config.breakpoint-stages.json and "xMedia": true in collector/config.breakpoint-x.json
+bash scripts/mac/live.sh check stages    # 2-minute dry run: the log shows "Frames: video format ..." and stills appear in .local/stages-check/frames/
+bash scripts/mac/live.sh start stages    # restart on the new code (outbox and checkpoints carry over; a restart never posts twice)
+bash scripts/mac/live.sh start x
+```
+
+After that, `"enabled"` and `"xMedia"` can be switched off or on again without a restart. To pull one picture: open the entry on the desk, Remove picture, save.
+
+### Pictures for notes published earlier
+
+`python3 collector/backfill_frames.py --stage "Main Stage" --video desk` takes a still for each published stage note that has none, at its "audio processed" time minus 50 s, and saves them in `.local/backfill-frames/` to check by eye; add `--send` to attach them. While a stream is live YouTube keeps only its last hour, so run it once the day's recording is up for the rest (pass its link with `--video` if it differs from the live one). The site only fills an empty picture: text, status and owner stay as they are, and a picture an editor removed stays removed.
 
 ## Known limits
 

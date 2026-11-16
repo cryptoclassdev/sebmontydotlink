@@ -23,7 +23,7 @@ test('only projects with a ticker and a well-formed verified mint are priced',()
 });
 test('every ticker in the seed with a mint is a valid target, and only those',()=>{
  const ids=priceTargets(seed.projects).map(t=>t.id).sort();
- assert.deepEqual(ids,['jito','jupiter','kamino','meteora','solana']);
+ assert.deepEqual(ids,['backpack','jito','jupiter','kamino','meteora','solana']);
  for(const p of seed.projects.filter(p=>p.mintAddress))assert.match(p.mintSourceUrl,/^https:\/\//);
 });
 test('normalise keeps real prices and drops missing, zero or malformed rows',()=>{
