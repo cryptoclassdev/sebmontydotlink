@@ -64,6 +64,16 @@ class Tests(unittest.TestCase):
     def entries(self):
         return [e for p in self.sent if 'entries' in p for e in p['entries']]
 
+    def test_triage_list_sent_as_broken_text_is_repaired(self):
+        def reply(items_text):
+            return {'stop_reason': 'tool_use', 'content': [{'type': 'tool_use', 'name': 'sort_posts', 'input': {'items': items_text}}]}
+        raw_newline = '[{"id": "1", "decision": "alpha", "reason": "Line one\nline two"}]'  # a raw line break inside a JSON string
+        self.assertEqual(x.tool_input(reply(raw_newline))['items'][0]['id'], '1')
+        self.assertEqual(x.tool_input(reply('Here is the list: [{"id": "2"}] done'))['items'][0]['id'], '2')
+        self.assertEqual(x.tool_input(reply('{"items": [{"id": "3"}]}'))['items'][0]['id'], '3')
+        with self.assertRaises(x.XWatchError):
+            x.tool_input(reply('not a list at all'))
+
     def test_site_error_does_not_fail_the_x_check(self):
         # Publishing problems are retried by the main loop; the X check itself still succeeds and reports live.
         def send(payload):

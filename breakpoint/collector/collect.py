@@ -350,6 +350,7 @@ def run_job(desk,llm,job):
                                tokenImpact=e['tokenImpact'] if e['tokenImpact']!='unclear' else old.get('tokenImpact','unclear'),impactReason=e['impactReason'] or old.get('impactReason',''))
                     kept.append({**old,'update':True});log('Updated with new detail: '+old['title'][:120],stage['id']);continue
             if e['kind']!='summary' and live.similar_title(e['title'],titles):log('Duplicate dropped: '+e['title'][:120],stage['id']);continue
+            if e['kind']=='summary' and rec.pop('replaceRecap',False):e['update']=True  # replaces the recap written before the mix-up
             kept.append(e)
             if e['kind']!='summary':titles.append(e['title']);sent.append(dict(e))
         del titles[:-100];del sent[:-20]
@@ -428,7 +429,7 @@ class StageRunner:
         self.started=self.resolved_at=self.last_chunk=self.last_audio=self.retry_at=self.next_plan=self.last_beat=0.0;self.failures=0
         self.status=('ready','Starting');self.stderr=collections.deque(maxlen=12)
         # Offset learned from speaker introductions today (minutes, and the configured offset it was learned under).
-        learned=desk.state.value.get('learnedOffsets',{}).get(self.id) or {}
+        learned=desk.state.value.get('learnedOffsets',{}).get(self.id) or {};self.pin=None
         self.learned=(learned['minutes'],learned['configOffset']) if learned.get('day')==london_day() else None;self.prev_text=''
 
     def conf(self):return next((s for s in self.desk.config['stages'] if s.get('id')==self.id),self.base)
@@ -444,9 +445,24 @@ class StageRunner:
         try:boot=self.bootstrap.get()
         except SafeError:return
         now=now or dt.datetime.now(dt.timezone.utc);current=self.offset()
-        hit=live.heard_session(boot.get('sessions',[]),self.conf()['name'],joined,now,current,(self.session or {}).get('id'))
+        sessions=boot.get('sessions',[]);cur=(self.session or {}).get('id')
+        hit=live.heard_session(sessions,self.conf()['name'],joined,now,current,cur,allow_earlier=True)
         if not hit:return
-        info,name=hit;minutes=max(-180,min(180,round((now-info['start']).total_seconds()/60)))
+        info,name=hit
+        cur_raw=next((s for s in sessions if isinstance(s,dict) and s.get('id')==cur),None)
+        if cur_raw and info['id']!=cur and info['start']<live.session_window(cur_raw)[0]:
+            # Out of schedule order (a talk listed earlier is on now): follow it for its length, leave the delay as it is.
+            if (self.pin or {}).get('info',{}).get('id')==info['id']:return
+            until=now+dt.timedelta(minutes=int(info['end'].timestamp()-info['start'].timestamp())//60+3)
+            self.pin={'info':info,'until':until}
+            def reopen(s):
+                rec=s.setdefault('live',{}).setdefault(info['id'],{'pending':[],'titles':[]})
+                if rec.get('recapQueued'):rec.update(recapQueued=False,since=now.isoformat(),replaceRecap=True)
+            self.desk.state.change(reopen)
+            self.say(f'Heard {name} introduced: "{info["title"][:80]}" is on now, out of schedule order; following it until {until.astimezone(live.LONDON):%H:%M}');self.next_plan=0.0
+            return
+        minutes=max(-180,min(180,round((now-info['start']).total_seconds()/60)))
+        if self.pin and info['id']!=self.pin['info']['id']:self.pin=None;self.next_plan=0.0
         if abs(minutes-current)<2:return
         configured=float(self.conf().get('scheduleOffsetMinutes',0) or 0);self.learned=(minutes,configured)
         self.desk.state.change(lambda s:s.setdefault('learnedOffsets',{}).__setitem__(self.id,{'minutes':minutes,'configOffset':configured,'day':london_day(),'at':utc(),'speaker':name,'sessionId':info['id']}))
@@ -493,6 +509,8 @@ class StageRunner:
         upcoming=None
         if mode=='schedule':
             active,upcoming=live.pick_session(boot.get('sessions',[]),st['name'],now,self.offset())
+            if self.pin and now<self.pin['until']:active=dict(self.pin['info'])
+            elif self.pin:self.pin=None
             if active:active['hints']=live.following_speakers(boot.get('sessions',[]),st['name'],active['start']-dt.timedelta(minutes=self.offset()))
         elif mode=='desk':
             sid=(record or {}).get('sessionId') or (None if yt else st.get('sessionId'))
@@ -546,7 +564,9 @@ class StageRunner:
         ids,recapped=self.desk.state.change(take)
         if not llm_on(self.desk.config):return
         if ids:queue_new(self.desk,self.stage,old,ids)
-        items=session_items(self.desk,sid);captured=len(items)*int(self.desk.config.get('chunkSeconds',30))
+        items=session_items(self.desk,sid);since=self.desk.state.value.get('live',{}).get(sid,{}).get('since')
+        if since:items=[i for i in items if i['at']>=since]  # a talk followed again after a schedule mix-up: recap what came since
+        captured=len(items)*int(self.desk.config.get('chunkSeconds',30))
         if captured>=180 and not recapped:
             queue_summary(self.desk,self.stage,items,True,(),old)
             self.desk.state.change(lambda s:s['live'][sid].__setitem__('recapQueued',True))

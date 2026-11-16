@@ -193,6 +193,25 @@ TRIAGE_SCHEMA = {'type': 'object', 'required': ['items'], 'properties': {'items'
         'impactReason': {'type': 'string'}, 'novelty': {'type': 'string', 'enum': list(NOVELTY)}}}}}}
 
 
+def list_from_text(text, key='items'):
+    """A list that the model sent as text instead of JSON (16 Nov: four triage failures, "tool input items: str").
+    Accepts raw line breaks inside strings (strict=False), text around the list, or an object holding the list."""
+    candidates = [text]
+    start, end = text.find('['), text.rfind(']')
+    if 0 <= start < end:
+        candidates.append(text[start:end + 1])
+    for candidate in candidates:
+        try:
+            value = json.loads(candidate, strict=False)
+        except ValueError:
+            continue
+        if isinstance(value, list):
+            return value
+        if isinstance(value, dict) and isinstance(value.get(key), list):
+            return value[key]
+    return None
+
+
 def tool_input(response, name='sort_posts', key='items'):
     """The input of the forced tool call in an Anthropic Messages response, with its list under `key`.
 
@@ -207,10 +226,9 @@ def tool_input(response, name='sort_posts', key='items'):
     data = dict(block['input'])
     value = data.get(key)
     if isinstance(value, str):
-        try:
-            data[key] = json.loads(value)
-        except ValueError:
-            pass
+        repaired = list_from_text(value, key)
+        if repaired is not None:
+            data[key] = repaired
     elif value is None:
         lists = [v for v in data.values() if isinstance(v, list)]
         if len(lists) == 1:
