@@ -1,0 +1,177 @@
+{
+ "__typename": "Tweet",
+ "favorite_count": 124,
+ "lang": "en",
+ "possibly_sensitive": false,
+ "created_at": "2026-11-16T10:51:07.000Z",
+ "display_text_range": [
+  0,
+  116
+ ],
+ "entities": {
+  "media": [
+   {
+    "display_url": "pic.x.com/EbgGXzYvXZ",
+    "expanded_url": "https://x.com/solana/status/2122281304792125482/video/1",
+    "indices": [
+     117,
+     140
+    ],
+    "url": "https://t.co/EbgGXzYvXZ"
+   }
+  ],
+  "user_mentions": [
+   {
+    "id_str": "479911564",
+    "indices": [
+     10,
+     20
+    ],
+    "name": "MoneyGram",
+    "screen_name": "MoneyGram"
+   },
+   {
+    "id_str": "1261736634116161538",
+    "indices": [
+     25,
+     34
+    ],
+    "name": "Solflare - The Solana Wallet",
+    "screen_name": "solflare"
+   }
+  ]
+ },
+ "id_str": "2122281304792125482",
+ "text": "BREAKING: @MoneyGram and @solflare connect Solana wallets to cash, and be able to cash out in 170 eligible countries https://t.co/EbgGXzYvXZ",
+ "user": {
+  "id_str": "951329744804392960",
+  "name": "Solana",
+  "screen_name": "solana",
+  "is_blue_verified": true,
+  "profile_image_shape": "Square",
+  "verified": false,
+  "verified_type": "Business",
+  "profile_image_url_https": "https://pbs.twimg.com/profile_images/2121919498051624960/ZB7xMYp9_normal.jpg"
+ },
+ "mediaDetails": [
+  {
+   "additional_media_info": {},
+   "display_url": "pic.x.com/EbgGXzYvXZ",
+   "expanded_url": "https://x.com/solana/status/2122281304792125482/video/1",
+   "ext_media_availability": {
+    "status": "Available"
+   },
+   "indices": [
+    117,
+    140
+   ],
+   "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2122281222072053760/img/ko8lyqoIYfZDIylk.jpg",
+   "original_info": {
+    "focus_rects": [],
+    "height": 1080,
+    "width": 1920
+   },
+   "sizes": {
+    "large": {
+     "h": 1080,
+     "resize": "fit",
+     "w": 1920
+    },
+    "medium": {
+     "h": 675,
+     "resize": "fit",
+     "w": 1200
+    },
+    "small": {
+     "h": 383,
+     "resize": "fit",
+     "w": 680
+    },
+    "thumb": {
+     "h": 150,
+     "resize": "crop",
+     "w": 150
+    }
+   },
+   "type": "video",
+   "url": "https://t.co/EbgGXzYvXZ",
+   "video_info": {
+    "aspect_ratio": [
+     16,
+     9
+    ],
+    "duration_millis": 25500,
+    "variants": [
+     {
+      "content_type": "application/x-mpegURL",
+      "url": "https://video.twimg.com/amplify_video/2122281222072053760/pl/U9OnbgNVaWkJP9mR.m3u8?v=c0c"
+     },
+     {
+      "bitrate": 256000,
+      "content_type": "video/mp4",
+      "url": "https://video.twimg.com/amplify_video/2122281222072053760/vid/avc1/480x270/zmCsVKMcRAuX4fGc.mp4"
+     },
+     {
+      "bitrate": 832000,
+      "content_type": "video/mp4",
+      "url": "https://video.twimg.com/amplify_video/2122281222072053760/vid/avc1/640x360/vbnrRUmNua14LpU2.mp4"
+     },
+     {
+      "bitrate": 2176000,
+      "content_type": "video/mp4",
+      "url": "https://video.twimg.com/amplify_video/2122281222072053760/vid/avc1/1280x720/tYffdLGc2AA1Q81g.mp4"
+     },
+     {
+      "bitrate": 10368000,
+      "content_type": "video/mp4",
+      "url": "https://video.twimg.com/amplify_video/2122281222072053760/vid/avc1/1920x1080/W0GygFGxAh-mtZLd.mp4"
+     }
+    ]
+   }
+  }
+ ],
+ "photos": [],
+ "video": {
+  "aspectRatio": [
+   16,
+   9
+  ],
+  "contentType": "media_entity",
+  "durationMs": 25500,
+  "mediaAvailability": {
+   "status": "available"
+  },
+  "poster": "https://pbs.twimg.com/amplify_video_thumb/2122281222072053760/img/ko8lyqoIYfZDIylk.jpg",
+  "variants": [
+   {
+    "type": "application/x-mpegURL",
+    "src": "https://video.twimg.com/amplify_video/2122281222072053760/pl/U9OnbgNVaWkJP9mR.m3u8?v=c0c"
+   },
+   {
+    "type": "video/mp4",
+    "src": "https://video.twimg.com/amplify_video/2122281222072053760/vid/avc1/480x270/zmCsVKMcRAuX4fGc.mp4"
+   },
+   {
+    "type": "video/mp4",
+    "src": "https://video.twimg.com/amplify_video/2122281222072053760/vid/avc1/640x360/vbnrRUmNua14LpU2.mp4"
+   },
+   {
+    "type": "video/mp4",
+    "src": "https://video.twimg.com/amplify_video/2122281222072053760/vid/avc1/1280x720/tYffdLGc2AA1Q81g.mp4"
+   },
+   {
+    "type": "video/mp4",
+    "src": "https://video.twimg.com/amplify_video/2122281222072053760/vid/avc1/1920x1080/W0GygFGxAh-mtZLd.mp4"
+   }
+  ],
+  "videoId": {
+   "type": "tweet",
+   "id": "2122281304792125482"
+  },
+  "viewCount": 0
+ },
+ "conversation_count": 29,
+ "news_action_type": "conversation",
+ "isEdited": false,
+ "isStaleEdit": false
+}

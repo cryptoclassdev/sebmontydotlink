@@ -1,0 +1,162 @@
+{
+ "__typename": "Tweet",
+ "favorite_count": 930,
+ "lang": "en",
+ "possibly_sensitive": false,
+ "created_at": "2026-11-15T15:20:08.000Z",
+ "display_text_range": [
+  0,
+  278
+ ],
+ "entities": {
+  "media": [
+   {
+    "display_url": "pic.x.com/KeyJEtYrMy",
+    "expanded_url": "https://x.com/solana/status/2121986617917272389/photo/1",
+    "indices": [
+     278,
+     301
+    ],
+    "url": "https://t.co/KeyJEtYrMy"
+   }
+  ]
+ },
+ "id_str": "2121986617917272389",
+ "text": "Breakpoint is finally here.\n\nLondon has been warming up all week with side events across the city. DTCC outlined its plans for Solana, Privacy Rings went live on mainnet, and Solana Confidential Compute is bringing private AI to the network.\n\nHere’s what happened this week:\n\n📰 https://t.co/KeyJEtYrMy",
+ "user": {
+  "id_str": "951329744804392960",
+  "name": "Solana",
+  "screen_name": "solana",
+  "is_blue_verified": true,
+  "profile_image_shape": "Square",
+  "verified": false,
+  "verified_type": "Business",
+  "profile_image_url_https": "https://pbs.twimg.com/profile_images/2121919498051624960/ZB7xMYp9_normal.jpg"
+ },
+ "mediaDetails": [
+  {
+   "display_url": "pic.x.com/KeyJEtYrMy",
+   "expanded_url": "https://x.com/solana/status/2121986617917272389/photo/1",
+   "ext_media_availability": {
+    "status": "Available"
+   },
+   "indices": [
+    278,
+    301
+   ],
+   "media_url_https": "https://pbs.twimg.com/media/HXLOPTvWMAAhWPJ.jpg",
+   "original_info": {
+    "focus_rects": [
+     {
+      "h": 1861,
+      "w": 3324,
+      "x": 0,
+      "y": 0
+     },
+     {
+      "h": 2216,
+      "w": 2216,
+      "x": 470,
+      "y": 0
+     },
+     {
+      "h": 2216,
+      "w": 1944,
+      "x": 606,
+      "y": 0
+     },
+     {
+      "h": 2216,
+      "w": 1108,
+      "x": 1024,
+      "y": 0
+     },
+     {
+      "h": 2216,
+      "w": 3324,
+      "x": 0,
+      "y": 0
+     }
+    ],
+    "height": 2216,
+    "width": 3324
+   },
+   "sizes": {
+    "large": {
+     "h": 1365,
+     "resize": "fit",
+     "w": 2048
+    },
+    "medium": {
+     "h": 800,
+     "resize": "fit",
+     "w": 1200
+    },
+    "small": {
+     "h": 453,
+     "resize": "fit",
+     "w": 680
+    },
+    "thumb": {
+     "h": 150,
+     "resize": "crop",
+     "w": 150
+    }
+   },
+   "type": "photo",
+   "url": "https://t.co/KeyJEtYrMy"
+  }
+ ],
+ "photos": [
+  {
+   "backgroundColor": {
+    "red": 204,
+    "green": 214,
+    "blue": 221
+   },
+   "cropCandidates": [
+    {
+     "h": 1861,
+     "w": 3324,
+     "x": 0,
+     "y": 0
+    },
+    {
+     "h": 2216,
+     "w": 2216,
+     "x": 470,
+     "y": 0
+    },
+    {
+     "h": 2216,
+     "w": 1944,
+     "x": 606,
+     "y": 0
+    },
+    {
+     "h": 2216,
+     "w": 1108,
+     "x": 1024,
+     "y": 0
+    },
+    {
+     "h": 2216,
+     "w": 3324,
+     "x": 0,
+     "y": 0
+    }
+   ],
+   "expandedUrl": "https://x.com/solana/status/2121986617917272389/photo/1",
+   "url": "https://pbs.twimg.com/media/HXLOPTvWMAAhWPJ.jpg",
+   "width": 3324,
+   "height": 2216
+  }
+ ],
+ "conversation_count": 212,
+ "news_action_type": "conversation",
+ "isEdited": false,
+ "isStaleEdit": false,
+ "note_tweet": {
+  "id": "Tm90ZVR3ZWV0UmVzdWx0czoyMTIxOTg2NjE3NTczMzUxNDI0"
+ }
+}

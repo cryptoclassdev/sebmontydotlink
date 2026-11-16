@@ -83,8 +83,11 @@ export default function nextConfig(phase) {
                 "default-src 'self'",
                 "script-src 'self'",
                 "style-src 'self' 'unsafe-inline'",
-                "img-src 'self' data: https://tile.openstreetmap.org https://images.lumacdn.com",
-                "connect-src 'self'",
+                // pbs.twimg.com: avatars, photos and video posters in posts from X (Catch up).
+                "img-src 'self' data: https://tile.openstreetmap.org https://images.lumacdn.com https://pbs.twimg.com",
+                // video.twimg.com: a post's video is fetched when the reader presses play, then played from a blob.
+                "connect-src 'self' https://video.twimg.com",
+                "media-src 'self' blob:",
                 'frame-src https://www.youtube-nocookie.com https://www.youtube.com https://player.vimeo.com',
                 "object-src 'none'",
                 "base-uri 'self'",
