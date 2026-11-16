@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Breakpoint: speakers' faces, X handles and company logos; richer coverage cards
 
 - **Date:** 16 November 2026
-- **Pull request:** PR_LINK, branch `claude/breakpoint-card-visuals-ac5833`.
+- **Pull request:** [#29](https://github.com/cryptoclassdev/sebmontydotlink/pull/29), branch `claude/breakpoint-card-visuals-ac5833`.
 - **Status:** Ready for review. Page, data and scripts only; the collector and X monitor are unchanged.
 - **Why:** Every speaker showed as grey initials ("MW") with no X handle or company logo, and the live-note cards were a label, a headline and grey text with most of the card empty.
 
