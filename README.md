@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Backpack's BP token on the Watchlist
 
 - **Date:** 16 November 2026
-- **Pull request:** #PR_NUMBER, branch `feat/backpack-bp-token`.
+- **Pull request:** [#31](https://github.com/cryptoclassdev/sebmontydotlink/pull/31), branch `feat/backpack-bp-token`.
 - **Status:** Ready for review. Data, one test and docs only; goes live on merge. Nothing to change on the Mac Mini.
 - **Why:** Seb pointed out that Backpack has a token, but its Watchlist card showed no ticker or price.
 
