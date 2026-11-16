@@ -54,6 +54,37 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Breakpoint: the real validator.com logo in "Powered by"
+
+- **Date:** 16 November 2026
+- **Pull request:** to be linked once opened, branch `fix/validator-logo`.
+- **Status:** Ready for review. Breakpoint page only (`/breakpoint`).
+- **Why:** The sidebar's "Powered by" block set "validator.com" as plain bold text, which is not the validator.com logo. Seb asked for the official logo: the three blocks (navy, blue, orange) with the "validator.com" wordmark.
+
+#### What changed
+1. The text wordmark is replaced by the validator.com logo: the official three-block mark from the "Brand Kits - Validator" Figma file, in the tricolour lockup's colours, with "validator.com" in Degular Bold converted to outlines. In dark mode it switches to the kit's dark version (white first block, white wordmark).
+2. The "POWERED BY" label, the link to validator.com, the arrow and the tagline stay as they were. The logo is 140 px wide and shrinks to fit narrower sidebars.
+3. Where each part comes from, and the light and dark SVG files, are in `breakpoint/assets/brand/`.
+
+#### Files touched
+- `breakpoint/src/components/validator-logo.tsx` (new), `breakpoint/src/main.tsx`, `breakpoint/src/style.css`
+- `breakpoint/assets/brand/SOURCES.md`, `validator-lockup-light.svg`, `validator-lockup-dark.svg` (new)
+- `public/breakpoint/app.js`, `public/breakpoint/style.css`, `public/breakpoint/index.html` (rebuilt)
+- `README.md`
+
+#### How to check it
+On the Vercel preview, open `/breakpoint` on a desktop-width window and look at the bottom of the left sidebar: "POWERED BY", then the three blocks and "validator.com", then the tagline. Switch to dark mode with the moon button: the first block and the wordmark turn white. Clicking the logo opens validator.com in a new tab.
+
+#### Checks run
+- `npm run typecheck` and `npm test` in `breakpoint/` (82 Python tests, 58 Node tests, 1 skipped).
+- Checked in a browser in light and dark mode at 1280 px and 760 px wide: the logo fits the sidebar with no overflow.
+
+#### Risks
+- The live validator.com header uses a lighter cyan for the middle block than the Figma lockup. This uses the Figma colours, which match the reference Seb gave.
+
+#### Roll back
+Revert this PR.
+
 ### X reposts make one card; an offline stream is not shown as an error
 
 - **Date:** 16 November 2026
