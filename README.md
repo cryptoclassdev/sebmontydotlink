@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Watch a talk from its card; Now and next follows the stage's delay
 
 - **Date:** 16 November 2026
-- **Pull request:** PR_LINK, branch `feat/watch-from-session`.
+- **Pull request:** [#22](https://github.com/cryptoclassdev/sebmontydotlink/pull/22), branch `feat/watch-from-session`.
 - **Status:** Ready for review. Page only; goes live on merge.
 - **Why:** Seb clicked "On now" on the Overview, got the talk's card, and had no way to the live stream from there. The same block also showed the published slot ("Zelle Goes Global, until 10:50") while the Main Stage was running 9 minutes late on an earlier talk.
 
