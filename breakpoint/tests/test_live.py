@@ -652,3 +652,16 @@ class OutOfOrder(LearnedOffset):
         self.runner.learn('please welcome to the stage Anthony Soohoo', now=at('2026-11-16T10:37:00'))
         self.assertEqual(self.step('2026-11-16T10:49:00'), 'mg')                      # 10 min talk + 3 min grace
         self.assertEqual(self.step('2026-11-16T10:50:30'), 'zelle')                   # schedule again (10:40 + 3, latest start)
+
+
+class OfflineStream(unittest.TestCase):
+    def test_offline_or_scheduled_streams_are_not_errors(self):
+        runner = c.StageRunner.__new__(c.StageRunner)
+        runner.failures, runner.id = 0, 'lparmy'
+        runner.say = lambda message: None
+        runner.backoff('Video ku1CJ_uMP64 is not live (set simulateLive true to replay a recording)')
+        self.assertEqual(runner.status, ('ready', 'Stream offline; waiting for it to come back'))
+        runner.backoff('Could not resolve video ku1CJ_uMP64: yt-dlp failed: ERROR: [youtube] ku1CJ_uMP64: This live event will begin in 7 minutes.')
+        self.assertEqual(runner.status, ('ready', 'Stream starts soon'))
+        runner.backoff('ffmpeg exited with code 1')
+        self.assertEqual(runner.status, ('error', 'Reconnecting to the stream'))

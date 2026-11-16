@@ -81,7 +81,7 @@ Newest first. One entry per pull request.
 On the Vercel preview, open `/breakpoint#catchup` and pick From X: each card shows the post with avatar, text and media. Press play on a video card; it plays in place. Open Full details on an X card: the post shows in full. Pick Talk summaries: each card shows the speakers and the talk. `/breakpoint/api/live` shows `embed` on X entries.
 
 #### Checks run
-- Rebased on main after #24 and #25. `npm test` in `breakpoint/` (66 JS tests including 7 new, 80 Python tests), `tsc --noEmit` for the page, page build.
+- Rebased on main after #24 and #25; main merged in again after #27 (only this change-log section overlapped). `npm test` in `breakpoint/` (66 JS tests including 7 new, 80 Python tests), `tsc --noEmit` for the page, page build.
 - Local preview with the production feed passed through the new embed step, in Chrome at desktop, phone and dark mode: all 13 X posts in the feed got embeds (photo, video, link preview and quoted posts all render); a video played in the card under the new security policy with no policy errors; with embeds switched off, the fallback cards render; Straight from X shows real avatars and `#catchup?kind=social` opens on From X. A real deleted post (Solana's first Western Union post, reposted a minute later) shows the deleted note.
 
 #### Risks
@@ -92,6 +92,34 @@ On the Vercel preview, open `/breakpoint#catchup` and pick From X: each card sho
 
 #### Roll back
 Revert this PR. Stored `tweets/` records are then unused and can stay.
+
+### X reposts make one card; an offline stream is not shown as an error
+
+- **Date:** 16 November 2026
+- **Pull request:** [#27](https://github.com/cryptoclassdev/sebmontydotlink/pull/27), branch `fix/x-reposts`.
+- **Status:** Ready for review. Collector, tests and docs only; on the Mac Mini after `bash scripts/mac/live.sh start x`, `start stages` and `start lparmy`.
+- **Why:** At 11:17 and 11:18 @solana posted its Western Union post twice, and both showed in "Straight from X" (#25). Separately, when LP Army's stream paused after its morning session, Source health told readers "Reconnecting to the stream" in error red.
+
+#### What changed
+1. **X monitor:** a post whose text matches one the same account posted in the last 300 kept posts (ignoring links, punctuation, case and spacing) is skipped. Claude moved the earlier Western Union copy back to draft by hand at 11:25 UTC.
+2. **Stages:** "is not live" now reads "Stream offline; waiting for it to come back" and "will begin in" reads "Stream starts soon", both as ready, not error. Real failures still read "Reconnecting to the stream".
+
+#### Files touched
+- `breakpoint/collector/xwatch.py`, `breakpoint/collector/collect.py`
+- `breakpoint/tests/test_xwatch.py`, `breakpoint/tests/test_live.py`
+- `README.md`
+
+#### How to check it
+On the live site: Straight from X shows each post once; Watch live, Source health, LP Army reads "Stream offline; waiting for it to come back" while its stream is paused.
+
+#### Checks run
+- 82 Python tests and 59 Node tests. New tests: two identical posts in one check make one card and a repost in a later check is skipped; offline and scheduled streams report ready, other failures still report an error.
+
+#### Risks
+- An account that deliberately posts the same text twice (a reminder, say) shows it once.
+
+#### Roll back
+Revert this PR and restart the jobs with `start`.
 
 ### Collector: talks out of schedule order, organisation introductions, X triage repair
 

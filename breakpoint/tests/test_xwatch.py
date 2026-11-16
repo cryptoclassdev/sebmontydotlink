@@ -64,6 +64,17 @@ class Tests(unittest.TestCase):
     def entries(self):
         return [e for p in self.sent if 'entries' in p for e in p['entries']]
 
+    def test_the_same_post_twice_makes_one_card(self):
+        first = tweet(1, 'kamino', '.@Kamino vaults are live. Now with fixed rates https://t.co/aaa')
+        again = tweet(2, 'kamino', '.@Kamino vaults are live.  Now, with fixed rates. https://t.co/bbb')
+        http = FakeHttp([{'tweets': [first, again], 'has_next_page': False}], {'1': ALPHA, '2': ALPHA})
+        report = self.run_poll(http)
+        self.assertEqual([e['id'] for e in self.entries()], ['xw-1'])
+        self.assertEqual(report['published'], 1)
+        later = FakeHttp([{'tweets': [tweet(3, 'kamino', '.@Kamino vaults are live. Now with fixed rates https://t.co/ccc')], 'has_next_page': False}], {'3': ALPHA})
+        self.run_poll(later)
+        self.assertEqual([e['id'] for e in self.entries()], ['xw-1'])  # a repost in a later check is skipped too
+
     def test_site_error_does_not_fail_the_x_check(self):
         # Publishing problems are retried by the main loop; the X check itself still succeeds and reports live.
         def send(payload):
