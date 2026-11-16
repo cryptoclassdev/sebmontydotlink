@@ -54,6 +54,44 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Catch up: posts from X as embeds, faces on talk recaps
+
+- **Date:** 16 November 2026
+- **Pull request:** this PR, branch `feat/catchup-x-embeds`.
+- **Status:** Ready for review. Page, API and page security policy; goes live on merge. Nothing to change on the Mac Mini.
+- **Why:** Seb asked for the Catch up cards to look more like the tweet embeds in our Discord dashboard, and, if possible, for talk summaries to show the speakers.
+
+#### What changed
+1. Every card whose source is a post on X now shows the post the way Discord embeds it: avatar, name, verified badge, @handle, the text with working links, mentions and cashtags, photos, a link preview, a quoted post, and the post time. The card keeps the desk headline above it; the post replaces the summary paragraph (the summary is still in Full details). The Full details dialog shows the post in full in place of the source excerpt.
+2. Videos and GIFs show their poster with the duration and play inside the card. X's video server refuses requests that name another site, so the page fetches the video without a referrer when the reader presses play. Videos over 3 minutes, or any that fail, open on X instead.
+3. Data comes from X's public embed endpoint (the one behind publish.twitter.com embeds): no key and no cost. The server fetches each post once, keeps it in storage as `tweets/<id>.json`, and adds it to the entry as `embed` in `/breakpoint/api/live` and `/feed`. At most 12 new posts are fetched per request (2.5 s timeout); a post X does not return is retried after 10 minutes; stored posts are re-checked every 6 hours (so a deletion shows). Entries themselves are not changed.
+4. If X does not answer, the card draws the same layout from what the X monitor stored (account name, handle, post text) with an initials avatar. A post deleted since is marked as deleted.
+5. Talk summaries show who gave the talk: overlapping initials avatars in a colour per speaker, the company logo badge where we have it, names, company, and the talk title and stage. Clicking it opens the talk.
+6. Speaker photos: optional. A photo added at `breakpoint/assets/speakers/<speaker-id>.webp` replaces that speaker's initials after a rebuild (see the README there). None are included.
+7. Page security policy (`next.config.mjs`, `/breakpoint` only): images from `pbs.twimg.com`, fetches from `video.twimg.com`, and `blob:` media.
+
+#### Files touched
+- `breakpoint/server/tweets.mjs` (new), `breakpoint/server/api.mjs`, `app/breakpoint/api/[...path]/route.ts`
+- `breakpoint/src/xpost.tsx` (new), `breakpoint/src/main.tsx`, `breakpoint/src/seb.css`, `breakpoint/scripts/build.mjs`, `public/breakpoint/` (rebuilt)
+- `breakpoint/tests/tweets.test.mjs`, `breakpoint/tests/fixtures/x/` (new: six real embed responses)
+- `breakpoint/assets/speakers/README.md`, `breakpoint/README.md`, `next.config.mjs`, `README.md`
+
+#### How to check it
+On the Vercel preview, open `/breakpoint#catchup` and pick From X: each card shows the post with avatar, text and media. Press play on a video card; it plays in place. Open Full details on an X card: the post shows in full. Pick Talk summaries: each card shows the speakers and the talk. `/breakpoint/api/live` shows `embed` on X entries.
+
+#### Checks run
+- `npm test` in `breakpoint/` (62 JS tests including 7 new, 72 Python tests), `tsc --noEmit` for the page, page build.
+- Local preview with the production feed passed through the new embed step, in Chrome at desktop, phone and dark mode: all 13 X posts in the feed got embeds (photo, video, link preview and quoted posts all render); a video played in the card under the new security policy with no policy errors; with embeds switched off, the fallback cards render.
+
+#### Risks
+- X's embed endpoint is unofficial and could change or stop. Then cards fall back to the stored text; nothing else breaks (an embed failure never fails `/live`).
+- The preview and production share the Upstash database, so previewing this branch writes `tweets/<id>.json` records. They are a cache in the final format and harmless.
+- Readers' browsers load avatars and media from X's servers (`pbs.twimg.com`), and `video.twimg.com` when they press play.
+- Cards with media are taller, so the two-column grid has more uneven rows.
+
+#### Roll back
+Revert this PR. Stored `tweets/` records are then unused and can stay.
+
 ### Sidebar sections open in a new browser tab
 
 - **Date:** 16 November 2026
