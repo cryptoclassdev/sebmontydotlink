@@ -177,7 +177,11 @@ def plain(text):
     return re.sub(r'\s+', ' ', re.sub(r'[^a-z0-9]+', ' ', text)).strip()
 
 
-def heard_session(sessions, stage_name, text, now, offset_minutes=0, current_id=None, window_minutes=45, cue_chars=70):
+GENERIC_ORGS = {'solana', 'solana foundation', 'solana labs', 'anza', 'breakpoint'}
+
+
+def heard_session(sessions, stage_name, text, now, offset_minutes=0, current_id=None, window_minutes=45, cue_chars=70,
+                  allow_earlier=False):
     """(session_info, speaker name) for the talk on this stage whose speaker is being introduced in `text`, else None.
 
     An introduction is a speaker's full name (or a surname of 5+ letters) at most cue_chars after a cue such as
@@ -185,6 +189,10 @@ def heard_session(sessions, stage_name, text, now, offset_minutes=0, current_id=
     offset_minutes, is within window_minutes of now, never earlier than the current talk. If several speakers are
     introduced, the last one named wins ("thank you A, and please welcome B"). The returned start and end are the
     published times, without the offset.
+
+    allow_earlier (16 Nov, Open Standard spoke before MoneyGram, the reverse of the schedule): earlier talks count
+    too. A speaker who is not the listed one can still be matched by organisation ("Lamia Pardo from MoneyGram"):
+    an organisation of 5+ letters, not a generic Solana name, that belongs to only one talk in the window.
     """
     t = plain(text)
     cues = [m.end() for m in INTRO_CUE.finditer(t)]
@@ -199,6 +207,7 @@ def heard_session(sessions, stage_name, text, now, offset_minutes=0, current_id=
             except (KeyError, ValueError, TypeError, AttributeError):
                 pass
     best = None
+    candidates = []
     for s in sessions or []:
         if not isinstance(s, dict) or s.get('stage') != stage_name or s.get('dateVerified') is not True:
             continue
@@ -208,12 +217,27 @@ def heard_session(sessions, stage_name, text, now, offset_minutes=0, current_id=
             continue
         if abs((start + dt.timedelta(minutes=float(offset_minutes or 0)) - now).total_seconds()) > window_minutes * 60:
             continue
-        if current_start and start < current_start:
+        if current_start and start < current_start and not allow_earlier:
             continue
+        candidates.append(s)
         for name in session_info(s)['speakers']:
             for pos in name_positions(name, t, words):
                 if any(0 <= pos - c <= cue_chars for c in cues) and (best is None or pos > best[0]):
                     best = (pos, s, name)
+    orgs = {}
+    for s in candidates:
+        for org in session_info(s)['organisations']:
+            key = plain(org)
+            if len(key) >= 5 and key not in GENERIC_ORGS:
+                orgs.setdefault(key, set()).add(s['id'])
+    for s in candidates:
+        for org in session_info(s)['organisations']:
+            key = plain(org)
+            if orgs.get(key) != {s['id']}:
+                continue
+            for m in re.finditer(r'\b' + re.escape(key) + r'\b', t):
+                if any(0 <= m.start() - c <= cue_chars for c in cues) and (best is None or m.start() > best[0]):
+                    best = (m.start(), s, org)
     if not best:
         return None
     _, s, name = best

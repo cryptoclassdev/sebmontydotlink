@@ -276,6 +276,31 @@ class Tests(unittest.TestCase):
             x.tool_input(call({}, 'max_tokens'))
         self.assertIn('stop_reason max_tokens', str(e.exception))
 
+    def test_claude_tool_input_text_forms(self):
+        items = [{'id': '1', 'verdict': 'skip'}, {'id': '2', 'verdict': 'maybe', 'title': 'T', 'summary': 'line one\nline two'}]
+        call = lambda data: {'stop_reason': 'tool_use', 'content': [{'type': 'tool_use', 'name': 'sort_posts', 'input': data}]}
+        raw_newline = json.dumps(items).replace('\\n', '\n')  # a literal newline inside a JSON string
+        self.assertIn('\n', raw_newline)
+        for text in (raw_newline, 'Here you go: ' + json.dumps(items) + ' done', json.dumps(items)[1:-1],
+                     json.dumps(json.dumps(items)), json.dumps({'items': items})):
+            self.assertEqual(x.tool_input(call({'items': text}))['items'], items, text[:40])
+        with self.assertRaises(x.XWatchError) as e:
+            x.tool_input(call({'items': 'not a list at all'}))
+        self.assertIn('text of 17 chars', str(e.exception))
+        self.assertNotIn('not a list at all', str(e.exception))  # content stays out of the log
+
+    def test_triage_retries_a_malformed_answer_once(self):
+        answers = []
+
+        def http(url, method='GET', body=None, headers=None):
+            if url.startswith(x.SEARCH_API):
+                return {'tweets': [tweet(1, 'kamino', 'Fixed-rate vaults are live on Kamino today')], 'has_next_page': False}
+            answers.append(1)
+            items = 'garbled' if len(answers) == 1 else [dict({'id': '1'}, **ALPHA)]
+            return {'stop_reason': 'tool_use', 'content': [{'type': 'tool_use', 'name': 'sort_posts', 'input': {'items': items}}]}
+        report = self.run_poll(http, {'xTriageProvider': 'anthropic', 'xTriageModel': 'claude-haiku-5-5'})
+        self.assertEqual((len(answers), report['published']), (2, 1))
+
     def test_talk_window(self):
         acc = ACCOUNTS[0]
         self.assertEqual(x.talk_for(acc, '2026-11-15T13:00:00Z', 24), 'bp26-kamino')
