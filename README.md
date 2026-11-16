@@ -75,7 +75,7 @@ Newest first. One entry per pull request.
 On the Mac Mini: `bash scripts/mac/live.sh logs stages` shows "out of schedule order; following it until HH:MM" when it happens; X checks stop logging "Triage response has no items list".
 
 #### Checks run
-- 79 Python tests and 55 Node tests. New tests: organisation introductions (and generic names ignored); an earlier-listed talk is followed without changing the delay, its recap reopened, then a forward introduction resumes the schedule with the new delay; a followed talk ends after its length plus 3 minutes; the triage text forms are recovered and a malformed answer is retried once (tests from the Mac Mini fix).
+- 80 Python tests and 55 Node tests. New tests: organisation introductions (and generic names ignored); an earlier-listed talk is followed without changing the delay, its recap reopened, then a forward introduction resumes the schedule with the new delay; a followed talk ends after its length plus 3 minutes; the triage text forms are recovered and a malformed answer is retried once (tests from the Mac Mini fix).
 
 #### Risks
 - A cue followed by the name of an earlier talk's organisation, said in passing, could make the collector follow that talk for one slot; the next introduction or the slot's end ends it.
