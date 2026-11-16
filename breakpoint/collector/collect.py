@@ -620,7 +620,9 @@ class StageRunner:
     def backoff(self,message):
         delay=self.BACKOFF[self.failures] if self.failures<len(self.BACKOFF) else 120
         self.failures+=1;self.retry_at=time.monotonic()+delay
-        self.status=('error','Reconnecting to the stream');self.say(f'{message}; retrying in {delay} s')
+        # A stream that has not started or has paused is normal between parts of a day, not an error for readers.
+        quiet='Stream offline; waiting for it to come back' if 'is not live' in message else 'Stream starts soon' if 'will begin' in message or 'Premieres' in message else None
+        self.status=('ready',quiet) if quiet else ('error','Reconnecting to the stream');self.say(f'{message}; retrying in {delay} s')
 
     def consume_ready(self):
         if not self.run_dir:return

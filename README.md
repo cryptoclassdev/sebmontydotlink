@@ -54,6 +54,34 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### X reposts make one card; an offline stream is not shown as an error
+
+- **Date:** 16 November 2026
+- **Pull request:** [#27](https://github.com/cryptoclassdev/sebmontydotlink/pull/27), branch `fix/x-reposts`.
+- **Status:** Ready for review. Collector, tests and docs only; on the Mac Mini after `bash scripts/mac/live.sh start x`, `start stages` and `start lparmy`.
+- **Why:** At 11:17 and 11:18 @solana posted its Western Union post twice, and both showed in "Straight from X" (#25). Separately, when LP Army's stream paused after its morning session, Source health told readers "Reconnecting to the stream" in error red.
+
+#### What changed
+1. **X monitor:** a post whose text matches one the same account posted in the last 300 kept posts (ignoring links, punctuation, case and spacing) is skipped. Claude moved the earlier Western Union copy back to draft by hand at 11:25 UTC.
+2. **Stages:** "is not live" now reads "Stream offline; waiting for it to come back" and "will begin in" reads "Stream starts soon", both as ready, not error. Real failures still read "Reconnecting to the stream".
+
+#### Files touched
+- `breakpoint/collector/xwatch.py`, `breakpoint/collector/collect.py`
+- `breakpoint/tests/test_xwatch.py`, `breakpoint/tests/test_live.py`
+- `README.md`
+
+#### How to check it
+On the live site: Straight from X shows each post once; Watch live, Source health, LP Army reads "Stream offline; waiting for it to come back" while its stream is paused.
+
+#### Checks run
+- 82 Python tests and 59 Node tests. New tests: two identical posts in one check make one card and a repost in a later check is skipped; offline and scheduled streams report ready, other failures still report an error.
+
+#### Risks
+- An account that deliberately posts the same text twice (a reminder, say) shows it once.
+
+#### Roll back
+Revert this PR and restart the jobs with `start`.
+
 ### Collector: talks out of schedule order, organisation introductions, X triage repair
 
 - **Date:** 16 November 2026
