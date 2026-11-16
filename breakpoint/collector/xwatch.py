@@ -298,6 +298,14 @@ def triage(posts, accounts_by_handle, config, state, key, http):
     return validate_triage(model_json(response), posts)
 
 
+def text_key(text):
+    """Same post, posted twice: equal once links, punctuation, case and spacing are ignored (16 Nov: @solana sent
+    its Western Union post twice a minute apart, and both showed in Straight from X)."""
+    t = re.sub(r'https?://\S+', ' ', str(text or '').lower())
+    t = re.sub(r'[^a-z0-9$]+', ' ', t).strip()
+    return hashlib.sha256(t.encode()).hexdigest()[:16]
+
+
 def make_entry(post, account, verdict, config, projects):
     pids = []
     for pid in ([account.get('projectId')] if account.get('projectId') else []) + mentioned_projects(post['text'], projects):
@@ -356,15 +364,21 @@ def poll(desk, state, config, accounts, projects, keys, http, now=None):
             s['xwatch']['since'][k] = start
         state.change(advance)
     published = drafted = 0
+    seen_texts = {(r.get('h'), r.get('k')) for r in state.value['xwatch'].get('recent', [])}
     pending = list(state.value['xwatch']['pending'])
     size = int(config.get('xTriageBatchSize', 10))
     for i in range(0, len(pending), size):
         chunk = pending[i:i + size]
         verdicts = triage(chunk, by_handle, config, state, keys['triage'], http)
-        entries = []
+        entries, texts = [], []
         for p in chunk:
             v = verdicts[p['id']]
             if v['verdict'] != 'skip':
+                same = (p['user'].lower(), text_key(p['text']))
+                if same in seen_texts:
+                    continue  # the account posted the same text again: one card is enough
+                seen_texts.add(same)
+                texts.append({'h': same[0], 'k': same[1], 'at': p['createdAt']})
                 e = make_entry(p, by_handle[p['user'].lower()], v, config, projects)
                 entries.append(e)
                 published += e['status'] == 'provisional'
@@ -373,7 +387,8 @@ def poll(desk, state, config, accounts, projects, keys, http, now=None):
             desk.queue({'entries': entries[j:j + 30]})
         ids = {p['id'] for p in chunk}
 
-        def done(s, ids=ids):
+        def done(s, ids=ids, texts=texts):
+            s['xwatch']['recent'] = (s['xwatch'].get('recent', []) + texts)[-300:]
             s['xwatch']['pending'] = [q for q in s['xwatch']['pending'] if q['id'] not in ids]
             for pid in ids:
                 s['processed']['xw-' + pid] = iso(dt.datetime.now(dt.timezone.utc))
