@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### London guide: Breakpoint days first, past days greyed, Olympia on the map
 
 - **Date:** 16 November 2026
-- **Pull request:** #PR_NUMBER, branch `feat/london-guide-days`.
+- **Pull request:** [#32](https://github.com/cryptoclassdev/sebmontydotlink/pull/32), branch `feat/london-guide-days`.
 - **Status:** Ready for review. Page only; goes live on merge. Nothing to change on the Mac Mini.
 - **Why:** Seb asked for the London guide's day filter to lead with the Breakpoint days, for the days already over to look finished but stay clickable, and for the map to show where Breakpoint itself is.
 
