@@ -38,7 +38,9 @@ async function saveEntry(bucket,entry,expectedVersion,role,update=false){
  await indexEntry(bucket,saved);
  return saved;
 }
-async function indexEntry(bucket,saved){const suffix=`${String(9999999999999-Date.parse(saved.createdAt)).padStart(13,'0')}-${saved.id}.json`;await bucket.put(`entry-index/${suffix}`,JSON.stringify({id:saved.id}));if(feedVisible(saved))await bucket.put(`public-index/${suffix}`,JSON.stringify({id:saved.id}));}
+async function indexEntry(bucket,saved){const suffix=`${String(9999999999999-Date.parse(saved.createdAt)).padStart(13,'0')}-${saved.id}.json`;await bucket.put(`entry-index/${suffix}`,JSON.stringify({id:saved.id}));if(feedVisible(saved))await bucket.put(`public-index/${suffix}`,JSON.stringify({id:saved.id}));if(saved.kind==='summary'&&feedVisible(saved))await bucket.put(`summary-index/${suffix}`,JSON.stringify({id:saved.id}));}
+// Session recaps have their own index, so the Watch live list keeps every recap of the event after the latest-60 feed has moved on.
+async function summaryPage(bucket,limit=80){const page=await bucket.list({prefix:'summary-index/',limit});const ids=[...new Set(page.objects.map(x=>indexId(x.key)).filter(Boolean))];return ids.length?(await getMany(bucket,ids.map(id=>`entries/${id}.json`))).filter(Boolean).map(x=>x.value):[];}
 const byTime=(a,b)=>Date.parse(b.occurredAt)-Date.parse(a.occurredAt);
 
 /**
@@ -61,13 +63,14 @@ export function createApi(seed,{basePath='',loadEvents,loadPrices}={}){
  async function staticData(){const e=await events();return {updatedAt:seed.updatedAt,projects:seed.projects,speakers:seed.speakers,sessions:seed.sessions,breaks:seed.breaks??[],events:e.events,eventsSource:e.source,eventsCheckedAt:e.checkedAt};}
  async function prices(){if(!loadPrices)return null;try{return await loadPrices();}catch{return null;}}
  async function liveData(bucket){
-  let entries=[],nextCursor=null,heartbeats=[],streams=[],sessions=[],storage='not-configured';
+  let entries=[],nextCursor=null,heartbeats=[],streams=[],sessions=[],recaps=[],storage='not-configured';
   const pricesPromise=prices();
-  if(bucket){try{[{entries,nextCursor},heartbeats,streams,sessions]=await Promise.all([entryPage(bucket,true,undefined,LIVE_LIMIT),list(bucket,'health/'),list(bucket,'streams/'),list(bucket,'sessions/')]);storage='ready';}catch{entries=[];nextCursor=null;heartbeats=[];streams=[];sessions=[];storage='unavailable';}}
+  if(bucket){try{[{entries,nextCursor},heartbeats,streams,sessions,recaps]=await Promise.all([entryPage(bucket,true,undefined,LIVE_LIMIT),list(bucket,'health/'),list(bucket,'streams/'),list(bucket,'sessions/'),summaryPage(bucket)]);storage='ready';}catch{entries=[];nextCursor=null;heartbeats=[];streams=[];sessions=[];recaps=[];storage='unavailable';}}
+  const summaries=[...new Map([...recaps,...entries].filter(e=>e.kind==='summary'&&feedVisible(e)&&e.status!=='withdrawn').map(e=>[e.id,e])).values()].sort(byTime);
   const market=await pricesPromise;
   const health=Object.fromEntries(HEALTH_IDS.map(id=>[id,sourceHealth(heartbeats.find(h=>h.id===id))]));
   if(loadPrices)health.market=marketHealth(market);
-  return {nextCursor,entries:[...seed.entries,...entries.filter(feedVisible)].sort(byTime),streams:seed.streams.map(s=>streams.find(x=>x.id===s.id)??s),sessionOverrides:sessions,health,prices:market?{source:market.source,checkedAt:market.checkedAt,stale:market.stale,prices:market.prices}:null,storage,serverTime:new Date().toISOString()};
+  return {nextCursor,entries:[...seed.entries,...entries.filter(feedVisible)].sort(byTime),summaries,streams:seed.streams.map(s=>streams.find(x=>x.id===s.id)??s),sessionOverrides:sessions,health,prices:market?{source:market.source,checkedAt:market.checkedAt,stale:market.stale,prices:market.prices}:null,storage,serverTime:new Date().toISOString()};
  }
  return async function api(request,env){
   const url=new URL(request.url);let path=url.pathname;
