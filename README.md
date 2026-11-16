@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Breakpoint: the real validator.com logo in "Powered by"
 
 - **Date:** 16 November 2026
-- **Pull request:** to be linked once opened, branch `fix/validator-logo`.
+- **Pull request:** [#28](https://github.com/cryptoclassdev/sebmontydotlink/pull/28), branch `fix/validator-logo`.
 - **Status:** Ready for review. Breakpoint page only (`/breakpoint`).
 - **Why:** The sidebar's "Powered by" block set "validator.com" as plain bold text, which is not the validator.com logo. Seb asked for the official logo: the three blocks (navy, blue, orange) with the "validator.com" wordmark.
 
