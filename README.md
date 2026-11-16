@@ -67,8 +67,9 @@ Newest first. One entry per pull request.
 3. Data comes from X's public embed endpoint (the one behind publish.twitter.com embeds): no key and no cost. The server fetches each post once, keeps it in storage as `tweets/<id>.json`, and adds it to the entry as `embed` in `/breakpoint/api/live` and `/feed`. At most 12 new posts are fetched per request (2.5 s timeout); a post X does not return is retried after 10 minutes; stored posts are re-checked every 6 hours (so a deletion shows). Entries themselves are not changed.
 4. If X does not answer, the card draws the same layout from what the X monitor stored (account name, handle, post text) with an initials avatar. A post deleted since is marked as deleted.
 5. Talk summaries show who gave the talk: overlapping initials avatars in a colour per speaker, the company logo badge where we have it, names, company, and the talk title and stage. Clicking it opens the talk.
-6. Speaker photos: optional. A photo added at `breakpoint/assets/speakers/<speaker-id>.webp` replaces that speaker's initials after a rebuild (see the README there). None are included.
-7. Page security policy (`next.config.mjs`, `/breakpoint` only): images from `pbs.twimg.com`, fetches from `video.twimg.com`, and `blob:` media.
+6. Straight from X on the Overview (#25) also gets the embed: its cards show the account's real avatar. `/api/live` attaches embeds to `entries` and `xPosts` in one lookup.
+7. Speaker photos: optional. A photo added at `breakpoint/assets/speakers/<speaker-id>.webp` replaces that speaker's initials after a rebuild (see the README there). None are included.
+8. Page security policy (`next.config.mjs`, `/breakpoint` only): images from `pbs.twimg.com`, fetches from `video.twimg.com`, and `blob:` media.
 
 #### Files touched
 - `breakpoint/server/tweets.mjs` (new), `breakpoint/server/api.mjs`, `app/breakpoint/api/[...path]/route.ts`
@@ -80,8 +81,8 @@ Newest first. One entry per pull request.
 On the Vercel preview, open `/breakpoint#catchup` and pick From X: each card shows the post with avatar, text and media. Press play on a video card; it plays in place. Open Full details on an X card: the post shows in full. Pick Talk summaries: each card shows the speakers and the talk. `/breakpoint/api/live` shows `embed` on X entries.
 
 #### Checks run
-- `npm test` in `breakpoint/` (62 JS tests including 7 new, 72 Python tests), `tsc --noEmit` for the page, page build.
-- Local preview with the production feed passed through the new embed step, in Chrome at desktop, phone and dark mode: all 13 X posts in the feed got embeds (photo, video, link preview and quoted posts all render); a video played in the card under the new security policy with no policy errors; with embeds switched off, the fallback cards render.
+- Rebased on main after #24 and #25. `npm test` in `breakpoint/` (66 JS tests including 7 new, 80 Python tests), `tsc --noEmit` for the page, page build.
+- Local preview with the production feed passed through the new embed step, in Chrome at desktop, phone and dark mode: all 13 X posts in the feed got embeds (photo, video, link preview and quoted posts all render); a video played in the card under the new security policy with no policy errors; with embeds switched off, the fallback cards render; Straight from X shows real avatars and `#catchup?kind=social` opens on From X. A real deleted post (Solana's first Western Union post, reposted a minute later) shows the deleted note.
 
 #### Risks
 - X's embed endpoint is unofficial and could change or stop. Then cards fall back to the stored text; nothing else breaks (an embed failure never fails `/live`).
@@ -91,6 +92,35 @@ On the Vercel preview, open `/breakpoint#catchup` and pick From X: each card sho
 
 #### Roll back
 Revert this PR. Stored `tweets/` records are then unused and can stay.
+
+### Collector: talks out of schedule order, organisation introductions, X triage repair
+
+- **Date:** 16 November 2026
+- **Pull request:** [#24](https://github.com/cryptoclassdev/sebmontydotlink/pull/24), branch `fix/xwatch-items-repair`.
+- **Status:** Ready for review. Collector, tests and docs only; on the Mac Mini after `bash scripts/mac/live.sh start stages` and `bash scripts/mac/live.sh start x`.
+- **Why:** On day 1 the Main Stage ran Open Standard (listed 10:30) before MoneyGram (listed 10:20), and MoneyGram's speaker was not the one listed. Detection only looked forward and only by speaker name, so the MoneyGram slot recapped Open Standard's talk and the next recap mixed both. Claude repaired those items by hand at 11:05 (two recaps rewritten, five items moved to the right talk, the Zelle recap cleaned). Separately, the X monitor's triage failed four times because Claude Haiku sent its list as text that was not valid JSON.
+
+#### What changed
+1. **Out-of-order talks:** an introduction for a talk listed earlier than the current one makes the collector follow that talk for its length plus 3 minutes, leaving the delay unchanged; the next forward introduction ends that and shifts the delay as before. If the talk was already recapped under the wrong slot, it is reopened: its new recap covers only what came after the introduction and is sent as an update that replaces the old recap (unless an editor has saved it).
+2. **Organisation introductions:** "introduce to the stage <name> from MoneyGram" counts for the MoneyGram talk when that organisation (5+ letters, not a generic Solana name) belongs to only one talk in the window.
+3. **X triage repair** (made directly on the Mac Mini at 10:53 UTC in another session; this PR brings it into the repo unchanged): a list sent as text is parsed leniently (raw line breaks inside strings, text around the list, a list without its brackets, an object holding it, or a double-encoded string), a malformed answer is asked again once in the same check (`xTriageRetries`, default 1), and a failure note gives the text length and error position, never the content.
+
+#### Files touched
+- `breakpoint/collector/live.py`, `breakpoint/collector/collect.py`, `breakpoint/collector/xwatch.py`
+- `breakpoint/tests/test_live.py`, `breakpoint/tests/test_xwatch.py`
+- `breakpoint/README.md`, `README.md`
+
+#### How to check it
+On the Mac Mini: `bash scripts/mac/live.sh logs stages` shows "out of schedule order; following it until HH:MM" when it happens; X checks stop logging "Triage response has no items list".
+
+#### Checks run
+- 80 Python tests and 55 Node tests. New tests: organisation introductions (and generic names ignored); an earlier-listed talk is followed without changing the delay, its recap reopened, then a forward introduction resumes the schedule with the new delay; a followed talk ends after its length plus 3 minutes; the triage text forms are recovered and a malformed answer is retried once (tests from the Mac Mini fix).
+
+#### Risks
+- A cue followed by the name of an earlier talk's organisation, said in passing, could make the collector follow that talk for one slot; the next introduction or the slot's end ends it.
+
+#### Roll back
+Revert this PR and restart both jobs with `start`.
 
 ### Sidebar sections open in a new browser tab
 

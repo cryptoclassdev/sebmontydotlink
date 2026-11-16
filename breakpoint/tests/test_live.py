@@ -607,3 +607,48 @@ class LearnedOffset(unittest.TestCase):
             self.runner.consume(pathlib.Path('x.wav'), {'id': 'mg'})
             self.runner.consume(pathlib.Path('y.wav'), {'id': 'mg'}, stage={'id': 'main', 'name': 'Main Stage', 'sourceUrl': 'x'})  # recovery
         self.assertEqual(heard, ['please welcome Zach Abrams'])
+
+
+SWAP = [dict(talk('mg', '10:20', 10, ['Anthony Soohoo']), speakers=[{'name': 'Anthony Soohoo', 'project': 'MoneyGram'}]),
+        dict(talk('stable', '10:30', 10, ['Zach Abrams']), speakers=[{'name': 'Zach Abrams', 'project': 'Open Standard'}]),
+        dict(talk('zelle', '10:40', 10, ['Alexandra Lang']), speakers=[{'name': 'Alexandra Lang', 'project': 'Zelle'}]),
+        dict(talk('wu', '10:50', 10, ['Malcolm Clarke']), speakers=[{'name': 'Malcolm Clarke', 'project': 'Solana Foundation'}])]
+
+
+class OutOfOrder(LearnedOffset):
+    """16 Nov: Open Standard (listed 10:30) spoke before MoneyGram (listed 10:20), and MoneyGram's speaker was not the listed one."""
+
+    def setUp(self):
+        super().setUp()
+        self.boot.value['sessions'] = SWAP
+
+    def test_organisation_introductions_and_generic_names(self):
+        hit = live.heard_session(SWAP, 'Main Stage', "I'm really excited to introduce to the stage Lamia Pardo from MoneyGram.",
+                                 at('2026-11-16T10:44:00'), 3, 'stable', allow_earlier=True)
+        self.assertEqual((hit[0]['id'], hit[1]), ('mg', 'MoneyGram'))
+        self.assertIsNone(live.heard_session(SWAP, 'Main Stage', "I'm really excited to introduce to the stage Lamia Pardo from MoneyGram.",
+                                             at('2026-11-16T10:44:00'), 3, 'stable'))  # without allow_earlier: an earlier talk never counts
+        self.assertIsNone(live.heard_session(SWAP, 'Main Stage', 'please welcome our friends from the Solana Foundation',
+                                             at('2026-11-16T10:50:00'), 0, 'zelle', allow_earlier=True))
+
+    def test_a_talk_introduced_out_of_order_is_followed_then_the_schedule_resumes(self):
+        self.runner.learned = (3, 0.0)
+        self.desk.state.change(lambda s: s.setdefault('live', {}).__setitem__('mg', {'pending': [], 'titles': [], 'recapQueued': True}))
+        self.assertEqual(self.step('2026-11-16T10:36:00'), 'stable')
+        self.runner.learn("Earlier this year we announced a big partnership with MoneyGram, and I'm really excited to introduce to the stage Lamia Pardo from MoneyGram.",
+                          now=at('2026-11-16T10:37:00'))
+        self.assertEqual(self.step('2026-11-16T10:38:00'), 'mg')                      # followed although listed earlier
+        self.assertEqual(self.runner.offset(), 3)                                       # the delay is left alone
+        rec = self.desk.state.value['live']['mg']
+        self.assertEqual((rec['recapQueued'], rec['since'][:16], rec['replaceRecap']), (False, '2026-11-16T10:37', True))
+        self.runner.learn('So I would love to introduce to the stage Alexandra Lang from Zelle.', now=at('2026-11-16T10:46:00'))
+        self.assertIsNone(self.runner.pin)
+        self.assertEqual(self.runner.offset(), 6)
+        self.assertEqual(self.step('2026-11-16T10:46:30'), 'zelle')
+
+    def test_a_pin_runs_out_after_the_talk(self):
+        self.runner.learned = (3, 0.0)
+        self.step('2026-11-16T10:36:00')
+        self.runner.learn('please welcome to the stage Anthony Soohoo', now=at('2026-11-16T10:37:00'))
+        self.assertEqual(self.step('2026-11-16T10:49:00'), 'mg')                      # 10 min talk + 3 min grace
+        self.assertEqual(self.step('2026-11-16T10:50:30'), 'zelle')                   # schedule again (10:40 + 3, latest start)

@@ -73,7 +73,7 @@ test('a failed fetch leaves the entry as it was and waits 10 minutes before retr
  assert.equal((await timeout(null,entries))[0].embed,undefined);
 });
 
-test('/api/live and /api/feed carry embeds, and a broken embed step never breaks them', async () => {
+test('/api/live (feed and Straight from X) and /api/feed carry embeds, and a broken embed step never breaks them', async () => {
  const store=bucket(),env={BUCKET:store,INGEST_TOKEN:'ingest-test',AUTO_PUBLISH_PROVISIONAL:'true'};
  const post=entry('xw-2122278282326659225','https://x.com/kashdhanda/status/2122278282326659225');
  const call=(api,path,body)=>api(new Request('https://test.example/breakpoint'+path,{method:body?'POST':'GET',headers:body?{'content-type':'application/json',authorization:'Bearer ingest-test'}:{},...(body?{body:JSON.stringify(body)}:{})}),env);
@@ -81,6 +81,7 @@ test('/api/live and /api/feed carry embeds, and a broken embed step never breaks
  assert.equal((await call(api,'/api/ingest',{entries:[{...post,status:'provisional'}]})).status,200);
  const live=await (await call(api,'/api/live')).json();
  assert.equal(live.entries.find(e=>e.id===post.id).embed.author.handle,'kashdhanda');
+ assert.equal(live.xPosts.find(e=>e.id===post.id).embed.author.handle,'kashdhanda','Straight from X gets the embed too');
  const feed=await (await call(api,'/api/feed')).json();
  assert.equal(feed.entries.find(e=>e.id===post.id).embed.author.handle,'kashdhanda');
  const broken=createApi(seed,{basePath:'/breakpoint',attachEmbeds:async()=>{throw new Error('boom');}});

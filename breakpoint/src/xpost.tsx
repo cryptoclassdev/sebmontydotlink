@@ -30,17 +30,17 @@ export function fallbackPost(e: Item): {author: Author; text: Segment[]; url: st
 
 function Avatar({author, size = 40}: {author: Author; size?: number}) {
   const [failed, setFailed] = useState(false);
-  const cls = `x-avatar ${author.square ? 'square' : ''}`;
+  const cls = `xe-avatar ${author.square ? 'square' : ''}`;
   if (author.avatar && !failed) return <img className={cls} src={author.avatar} alt="" width={size} height={size} loading="lazy" decoding="async" onError={() => setFailed(true)} style={{width: size, height: size}}/>;
   return <span className={`${cls} initials`} style={{width: size, height: size, fontSize: Math.round(size * .36)}} aria-hidden="true">{initials(author.name || author.handle)}</span>;
 }
 
 function Byline({author, size}: {author: Author; size?: number}) {
   const badge = author.verified ? BADGE[author.verified] : null;
-  return <a className="x-byline" href={`https://x.com/${author.handle}`} target="_blank" rel="noopener noreferrer">
+  return <a className="xe-byline" href={`https://x.com/${author.handle}`} target="_blank" rel="noopener noreferrer">
     <Avatar author={author} size={size}/>
-    <span className="x-names">
-      <strong>{author.name}{badge && <BadgeCheck className="x-badge" size={size && size < 30 ? 13 : 15} fill={badge[0]} color="#fff" strokeWidth={2.4} aria-label={badge[1]}/>}</strong>
+    <span className="xe-names">
+      <strong>{author.name}{badge && <BadgeCheck className="xe-badge" size={size && size < 30 ? 13 : 15} fill={badge[0]} color="#fff" strokeWidth={2.4} aria-label={badge[1]}/>}</strong>
       {author.handle && <span>@{author.handle}</span>}
     </span>
   </a>;
@@ -66,11 +66,11 @@ function Video({m, href}: {m: Media; href: string}) {
       setState('ready');
     } catch { setState('failed'); }
   }
-  if (state === 'ready') return <video className="x-video" src={src} poster={sized(m.image, 'small')} controls autoPlay playsInline muted={m.type === 'gif'} loop={m.type === 'gif'}/>;
+  if (state === 'ready') return <video className="xe-video" src={src} poster={sized(m.image, 'small')} controls autoPlay playsInline muted={m.type === 'gif'} loop={m.type === 'gif'}/>;
   const label = m.type === 'gif' ? 'GIF' : m.durationMs ? duration(m.durationMs) : 'Video';
-  const poster = <><img src={sized(m.image, 'small')} alt={m.alt || ''} loading="lazy" decoding="async"/><span className="x-play" aria-hidden="true">{state === 'loading' ? <LoaderCircle className="x-spin" size={22}/> : <Play size={22} fill="currentColor"/>}</span><span className="x-duration">{label}</span></>;
-  if (!playable || state === 'failed') return <a className="x-video-poster" href={href} target="_blank" rel="noopener noreferrer" aria-label={`Watch the ${m.type === 'gif' ? 'GIF' : 'video'} on X`}>{poster}{state === 'failed' && <span className="x-video-note">Play on X <ArrowUpRight size={12}/></span>}</a>;
-  return <button type="button" className="x-video-poster" onClick={play} disabled={state === 'loading'} aria-label={m.type === 'gif' ? 'Play GIF' : `Play video${m.durationMs ? `, ${duration(m.durationMs)}` : ''}`}>{poster}</button>;
+  const poster = <><img src={sized(m.image, 'small')} alt={m.alt || ''} loading="lazy" decoding="async"/><span className="xe-play" aria-hidden="true">{state === 'loading' ? <LoaderCircle className="xe-spin" size={22}/> : <Play size={22} fill="currentColor"/>}</span><span className="xe-duration">{label}</span></>;
+  if (!playable || state === 'failed') return <a className="xe-video-poster" href={href} target="_blank" rel="noopener noreferrer" aria-label={`Watch the ${m.type === 'gif' ? 'GIF' : 'video'} on X`}>{poster}{state === 'failed' && <span className="xe-video-note">Play on X <ArrowUpRight size={12}/></span>}</a>;
+  return <button type="button" className="xe-video-poster" onClick={play} disabled={state === 'loading'} aria-label={m.type === 'gif' ? 'Play GIF' : `Play video${m.durationMs ? `, ${duration(m.durationMs)}` : ''}`}>{poster}</button>;
 }
 
 function MediaGrid({media, href, full}: {media: Media[]; href: string; full?: boolean}) {
@@ -78,7 +78,7 @@ function MediaGrid({media, href, full}: {media: Media[]; href: string; full?: bo
   const one = media.length === 1 ? media[0] : null;
   // A single item keeps its shape, from square up to wide; several share a 16:9 grid.
   const ratio = one ? Math.min(Math.max(one.width / one.height, full ? .8 : 1.2), 2.4) : 16 / 9;
-  return <div className={`x-media count-${media.length} ${full ? 'full' : ''}`} style={{aspectRatio: String(ratio)}}>
+  return <div className={`xe-media count-${media.length} ${full ? 'full' : ''}`} style={{aspectRatio: String(ratio)}}>
     {media.map((m, i) => m.type === 'photo'
       ? <a key={i} href={`${href}/photo/${i + 1}`} target="_blank" rel="noopener noreferrer"><img src={sized(m.image, 'small')} srcSet={`${sized(m.image, 'small')} 680w, ${sized(m.image, 'medium')} 1200w`} sizes="(max-width: 960px) 100vw, 600px" alt={m.alt || ''} loading="lazy" decoding="async"/></a>
       : <Video key={i} m={m} href={href}/>)}
@@ -88,7 +88,7 @@ function MediaGrid({media, href, full}: {media: Media[]; href: string; full?: bo
 function LinkCard({card}: {card: Item}) {
   const href = https(card.url);
   if (!href) return null;
-  return <a className={`x-card ${card.large && card.image ? 'large' : ''}`} href={href} target="_blank" rel="noopener noreferrer">
+  return <a className={`xe-card ${card.large && card.image ? 'large' : ''}`} href={href} target="_blank" rel="noopener noreferrer">
     {card.image && <img src={card.image} alt="" loading="lazy" decoding="async"/>}
     <span><small>{card.domain}</small>{card.title && <strong>{card.title}</strong>}{!card.large && card.description && <em>{card.description}</em>}</span>
   </a>;
@@ -96,9 +96,9 @@ function LinkCard({card}: {card: Item}) {
 
 function Quoted({post}: {post: Item}) {
   const thumb = post.media?.[0];
-  return <a className="x-quote" href={https(post.url)} target="_blank" rel="noopener noreferrer">
-    <span className="x-quote-head"><Avatar author={post.author} size={18}/><strong>{post.author.name}</strong><span>@{post.author.handle}</span></span>
-    <span className="x-quote-body"><span className="x-quote-text">{post.text.map((s: Segment) => s.text).join('')}</span>{thumb && <img src={sized(thumb.image, 'small')} alt={thumb.alt || ''} loading="lazy" decoding="async"/>}</span>
+  return <a className="xe-quote" href={https(post.url)} target="_blank" rel="noopener noreferrer">
+    <span className="xe-quote-head"><Avatar author={post.author} size={18}/><strong>{post.author.name}</strong><span>@{post.author.handle}</span></span>
+    <span className="xe-quote-body"><span className="xe-quote-text">{post.text.map((s: Segment) => s.text).join('')}</span>{thumb && <img src={sized(thumb.image, 'small')} alt={thumb.alt || ''} loading="lazy" decoding="async"/>}</span>
   </a>;
 }
 
@@ -106,14 +106,14 @@ export function XPost({entry: e, tz, full = false}: {entry: Item; tz: string; fu
   const embed = e.embed && !e.embed.deleted ? e.embed : null;
   const post = embed ?? fallbackPost(e);
   const href = https(post.url) || https(e.sourceUrl) || 'https://x.com';
-  return <div className={`x-post ${full ? 'full' : ''}`}>
-    <div className="x-head"><Byline author={post.author}/></div>
-    {post.text.length > 0 && <Text segments={post.text} className="x-text"/>}
-    {embed?.truncated && <a className="x-more" href={href} target="_blank" rel="noopener noreferrer">Show more on X</a>}
+  return <div className={`xe-post ${full ? 'full' : ''}`}>
+    <div className="xe-head"><Byline author={post.author}/></div>
+    {post.text.length > 0 && <Text segments={post.text} className="xe-text"/>}
+    {embed?.truncated && <a className="xe-more" href={href} target="_blank" rel="noopener noreferrer">Show more on X</a>}
     {embed && <MediaGrid media={embed.media || []} href={href} full={full}/>}
     {embed?.card && <LinkCard card={embed.card}/>}
     {embed?.quoted && <Quoted post={embed.quoted}/>}
-    {e.embed?.deleted && <p className="x-note">This post has since been deleted on X. The text above is what the desk saved.</p>}
-    <div className="x-foot"><span>X</span><span aria-hidden="true">·</span><time dateTime={embed?.createdAt || e.occurredAt}>{stamp(embed?.createdAt || e.occurredAt, tz)}</time></div>
+    {e.embed?.deleted && <p className="xe-note">This post has since been deleted on X. The text above is what the desk saved.</p>}
+    <div className="xe-foot"><span>X</span><span aria-hidden="true">·</span><time dateTime={embed?.createdAt || e.occurredAt}>{stamp(embed?.createdAt || e.occurredAt, tz)}</time></div>
   </div>;
 }

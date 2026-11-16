@@ -4808,6 +4808,122 @@ blockquote {
   align-items: center;
   gap: 7px;
 }
+.x-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 12px;
+  margin-bottom: 30px;
+}
+.x-post {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.x-post-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.x-avatar {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--muted);
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted-foreground);
+}
+.x-author {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.35;
+}
+.x-author strong {
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.x-author span {
+  font-size: 10px;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.x-post-head time {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.x-post-text {
+  display: block;
+  width: 100%;
+  padding: 0;
+  text-align: left;
+}
+.x-post-text>span {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  overflow: hidden;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.x-post-text:hover>span {
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 3px;
+}
+.x-post-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 11px;
+  border-top: 1px solid var(--border);
+}
+.x-post-foot .source-link {
+  font-size: 10px;
+  white-space: nowrap;
+}
+.x-empty {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  margin: -4px 0 30px;
+}
+@media (max-width:700px) {
+  .x-grid {
+    grid-template-columns: 1fr;
+  }
+  .x-post:nth-child(n+4) {
+    display: none;
+  }
+  .x-post {
+    padding: 16px;
+  }
+  .x-post-foot .source-link {
+    min-height: 36px;
+    font-size: 11px;
+  }
+}
 .seb-brand {
   gap: 11px;
   font-size: 21px;
@@ -5167,7 +5283,7 @@ blockquote {
   object-fit: contain;
   padding: 17%;
 }
-.x-post {
+.xe-post {
   --x-blue: #1d9bf0;
   display: flex;
   flex-direction: column;
@@ -5180,12 +5296,12 @@ blockquote {
   border-radius: 8px;
   background: var(--background);
 }
-.x-head {
+.xe-head {
   display: flex;
   align-items: center;
   min-width: 0;
 }
-.x-byline {
+.xe-byline {
   display: inline-flex;
   align-items: center;
   gap: 9px;
@@ -5194,30 +5310,30 @@ blockquote {
   color: inherit;
   text-decoration: none;
 }
-.x-avatar {
+.xe-avatar {
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
   background: var(--muted);
   border: 1px solid var(--border);
 }
-.x-avatar.square {
+.xe-avatar.square {
   border-radius: 22%;
 }
-.x-avatar.initials {
+.xe-avatar.initials {
   display: inline-grid;
   place-items: center;
   font-weight: 700;
   color: var(--muted-foreground);
   line-height: 1;
 }
-.x-names {
+.xe-names {
   display: flex;
   flex-direction: column;
   min-width: 0;
   line-height: 1.3;
 }
-.x-names strong {
+.xe-names strong {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -5228,21 +5344,21 @@ blockquote {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.x-names span {
+.xe-names span {
   font-size: 11px;
   color: var(--muted-foreground);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.x-byline:hover strong {
+.xe-byline:hover strong {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.x-badge {
+.xe-badge {
   flex-shrink: 0;
 }
-.x-text {
+.xe-text {
   margin: 0;
   font-size: 13px;
   line-height: 1.6;
@@ -5254,26 +5370,26 @@ blockquote {
   line-clamp: 7;
   overflow: hidden;
 }
-.x-post.full .x-text {
+.xe-post.full .xe-text {
   display: block;
   -webkit-line-clamp: unset;
   line-clamp: unset;
   overflow: visible;
 }
-.x-text a,.x-more {
+.xe-text a,.xe-more {
   color: var(--x-blue);
   text-decoration: none;
 }
-.x-text a:hover,.x-more:hover {
+.xe-text a:hover,.xe-more:hover {
   text-decoration: underline;
 }
-.x-more {
+.xe-more {
   font-size: 12px;
   font-weight: 600;
   margin-top: -5px;
   align-self: flex-start;
 }
-.x-media {
+.xe-media {
   display: grid;
   grid-auto-rows: minmax(0,1fr);
   gap: 2px;
@@ -5284,39 +5400,39 @@ blockquote {
   border: 1px solid var(--border);
   background: var(--muted);
 }
-.x-media.full {
+.xe-media.full {
   max-height: min(70vh,560px);
 }
-.x-media.count-2,.x-media.count-3,.x-media.count-4 {
+.xe-media.count-2,.xe-media.count-3,.xe-media.count-4 {
   grid-template-columns: 1fr 1fr;
 }
-.x-media.count-3,.x-media.count-4 {
+.xe-media.count-3,.xe-media.count-4 {
   grid-template-rows: 1fr 1fr;
 }
-.x-media.count-3>:first-child {
+.xe-media.count-3>:first-child {
   grid-row: span 2;
 }
-.x-media>* {
+.xe-media>* {
   position: relative;
   display: block;
   min-width: 0;
   min-height: 0;
   overflow: hidden;
 }
-.x-media img {
+.xe-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-.x-video {
+.xe-video {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: contain;
   background: #000;
 }
-.x-media .x-video-poster {
+.xe-media .xe-video-poster {
   position: relative;
   display: block;
   width: 100%;
@@ -5328,17 +5444,17 @@ blockquote {
   cursor: pointer;
   text-decoration: none;
 }
-.x-video-poster:disabled {
+.xe-video-poster:disabled {
   cursor: progress;
 }
-.x-video-poster img {
+.xe-video-poster img {
   opacity: .9;
   transition: opacity .2s var(--ease-out);
 }
-.x-video-poster:hover img {
+.xe-video-poster:hover img {
   opacity: 1;
 }
-.x-play {
+.xe-play {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -5353,20 +5469,20 @@ blockquote {
   box-shadow: 0 2px 14px #0007;
   transition: transform .2s var(--ease-out);
 }
-.x-play svg {
+.xe-play svg {
   margin-left: 2px;
 }
-.x-play .x-spin {
+.xe-play .xe-spin {
   margin: 0;
 }
-.x-video-poster:hover .x-play {
+.xe-video-poster:hover .xe-play {
   transform: scale(1.07);
 }
-.x-video-poster:focus-visible {
+.xe-video-poster:focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: -2px;
 }
-.x-duration,.x-video-note {
+.xe-duration,.xe-video-note {
   position: absolute;
   bottom: 8px;
   padding: 2px 7px;
@@ -5377,24 +5493,24 @@ blockquote {
   font-weight: 600;
   line-height: 1.5;
 }
-.x-duration {
+.xe-duration {
   left: 8px;
 }
-.x-video-note {
+.xe-video-note {
   right: 8px;
   display: inline-flex;
   align-items: center;
   gap: 3px;
 }
-.x-spin {
-  animation: x-spin 1s linear infinite;
+.xe-spin {
+  animation: xe-spin 1s linear infinite;
 }
-@keyframes x-spin {
+@keyframes xe-spin {
   to {
     transform: rotate(360deg);
   }
 }
-.x-card {
+.xe-card {
   display: flex;
   min-width: 0;
   border: 1px solid var(--border);
@@ -5404,7 +5520,7 @@ blockquote {
   color: inherit;
   text-decoration: none;
 }
-.x-card img {
+.xe-card img {
   width: 92px;
   height: 92px;
   flex-shrink: 0;
@@ -5412,7 +5528,7 @@ blockquote {
   background: var(--muted);
   border-right: 1px solid var(--border);
 }
-.x-card>span {
+.xe-card>span {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -5420,11 +5536,11 @@ blockquote {
   min-width: 0;
   padding: 9px 12px;
 }
-.x-card small {
+.xe-card small {
   font-size: 10.5px;
   color: var(--muted-foreground);
 }
-.x-card strong {
+.xe-card strong {
   font-size: 12.5px;
   line-height: 1.4;
   overflow: hidden;
@@ -5434,7 +5550,7 @@ blockquote {
   -webkit-line-clamp: 2;
   line-clamp: 2;
 }
-.x-card em {
+.xe-card em {
   font-style: normal;
   font-size: 11.5px;
   line-height: 1.45;
@@ -5445,10 +5561,10 @@ blockquote {
   -webkit-line-clamp: 2;
   line-clamp: 2;
 }
-.x-card.large {
+.xe-card.large {
   flex-direction: column;
 }
-.x-card.large img {
+.xe-card.large img {
   width: 100%;
   height: auto;
   aspect-ratio: 1.91;
@@ -5456,11 +5572,11 @@ blockquote {
   border-right: 0;
   border-bottom: 1px solid var(--border);
 }
-.x-card:hover strong {
+.xe-card:hover strong {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.x-quote {
+.xe-quote {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -5473,35 +5589,35 @@ blockquote {
   text-decoration: none;
   transition: border-color .2s var(--ease-out);
 }
-.x-quote:hover {
+.xe-quote:hover {
   border-color: var(--x-blue);
   @supports (color: color-mix(in lab, red, red)) {
     border-color: color-mix(in oklab,var(--x-blue) 45%,var(--border));
   }
 }
-.x-quote-head {
+.xe-quote-head {
   display: flex;
   align-items: center;
   gap: 6px;
   min-width: 0;
   font-size: 11.5px;
 }
-.x-quote-head strong {
+.xe-quote-head strong {
   font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.x-quote-head>span:last-child {
+.xe-quote-head>span:last-child {
   color: var(--muted-foreground);
   white-space: nowrap;
 }
-.x-quote-body {
+.xe-quote-body {
   display: flex;
   gap: 10px;
   align-items: flex-start;
 }
-.x-quote-text {
+.xe-quote-text {
   flex: 1;
   min-width: 0;
   font-size: 12px;
@@ -5514,7 +5630,7 @@ blockquote {
   -webkit-line-clamp: 3;
   line-clamp: 3;
 }
-.x-quote-body img {
+.xe-quote-body img {
   width: 72px;
   height: 72px;
   flex-shrink: 0;
@@ -5522,33 +5638,33 @@ blockquote {
   object-fit: cover;
   background: var(--muted);
 }
-.x-foot {
+.xe-foot {
   display: flex;
   align-items: center;
   gap: 6px;
   font-size: 10.5px;
   color: var(--muted-foreground);
 }
-.x-foot>span:first-child {
+.xe-foot>span:first-child {
   font-weight: 800;
   color: var(--foreground);
 }
-.x-note {
+.xe-note {
   margin: 0;
   font-size: 11px;
   color: var(--muted-foreground);
 }
-.news-source.x-open {
+.news-source.xe-open {
   color: var(--muted-foreground);
   text-decoration: none;
   font-weight: 600;
   font-size: 11px;
   margin-left: auto;
 }
-.news-source.x-open:hover {
+.news-source.xe-open:hover {
   color: var(--foreground);
 }
-.detail-scroll .x-post {
+.detail-scroll .xe-post {
   margin: 6px 0 18px;
 }
 .news-card .talk-byline {
@@ -5677,13 +5793,13 @@ blockquote {
   margin-top: 12px;
 }
 @media (max-width:700px) {
-  .x-post {
+  .xe-post {
     padding: 11px 12px 10px;
   }
-  .x-media {
+  .xe-media {
     max-height: 300px;
   }
-  .x-card img {
+  .xe-card img {
     width: 80px;
     height: 80px;
   }
@@ -5692,12 +5808,24 @@ blockquote {
   }
 }
 @media (prefers-reduced-motion:reduce) {
-  .x-spin {
+  .xe-spin {
     animation-duration: 2.5s;
   }
-  .x-play,.x-video-poster img,.talk-byline,.x-quote {
+  .xe-play,.xe-video-poster img,.talk-byline,.xe-quote {
     transition: none;
   }
+}
+.x-avatar {
+  overflow: hidden;
+}
+.x-avatar.square {
+  border-radius: 22%;
+}
+.x-avatar img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 @property --tw-translate-x {
   syntax: "*";

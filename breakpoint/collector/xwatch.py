@@ -193,6 +193,36 @@ TRIAGE_SCHEMA = {'type': 'object', 'required': ['items'], 'properties': {'items'
         'impactReason': {'type': 'string'}, 'novelty': {'type': 'string', 'enum': list(NOVELTY)}}}}}}
 
 
+def list_from_text(text):
+    """A list that arrived as text instead of an array. Returns (list, None) or (None, a content-free note).
+
+    Accepts JSON with raw control characters (newlines copied from post text), a JSON array inside other text,
+    objects without the surrounding brackets, an object holding the list, and a double-encoded string."""
+    raw = text.strip()
+    candidates = [raw]
+    start, end = raw.find('['), raw.rfind(']')
+    if 0 <= start < end:
+        candidates.append(raw[start:end + 1])
+    if raw.startswith('{'):
+        candidates.append('[' + raw + ']')
+    error = None
+    for candidate in candidates:
+        try:
+            value = json.loads(candidate, strict=False)
+            if isinstance(value, str):
+                value = json.loads(value, strict=False)
+        except ValueError as e:
+            error = error or e
+            continue
+        if isinstance(value, dict):
+            lists = [v for v in value.values() if isinstance(v, list)]
+            value = lists[0] if len(lists) == 1 else value
+        if isinstance(value, list):
+            return value, None
+    where = f' at char {error.pos}' if isinstance(error, json.JSONDecodeError) else ''
+    return None, f'; text of {len(raw)} chars, not a JSON list{where}'
+
+
 def tool_input(response, name='sort_posts', key='items'):
     """The input of the forced tool call in an Anthropic Messages response, with its list under `key`.
 
@@ -206,18 +236,18 @@ def tool_input(response, name='sort_posts', key='items'):
         raise XWatchError(f'Triage response has no {name} call (stop_reason {stop}; content blocks: {kinds})')
     data = dict(block['input'])
     value = data.get(key)
+    note = ''
     if isinstance(value, str):
-        try:
-            data[key] = json.loads(value)
-        except ValueError:
-            pass
+        parsed, note = list_from_text(value)
+        if parsed is not None:
+            data[key] = parsed
     elif value is None:
         lists = [v for v in data.values() if isinstance(v, list)]
         if len(lists) == 1:
             data[key] = lists[0]
     if not isinstance(data.get(key), list):
         shape = ', '.join(f'{k}: {type(v).__name__}' for k, v in list(data.items())[:6]) or 'empty'
-        raise XWatchError(f'Triage response has no {key} list (stop_reason {stop}; tool input {shape})')
+        raise XWatchError(f'Triage response has no {key} list (stop_reason {stop}; tool input {shape}{note})')
     return data
 
 
@@ -232,15 +262,25 @@ def triage(posts, accounts_by_handle, config, state, key, http):
         model, headers = config.get('xTriageModel', 'claude-haiku-5-5'), {'x-api-key': key, 'anthropic-version': '2023-06-01'}
         user = json.dumps({'posts': data}, ensure_ascii=False)
         args = (model, SYSTEM, user, 'sort_posts', 'Record one verdict per input post.', TRIAGE_SCHEMA, int(config.get('xTriageMaxTokens', 4000)))
-        forced = model not in live.AUTO_TOOL_MODELS
-        try:
-            response = http(ANTHROPIC_API, 'POST', live.anthropic_tool_body(*args, forced=forced), headers)
-        except Exception as e:
-            if not (forced and 'tool_choice' in str(e)):
-                raise
-            live.AUTO_TOOL_MODELS.add(model)
-            response = http(ANTHROPIC_API, 'POST', live.anthropic_tool_body(*args, forced=False), headers)
-        return validate_triage(tool_input(response), posts)
+
+        def ask():
+            forced = model not in live.AUTO_TOOL_MODELS
+            try:
+                return http(ANTHROPIC_API, 'POST', live.anthropic_tool_body(*args, forced=forced), headers)
+            except Exception as e:
+                if not (forced and 'tool_choice' in str(e)):
+                    raise
+                live.AUTO_TOOL_MODELS.add(model)
+                return http(ANTHROPIC_API, 'POST', live.anthropic_tool_body(*args, forced=False), headers)
+        # A malformed answer is usually a one-off: ask again in the same check rather than waiting for the next one.
+        retries = max(0, int(config.get('xTriageRetries', 1)))
+        for attempt in range(retries + 1):
+            try:
+                return validate_triage(tool_input(ask()), posts)
+            except XWatchError:
+                if attempt == retries:
+                    raise
+                state.reserve(float(config.get('xTriageReservePerCallUsd', 0.01)), 'x-triage')
     extra = config.get('xTriageExtraBody') or {}
     if not isinstance(extra, dict):
         raise XWatchError('xTriageExtraBody must be an object')
