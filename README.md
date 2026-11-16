@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Sidebar sections open in a new browser tab
 
 - **Date:** 16 November 2026
-- **Pull request:** PR_LINK, branch `feat/sidebar-new-tabs`.
+- **Pull request:** [#23](https://github.com/cryptoclassdev/sebmontydotlink/pull/23), branch `feat/sidebar-new-tabs`.
 - **Status:** Ready for review. Page only; goes live on merge.
 - **Why:** Seb asked for the sidebar sections (Overview, Watch live, Catch up, Schedule, London guide, Watchlist) to open in a new tab instead of replacing the page, so a stream playing on Watch live keeps running.
 
