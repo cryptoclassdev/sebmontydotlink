@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Breakpoint: a picture on every coverage card (stage livestream stills, X post pictures), opt-in
 
 - **Date:** 16 November 2026
-- **Pull request:** this PR, branch `claude/breakpoint-desk-visuals-847210`, based on #29 (`claude/breakpoint-card-visuals-ac5833`); merge #29 first.
+- **Pull request:** [#30](https://github.com/cryptoclassdev/sebmontydotlink/pull/30), branch `claude/breakpoint-desk-visuals-847210`, based on #29 (`claude/breakpoint-card-visuals-ac5833`); merge #29 first.
 - **Status:** Ready for review. Capture is off until switched on on the Mac Mini (steps in `breakpoint/README.md`, "Pictures on coverage cards"). Merging gives every card its cover straight away; stills start only once capture is on.
 - **Why:** Seb wants a visual attached to each item "From the desk", ideally a frame of the stage feed at the moment the note was made.
 
