@@ -5629,6 +5629,39 @@ blockquote {
   border: 1px solid var(--border);
   backdrop-filter: none;
 }
+.news-cover {
+  grid-template-rows: 1fr auto 1fr;
+}
+.news-cover .cover-art {
+  grid-row: 2;
+  padding-bottom: 0;
+}
+.cover-name {
+  grid-row: 3;
+  align-self: start;
+  margin-top: 10px;
+  padding: 0 12px;
+  font-size: clamp(12px,3.4cqi,15px);
+  font-weight: 600;
+  letter-spacing: -.2px;
+  color: var(--foreground);
+  @supports (color: color-mix(in lab, red, red)) {
+    color: color-mix(in oklab,var(--foreground) 80%,transparent);
+  }
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cover-art>:only-child.cover-face,.cover-art>:only-child.cover-tile {
+  width: clamp(64px,30cqi,104px);
+}
+.cover-art>:only-child.cover-face {
+  border-width: 4px;
+}
+.news-cover {
+  container-type: inline-size;
+}
 .seb-brand {
   gap: 11px;
   font-size: 21px;

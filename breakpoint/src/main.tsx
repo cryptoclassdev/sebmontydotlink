@@ -177,6 +177,7 @@ function NewsCover({e,ctx,people,author,label,onOpen}:{e:Item;ctx:Ctx;people:Ite
    {variant==='faces'&&faces.map(f=><span className="cover-face" key={f.name}><img src={avatarSrc(f.file)} alt="" width={96} height={96} loading="lazy" decoding="async"/></span>)}
    {variant==='type'&&<span className="cover-word">{place}</span>}
   </span>
+  {variant!=='type'&&(variant==='faces'?faces:logos).length===1&&<span className="cover-name" aria-hidden="true">{variant==='faces'?faces[0].name:logos[0].name}</span>}
   <span className="news-media-tag">{label}</span>
  </button>;
 }

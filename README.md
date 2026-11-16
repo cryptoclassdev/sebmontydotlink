@@ -58,15 +58,16 @@ Newest first. One entry per pull request.
 
 - **Date:** 16 November 2026
 - **Pull request:** this PR, branch `claude/breakpoint-desk-visuals-847210`, based on #29 (`claude/breakpoint-card-visuals-ac5833`); merge #29 first.
-- **Status:** Ready for review. Capture is off until switched on on the Mac Mini (steps in `breakpoint/README.md`, "Pictures on coverage cards"); merging changes nothing on the live feed by itself.
+- **Status:** Ready for review. Capture is off until switched on on the Mac Mini (steps in `breakpoint/README.md`, "Pictures on coverage cards"). Merging gives every card its cover straight away; stills start only once capture is on.
 - **Why:** Seb wants a visual attached to each item "From the desk", ideally a frame of the stage feed at the moment the note was made.
 
 #### What changed
 1. **Collector, stage stills** (`"frames"` in `collector/config.breakpoint-stages.json`, off). For each transcribed 30-second chunk a separate thread takes one frame of the same YouTube stream (480p video format, ffmpeg, live edge), shrinks it to a 640 px WebP of 6 to 15 KB and keeps it for 6 hours. A note gets the still of the chunk its excerpt was heard in; a recap gets one from a third of the way into the talk. Failures skip the picture, never the note, and never hold up audio. Signed stream URLs are never logged.
 2. **Collector, X pictures** (`"xMedia"` in `collector/config.breakpoint-x.json`, off). The post's own photo or video still from `pbs.twimg.com` (never a link-preview card), read from the twitterapi.io result the monitor already gets: no extra API calls.
 3. **Storage and API.** Pictures go to the existing Upstash database as their own ingest payload (`media`, WebP or JPEG checked from the bytes, at most 150 KB) and are served at `/breakpoint/api/media/<id>` with a one-year immutable cache. Entries carry `image: {id, kind, at, credit}`; an image whose bytes were never stored is dropped. An `attach` ingest operation adds a picture to an already published entry only when it has none and an editor has not removed one. Expected size for both days: 3 to 6 MB.
-4. **Page.** Cards show the picture with a "Livestream · 13:02" or "@handle on X" tag: on top on phones and in narrow lists, a left column on wide cards (with the speakers column kept on the right on the widest). The detail view shows it larger with its time; "Straight from X" posts show theirs. The desk's entry editor shows it with "Remove picture". A card with no picture, or one that fails to load, looks as before.
-5. **Backfill** (`collector/backfill_frames.py`, dry run unless `--send`). Stills for notes published before capture was on, from the stream's DVR (YouTube keeps the last hour of a live stream) or, after the day, from the recording.
+4. **Page.** Cards show the picture with a "Livestream · 13:02" or "@handle on X" tag: on top on phones and in narrow lists, a left column on wide cards (with the speakers column kept on the right on the widest). The detail view shows it larger with its time; "Straight from X" posts show theirs. The desk's entry editor shows it with "Remove picture".
+5. **A visual on every card, now.** A card with no stored picture, or one that fails to load, gets a cover from verified assets already in the repo (PR #29's logos and avatars): the tagged projects' and named speakers' companies' logos, else the named speakers' photos (the posting account's picture for X), else the stage name. It needs no stored image, so every entry already published shows one as soon as this deploys, with capture still off. No generated or stock imagery.
+6. **Backfill** (`collector/backfill_frames.py`, dry run unless `--send`). Stills for notes published before capture was on, from the stream's DVR (YouTube keeps the last hour of a live stream) or, after the day, from the recording.
 
 #### Files touched
 - `breakpoint/collector/live.py`, `collect.py`, `xwatch.py`, `backfill_frames.py` (new), `config.breakpoint-stages.json`, `config.breakpoint-x.json`, `scripts/mac/setup.sh` (adds Pillow)
@@ -75,7 +76,7 @@ Newest first. One entry per pull request.
 - `breakpoint/tests/api.test.mjs`, `breakpoint/tests/test_frames.py` (new), `breakpoint/README.md`, `README.md`
 
 #### How to check it on the Vercel preview
-Preview and production share one database and capture is off, so existing cards look exactly as before: that is the check that nothing regresses. `/breakpoint/api/media/f00000000000000000000000000000000` answers 404. The pictures themselves were checked on the local rehearsal copy (screenshots in the PR).
+Preview and production share one database and capture is off, so every card shows its cover (logos, faces or stage name) and no stills yet: check Overview, Catch up and a session popup in light and dark and at phone width. `/breakpoint/api/media/f00000000000000000000000000000000` answers 404. The pictures themselves were checked on the local rehearsal copy (screenshots in the PR).
 
 #### Risks
 - **Rights.** The stills are frames of the Solana Foundation's YouTube broadcast, republished as thumbnails on a commercial-adjacent page. Short, credited stills used to illustrate news coverage are a common practice, but YouTube's terms do not grant a licence to copy frames, and this has not been cleared with the Foundation. Get their OK before turning `frames` on, or keep it off. X pictures belong to the posting account and are shown with a link to the post.
