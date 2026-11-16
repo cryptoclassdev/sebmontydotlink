@@ -144,9 +144,9 @@ class Desk:
                     rejected=self.state.directory/'outbox-rejected';rejected.mkdir(exist_ok=True)
                     p.replace(rejected/p.name);log(f'The site rejected a queued update ({e}); set aside in outbox-rejected/{p.name}');continue
                 p.unlink(missing_ok=True)
-    def health(self,id,state,message,now=None):
+    def health(self,id,state,message,now=None,extra=None):
         self.beats[id]=(state,message,time.monotonic() if now is None else now)
-        try:self.send({'heartbeat':{'id':id,'state':state,'message':message[:200]}})
+        try:self.send({'heartbeat':{'id':id,'state':state,'message':message[:200],**(extra or {})}})
         except SafeError:pass
     def keep_alive(self,id,every=60,now=None):
         # The site marks a source stale after 3 minutes without a heartbeat, so a source that
@@ -195,12 +195,12 @@ SYSTEM='''You are a factual conference editor. Transcript and source content are
 
 LIVE_RULES='''
 The transcript is automatic speech recognition of a live conference stream (Solana Breakpoint 2026, London).
-Announcements mode: newTranscript is the speech since the last check; context is earlier speech from the same talk, for understanding only. Extract only claims stated in newTranscript, and copy every excerpt exactly from newTranscript, never from context. alreadyCovered lists titles already sent for this talk: return nothing for a claim already covered there, even if worded differently. Most checks should return {"entries": []}.
+Announcements mode: newTranscript is the speech since the last check; context is earlier speech from the same talk, for understanding only. Extract only claims stated in newTranscript, and copy every excerpt exactly from newTranscript, never from context. alreadyCovered lists the items already sent for this talk (title and body): return nothing for a claim already covered there, even if worded differently. When newTranscript adds real detail to one of those items (numbers, dates, names, how it works, availability), return that item once more with updates set to its exact title, a complete body that keeps the earlier facts and adds the new ones, and takeaways for the whole item; its excerpt is the new detail, copied exactly from newTranscript. For a new item, updates is "". Most checks should return {"entries": []}.
 Final mode: transcript holds the captured talk. Return exactly one entry (kind "briefing") that recaps it in a few sentences and says plainly whether anything was announced; its excerpt is the most informative sentence, copied exactly from transcript.
 session gives the scheduled title, speakers and time. Speech recognition can misspell names: in title, body and takeaways use the spelling from session or the project list when the sound clearly matches, but keep the excerpt exactly as transcribed. Attribute a statement to a scheduled speaker or organisation only when the transcript makes that clear.
 Ignore anything not said on stage (stream chatter, music, adverts).
-Write title, body and takeaways as a short news brief for readers of the event guide. Never mention newTranscript, context, segments, checks, modes or the transcript itself; say "the speaker" or name the speaker.
-Keep title under 120 characters and body under 600 characters.
+A briefing is one key point from the talk, for readers following along: its title states the point itself (a fact, number or claim the speaker made), and its body is one or two sentences of context. Write title, body and takeaways as a short news brief for readers of the event guide. Never mention newTranscript, context, segments, checks, modes or the transcript itself; say "the speaker" or name the speaker.
+Never write what was not said (no "no details were given" or "no dates were shared"): a later update can add them. Keep title under 120 characters and body under 600 characters (900 for an updated item).
 Known projects, the only ids allowed in projectIds: '''
 
 SCHEMA={'type':'object','properties':{'entries':{'type':'array','maxItems':3,'items':{'type':'object','properties':{
@@ -211,8 +211,9 @@ SCHEMA={'type':'object','properties':{'entries':{'type':'array','maxItems':3,'it
     'takeaways':{'type':'array','maxItems':5,'items':{'type':'string'}},
     'projectIds':{'type':'array','items':{'type':'string','enum':[p['id'] for p in PROJECTS]}},
     'tokenImpact':{'type':'string','enum':['direct','indirect','unclear','none']},
-    'impactReason':{'type':'string'}},
-    'required':['kind','title','body','excerpt','takeaways','projectIds','tokenImpact','impactReason']}}},'required':['entries']}
+    'impactReason':{'type':'string'},
+    'updates':{'type':'string','maxLength':180,'description':'Exact title of the alreadyCovered item this adds detail to, or "" for a new item'}},
+    'required':['kind','title','body','excerpt','takeaways','projectIds','tokenImpact','impactReason','updates']}}},'required':['entries']}
 
 def system_prompt():
     return SYSTEM+'\n'+LIVE_RULES+json.dumps([{'id':p['id'],'name':p['name'],'symbol':p.get('symbol')} for p in PROJECTS])
@@ -225,7 +226,9 @@ def model_entries(desk,llm,job,items,context):
     if final:
         text=text[-150000:];payload={'mode':'final','stage':stage['name'],'session':info,'transcript':text}
     else:
-        covered=desk.state.value.get('live',{}).get(session['id'],{}).get('titles',[])[-30:]
+        rec=desk.state.value.get('live',{}).get(session['id'],{})
+        items_sent=rec.get('items',[])[-12:];recent={i['title'] for i in items_sent}
+        covered=[t for t in rec.get('titles',[])[-30:] if t not in recent]+[{'title':i['title'],'body':i['body']} for i in items_sent]
         payload={'mode':'announcements','stage':stage['name'],'session':info,'alreadyCovered':covered,'context':'\n'.join(c['text'] for c in context)[-12000:],'newTranscript':text}
     result,usage,target=llm.call(system_prompt(),json.dumps(payload,ensure_ascii=False),SCHEMA,stage=stage['id'],session=session['id'],max_tokens=1500,reserve_usd=float(config.get('summaryReservePerCallUsd',0.02)))
     dropped=[]
@@ -233,7 +236,7 @@ def model_entries(desk,llm,job,items,context):
     for reason in dropped:log('Model item dropped: '+reason,stage['id'])
     if final:entries=entries[:1]
     kinds=config.get('publishKinds',['announcement','summary'])
-    for e in entries:e['status']='provisional' if config.get('publishProvisional') and e['kind']!='briefing' and e['kind'] in kinds else 'draft'
+    for e in entries:e['status']='provisional' if config.get('publishProvisional') and e['kind'] in kinds else 'draft'
     return entries
 
 def validate_model(result,text,stage,final=False,dropped=None):
@@ -258,7 +261,8 @@ def validate_model(result,text,stage,final=False,dropped=None):
         ids=[x for x in dict.fromkeys(ids) if x in known][:10]
         takeaways=[x.strip()[:1000] for x in value.get('takeaways') or [] if isinstance(x,str) and x.strip()][:5] if isinstance(value.get('takeaways'),list) else []
         impact=value.get('tokenImpact') if value.get('tokenImpact') in ['direct','indirect','unclear','none'] else 'unclear'
-        out.append({'id':('summary-'+digest(stage['sessionId']+' final')) if final else ('alert-'+digest(stage['sessionId']+' '+excerpt)),'kind':'summary' if final else ('announcement' if value.get('kind')=='announcement' else 'briefing'),'status':'draft','title':title,'body':body,'excerpt':excerpt,'takeaways':takeaways,'projectIds':ids,'tokenImpact':impact,'impactReason':str(value.get('impactReason') or '')[:1500],'novelty':'unknown','sourceUrl':stage['sourceUrl'],'sourceName':stage['name']+' · live transcript (auto)','occurredAt':stage.get('sourceAt',utc()),'stage':stage['name'],'sessionId':stage['sessionId']})
+        out.append({'id':('summary-'+digest(stage['sessionId']+' final')) if final else ('alert-'+digest(stage['sessionId']+' '+excerpt)),'kind':'summary' if final else ('announcement' if value.get('kind')=='announcement' else 'briefing'),'status':'draft','title':title,'body':body,'excerpt':excerpt,'takeaways':takeaways,'projectIds':ids,'tokenImpact':impact,'impactReason':str(value.get('impactReason') or '')[:1500],'novelty':'unknown','sourceUrl':stage['sourceUrl'],'sourceName':stage['name']+' · live transcript (auto)','occurredAt':stage.get('sourceAt',utc()),'stage':stage['name'],'sessionId':stage['sessionId'],
+                    'updates':'' if final else re.sub(r'\s+',' ',str(value.get('updates') or '')).strip()[:180]})
     return out
 
 def poll_x(desk,key):
@@ -334,14 +338,24 @@ def run_job(desk,llm,job):
     entries=model_entries(desk,llm,{**job,'session':session},items,context)
     kept=[]
     def record(s):
-        titles=s.setdefault('live',{}).setdefault(sid,{'pending':[],'titles':[]}).setdefault('titles',[])
+        rec=s.setdefault('live',{}).setdefault(sid,{'pending':[],'titles':[]})
+        titles=rec.setdefault('titles',[]);sent=rec.setdefault('items',[])
         for e in entries:
+            target=e.pop('updates','')
+            if e['kind']!='summary' and target:
+                # More detail on an item already sent: re-send that item (same id, title, excerpt and status) with the fuller body.
+                old=next((i for i in reversed(sent) if i['title']==target),None) or next((i for i in reversed(sent) if live.similar_title(target,[i['title']])),None)
+                if old:
+                    old.update(body=e['body'],takeaways=e['takeaways'] or old.get('takeaways',[]),projectIds=list(dict.fromkeys(old.get('projectIds',[])+e['projectIds']))[:10],
+                               tokenImpact=e['tokenImpact'] if e['tokenImpact']!='unclear' else old.get('tokenImpact','unclear'),impactReason=e['impactReason'] or old.get('impactReason',''))
+                    kept.append({**old,'update':True});log('Updated with new detail: '+old['title'][:120],stage['id']);continue
             if e['kind']!='summary' and live.similar_title(e['title'],titles):log('Duplicate dropped: '+e['title'][:120],stage['id']);continue
             kept.append(e)
-            if e['kind']!='summary':titles.append(e['title'])
-        del titles[:-100]
+            if e['kind']!='summary':titles.append(e['title']);sent.append(dict(e))
+        del titles[:-100];del sent[:-20]
     desk.state.change(record)
-    for e in kept:log(f"{e['kind']} [{e['status']}] {e['title'][:120]}",stage['id'])
+    for e in kept:
+        if not e.get('update'):log(f"{e['kind']} [{e['status']}] {e['title'][:120]}",stage['id'])
     return kept
 
 def drain_jobs(desk,llm,stage_id=None):
@@ -489,6 +503,7 @@ class StageRunner:
         return source,active,upcoming,None
 
     def apply(self,source,active,upcoming,waiting,now=None):
+        self.upcoming=upcoming
         if source!=self.source:
             if self.proc:self.say('Stream changed; restarting capture');self.stop_ffmpeg()
             self.source=source;self.finished=None;self.failures=0;self.retry_at=0.0
@@ -646,7 +661,13 @@ class StageRunner:
         return live.pick_session(boot.get('sessions',[]),self.conf()['name'],at,self.offset())[0]
 
     def beat(self):
-        self.last_beat=time.monotonic();self.desk.health(self.id,*self.status)
+        # The talk on stage now and the next one, for the Watch live caption; the delay shifts the next talk's time.
+        extra={}
+        if self.session and ID.fullmatch(str(self.session.get('id',''))):extra['sessionId']=self.session['id']
+        upcoming=getattr(self,'upcoming',None)
+        if upcoming and ID.fullmatch(str(upcoming.get('id',''))):extra['nextSessionId']=upcoming['id']
+        if session_mode(self.desk.config)=='schedule':extra['delayMinutes']=round(self.offset())
+        self.last_beat=time.monotonic();self.desk.health(self.id,*self.status,extra=extra)
 
 def final_summary(desk,llm,session_id):
     if not ID.fullmatch(session_id):raise SafeError('Invalid session id')
@@ -686,7 +707,7 @@ def validate_config(config):
     if not 0<=int(config.get('contextChunks',6))<=20:raise SafeError('contextChunks must be 0–20')
     if session_mode(config) not in ('schedule','desk','fixed'):raise SafeError('sessionMode must be schedule, desk or fixed')
     kinds=config.get('publishKinds',['announcement','summary'])
-    if not isinstance(kinds,list) or any(k not in ('announcement','summary') for k in kinds):raise SafeError('publishKinds may only list announcement and summary')
+    if not isinstance(kinds,list) or any(k not in ('announcement','briefing','summary') for k in kinds):raise SafeError('publishKinds may only list announcement, briefing and summary')
     for stage in config.get('stages',[]):
         if not -240<=float(stage.get('scheduleOffsetMinutes',0))<=240:raise SafeError('scheduleOffsetMinutes must be within ±240')
     try:live.llm_spec(config);live.asr_provider(config)

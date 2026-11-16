@@ -21,12 +21,18 @@ async function entryPage(bucket,publicOnly=false,cursor,limit=250){
  return {entries:publicOnly?entries.filter(feedVisible):entries,nextCursor:page.truncated?page.cursor:null};
 }
 async function put(bucket,key,data,etag){return bucket.put(key,JSON.stringify(data),{httpMetadata:{contentType:'application/json'},onlyIf:etag?{etagMatches:etag}:{etagDoesNotMatch:'*'}});}
-async function saveEntry(bucket,entry,expectedVersion,role){
+// The collector may send an item again with more detail (update: true). That replaces the text only while the item is
+// still the collector's own: never after an editor has saved it, and never once withdrawn. Its status stays as it was.
+const collectorOwned=v=>v.lastEditor==='ingest'||(v.lastEditor==null&&v.version===1);
+async function saveEntry(bucket,entry,expectedVersion,role,update=false){
  const key=`entries/${entry.id}.json`,old=await get(bucket,key);
- if(role==='ingest'&&old){await indexEntry(bucket,old.value);return {id:entry.id,duplicate:true};}
+ if(role==='ingest'&&old){
+  if(!update||!collectorOwned(old.value)||old.value.status==='withdrawn'){await indexEntry(bucket,old.value);return {id:entry.id,duplicate:true};}
+  entry={...entry,status:old.value.status,occurredAt:old.value.occurredAt};expectedVersion=old.value.version;
+ }
  if(old&&expectedVersion!==old.value.version)throw new HttpError(409,'This entry changed. Reload before editing.');
  if(!old&&expectedVersion!=null&&expectedVersion!==0)throw new HttpError(409,'Entry no longer exists');
- const now=new Date().toISOString();const saved={...entry,createdAt:old?.value.createdAt??now,receivedAt:old?.value.receivedAt??now,updatedAt:now,version:(old?.value.version??0)+1};
+ const now=new Date().toISOString();const saved={...entry,createdAt:old?.value.createdAt??now,receivedAt:old?.value.receivedAt??now,updatedAt:now,version:(old?.value.version??0)+1,lastEditor:role};
  const result=await put(bucket,key,saved,old?.etag);if(!result)throw new HttpError(409,'Concurrent update. Reload and retry.');
  await bucket.put(`revisions/${entry.id}/${String(saved.version).padStart(6,'0')}.json`,JSON.stringify(saved));
  await indexEntry(bucket,saved);
@@ -81,9 +87,9 @@ export function createApi(seed,{basePath='',loadEvents,loadPrices}={}){
    if(!bucket)throw new HttpError(503,'Durable storage is not connected');
    if(path==='/api/ingest'&&request.method==='POST'){
     const body=await jsonBody(request);const results=[];
-    if(body.entries){if(!Array.isArray(body.entries)||body.entries.length>30)throw new HttpError(400,'At most 30 entries per batch');for(const raw of body.entries){const entry=validateEntry({...raw,status:raw.status==='provisional'&&env.AUTO_PUBLISH_PROVISIONAL==='true'?'provisional':'draft'},projectIds);results.push(await saveEntry(bucket,entry,null,'ingest'));}}
+    if(body.entries){if(!Array.isArray(body.entries)||body.entries.length>30)throw new HttpError(400,'At most 30 entries per batch');for(const raw of body.entries){const entry=validateEntry({...raw,status:raw.status==='provisional'&&env.AUTO_PUBLISH_PROVISIONAL==='true'?'provisional':'draft'},projectIds);results.push(await saveEntry(bucket,entry,null,'ingest',raw.update===true));}}
     if(body.transcript){const t=body.transcript;if(!idPattern.test(t.id)||!idPattern.test(t.sessionId)||!iso(t.at)||!safeUrl(t.sourceUrl)||typeof t.stage!=='string'||t.stage.length>80||typeof t.text!=='string'||t.text.length>50000)throw new HttpError(400,'Invalid transcript');await put(bucket,`transcripts/${t.sessionId}/${t.id}.json`,{id:t.id,sessionId:t.sessionId,stage:t.stage,text:t.text,at:t.at,receivedAt:new Date().toISOString(),sourceUrl:t.sourceUrl});}
-    if(body.heartbeat){const h=body.heartbeat;if(!HEALTH_IDS.includes(h.id)||!['live','error','paused','ready'].includes(h.state))throw new HttpError(400,'Invalid heartbeat');await bucket.put(`health/${h.id}.json`,JSON.stringify({id:h.id,state:h.state,at:new Date().toISOString(),message:String(h.message??'').slice(0,200)}));}
+    if(body.heartbeat){const h=body.heartbeat;if(!HEALTH_IDS.includes(h.id)||!['live','error','paused','ready'].includes(h.state))throw new HttpError(400,'Invalid heartbeat');const extra={};for(const k of ['sessionId','nextSessionId'])if(h[k]!=null){if(!idPattern.test(String(h[k])))throw new HttpError(400,'Invalid heartbeat');extra[k]=String(h[k]);}if(h.delayMinutes!=null){const d=Number(h.delayMinutes);if(!Number.isFinite(d)||Math.abs(d)>240)throw new HttpError(400,'Invalid heartbeat');extra.delayMinutes=Math.round(d);}await bucket.put(`health/${h.id}.json`,JSON.stringify({id:h.id,state:h.state,at:new Date().toISOString(),message:String(h.message??'').slice(0,200),...extra}));}
     return json({ok:true,results});
    }
    if(!isEditor)throw new HttpError(403,'Editor access required');

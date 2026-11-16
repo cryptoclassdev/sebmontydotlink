@@ -188,6 +188,9 @@
   }
 }
 @layer utilities {
+  .visible {
+    visibility: visible;
+  }
   .sr-only {
     position: absolute;
     width: 1px;
@@ -243,6 +246,9 @@
   }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
+  }
+  .block {
+    display: block;
   }
   .flex {
     display: flex;
@@ -542,6 +548,9 @@
   }
   .text-secondary-foreground {
     color: var(--foreground);
+  }
+  .lowercase {
+    text-transform: lowercase;
   }
   .underline-offset-4 {
     text-underline-offset: 4px;

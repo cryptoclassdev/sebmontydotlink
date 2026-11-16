@@ -54,6 +54,38 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Key points go live; Watch live shows the talk now and next; announcements gain detail as the talk goes on
+
+- **Date:** 16 November 2026
+- **Pull request:** PR_LINK, branch `feat/watch-now-and-next` (built on PR #18, which it includes).
+- **Status:** Ready for review. The page and API change go live on merge; the collector part on the Mac Mini when the stages job restarts (`bash scripts/mac/live.sh start stages`).
+- **Why:** On day 1 Seb saw "No session currently assigned" under the Main Stage player although the Mac knew the talk, and the first Main Stage announcement ("Solana moves from Mainnet Beta to Mainnet 1.0") was written from its first minute, ending "No technical details, dates or protocol changes were given", while the numbers (stake, transactions, Alpenglow finality) came a minute later.
+
+#### What changed
+0. **Key points go live:** at Seb's request (16 November, "I don't want drafts"), briefings can be listed in `publishKinds` and publish as Provisional like announcements; they show as "Live notes" cards. Both stage configs now list them (Main Stage and Royal Exchange: announcement, briefing, summary; LP Army: announcement, briefing). A briefing is written as one key point: its title is the point itself.
+1. **Now and next on Watch live:** the stage heartbeat carries `sessionId`, `nextSessionId` and `delayMinutes` (validated by the API; other heartbeats unchanged). The caption under the player shows "Now · <talk>" while audio is live and "Next · <time> · <talk>", the time shifted by the stage's delay, with "(running N min late)". A session assigned on the desk still wins.
+2. **Announcements gain detail:** the model sees the items already sent for this talk with their body. When the speaker adds real detail, it returns that item with `updates` set to its title and a complete body; the collector re-sends the same item (same id, title, quote, status and time) with the fuller body and takeaways, flagged `update: true`.
+3. **The site accepts such an update only from the collector, only for its own item:** never after an editor has saved it (entries now record `lastEditor`) and never once withdrawn. A plain retry is still a duplicate.
+4. **Prompt:** never write what was not said ("no details were given"); an updated body may run to 900 characters.
+
+#### Files touched
+- `breakpoint/collector/collect.py`, `breakpoint/collector/config.breakpoint-stages.json`, `breakpoint/collector/config.breakpoint-lparmy.json`, `breakpoint/server/api.mjs`, `breakpoint/src/main.tsx`, `public/breakpoint/` (rebuilt)
+- `breakpoint/tests/test_live.py`, `breakpoint/tests/api.test.mjs`
+- `breakpoint/README.md`, `README.md`
+
+#### How to check it
+On the Vercel preview, Watch live, Main Stage: once the Mac's stages job runs this version, the caption reads "Now · <talk>" and "Next · <time> · <talk>" (preview and production share storage, so the live heartbeat shows there too). On the live site after merge, an announcement card's text grows when the speaker adds detail, keeping its time and Provisional badge; `bash scripts/mac/live.sh logs stages` shows "Updated with new detail: <title>".
+
+#### Checks run
+- 73 Python tests, 53 Node tests, `tsc --noEmit`, page build. New tests: key points publish as Provisional when briefings are listed; heartbeat with now, next and delay stored and returned, bad ids and delays refused, other sources unchanged; a later chunk updates the same item (same id, title, quote, status) and the stored copy; the API accepts the collector's update to its own item, keeps the status, treats a plain retry as a duplicate, and ignores updates after an editor save or a withdrawal.
+
+#### Risks
+- An update rewrites a card's text while people read it; the title, quote and time stay the same.
+- Old collectors keep working: they send no update flag and no extra heartbeat fields.
+
+#### Roll back
+Revert this PR. Updated cards keep their latest text; the caption returns to the desk assignment only.
+
 ### Stage transcription follows the room: speaker introductions shift the schedule
 
 - **Date:** 16 November 2026

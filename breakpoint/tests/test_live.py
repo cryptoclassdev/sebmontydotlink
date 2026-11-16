@@ -276,10 +276,35 @@ class Pipeline(unittest.TestCase):
         llm = self.llm([anthropic_reply([ITEM]), anthropic_reply([repeat, note])])
         c.drain_jobs(self.desk, llm)
         payload = json.loads(self.calls[1][1]['messages'][0]['content'])
-        self.assertEqual(payload['alreadyCovered'], ['Kamino ships Lend V3'])
+        self.assertEqual(payload['alreadyCovered'], [{'title': 'Kamino ships Lend V3', 'body': 'Kamino said Lend V3 is live on mainnet today.'}])
         lines = [json.loads(x) for x in (pathlib.Path(self.tmp.name) / 'dry-run.jsonl').read_text().splitlines()]
         entries = [e for line in lines for e in line['payload'].get('entries', [])]
         self.assertEqual(sorted((e['title'], e['status']) for e in entries), [('Kamino ships Lend V3', 'provisional'), ('Panel discusses fees', 'draft')])
+
+    def test_key_points_publish_when_briefings_are_listed(self):
+        # 16 Nov: Seb wants the talk's key points live, not held as drafts.
+        self.config['publishKinds'] = ['announcement', 'briefing', 'summary']
+        self.chunks(['Kamino Lend V3 is live on mainnet today', 'we discussed fees'])
+        note = dict(ITEM, kind='briefing', title='Panel discusses fees', excerpt='we discussed fees')
+        c.drain_jobs(self.desk, self.llm([anthropic_reply([ITEM, note])]))
+        lines = [json.loads(x) for x in (pathlib.Path(self.tmp.name) / 'dry-run.jsonl').read_text().splitlines()]
+        entries = [e for line in lines for e in line['payload'].get('entries', [])]
+        self.assertEqual(sorted((e['kind'], e['status']) for e in entries), [('announcement', 'provisional'), ('briefing', 'provisional')])
+
+    def test_later_detail_updates_the_same_item(self):
+        # 16 Nov: the Mainnet 1.0 card was written from the first minute; the numbers came after the video.
+        self.chunks(['Kamino Lend V3 is live on mainnet today', 'yes', 'Lend V3 has 2 billion dollars of deposits already', 'and isolated markets'])
+        more = dict(ITEM, title='Kamino Lend V3 passes $2B', body='Kamino said Lend V3 is live on mainnet today and already holds $2B in deposits.',
+                    excerpt='Lend V3 has 2 billion dollars of deposits already', takeaways=['Live today', '$2B deposits'], updates='Kamino ships Lend V3')
+        c.drain_jobs(self.desk, self.llm([anthropic_reply([ITEM]), anthropic_reply([more])]))
+        lines = [json.loads(x) for x in (pathlib.Path(self.tmp.name) / 'dry-run.jsonl').read_text().splitlines()]
+        entries = [e for line in lines for e in line['payload'].get('entries', [])]
+        self.assertEqual(len({e['id'] for e in entries}), 1)
+        first, second = entries
+        self.assertEqual((second['title'], second['excerpt'], second['status'], second.get('update')), (first['title'], first['excerpt'], first['status'], True))
+        self.assertIn('$2B', second['body'])
+        self.assertNotIn('updates', first)
+        self.assertIn('$2B', self.desk.state.value['live'][entries[0]['sessionId']]['items'][0]['body'])
 
     def test_forced_tool_for_haiku_and_automatic_switch_when_rejected(self):
         self.config['llm'] = dict(self.config['llm'], model='claude-haiku-5-5', fallback=None)
@@ -468,7 +493,8 @@ class DryRun(unittest.TestCase):
             c.require_keys(base, {'ZAI_API_KEY': 'z'})
         c.require_keys(base, {'ANTHROPIC_API_KEY': 'a'})  # Sonnet with a Haiku fallback: one key
         with self.assertRaises(c.SafeError):
-            c.validate_config(dict(base, publishKinds=['briefing']))
+            c.validate_config(dict(base, publishKinds=['social']))
+        c.validate_config(dict(base, publishKinds=['announcement', 'briefing', 'summary']))
 
 
 if __name__ == '__main__':
@@ -563,6 +589,15 @@ class LearnedOffset(unittest.TestCase):
         self.assertEqual(self.runner.offset(), 8)
         self.config['stages'][0]['scheduleOffsetMinutes'] = 3                    # a manual change wins
         self.assertEqual(self.runner.offset(), 3)
+
+    def test_heartbeat_reports_the_talk_now_and_next_with_the_delay(self):
+        sent = []
+        self.desk.send = lambda payload: sent.append(payload)
+        self.runner.learned = (9, 0.0)
+        self.step('2026-11-16T10:31:00')
+        self.runner.beat()
+        beat = [p for p in sent if 'heartbeat' in p][-1]['heartbeat']
+        self.assertEqual((beat['sessionId'], beat['nextSessionId'], beat['delayMinutes']), ('mg', 'stable', 9))
 
     def test_chunks_feed_the_detector_only_for_live_audio_in_schedule_mode(self):
         heard = []

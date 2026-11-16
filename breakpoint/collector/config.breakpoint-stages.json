@@ -15,19 +15,52 @@
   "llm": {
     "provider": "anthropic",
     "model": "claude-sonnet-5-5",
-    "fallback": {"provider": "anthropic", "model": "claude-haiku-5-5"},
+    "fallback": {
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5"
+    },
     "prices": {
-      "claude-sonnet-5-5": {"in": 2.0, "cacheRead": 0.10, "cacheWrite": 2.50, "out": 10.0},
-      "claude-haiku-5-5": {"in": 0.10, "cacheRead": 0.01, "cacheWrite": 0.125, "out": 0.50},
-      "glm-5.1": {"in": 1.40, "cacheRead": 0.26, "out": 4.40}
+      "claude-sonnet-5-5": {
+        "in": 2.0,
+        "cacheRead": 0.1,
+        "cacheWrite": 2.5,
+        "out": 10.0
+      },
+      "claude-haiku-5-5": {
+        "in": 0.1,
+        "cacheRead": 0.01,
+        "cacheWrite": 0.125,
+        "out": 0.5
+      },
+      "glm-5.1": {
+        "in": 1.4,
+        "cacheRead": 0.26,
+        "out": 4.4
+      }
     }
   },
   "summaryReservePerCallUsd": 0.02,
   "publishProvisional": true,
-  "publishKinds": ["announcement", "summary"],
+  "publishKinds": [
+    "announcement",
+    "briefing",
+    "summary"
+  ],
   "followDeskAssignments": false,
   "stages": [
-    {"id": "main", "name": "Main Stage", "enabled": true, "youtube": "desk", "scheduleOffsetMinutes": 0},
-    {"id": "royal", "name": "Royal Exchange", "enabled": true, "youtube": "desk", "scheduleOffsetMinutes": 0}
+    {
+      "id": "main",
+      "name": "Main Stage",
+      "enabled": true,
+      "youtube": "desk",
+      "scheduleOffsetMinutes": 0
+    },
+    {
+      "id": "royal",
+      "name": "Royal Exchange",
+      "enabled": true,
+      "youtube": "desk",
+      "scheduleOffsetMinutes": 0
+    }
   ]
 }
