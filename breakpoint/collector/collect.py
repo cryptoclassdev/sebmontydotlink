@@ -7,7 +7,7 @@ provider keys, and a spending cap. Writes resumable checkpoints and an outbox; m
 is a draft unless its kind is listed in publishKinds and publishProvisional is on.
 Live stage helpers (YouTube, schedule, filters, model providers) are in live.py.
 """
-import argparse, collections, datetime as dt, fcntl, hashlib, json, os, pathlib, re, shutil, signal, subprocess, sys, threading, time, urllib.error, urllib.parse, urllib.request, uuid, wave
+import argparse, base64, collections, datetime as dt, fcntl, hashlib, json, os, pathlib, re, shutil, signal, subprocess, sys, threading, time, urllib.error, urllib.parse, urllib.request, uuid, wave
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 STOP = threading.Event()
@@ -355,6 +355,9 @@ def run_job(desk,llm,job):
             if e['kind']!='summary':titles.append(e['title']);sent.append(dict(e))
         del titles[:-100];del sent[:-20]
     desk.state.change(record)
+    attach_frames(desk,stage,items,context,kept)
+    images={e['id']:e['image'] for e in kept if e.get('image')}
+    if images:desk.state.change(lambda s:[i.__setitem__('image',images[i['id']]) for i in s['live'][sid].get('items',[]) if i['id'] in images])
     for e in kept:
         if not e.get('update'):log(f"{e['kind']} [{e['status']}] {e['title'][:120]}",stage['id'])
     return kept
@@ -416,6 +419,131 @@ def wav_ok(file):
 def session_mode(config):
     return config.get('sessionMode') or ('desk' if config.get('followDeskAssignments') else 'fixed')
 
+# ---------- Stage frames (opt-in: "frames": {"enabled": true}) ----------
+# One still per transcribed chunk, from a low video format of the stage stream, kept in <state>/frames/<stage>/
+# for keepHours. A note gets the frame of the chunk its excerpt was heard in (a recap: one from a third of the
+# way into the talk). Each frame goes to the site once, as its own payload ({"media": ...}) before the note.
+
+def frames_conf(config):
+    f=config.get('frames')
+    return f if isinstance(f,dict) and f.get('enabled') is True else None
+
+def frame_dir(desk,stage_id):return desk.state.directory/'frames'/stage_id
+
+class FrameGrabber:
+    """Takes frames in its own thread so audio capture never waits on video. Failures are logged (at most once
+    every 10 minutes) and skipped: a missing frame only means a card without a picture."""
+    def __init__(self,desk,stage_id,say):
+        self.desk=desk;self.stage_id=stage_id;self.say=say;self.dir=frame_dir(desk,stage_id)
+        self.queue=collections.deque(maxlen=4);self.wake=threading.Event();self.lock=threading.Lock()
+        self.source=None;self.url=None;self.resolved_at=0.0;self.last_error=0.0;self.grabs=0;self.thread=None
+    def set_source(self,source):
+        with self.lock:
+            if source!=self.source:self.source=source;self.url=None
+    def request(self,chunk_id,seek=None):
+        conf=frames_conf(self.desk.config)
+        if not conf or not self.source or self.source[0]!='youtube':return
+        self.dir.mkdir(parents=True,exist_ok=True);(self.dir/(chunk_id+'.pending')).write_text(utc())
+        self.queue.append((chunk_id,seek,self.source));self.wake.set()
+        if not self.thread:self.thread=threading.Thread(target=self.run,daemon=True);self.thread.start()
+    def run(self):
+        while not STOP.is_set():
+            self.wake.wait(2);self.wake.clear()
+            while self.queue and not STOP.is_set():
+                chunk_id,seek,source=self.queue.popleft()
+                try:self.grab(chunk_id,seek,source)
+                except (live.LiveError,OSError,ValueError) as e:
+                    if time.monotonic()-self.last_error>600:self.last_error=time.monotonic();self.say(f'Frame skipped ({live.redact(e)[:160]}); the note goes out without a picture')
+                finally:(self.dir/(chunk_id+'.pending')).unlink(missing_ok=True)
+    def grab(self,chunk_id,seek,source):
+        conf=frames_conf(self.desk.config) or {}
+        with self.lock:
+            if source!=self.source:return
+            if not self.url or time.monotonic()-self.resolved_at>3*3600:
+                self.url,fmt,_=live.resolve_audio(source[1],conf.get('ytFormat',live.FRAME_FORMAT));self.resolved_at=time.monotonic()
+                self.say(f'Frames: video format {fmt} (stills for the coverage cards)')
+            url=self.url
+        width=max(320,min(int(conf.get('width',640)),960));tmp=self.dir/(chunk_id+'.tmp.jpg')
+        try:
+            try:live.grab_frame(url,tmp,seek,width)
+            except live.LiveError:
+                with self.lock:self.url=None  # the signed URL may have expired: resolve again next time
+                raise
+            if tmp.stat().st_size<live.FRAME_MIN_BYTES:raise live.LiveError('frame is blank')
+            out=self.dir/(chunk_id+'.img');mime=live.to_webp(tmp,out,width,int(conf.get('quality',62)))
+            atomic(self.dir/(chunk_id+'.json'),{'at':utc(),'type':mime,'seek':seek})
+        finally:tmp.unlink(missing_ok=True)
+        self.grabs+=1
+        if self.grabs%40==1:self.prune(float(conf.get('keepHours',6)))
+    def prune(self,hours):
+        cutoff=time.time()-hours*3600
+        for f in self.dir.glob('*'):
+            try:
+                if f.stat().st_mtime<cutoff:f.unlink(missing_ok=True)
+            except OSError:pass
+
+def frame_media(desk,stage,chunk_ids,wait_first=20.0):
+    """(media payload, image field) for the first of chunk_ids that has a frame, or (None, None).
+    Waits up to wait_first seconds for the first chunk's frame while it is still being taken."""
+    folder=frame_dir(desk,stage['id'])
+    if chunk_ids and wait_first>0:
+        until=time.monotonic()+wait_first
+        while (folder/(chunk_ids[0]+'.pending')).exists() and time.monotonic()<until and not STOP.is_set():time.sleep(0.5)
+    for cid in chunk_ids:
+        meta_path=folder/(cid+'.json');img=folder/(cid+'.img')
+        if not (meta_path.exists() and img.exists()):continue
+        try:meta=json.loads(meta_path.read_text());data=img.read_bytes()
+        except (OSError,ValueError):continue
+        mime=live.image_kind(data)
+        if not mime or len(data)>MEDIA_MAX_BYTES:continue
+        mid='f'+hashlib.sha256(data).hexdigest()[:32]
+        return ({'id':mid,'kind':'stream','type':mime,'data':base64.b64encode(data).decode('ascii'),'at':meta.get('at') or utc()},
+                {'id':mid,'kind':'stream','at':meta.get('at') or utc(),'credit':stage['name']+' livestream'})
+    return None,None
+
+MEDIA_MAX_BYTES=150_000
+
+def attach_frames(desk,stage,items,context,entries):
+    """Give each new note in entries the frame of the chunk its excerpt came from; queue each frame once."""
+    if not frames_conf(desk.config):return
+    for e in entries:
+        if e.get('image') or e.get('update'):continue
+        if e['kind']=='summary':
+            ordered=items[len(items)//3:]+items[:len(items)//3][::-1];wait=0.0
+        else:
+            hit=next((i for i in items if live.find_excerpt(e.get('excerpt',''),i['text'])),None)
+            ordered=([hit] if hit else [])+[i for i in reversed(items) if i is not hit]+list(reversed(context));wait=20.0
+        payload,image=frame_media(desk,stage,[i['id'] for i in ordered],wait)
+        if payload:desk.queue({'media':payload});e['image']=image
+
+# ---------- Post pictures from X (opt-in: "xMedia": true) ----------
+
+X_MEDIA_HOST='pbs.twimg.com'
+
+def x_media_fetcher(desk):
+    """attach(entry, media_url): download the post's own picture (pbs.twimg.com only), shrink it to WebP and queue it.
+    Never raises: a post without a usable picture is sent without one."""
+    def attach(entry,url):
+        try:
+            u=urllib.parse.urlparse(url or '')
+            if u.scheme!='https' or u.hostname!=X_MEDIA_HOST or u.username or u.password:return
+            req=urllib.request.Request(urllib.parse.urlunparse(u._replace(query='name=small')),headers={'User-Agent':'SebMonty-Breakpoint/1.0'})
+            with OPENER.open(req,timeout=20) as r:data=r.read(3_000_001)
+            if len(data)>3_000_000:return
+            folder=desk.state.directory/'x-media';folder.mkdir(parents=True,exist_ok=True)
+            src=folder/(entry['id']+'.src');out=folder/(entry['id']+'.img');src.write_bytes(data)
+            try:
+                mime=live.to_webp(src,out,640,70);img=out.read_bytes()
+            finally:src.unlink(missing_ok=True);out.unlink(missing_ok=True)
+            if live.image_kind(img)!=mime or len(img)>MEDIA_MAX_BYTES:return
+            mid='x'+hashlib.sha256(img).hexdigest()[:32];at=entry.get('occurredAt') or utc()
+            desk.queue({'media':{'id':mid,'kind':'x','type':mime,'data':base64.b64encode(img).decode('ascii'),'at':at}})
+            handle=re.search(r'@(\w{1,15}) on X$',entry.get('sourceName',''))
+            entry['image']={'id':mid,'kind':'x','at':at,'credit':(f'@{handle.group(1)}' if handle else 'The author')+' on X'}
+        except (OSError,ValueError,urllib.error.URLError) as e:
+            log(f'Post picture skipped for {entry.get("id")} ({type(e).__name__})')
+    return attach
+
 # ---------- One stage: stream, session and capture ----------
 
 class StageRunner:
@@ -427,7 +555,7 @@ class StageRunner:
         self.desk=desk;self.base=stage;self.id=stage['id'];self.keys=keys;self.bootstrap=bootstrap
         self.proc=None;self.run_dir=None;self.source=None;self.source_url=stage.get('sourceUrl');self.session=None;self.finished=None
         self.started=self.resolved_at=self.last_chunk=self.last_audio=self.retry_at=self.next_plan=self.last_beat=0.0;self.failures=0
-        self.status=('ready','Starting');self.stderr=collections.deque(maxlen=12)
+        self.status=('ready','Starting');self.stderr=collections.deque(maxlen=12);self.frames=FrameGrabber(desk,self.id,self.say)
         # Offset learned from speaker introductions today (minutes, and the configured offset it was learned under).
         learned=desk.state.value.get('learnedOffsets',{}).get(self.id) or {};self.pin=None
         self.learned=(learned['minutes'],learned['configOffset']) if learned.get('day')==london_day() else None;self.prev_text=''
@@ -582,6 +710,7 @@ class StageRunner:
             if is_live is False and not cfg.get('simulateLive'):return self.backoff(f'Video {value} is not live (set simulateLive true to replay a recording)')
             self.say(f"Resolved video {value}: format {fmt}{', live' if is_live else ', recording' if is_live is False else ''}")
         else:url=value
+        self.frames.set_source(self.source)
         self.resolved_at=time.monotonic()
         self.run_dir=self.desk.state.directory/'audio'/self.id/uuid.uuid4().hex[:12];self.run_dir.mkdir(parents=True,exist_ok=True)
         atomic(self.run_dir/'manifest.json',{'stage':self.stage,'source':list(self.source),'session':live.public_session(self.session) if self.session else None,'sessionMode':session_mode(cfg),'startedAt':utc()})
@@ -636,6 +765,12 @@ class StageRunner:
         try:
             transcript=consume_audio(self.desk,stage or self.stage,f,self.keys,session)
             if transcript and stage is None and session_mode(self.desk.config)=='schedule':self.learn(transcript['text'])
+            if transcript and stage is None and transcript.get('id') and getattr(self,'frames',None):
+                # A replayed recording is seeked to the middle of the chunk; a live stream gives its live edge, which is
+                # where this chunk just ended.
+                n=int(self.desk.config.get('chunkSeconds',30))
+                seek=(int(f.stem)+0.5)*n if self.desk.config.get('simulateLive') and f.stem.isdigit() else None
+                self.frames.request(transcript['id'],seek)
         except BudgetExceeded:raise
         except Exception as e:  # one bad chunk never stops the stage
             self.say(f'Chunk {f.name} failed ({type(e).__name__}: {live.redact(e)[:160]}); skipped');f.unlink(missing_ok=True)
@@ -752,7 +887,7 @@ def check_live_stage(config,stage):
 
 class ConfigWatch:
     """Applies edits to the config file without a restart: stage offsets and links, session mode, model and budget settings."""
-    KEYS=['sessionMode','summaryEveryChunks','contextChunks','silenceRms','publishKinds','publishProvisional','dailyBudgetUsd','ytFormat','whisperModel','llm','summaryReservePerCallUsd','simulateLive','ffmpegProtocols']
+    KEYS=['sessionMode','summaryEveryChunks','contextChunks','silenceRms','publishKinds','publishProvisional','dailyBudgetUsd','ytFormat','whisperModel','llm','summaryReservePerCallUsd','simulateLive','ffmpegProtocols','frames','xMedia']
     STAGE_KEYS=['scheduleOffsetMinutes','youtube','sessionId']
     def __init__(self,path,desk,keys):self.path=path;self.desk=desk;self.keys=keys;self.mtime=self.stamp()
     def stamp(self):
@@ -841,7 +976,7 @@ def main():
                 next_poll=time.monotonic()+int(config['pollSeconds'])
                 try:
                     if watch:
-                        report=xwatch.poll(desk,state,config,accounts,PROJECTS,{'twitterapi':tkey,'triage':akey},http_json)
+                        report=xwatch.poll(desk,state,config,accounts,PROJECTS,{'twitterapi':tkey,'triage':akey},http_json,media=x_media_fetcher(desk) if desk.config.get('xMedia') is True else None)
                         print(f"{utc()[:19]}Z  X: {report['newPosts']} new posts, {report['published']} published, {report['drafts']} drafts",flush=True)
                     elif config.get('xEnabled'):poll_x(desk,xkey)
                 except BudgetExceeded:desk.health('x','paused','Daily operating budget reached');STOP.set()

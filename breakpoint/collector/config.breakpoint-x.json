@@ -18,5 +18,6 @@
   "xMaxPending": 300,
   "talkWindowHours": 24,
   "publishProvisional": true,
+  "xMedia": false,
   "stages": []
 }

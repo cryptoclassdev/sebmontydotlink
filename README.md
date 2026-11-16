@@ -54,6 +54,37 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Breakpoint: a picture on every coverage card (stage livestream stills, X post pictures), opt-in
+
+- **Date:** 16 November 2026
+- **Pull request:** this PR, branch `claude/breakpoint-desk-visuals-847210`, based on #29 (`claude/breakpoint-card-visuals-ac5833`); merge #29 first.
+- **Status:** Ready for review. Capture is off until switched on on the Mac Mini (steps in `breakpoint/README.md`, "Pictures on coverage cards"); merging changes nothing on the live feed by itself.
+- **Why:** Seb wants a visual attached to each item "From the desk", ideally a frame of the stage feed at the moment the note was made.
+
+#### What changed
+1. **Collector, stage stills** (`"frames"` in `collector/config.breakpoint-stages.json`, off). For each transcribed 30-second chunk a separate thread takes one frame of the same YouTube stream (480p video format, ffmpeg, live edge), shrinks it to a 640 px WebP of 6 to 15 KB and keeps it for 6 hours. A note gets the still of the chunk its excerpt was heard in; a recap gets one from a third of the way into the talk. Failures skip the picture, never the note, and never hold up audio. Signed stream URLs are never logged.
+2. **Collector, X pictures** (`"xMedia"` in `collector/config.breakpoint-x.json`, off). The post's own photo or video still from `pbs.twimg.com` (never a link-preview card), read from the twitterapi.io result the monitor already gets: no extra API calls.
+3. **Storage and API.** Pictures go to the existing Upstash database as their own ingest payload (`media`, WebP or JPEG checked from the bytes, at most 150 KB) and are served at `/breakpoint/api/media/<id>` with a one-year immutable cache. Entries carry `image: {id, kind, at, credit}`; an image whose bytes were never stored is dropped. An `attach` ingest operation adds a picture to an already published entry only when it has none and an editor has not removed one. Expected size for both days: 3 to 6 MB.
+4. **Page.** Cards show the picture with a "Livestream · 13:02" or "@handle on X" tag: on top on phones and in narrow lists, a left column on wide cards (with the speakers column kept on the right on the widest). The detail view shows it larger with its time; "Straight from X" posts show theirs. The desk's entry editor shows it with "Remove picture". A card with no picture, or one that fails to load, looks as before.
+5. **Backfill** (`collector/backfill_frames.py`, dry run unless `--send`). Stills for notes published before capture was on, from the stream's DVR (YouTube keeps the last hour of a live stream) or, after the day, from the recording.
+
+#### Files touched
+- `breakpoint/collector/live.py`, `collect.py`, `xwatch.py`, `backfill_frames.py` (new), `config.breakpoint-stages.json`, `config.breakpoint-x.json`, `scripts/mac/setup.sh` (adds Pillow)
+- `breakpoint/server/api.mjs`, `breakpoint/server/core.mjs`
+- `breakpoint/src/main.tsx`, `breakpoint/src/style.css`, `public/breakpoint/` (built page)
+- `breakpoint/tests/api.test.mjs`, `breakpoint/tests/test_frames.py` (new), `breakpoint/README.md`, `README.md`
+
+#### How to check it on the Vercel preview
+Preview and production share one database and capture is off, so existing cards look exactly as before: that is the check that nothing regresses. `/breakpoint/api/media/f00000000000000000000000000000000` answers 404. The pictures themselves were checked on the local rehearsal copy (screenshots in the PR).
+
+#### Risks
+- **Rights.** The stills are frames of the Solana Foundation's YouTube broadcast, republished as thumbnails on a commercial-adjacent page. Short, credited stills used to illustrate news coverage are a common practice, but YouTube's terms do not grant a licence to copy frames, and this has not been cleared with the Foundation. Get their OK before turning `frames` on, or keep it off. X pictures belong to the posting account and are shown with a link to the post.
+- Wide shots, slides and holding slates appear as often as the speaker; the editor can remove any picture.
+- Upstash holds the bytes base64-encoded in JSON (a third larger); fine at this size, not for video.
+
+#### Roll back
+Turn `frames` and `xMedia` off in the configs (no restart needed), or revert this PR. Entries keep an `image` field the old page ignores.
+
 ### Breakpoint: speakers' faces, X handles and company logos; richer coverage cards
 
 - **Date:** 16 November 2026

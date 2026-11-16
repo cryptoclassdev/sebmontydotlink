@@ -70,7 +70,7 @@ PY
   echo "import breakpoint_macver" > "$SP/breakpoint_macver.pth"
 fi
 echo "venv Python sees the macOS version: $(.venv/bin/python -c 'import platform; print(platform.mac_ver()[0] or "NO")')"
-uv pip install --python .venv/bin/python -U "yt-dlp[default]" mlx-whisper 2>&1 | tail -6
+uv pip install --python .venv/bin/python -U "yt-dlp[default]" mlx-whisper pillow 2>&1 | tail -6
 ls .venv/bin | grep -E '^(pip|yt-dlp)$' | tr '\n' ' '; echo
 .venv/bin/python -c "import sys, mlx_whisper, yt_dlp; print('imports ok; python', sys.version.split()[0], '; yt-dlp', yt_dlp.version.__version__)"
 .venv/bin/python -c "import mlx_whisper; help(mlx_whisper.transcribe)" > "$BASE/mlx-transcribe-help.txt" 2>&1
