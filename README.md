@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Catch up: posts from X as embeds, faces on talk recaps
 
 - **Date:** 16 November 2026
-- **Pull request:** this PR, branch `feat/catchup-x-embeds`.
+- **Pull request:** [#26](https://github.com/cryptoclassdev/sebmontydotlink/pull/26), branch `feat/catchup-x-embeds`.
 - **Status:** Ready for review. Page, API and page security policy; goes live on merge. Nothing to change on the Mac Mini.
 - **Why:** Seb asked for the Catch up cards to look more like the tweet embeds in our Discord dashboard, and, if possible, for talk summaries to show the speakers.
 
