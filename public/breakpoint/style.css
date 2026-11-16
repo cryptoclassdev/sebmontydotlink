@@ -4799,6 +4799,12 @@ blockquote {
 .dark .news-card.summary .eyebrow {
   color: #9db78f;
 }
+.watch-session {
+  margin: 4px 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
 .seb-brand {
   gap: 11px;
   font-size: 21px;
