@@ -63,8 +63,9 @@ Newest first. One entry per pull request.
 
 #### What changed
 1. The text wordmark is replaced by the validator.com logo: the official three-block mark from the "Brand Kits - Validator" Figma file, in the tricolour lockup's colours, with "validator.com" in Degular Bold converted to outlines. In dark mode it switches to the kit's dark version (white first block, white wordmark).
-2. The "POWERED BY" label, the link to validator.com, the arrow and the tagline stay as they were. The logo is 140 px wide and shrinks to fit narrower sidebars.
-3. Where each part comes from, and the light and dark SVG files, are in `breakpoint/assets/brand/`.
+2. The logo spans the sidebar's width (about 169 x 14.5 px on a full-width window, 140 x 12 px at the narrowest sidebar), so it stays crisp. The small arrow after it is gone to make room; the whole logo is still the link to validator.com, labelled "opens in a new tab" for screen readers. The "POWERED BY" label and the tagline stay.
+3. The sidebar now scrolls when the window is shorter than its contents. Before, it was fixed with no scroll, so on short windows the bottom of the sidebar, including this block, was cut off.
+4. Where each part comes from, and the light and dark SVG files, are in `breakpoint/assets/brand/`.
 
 #### Files touched
 - `breakpoint/src/components/validator-logo.tsx` (new), `breakpoint/src/main.tsx`, `breakpoint/src/style.css`
@@ -73,11 +74,11 @@ Newest first. One entry per pull request.
 - `README.md`
 
 #### How to check it
-On the Vercel preview, open `/breakpoint` on a desktop-width window and look at the bottom of the left sidebar: "POWERED BY", then the three blocks and "validator.com", then the tagline. Switch to dark mode with the moon button: the first block and the wordmark turn white. Clicking the logo opens validator.com in a new tab.
+On the Vercel preview, open `/breakpoint` on a desktop-width window and look at the bottom of the left sidebar: "POWERED BY", then the three blocks and "validator.com", then the tagline. Switch to dark mode with the moon button: the first block and the wordmark turn white. Clicking the logo opens validator.com in a new tab. Make the window short (under about 850 px tall): the sidebar scrolls and the block is reachable at its bottom.
 
 #### Checks run
 - `npm run typecheck` and `npm test` in `breakpoint/` (82 Python tests, 58 Node tests, 1 skipped).
-- Checked in a browser in light and dark mode at 1280 px and 760 px wide: the logo fits the sidebar with no overflow.
+- Checked in a browser in light and dark mode at 1280, 1100, 900 and 800 px wide and at short heights: the logo fits each sidebar width, is never cut off, and stays sharp when magnified.
 
 #### Risks
 - The live validator.com header uses a lighter cyan for the middle block than the Figma lockup. This uses the Figma colours, which match the reference Seb gave.

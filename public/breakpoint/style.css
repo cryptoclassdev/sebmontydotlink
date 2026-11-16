@@ -259,6 +259,9 @@
   .hidden {
     display: none;
   }
+  .inline {
+    display: inline;
+  }
   .inline-flex {
     display: inline-flex;
   }
@@ -2142,6 +2145,9 @@ input[type=checkbox] {
   z-index: 30;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
 }
 .brand {
   display: flex;
@@ -2312,7 +2318,7 @@ nav {
 }
 .sidebar-bottom {
   margin-top: auto;
-  padding: 30px 11px 0;
+  padding: 30px 6px 0;
 }
 .powered {
   font-size: 8px;
@@ -2321,18 +2327,14 @@ nav {
   letter-spacing: 1.8px;
 }
 .validator {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 10px;
-  color: var(--foreground);
+  display: block;
+  margin-top: 12px;
+  border-radius: 4px;
 }
 .validator-logo {
-  width: 140px;
-  max-width: 100%;
+  display: block;
+  width: 100%;
   height: auto;
-  flex: 0 1 auto;
-  min-width: 0;
 }
 .validator-logo .vc-block-first {
   fill: #1A1A40;
@@ -2342,9 +2344,6 @@ nav {
 }
 .dark .validator-logo .vc-block-first,.dark .validator-logo .vc-wordmark {
   fill: #fff;
-}
-.validator>svg:last-child {
-  color: var(--muted-foreground);
 }
 .sidebar-bottom p {
   font-size: 10px;
