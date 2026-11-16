@@ -81,6 +81,40 @@ Open `/breakpoint#watch?stage=royal`: "Not livestreamed." in the player area, th
 #### Roll back
 Revert this PR (or empty `NOT_STREAMED`) and rebuild.
 
+### London guide: Breakpoint days first, past days greyed, Olympia on the map
+
+- **Date:** 16 November 2026
+- **Pull request:** [#32](https://github.com/cryptoclassdev/sebmontydotlink/pull/32), branch `feat/london-guide-days`.
+- **Status:** Ready for review. Page only; goes live on merge. Nothing to change on the Mac Mini.
+- **Why:** Seb asked for the London guide's day filter to lead with the Breakpoint days, for the days already over to look finished but stay clickable, and for the map to show where Breakpoint itself is.
+
+#### What changed
+1. Day filter order is now Upcoming, All week, Mon 16, Tue 17, Wed 18, then Mon 9 to Sun 15. Before, the days ran Mon 9 to Wed 18, so the Breakpoint days sat at the far right.
+2. A day that is over (London time) is greyed out and carries the tooltip "This day is over". It is still a normal button: clicking it lists that day's events and shows them on the map. Today that greys Mon 9 to Sun 15; tomorrow Mon 16 greys too, and stays in its place on the left.
+3. The map always shows a marker labelled "Breakpoint · Olympia London" at the centre of the Olympia site (51.4966, -0.2103), whichever day or filter is chosen. From zoom 14 the site itself (Olympia Grand and Olympia National, the outline OpenStreetMap gives) is shaded with a dashed border. Clicking the marker, or the new pin button in the map controls, centres the map on Olympia at street level.
+4. The map zooms much further: up to zoom 18 (it stopped at 15, where a single building is a few pixels), so the halls and the streets around them are readable. Besides the + and - buttons, a double-click zooms in, and a trackpad pinch (or ctrl/cmd + wheel) zooms in and out; a plain wheel still scrolls the page.
+5. In Upcoming, events already under way are grouped first under "Happening now" (with a live dot and the note that each card shows when it ends). Before, a multi-day event that began on Wednesday 11 November led the list under the heading "Wednesday 11 November", which read as a past day.
+6. Event cards: a multi-day event now reads "11 NOV UNTIL 18 NOV" (was "11 NOV TO 18 NOV"), with the true last day; a single-day event that is running reads "ON NOW · UNTIL 21:00".
+
+#### Files touched
+- `breakpoint/src/main.tsx`, `breakpoint/src/style.css`, `public/breakpoint/` (rebuilt), `README.md`
+
+#### How to check it
+On the Vercel preview, open `/breakpoint#events`: the chips read Upcoming, All week, Mon 16, Tue 17, Wed 18, then the greyed Mon 9 to Sun 15. Click a greyed day: its events list and its pins appear. The map shows the "Breakpoint · Olympia London" marker in west London; click it, then zoom in with + until the Olympia halls are labelled inside the shaded outline. The list under the map starts with "Happening now".
+
+#### Checks run
+- `npm test` in `breakpoint/` (69 JS tests, 93 Python tests), `tsc --noEmit`, page build.
+- Local preview with the production feed: chip order and greying as above; clicking Thu 12 listed its 2 events and showed its pin; the Olympia marker stayed on the map throughout; the pin button plus two zoom-ins reached zoom 18 with Olympia Grand and Olympia National labelled inside the outline; Upcoming opened with "Happening now" (10 events) ahead of Monday 16 November. Also checked at phone width (375 px): the chips scroll sideways with the Breakpoint days first.
+
+#### Risks
+- The Olympia label can overlap event pins clustered around the venue at low zoom; it is drawn on top so it stays readable, and zooming in separates them.
+- The outline is the whole Olympia site, not the specific hall Breakpoint uses.
+- Deeper zoom loads more OpenStreetMap tiles per visit. Pinch zoom on a touch screen is not implemented; the buttons and double-tap work there.
+- At phone width the Olympia marker sits at the left edge of the default map view (the map is centred on central London); it is visible, and one drag or a tap on it brings it to the middle.
+
+#### Roll back
+Revert this PR.
+
 ### Breakpoint: a picture on every coverage card (stage livestream stills, X post pictures), opt-in
 
 - **Date:** 16 November 2026
