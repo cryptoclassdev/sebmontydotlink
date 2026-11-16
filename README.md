@@ -54,6 +54,33 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Breakpoint: Royal Exchange shows "Not livestreamed" instead of waiting for a player
+
+- **Date:** 16 November 2026
+- **Pull request:** [#33](https://github.com/cryptoclassdev/sebmontydotlink/pull/33), branch `claude/breakpoint-royal-not-streamed`.
+- **Status:** Ready for review. Page only: nothing to change on the Mac Mini.
+- **Why:** Solana is not livestreaming the Royal Exchange. On 16 Nov (about 15:25 London) YouTube, X (@solana, @SolanaEvents, @SolanaFndn, @phantom and every post linking a broadcast) and solana.com/breakpoint were checked: the only official feed is the Main Stage (YouTube `l8Sk-jInOHo`, X `2QneVOvYJYoeAJ`). The Watch page told readers "The stage is getting ready" and "The official player will appear here", which promised a feed that does not exist.
+
+#### What changed
+1. **Watch live, Royal Exchange tab:** "Not livestreamed." with a line saying Solana is only streaming the Main Stage and that Royal Exchange talks are followed through the programme and posts on X, plus a "Watch the Main Stage" button (goes to `#watch?stage=main`). The badge under the player reads "Not livestreamed" instead of "Awaiting source".
+2. **Source health:** the Royal Exchange row reads "Not livestreamed by Solana" instead of the collector's "Waiting for the stream link on the desk", with no last-seen time.
+3. **Live notes:** an empty Royal Exchange list says the stage has no feed and points to Catch up for posts from X.
+4. Driven by `NOT_STREAMED` in `breakpoint/src/main.tsx` (just `royal`). If a Royal Exchange link is saved on the desk with "Show player" ticked, the player and the old wording come back on their own, so a day 2 feed needs no code change.
+
+#### Files touched
+- `breakpoint/src/main.tsx`
+- `public/breakpoint/app.js`, `public/breakpoint/index.html` (built page; `style.css` unchanged)
+- `README.md`
+
+#### How to check it on the Vercel preview
+Open `/breakpoint#watch?stage=royal`: "Not livestreamed." in the player area, the "Not livestreamed" badge, and "Not livestreamed by Solana" in Source health. Press "Watch the Main Stage": the Main Stage tab and its player open. Main Stage and LP Army are unchanged. Checked locally at desktop and phone width against the production API, no page errors; `npm run typecheck`, `npm run build` and the 70 Node tests pass.
+
+#### Risks
+- If Solana starts a Royal Exchange feed and nobody pastes it on the desk, the page keeps saying it is not livestreamed. Pasting the link fixes it immediately.
+
+#### Roll back
+Revert this PR (or empty `NOT_STREAMED`) and rebuild.
+
 ### London guide: Breakpoint days first, past days greyed, Olympia on the map
 
 - **Date:** 16 November 2026
