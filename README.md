@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Breakpoint: Royal Exchange shows "Not livestreamed" instead of waiting for a player
 
 - **Date:** 16 November 2026
-- **Pull request:** PR_LINK, branch `claude/breakpoint-royal-not-streamed`.
+- **Pull request:** [#33](https://github.com/cryptoclassdev/sebmontydotlink/pull/33), branch `claude/breakpoint-royal-not-streamed`.
 - **Status:** Ready for review. Page only: nothing to change on the Mac Mini.
 - **Why:** Solana is not livestreaming the Royal Exchange. On 16 Nov (about 15:25 London) YouTube, X (@solana, @SolanaEvents, @SolanaFndn, @phantom and every post linking a broadcast) and solana.com/breakpoint were checked: the only official feed is the Main Stage (YouTube `l8Sk-jInOHo`, X `2QneVOvYJYoeAJ`). The Watch page told readers "The stage is getting ready" and "The official player will appear here", which promised a feed that does not exist.
 
