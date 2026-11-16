@@ -27,14 +27,17 @@ def atomic(path, value):
     temp.write_text(json.dumps(value, ensure_ascii=False, indent=2)); temp.chmod(0o600); temp.replace(path)
 
 class BudgetExceeded(Exception): pass
-class SafeError(Exception): pass
+class SafeError(Exception):
+    def __init__(self, message='', status=None):
+        super().__init__(message);self.status=status
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, *args, **kwargs): return None
 OPENER = urllib.request.build_opener(NoRedirect())
 AI_HOSTS = {'api.anthropic.com','api.z.ai','api.openai.com'}
 
-def http_json(url, method='GET', body=None, headers=None):
+def http_json(url, method='GET', body=None, headers=None, own_site=False):
     # Do not forward bearer credentials through redirects or print response bodies.
+    # own_site: the guide's own API, whose error bodies are our own short messages (e.g. "Invalid excerpt").
     data = json.dumps(body).encode() if body is not None else None
     req = urllib.request.Request(url, data=data, method=method, headers={'User-Agent':'OnSolana-BreakpointDesk/1.0','Accept':'application/json',**({'Content-Type':'application/json'} if data else {}),**(headers or {})})
     try:
@@ -50,8 +53,32 @@ def http_json(url, method='GET', body=None, headers=None):
                 err=json.loads(e.read(4000) or b'{}').get('error') or {}
                 if isinstance(err,dict):detail=live.redact(' '.join(str(err[k]) for k in ('type','code','message') if err.get(k)))[:240]
             except (ValueError,OSError,AttributeError):pass
-        raise SafeError(f'HTTP {e.code}; '+(f'provider says: {detail}' if detail else 'credentials and provider body withheld')) from None
-    except (OSError,ValueError): raise SafeError('Provider request failed') from None
+        elif own_site:
+            try:
+                err=json.loads(e.read(4000) or b'{}').get('error')
+                if isinstance(err,str):detail=live.redact(err)[:200]
+            except (ValueError,OSError,AttributeError):pass
+        raise SafeError(f'HTTP {e.code}; '+(f'{"site" if own_site else "provider"} says: {detail}' if detail else 'credentials and provider body withheld'),e.code) from None
+    except (OSError,ValueError) as e: raise SafeError(f'Request to {urllib.parse.urlparse(url).hostname} failed ({type(e).__name__})') from None
+
+# The site counts text length in UTF-16 units, as JavaScript does (an emoji counts twice), and rejects
+# a whole payload when one field is too long; entries are trimmed to its limits before they are queued.
+ENTRY_LIMITS={'title':180,'body':10000,'sourceName':160,'excerpt':4000,'impactReason':1500,'correctionNote':1500,'stage':80}
+def fit(text, limit):
+    if not isinstance(text,str):return text
+    units=0
+    for i,ch in enumerate(text):
+        units+=2 if ord(ch)>0xFFFF else 1
+        if units>limit:return text[:i]
+    return text
+def fit_entry(entry):
+    entry=dict(entry)
+    for k,limit in ENTRY_LIMITS.items():
+        if isinstance(entry.get(k),str):entry[k]=fit(entry[k],limit)
+    if isinstance(entry.get('takeaways'),list):entry['takeaways']=[fit(t,1000) for t in entry['takeaways']][:12]
+    if isinstance(entry.get('projectIds'),list):entry['projectIds']=entry['projectIds'][:10]
+    return entry
+REJECTED_STATUSES={400,413,422}
 
 class State:
     def __init__(self, directory, cap):
@@ -98,16 +125,24 @@ class Desk:
                 with open(self.state.directory/'dry-run.jsonl','a') as f:f.write(json.dumps({'at':utc(),'payload':payload},ensure_ascii=False)+'\n')
             for e in payload.get('entries',[]):log(f"DRY RUN {e.get('kind')} [{e.get('status')}] {e.get('title')}",e.get('stage') or '-')
             return {'ok':True,'dryRun':True}
-        return http_json(self.url+'/api/ingest','POST',payload,{'Authorization':'Bearer '+self.token})
+        return http_json(self.url+'/api/ingest','POST',payload,{'Authorization':'Bearer '+self.token},own_site=True)
     def queue(self,payload):
         # Distinct idempotent payloads survive process/network failures.
         if 'transcript' in payload and not str(payload['transcript'].get('text','')).strip():return
+        if isinstance(payload.get('entries'),list):payload={**payload,'entries':[fit_entry(e) if isinstance(e,dict) else e for e in payload['entries']]}
         key=digest(json.dumps(payload,sort_keys=True));atomic(self.state.directory/'outbox'/(key+'.json'),payload)
     def flush(self):
+        # Oldest first. A payload the site rejects as invalid (400, 413, 422) is set aside in outbox-rejected/
+        # so it cannot hold up everything queued after it; network, auth and server errors keep it for a retry.
         with self.flush_lock:
-            for p in sorted((self.state.directory/'outbox').glob('*.json')):
+            for p in sorted((self.state.directory/'outbox').glob('*.json'),key=lambda f:(f.stat().st_mtime,f.name)):
                 if STOP.is_set():return
-                self.send(json.loads(p.read_text()));p.unlink(missing_ok=True)
+                try:self.send(json.loads(p.read_text()))
+                except (SafeError,ValueError) as e:
+                    if isinstance(e,SafeError) and e.status not in REJECTED_STATUSES:raise
+                    rejected=self.state.directory/'outbox-rejected';rejected.mkdir(exist_ok=True)
+                    p.replace(rejected/p.name);log(f'The site rejected a queued update ({e}); set aside in outbox-rejected/{p.name}');continue
+                p.unlink(missing_ok=True)
     def health(self,id,state,message,now=None):
         self.beats[id]=(state,message,time.monotonic() if now is None else now)
         try:self.send({'heartbeat':{'id':id,'state':state,'message':message[:200]}})

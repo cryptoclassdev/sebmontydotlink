@@ -54,6 +54,36 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Collector: one rejected update can no longer hold up the rest
+
+- **Date:** 16 November 2026
+- **Pull request:** PR_LINK, branch `fix/collector-outbox-rejects`.
+- **Status:** Ready for review. Collector, tests and docs only; the website is unchanged. Takes effect on the Mac Mini when both jobs restart.
+- **Why:** On 15 November at 17:06 UTC the X monitor queued a long Solana weekly recap whose excerpt was 4,000 characters in Python but 4,003 in JavaScript, which counts each emoji twice. The site answered 400 (excerpt too long). The outbox sends in a fixed order and stopped at the first failure, so the 15 updates queued after it (Solflare Private Mode, Meteora DLMM Pro, Reflect Build and others) waited about 15 hours, and every X check reported "X check failed" because the poll's own send hit the same item. On 16 November at 07:41 UTC Claude trimmed that excerpt on the Mac Mini and the queue emptied within seconds. The same flaw would have stopped stage announcements during the event.
+
+#### What changed
+1. **Outbox:** sends oldest first. An update the site rejects as invalid (HTTP 400, 413 or 422) is moved to `outbox-rejected/` with a log line giving the site's reason, and the rest carry on. Network, sign-in and server errors still keep the update for a retry.
+2. **Field limits:** every entry is trimmed to the site's limits (title 180, body 10,000, excerpt 4,000 and so on) counted the way JavaScript counts, before it is queued.
+3. **Clearer errors:** a rejection from the site now shows the site's own reason (for example "Invalid excerpt"); a failed request names the host and the error type instead of "Provider request failed". Keys and provider bodies are still never logged.
+4. **X monitor status:** a problem sending to the site no longer marks the X check as failed; the main loop retries and reports it.
+
+#### Files touched
+- `breakpoint/collector/collect.py`, `breakpoint/collector/xwatch.py`
+- `breakpoint/tests/test_collector.py`, `breakpoint/tests/test_xwatch.py`
+- `breakpoint/README.md` (troubleshooting row), `README.md`
+
+#### How to check it
+Nothing changes on the Vercel preview. On the Mac Mini, after restarting both jobs (`bash scripts/mac/live.sh stop x`, `start x`, `stop stages`, `start stages`): `bash scripts/mac/live.sh status` shows both running, and Watch live, Source health, "X monitoring" reads "Watching 208 accounts on X" again.
+
+#### Checks run
+- 64 Python tests and 48 Node tests. New tests: a rejected update is set aside while the next one is sent and a 503 keeps the queue; text with emoji is trimmed to the limit in UTF-16 units; an X check still succeeds and reports live when the site cannot be reached.
+
+#### Risks
+- An update set aside is not retried automatically. The log line names the file and the reason; it can be fixed and moved back into `outbox/`.
+
+#### Roll back
+Revert this PR and restart both jobs. The outbox format is unchanged.
+
 ### X monitor: search every 10 minutes
 
 - **Date:** 15 November 2026

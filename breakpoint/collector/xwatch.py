@@ -338,7 +338,10 @@ def poll(desk, state, config, accounts, projects, keys, http, now=None):
             for pid in ids:
                 s['processed']['xw-' + pid] = iso(dt.datetime.now(dt.timezone.utc))
         state.change(done)
-    desk.flush()
+    try:
+        desk.flush()
+    except Exception:
+        pass  # a site or network problem is not an X problem: the main loop retries the outbox and reports it
     day = now.date().isoformat()
 
     def count(s):
