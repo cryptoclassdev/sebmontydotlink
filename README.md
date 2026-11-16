@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### X reposts make one card; an offline stream is not shown as an error
 
 - **Date:** 16 November 2026
-- **Pull request:** PR_LINK, branch `fix/x-reposts`.
+- **Pull request:** [#27](https://github.com/cryptoclassdev/sebmontydotlink/pull/27), branch `fix/x-reposts`.
 - **Status:** Ready for review. Collector, tests and docs only; on the Mac Mini after `bash scripts/mac/live.sh start x`, `start stages` and `start lparmy`.
 - **Why:** At 11:17 and 11:18 @solana posted its Western Union post twice, and both showed in "Straight from X" (#25). Separately, when LP Army's stream paused after its morning session, Source health told readers "Reconnecting to the stream" in error red.
 
