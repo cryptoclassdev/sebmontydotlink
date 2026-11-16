@@ -54,7 +54,6 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
-<<<<<<< HEAD
 ### Sidebar sections open in a new browser tab
 
 - **Date:** 16 November 2026
@@ -72,7 +71,16 @@ Newest first. One entry per pull request.
 
 #### How to check it
 On the live site after merge, desktop: click Catch up in the sidebar; it opens in a new tab and the original tab (for example Watch live with a playing stream) stays as it was.
-=======
+
+#### Checks run
+- `tsc --noEmit`, page build.
+
+#### Risks
+- Readers who click around a lot collect tabs.
+
+#### Roll back
+Revert this PR.
+
 ### Watch a talk from its card; Now and next follows the stage's delay
 
 - **Date:** 16 November 2026
@@ -91,17 +99,12 @@ On the live site after merge, desktop: click Catch up in the sidebar; it opens i
 
 #### How to check it
 On the live site after merge: Overview, click the Main Stage "On now" card: the card shows "Watch live now" and opens Watch live on the Main Stage. The On now card names the same talk as the Watch live caption.
->>>>>>> feat/watch-from-session
 
 #### Checks run
 - `tsc --noEmit`, page build.
 
 #### Risks
-<<<<<<< HEAD
-- Readers who click around a lot collect tabs.
-=======
 - With no heartbeat (Mac off), Now and next falls back to the published times, as before.
->>>>>>> feat/watch-from-session
 
 #### Roll back
 Revert this PR.
