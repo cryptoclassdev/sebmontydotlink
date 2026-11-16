@@ -42,7 +42,8 @@
   "summaryReservePerCallUsd": 0.02,
   "publishProvisional": true,
   "publishKinds": [
-    "announcement"
+    "announcement",
+    "briefing"
   ],
   "followDeskAssignments": false,
   "stages": [

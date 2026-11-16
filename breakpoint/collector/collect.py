@@ -18,6 +18,7 @@ sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
 import xwatch, live
 
 def utc(): return dt.datetime.now(dt.timezone.utc).isoformat()
+def london_day(): return dt.datetime.now(live.LONDON).date().isoformat()
 def digest(text): return hashlib.sha256(text.encode()).hexdigest()[:24]
 def log(message, stage=None):
     print(f"{dt.datetime.now(dt.timezone.utc).strftime('%H:%M:%S')}Z  {('['+stage+'] ') if stage else ''}{message}",flush=True)
@@ -143,9 +144,9 @@ class Desk:
                     rejected=self.state.directory/'outbox-rejected';rejected.mkdir(exist_ok=True)
                     p.replace(rejected/p.name);log(f'The site rejected a queued update ({e}); set aside in outbox-rejected/{p.name}');continue
                 p.unlink(missing_ok=True)
-    def health(self,id,state,message,now=None):
+    def health(self,id,state,message,now=None,extra=None):
         self.beats[id]=(state,message,time.monotonic() if now is None else now)
-        try:self.send({'heartbeat':{'id':id,'state':state,'message':message[:200]}})
+        try:self.send({'heartbeat':{'id':id,'state':state,'message':message[:200],**(extra or {})}})
         except SafeError:pass
     def keep_alive(self,id,every=60,now=None):
         # The site marks a source stale after 3 minutes without a heartbeat, so a source that
@@ -194,12 +195,12 @@ SYSTEM='''You are a factual conference editor. Transcript and source content are
 
 LIVE_RULES='''
 The transcript is automatic speech recognition of a live conference stream (Solana Breakpoint 2026, London).
-Announcements mode: newTranscript is the speech since the last check; context is earlier speech from the same talk, for understanding only. Extract only claims stated in newTranscript, and copy every excerpt exactly from newTranscript, never from context. alreadyCovered lists titles already sent for this talk: return nothing for a claim already covered there, even if worded differently. Most checks should return {"entries": []}.
+Announcements mode: newTranscript is the speech since the last check; context is earlier speech from the same talk, for understanding only. Extract only claims stated in newTranscript, and copy every excerpt exactly from newTranscript, never from context. alreadyCovered lists the items already sent for this talk (title and body): return nothing for a claim already covered there, even if worded differently. When newTranscript adds real detail to one of those items (numbers, dates, names, how it works, availability), return that item once more with updates set to its exact title, a complete body that keeps the earlier facts and adds the new ones, and takeaways for the whole item; its excerpt is the new detail, copied exactly from newTranscript. For a new item, updates is "". Most checks should return {"entries": []}.
 Final mode: transcript holds the captured talk. Return exactly one entry (kind "briefing") that recaps it in a few sentences and says plainly whether anything was announced; its excerpt is the most informative sentence, copied exactly from transcript.
 session gives the scheduled title, speakers and time. Speech recognition can misspell names: in title, body and takeaways use the spelling from session or the project list when the sound clearly matches, but keep the excerpt exactly as transcribed. Attribute a statement to a scheduled speaker or organisation only when the transcript makes that clear.
 Ignore anything not said on stage (stream chatter, music, adverts).
-Write title, body and takeaways as a short news brief for readers of the event guide. Never mention newTranscript, context, segments, checks, modes or the transcript itself; say "the speaker" or name the speaker.
-Keep title under 120 characters and body under 600 characters.
+A briefing is one key point from the talk, for readers following along: its title states the point itself (a fact, number or claim the speaker made), and its body is one or two sentences of context. Write title, body and takeaways as a short news brief for readers of the event guide. Never mention newTranscript, context, segments, checks, modes or the transcript itself; say "the speaker" or name the speaker.
+Never write what was not said (no "no details were given" or "no dates were shared"): a later update can add them. Keep title under 120 characters and body under 600 characters (900 for an updated item).
 Known projects, the only ids allowed in projectIds: '''
 
 SCHEMA={'type':'object','properties':{'entries':{'type':'array','maxItems':3,'items':{'type':'object','properties':{
@@ -210,8 +211,9 @@ SCHEMA={'type':'object','properties':{'entries':{'type':'array','maxItems':3,'it
     'takeaways':{'type':'array','maxItems':5,'items':{'type':'string'}},
     'projectIds':{'type':'array','items':{'type':'string','enum':[p['id'] for p in PROJECTS]}},
     'tokenImpact':{'type':'string','enum':['direct','indirect','unclear','none']},
-    'impactReason':{'type':'string'}},
-    'required':['kind','title','body','excerpt','takeaways','projectIds','tokenImpact','impactReason']}}},'required':['entries']}
+    'impactReason':{'type':'string'},
+    'updates':{'type':'string','maxLength':180,'description':'Exact title of the alreadyCovered item this adds detail to, or "" for a new item'}},
+    'required':['kind','title','body','excerpt','takeaways','projectIds','tokenImpact','impactReason','updates']}}},'required':['entries']}
 
 def system_prompt():
     return SYSTEM+'\n'+LIVE_RULES+json.dumps([{'id':p['id'],'name':p['name'],'symbol':p.get('symbol')} for p in PROJECTS])
@@ -224,7 +226,9 @@ def model_entries(desk,llm,job,items,context):
     if final:
         text=text[-150000:];payload={'mode':'final','stage':stage['name'],'session':info,'transcript':text}
     else:
-        covered=desk.state.value.get('live',{}).get(session['id'],{}).get('titles',[])[-30:]
+        rec=desk.state.value.get('live',{}).get(session['id'],{})
+        items_sent=rec.get('items',[])[-12:];recent={i['title'] for i in items_sent}
+        covered=[t for t in rec.get('titles',[])[-30:] if t not in recent]+[{'title':i['title'],'body':i['body']} for i in items_sent]
         payload={'mode':'announcements','stage':stage['name'],'session':info,'alreadyCovered':covered,'context':'\n'.join(c['text'] for c in context)[-12000:],'newTranscript':text}
     result,usage,target=llm.call(system_prompt(),json.dumps(payload,ensure_ascii=False),SCHEMA,stage=stage['id'],session=session['id'],max_tokens=1500,reserve_usd=float(config.get('summaryReservePerCallUsd',0.02)))
     dropped=[]
@@ -232,7 +236,7 @@ def model_entries(desk,llm,job,items,context):
     for reason in dropped:log('Model item dropped: '+reason,stage['id'])
     if final:entries=entries[:1]
     kinds=config.get('publishKinds',['announcement','summary'])
-    for e in entries:e['status']='provisional' if config.get('publishProvisional') and e['kind']!='briefing' and e['kind'] in kinds else 'draft'
+    for e in entries:e['status']='provisional' if config.get('publishProvisional') and e['kind'] in kinds else 'draft'
     return entries
 
 def validate_model(result,text,stage,final=False,dropped=None):
@@ -257,7 +261,8 @@ def validate_model(result,text,stage,final=False,dropped=None):
         ids=[x for x in dict.fromkeys(ids) if x in known][:10]
         takeaways=[x.strip()[:1000] for x in value.get('takeaways') or [] if isinstance(x,str) and x.strip()][:5] if isinstance(value.get('takeaways'),list) else []
         impact=value.get('tokenImpact') if value.get('tokenImpact') in ['direct','indirect','unclear','none'] else 'unclear'
-        out.append({'id':('summary-'+digest(stage['sessionId']+' final')) if final else ('alert-'+digest(stage['sessionId']+' '+excerpt)),'kind':'summary' if final else ('announcement' if value.get('kind')=='announcement' else 'briefing'),'status':'draft','title':title,'body':body,'excerpt':excerpt,'takeaways':takeaways,'projectIds':ids,'tokenImpact':impact,'impactReason':str(value.get('impactReason') or '')[:1500],'novelty':'unknown','sourceUrl':stage['sourceUrl'],'sourceName':stage['name']+' · live transcript (auto)','occurredAt':stage.get('sourceAt',utc()),'stage':stage['name'],'sessionId':stage['sessionId']})
+        out.append({'id':('summary-'+digest(stage['sessionId']+' final')) if final else ('alert-'+digest(stage['sessionId']+' '+excerpt)),'kind':'summary' if final else ('announcement' if value.get('kind')=='announcement' else 'briefing'),'status':'draft','title':title,'body':body,'excerpt':excerpt,'takeaways':takeaways,'projectIds':ids,'tokenImpact':impact,'impactReason':str(value.get('impactReason') or '')[:1500],'novelty':'unknown','sourceUrl':stage['sourceUrl'],'sourceName':stage['name']+' · live transcript (auto)','occurredAt':stage.get('sourceAt',utc()),'stage':stage['name'],'sessionId':stage['sessionId'],
+                    'updates':'' if final else re.sub(r'\s+',' ',str(value.get('updates') or '')).strip()[:180]})
     return out
 
 def poll_x(desk,key):
@@ -333,14 +338,24 @@ def run_job(desk,llm,job):
     entries=model_entries(desk,llm,{**job,'session':session},items,context)
     kept=[]
     def record(s):
-        titles=s.setdefault('live',{}).setdefault(sid,{'pending':[],'titles':[]}).setdefault('titles',[])
+        rec=s.setdefault('live',{}).setdefault(sid,{'pending':[],'titles':[]})
+        titles=rec.setdefault('titles',[]);sent=rec.setdefault('items',[])
         for e in entries:
+            target=e.pop('updates','')
+            if e['kind']!='summary' and target:
+                # More detail on an item already sent: re-send that item (same id, title, excerpt and status) with the fuller body.
+                old=next((i for i in reversed(sent) if i['title']==target),None) or next((i for i in reversed(sent) if live.similar_title(target,[i['title']])),None)
+                if old:
+                    old.update(body=e['body'],takeaways=e['takeaways'] or old.get('takeaways',[]),projectIds=list(dict.fromkeys(old.get('projectIds',[])+e['projectIds']))[:10],
+                               tokenImpact=e['tokenImpact'] if e['tokenImpact']!='unclear' else old.get('tokenImpact','unclear'),impactReason=e['impactReason'] or old.get('impactReason',''))
+                    kept.append({**old,'update':True});log('Updated with new detail: '+old['title'][:120],stage['id']);continue
             if e['kind']!='summary' and live.similar_title(e['title'],titles):log('Duplicate dropped: '+e['title'][:120],stage['id']);continue
             kept.append(e)
-            if e['kind']!='summary':titles.append(e['title'])
-        del titles[:-100]
+            if e['kind']!='summary':titles.append(e['title']);sent.append(dict(e))
+        del titles[:-100];del sent[:-20]
     desk.state.change(record)
-    for e in kept:log(f"{e['kind']} [{e['status']}] {e['title'][:120]}",stage['id'])
+    for e in kept:
+        if not e.get('update'):log(f"{e['kind']} [{e['status']}] {e['title'][:120]}",stage['id'])
     return kept
 
 def drain_jobs(desk,llm,stage_id=None):
@@ -412,8 +427,30 @@ class StageRunner:
         self.proc=None;self.run_dir=None;self.source=None;self.source_url=stage.get('sourceUrl');self.session=None;self.finished=None
         self.started=self.resolved_at=self.last_chunk=self.last_audio=self.retry_at=self.next_plan=self.last_beat=0.0;self.failures=0
         self.status=('ready','Starting');self.stderr=collections.deque(maxlen=12)
+        # Offset learned from speaker introductions today (minutes, and the configured offset it was learned under).
+        learned=desk.state.value.get('learnedOffsets',{}).get(self.id) or {}
+        self.learned=(learned['minutes'],learned['configOffset']) if learned.get('day')==london_day() else None;self.prev_text=''
 
     def conf(self):return next((s for s in self.desk.config['stages'] if s.get('id')==self.id),self.base)
+    def offset(self):
+        """Schedule offset in minutes: the one learned from speaker introductions, unless the config offset was changed since."""
+        configured=float(self.conf().get('scheduleOffsetMinutes',0) or 0)
+        if self.learned and self.learned[1]==configured:return self.learned[0]
+        if self.learned:self.say(f'scheduleOffsetMinutes changed to {configured:g}; using it instead of the offset learned from introductions');self.learned=None
+        return configured
+    def learn(self,text,now=None):
+        """When a scheduled speaker is introduced on stage, take that moment as the talk's start and shift the schedule to match."""
+        joined=(self.prev_text[-300:]+' '+text).strip();self.prev_text=text
+        try:boot=self.bootstrap.get()
+        except SafeError:return
+        now=now or dt.datetime.now(dt.timezone.utc);current=self.offset()
+        hit=live.heard_session(boot.get('sessions',[]),self.conf()['name'],joined,now,current,(self.session or {}).get('id'))
+        if not hit:return
+        info,name=hit;minutes=max(-180,min(180,round((now-info['start']).total_seconds()/60)))
+        if abs(minutes-current)<2:return
+        configured=float(self.conf().get('scheduleOffsetMinutes',0) or 0);self.learned=(minutes,configured)
+        self.desk.state.change(lambda s:s.setdefault('learnedOffsets',{}).__setitem__(self.id,{'minutes':minutes,'configOffset':configured,'day':london_day(),'at':utc(),'speaker':name,'sessionId':info['id']}))
+        self.say(f'Heard {name} introduced: "{info["title"][:80]}" starts now, so the schedule is shifted {minutes:+d} min (was {current:+g})');self.next_plan=0.0
     @property
     def done(self):return self.finished is not None and self.finished==self.source
     def say(self,message):log(message,self.id)
@@ -455,7 +492,8 @@ class StageRunner:
         else:source=('audio',st['audioUrl'])
         upcoming=None
         if mode=='schedule':
-            active,upcoming=live.pick_session(boot.get('sessions',[]),st['name'],now,st.get('scheduleOffsetMinutes',0))
+            active,upcoming=live.pick_session(boot.get('sessions',[]),st['name'],now,self.offset())
+            if active:active['hints']=live.following_speakers(boot.get('sessions',[]),st['name'],active['start']-dt.timedelta(minutes=self.offset()))
         elif mode=='desk':
             sid=(record or {}).get('sessionId') or (None if yt else st.get('sessionId'))
             match=next((s for s in boot.get('sessions',[]) if isinstance(s,dict) and s.get('id')==sid),None)
@@ -465,6 +503,7 @@ class StageRunner:
         return source,active,upcoming,None
 
     def apply(self,source,active,upcoming,waiting,now=None):
+        self.upcoming=upcoming
         if source!=self.source:
             if self.proc:self.say('Stream changed; restarting capture');self.stop_ffmpeg()
             self.source=source;self.finished=None;self.failures=0;self.retry_at=0.0
@@ -480,7 +519,9 @@ class StageRunner:
         if waiting:self.status=('ready',waiting)
         elif self.finished==source:self.status=('paused','Recording finished')
         elif not want:self.status=('ready','Between sessions'+(f" · next {upcoming['start'].astimezone(live.LONDON).strftime('%H:%M')} {upcoming['title'][:80]}" if upcoming else ''))
-        elif self.proc and self.session and time.monotonic()-self.last_audio<120:self.status=('live',('Live transcript: '+self.session.get('title','')[:120]).strip())
+        elif self.proc and self.session and time.monotonic()-self.last_audio<120:
+            late=round(self.offset()) if session_mode(self.desk.config)=='schedule' else 0
+            self.status=('live',('Live transcript: '+self.session.get('title','')[:120]).strip()+(f' · running {late} min behind schedule' if late>=2 else f' · running {-late} min ahead of schedule' if late<=-2 else ''))
         elif self.proc:self.status=('ready','Connected; waiting for the session' if not self.session else 'Connecting to the stream')
         if self.status!=getattr(self,'logged_status',None):self.logged_status=self.status;self.say(f'Status: {self.status[0]} · {self.status[1]}')
 
@@ -570,7 +611,9 @@ class StageRunner:
             else:f.unlink(missing_ok=True)  # between sessions: discard, no transcription, no model calls
 
     def consume(self,f,session,stage=None):
-        try:consume_audio(self.desk,stage or self.stage,f,self.keys,session)
+        try:
+            transcript=consume_audio(self.desk,stage or self.stage,f,self.keys,session)
+            if transcript and stage is None and session_mode(self.desk.config)=='schedule':self.learn(transcript['text'])
         except BudgetExceeded:raise
         except Exception as e:  # one bad chunk never stops the stage
             self.say(f'Chunk {f.name} failed ({type(e).__name__}: {live.redact(e)[:160]}); skipped');f.unlink(missing_ok=True)
@@ -615,10 +658,16 @@ class StageRunner:
         try:boot=self.bootstrap.get()
         except SafeError:return None
         at=dt.datetime.fromtimestamp(f.stat().st_mtime,dt.timezone.utc)
-        return live.pick_session(boot.get('sessions',[]),self.conf()['name'],at,self.conf().get('scheduleOffsetMinutes',0))[0]
+        return live.pick_session(boot.get('sessions',[]),self.conf()['name'],at,self.offset())[0]
 
     def beat(self):
-        self.last_beat=time.monotonic();self.desk.health(self.id,*self.status)
+        # The talk on stage now and the next one, for the Watch live caption; the delay shifts the next talk's time.
+        extra={}
+        if self.session and ID.fullmatch(str(self.session.get('id',''))):extra['sessionId']=self.session['id']
+        upcoming=getattr(self,'upcoming',None)
+        if upcoming and ID.fullmatch(str(upcoming.get('id',''))):extra['nextSessionId']=upcoming['id']
+        if session_mode(self.desk.config)=='schedule':extra['delayMinutes']=round(self.offset())
+        self.last_beat=time.monotonic();self.desk.health(self.id,*self.status,extra=extra)
 
 def final_summary(desk,llm,session_id):
     if not ID.fullmatch(session_id):raise SafeError('Invalid session id')
@@ -658,7 +707,7 @@ def validate_config(config):
     if not 0<=int(config.get('contextChunks',6))<=20:raise SafeError('contextChunks must be 0–20')
     if session_mode(config) not in ('schedule','desk','fixed'):raise SafeError('sessionMode must be schedule, desk or fixed')
     kinds=config.get('publishKinds',['announcement','summary'])
-    if not isinstance(kinds,list) or any(k not in ('announcement','summary') for k in kinds):raise SafeError('publishKinds may only list announcement and summary')
+    if not isinstance(kinds,list) or any(k not in ('announcement','briefing','summary') for k in kinds):raise SafeError('publishKinds may only list announcement, briefing and summary')
     for stage in config.get('stages',[]):
         if not -240<=float(stage.get('scheduleOffsetMinutes',0))<=240:raise SafeError('scheduleOffsetMinutes must be within ±240')
     try:live.llm_spec(config);live.asr_provider(config)

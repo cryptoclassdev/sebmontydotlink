@@ -54,6 +54,69 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Key points go live; Watch live shows the talk now and next; announcements gain detail as the talk goes on
+
+- **Date:** 16 November 2026
+- **Pull request:** [#19](https://github.com/cryptoclassdev/sebmontydotlink/pull/19), branch `feat/watch-now-and-next` (built on PR #18, which it includes).
+- **Status:** Ready for review. The page and API change go live on merge; the collector part on the Mac Mini when the stages job restarts (`bash scripts/mac/live.sh start stages`).
+- **Why:** On day 1 Seb saw "No session currently assigned" under the Main Stage player although the Mac knew the talk, and the first Main Stage announcement ("Solana moves from Mainnet Beta to Mainnet 1.0") was written from its first minute, ending "No technical details, dates or protocol changes were given", while the numbers (stake, transactions, Alpenglow finality) came a minute later.
+
+#### What changed
+0. **Key points go live:** at Seb's request (16 November, "I don't want drafts"), briefings can be listed in `publishKinds` and publish as Provisional like announcements; they show as "Live notes" cards. Both stage configs now list them (Main Stage and Royal Exchange: announcement, briefing, summary; LP Army: announcement, briefing). A briefing is written as one key point: its title is the point itself.
+1. **Now and next on Watch live:** the stage heartbeat carries `sessionId`, `nextSessionId` and `delayMinutes` (validated by the API; other heartbeats unchanged). The caption under the player shows "Now · <talk>" while audio is live and "Next · <time> · <talk>", the time shifted by the stage's delay, with "(running N min late)". A session assigned on the desk still wins.
+2. **Announcements gain detail:** the model sees the items already sent for this talk with their body. When the speaker adds real detail, it returns that item with `updates` set to its title and a complete body; the collector re-sends the same item (same id, title, quote, status and time) with the fuller body and takeaways, flagged `update: true`.
+3. **The site accepts such an update only from the collector, only for its own item:** never after an editor has saved it (entries now record `lastEditor`) and never once withdrawn. A plain retry is still a duplicate.
+4. **Prompt:** never write what was not said ("no details were given"); an updated body may run to 900 characters.
+
+#### Files touched
+- `breakpoint/collector/collect.py`, `breakpoint/collector/config.breakpoint-stages.json`, `breakpoint/collector/config.breakpoint-lparmy.json`, `breakpoint/server/api.mjs`, `breakpoint/src/main.tsx`, `public/breakpoint/` (rebuilt)
+- `breakpoint/tests/test_live.py`, `breakpoint/tests/api.test.mjs`
+- `breakpoint/README.md`, `README.md`
+
+#### How to check it
+On the Vercel preview, Watch live, Main Stage: once the Mac's stages job runs this version, the caption reads "Now · <talk>" and "Next · <time> · <talk>" (preview and production share storage, so the live heartbeat shows there too). On the live site after merge, an announcement card's text grows when the speaker adds detail, keeping its time and Provisional badge; `bash scripts/mac/live.sh logs stages` shows "Updated with new detail: <title>".
+
+#### Checks run
+- 73 Python tests, 53 Node tests, `tsc --noEmit`, page build. New tests: key points publish as Provisional when briefings are listed; heartbeat with now, next and delay stored and returned, bad ids and delays refused, other sources unchanged; a later chunk updates the same item (same id, title, quote, status) and the stored copy; the API accepts the collector's update to its own item, keeps the status, treats a plain retry as a duplicate, and ignores updates after an editor save or a withdrawal.
+
+#### Risks
+- An update rewrites a card's text while people read it; the title, quote and time stay the same.
+- Old collectors keep working: they send no update flag and no extra heartbeat fields.
+
+#### Roll back
+Revert this PR. Updated cards keep their latest text; the caption returns to the desk assignment only.
+
+### Stage transcription follows the room: speaker introductions shift the schedule
+
+- **Date:** 16 November 2026
+- **Pull request:** [#18](https://github.com/cryptoclassdev/sebmontydotlink/pull/18), branch `feat/stage-schedule-from-intros`.
+- **Status:** Ready for review. Collector, tests and docs only; the website is unchanged. Takes effect on the Mac Mini when the stages job restarts (`bash scripts/mac/live.sh start stages`).
+- **Why:** Seb asked for the talk to be recognised from the transcript, since every talk starts with its speaker being introduced. On day 1 the Main Stage stream was still on "Breakpoint will begin shortly" at 10:04 for a 10:00 start, and many talks are 5 to 10 minutes long, so a fixed schedule would credit announcements to the wrong talk.
+
+#### What changed
+1. After each transcribed chunk (with the end of the previous one), the collector looks for an introduction: a cue ("please welcome", "give it up for", "joined by", "next up", "our next" and similar) followed within about 70 characters by the name of a scheduled speaker on that stage, or by their surname if it has 5+ letters. Accents and punctuation are ignored, and names count as heard when they sound close enough (Whisper wrote "Lily Lu and Rachel Connors" for Lily Liu and Rachel Conlan at 10:09 on day 1): a similarity of 0.8 overall, with the first name and surname each close on their own. If several speakers are named, the last one wins ("thank you A, and please welcome B").
+2. Only talks on that stage within 45 minutes of now (after the current shift) count, and never a talk earlier than the current one. The moment of the introduction becomes that talk's start: the stage's offset is set to the difference (if it changes by 2 minutes or more), so this talk and the following ones line up. Logged as "Heard <speaker> introduced"; the live status on Watch live adds "running N min behind schedule".
+3. The learned offset is kept in the stage's checkpoint for the day and survives a restart. Editing `scheduleOffsetMinutes` by hand replaces it.
+4. The speakers of the next two talks are added to the Whisper prompt so their names are transcribed correctly when they are introduced.
+
+#### Files touched
+- `breakpoint/collector/live.py`, `breakpoint/collector/collect.py`
+- `breakpoint/tests/test_live.py`
+- `breakpoint/README.md`, `README.md`
+
+#### How to check it
+Nothing changes on the Vercel preview. On the Mac Mini after `bash scripts/mac/live.sh start stages`: `bash scripts/mac/live.sh logs stages` shows "Heard ... introduced" lines as talks begin, and Watch live, Source health, Main Stage reads "Live transcript: <talk> · running N min behind schedule" when the stage is late.
+
+#### Checks run
+- 69 Python tests and 49 Node tests. New tests: introductions found with full names, long surnames and accents; passing mentions, earlier talks, far-off talks and 4-letter surnames alone ignored; the last introduced speaker wins; an 8-minute-late introduction moves this talk and the next, shows in the status, survives a restart, ignores a 1-minute change, and gives way to a manual offset; recovered chunks do not move the schedule.
+
+#### Risks
+- A cue followed by a scheduled speaker's name in passing (for example "next up we'll hear from ...", said early) can shift the schedule to that talk too soon; the 45-minute window, the forward-only rule and the 2-minute threshold limit this, and the next real introduction corrects it. A misheard name means no shift, which is today's behaviour.
+- A wrong shift can be overridden at once by setting `scheduleOffsetMinutes` in `collector/config.breakpoint-stages.json` (applies within a minute).
+
+#### Roll back
+Revert this PR and restart the stages job with `start`. A learned offset left in the checkpoint is ignored by the old code.
+
 ### Event-day fixes: a rejected update no longer holds up the rest; the desk accepts any YouTube link; LP Army job
 
 - **Date:** 16 November 2026

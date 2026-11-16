@@ -276,10 +276,35 @@ class Pipeline(unittest.TestCase):
         llm = self.llm([anthropic_reply([ITEM]), anthropic_reply([repeat, note])])
         c.drain_jobs(self.desk, llm)
         payload = json.loads(self.calls[1][1]['messages'][0]['content'])
-        self.assertEqual(payload['alreadyCovered'], ['Kamino ships Lend V3'])
+        self.assertEqual(payload['alreadyCovered'], [{'title': 'Kamino ships Lend V3', 'body': 'Kamino said Lend V3 is live on mainnet today.'}])
         lines = [json.loads(x) for x in (pathlib.Path(self.tmp.name) / 'dry-run.jsonl').read_text().splitlines()]
         entries = [e for line in lines for e in line['payload'].get('entries', [])]
         self.assertEqual(sorted((e['title'], e['status']) for e in entries), [('Kamino ships Lend V3', 'provisional'), ('Panel discusses fees', 'draft')])
+
+    def test_key_points_publish_when_briefings_are_listed(self):
+        # 16 Nov: Seb wants the talk's key points live, not held as drafts.
+        self.config['publishKinds'] = ['announcement', 'briefing', 'summary']
+        self.chunks(['Kamino Lend V3 is live on mainnet today', 'we discussed fees'])
+        note = dict(ITEM, kind='briefing', title='Panel discusses fees', excerpt='we discussed fees')
+        c.drain_jobs(self.desk, self.llm([anthropic_reply([ITEM, note])]))
+        lines = [json.loads(x) for x in (pathlib.Path(self.tmp.name) / 'dry-run.jsonl').read_text().splitlines()]
+        entries = [e for line in lines for e in line['payload'].get('entries', [])]
+        self.assertEqual(sorted((e['kind'], e['status']) for e in entries), [('announcement', 'provisional'), ('briefing', 'provisional')])
+
+    def test_later_detail_updates_the_same_item(self):
+        # 16 Nov: the Mainnet 1.0 card was written from the first minute; the numbers came after the video.
+        self.chunks(['Kamino Lend V3 is live on mainnet today', 'yes', 'Lend V3 has 2 billion dollars of deposits already', 'and isolated markets'])
+        more = dict(ITEM, title='Kamino Lend V3 passes $2B', body='Kamino said Lend V3 is live on mainnet today and already holds $2B in deposits.',
+                    excerpt='Lend V3 has 2 billion dollars of deposits already', takeaways=['Live today', '$2B deposits'], updates='Kamino ships Lend V3')
+        c.drain_jobs(self.desk, self.llm([anthropic_reply([ITEM]), anthropic_reply([more])]))
+        lines = [json.loads(x) for x in (pathlib.Path(self.tmp.name) / 'dry-run.jsonl').read_text().splitlines()]
+        entries = [e for line in lines for e in line['payload'].get('entries', [])]
+        self.assertEqual(len({e['id'] for e in entries}), 1)
+        first, second = entries
+        self.assertEqual((second['title'], second['excerpt'], second['status'], second.get('update')), (first['title'], first['excerpt'], first['status'], True))
+        self.assertIn('$2B', second['body'])
+        self.assertNotIn('updates', first)
+        self.assertIn('$2B', self.desk.state.value['live'][entries[0]['sessionId']]['items'][0]['body'])
 
     def test_forced_tool_for_haiku_and_automatic_switch_when_rejected(self):
         self.config['llm'] = dict(self.config['llm'], model='claude-haiku-5-5', fallback=None)
@@ -468,8 +493,117 @@ class DryRun(unittest.TestCase):
             c.require_keys(base, {'ZAI_API_KEY': 'z'})
         c.require_keys(base, {'ANTHROPIC_API_KEY': 'a'})  # Sonnet with a Haiku fallback: one key
         with self.assertRaises(c.SafeError):
-            c.validate_config(dict(base, publishKinds=['briefing']))
+            c.validate_config(dict(base, publishKinds=['social']))
+        c.validate_config(dict(base, publishKinds=['announcement', 'briefing', 'summary']))
 
 
 if __name__ == '__main__':
     unittest.main()
+
+
+def talk(id, time, minutes, speakers, stage='Main Stage'):
+    return {'id': id, 'title': 'Talk ' + id, 'date': '2026-11-16', 'time': time, 'durationMinutes': minutes, 'stage': stage,
+            'dateVerified': True, 'speakerNames': speakers, 'speakers': [{'name': n} for n in speakers]}
+
+
+DAY = [talk('welcome', '10:00', 20, ['Lily Liu']), talk('mg', '10:20', 10, ['Anthony Soohoo']), talk('stable', '10:30', 10, ['Zach Abrams']),
+       talk('zelle', '10:40', 10, ['Alexandra Lang']), talk('es', '10:50', 10, ['José Fernández']),
+       talk('rx', '10:30', 10, ['Zach Abrams'], stage='Royal Exchange')]
+
+
+class Introductions(unittest.TestCase):
+    """16 Nov: talks start when their speaker is introduced, not on the published minute."""
+
+    def heard(self, text, when, offset=0, current=None):
+        hit = live.heard_session(DAY, 'Main Stage', text, at(when), offset, current)
+        return hit and (hit[0]['id'], hit[1])
+
+    def test_finds_the_talk_whose_speaker_is_introduced(self):
+        self.assertEqual(self.heard('Please welcome to the stage the CEO of MoneyGram, Anthony Soohoo!', '2026-11-16T10:28:00', current='welcome'),
+                         ('mg', 'Anthony Soohoo'))
+        self.assertEqual(self.heard('Up next, please give it up for Mr. Soohoo', '2026-11-16T10:28:00'), ('mg', 'Anthony Soohoo'))
+        self.assertEqual(self.heard('Thank you Anthony Soohoo. And now please welcome Zach Abrams.', '2026-11-16T10:41:00', current='mg'),
+                         ('stable', 'Zach Abrams'))
+        self.assertEqual(self.heard('please welcome Jose Fernandez', '2026-11-16T10:52:00'), ('es', 'José Fernández'))
+        self.assertEqual(self.heard('our next speaker, Alexandra Lang', '2026-11-16T10:40:00'), ('zelle', 'Alexandra Lang'))
+        # Whisper's spelling of names on day 1 at 10:09: "Please welcome to the stage Lily Lu and Rachel Connors."
+        self.assertEqual(self.heard('This is the token super cycle. Please welcome to the stage Lily Lu and Rachel Connors.', '2026-11-16T10:09:00',
+                                    current='welcome'), ('welcome', 'Lily Liu'))
+        self.assertEqual(self.heard('please welcome Zack Abrams', '2026-11-16T10:31:00'), ('stable', 'Zach Abrams'))
+        self.assertIsNone(self.heard('please welcome really new builders', '2026-11-16T10:05:00'))
+        self.assertIsNone(self.heard('Welcome, everybody. Lily, I think we have to do this every week.', '2026-11-16T10:09:00'))
+
+    def test_ignores_passing_mentions_earlier_talks_and_far_talks(self):
+        self.assertIsNone(self.heard('As Anthony Soohoo said earlier, ramps matter.', '2026-11-16T10:28:00'))
+        self.assertIsNone(self.heard('welcome back, Anthony Soohoo made a great point', '2026-11-16T10:35:00', current='stable'))
+        self.assertIsNone(self.heard('please welcome Anthony Soohoo', '2026-11-16T12:00:00'))
+        self.assertIsNone(self.heard('please welcome Lang', '2026-11-16T10:40:00'))  # a 4-letter surname alone is not enough
+        self.assertEqual(self.heard('please welcome Anthony Soohoo', '2026-11-16T12:00:00', offset=95), ('mg', 'Anthony Soohoo'))
+
+    def test_next_speakers_go_into_the_speech_prompt(self):
+        names = live.following_speakers(DAY, 'Main Stage', at('2026-11-16T10:20:00'))
+        self.assertEqual(names, ['Zach Abrams', 'Alexandra Lang'])
+        self.assertIn('Zach Abrams', live.glossary({'speakers': ['Anthony Soohoo'], 'hints': names}, []))
+
+
+class LearnedOffset(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.config = {'siteUrl': 'https://www.sebmonty.link/breakpoint', 'sessionMode': 'schedule', 'llm': {'provider': 'none'},
+                       'stages': [{'id': 'main', 'name': 'Main Stage', 'enabled': True, 'youtube': 'desk', 'scheduleOffsetMinutes': 0}]}
+        self.desk = c.Desk(self.config, c.State(self.tmp.name, 1), '', dry_run=True)
+        self.boot = FakeBootstrap({'streams': [{'id': 'main', 'name': 'Main Stage', 'embedUrl': 'https://www.youtube.com/embed/l8Sk-jInOHo', 'enabled': True}],
+                                   'sessions': DAY})
+        self.runner = self.make()
+
+    def make(self):
+        runner = c.StageRunner(self.desk, self.config['stages'][0], {}, self.boot)
+        runner.start_ffmpeg = lambda: setattr(runner, 'proc', 'running')
+        runner.stop_ffmpeg = lambda consume=True: setattr(runner, 'proc', None)
+        runner.close_session = lambda old: None
+        return runner
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def step(self, when, runner=None):
+        runner = runner or self.runner
+        now = at(when)
+        runner.apply(*runner.plan(now), now=now)
+        return (runner.session or {}).get('id')
+
+    def test_an_introduction_shifts_the_schedule_and_survives_a_restart(self):
+        self.assertEqual(self.step('2026-11-16T10:21:00'), 'mg')                  # published time: MoneyGram
+        self.assertIn('Zach Abrams', self.runner.session['hints'])
+        self.runner.learn('Lily, thank you. Please welcome to the stage Anthony Soohoo.', now=at('2026-11-16T10:28:00'))
+        self.assertEqual(self.runner.offset(), 8)
+        self.assertEqual(self.step('2026-11-16T10:36:00'), 'mg')                  # still MoneyGram: it started 8 min late
+        self.assertEqual(self.step('2026-11-16T10:37:30'), 'stable')              # 10:30 + 8, with the one-minute lead
+        self.runner.proc = 'running'
+        self.runner.last_audio = c.time.monotonic()
+        self.step('2026-11-16T10:39:00')
+        self.assertEqual(self.runner.status, ('live', 'Live transcript: Talk stable · running 8 min behind schedule'))
+        self.assertEqual(self.desk.state.value['learnedOffsets']['main']['minutes'], 8)
+        self.assertEqual(self.make().offset(), 8)                                  # a restart keeps it for the day
+        self.runner.learn('next up, Alexandra Lang', now=at('2026-11-16T10:49:00'))  # 9 min late: under 2 min of change, kept
+        self.assertEqual(self.runner.offset(), 8)
+        self.config['stages'][0]['scheduleOffsetMinutes'] = 3                    # a manual change wins
+        self.assertEqual(self.runner.offset(), 3)
+
+    def test_heartbeat_reports_the_talk_now_and_next_with_the_delay(self):
+        sent = []
+        self.desk.send = lambda payload: sent.append(payload)
+        self.runner.learned = (9, 0.0)
+        self.step('2026-11-16T10:31:00')
+        self.runner.beat()
+        beat = [p for p in sent if 'heartbeat' in p][-1]['heartbeat']
+        self.assertEqual((beat['sessionId'], beat['nextSessionId'], beat['delayMinutes']), ('mg', 'stable', 9))
+
+    def test_chunks_feed_the_detector_only_for_live_audio_in_schedule_mode(self):
+        heard = []
+        self.runner.learn = lambda text, now=None: heard.append(text)
+        transcript = {'text': 'please welcome Zach Abrams'}
+        with patch.object(c, 'consume_audio', return_value=transcript):
+            self.runner.consume(pathlib.Path('x.wav'), {'id': 'mg'})
+            self.runner.consume(pathlib.Path('y.wav'), {'id': 'mg'}, stage={'id': 'main', 'name': 'Main Stage', 'sourceUrl': 'x'})  # recovery
+        self.assertEqual(heard, ['please welcome Zach Abrams'])
