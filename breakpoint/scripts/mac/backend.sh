@@ -5,6 +5,7 @@
 #
 #   bash scripts/mac/backend.sh start    start (or restart) both, then print the tunnel address
 #   bash scripts/mac/backend.sh url      print the tunnel address (Vercel env BREAKPOINT_BACKEND_URL)
+#   bash scripts/mac/backend.sh restart  restart the backend only (after updating this checkout); the tunnel and its address stay
 #   bash scripts/mac/backend.sh status   both jobs, recent log lines, and a test request through the tunnel
 #   bash scripts/mac/backend.sh stop     stop both (storage stays in DATA)
 #
@@ -69,6 +70,10 @@ case "${1:-}" in
     echo "Waiting for the tunnel address..."
     for i in $(seq 1 30); do [ -n "$(url)" ] && break; sleep 1; done
     sleep 2; "$0" status ;;
+  restart)
+    running "$B_LABEL" || { echo "$B_LABEL is not running: use start"; exit 1; }
+    launchctl kickstart -k "$DOMAIN/$B_LABEL" && echo "Restarted $B_LABEL (tunnel untouched)"
+    sleep 3; "$0" status ;;
   url) u="$(url)"; [ -n "$u" ] && echo "$u" || { echo "No tunnel address yet; see $DATA/tunnel.err.log"; exit 1; } ;;
   status)
     for l in "$B_LABEL" "$T_LABEL"; do running "$l" && echo "== $l: running" || echo "== $l: not running"; done

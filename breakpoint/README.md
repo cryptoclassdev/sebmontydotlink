@@ -52,6 +52,7 @@ Added 17 November 2026, when the Upstash database ran out of credits. The Mac Mi
 2. `cd ~/breakpoint-live/backend/breakpoint && bash scripts/mac/backend.sh start` starts the backend and the tunnel under launchd and prints `BREAKPOINT_BACKEND_URL=https://<words>.trycloudflare.com`. Needs `node` and `cloudflared` (`brew install cloudflared`). Records and logs: `~/breakpoint-live/backend-data`. Tokens: the jobs' `.local/provider-secrets.json`.
 3. Vercel, Production: set `BREAKPOINT_BACKEND_URL` to that address, then redeploy.
 4. `bash scripts/mac/backend.sh status` shows both jobs, the backend log and a test request through the tunnel; `stop` stops both (records stay).
+5. Code or programme changes (`seed.json`) reach readers only when the Mac's checkout is updated, because the Mac serves `/api/bootstrap` too: `git -C ~/breakpoint-live/backend fetch origin main && git -C ~/breakpoint-live/backend checkout --detach origin/main && bash scripts/mac/backend.sh restart` (`restart` leaves the tunnel and its address alone; `start` restarts both).
 
 The CDN still answers most reads (`/live` 15 s), so the Mac serves a few requests a minute. If the Mac or tunnel does not answer, reads fall back to the programme without live coverage and writes get a 503, which the Mac jobs keep in their outbox and retry. A quick tunnel gets a new address whenever it restarts: run `backend.sh url`, update the variable and redeploy. Records stored in Upstash before the switch are not copied.
 
