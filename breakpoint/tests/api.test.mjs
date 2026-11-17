@@ -5,6 +5,9 @@ import {createApi,LIVE_LIMIT} from '../server/api.mjs';
 import {sourceHealth,makeCalendar,validateStream} from '../server/core.mjs';
 import {upstashBucket} from '../server/upstash.mjs';
 import {fakeUpstash} from './fake-upstash.mjs';
+import {fileBucket} from '../server/files.mjs';
+import os from 'node:os';
+import path from 'node:path';
 const seed=JSON.parse(fs.readFileSync(new URL('../data/seed.json',import.meta.url)));
 const BASE='/breakpoint';
 
@@ -22,7 +25,7 @@ class UpstashBucket {
  keys(){return this.fake.keys().map(k=>k.replace(/^bp:/,''));}
 }
 
-for (const [label,make] of [['memory bucket',()=>new Bucket()],['upstash adapter',()=>new UpstashBucket()]]) {
+for (const [label,make] of [['memory bucket',()=>new Bucket()],['upstash adapter',()=>new UpstashBucket()],['file bucket (Mac backend)',()=>fileBucket(fs.mkdtempSync(path.join(os.tmpdir(),'bp-files-')))]]) {
 function fixture(extra={},options={}){const env={BUCKET:make(),EDITOR_TOKEN:'editor-test',INGEST_TOKEN:'ingest-test',...extra};const api=createApi(seed,{basePath:BASE,...options});return {env,call:(path,body,token)=>api(new Request('https://test.example'+BASE+path,{method:body?'POST':'GET',headers:{...(body?{'content-type':'application/json'}:{}),...(token?{authorization:'Bearer '+token}:{})},...(body?{body:JSON.stringify(body)}:{})}),env)};}
 const entry=(id='news-1')=>({id,kind:'announcement',status:'verified',title:'Fixture announcement',body:'Testing evidence',excerpt:'Testing evidence',sourceUrl:'https://solana.com/breakpoint',sourceName:'Fixture',occurredAt:new Date().toISOString(),projectIds:[],takeaways:[],novelty:'unknown',tokenImpact:'unclear'});
 

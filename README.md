@@ -54,6 +54,47 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Mac Mini backend: the guide runs without Upstash
+
+- **Date:** 17 November 2026
+- **Pull request:** [#34](https://github.com/cryptoclassdev/sebmontydotlink/pull/34), branch `fix/mac-backend`.
+- **Status:** Ready for review. Nothing changes until `BREAKPOINT_BACKEND_URL` is set in Vercel, except the Main Stage player, which defaults to the day 2 stream.
+- **Why:** On 17 November the Upstash database ran out of credits and Seb chose not to pay for it. Every storage request failed: `/api/live` showed only the 3 seed cards, `/api/feed` returned 503, every stage and X read "Awaiting connection", and the desk could not save the day 2 stream link.
+
+#### What changed
+1. `breakpoint/server/files.mjs`: storage in files with the same interface as the Upstash adapter (get, put with ETag preconditions, list by prefix in byte order with a cursor, getMany). Records are kept in memory and written through to one file per key (temporary file, then rename).
+2. `breakpoint/scripts/mac-backend.mjs`: the production API (same seed, Luma side events, Jupiter prices, X embeds, provisional publishing on) on `127.0.0.1:4318` with that storage. Tokens come from the Mac jobs' `provider-secrets.json`, so the jobs and the desk authenticate unchanged. Logs request counts every 5 minutes.
+3. `breakpoint/scripts/mac/backend.sh`: starts the backend and a Cloudflare quick tunnel as launchd jobs (restart after a crash), prints the tunnel address, `status` tests a request through the tunnel, `stop` stops both.
+4. `app/breakpoint/api/[...path]/route.ts`: when `BREAKPOINT_BACKEND_URL` (https) is set, every `/breakpoint/api/*` request goes to it with the method, `authorization`, `content-type` and body; status, body and the cache headers come back unchanged, so the CDN keeps caching `/live` for 15 s. Upstash is then not used. If the backend does not answer (or answers 5xx that is not the API's JSON), reads fall back to this server without storage and writes get a 503.
+5. `breakpoint/data/seed.json`: the Main Stage stream defaults to the day 2 broadcast (`0ySKm0h0ZFc`), so the player works with no storage; a link saved on the desk still replaces it.
+6. `breakpoint/README.md`: "Mac Mini backend (no Upstash)" with the setup steps, and the new variable.
+
+#### Files touched
+- `breakpoint/server/files.mjs` (new), `breakpoint/scripts/mac-backend.mjs` (new), `breakpoint/scripts/mac/backend.sh` (new)
+- `app/breakpoint/api/[...path]/route.ts`, `breakpoint/data/seed.json`
+- `breakpoint/tests/files.test.mjs` (new), `breakpoint/tests/api.test.mjs`
+- `breakpoint/README.md`, `README.md`
+
+#### How to check it
+1. On the Mac: set up the checkout and run `bash scripts/mac/backend.sh start` (see `breakpoint/README.md`); `status` shows `local: 200` and `tunnel: 200`.
+2. In Vercel set `BREAKPOINT_BACKEND_URL`, then merge (or redeploy).
+3. `https://www.sebmonty.link/breakpoint/api/live` shows `"storage":"ready"` and, within a minute, `health.main.state` `live` and `health.x.state` `live`; new stage notes and X posts appear on the page; `/api/feed` answers 200.
+4. Desk: save a stream link; it shows on Watch live.
+
+#### Checks run
+- The whole API test suite now also runs against the file storage (memory, Upstash adapter and files): 91 Node tests, 82 Python tests.
+- New tests: records and ETags survive a restart, ETag preconditions, prefix listing and cursor paging in byte order, a damaged file is skipped.
+- End to end: the backend on `127.0.0.1:4318` and the Vercel route bundled with esbuild, its fetch pointed at the backend. Heartbeat and entry ingestion, `/live` with the entry and `storage: ready`, desk stream save, `/feed`, `/bootstrap` and its cache header, a wrong token refused (401); with the backend answering 502, `/live` falls back to the seed (day 2 player still set) and ingest gets 503. After a backend restart the records are still there. `tsc --noEmit` on the route.
+
+#### Risks
+- The Mac is now the database: if it sleeps, loses its connection or the tunnel stops, live coverage stops (the programme and player still show) and the jobs queue their posts until it is back.
+- Cloudflare quick tunnels have no uptime guarantee, and the address changes when the tunnel restarts; the variable then needs updating and a redeploy.
+- Day 1 records stay in Upstash and are not shown.
+- Anyone who learns the tunnel address can call the API directly, bypassing the CDN cache. Writes still need the tokens.
+
+#### Roll back
+Remove `BREAKPOINT_BACKEND_URL` in Vercel and redeploy (back to Upstash), or revert this PR. Then `bash scripts/mac/backend.sh stop` on the Mac.
+
 ### Breakpoint: Royal Exchange shows "Not livestreamed" instead of waiting for a player
 
 - **Date:** 16 November 2026

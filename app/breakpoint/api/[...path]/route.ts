@@ -31,17 +31,74 @@ const api = createApi(seed, {
   attachEmbeds: createTweetEmbeds(),
 })
 
+// Mac Mini backend: when BREAKPOINT_BACKEND_URL is set (an https address, normally a Cloudflare tunnel
+// to breakpoint/scripts/mac-backend.mjs), every /breakpoint/api/* request is passed on to it and Upstash
+// is not used. Its cache headers come back unchanged, so the CDN still answers most reads (15 s for /live).
+// If it does not answer, reads fall back to this server without storage (programme, side events,
+// briefings) and writes get a 503, which the Mac jobs keep in their outbox and retry.
+const backend = (() => {
+  const raw = (process.env.BREAKPOINT_BACKEND_URL ?? "").trim().replace(/\/+$/, "")
+  try {
+    return raw && new URL(raw).protocol === "https:" ? raw : ""
+  } catch {
+    return ""
+  }
+})()
+
 // Storage is optional: without Upstash env vars the public guide still works
 // (programme, side events, briefings); the editorial desk and live coverage need it.
-const bucket = upstashBucketFromEnv(process.env)
+const bucket = backend ? null : upstashBucketFromEnv(process.env)
 
-function handle(request: Request) {
+function local(request: Request) {
   return api(request, {
     BUCKET: bucket,
     EDITOR_TOKEN: process.env.BREAKPOINT_EDITOR_TOKEN,
     INGEST_TOKEN: process.env.BREAKPOINT_INGEST_TOKEN,
     AUTO_PUBLISH_PROVISIONAL: process.env.BREAKPOINT_AUTO_PUBLISH_PROVISIONAL,
   })
+}
+
+const PASS = ["content-type", "cache-control", "content-disposition", "x-content-type-options", "content-security-policy"]
+
+async function viaBackend(request: Request) {
+  const url = new URL(request.url)
+  const read = request.method === "GET" || request.method === "HEAD"
+  const headers: Record<string, string> = {}
+  for (const h of ["authorization", "content-type"]) {
+    const v = request.headers.get(h)
+    if (v) headers[h] = v
+  }
+  const body = read ? undefined : await request.arrayBuffer()
+  try {
+    const res = await fetch(backend + url.pathname + url.search, {
+      method: request.method,
+      headers,
+      body,
+      cache: "no-store",
+      redirect: "manual",
+      signal: AbortSignal.timeout(20_000),
+    })
+    // A tunnel or Mac that is down answers 5xx with an HTML page, not the API's JSON.
+    const type = res.headers.get("content-type") ?? ""
+    if (res.status >= 500 && !type.includes("json")) throw new Error(`Backend answered ${res.status}`)
+    const out = new Headers()
+    for (const h of PASS) {
+      const v = res.headers.get(h)
+      if (v) out.set(h, v)
+    }
+    return new Response(res.body, { status: res.status, headers: out })
+  } catch (error) {
+    console.error("Breakpoint backend unreachable:", String((error as Error)?.message ?? error).slice(0, 200))
+    if (read) return local(request)
+    return new Response(JSON.stringify({ error: "Service temporarily unavailable" }), {
+      status: 503,
+      headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" },
+    })
+  }
+}
+
+function handle(request: Request) {
+  return backend ? viaBackend(request) : local(request)
 }
 
 export const GET = handle
