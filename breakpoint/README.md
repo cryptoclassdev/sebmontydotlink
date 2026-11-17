@@ -36,10 +36,24 @@ API routes (all under `/breakpoint/api`):
 | `BREAKPOINT_INGEST_TOKEN` | Collector | A different long random string. |
 | `JUPITER_API_KEY` | Optional | Free key from developers.jup.ag/portal for a higher Jupiter rate limit. Without it, token prices use Jupiter's keyless access. |
 | `BREAKPOINT_AUTO_PUBLISH_PROVISIONAL` | Optional | `true` lets collector drafts publish as Provisional (the collector must also set `publishProvisional`). Default off. |
+| `BREAKPOINT_BACKEND_URL` | Optional: Mac Mini backend | The https address printed by `bash scripts/mac/backend.sh url` (a Cloudflare quick tunnel). When set, every `/breakpoint/api/*` request goes to the Mac and Upstash is not used. Redeploy after changing it. |
 
 To price another project, add its `mintAddress` and a first-party `mintSourceUrl` (the project's own docs or app) in `seed.json`. Never add a mint from a ticker search.
 
 Never paste these values into chat, code or a URL. The collector's copy goes in through `python3 collector/setup.py` (masked macOS popups).
+
+## Mac Mini backend (no Upstash)
+
+Added 17 November 2026, when the Upstash database ran out of credits. The Mac Mini serves the same API (`scripts/mac-backend.mjs`, same code and options as production) with storage in files on the Mac (`server/files.mjs`), reached by Vercel through a free Cloudflare quick tunnel. The page, the desk and the Mac jobs keep using `https://www.sebmonty.link/breakpoint`; nothing in the collector configs changes.
+
+1. On the Mac, a checkout of main beside the jobs' folder (the jobs keep running):
+   `git -C ~/breakpoint-live/sebmontydotlink fetch origin main && git -C ~/breakpoint-live/sebmontydotlink worktree add --detach ~/breakpoint-live/backend origin/main`
+   (later updates: `git -C ~/breakpoint-live/backend checkout --detach origin/main` after a fetch).
+2. `cd ~/breakpoint-live/backend/breakpoint && bash scripts/mac/backend.sh start` starts the backend and the tunnel under launchd and prints `BREAKPOINT_BACKEND_URL=https://<words>.trycloudflare.com`. Needs `node` and `cloudflared` (`brew install cloudflared`). Records and logs: `~/breakpoint-live/backend-data`. Tokens: the jobs' `.local/provider-secrets.json`.
+3. Vercel, Production: set `BREAKPOINT_BACKEND_URL` to that address, then redeploy.
+4. `bash scripts/mac/backend.sh status` shows both jobs, the backend log and a test request through the tunnel; `stop` stops both (records stay).
+
+The CDN still answers most reads (`/live` 15 s), so the Mac serves a few requests a minute. If the Mac or tunnel does not answer, reads fall back to the programme without live coverage and writes get a 503, which the Mac jobs keep in their outbox and retry. A quick tunnel gets a new address whenever it restarts: run `backend.sh url`, update the variable and redeploy. Records stored in Upstash before the switch are not copied.
 
 ## Work on it
 

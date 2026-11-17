@@ -5918,9 +5918,9 @@
     {
       "id": "main",
       "name": "Main Stage",
-      "embedUrl": null,
-      "sourceUrl": "https://solana.com/breakpoint",
-      "enabled": false
+      "embedUrl": "https://www.youtube.com/embed/0ySKm0h0ZFc",
+      "sourceUrl": "https://www.youtube.com/watch?v=0ySKm0h0ZFc",
+      "enabled": true
     },
     {
       "id": "royal",
