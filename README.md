@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Mac Mini backend: the guide runs without Upstash
 
 - **Date:** 17 November 2026
-- **Pull request:** PR_LINK, branch `fix/mac-backend`.
+- **Pull request:** [#34](https://github.com/cryptoclassdev/sebmontydotlink/pull/34), branch `fix/mac-backend`.
 - **Status:** Ready for review. Nothing changes until `BREAKPOINT_BACKEND_URL` is set in Vercel, except the Main Stage player, which defaults to the day 2 stream.
 - **Why:** On 17 November the Upstash database ran out of credits and Seb chose not to pay for it. Every storage request failed: `/api/live` showed only the 3 seed cards, `/api/feed` returned 503, every stage and X read "Awaiting connection", and the desk could not save the day 2 stream link.
 
