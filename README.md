@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Breakpoint: day 2 programme refreshed from the official agenda
 
 - **Date:** 17 November 2026
-- **Pull request:** PR_LINK, branch `fix/day2-agenda`.
+- **Pull request:** [#35](https://github.com/cryptoclassdev/sebmontydotlink/pull/35), branch `fix/day2-agenda`.
 - **Status:** Ready for review. With the Mac Mini backend (#34) the programme is served by the Mac, so after merging, update its checkout and run `bash scripts/mac/backend.sh restart` (below).
 - **Why:** The guide's programme came from the 13 November export; solana.com/breakpoint/schedule has changed since. On day 2, 31 talks moved or were renamed and 5 are new: from 12:05 London most Main Stage talks run 3 to 8 minutes earlier, lunch is 12:40 to 13:40, "Debate: SOL Is Money" moved from 12:37 to 13:40, "Leap" from 16:14 to 12:20, "Breakpoint 2027 Announcement" from 12:54 to 12:35. The live transcriber picks the talk for each note from these times, so notes around lunch would have gone to the wrong talk, and readers saw wrong times in Schedule and Now and next.
 
