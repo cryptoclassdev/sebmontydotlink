@@ -54,6 +54,40 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Breakpoint: day 2 programme refreshed from the official agenda
+
+- **Date:** 17 November 2026
+- **Pull request:** [#35](https://github.com/cryptoclassdev/sebmontydotlink/pull/35), branch `fix/day2-agenda`.
+- **Status:** Ready for review. With the Mac Mini backend (#34) the programme is served by the Mac, so after merging, update its checkout and run `bash scripts/mac/backend.sh restart` (below).
+- **Why:** The guide's programme came from the 13 November export; solana.com/breakpoint/schedule has changed since. On day 2, 31 talks moved or were renamed and 5 are new: from 12:05 London most Main Stage talks run 3 to 8 minutes earlier, lunch is 12:40 to 13:40, "Debate: SOL Is Money" moved from 12:37 to 13:40, "Leap" from 16:14 to 12:20, "Breakpoint 2027 Announcement" from 12:54 to 12:35. The live transcriber picks the talk for each note from these times, so notes around lunch would have gone to the wrong talk, and readers saw wrong times in Schedule and Now and next.
+
+#### What changed
+1. `breakpoint/research/agenda-export-2026-11-17.json` (new): both days and both stages read from the official agenda in a real browser at 11:25 London: 113 talks, 8 breaks, speakers with roles, tracks.
+2. `breakpoint/data/seed.json` and `breakpoint/research/sessions.json`: imported with `scripts/import-agenda.py`, then `scripts/clean-seed.py` and `scripts/link-x-accounts.py`. Day 2: 31 talks with new times or titles; new "Why a Top Trading House Is Bringing Commodities to Solana" (12:10), "Fireside: CoinGecko" (12:25), "Cashtags on X" (15:44), "Explore the Frontier" (15:49), "Beyond Collectibles" (16:16); gone "Why a Top Japanese Trading House…", "Temporal 2027: Exploring the Frontier", "Beauty, Fashion, Luxury…". Royal Exchange renames in the same slots (Huma, Zerohash, Atum, Noah, Plume and Fidelity, Europe, Bitwise, Superstate). Day 1 updated to the official times too. Speakers 149 to 155. Session ids are kept for every talk that still exists (matched by title, then by slot), including the one being transcribed at the time.
+3. `breakpoint/scripts/mac/backend.sh restart`: restarts only the backend, so the tunnel keeps its address. `breakpoint/README.md` says how to update the Mac's checkout.
+4. The page bundle is unchanged (the programme comes from `/api/bootstrap`).
+
+#### Files touched
+- `breakpoint/research/agenda-export-2026-11-17.json` (new), `breakpoint/research/README.md`
+- `breakpoint/data/seed.json`, `breakpoint/research/sessions.json`
+- `breakpoint/scripts/mac/backend.sh`, `breakpoint/README.md`, `README.md`
+
+#### How to check it
+1. After merging, on the Mac: `git -C ~/breakpoint-live/backend fetch origin main && git -C ~/breakpoint-live/backend checkout --detach origin/main && cd ~/breakpoint-live/backend/breakpoint && bash scripts/mac/backend.sh restart` (shows `local: 200` and `tunnel: 200`).
+2. `/breakpoint/api/bootstrap`: "Debate: SOL Is Money" at 13:40, "Fireside: CoinGecko" at 12:25, "Closing Fireside: Michael Lewis" at 17:03.
+3. Schedule tab, Day 2: lunch 12:40 to 13:40.
+4. Within a minute the stages job uses the new times (it re-reads the schedule every 60 s).
+
+#### Checks run
+- 91 Node tests and 82 Python tests; page build. Diff of old and new seed: 113 sessions (was 111), 8 breaks; the Main Stage day 2 stream default from #34 is unchanged.
+
+#### Risks
+- Day 1 recaps were filed under day 1 session ids, which are kept; day 1 records are in Upstash and not shown anyway.
+- If the organisers move talks again, the learned delay from speaker introductions still corrects small drifts.
+
+#### Roll back
+Revert this PR, then update the Mac's checkout and `backend.sh restart`.
+
 ### Mac Mini backend: the guide runs without Upstash
 
 - **Date:** 17 November 2026

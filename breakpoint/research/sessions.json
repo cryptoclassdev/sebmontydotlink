@@ -17,7 +17,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -40,37 +40,9 @@
     ]
   },
   {
-    "id": "bp26-moneygram",
-    "title": "MoneyGram Ramps: Connecting Digital Assets With Cash",
-    "time": "10:20",
-    "durationMinutes": 10,
-    "date": "2026-11-16",
-    "stage": "Main Stage",
-    "timezone": "Europe/London",
-    "tracks": [
-      "Money"
-    ],
-    "speakerNames": [
-      "Anthony Soohoo"
-    ],
-    "projectIds": [],
-    "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
-    "status": "scheduled",
-    "dateVerified": true,
-    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
-    "speakers": [
-      {
-        "name": "Anthony Soohoo",
-        "role": "CEO",
-        "project": "MoneyGram"
-      }
-    ]
-  },
-  {
     "id": "bp26-9ec83178a80a07",
     "title": "Stablecoins Have an Alignment Problem",
-    "time": "10:30",
+    "time": "10:20",
     "durationMinutes": 10,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -83,7 +55,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -92,6 +64,34 @@
         "name": "Zach Abrams",
         "role": "Founder & CEO",
         "project": "Open Standard"
+      }
+    ]
+  },
+  {
+    "id": "bp26-moneygram",
+    "title": "MoneyGram Ramps: Connecting Digital Assets With Cash",
+    "time": "10:30",
+    "durationMinutes": 10,
+    "date": "2026-11-16",
+    "stage": "Main Stage",
+    "timezone": "Europe/London",
+    "tracks": [
+      "Money"
+    ],
+    "speakerNames": [
+      "Lamia Pardo"
+    ],
+    "projectIds": [],
+    "sourceUrl": "https://solana.com/breakpoint/schedule",
+    "observedAt": "2026-11-17T11:25:12.498Z",
+    "status": "scheduled",
+    "dateVerified": true,
+    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+    "speakers": [
+      {
+        "name": "Lamia Pardo",
+        "role": "Chief Marketing Officer",
+        "project": "MoneyGram"
       }
     ]
   },
@@ -111,7 +111,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -125,7 +125,7 @@
   },
   {
     "id": "bp26-8829c093112ec6",
-    "title": "The Stablecoin Nobody Notices: Moving Money Across 37 Markets in Seconds",
+    "title": "Every Stablecoin Needs a Way Out",
     "time": "10:50",
     "durationMinutes": 10,
     "date": "2026-11-16",
@@ -135,12 +135,11 @@
       "Money"
     ],
     "speakerNames": [
-      "Malcolm Clarke",
-      "John Timoney"
+      "Malcolm Clarke"
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -149,11 +148,6 @@
         "name": "Malcolm Clarke",
         "role": "Global Head of Digital Assets",
         "project": "Western Union"
-      },
-      {
-        "name": "John Timoney",
-        "role": "Head of Strategy",
-        "project": "Rain"
       }
     ]
   },
@@ -175,7 +169,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -199,7 +193,7 @@
   },
   {
     "id": "bp26-a7be968b3b1037",
-    "title": "Stablecoin Doesn't Mean Dollar",
+    "title": "The Future of Money Is Choice",
     "time": "11:30",
     "durationMinutes": 5,
     "date": "2026-11-16",
@@ -213,14 +207,14 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
         "name": "Christian Rau",
-        "role": "SVP Digital Assets and Blockchain",
+        "role": "SVP Digital Assets & Blockchain",
         "project": "Mastercard"
       }
     ]
@@ -241,7 +235,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -269,14 +263,14 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
         "name": "Shola Akinlade",
-        "role": "CEO / Founder",
+        "role": "CEO & Founder",
         "project": "Paystack"
       }
     ]
@@ -297,7 +291,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -312,7 +306,7 @@
   {
     "id": "bp26-5e875c736f4b87",
     "title": "When Banks Become Plugins",
-    "time": "11:50",
+    "time": "11:57",
     "durationMinutes": 5,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -325,7 +319,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -340,7 +334,7 @@
   {
     "id": "bp26-d4740eeb3095ec",
     "title": "Cloudflare Is Making It Rain Micropayments",
-    "time": "11:55",
+    "time": "12:02",
     "durationMinutes": 5,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -353,7 +347,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -368,7 +362,7 @@
   {
     "id": "bp26-kamino",
     "title": "Unlocking the $200T Private Markets Opportunity",
-    "time": "12:00",
+    "time": "12:08",
     "durationMinutes": 20,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -384,7 +378,7 @@
       "kamino"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -404,7 +398,7 @@
   {
     "id": "bp26-272d2f382a9321",
     "title": "Fractions to Tokens: Real Estate Is Going Onchain",
-    "time": "12:20",
+    "time": "12:28",
     "durationMinutes": 5,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -417,7 +411,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -432,8 +426,8 @@
   {
     "id": "bp26-ledger",
     "title": "Ledger Agent Intent, Ledger Atom & One More Thing",
-    "time": "12:25",
-    "durationMinutes": 5,
+    "time": "12:35",
+    "durationMinutes": 7,
     "date": "2026-11-16",
     "stage": "Main Stage",
     "timezone": "Europe/London",
@@ -447,7 +441,7 @@
       "ledger"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -462,7 +456,7 @@
   {
     "id": "bp26-5dec9510632a6c",
     "title": "London Calling: The City's Pitch for Building Here",
-    "time": "12:30",
+    "time": "12:44",
     "durationMinutes": 15,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -478,7 +472,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -492,6 +486,42 @@
         "name": "Miller Whitehouse-Levine",
         "role": "Moderator · Founder & CEO",
         "project": "Solana Policy Institute"
+      }
+    ]
+  },
+  {
+    "id": "bp26-bef03b8fce07cf",
+    "title": "Fireside: ICE Europe",
+    "time": "12:59",
+    "durationMinutes": 15,
+    "date": "2026-11-16",
+    "stage": "Main Stage",
+    "timezone": "Europe/London",
+    "tracks": [
+      "Tokenized Equities"
+    ],
+    "speakerNames": [
+      "Hester Serafini",
+      "Luciana Miranda"
+    ],
+    "projectIds": [
+      "solana"
+    ],
+    "sourceUrl": "https://solana.com/breakpoint/schedule",
+    "observedAt": "2026-11-17T11:25:12.498Z",
+    "status": "scheduled",
+    "dateVerified": true,
+    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+    "speakers": [
+      {
+        "name": "Hester Serafini",
+        "role": "President",
+        "project": "ICE Clear Europe"
+      },
+      {
+        "name": "Luciana Miranda",
+        "role": "Moderator · Advisor",
+        "project": "Solana Foundation"
       }
     ]
   },
@@ -511,7 +541,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -525,7 +555,7 @@
   },
   {
     "id": "bp26-56ec37a70abcdf",
-    "title": "FairClub",
+    "title": "Startup Equity, Raised and Governed on Solana",
     "time": "13:15",
     "durationMinutes": 15,
     "date": "2026-11-16",
@@ -537,9 +567,11 @@
     "speakerNames": [
       "Mark Studholme"
     ],
-    "projectIds": [],
+    "projectIds": [
+      "solana"
+    ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -553,7 +585,7 @@
   },
   {
     "id": "bp26-74aa752d52acf7",
-    "title": "EasyA",
+    "title": "Accelerating the Internet of Value",
     "time": "13:30",
     "durationMinutes": 15,
     "date": "2026-11-16",
@@ -568,7 +600,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -587,7 +619,7 @@
   },
   {
     "id": "bp26-802cc936d7e18b",
-    "title": "BAXUS",
+    "title": "Everything Alcohol, Onchain",
     "time": "13:45",
     "durationMinutes": 15,
     "date": "2026-11-16",
@@ -601,14 +633,14 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
         "name": "Tzvi Wiesel",
-        "role": "CEO & Co-founder",
+        "role": "Co-founder & CEO",
         "project": "BAXUS"
       }
     ]
@@ -631,7 +663,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -655,7 +687,7 @@
   },
   {
     "id": "bp26-e81c0490bcbd0b",
-    "title": "Star",
+    "title": "Fire. Electricity. Compute.",
     "time": "14:00",
     "durationMinutes": 15,
     "date": "2026-11-16",
@@ -669,7 +701,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -697,7 +729,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -710,9 +742,9 @@
     ]
   },
   {
-    "id": "bp26-187797bbbb9ab8",
-    "title": "Product Keynote: Allfunds",
-    "time": "14:20",
+    "id": "bp26-7df1de0897cad2",
+    "title": "Onchain Fund Distribution at Scale",
+    "time": "14:21",
     "durationMinutes": 7,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -725,7 +757,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -740,7 +772,7 @@
   {
     "id": "bp26-531d345e1baf5f",
     "title": "If You Build It, Will Flows Come?",
-    "time": "14:27",
+    "time": "14:28",
     "durationMinutes": 15,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -757,14 +789,14 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
         "name": "Patrick Corker",
-        "role": "Managing Director, Market Transformation and Innovation",
+        "role": "Managing Director, Market Transformation & Innovation",
         "project": "BNY"
       },
       {
@@ -781,7 +813,7 @@
   },
   {
     "id": "bp26-f7ab11204a5cd6",
-    "title": "Soilonic",
+    "title": "Soilonic | Declaration",
     "time": "14:30",
     "durationMinutes": 15,
     "date": "2026-11-16",
@@ -795,7 +827,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -810,8 +842,8 @@
   {
     "id": "bp26-60b7e2593fa2eb",
     "title": "Why RWAs Need DeFi (and Vice Versa)",
-    "time": "14:42",
-    "durationMinutes": 10,
+    "time": "14:43",
+    "durationMinutes": 7,
     "date": "2026-11-16",
     "stage": "Main Stage",
     "timezone": "Europe/London",
@@ -819,31 +851,25 @@
       "Credit & Collateral"
     ],
     "speakerNames": [
-      "Cate Clancy",
       "Todd McDonald"
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
-        "name": "Cate Clancy",
-        "role": "Managing Director",
-        "project": "JPMorgan Chase"
-      },
-      {
         "name": "Todd McDonald",
-        "role": "Moderator · Co-Founder",
+        "role": "Co-Founder",
         "project": "R3"
       }
     ]
   },
   {
     "id": "bp26-15d8a6e6783508",
-    "title": "Worm",
+    "title": "WTF Is Worm?",
     "time": "14:45",
     "durationMinutes": 15,
     "date": "2026-11-16",
@@ -857,22 +883,22 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
         "name": "Nass Diba",
-        "role": "Co-founder & CEO",
+        "role": "Co-Founder & CEO",
         "project": "worm"
       }
     ]
   },
   {
-    "id": "bp26-62cbffd95bb468",
-    "title": "The $2.5 Trillion Gap: Bringing Trade Finance Onchain",
-    "time": "14:52",
+    "id": "bp26-61cce3333730d9",
+    "title": "The Oldest Market in the World Is Coming Onchain",
+    "time": "14:51",
     "durationMinutes": 7,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -885,7 +911,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -900,7 +926,7 @@
   {
     "id": "bp26-6601a3502be87c",
     "title": "The Next Generation of Market Infrastructure",
-    "time": "14:59",
+    "time": "14:58",
     "durationMinutes": 10,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -913,7 +939,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -927,7 +953,7 @@
   },
   {
     "id": "bp26-92231faadab9d8",
-    "title": "Phantom",
+    "title": "Growth Is World Building",
     "time": "15:00",
     "durationMinutes": 15,
     "date": "2026-11-16",
@@ -941,7 +967,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -956,7 +982,7 @@
   {
     "id": "bp26-0b5c7ba0eb1565",
     "title": "Rewiring the Market: Why the World's Biggest Financial Institutions Are Moving Onchain",
-    "time": "15:09",
+    "time": "15:11",
     "durationMinutes": 15,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -971,7 +997,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -994,38 +1020,30 @@
     ]
   },
   {
-    "id": "bp26-bef03b8fce07cf",
-    "title": "Fireside: ICE Europe",
-    "time": "15:24",
-    "durationMinutes": 15,
+    "id": "bp26-3563109a2e278b",
+    "title": "Thinking in Trillions: Graticule Onchain Asset Management",
+    "time": "15:27",
+    "durationMinutes": 5,
     "date": "2026-11-16",
     "stage": "Main Stage",
     "timezone": "Europe/London",
     "tracks": [
-      "Tokenized Equities"
+      "The AI Stack"
     ],
     "speakerNames": [
-      "Hester Serafini",
-      "Luciana Miranda"
+      "Irene Tse - Graticule Asset Management Asia"
     ],
-    "projectIds": [
-      "solana"
-    ],
+    "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
-        "name": "Hester Serafini",
-        "role": "President",
-        "project": "ICE Clear Europe"
-      },
-      {
-        "name": "Luciana Miranda",
-        "role": "Moderator · Advisor",
-        "project": "Solana Foundation"
+        "name": "Irene Tse - Graticule Asset Management Asia",
+        "role": "Partner",
+        "project": "GAMA"
       }
     ]
   },
@@ -1045,22 +1063,50 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
         "name": "Peter Moore",
-        "role": "Sports and Video Game Executive, Owner, Wisla Krakow Football Club",
+        "role": "Sports & Video Game Executive, Owner, Wisla Krakow Football Club",
         "project": "Poland"
+      }
+    ]
+  },
+  {
+    "id": "bp26-f1d0bc60358879",
+    "title": "Hard Assets, Big Stories: Gold, Copper & Crude Oil",
+    "time": "15:32",
+    "durationMinutes": 7,
+    "date": "2026-11-16",
+    "stage": "Main Stage",
+    "timezone": "Europe/London",
+    "tracks": [
+      "Commodities"
+    ],
+    "speakerNames": [
+      "Kathy Kriskey"
+    ],
+    "projectIds": [],
+    "sourceUrl": "https://solana.com/breakpoint/schedule",
+    "observedAt": "2026-11-17T11:25:12.498Z",
+    "status": "scheduled",
+    "dateVerified": true,
+    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+    "speakers": [
+      {
+        "name": "Kathy Kriskey",
+        "role": "Head of Alternative Product Strategy",
+        "project": "Invesco"
       }
     ]
   },
   {
     "id": "bp26-3c98da8acaeb9c",
     "title": "From Idle Collateral to Active Capital: TradFi Meets Solana",
-    "time": "15:39",
+    "time": "15:40",
     "durationMinutes": 5,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -1075,7 +1121,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1090,7 +1136,7 @@
   {
     "id": "bp26-b606378781298e",
     "title": "Leverage Without Liquidations: Options Onchain",
-    "time": "15:59",
+    "time": "15:58",
     "durationMinutes": 5,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -1103,7 +1149,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1118,7 +1164,7 @@
   {
     "id": "bp26-sunrise",
     "title": "The Capital Market Wars",
-    "time": "16:04",
+    "time": "16:07",
     "durationMinutes": 7,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -1133,7 +1179,7 @@
       "sunrise"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1148,7 +1194,7 @@
   {
     "id": "bp26-8584dadbd83137",
     "title": "Okay, Traders. Now, Let's Get in Formation",
-    "time": "16:11",
+    "time": "16:16",
     "durationMinutes": 7,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -1161,22 +1207,22 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
         "name": "Chris Montagano",
-        "role": "Co-Founder, President",
+        "role": "Co-Founder & President",
         "project": "Formation Securities"
       }
     ]
   },
   {
-    "id": "bp26-jupiter",
-    "title": "Making Tokenisation Useful",
-    "time": "16:18",
+    "id": "bp26-09a43a73e7a3c1",
+    "title": "The Post-Tokenization Era",
+    "time": "16:26",
     "durationMinutes": 7,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -1191,7 +1237,7 @@
       "jupiter"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1200,36 +1246,6 @@
         "name": "Kash Dhanda",
         "role": "Chief Operating Officer",
         "project": "Jupiter"
-      }
-    ]
-  },
-  {
-    "id": "bp26-backpack",
-    "title": "Product Keynote: Backpack",
-    "time": "16:25",
-    "durationMinutes": 7,
-    "date": "2026-11-16",
-    "stage": "Main Stage",
-    "timezone": "Europe/London",
-    "tracks": [
-      "Tokenized Equities"
-    ],
-    "speakerNames": [
-      "Armani Ferrante"
-    ],
-    "projectIds": [
-      "backpack"
-    ],
-    "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
-    "status": "scheduled",
-    "dateVerified": true,
-    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
-    "speakers": [
-      {
-        "name": "Armani Ferrante",
-        "role": "CEO",
-        "project": "Backpack"
       }
     ]
   },
@@ -1249,7 +1265,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1262,9 +1278,39 @@
     ]
   },
   {
+    "id": "bp26-f8acc44ec7aa6c",
+    "title": "Backpack: The Era of the Neobrokerage",
+    "time": "16:33",
+    "durationMinutes": 7,
+    "date": "2026-11-16",
+    "stage": "Main Stage",
+    "timezone": "Europe/London",
+    "tracks": [
+      "Tokenized Equities"
+    ],
+    "speakerNames": [
+      "Armani Ferrante"
+    ],
+    "projectIds": [
+      "backpack"
+    ],
+    "sourceUrl": "https://solana.com/breakpoint/schedule",
+    "observedAt": "2026-11-17T11:25:12.498Z",
+    "status": "scheduled",
+    "dateVerified": true,
+    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+    "speakers": [
+      {
+        "name": "Armani Ferrante",
+        "role": "CEO",
+        "project": "Backpack"
+      }
+    ]
+  },
+  {
     "id": "bp26-8a9713b390788f",
     "title": "Why We Went Onchain on Day 1",
-    "time": "16:32",
+    "time": "16:40",
     "durationMinutes": 5,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -1277,7 +1323,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1292,7 +1338,7 @@
   {
     "id": "bp26-88dc31085f2828",
     "title": "The City Goes Onchain: From Closing Bell to Always On",
-    "time": "16:37",
+    "time": "16:45",
     "durationMinutes": 15,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -1303,13 +1349,14 @@
     "speakerNames": [
       "Andrew Price",
       "Payward",
+      "Simon Mcquoid Mason",
       "Amelia Daly"
     ],
     "projectIds": [
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1321,7 +1368,12 @@
       },
       {
         "name": "Payward",
-        "role": "",
+        "role": "Head of Trading Venues",
+        "project": ""
+      },
+      {
+        "name": "Simon Mcquoid Mason",
+        "role": "London Stock Exchange",
         "project": ""
       },
       {
@@ -1332,9 +1384,45 @@
     ]
   },
   {
+    "id": "bp26-1201162235c599",
+    "title": "Privacy Fireside: NEAR and Helius",
+    "time": "16:45",
+    "durationMinutes": 15,
+    "date": "2026-11-16",
+    "stage": "Royal Exchange",
+    "timezone": "Europe/London",
+    "tracks": [
+      "Founders Track"
+    ],
+    "speakerNames": [
+      "Illia Polosukhin",
+      "Mert Mumtaz"
+    ],
+    "projectIds": [
+      "helius"
+    ],
+    "sourceUrl": "https://solana.com/breakpoint/schedule",
+    "observedAt": "2026-11-17T11:25:12.498Z",
+    "status": "scheduled",
+    "dateVerified": true,
+    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+    "speakers": [
+      {
+        "name": "Illia Polosukhin",
+        "role": "Co-Founder",
+        "project": "NEAR Protocol"
+      },
+      {
+        "name": "Mert Mumtaz",
+        "role": "Moderator · CEO",
+        "project": "Helius"
+      }
+    ]
+  },
+  {
     "id": "bp26-eeaeebf8a96b13",
     "title": "Fireside: The Legend of Armani",
-    "time": "16:45",
+    "time": "17:00",
     "durationMinutes": 15,
     "date": "2026-11-16",
     "stage": "Royal Exchange",
@@ -1351,7 +1439,7 @@
       "backpack"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1371,7 +1459,7 @@
   {
     "id": "bp26-509fe0820c0f9e",
     "title": "Evading Kim Jong Un's Bot Army: A How To",
-    "time": "16:52",
+    "time": "17:06",
     "durationMinutes": 7,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -1386,7 +1474,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1401,7 +1489,7 @@
   {
     "id": "bp26-557793233a3a89",
     "title": "Defending Markets Against Machines",
-    "time": "16:59",
+    "time": "17:13",
     "durationMinutes": 15,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -1418,7 +1506,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1430,7 +1518,7 @@
       },
       {
         "name": "Diogo Monica",
-        "role": "General Partner, Haun Ventures and Co-Founder and Executive Chairman, Anchorage Digital",
+        "role": "General Partner, Haun Ventures / Co-Founder & Executive Chairman, Anchorage Digital",
         "project": "Haun Ventures"
       },
       {
@@ -1441,72 +1529,8 @@
     ]
   },
   {
-    "id": "bp26-1201162235c599",
-    "title": "Privacy Fireside: NEAR and Helius",
-    "time": "17:00",
-    "durationMinutes": 15,
-    "date": "2026-11-16",
-    "stage": "Royal Exchange",
-    "timezone": "Europe/London",
-    "tracks": [
-      "Founders Track"
-    ],
-    "speakerNames": [
-      "Illia Polosukhin",
-      "Mert Mumtaz"
-    ],
-    "projectIds": [
-      "helius"
-    ],
-    "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
-    "status": "scheduled",
-    "dateVerified": true,
-    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
-    "speakers": [
-      {
-        "name": "Illia Polosukhin",
-        "role": "Co-Founder",
-        "project": "NEAR Protocol"
-      },
-      {
-        "name": "Mert Mumtaz",
-        "role": "Moderator · CEO",
-        "project": "Helius"
-      }
-    ]
-  },
-  {
-    "id": "bp26-d4b9c1baeee314",
-    "title": "Growing Turkiye's Fintech Ecosystem",
-    "time": "17:14",
-    "durationMinutes": 5,
-    "date": "2026-11-16",
-    "stage": "Main Stage",
-    "timezone": "Europe/London",
-    "tracks": [
-      "Sovereigns / Nations"
-    ],
-    "speakerNames": [
-      "Ersoy Erkazanci"
-    ],
-    "projectIds": [],
-    "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
-    "status": "scheduled",
-    "dateVerified": true,
-    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
-    "speakers": [
-      {
-        "name": "Ersoy Erkazanci",
-        "role": "UK Country Advisor",
-        "project": "Invest in Türkiye"
-      }
-    ]
-  },
-  {
     "id": "bp26-788c1c9281c8b1",
-    "title": "Founder Stories: Reflect Money",
+    "title": "A Founder's Journey: Reflect Money",
     "time": "17:15",
     "durationMinutes": 15,
     "date": "2026-11-16",
@@ -1520,7 +1544,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1533,9 +1557,37 @@
     ]
   },
   {
+    "id": "bp26-d4b9c1baeee314",
+    "title": "Growing Turkiye's Fintech Ecosystem",
+    "time": "17:28",
+    "durationMinutes": 5,
+    "date": "2026-11-16",
+    "stage": "Main Stage",
+    "timezone": "Europe/London",
+    "tracks": [
+      "Sovereigns / Nations"
+    ],
+    "speakerNames": [
+      "Ersoy Erkazanci"
+    ],
+    "projectIds": [],
+    "sourceUrl": "https://solana.com/breakpoint/schedule",
+    "observedAt": "2026-11-17T11:25:12.498Z",
+    "status": "scheduled",
+    "dateVerified": true,
+    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+    "speakers": [
+      {
+        "name": "Ersoy Erkazanci",
+        "role": "UK Country Advisor",
+        "project": "Invest in Türkiye"
+      }
+    ]
+  },
+  {
     "id": "bp26-bceb651f743757",
     "title": "The Former White House Crypto Chief on the Future of Digital Assets",
-    "time": "17:19",
+    "time": "17:33",
     "durationMinutes": 15,
     "date": "2026-11-16",
     "stage": "Main Stage",
@@ -1549,7 +1601,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1576,20 +1628,20 @@
     "timezone": "Europe/London",
     "tracks": [],
     "speakerNames": [
-      "Amira Valliani"
+      "Vibhu Norby"
     ],
     "projectIds": [
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
-        "name": "Amira Valliani",
-        "role": "Head of Payments Growth",
+        "name": "Vibhu Norby",
+        "role": "Chief Product Officer",
         "project": "Solana Foundation"
       }
     ]
@@ -1613,7 +1665,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1646,7 +1698,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1674,7 +1726,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1702,7 +1754,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1732,14 +1784,14 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
         "name": "Krista Lynch",
-        "role": "Head of Trading and Capital Markets",
+        "role": "Head of Trading & Capital Markets",
         "project": "Grayscale"
       },
       {
@@ -1770,7 +1822,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1794,20 +1846,20 @@
       "The AI Stack"
     ],
     "speakerNames": [
-      "Vibhu Norby"
+      "Rishin Sharma"
     ],
     "projectIds": [
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
-        "name": "Vibhu Norby",
-        "role": "Chief Product Officer",
+        "name": "Rishin Sharma",
+        "role": "Head of AI Growth",
         "project": "Solana Foundation"
       }
     ]
@@ -1828,7 +1880,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1856,7 +1908,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1869,37 +1921,9 @@
     ]
   },
   {
-    "id": "bp26-3563109a2e278b",
-    "title": "Thinking in Trillions: Graticule Onchain Asset Management",
-    "time": "12:05",
-    "durationMinutes": 5,
-    "date": "2026-11-17",
-    "stage": "Main Stage",
-    "timezone": "Europe/London",
-    "tracks": [
-      "The AI Stack"
-    ],
-    "speakerNames": [
-      "Irene Tse - Graticule Asset Management Asia"
-    ],
-    "projectIds": [],
-    "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
-    "status": "scheduled",
-    "dateVerified": true,
-    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
-    "speakers": [
-      {
-        "name": "Irene Tse - Graticule Asset Management Asia",
-        "role": "Partner",
-        "project": "GAMA"
-      }
-    ]
-  },
-  {
     "id": "bp26-f22b776c884471",
     "title": "Think Inside the PayBox: Agents on Solana",
-    "time": "12:10",
+    "time": "12:05",
     "durationMinutes": 5,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -1914,7 +1938,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1927,37 +1951,9 @@
     ]
   },
   {
-    "id": "bp26-f1d0bc60358879",
-    "title": "Hard Assets, Big Stories: Gold, Copper & Crude Oil",
-    "time": "12:15",
-    "durationMinutes": 7,
-    "date": "2026-11-17",
-    "stage": "Main Stage",
-    "timezone": "Europe/London",
-    "tracks": [
-      "Commodities"
-    ],
-    "speakerNames": [
-      "Kathy Kriskey"
-    ],
-    "projectIds": [],
-    "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
-    "status": "scheduled",
-    "dateVerified": true,
-    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
-    "speakers": [
-      {
-        "name": "Kathy Kriskey",
-        "role": "Head of Alternative Product Strategy",
-        "project": "Invesco"
-      }
-    ]
-  },
-  {
-    "id": "bp26-ff979bf2efd803",
-    "title": "Why a Top Japanese Trading House Is Bringing Commodities to Solana",
-    "time": "12:22",
+    "id": "bp26-f042a951b5938a",
+    "title": "Why a Top Trading House Is Bringing Commodities to Solana",
+    "time": "12:10",
     "durationMinutes": 5,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -1972,7 +1968,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -1987,7 +1983,7 @@
   {
     "id": "bp26-ad64d37c479c25",
     "title": "Your Money. Your Business.",
-    "time": "12:27",
+    "time": "12:15",
     "durationMinutes": 5,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -2000,7 +1996,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2013,10 +2009,10 @@
     ]
   },
   {
-    "id": "bp26-d9f58db08370df",
-    "title": "Debate: SOL Is Money",
-    "time": "12:37",
-    "durationMinutes": 17,
+    "id": "bp26-ff4f3b4d64da73",
+    "title": "Leap: The High Performance Trading App",
+    "time": "12:20",
+    "durationMinutes": 5,
     "date": "2026-11-17",
     "stage": "Main Stage",
     "timezone": "Europe/London",
@@ -2024,41 +2020,64 @@
       "Crypto"
     ],
     "speakerNames": [
-      "Mert Mumtaz",
-      "Anatoly Yakovenko",
-      "Austin Federa"
+      "Chris Osborn"
     ],
     "projectIds": [
-      "solana",
-      "helius"
+      "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
-        "name": "Mert Mumtaz",
+        "name": "Chris Osborn",
+        "role": "General Manager, Leap",
+        "project": "Solana Labs"
+      }
+    ]
+  },
+  {
+    "id": "bp26-4a571cf50a8683",
+    "title": "Fireside: CoinGecko",
+    "time": "12:25",
+    "durationMinutes": 10,
+    "date": "2026-11-17",
+    "stage": "Main Stage",
+    "timezone": "Europe/London",
+    "tracks": [
+      "Nostalgia & Nihilism"
+    ],
+    "speakerNames": [
+      "Bobby Ong",
+      "Vibhu Norby"
+    ],
+    "projectIds": [
+      "solana"
+    ],
+    "sourceUrl": "https://solana.com/breakpoint/schedule",
+    "observedAt": "2026-11-17T11:25:12.498Z",
+    "status": "scheduled",
+    "dateVerified": true,
+    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+    "speakers": [
+      {
+        "name": "Bobby Ong",
         "role": "CEO",
-        "project": "Helius"
+        "project": "CoinGecko"
       },
       {
-        "name": "Anatoly Yakovenko",
-        "role": "Co-Founder / CEO",
-        "project": "Solana / Solana Labs"
-      },
-      {
-        "name": "Austin Federa",
-        "role": "Moderator · Co-Founder",
-        "project": "DoubleZero"
+        "name": "Vibhu Norby",
+        "role": "Moderator · Chief Product Officer",
+        "project": "Solana Foundation"
       }
     ]
   },
   {
     "id": "bp26-304d3a1036a4ca",
     "title": "Breakpoint 2027 Announcement",
-    "time": "12:54",
+    "time": "12:35",
     "durationMinutes": 5,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -2074,7 +2093,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2102,14 +2121,22 @@
     "tracks": [
       "Payments Track"
     ],
-    "speakerNames": [],
+    "speakerNames": [
+      "Momin Ahmad"
+    ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
-    "speakers": []
+    "speakers": [
+      {
+        "name": "Momin Ahmad",
+        "role": "Co-Founder",
+        "project": "Credit Coop"
+      }
+    ]
   },
   {
     "id": "bp26-957a1ad44478c8",
@@ -2127,7 +2154,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2141,7 +2168,7 @@
   },
   {
     "id": "bp26-89cf6b8f031cce",
-    "title": "Huma",
+    "title": "The PayFi Supercycle",
     "time": "13:20",
     "durationMinutes": 10,
     "date": "2026-11-17",
@@ -2155,7 +2182,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2169,7 +2196,7 @@
   },
   {
     "id": "bp26-1e735fd3bf5931",
-    "title": "Zerohash",
+    "title": "The Singularity of Value",
     "time": "13:30",
     "durationMinutes": 10,
     "date": "2026-11-17",
@@ -2179,25 +2206,68 @@
       "Payments Track"
     ],
     "speakerNames": [
-      "Stephen Gardner"
+      "Damien Ekechukwu"
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
-        "name": "Stephen Gardner",
-        "role": "Co-President",
+        "name": "Damien Ekechukwu",
+        "role": "Director, Ecosystem & Product Partnerships",
         "project": "zerohash"
       }
     ]
   },
   {
+    "id": "bp26-d9f58db08370df",
+    "title": "Debate: SOL Is Money",
+    "time": "13:40",
+    "durationMinutes": 17,
+    "date": "2026-11-17",
+    "stage": "Main Stage",
+    "timezone": "Europe/London",
+    "tracks": [
+      "Crypto"
+    ],
+    "speakerNames": [
+      "Mert Mumtaz",
+      "Anatoly Yakovenko",
+      "Austin Federa"
+    ],
+    "projectIds": [
+      "solana",
+      "helius"
+    ],
+    "sourceUrl": "https://solana.com/breakpoint/schedule",
+    "observedAt": "2026-11-17T11:25:12.498Z",
+    "status": "scheduled",
+    "dateVerified": true,
+    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+    "speakers": [
+      {
+        "name": "Mert Mumtaz",
+        "role": "CEO",
+        "project": "Helius"
+      },
+      {
+        "name": "Anatoly Yakovenko",
+        "role": "Co-Founder / CEO",
+        "project": "Solana / Solana Labs"
+      },
+      {
+        "name": "Austin Federa",
+        "role": "Moderator · Co-Founder",
+        "project": "DoubleZero"
+      }
+    ]
+  },
+  {
     "id": "bp26-f17a3e75786240",
-    "title": "Atum: The Open Payments Network",
+    "title": "Why Stablecoins Aren’t a Viable Business",
     "time": "13:40",
     "durationMinutes": 10,
     "date": "2026-11-17",
@@ -2207,19 +2277,19 @@
       "Payments Track"
     ],
     "speakerNames": [
-      "Pete Cooling"
+      "Josh Reyes - Tokenised GBP"
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
-        "name": "Pete Cooling",
-        "role": "Founder & CEO",
-        "project": "Atum"
+        "name": "Josh Reyes - Tokenised GBP",
+        "role": "COO",
+        "project": "tGBP"
       }
     ]
   },
@@ -2239,7 +2309,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2254,7 +2324,7 @@
   {
     "id": "bp26-5ff6d377e53e1f",
     "title": "Debate: DATs Are Just ETFs With Twitter Accounts and CEOs",
-    "time": "14:00",
+    "time": "13:57",
     "durationMinutes": 17,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -2271,7 +2341,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2309,21 +2379,21 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
         "name": "Nicolas Cabrera",
-        "role": "Chief Product and Technology Officer",
+        "role": "Chief Product & Technology Officer",
         "project": "Tala"
       }
     ]
   },
   {
     "id": "bp26-62544901595584",
-    "title": "Agents That Pay Anyone, Anywhere: Noah on Solana",
+    "title": "Our Best Customer Won’t Be Human",
     "time": "14:10",
     "durationMinutes": 10,
     "date": "2026-11-17",
@@ -2335,19 +2405,45 @@
     "speakerNames": [
       "Shah Ramezani"
     ],
-    "projectIds": [
-      "solana"
-    ],
+    "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
         "name": "Shah Ramezani",
-        "role": "Founder/CEO",
+        "role": "Founder & CEO",
         "project": "Noah"
+      }
+    ]
+  },
+  {
+    "id": "bp26-485b0b9599a265",
+    "title": "Tokenisation: Britain's Opportunity to Lead",
+    "time": "14:19",
+    "durationMinutes": 10,
+    "date": "2026-11-17",
+    "stage": "Main Stage",
+    "timezone": "Europe/London",
+    "tracks": [
+      "Sovereigns / Nations"
+    ],
+    "speakerNames": [
+      "Sir Nicholas Lyons"
+    ],
+    "projectIds": [],
+    "sourceUrl": "https://solana.com/breakpoint/schedule",
+    "observedAt": "2026-11-17T11:25:12.498Z",
+    "status": "scheduled",
+    "dateVerified": true,
+    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+    "speakers": [
+      {
+        "name": "Sir Nicholas Lyons",
+        "role": "Chairman",
+        "project": "Standard Life"
       }
     ]
   },
@@ -2367,7 +2463,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2380,30 +2476,48 @@
     ]
   },
   {
-    "id": "bp26-485b0b9599a265",
-    "title": "Tokenisation: Britain's Opportunity to Lead",
-    "time": "14:22",
-    "durationMinutes": 10,
+    "id": "bp26-e6c5c3a2ddaa0c",
+    "title": "What Would It Take for the UK to Win in Tech",
+    "time": "14:29",
+    "durationMinutes": 20,
     "date": "2026-11-17",
     "stage": "Main Stage",
     "timezone": "Europe/London",
     "tracks": [
-      "Sovereigns / Nations"
+      "Talent"
     ],
     "speakerNames": [
-      "Sir Nicholas Lyons"
+      "Sir Sajid Javid",
+      "Sue Gray",
+      "Ed Vaizey",
+      "Farhaj Mayan"
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
-        "name": "Sir Nicholas Lyons",
-        "role": "Chairman",
-        "project": "Standard Life"
+        "name": "Sir Sajid Javid",
+        "role": "Sir",
+        "project": "Former Chancellor of the Exchequer"
+      },
+      {
+        "name": "Sue Gray",
+        "role": "Chair",
+        "project": "Baroness Gray of Tottenham"
+      },
+      {
+        "name": "Ed Vaizey",
+        "role": "The Rt Hon. the Lord Vaizey of Didcot",
+        "project": "House of Lords"
+      },
+      {
+        "name": "Farhaj Mayan",
+        "role": "Moderator · Co-Founder",
+        "project": "Forma"
       }
     ]
   },
@@ -2428,7 +2542,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2456,49 +2570,9 @@
     ]
   },
   {
-    "id": "bp26-e6c5c3a2ddaa0c",
-    "title": "What Would It Take for the UK to Win in Tech",
-    "time": "14:32",
-    "durationMinutes": 20,
-    "date": "2026-11-17",
-    "stage": "Main Stage",
-    "timezone": "Europe/London",
-    "tracks": [
-      "Talent"
-    ],
-    "speakerNames": [
-      "Sir Sajid Javid",
-      "Sue Gray",
-      "Farhaj Mayan"
-    ],
-    "projectIds": [],
-    "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
-    "status": "scheduled",
-    "dateVerified": true,
-    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
-    "speakers": [
-      {
-        "name": "Sir Sajid Javid",
-        "role": "Sir",
-        "project": "Former Chancellor of the Exchequer"
-      },
-      {
-        "name": "Sue Gray",
-        "role": "Chair",
-        "project": "Baroness Gray of Tottenham"
-      },
-      {
-        "name": "Farhaj Mayan",
-        "role": "Moderator · Co-Founder",
-        "project": "Forma"
-      }
-    ]
-  },
-  {
     "id": "bp26-c1ba8b07f2db06",
     "title": "Champions in Conversation: Sol Campbell and Tristan Thompson on What It Takes to Win",
-    "time": "14:52",
+    "time": "14:49",
     "durationMinutes": 20,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -2513,20 +2587,20 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
         "name": "Tristan Thompson",
-        "role": "NBA Champion and Investor",
+        "role": "NBA Champion & Investor",
         "project": "Tristan Thompson"
       },
       {
         "name": "Sol Campbell",
         "role": "Footballer / Founder",
-        "project": "Former Premier League Player / Golbal360 and Sol Media"
+        "project": "Former Premier League Player / Golbal360 & Sol Media"
       },
       {
         "name": "Logan Jastremski",
@@ -2551,7 +2625,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2566,7 +2640,7 @@
   {
     "id": "bp26-30a53cc4c95a5b",
     "title": "Solana as a Decentralized Silicon Valley",
-    "time": "15:12",
+    "time": "15:09",
     "durationMinutes": 5,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -2581,7 +2655,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2594,45 +2668,9 @@
     ]
   },
   {
-    "id": "bp26-49178fc9193a8f",
-    "title": "What Plume and Fidelity Are Building on Solana",
-    "time": "15:15",
-    "durationMinutes": 10,
-    "date": "2026-11-17",
-    "stage": "Royal Exchange",
-    "timezone": "Europe/London",
-    "tracks": [
-      "Institutional Track"
-    ],
-    "speakerNames": [
-      "Ryan Wen",
-      "Jasmine Jia"
-    ],
-    "projectIds": [
-      "solana"
-    ],
-    "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
-    "status": "scheduled",
-    "dateVerified": true,
-    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
-    "speakers": [
-      {
-        "name": "Ryan Wen",
-        "role": "COO",
-        "project": "Plume"
-      },
-      {
-        "name": "Jasmine Jia",
-        "role": "Head of Tokenization Ecosystem",
-        "project": "Fidelity Digital Asset Management"
-      }
-    ]
-  },
-  {
     "id": "bp26-2a6b4b18ba1839",
     "title": "The Internet Will Put VCs Out of a Job",
-    "time": "15:17",
+    "time": "15:14",
     "durationMinutes": 5,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -2645,7 +2683,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2654,6 +2692,40 @@
         "name": "Charles Dalton",
         "role": "Co-Founder",
         "project": "MetaDAO"
+      }
+    ]
+  },
+  {
+    "id": "bp26-49178fc9193a8f",
+    "title": "A Discussion With Plume and Fidelity: The Convergence of ETFs, Tokenization, and Wealth Management",
+    "time": "15:15",
+    "durationMinutes": 10,
+    "date": "2026-11-17",
+    "stage": "Royal Exchange",
+    "timezone": "Europe/London",
+    "tracks": [
+      "Institutional Track"
+    ],
+    "speakerNames": [
+      "Jasmine Jia",
+      "Ryan Wen"
+    ],
+    "projectIds": [],
+    "sourceUrl": "https://solana.com/breakpoint/schedule",
+    "observedAt": "2026-11-17T11:25:12.498Z",
+    "status": "scheduled",
+    "dateVerified": true,
+    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+    "speakers": [
+      {
+        "name": "Jasmine Jia",
+        "role": "Head of Tokenization Ecosystem",
+        "project": "Fidelity Digital Asset Management"
+      },
+      {
+        "name": "Ryan Wen",
+        "role": "COO",
+        "project": "Plume"
       }
     ]
   },
@@ -2670,13 +2742,14 @@
     ],
     "speakerNames": [
       "Vinh Tran",
-      "Keith A. Grossman"
+      "Keith A. Grossman",
+      "Carl Vogel"
     ],
     "projectIds": [
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2690,6 +2763,45 @@
         "name": "Keith A. Grossman",
         "role": "President",
         "project": "MoonPay"
+      },
+      {
+        "name": "Carl Vogel",
+        "role": "Moderator · General Partner",
+        "project": "6th Man Ventures"
+      }
+    ]
+  },
+  {
+    "id": "bp26-df930d73015be3",
+    "title": "Playing for Millions: Inside the Mind of Poker's 22-Year-Old Champion",
+    "time": "15:34",
+    "durationMinutes": 10,
+    "date": "2026-11-17",
+    "stage": "Main Stage",
+    "timezone": "Europe/London",
+    "tracks": [
+      "Nostalgia & Nihilism"
+    ],
+    "speakerNames": [
+      "Lucas Jumalon",
+      "Jeff Platt"
+    ],
+    "projectIds": [],
+    "sourceUrl": "https://solana.com/breakpoint/schedule",
+    "observedAt": "2026-11-17T11:25:12.498Z",
+    "status": "scheduled",
+    "dateVerified": true,
+    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+    "speakers": [
+      {
+        "name": "Lucas Jumalon",
+        "role": "World Champion",
+        "project": "World Series of Poker"
+      },
+      {
+        "name": "Jeff Platt",
+        "role": "Moderator · Global Broadcast Talent",
+        "project": "World Series of Poker"
       }
     ]
   },
@@ -2713,7 +2825,7 @@
       "jupiter"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2736,10 +2848,10 @@
     ]
   },
   {
-    "id": "bp26-df930d73015be3",
-    "title": "Playing for Millions: Inside the Mind of Poker's 22-Year-Old Champion",
-    "time": "15:37",
-    "durationMinutes": 10,
+    "id": "bp26-45be47d426e76a",
+    "title": "Cashtags on X",
+    "time": "15:44",
+    "durationMinutes": 5,
     "date": "2026-11-17",
     "stage": "Main Stage",
     "timezone": "Europe/London",
@@ -2747,25 +2859,47 @@
       "Nostalgia & Nihilism"
     ],
     "speakerNames": [
-      "Lucas Jumalon",
-      "Jeff Platt"
+      "Jonathan Lewis"
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
-        "name": "Lucas Jumalon",
-        "role": "World Champion",
-        "project": "World Series of Poker"
-      },
+        "name": "Jonathan Lewis",
+        "role": "Managing Director, UK & Europe",
+        "project": "X"
+      }
+    ]
+  },
+  {
+    "id": "bp26-ee45fca3f5c717",
+    "title": "Explore the Frontier",
+    "time": "15:49",
+    "durationMinutes": 5,
+    "date": "2026-11-17",
+    "stage": "Main Stage",
+    "timezone": "Europe/London",
+    "tracks": [
+      "Nostalgia & Nihilism"
+    ],
+    "speakerNames": [
+      "Michael Marcantonio"
+    ],
+    "projectIds": [],
+    "sourceUrl": "https://solana.com/breakpoint/schedule",
+    "observedAt": "2026-11-17T11:25:12.498Z",
+    "status": "scheduled",
+    "dateVerified": true,
+    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+    "speakers": [
       {
-        "name": "Jeff Platt",
-        "role": "Moderator · Global Broadcast Talent",
-        "project": "World Series of Poker"
+        "name": "Michael Marcantonio",
+        "role": "CEO",
+        "project": "Temporal"
       }
     ]
   },
@@ -2788,7 +2922,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2816,37 +2950,9 @@
     ]
   },
   {
-    "id": "bp26-d4fdb2f9dfb2f4",
-    "title": "Temporal 2027: Exploring the Frontier",
-    "time": "15:52",
-    "durationMinutes": 5,
-    "date": "2026-11-17",
-    "stage": "Main Stage",
-    "timezone": "Europe/London",
-    "tracks": [
-      "Nostalgia & Nihilism"
-    ],
-    "speakerNames": [
-      "Michael Marcantonio"
-    ],
-    "projectIds": [],
-    "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
-    "status": "scheduled",
-    "dateVerified": true,
-    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
-    "speakers": [
-      {
-        "name": "Michael Marcantonio",
-        "role": "CEO",
-        "project": "Temporal"
-      }
-    ]
-  },
-  {
     "id": "bp26-19926fcefac253",
     "title": "Product Keynote: Phoenix",
-    "time": "15:57",
+    "time": "15:54",
     "durationMinutes": 5,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -2859,7 +2965,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2874,7 +2980,7 @@
   {
     "id": "bp26-aa65c6cb33402d",
     "title": "The Future of Investing Is Narratives",
-    "time": "16:02",
+    "time": "15:59",
     "durationMinutes": 5,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -2889,7 +2995,7 @@
       "jito"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2904,7 +3010,7 @@
   {
     "id": "bp26-8b47b8796cd17c",
     "title": "The Data Comes Last",
-    "time": "16:07",
+    "time": "16:04",
     "durationMinutes": 7,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -2917,7 +3023,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -2931,7 +3037,7 @@
   },
   {
     "id": "bp26-2db5be80f36e9c",
-    "title": "How Europe Is Scaling Adoption: Tokenising at Scale",
+    "title": "Europe Scaling Adoption: Tokenising at Scale",
     "time": "16:10",
     "durationMinutes": 10,
     "date": "2026-11-17",
@@ -2945,52 +3051,22 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
         "name": "Carlos Matilla",
-        "role": "Chief Executive Officer",
+        "role": "CEO",
         "project": "IO Builders"
-      }
-    ]
-  },
-  {
-    "id": "bp26-ff4f3b4d64da73",
-    "title": "Leap: The High Performance Trading App",
-    "time": "16:14",
-    "durationMinutes": 5,
-    "date": "2026-11-17",
-    "stage": "Main Stage",
-    "timezone": "Europe/London",
-    "tracks": [
-      "Nostalgia & Nihilism"
-    ],
-    "speakerNames": [
-      "Chris Osborn"
-    ],
-    "projectIds": [
-      "solana"
-    ],
-    "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
-    "status": "scheduled",
-    "dateVerified": true,
-    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
-    "speakers": [
-      {
-        "name": "Chris Osborn",
-        "role": "General Manager, Leap",
-        "project": "Solana Labs"
       }
     ]
   },
   {
     "id": "bp26-d31d49e3322b64",
     "title": "$2M Pokemon Cards: Tokenisation Is Making Collectibles Cool Again",
-    "time": "16:19",
+    "time": "16:11",
     "durationMinutes": 5,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -3003,7 +3079,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -3016,8 +3092,36 @@
     ]
   },
   {
+    "id": "bp26-0ade8197428edf",
+    "title": "Beyond Collectibles",
+    "time": "16:16",
+    "durationMinutes": 5,
+    "date": "2026-11-17",
+    "stage": "Main Stage",
+    "timezone": "Europe/London",
+    "tracks": [
+      "Nostalgia & Nihilism"
+    ],
+    "speakerNames": [
+      "Andrea Griffin Miele"
+    ],
+    "projectIds": [],
+    "sourceUrl": "https://solana.com/breakpoint/schedule",
+    "observedAt": "2026-11-17T11:25:12.498Z",
+    "status": "scheduled",
+    "dateVerified": true,
+    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+    "speakers": [
+      {
+        "name": "Andrea Griffin Miele",
+        "role": "Co-Founder & CEO",
+        "project": "Beezie"
+      }
+    ]
+  },
+  {
     "id": "bp26-87a53a4e06f409",
-    "title": "The Three Most Important Questions for Valuing Solana\"",
+    "title": "Bitwise's New Solana Price Target",
     "time": "16:20",
     "durationMinutes": 10,
     "date": "2026-11-17",
@@ -3033,7 +3137,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -3046,37 +3150,9 @@
     ]
   },
   {
-    "id": "bp26-34d4847224b531",
-    "title": "Beauty, Fashion, Luxury: A New Kind of Onchain Shopping Experience",
-    "time": "16:24",
-    "durationMinutes": 5,
-    "date": "2026-11-17",
-    "stage": "Main Stage",
-    "timezone": "Europe/London",
-    "tracks": [
-      "Nostalgia & Nihilism"
-    ],
-    "speakerNames": [
-      "Andrea Griffin Miele"
-    ],
-    "projectIds": [],
-    "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
-    "status": "scheduled",
-    "dateVerified": true,
-    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
-    "speakers": [
-      {
-        "name": "Andrea Griffin Miele",
-        "role": "Co-Founder & CEO",
-        "project": "Beezie"
-      }
-    ]
-  },
-  {
     "id": "bp26-9d84abe2b914a8",
     "title": "From Auction House to Onchain With Candy Digital",
-    "time": "16:29",
+    "time": "16:21",
     "durationMinutes": 5,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -3089,7 +3165,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -3098,6 +3174,34 @@
         "name": "Tad Smith",
         "role": "CEO",
         "project": "Candy Digital"
+      }
+    ]
+  },
+  {
+    "id": "bp26-37a046ecf5c5af",
+    "title": "The Lifetime Value of a Fan",
+    "time": "16:26",
+    "durationMinutes": 10,
+    "date": "2026-11-17",
+    "stage": "Main Stage",
+    "timezone": "Europe/London",
+    "tracks": [
+      "Nostalgia & Nihilism"
+    ],
+    "speakerNames": [
+      "Peter Moore"
+    ],
+    "projectIds": [],
+    "sourceUrl": "https://solana.com/breakpoint/schedule",
+    "observedAt": "2026-11-17T11:25:12.498Z",
+    "status": "scheduled",
+    "dateVerified": true,
+    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+    "speakers": [
+      {
+        "name": "Peter Moore",
+        "role": "Sports & Video Game Executive, Owner, Wisla Krakow Football Club",
+        "project": "Poland"
       }
     ]
   },
@@ -3121,7 +3225,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -3144,30 +3248,30 @@
     ]
   },
   {
-    "id": "bp26-37a046ecf5c5af",
-    "title": "The Lifetime Value of a Fan",
-    "time": "16:34",
-    "durationMinutes": 10,
+    "id": "bp26-0088f2311ceb91",
+    "title": "SOL, ZEC and Privacy",
+    "time": "16:36",
+    "durationMinutes": 5,
     "date": "2026-11-17",
     "stage": "Main Stage",
     "timezone": "Europe/London",
     "tracks": [
-      "Nostalgia & Nihilism"
+      "Crypto"
     ],
     "speakerNames": [
-      "Peter Moore"
+      "Justin Bons"
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
-        "name": "Peter Moore",
-        "role": "Sports and Video Game Executive, Owner, Wisla Krakow Football Club",
-        "project": "Poland"
+        "name": "Justin Bons",
+        "role": "Founder & CIO",
+        "project": "Cyber Capital"
       }
     ]
   },
@@ -3187,7 +3291,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -3200,37 +3304,9 @@
     ]
   },
   {
-    "id": "bp26-0088f2311ceb91",
-    "title": "SOL, ZEC and Privacy",
-    "time": "16:44",
-    "durationMinutes": 5,
-    "date": "2026-11-17",
-    "stage": "Main Stage",
-    "timezone": "Europe/London",
-    "tracks": [
-      "Crypto"
-    ],
-    "speakerNames": [
-      "Justin Bons"
-    ],
-    "projectIds": [],
-    "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
-    "status": "scheduled",
-    "dateVerified": true,
-    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
-    "speakers": [
-      {
-        "name": "Justin Bons",
-        "role": "Founder & CIO",
-        "project": "Cyber Capital"
-      }
-    ]
-  },
-  {
     "id": "bp26-2c1d33f9e1d647",
     "title": "State of the Solana Network",
-    "time": "16:49",
+    "time": "16:41",
     "durationMinutes": 7,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -3245,7 +3321,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -3258,39 +3334,9 @@
     ]
   },
   {
-    "id": "bp26-7c37760a425413",
-    "title": "All of Solana, Delivered: The Dataset Behind Institutional Finance",
-    "time": "16:50",
-    "durationMinutes": 10,
-    "date": "2026-11-17",
-    "stage": "Royal Exchange",
-    "timezone": "Europe/London",
-    "tracks": [
-      "Institutional Track"
-    ],
-    "speakerNames": [
-      "Jae Kim"
-    ],
-    "projectIds": [
-      "solana"
-    ],
-    "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
-    "status": "scheduled",
-    "dateVerified": true,
-    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
-    "speakers": [
-      {
-        "name": "Jae Kim",
-        "role": "Chief Strategy Officer & Managing Director",
-        "project": "Nodit"
-      }
-    ]
-  },
-  {
     "id": "bp26-d7ed96529ed916",
     "title": "Inside the Bunker: Are We in Cryptography's End Days?",
-    "time": "16:56",
+    "time": "16:48",
     "durationMinutes": 15,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -3305,7 +3351,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -3328,6 +3374,36 @@
     ]
   },
   {
+    "id": "bp26-7c37760a425413",
+    "title": "All of Solana, Delivered: The Dataset Behind Institutional Finance",
+    "time": "16:50",
+    "durationMinutes": 10,
+    "date": "2026-11-17",
+    "stage": "Royal Exchange",
+    "timezone": "Europe/London",
+    "tracks": [
+      "Institutional Track"
+    ],
+    "speakerNames": [
+      "Jae Kim"
+    ],
+    "projectIds": [
+      "solana"
+    ],
+    "sourceUrl": "https://solana.com/breakpoint/schedule",
+    "observedAt": "2026-11-17T11:25:12.498Z",
+    "status": "scheduled",
+    "dateVerified": true,
+    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+    "speakers": [
+      {
+        "name": "Jae Kim",
+        "role": "Chief Strategy Officer & Managing Director",
+        "project": "Nodit"
+      }
+    ]
+  },
+  {
     "id": "bp26-9b32e5984c8be1",
     "title": "The Frontier of Capital Formation",
     "time": "17:00",
@@ -3343,7 +3419,7 @@
     ],
     "projectIds": [],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -3356,37 +3432,9 @@
     ]
   },
   {
-    "id": "bp26-cee25ebc9d7fcb",
-    "title": "Superstate",
-    "time": "17:07",
-    "durationMinutes": 7,
-    "date": "2026-11-17",
-    "stage": "Royal Exchange",
-    "timezone": "Europe/London",
-    "tracks": [
-      "Institutional Track"
-    ],
-    "speakerNames": [
-      "Fig Gowen"
-    ],
-    "projectIds": [],
-    "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
-    "status": "scheduled",
-    "dateVerified": true,
-    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
-    "speakers": [
-      {
-        "name": "Fig Gowen",
-        "role": "Protocol Realations Lead",
-        "project": "Superstate"
-      }
-    ]
-  },
-  {
     "id": "bp26-3823d8bbebe5c8",
     "title": "Closing Fireside: Michael Lewis",
-    "time": "17:11",
+    "time": "17:03",
     "durationMinutes": 25,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -3400,7 +3448,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
@@ -3418,6 +3466,48 @@
     ]
   },
   {
+    "id": "bp26-cee25ebc9d7fcb",
+    "title": "New RWA Launchpad Coming to Solana",
+    "time": "17:07",
+    "durationMinutes": 7,
+    "date": "2026-11-17",
+    "stage": "Royal Exchange",
+    "timezone": "Europe/London",
+    "tracks": [
+      "Institutional Track"
+    ],
+    "speakerNames": [
+      "Fig Gowen",
+      "Todd McDonald",
+      "Mary Truitt"
+    ],
+    "projectIds": [
+      "solana"
+    ],
+    "sourceUrl": "https://solana.com/breakpoint/schedule",
+    "observedAt": "2026-11-17T11:25:12.498Z",
+    "status": "scheduled",
+    "dateVerified": true,
+    "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
+    "speakers": [
+      {
+        "name": "Fig Gowen",
+        "role": "Protocol Relations Lead",
+        "project": "Superstate"
+      },
+      {
+        "name": "Todd McDonald",
+        "role": "Co-Founder",
+        "project": "R3"
+      },
+      {
+        "name": "Mary Truitt",
+        "role": "Co-Founder & COO",
+        "project": "Formation"
+      }
+    ]
+  },
+  {
     "id": "bp26-32629ecc47d8a5",
     "title": "Tokenized Energy on Solana",
     "time": "17:14",
@@ -3429,21 +3519,21 @@
       "Institutional Track"
     ],
     "speakerNames": [
-      "Lucas Harris",
+      "Andres Gutierrez",
       "Dan Phillips"
     ],
     "projectIds": [
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
     "speakers": [
       {
-        "name": "Lucas Harris",
-        "role": "Head of GTM",
+        "name": "Andres Gutierrez",
+        "role": "Head of Engineering",
         "project": "Energy Substantiation"
       },
       {
@@ -3456,7 +3546,7 @@
   {
     "id": "bp26-24c9a16b1d153d",
     "title": "See You at Breakpoint 2027!",
-    "time": "17:36",
+    "time": "17:28",
     "durationMinutes": 5,
     "date": "2026-11-17",
     "stage": "Main Stage",
@@ -3470,7 +3560,7 @@
       "solana"
     ],
     "sourceUrl": "https://solana.com/breakpoint/schedule",
-    "observedAt": "2026-11-13T12:13:34.440Z",
+    "observedAt": "2026-11-17T11:25:12.498Z",
     "status": "scheduled",
     "dateVerified": true,
     "dateNote": "Day and stage tabs verified in the rendered official agenda. Times may change.",
