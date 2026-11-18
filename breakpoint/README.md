@@ -42,6 +42,10 @@ To price another project, add its `mintAddress` and a first-party `mintSourceUrl
 
 Never paste these values into chat, code or a URL. The collector's copy goes in through `python3 collector/setup.py` (masked macOS popups).
 
+## After the event (18 November 2026)
+
+`EVENT_OVER` in `src/main.tsx` puts the page in post-event mode: Watch live becomes Replays (the official Main Stage broadcasts, `REPLAYS`), Catch up shows "Live coverage has ended", the Overview drops Now and next, the coverage strip, From the desk and Straight from X, a banner on every other view says the event has ended, the page stops polling `/api/live`, and the alerts bell, desk link and refresh button are hidden. Set it to `false` and rebuild to bring the live sections back. Coverage jobs on the Mac and the coverage storage were switched off on 18 November.
+
 ## Mac Mini backend (no Upstash)
 
 Added 17 November 2026, when the Upstash database ran out of credits. The Mac Mini serves the same API (`scripts/mac-backend.mjs`, same code and options as production) with storage in files on the Mac (`server/files.mjs`), reached by Vercel through a free Cloudflare quick tunnel. The page, the desk and the Mac jobs keep using `https://www.sebmonty.link/breakpoint`; nothing in the collector configs changes.
