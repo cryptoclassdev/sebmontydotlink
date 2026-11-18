@@ -69,7 +69,7 @@ Newest first. One entry per pull request.
 ### The blog runs on the Studio: preview, comments, scheduled posts; Sanity removed
 
 - **Date:** 18 November 2026
-- **Pull request:** #TBD, branch `studio/blog-switch`.
+- **Pull request:** [#37](https://github.com/cryptoclassdev/sebmontydotlink/pull/37), branch `studio/blog-switch`.
 - **Status:** Draft, waiting for Seb to approve the screenshots (the Discussion section under articles and the preview bar are new on the site). Step 2 of 3 (step 1 was #10). Next: X post embeds and chart blocks in the Studio editor, then the copy for validator.com.
 
 #### What changed
