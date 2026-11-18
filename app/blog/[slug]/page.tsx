@@ -1,56 +1,65 @@
 import type { Metadata } from 'next'
+import { draftMode } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { ArticleBody, AuthorBio, PostCard } from '@/components/blog'
 import { ArticleActions } from '@/components/blog/ArticleActions'
+import { ArticleComments } from '@/components/blog/ArticleComments'
 import { ArticleGalleryProvider, ArticleImageTrigger } from '@/components/blog/ArticleLightbox'
-import { prepareArticleContent, sanityImageToGalleryImage } from '@/lib/blog/article-content'
-import { applyArticleEditorialOverride, getArticleEditorialOverride } from '@/lib/blog/editorial-overrides'
-import { FILE_ARTICLES, getFileArticle } from '@/lib/publishing'
-import { client, urlFor } from '@/sanity/client'
-import { popularPostsQuery, postBySlugQuery, postSlugsQuery } from '@/sanity/queries'
-import type { Post } from '@/sanity/types'
+import { PreviewBanner } from '@/components/blog/PreviewBanner'
+import { prepareArticleContent } from '@/lib/blog/article-content'
+import { getAllPosts, getDraftPreview, getPost, getRelatedPosts } from '@/lib/blog/source'
+import type { Post } from '@/lib/blog/types'
+import { getCurrentUser } from '@/lib/studio/session'
 
 type Props = { params: Promise<{ slug: string }> }
 
 export const revalidate = 60
 
 export async function generateStaticParams() {
-  const slugs = await client.fetch<string[]>(postSlugsQuery).catch(() => [])
-  return [...new Set([...slugs, ...FILE_ARTICLES.map((post) => post.slug)])].map((slug) => ({ slug }))
+  return (await getAllPosts()).map((post) => ({ slug: post.slug }))
 }
 
-async function getPost(slug: string) {
-  return getFileArticle(slug) || client.fetch<Post | null>(postBySlugQuery, { slug }).catch(() => null)
+/** In draft mode, signed-in Studio users see the draft; everyone else sees the live article. */
+async function loadPost(slug: string): Promise<{ post: Post | null; previewing: boolean }> {
+  const { isEnabled } = await draftMode()
+  if (isEnabled && (await getCurrentUser())) {
+    const draft = await getDraftPreview(slug)
+    if (draft) return { post: draft, previewing: true }
+  }
+  return { post: await getPost(slug), previewing: false }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const post = await getPost(slug)
+  const { post, previewing } = await loadPost(slug)
   if (!post) return { title: 'Post not found' }
-  const description = post.excerpt || post.subtitle
-  const editorialOverride = getArticleEditorialOverride(post.slug)
+  const title = post.seo?.title || post.title
+  const description = post.seo?.description || post.excerpt || post.subtitle
+  const shareImage = post.seo?.image || post.localMainImage
   return {
-    title: post.title,
+    title,
     description,
     alternates: {
-      canonical: `/blog/${post.slug}`,
-      ...(getFileArticle(post.slug) ? { types: { 'text/markdown': `/blog/${post.slug}.md` } } : {}),
+      canonical: post.seo?.canonicalUrl || `/blog/${post.slug}`,
+      types: { 'text/markdown': `/blog/${post.slug}.md` },
     },
-    robots: post.status === 'draft' ? { index: false, follow: false } : undefined,
+    robots: previewing || post.status === 'draft' || post.seo?.noindex ? { index: false, follow: false } : undefined,
     openGraph: {
       type: 'article',
-      title: post.title,
+      title,
       description,
-      publishedTime: editorialOverride?.publishedAt || post.publishedAt,
+      publishedTime: post.publishedAt,
       modifiedTime: post._updatedAt,
-      images: post.localMainImage
-        ? [{ url: post.localMainImage.src, width: post.localMainImage.width, height: post.localMainImage.height, alt: post.localMainImage.alt }]
-        : post.mainImage
-          ? [{ url: urlFor(post.mainImage).width(1200).height(630).fit('crop').auto('format').url() }]
-          : undefined,
+      images: shareImage ? [{ url: shareImage.src, width: shareImage.width, height: shareImage.height, alt: shareImage.alt }] : undefined,
+    },
+    twitter: {
+      card: shareImage ? 'summary_large_image' : 'summary',
+      title,
+      description,
+      images: shareImage ? [shareImage.src] : undefined,
     },
   }
 }
@@ -62,25 +71,19 @@ function formatDate(dateString?: string) {
 
 export default async function PostPage({ params }: Props) {
   const { slug } = await params
-  const [post, relatedPosts] = await Promise.all([
-    getPost(slug),
-    client.fetch<Post[]>(popularPostsQuery).catch(() => []),
-  ])
+  const { post, previewing } = await loadPost(slug)
   if (!post) notFound()
+  const related = await getRelatedPosts(post)
 
-  const heroImage = post.localMainImage || (post.mainImage ? sanityImageToGalleryImage(post.mainImage, post.title) : null)
-  const editorialOverride = getArticleEditorialOverride(post.slug)
-  const body = applyArticleEditorialOverride(post.slug, post.body || [])
-  const prepared = prepareArticleContent(body, heroImage ? 1 : 0, editorialOverride?.imageOverrides)
+  const heroImage = post.localMainImage || null
+  const prepared = prepareArticleContent(post.body || [], heroImage ? 1 : 0)
   const gallery = heroImage ? [heroImage, ...prepared.gallery] : prepared.gallery
-  const date = editorialOverride?.publishedAt || post.publishedAt || post._updatedAt
-  const authorImageUrl = post.author?.image ? urlFor(post.author.image).width(96).height(96).fit('crop').url() : '/images/seb-pfp.png'
-  const related = [...FILE_ARTICLES, ...relatedPosts]
-    .filter((item, index, items) => item._id !== post._id && items.findIndex((candidate) => candidate._id === item._id) === index)
-    .slice(0, 3)
+  const date = post.publishedAt || post._updatedAt
+  const authorImageUrl = post.author?.imageUrl || '/images/seb-pfp.png'
 
   return (
     <ArticleGalleryProvider images={gallery}>
+      {previewing && <PreviewBanner postId={post._id} />}
       <article className={`article-page${post.hideEyebrowRules ? ' article-page--no-eyebrow-rules' : ''}`}>
         <header className="article-header">
           <span className="site-eyebrow">{post.status === 'draft' ? 'Draft (not live) · ' : ''}{post.category?.title || 'Research'}</span>
@@ -121,6 +124,8 @@ export default async function PostPage({ params }: Props) {
         </section>
 
         {post.author && <div className="article-author"><AuthorBio author={post.author} /></div>}
+
+        {post.source === 'studio' && !previewing && <ArticleComments postId={post._id} slug={post.slug} />}
 
         {related.length > 0 && (
           <section className="article-related" aria-labelledby="related-posts-title">

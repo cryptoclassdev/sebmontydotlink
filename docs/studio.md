@@ -4,7 +4,7 @@ The Studio is this site's own article dashboard at **/studio** (www.sebmonty.lin
 
 Everything lives in this repo and in this project's own database and file store. Nothing is shared with validator.com, which gets its own copy of the code with its own logins and data.
 
-> **Status:** the Studio is built (this PR). The public blog still reads the Markdown files in `content/articles/` until the next PR switches it to the Studio. Until then, publishing in the Studio does not change what readers see.
+> **Status:** the blog, the homepage's "Latest research" card, search, `/llms.txt` and the `/blog/<slug>.md` copies all read from the Studio. If the Studio's database isn't connected (for example on a computer without `DATABASE_URL`), the site falls back to the old Markdown files in `content/articles/` so it never shows an empty blog.
 
 ## How it fits together
 
@@ -29,15 +29,10 @@ Do these on the Vercel project for sebmonty.link (team `webdesign-sebmonty`). A 
    - `BETTER_AUTH_SECRET`: a long random value (`openssl rand -hex 32`). Changing it later signs everyone out.
    - `STUDIO_SETUP_TOKEN`: a one-time code for creating the first admin. Remove it after step 5.
    - `BETTER_AUTH_URL` (Production only): `https://www.sebmonty.link`.
-4. **Redeploy.** Every build runs `pnpm studio:migrate` first, which creates the tables and copies the categories and authors from `content/*.yml` into the database. Without `DATABASE_URL` it skips this, so the site still builds before the database exists.
+4. **Redeploy.** Every build runs `pnpm studio:migrate` first, which creates the tables, copies the categories and authors from `content/*.yml`, and (the first time only) copies the three Markdown articles and their images into the Studio. Without `DATABASE_URL` it skips all of this, so the site still builds before the database exists.
 5. **First admin.** Open `/studio`. With no accounts yet it shows "Create the admin account". Enter the setup code, your name, email and a password (10+ characters). Then sign in.
 6. **Team.** Studio → Team → Add person, for each of Chris and Bruno. The Studio suggests a temporary password; copy it and send it privately. They change it under the account menu → Account and password.
-7. **Articles.** Copy the three Markdown articles into the Studio once (from a computer with the repo, after `vercel env pull .env.local`):
-   ```bash
-   pnpm studio:import-articles --dry-run   # shows what would happen
-   pnpm studio:import-articles             # uploads the images to Blob and creates the posts
-   ```
-   Running it twice is safe: articles already in the Studio are skipped.
+7. **Articles.** Nothing to do: the first build with the database copies the Markdown articles into the Studio as published posts (images go to the Blob store) and notes that it has done so, so it never happens again, and an article you later delete stays deleted. The same copy can be run by hand with `pnpm studio:import-articles` (it skips articles already in the Studio).
 
 ## Using it
 
@@ -45,13 +40,15 @@ Do these on the Vercel project for sebmonty.link (team `webdesign-sebmonty`). A 
 - **Fields:** the **Content** tab has title, slug (press **From title**), deck, excerpt, cover image, body and disclosure. **Details** has the publish date, updated date, category, author, read time and the feature flag. **SEO** has the search title, meta description, share image, canonical URL and "hide from search engines"; empty SEO fields fall back to the title, excerpt or deck, and cover.
 - **Body:** paragraphs, Heading 2 to 4, quotes, bold, italic, inline code, links, bulleted and numbered lists, images (with alt text, caption and credit), YouTube videos and code blocks. Paste from Google Docs keeps headings, lists, links and bold/italic. Shortcuts: Ctrl/⌘ B, Ctrl/⌘ I, Ctrl/⌘ ' (code), Ctrl/⌘ Z. End the article with a **Sources** heading; everything after it goes into the collapsed Sources box and isn't counted in the read time.
 - **Publish:** the green button. It checks the post first and lists anything missing (title, slug, date, category, author, cover image and its alt text, image alt text, link formats); click an item to jump to it.
-- **Schedule:** set a publish date in the future; the button changes to **Schedule**.
+- **Preview:** the **Preview** button (top right of a post) saves, then opens the draft on the real article page in a new tab with an orange "Preview" bar. Only signed-in Studio users see drafts; readers keep seeing the published version. **Exit preview** in the bar turns it off.
+- **Schedule:** set a publish date in the future; the button changes to **Schedule**. The article appears on the site by itself within about a minute of that time.
+- **On the site:** publishing updates the article page, the blog, the homepage card, search, `/llms.txt` and the article's `.md` copy within seconds. **Feature this article** (Details tab) puts it in the homepage's "Latest research" card; otherwise the card shows the newest article.
 - **Edit a live article:** just edit. The badge shows **Edited** and the button **Publish changes**. ⋯ → **Discard unpublished changes** goes back to the live version.
 - **Unpublish / delete:** ⋯ → **Unpublish** takes it off the site and keeps it as a draft. Only drafts can be deleted.
 - **Revision history:** ⋯ → **Revision history**. A snapshot is kept at every publish and every 10 minutes of editing. **Restore** replaces the draft; the live article doesn't change until you publish.
 - **Two people, one post:** if someone else saved the same post after you opened it, your save is refused with "Reload to get their changes", so nobody silently overwrites anyone.
 - **Media:** every uploaded image, with alt text, caption and credit you can fill in once and reuse. An image used in a post can't be deleted.
-- **Comments:** Comments shows a red count of comments waiting. Approve, Reject (or Hide once approved), Spam or Delete. Only approved comments will show on the site.
+- **Comments:** readers comment at the bottom of every article (name, optional email that is never shown, comment). Each one waits in Studio → **Comments** (red count in the top bar). Approve, Reject (or Hide once approved), Spam or Delete. Only approved comments show under the article, within seconds of approval.
 - **Categories / Authors:** the lists behind the Category and Author fields. A category or author used by a post can't be deleted.
 - **Team:** admins add and remove people, change roles and set new passwords (which signs that person out everywhere). Editors can do everything else.
 

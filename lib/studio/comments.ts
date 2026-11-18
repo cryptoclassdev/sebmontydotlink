@@ -1,6 +1,6 @@
 import 'server-only'
 
-import { and, count, desc, eq, gt, sql } from 'drizzle-orm'
+import { and, count, desc, eq, gt, lte, sql } from 'drizzle-orm'
 import { createHash } from 'node:crypto'
 
 import { getDb, schema } from './db'
@@ -91,7 +91,13 @@ export async function submitComment(input: {
   const [post] = await db
     .select({ id: schema.post.id })
     .from(schema.post)
-    .where(and(eq(schema.post.status, 'published'), sql`${schema.post.published} ->> 'slug' = ${input.slug}`))
+    .where(
+      and(
+        sql`${schema.post.status} IN ('published', 'scheduled')`,
+        lte(schema.post.publishedAt, new Date()),
+        sql`${schema.post.published} ->> 'slug' = ${input.slug}`,
+      ),
+    )
     .limit(1)
   if (!post) return { ok: false, error: 'That article does not exist.' }
 

@@ -197,6 +197,18 @@ export function PostEditor({
     })
   }
 
+  /** Saves first, then opens the draft on the article page in a new tab (draft mode). */
+  async function openPreview() {
+    const tab = window.open('about:blank', '_blank')
+    if (saveState !== 'saved' && !(await save())) {
+      tab?.close()
+      return
+    }
+    const url = `/api/studio/preview?id=${post.id}`
+    if (tab) tab.location.href = url
+    else window.location.href = url
+  }
+
   const publishLabel = busy
     ? 'Working…'
     : !published
@@ -229,6 +241,9 @@ export function PostEditor({
         <h1>{doc.title || 'Untitled'}</h1>
         <StatusBadge status={status} changed={hasLiveChanges} />
         <span className="st-spacer" style={{ flex: 1 }} />
+        <button type="button" className="st-btn small" onClick={openPreview} title="Open this draft on the real article page">
+          Preview
+        </button>
         {liveUrl && (
           <a className="st-btn ghost small st-hide-sm" href={liveUrl} target="_blank" rel="noreferrer">
             View live ↗

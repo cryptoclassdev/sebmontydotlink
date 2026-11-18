@@ -1,50 +1,35 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 
 import { PostCard, SearchInput } from '@/components/blog'
-import { mergeCategoryLists } from '@/lib/blog/merge-categories'
-import { client } from '@/sanity/client'
-import { categoriesQuery, searchPostsQuery } from '@/sanity/queries'
-import type { Category, Post } from '@/sanity/types'
+import type { Category, Post } from '@/lib/blog/types'
 
-export function SearchClient({ localPosts, permanentCategories }: { localPosts: Post[]; permanentCategories: Category[] }) {
+export function SearchClient({ posts, categories }: { posts: Post[]; categories: Category[] }) {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<Post[]>([])
-  const [categories, setCategories] = useState<Category[]>([])
-  const [isLoading, setIsLoading] = useState(false)
   const [hasSearched, setHasSearched] = useState(false)
 
-  useEffect(() => {
-    client.fetch<Category[]>(categoriesQuery)
-      .then((items) => setCategories(mergeCategoryLists(permanentCategories, items, localPosts)))
-      .catch(() => setCategories(mergeCategoryLists(permanentCategories, [], localPosts)))
-  }, [localPosts, permanentCategories])
-
-  const handleSearch = useCallback(async (searchQuery: string) => {
-    setQuery(searchQuery)
-    if (!searchQuery.trim()) {
-      setResults([])
-      setHasSearched(false)
-      return
-    }
-    setIsLoading(true)
-    setHasSearched(true)
-    const normalizedQuery = searchQuery.trim().toLowerCase()
-    const localResults = localPosts.filter((post) => [post.title, post.subtitle, post.excerpt, post.category?.title]
-      .some((value) => value?.toLowerCase().includes(normalizedQuery)))
-    let sanityResults: Post[] = []
-    try {
-      sanityResults = await client.fetch<Post[]>(searchPostsQuery, { query: `*${searchQuery}*` } as never)
-    } catch {
-      // Sanity unreachable: still show the Markdown articles that match
-    }
-    setResults([...localResults, ...sanityResults]
-      .filter((post, index, posts) => posts.findIndex((candidate) => candidate.slug === post.slug) === index))
-    setIsLoading(false)
-  }, [localPosts])
+  const handleSearch = useCallback(
+    (searchQuery: string) => {
+      setQuery(searchQuery)
+      const normalizedQuery = searchQuery.trim().toLowerCase()
+      if (!normalizedQuery) {
+        setResults([])
+        setHasSearched(false)
+        return
+      }
+      setHasSearched(true)
+      setResults(
+        posts.filter((post) =>
+          [post.title, post.subtitle, post.excerpt, post.category?.title, post.author?.name].some((value) => value?.toLowerCase().includes(normalizedQuery)),
+        ),
+      )
+    },
+    [posts],
+  )
 
   return (
     <div className="site-shell publication-search-page">
@@ -57,9 +42,8 @@ export function SearchClient({ localPosts, permanentCategories }: { localPosts: 
       </header>
 
       <section className="publication-search-results" aria-live="polite">
-        {isLoading && <p>Searching…</p>}
-        {!isLoading && hasSearched && results.length === 0 && <div className="publication-empty"><strong>No matching stories</strong><p>Try a broader term than “{query}”.</p></div>}
-        {!isLoading && results.length > 0 && (
+        {hasSearched && results.length === 0 && <div className="publication-empty"><strong>No matching stories</strong><p>Try a broader term than “{query}”.</p></div>}
+        {results.length > 0 && (
           <><p>{results.length} {results.length === 1 ? 'result' : 'results'}</p><div>{results.map((post) => <PostCard key={post._id} post={post} variant="list" />)}</div></>
         )}
       </section>

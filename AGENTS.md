@@ -12,19 +12,19 @@ This repo is synced from v0.app — expect generated components in `components/u
 
 Every change ships as a pull request against `main`; never push to `main` and never merge. Each PR adds an entry to the **Change log** in `README.md` (what changed and why, files touched, how to check it on the Vercel preview, risks, roll back), and the PR description carries the same details.
 
-## Articles (Markdown publisher)
+## Articles (Studio)
 
-New articles are Markdown files: `content/articles/<slug>.md`, images in `public/articles/<slug>/`. Read `docs/publishing.md` before writing or converting one, and run `pnpm articles:check`. The compiler is `lib/publishing/compile.mjs` (runs from `next.config.mjs` on every dev/build and fails the build on any invalid article); the app reads articles only through `lib/publishing/index.ts`. Each article is also served as Markdown at `/blog/<slug>.md` and listed in `/llms.txt`.
+Articles are written and published in the Studio at `/studio` (see `docs/studio.md`), not by pull request. The public site reads them only through `lib/blog/source.ts` (Studio database via `lib/studio/public.ts`; Portable Text bodies rendered by `components/blog/ArticleBody.tsx`). Each article is also served as Markdown at `/blog/<slug>.md` (`lib/studio/markdown.ts`) and listed in `/llms.txt`. Draft preview uses Next.js draft mode (`app/api/studio/preview/`), and reader comments are moderated in the Studio.
 
-The RoboStrategy post (`robostrategy-bot-solana`) still comes from Sanity (with text overrides in `lib/blog/editorial-overrides.ts`); it is being dropped, not migrated. Sanity's Studio no longer exists at `/studio`.
+The old Markdown publisher (`content/articles/*.md`, `lib/publishing/`, `docs/publishing.md`) is now only the source for the one-time import into the Studio and the fallback the site shows when the Studio database isn't connected (local work without `DATABASE_URL`). Don't add new articles there. Sanity has been removed; the retired RoboStrategy post redirects to `/blog`.
 
 ## Studio (/studio)
 
-The site's own password-gated article dashboard (replacing Sanity). Read `docs/studio.md` first. Code: `app/studio/` (pages and server actions), `components/studio/`, `lib/studio/` (database schema `lib/studio/db/schema.ts`, sign-in `auth.ts`, data functions), `app/api/studio/`, `scripts/studio/`, migrations `drizzle/`, login gate `proxy.ts`. Postgres via Drizzle, sign-in via Better Auth (email and password, no sign-up), images in Vercel Blob, article bodies in Portable Text edited with `@portabletext/editor` in the block shapes `components/blog/ArticleBody.tsx` renders. Every Studio page and server action must call `requireUser()` (or `requireAdmin()`). After a schema change run `pnpm studio:generate` and commit the migration. Until the blog is switched over, the public site still reads only the Markdown articles.
+The site's own password-gated article dashboard (replacing Sanity). Read `docs/studio.md` first. Code: `app/studio/` (pages and server actions), `components/studio/`, `lib/studio/` (database schema `lib/studio/db/schema.ts`, sign-in `auth.ts`, data functions, `public.ts` for what the site reads), `app/api/studio/`, `scripts/studio/`, migrations `drizzle/`, login gate `proxy.ts`. Postgres via Drizzle, sign-in via Better Auth (email and password, no sign-up), images in Vercel Blob, article bodies in Portable Text edited with `@portabletext/editor` in the block shapes `components/blog/ArticleBody.tsx` renders. Every Studio page and server action must call `requireUser()` (or `requireAdmin()`). After a schema change run `pnpm studio:generate` and commit the migration.
 
 ## Stack
 
-Next.js **16** (App Router, Turbopack), React **19**, Tailwind CSS **v4**, TypeScript 5, Sanity v5. Tailwind v4 is **CSS-first**: there is no `tailwind.config.*` — theme tokens, `@theme`, and `@custom-variant dark` all live in `app/globals.css`, and PostCSS is wired via `@tailwindcss/postcss` in `postcss.config.mjs`.
+Next.js **16** (App Router, Turbopack), React **19**, Tailwind CSS **v4**, TypeScript 5. Tailwind v4 is **CSS-first**: there is no `tailwind.config.*` — theme tokens, `@theme`, and `@custom-variant dark` all live in `app/globals.css`, and PostCSS is wired via `@tailwindcss/postcss` in `postcss.config.mjs`.
 
 ## Commands
 
@@ -40,16 +40,14 @@ There is **no working linter and no test runner**. `npm run lint` currently fail
 ## Environment
 
 Required env vars (see `.env.example`):
-- `NEXT_PUBLIC_SANITY_PROJECT_ID`
-- `NEXT_PUBLIC_SANITY_DATASET` (defaults to `production` in `sanity/client.ts`)
-- Studio only: `DATABASE_URL`, `BETTER_AUTH_SECRET`, `BLOB_READ_WRITE_TOKEN`, `STUDIO_SETUP_TOKEN` (first admin), optional `BETTER_AUTH_URL`. Without them the site builds and `/studio` says it isn't connected.
+- Studio: `DATABASE_URL`, `BETTER_AUTH_SECRET`, `BLOB_READ_WRITE_TOKEN`, `STUDIO_SETUP_TOKEN` (first admin), optional `BETTER_AUTH_URL`. Without `DATABASE_URL` the site still builds, the blog shows the Markdown articles and `/studio` says it isn't connected.
 
 ## Gotchas
 
 - **`next.config.mjs` sets `typescript.ignoreBuildErrors: true`.** Prod builds will ship even with TS errors. Run `tsc --noEmit` (or rely on your editor) before shipping — CI/build won't catch type regressions.
-- **Sanity images** must come from `cdn.sanity.io` — that's the only allowed remote pattern in `next.config.mjs`. Adding other image hosts requires updating `remotePatterns`.
+- **Remote images** for `next/image` must come from the Vercel Blob store (`*.public.blob.vercel-storage.com`), the only remote pattern in `next.config.mjs`. Adding other image hosts requires updating `remotePatterns`.
 - **Tailwind v4, CSS-first**: don't create a `tailwind.config.*` — it won't be read. Add design tokens and utilities in `app/globals.css` (`@theme`, `:root`, `@custom-variant`).
-- **Path alias**: `@/*` → repo root (e.g. `@/sanity/client`, `@/components/ui/wobble-card`, `@/lib/utils`).
+- **Path alias**: `@/*` → repo root (e.g. `@/lib/blog/source`, `@/components/ui/wobble-card`, `@/lib/utils`).
 
 ## Architecture
 
@@ -68,12 +66,10 @@ Required env vars (see `.env.example`):
 - `components/email-signup-modal.tsx` — dark-theme email modal
 - `components/referral-grid.tsx`, `referrals-carousel.tsx` — partner referrals
 
-### Sanity CMS
-- `sanity.config.ts` — studio config, `basePath: /studio`
-- `sanity/client.ts` — Sanity client + `urlFor()` image URL builder
-- `sanity/queries.ts` — all GROQ queries (posts, categories, featured, search, comments, site settings). Prefer composing via the shared `postFields` fragment.
-- `sanity/schemas/` — `post`, `author`, `category`, `comment`, `blockContent`, `siteSettings`
-- `sanity/types.ts` — TS types matching the schemas
+### Blog data
+- `lib/blog/source.ts` — the only place pages read articles, categories, related posts and Markdown copies
+- `lib/blog/types.ts` — shared `Post`, `Author`, `Category` and Portable Text types
+- `lib/studio/public.ts` — Studio queries for live posts, draft previews and approved comments
 
 ### Design system (defined in `app/globals.css`)
 

@@ -16,7 +16,7 @@ Nothing reaches the live site without review.
 
 ## Publishing an article
 
-Articles are Markdown files in `content/articles/`, with their images in `public/articles/<slug>/`. The full guide is [docs/publishing.md](docs/publishing.md). Check articles with `pnpm articles:check`; the same check runs on every build and stops a broken article from reaching the site.
+Articles are written, previewed, scheduled and published in the Studio at `/studio` (see below), with no pull request. The old Markdown files in `content/articles/` were copied into the Studio once and are only shown when the Studio's database isn't connected; [docs/publishing.md](docs/publishing.md) describes that retired method.
 
 ## Run it locally
 
@@ -24,8 +24,8 @@ Requires Node 20.9 or newer and pnpm 8.
 
 ```bash
 pnpm install
-pnpm dev              # local site at http://localhost:3000; article edits reload automatically
-pnpm articles:check   # check every article
+pnpm dev              # local site at http://localhost:3000
+pnpm articles:check   # check the old Markdown articles (the Studio's fallback)
 pnpm typecheck        # TypeScript check; run before every PR
 pnpm build            # production build; run before every PR
 ```
@@ -38,7 +38,7 @@ The site's own article dashboard: write, schedule and publish articles and moder
 
 ```bash
 pnpm studio:migrate            # create/update the Studio's database tables (also runs before every build)
-pnpm studio:import-articles    # copy content/articles/*.md into the Studio (safe to re-run)
+pnpm studio:import-articles    # copy content/articles/*.md into the Studio by hand (the first build does it once anyway)
 pnpm studio:user list          # account recovery: list | reset-password <email> | make-admin <email>
 pnpm studio:generate           # after changing lib/studio/db/schema.ts: write a new migration
 ```
@@ -47,9 +47,9 @@ pnpm studio:generate           # after changing lib/studio/db/schema.ts: write a
 
 | What | File |
 | --- | --- |
-| Articles | `content/articles/<slug>.md`, images in `public/articles/<slug>/` |
-| Categories and authors | `content/categories.yml`, `content/authors.yml` |
-| Article compiler and the app's article API | `lib/publishing/compile.mjs`, `lib/publishing/index.ts` |
+| Articles, categories, authors, comments | In the Studio's database; edit them at `/studio` |
+| Where pages read articles from | `lib/blog/source.ts` (Studio via `lib/studio/public.ts`; Markdown fallback via `lib/publishing/`) |
+| Old Markdown articles (import source and fallback) | `content/articles/<slug>.md`, images in `public/articles/<slug>/`, lists in `content/categories.yml` and `content/authors.yml` |
 | Homepage content (hero, socials, referral links, projects) | `components/bento-grid.tsx` |
 | Homepage styles | `components/link-tree.module.css` |
 | Skill Files page and its styles | `app/skill-files/page.tsx`, `components/link-hub.module.css` |
@@ -57,14 +57,68 @@ pnpm studio:generate           # after changing lib/studio/db/schema.ts: write a
 | Header and footer (shared by every page) | `components/site-header.tsx`, `components/site-footer.tsx` |
 | Article components | `components/blog/` |
 | Site-wide colours, page width, header, footer, blog and article styles | `app/globals.css` |
-| Agent-readable copies | `/blog/<slug>.md` (`app/agent/articles/[slug]/route.ts`), `/llms.txt` (`app/llms.txt/route.ts`) |
+| Agent-readable copies | `/blog/<slug>.md` (`app/agent/articles/[slug]/route.ts`, Markdown made by `lib/studio/markdown.ts`), `/llms.txt` (`app/llms.txt/route.ts`) |
+| Draft preview and reader comments | `app/api/studio/preview/`, `components/blog/PreviewBanner.tsx`; `components/blog/ArticleComments.tsx`, `components/blog/CommentForm.tsx` |
 | Breakpoint London 2026 guide (`/breakpoint`) | Source, data, tests and collector in `breakpoint/` (see `breakpoint/README.md`); built page in `public/breakpoint/`; API in `app/breakpoint/api/[...path]/route.ts` |
 | Studio (article dashboard) | Pages `app/studio/`, components `components/studio/`, logic and database schema `lib/studio/`, API `app/api/studio/`, migrations `drizzle/`, scripts `scripts/studio/`, login gate `proxy.ts` |
-| Legacy Sanity content | The RoboStrategy post still comes from Sanity (project `bfn64pgm`) until the blog moves to the Studio; it is not being migrated. Sanity's own Studio has been removed from `/studio` |
 
 ## Change log
 
 Newest first. One entry per pull request.
+
+### The blog runs on the Studio: preview, comments, scheduled posts; Sanity removed
+
+- **Date:** 18 November 2026
+- **Pull request:** #TBD, branch `studio/blog-switch`.
+- **Status:** Draft, waiting for Seb to approve the screenshots (the Discussion section under articles and the preview bar are new on the site). Step 2 of 3 (step 1 was #10). Next: X post embeds and chart blocks in the Studio editor, then the copy for validator.com.
+
+#### What changed
+1. **The site reads articles from the Studio.** The blog list, article pages, category filter, search, the homepage's "Latest research" card, `/llms.txt` and the `/blog/<slug>.md` copies all come from the Studio's database (`lib/blog/source.ts`). Publishing, editing, unpublishing or scheduling in the Studio now changes the site within seconds, with no pull request.
+2. **The three Markdown articles move into the Studio automatically.** The first build with the Studio database copies them (and their images, into the Blob store) as published posts, records that it did, and never repeats it. Checked side by side with the live site: the header, body text, image captions, page title, description and share image of all three articles are identical.
+3. **Safe fallback:** without the Studio database (for example on a computer without `DATABASE_URL`), the site shows the Markdown articles as before, so the blog is never empty. If the database can't be reached, pages already built keep being served.
+4. **Draft preview:** a **Preview** button in the Studio saves the post and opens the draft on the real article page, with an orange "Preview" bar (Back to the Studio, Exit preview). Only signed-in Studio users see drafts; readers keep seeing the published version.
+5. **Reader comments:** every Studio article ends with a Discussion section: approved comments and a form (name, optional email that is never shown, comment). New comments wait in Studio → Comments; approving one shows it under the article within seconds. Spam protection: a hidden honeypot field, length limits and 3 comments per visitor per 10 minutes.
+6. **Scheduled posts** go live by themselves once their time comes (within about a minute); a scheduled post whose time has passed shows as Published in the Studio.
+7. **Homepage card:** "Feature this article" in the Studio puts that article in the homepage's "Latest research" card; otherwise it shows the newest article (the old RoboStrategy fallback is gone).
+8. **SEO fields work:** the Studio's search title, meta description, share image, canonical URL and "hide from search engines" now set the article's page title, description, link preview (Open Graph and X card) and robots tag.
+9. **Sanity is removed:** the RoboStrategy post (the only Sanity article) is retired as agreed and `/blog/robostrategy-bot-solana` redirects to `/blog`. The Sanity client, queries, schemas, the text-override file and the packages `sanity`, `next-sanity`, `@sanity/client`, `@sanity/image-url`, `@sanity/vision` and `styled-components` are gone. Shared post types moved to `lib/blog/types.ts`. Images can now come from the Studio's Blob store instead of `cdn.sanity.io`.
+10. **Database:** one new table, `studio_meta` (migration `drizzle/0001_studio_meta.sql`), which records that the one-time import ran.
+
+#### Why
+Seb's plan for the Studio: articles are posted from the dashboard instead of by pull request, comments are moderated there, only the three Markdown articles move over and RoboStrategy is dropped. Seb also asked for draft preview (this PR) and for X embeds and chart blocks (next PR).
+
+#### Files touched
+- New: `lib/blog/source.ts`, `lib/blog/types.ts`, `lib/studio/public.ts`, `lib/studio/markdown.ts`, `components/blog/ArticleComments.tsx`, `components/blog/CommentForm.tsx`, `components/blog/PreviewBanner.tsx`, `app/api/studio/preview/route.ts`, `app/api/studio/preview/exit/route.ts`, `scripts/studio/import-markdown.mjs`, `drizzle/0001_studio_meta.sql` (+ `drizzle/meta/`).
+- Changed: `app/page.tsx`, `app/blog/page.tsx`, `app/blog/[slug]/page.tsx`, `app/blog/search/page.tsx`, `app/blog/category/[slug]/page.tsx`, `app/llms.txt/route.ts`, `app/agent/articles/[slug]/route.ts`, `components/blog/SearchClient.tsx`, `components/blog/PostCard.tsx`, `components/blog/FeaturedPost.tsx`, `components/blog/AuthorBio.tsx`, the Portable Text type imports in `components/blog/ArticleBody.tsx`, `SourceQuote.tsx`, `YouTubeEmbed.tsx`, `CategoryNav.tsx`, `PopularPosts.tsx`, `lib/blog/article-content.ts`, `lib/blog/catalog.ts`, `lib/blog/merge-categories.ts`, `lib/studio/db/schema.ts`, `lib/studio/posts.ts` (Published for due scheduled posts), `lib/studio/comments.ts`, `components/studio/PostEditor.tsx` (Preview button), `scripts/studio/migrate.mjs`, `scripts/studio/import-articles.mjs`, `next.config.mjs` (Blob image host, RoboStrategy redirect), `app/globals.css` (comment section and preview bar styles), `package.json`, `pnpm-lock.yaml`, `.env.example`, `README.md`, `AGENTS.md`, `docs/studio.md`, `docs/publishing.md` (marked retired).
+- Removed: `sanity/` (client, queries, schemas, types), `sanity.config.ts`, `lib/blog/editorial-overrides.ts`, `lib/blog/categories.ts`.
+
+#### Before merging
+The Studio's Vercel setup from #10 (Neon database and Blob store for Production and Preview, `BETTER_AUTH_SECRET`, `STUDIO_SETUP_TOKEN`, `BETTER_AUTH_URL`) should be done first, so the merge build copies the articles into the Studio and the blog switches over in one step. If it isn't, the merge is still safe: the blog keeps showing the Markdown articles until the database is connected.
+
+#### How to check it on the Vercel preview
+With the database connected to Preview (a database branch per preview keeps live data untouched):
+1. `/blog`, the three articles, the homepage card, search, `/llms.txt` and `/blog/papertrade-saga.md` look and read as on the live site. Each article now ends with a Discussion section.
+2. `/blog/robostrategy-bot-solana` goes to `/blog`.
+3. In `/studio` on the preview, open an article, change the deck, press **Preview**: the new tab shows the new deck with the orange bar. In a private window the article still shows the old deck. Press **Publish changes**: the private window shows the new deck after a reload.
+4. Post a comment in the private window: it says it will appear once approved. Approve it in Studio → Comments: it appears under the article after a reload.
+5. New post with a publish date tomorrow → **Schedule**: it isn't on `/blog`. Move the date to the past → **Publish changes**: it appears.
+
+#### Checks run
+- `pnpm typecheck` and `pnpm build` pass with and without a database.
+- Without a database: `/`, `/blog`, the three articles, `/blog/papertrade-saga.md`, `/llms.txt` and `/blog/search` return 200 from the Markdown fallback; `/blog/robostrategy-bot-solana` redirects (308) to `/blog`; category links still redirect to the filtered blog.
+- With a fresh local Postgres: the first `pnpm studio:migrate` copies the 3 articles (169, 104 and 124 blocks), the second copies nothing; the build prerenders the three article pages from the Studio.
+- Side-by-side comparison with the live site (Playwright) for all three articles: header, body text, image captions, page title, meta description and share image identical. The only difference is the "More from the blog" cards, which no longer include RoboStrategy. The `.md` copies have the same text; only the escaping of a few `$`, `#` and `&` characters differs.
+- Browser test of a production build: Preview shows the draft with the bar to the signed-in editor while a signed-out visitor sees the live text, and Exit preview turns it off; Publish changes reaches readers; a reader comment is held, then shown after approval; a scheduled post is hidden from `/blog` and its page returns 404 until its time, then appears; the featured flag changes the homepage card; the new post gets a `.md` copy and a `/llms.txt` line; no horizontal scrolling at 390 px; no console errors other than the deliberate 404.
+- The #10 Studio browser test still passes on this branch.
+
+#### Risks
+- **Content now lives in the database:** if the Studio database were unreachable, already-built pages keep being served; pages being rebuilt fall back to the Markdown articles. Neon backs up the database.
+- **First production build after merge copies the articles**, uploading about 25 images to the Blob store. If that copy fails, the build fails and the live site stays on the previous version.
+- **RoboStrategy is gone** from the blog (redirected to `/blog`), as agreed.
+- **Comments are open to the public** on Studio articles; nothing appears without approval.
+
+#### Roll back
+Revert this PR's merge commit: the blog goes back to the Markdown articles and RoboStrategy returns. The Studio's posts, media and comments stay in the database untouched, ready for a second try.
 
 ### Studio: the site's own article dashboard at /studio
 

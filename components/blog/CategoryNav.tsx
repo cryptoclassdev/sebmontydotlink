@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import type { Category } from '@/sanity/types'
+import type { Category } from '@/lib/blog/types'
 
 interface CategoryNavProps {
   categories: Category[]

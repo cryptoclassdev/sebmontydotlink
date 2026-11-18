@@ -2,9 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 
-import { getArticleEditorialOverride } from '@/lib/blog/editorial-overrides'
-import { urlFor } from '@/sanity/client'
-import type { Post } from '@/sanity/types'
+import type { Post } from '@/lib/blog/types'
 
 function formatDate(dateString?: string) {
   if (!dateString) return ''
@@ -12,11 +10,8 @@ function formatDate(dateString?: string) {
 }
 
 export function FeaturedPost({ post, headingId = 'featured-post-title' }: { post: Post; headingId?: string }) {
-  const editorialOverride = getArticleEditorialOverride(post.slug)
-  const imageUrl = post.localMainImage?.src || (post.mainImage
-    ? urlFor(post.mainImage).width(1400).height(900).fit('crop').auto('format').url()
-    : null)
-  const imageAlt = post.localMainImage?.alt || post.mainImage?.alt || ''
+  const imageUrl = post.localMainImage?.src || null
+  const imageAlt = post.localMainImage?.alt || ''
   return (
     <article className="publication-feature">
       <Link href={`/blog/${post.slug}`}>
@@ -30,7 +25,7 @@ export function FeaturedPost({ post, headingId = 'featured-post-title' }: { post
           <h2 id={headingId}>{post.title}</h2>
           <p>{post.subtitle || post.excerpt}</p>
           <div className="publication-meta">
-            <span>{formatDate(editorialOverride?.publishedAt || post.publishedAt || post._updatedAt)}</span>
+            <span>{formatDate(post.publishedAt || post._updatedAt)}</span>
             <span aria-hidden="true">·</span>
             <span>{post.readTime || 5} min read</span>
           </div>
