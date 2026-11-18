@@ -54,6 +54,43 @@ Environment variables are listed in `.env.example`. The site builds without any 
 
 Newest first. One entry per pull request.
 
+### Breakpoint: post-event page (replays instead of live coverage)
+
+- **Date:** 18 November 2026
+- **Pull request:** PR_LINK, branch `feat/post-event`.
+- **Status:** Ready for review. Goes live when merged; nothing to change on the Mac or in Vercel.
+- **Why:** Breakpoint 2026 ended on 17 November. The Mac coverage jobs and the coverage storage are off, so Watch live, Live notes, Catch up, Now and next, From the desk and Straight from X would show empty or stale sections. Visitors should see a finished guide with the replays.
+
+#### What changed
+1. `EVENT_OVER` switch in `breakpoint/src/main.tsx` (on).
+2. Overview: hero reads "That's a wrap. Watch it again." with "Watch the replays" and "Explore the programme"; heading says the event ended; Now and next, the coverage strip, From the desk and Straight from X are hidden. Projects, Around London, LP Army and token prices stay.
+3. Watch live becomes **Replays**: Day 1 and Day 2 tabs with the official Main Stage broadcasts (YouTube `l8Sk-jInOHo`, `0ySKm0h0ZFc`), talk count, a Programme button and "Watch on YouTube". `#watch?day=day1|day2` opens a day. On a Main Stage talk card, the button reads "Watch the replay" and opens that day.
+4. Catch up leaves the navigation; `#catchup` shows "Live coverage has ended" with a link to the replays.
+5. Every view except the Overview shows a banner: "Breakpoint 2026 has ended…" with "Watch the replays".
+6. No polling of `/api/live` (loads once), no alerts bell, no Editorial desk or Refresh in the footer, no live dot on Replays. LP Army says its Breakpoint coverage is a wrap.
+7. `breakpoint/README.md`: "After the event" section.
+
+#### Files touched
+- `breakpoint/src/main.tsx`, `breakpoint/src/style.css`, `public/breakpoint/` (rebuilt)
+- `breakpoint/README.md`, `README.md`
+
+#### How to check it
+1. `/breakpoint`: the hero says "That's a wrap."; no Now and next or live sections; the navigation shows Overview, Replays, Schedule, London guide, Watchlist.
+2. Replays: both day tabs play (Day 2 checked; Day 1 is listed on Solana's YouTube streams page but its embed read "unavailable" in a headless browser, so check it in a normal browser).
+3. Schedule, open a Main Stage talk: "Watch the replay" opens that day's replay.
+4. `/breakpoint#catchup`: "Live coverage has ended".
+
+#### Checks run
+- `tsc --noEmit`, page build, 91 Node tests and 82 Python tests.
+- Headless Chrome at 1400 px and 390 px, page served locally against the production API (now without storage): Overview, Replays, Catch up, Schedule and LP Army render with no page or console errors; the Day 2 embed loads Solana's "Breakpoint 2026 - Day 2"; the talk card button routes to `#watch?day=day1`.
+
+#### Risks
+- If Solana re-publishes a day's broadcast under a new video id, update `REPLAYS`.
+- Day 1 embed may need a moment on YouTube's side; the "Watch on YouTube" link works regardless.
+
+#### Roll back
+Revert this PR, or set `EVENT_OVER` to `false` and rebuild.
+
 ### Breakpoint: day 2 programme refreshed from the official agenda
 
 - **Date:** 17 November 2026
