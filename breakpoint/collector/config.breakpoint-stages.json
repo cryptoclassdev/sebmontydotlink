@@ -1,0 +1,67 @@
+{
+  "siteUrl": "https://www.sebmonty.link/breakpoint",
+  "dailyBudgetUsd": 15,
+  "pollSeconds": 60,
+  "xEnabled": false,
+  "chunkSeconds": 30,
+  "summaryEveryChunks": 2,
+  "contextChunks": 6,
+  "sessionMode": "schedule",
+  "transcriptionProvider": "mlx",
+  "whisperModel": "mlx-community/whisper-large-v3-turbo",
+  "silenceRms": 150,
+  "ytFormat": "bestaudio/best[height<=360]/worst",
+  "simulateLive": false,
+  "frames": {"enabled": false, "width": 640, "quality": 62, "keepHours": 6},
+  "llm": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "fallback": {
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5"
+    },
+    "prices": {
+      "claude-sonnet-5-5": {
+        "in": 2.0,
+        "cacheRead": 0.1,
+        "cacheWrite": 2.5,
+        "out": 10.0
+      },
+      "claude-haiku-5-5": {
+        "in": 0.1,
+        "cacheRead": 0.01,
+        "cacheWrite": 0.125,
+        "out": 0.5
+      },
+      "glm-5.1": {
+        "in": 1.4,
+        "cacheRead": 0.26,
+        "out": 4.4
+      }
+    }
+  },
+  "summaryReservePerCallUsd": 0.02,
+  "publishProvisional": true,
+  "publishKinds": [
+    "announcement",
+    "briefing",
+    "summary"
+  ],
+  "followDeskAssignments": false,
+  "stages": [
+    {
+      "id": "main",
+      "name": "Main Stage",
+      "enabled": true,
+      "youtube": "desk",
+      "scheduleOffsetMinutes": 0
+    },
+    {
+      "id": "royal",
+      "name": "Royal Exchange",
+      "enabled": true,
+      "youtube": "desk",
+      "scheduleOffsetMinutes": 0
+    }
+  ]
+}

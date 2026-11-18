@@ -1,0 +1,324 @@
+import datetime as dt, importlib.util, json, pathlib, tempfile, unittest, urllib.parse
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+spec = importlib.util.spec_from_file_location('collect', ROOT / 'collector/collect.py')
+c = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(c)
+x = c.xwatch
+
+ACCOUNTS = [
+    {'handle': 'kamino', 'name': 'Kamino', 'kind': 'company', 'org': 'Kamino', 'projectId': 'kamino',
+     'talks': [{'sessionId': 'bp26-kamino', 'startsAt': '2026-11-16T12:00:00Z', 'title': 'Talk'}]},
+    {'handle': 'WeiszM', 'name': 'Michael Weisz', 'kind': 'speaker', 'org': 'Kamino', 'projectId': 'kamino', 'talks': []},
+    {'handle': 'phantom', 'name': 'Phantom', 'kind': 'company', 'org': 'Phantom', 'projectId': None, 'talks': []},
+]
+NOW = dt.datetime(2026, 11, 16, 12, 30, tzinfo=dt.timezone.utc)
+
+
+def tweet(i, user, text, when='Mon Nov 16 12:20:00 +0000 2026', **extra):
+    return {'id': str(i), 'text': text, 'createdAt': when, 'author': {'userName': user}, **extra}
+
+
+class FakeHttp:
+    """Answers twitterapi.io searches from a list of pages and OpenAI triage from a verdict map."""
+    def __init__(self, pages, verdicts, fail_triage=False, ai_url=None, fence=False):
+        self.pages, self.verdicts, self.fail_triage, self.calls = list(pages), verdicts, fail_triage, []
+        self.ai_url, self.fence = ai_url or x.OPENAI_API, fence
+
+    def __call__(self, url, method='GET', body=None, headers=None):
+        self.calls.append((url, method, body, headers))
+        if url.startswith(x.SEARCH_API):
+            assert headers == {'X-API-Key': 'tk'}
+            return self.pages.pop(0) if self.pages else {'tweets': [], 'has_next_page': False}
+        if url == self.ai_url:
+            assert headers == {'Authorization': 'Bearer ok'}
+            if self.fail_triage:
+                raise c.SafeError('HTTP 500')
+            posts = json.loads(body['messages'][1]['content'])['posts']
+            items = [dict({'id': p['id']}, **self.verdicts.get(p['id'], {'verdict': 'skip'})) for p in posts]
+            content = json.dumps({'items': items})
+            return {'choices': [{'message': {'content': '```json\n' + content + '\n```' if self.fence else content}}]}
+        raise AssertionError(url)
+
+
+ALPHA = {'verdict': 'alpha', 'kind': 'announcement', 'title': 'Kamino launches fixed-rate vaults', 'summary': 'Kamino says fixed-rate vaults are live.',
+         'tokenImpact': 'indirect', 'impactReason': 'Product launch', 'novelty': 'new'}
+MAYBE = dict(ALPHA, verdict='maybe', kind='update', title='Phantom teases news', summary='Phantom says news is coming.')
+
+
+class Tests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.state = c.State(self.tmp.name, 5)
+        self.config = {'siteUrl': 'http://127.0.0.1:4317', 'publishProvisional': True, 'xMaxPagesPerBatch': 2}
+        self.desk = c.Desk(self.config, self.state, 'test')
+        self.sent = []
+        self.desk.send = lambda payload: self.sent.append(payload) or {'ok': True}
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def run_poll(self, http, config=None):
+        return x.poll(self.desk, self.state, {**self.config, **(config or {})}, ACCOUNTS, c.PROJECTS, {'twitterapi': 'tk', 'triage': 'ok'}, http, now=NOW)
+
+    def entries(self):
+        return [e for p in self.sent if 'entries' in p for e in p['entries']]
+
+    def test_the_same_post_twice_makes_one_card(self):
+        first = tweet(1, 'kamino', '.@Kamino vaults are live. Now with fixed rates https://t.co/aaa')
+        again = tweet(2, 'kamino', '.@Kamino vaults are live.  Now, with fixed rates. https://t.co/bbb')
+        http = FakeHttp([{'tweets': [first, again], 'has_next_page': False}], {'1': ALPHA, '2': ALPHA})
+        report = self.run_poll(http)
+        self.assertEqual([e['id'] for e in self.entries()], ['xw-1'])
+        self.assertEqual(report['published'], 1)
+        later = FakeHttp([{'tweets': [tweet(3, 'kamino', '.@Kamino vaults are live. Now with fixed rates https://t.co/ccc')], 'has_next_page': False}], {'3': ALPHA})
+        self.run_poll(later)
+        self.assertEqual([e['id'] for e in self.entries()], ['xw-1'])  # a repost in a later check is skipped too
+
+    def test_site_error_does_not_fail_the_x_check(self):
+        # Publishing problems are retried by the main loop; the X check itself still succeeds and reports live.
+        def send(payload):
+            if 'entries' in payload:
+                raise c.SafeError('HTTP 503', 503)
+            self.sent.append(payload)
+        self.desk.send = send
+        http = FakeHttp([{'tweets': [tweet(1, 'kamino', 'Fixed-rate vaults are live')], 'has_next_page': False}], {'1': ALPHA})
+        report = self.run_poll(http)
+        self.assertEqual(report['published'], 1)
+        self.assertEqual(len(list((pathlib.Path(self.tmp.name) / 'outbox').glob('*.json'))), 1)
+        self.assertEqual([p for p in self.sent if 'heartbeat' in p][-1]['heartbeat']['state'], 'live')
+
+    def test_accounts_file_is_valid_and_queries_fit(self):
+        accounts = x.load_accounts(ROOT / 'data/x-accounts.json')
+        self.assertGreater(len(accounts), 150)
+        for group in x.batches([a['handle'] for a in accounts], 480):
+            self.assertLessEqual(len(x.build_query(group, 9999999999)), 480)
+        self.assertEqual(sorted(h for g in x.batches([a['handle'] for a in accounts]) for h in g), sorted(a['handle'] for a in accounts))
+        for a in accounts:
+            self.assertTrue(a['source'].startswith('https://'))
+            for t in a['talks']:
+                x.parse_time(t['startsAt'])
+
+    def test_bad_accounts_file_fails_closed(self):
+        path = pathlib.Path(self.tmp.name) / 'a.json'
+        path.write_text(json.dumps({'accounts': [{'handle': 'ok'}, {'handle': 'OK'}]}))
+        with self.assertRaises(x.XWatchError):
+            x.load_accounts(path)
+        path.write_text(json.dumps({'accounts': [{'handle': 'bad handle'}]}))
+        with self.assertRaises(x.XWatchError):
+            x.load_accounts(path)
+
+    def test_query_shape(self):
+        q = x.build_query(['kamino', 'phantom'], 1763290000)
+        self.assertEqual(q, '(from:kamino OR from:phantom) -filter:replies -filter:retweets since_time:1763290000')
+
+    def test_alpha_published_maybe_drafted_skip_dropped(self):
+        page = {'tweets': [tweet(1, 'kamino', 'Fixed-rate vaults are live on Kamino. $KMNO'), tweet(2, 'phantom', 'Something big at Breakpoint'),
+                           tweet(3, 'WeiszM', 'See you at our booth!')], 'has_next_page': False}
+        http = FakeHttp([page], {'1': ALPHA, '2': MAYBE})
+        report = self.run_poll(http)
+        self.assertEqual(report, {'accounts': 3, 'newPosts': 3, 'published': 1, 'drafts': 1})
+        by_id = {e['id']: e for e in self.entries()}
+        self.assertEqual(set(by_id), {'xw-1', 'xw-2'})
+        a = by_id['xw-1']
+        self.assertEqual((a['status'], a['kind'], a['sessionId']), ('provisional', 'announcement', 'bp26-kamino'))
+        self.assertEqual(a['excerpt'], 'Fixed-rate vaults are live on Kamino. $KMNO')  # the post's own words
+        self.assertEqual(a['sourceUrl'], 'https://x.com/kamino/status/1')
+        self.assertEqual(a['projectIds'], ['kamino'])
+        self.assertEqual(a['sourceName'], 'Kamino · @kamino on X')
+        self.assertEqual(a['occurredAt'], '2026-11-16T12:20:00Z')
+        b = by_id['xw-2']
+        self.assertEqual((b['status'], b['kind'], b['sessionId'], b['projectIds']), ('draft', 'social', None, []))
+        heartbeat = [p for p in self.sent if 'heartbeat' in p][-1]['heartbeat']
+        self.assertEqual(heartbeat['state'], 'live')
+        self.assertIn('Watching 3 accounts', heartbeat['message'])
+
+    def test_entries_pass_the_site_validator_shape(self):
+        page = {'tweets': [tweet(1, 'kamino', 'Fixed-rate vaults are live on Kamino.')], 'has_next_page': False}
+        self.run_poll(FakeHttp([page], {'1': ALPHA}))
+        e = self.entries()[0]
+        for key in ['id', 'kind', 'status', 'title', 'body', 'sourceUrl', 'sourceName', 'occurredAt', 'projectIds', 'excerpt']:
+            self.assertIn(key, e)
+        self.assertRegex(e['id'], r'^[a-zA-Z0-9_-]{1,100}$')
+        self.assertLessEqual(len(e['title']), 180)
+
+    def test_publish_off_keeps_alpha_as_draft(self):
+        page = {'tweets': [tweet(1, 'kamino', 'Live now.')], 'has_next_page': False}
+        self.run_poll(FakeHttp([page], {'1': ALPHA}), {'publishProvisional': False})
+        self.assertEqual(self.entries()[0]['status'], 'draft')
+
+    def test_strangers_replies_and_retweets_are_ignored(self):
+        page = {'tweets': [tweet(5, 'someoneelse', 'Kamino is great'), tweet(6, 'kamino', 'reply', isReply=True),
+                           tweet(7, 'kamino', 'RT', retweeted_tweet={'id': '1'}), tweet(8, 'kamino', '   ')], 'has_next_page': False}
+        report = self.run_poll(FakeHttp([page], {}))
+        self.assertEqual(report['newPosts'], 0)
+        self.assertEqual(self.entries(), [])
+
+    def test_duplicates_across_polls_are_sent_once(self):
+        page = {'tweets': [tweet(1, 'kamino', 'Live now.')], 'has_next_page': False}
+        self.run_poll(FakeHttp([page], {'1': ALPHA}))
+        report = self.run_poll(FakeHttp([page], {'1': ALPHA}))
+        self.assertEqual(report['newPosts'], 0)
+        self.assertEqual(len(self.entries()), 1)
+
+    def test_since_window_advances_with_overlap(self):
+        http = FakeHttp([], {})
+        self.run_poll(http, {'xFirstLookMinutes': 30, 'xOverlapSeconds': 90})
+        q = urllib.parse.parse_qs(urllib.parse.urlparse(http.calls[0][0]).query)['query'][0]
+        self.assertTrue(q.endswith(f'since_time:{int(NOW.timestamp()) - 1800}'))
+        http2 = FakeHttp([], {})
+        self.run_poll(http2, {'xOverlapSeconds': 90})
+        q2 = urllib.parse.parse_qs(urllib.parse.urlparse(http2.calls[0][0]).query)['query'][0]
+        self.assertTrue(q2.endswith(f'since_time:{int(NOW.timestamp()) - 90}'))
+
+    def test_pagination_is_bounded(self):
+        pages = [{'tweets': [tweet(i, 'kamino', f'post {i}')], 'has_next_page': True, 'next_cursor': f'c{i}'} for i in range(1, 6)]
+        http = FakeHttp(pages, {})
+        report = self.run_poll(http, {'xMaxPagesPerBatch': 2})
+        self.assertEqual(report['newPosts'], 2)
+        searches = [u for u, *_ in http.calls if u.startswith(x.SEARCH_API)]
+        self.assertEqual(len(searches), 2)
+        self.assertIn('cursor=c1', searches[1])
+
+    def test_triage_failure_keeps_posts_for_retry(self):
+        page = {'tweets': [tweet(1, 'kamino', 'Live now.')], 'has_next_page': False}
+        with self.assertRaises(c.SafeError):
+            self.run_poll(FakeHttp([page], {}, fail_triage=True))
+        self.assertEqual([p['id'] for p in self.state.value['xwatch']['pending']], ['1'])
+        self.assertEqual(self.entries(), [])
+        report = self.run_poll(FakeHttp([], {'1': ALPHA}))
+        self.assertEqual(report['published'], 1)
+        self.assertEqual(self.state.value['xwatch']['pending'], [])
+        self.assertEqual(self.entries()[0]['id'], 'xw-1')
+
+    def test_triage_output_is_validated(self):
+        posts = [{'id': '1'}, {'id': '2'}]
+        with self.assertRaises(x.XWatchError):
+            x.validate_triage({'items': [{'id': '1', 'verdict': 'skip'}]}, posts)  # missing post 2
+        with self.assertRaises(x.XWatchError):
+            x.validate_triage({'items': [{'id': '1', 'verdict': 'skip'}, {'id': '9', 'verdict': 'skip'}]}, posts)
+        with self.assertRaises(x.XWatchError):
+            x.validate_triage({'items': [{'id': '1', 'verdict': 'alpha', 'title': '', 'summary': 'x'}, {'id': '2', 'verdict': 'skip'}]}, posts)
+        with self.assertRaises(x.XWatchError):
+            x.validate_triage({'items': [{'id': '1', 'verdict': 'buy'}, {'id': '2', 'verdict': 'skip'}]}, posts)
+        ok = x.validate_triage({'items': [{'id': '1', 'verdict': 'alpha', 'title': ' A  b ', 'summary': 's', 'tokenImpact': 'moon'}, {'id': '2', 'verdict': 'skip'}]}, posts)
+        self.assertEqual((ok['1']['title'], ok['1']['tokenImpact'], ok['1']['kind']), ('A b', 'unclear', 'update'))
+
+    def test_budget_gate_stops_paid_calls(self):
+        self.state = c.State(pathlib.Path(self.tmp.name) / 'b', 0.002)
+        page = {'tweets': [tweet(1, 'kamino', 'Live now.')], 'has_next_page': False}
+        with self.assertRaises(c.BudgetExceeded):
+            x.poll(self.desk, self.state, {**self.config, 'xReservePerRequestUsd': 0.003}, ACCOUNTS, c.PROJECTS, {'twitterapi': 'tk', 'triage': 'ok'}, FakeHttp([page], {}), now=NOW)
+
+    def test_glm_style_endpoint_extra_body_and_fenced_json(self):
+        url = 'https://api.z.ai/api/paas/v4/chat/completions'
+        page = {'tweets': [tweet(1, 'kamino', 'Fixed-rate vaults are live on Kamino.')], 'has_next_page': False}
+        http = FakeHttp([page], {'1': ALPHA}, ai_url=url, fence=True)
+        report = self.run_poll(http, {'xTriageApiUrl': url, 'xTriageModel': 'glm-5.2', 'xTriageExtraBody': {'thinking': {'type': 'disabled'}}})
+        self.assertEqual(report['published'], 1)
+        body = [b for u, m, b, h in http.calls if u == url][0]
+        self.assertEqual((body['model'], body['thinking'], body['response_format']), ('glm-5.2', {'type': 'disabled'}, {'type': 'json_object'}))
+
+    def test_rejected_extra_fields_are_retried_without_them(self):
+        url = 'https://api.z.ai/api/paas/v4/chat/completions'
+        page = {'tweets': [tweet(1, 'kamino', 'Live now.')], 'has_next_page': False}
+        http = FakeHttp([page], {'1': ALPHA}, ai_url=url)
+        real, seen = http.__call__, []
+        def picky(u, method='GET', body=None, headers=None):
+            if u == url:
+                seen.append(dict(body))
+                if 'thinking' in body:
+                    raise c.SafeError('HTTP 400; credentials and provider body withheld')
+            return real(u, method, body, headers)
+        report = self.run_poll(picky, {'xTriageApiUrl': url, 'xTriageExtraBody': {'thinking': {'type': 'disabled'}}})
+        self.assertEqual(report['published'], 1)
+        self.assertEqual(['thinking' in b for b in seen], [True, False])
+
+    def test_model_json_rejects_non_json(self):
+        with self.assertRaises(x.XWatchError):
+            x.model_json({'choices': [{'message': {'content': 'no json here'}}]})
+        with self.assertRaises(x.XWatchError):
+            x.model_json({'choices': []})
+        self.assertEqual(x.model_json({'choices': [{'message': {'content': 'ok {"items": []} done'}}]}), {'items': []})
+
+    def test_shipped_config_is_claude_haiku(self):
+        cfg = json.loads((ROOT / 'collector/config.breakpoint-x.json').read_text())
+        self.assertEqual((cfg['xTriageProvider'], cfg['xTriageModel'], cfg['xTriageKeyEnv']), ('anthropic', 'claude-haiku-5-5', 'ANTHROPIC_API_KEY'))
+
+    def test_claude_triage_uses_a_forced_tool_call(self):
+        calls = []
+
+        def http(url, method='GET', body=None, headers=None):
+            calls.append((url, body, headers))
+            if url.startswith(x.SEARCH_API):
+                return {'tweets': [tweet(1, 'kamino', 'Fixed-rate vaults are live on Kamino today'), tweet(2, 'phantom', 'gm')], 'has_next_page': False}
+            assert url == x.ANTHROPIC_API and headers == {'x-api-key': 'ok', 'anthropic-version': '2023-06-01'}
+            posts = json.loads(body['messages'][0]['content'])['posts']
+            items = [dict({'id': p['id']}, **(ALPHA if p['id'] == '1' else {'verdict': 'skip'})) for p in posts]
+            return {'content': [{'type': 'tool_use', 'name': 'sort_posts', 'input': {'items': items}}]}
+        report = self.run_poll(http, {'xTriageProvider': 'anthropic', 'xTriageModel': 'claude-haiku-5-5'})
+        self.assertEqual((report['published'], report['drafts']), (1, 0))
+        body = calls[-1][1]
+        self.assertEqual((body['model'], body['tool_choice']), ('claude-haiku-5-5', {'type': 'tool', 'name': 'sort_posts'}))
+        self.assertFalse({'temperature', 'top_p', 'top_k'} & set(body))  # Claude 5.5 rejects these
+        self.assertEqual(self.entries()[0]['title'], ALPHA['title'])
+        with self.assertRaises(x.XWatchError):
+            x.tool_input({'content': [{'type': 'text', 'text': 'no tool'}]})
+
+    def test_sonnet_triage_uses_auto_tool_choice(self):
+        calls = []
+
+        def http(url, method='GET', body=None, headers=None):
+            calls.append(body)
+            if url.startswith(x.SEARCH_API):
+                return {'tweets': [tweet(1, 'kamino', 'Fixed-rate vaults are live on Kamino today')], 'has_next_page': False}
+            return {'content': [{'type': 'thinking', 'thinking': ''}, {'type': 'tool_use', 'name': 'sort_posts', 'input': {'items': [dict({'id': '1'}, **ALPHA)]}}]}
+        report = self.run_poll(http, {'xTriageProvider': 'anthropic', 'xTriageModel': 'claude-sonnet-5-5'})
+        self.assertEqual(report['published'], 1)
+        self.assertEqual((calls[-1]['tool_choice'], calls[-1]['tools'][0]['strict']), ({'type': 'auto'}, True))
+
+    def test_claude_tool_input_shapes(self):
+        items = [{'id': '1', 'verdict': 'skip'}]
+        call = lambda data, stop='tool_use': {'stop_reason': stop, 'content': [{'type': 'tool_use', 'name': 'sort_posts', 'input': data}]}
+        self.assertEqual(x.tool_input(call({'items': items}))['items'], items)
+        self.assertEqual(x.tool_input(call({'items': json.dumps(items)}))['items'], items)  # list sent as a JSON string
+        self.assertEqual(x.tool_input(call({'verdicts': items}))['items'], items)  # list under another key
+        with self.assertRaises(x.XWatchError) as e:
+            x.tool_input(call({}, 'max_tokens'))
+        self.assertIn('stop_reason max_tokens', str(e.exception))
+
+    def test_claude_tool_input_text_forms(self):
+        items = [{'id': '1', 'verdict': 'skip'}, {'id': '2', 'verdict': 'maybe', 'title': 'T', 'summary': 'line one\nline two'}]
+        call = lambda data: {'stop_reason': 'tool_use', 'content': [{'type': 'tool_use', 'name': 'sort_posts', 'input': data}]}
+        raw_newline = json.dumps(items).replace('\\n', '\n')  # a literal newline inside a JSON string
+        self.assertIn('\n', raw_newline)
+        for text in (raw_newline, 'Here you go: ' + json.dumps(items) + ' done', json.dumps(items)[1:-1],
+                     json.dumps(json.dumps(items)), json.dumps({'items': items})):
+            self.assertEqual(x.tool_input(call({'items': text}))['items'], items, text[:40])
+        with self.assertRaises(x.XWatchError) as e:
+            x.tool_input(call({'items': 'not a list at all'}))
+        self.assertIn('text of 17 chars', str(e.exception))
+        self.assertNotIn('not a list at all', str(e.exception))  # content stays out of the log
+
+    def test_triage_retries_a_malformed_answer_once(self):
+        answers = []
+
+        def http(url, method='GET', body=None, headers=None):
+            if url.startswith(x.SEARCH_API):
+                return {'tweets': [tweet(1, 'kamino', 'Fixed-rate vaults are live on Kamino today')], 'has_next_page': False}
+            answers.append(1)
+            items = 'garbled' if len(answers) == 1 else [dict({'id': '1'}, **ALPHA)]
+            return {'stop_reason': 'tool_use', 'content': [{'type': 'tool_use', 'name': 'sort_posts', 'input': {'items': items}}]}
+        report = self.run_poll(http, {'xTriageProvider': 'anthropic', 'xTriageModel': 'claude-haiku-5-5'})
+        self.assertEqual((len(answers), report['published']), (2, 1))
+
+    def test_talk_window(self):
+        acc = ACCOUNTS[0]
+        self.assertEqual(x.talk_for(acc, '2026-11-15T13:00:00Z', 24), 'bp26-kamino')
+        self.assertIsNone(x.talk_for(acc, '2026-11-14T11:00:00Z', 24))
+        self.assertEqual(x.parse_time('Mon Nov 16 12:20:00 +0000 2026').isoformat(), '2026-11-16T12:20:00+00:00')
+        self.assertEqual(x.parse_time('2026-11-16T12:20:00Z').isoformat(), '2026-11-16T12:20:00+00:00')
+
+
+if __name__ == '__main__':
+    unittest.main()

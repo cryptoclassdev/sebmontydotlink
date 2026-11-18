@@ -1,0 +1,36 @@
+// Builds the Breakpoint guide into ../public/breakpoint, where Next.js serves it as static files.
+// Run from breakpoint/: `npm ci && npm run build`. Commit the output; Vercel does not run this step.
+import {build} from 'esbuild';
+import postcss from 'postcss';
+import tailwind from '@tailwindcss/postcss';
+import {readFile,writeFile,mkdir,copyFile,readdir} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+
+const root=path.resolve(fileURLToPath(new URL('..',import.meta.url)));process.chdir(root);
+const BASE='/breakpoint';
+const out=path.resolve(root,'../public/breakpoint');
+await mkdir(out,{recursive:true});
+
+// Optional speaker photos added by the site owner: assets/speakers/<speaker-id>.webp (ids as in data/seed.json).
+const speakerPhotos=(await readdir('assets/speakers').catch(()=>[])).filter(f=>/^[a-z0-9-]{1,80}\.webp$/.test(f)).sort();
+const result=await build({entryPoints:['src/main.tsx'],bundle:true,write:false,minify:true,format:'esm',target:'es2022',define:{'process.env.NODE_ENV':'"production"','__BP_BASE__':JSON.stringify(BASE),'__BP_SPEAKER_PHOTOS__':JSON.stringify(speakerPhotos.map(f=>f.slice(0,-5)))},loader:{'.svg':'dataurl'},tsconfig:'tsconfig.json',legalComments:'none'});
+const js=result.outputFiles[0].text;
+const source=['src/kobra.css','src/style.css','src/seb.css'];
+const css=(await postcss([tailwind({base:root})]).process((await Promise.all(source.map(f=>readFile(f,'utf8')))).join('\n'),{from:path.join(root,'src/kobra.css')})).css;
+const hash=s=>createHash('sha256').update(s).digest('hex').slice(0,10);
+const html=(await readFile('src/index.html','utf8')).replaceAll('__BASE__',BASE).replace('__CSS_HASH__',hash(css)).replace('__JS_HASH__',hash(js));
+
+await writeFile(path.join(out,'app.js'),js);
+await writeFile(path.join(out,'style.css'),css);
+await writeFile(path.join(out,'index.html'),html);
+await copyFile('src/icon.svg',path.join(out,'icon.svg'));
+// Project logos (official marks, see assets/logos/SOURCES.md), served from /breakpoint/logos/.
+await mkdir(path.join(out,'logos'),{recursive:true});
+for(const f of await readdir('assets/logos'))if(f.endsWith('.webp'))await copyFile(path.join('assets/logos',f),path.join(out,'logos',f));
+// Speaker and company X profile pictures (see assets/avatars/SOURCES.md), served from /breakpoint/avatars/.
+await mkdir(path.join(out,'avatars'),{recursive:true});
+for(const f of await readdir('assets/avatars'))if(f.endsWith('.webp'))await copyFile(path.join('assets/avatars',f),path.join(out,'avatars',f));
+if(speakerPhotos.length){await mkdir(path.join(out,'speakers'),{recursive:true});for(const f of speakerPhotos)await copyFile(path.join('assets/speakers',f),path.join(out,'speakers',f));}
+console.log(`Built /breakpoint: app.js ${Math.round(js.length/1024)} KB, style.css ${Math.round(css.length/1024)} KB, ${speakerPhotos.length} speaker photo(s)`);

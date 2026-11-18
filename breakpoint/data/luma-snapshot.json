@@ -1,0 +1,4016 @@
+{
+ "checkedAt": "2026-11-13T07:46:13.663Z",
+ "events": [
+  {
+   "id": "london-hh-26",
+   "title": "Solana Hacker House - London",
+   "startsAt": "2026-11-01T10:00:00.000Z",
+   "endsAt": "2026-11-12T20:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/london-hh-26",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Solana Hacker Houses",
+    "Solana Foundation",
+    "Superteam UK"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/us/872fe78e-c0aa-4f08-b842-21d764285064.jpg",
+   "tags": []
+  },
+  {
+   "id": "ox8nde8b",
+   "title": "TxODDS Matchday Box: Arsenal vs. Hull",
+   "startsAt": "2026-11-07T12:30:00.000Z",
+   "endsAt": "2026-11-07T19:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Arsenal - Emirates Stadium",
+   "address": "Arsenal - Emirates Stadium, Hornsey Rd, London N7 7AJ, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.5550821,
+    "longitude": -0.10839979999999999
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/ox8nde8b",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Aidan Rolfe"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/fs/c799bce5-6068-4e1f-b6b4-c8de40260908.png",
+   "tags": []
+  },
+  {
+   "id": "TheUnBanked",
+   "title": "The (un)Banked Conference",
+   "startsAt": "2026-11-09T10:00:00.000Z",
+   "endsAt": "2026-11-09T17:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Landing Canary Wharf",
+   "address": "Landing Canary Wharf, 1st Floor, 12 Bank St, Canary Wharf Estate, London E14 4DD, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.503898199999995,
+    "longitude": -0.0232757
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/TheUnBanked",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "INPUT Global Events",
+    "Aurora Intents"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/42/f34f2c16-9fa4-4480-b433-fefe24ce25f1.gif",
+   "tags": []
+  },
+  {
+   "id": "g4w56vmw",
+   "title": "Riserva London | Digital Assets under pressure: Sanctions, Enforcement and Economic Crime, Fireside with Fieldfisher.",
+   "startsAt": "2026-11-09T17:30:00.000Z",
+   "endsAt": "2026-11-09T19:30:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/g4w56vmw",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Range",
+    "Ivan Szef",
+    "Syed C",
+    "Farheen",
+    "Galiya"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/rl/7c96e78a-9777-41bf-b445-1c3c7505ad75.png",
+   "tags": []
+  },
+  {
+   "id": "0k1qf4jv",
+   "title": "LO:Limit HOLD'em",
+   "startsAt": "2026-11-10T20:00:00.000Z",
+   "endsAt": "2026-11-11T02:30:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/0k1qf4jv",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Laurence Lewars",
+    "LO:TECH"
+   ],
+   "registrationStatus": "sold-out",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/cq/6d331c76-3f5f-4735-bda8-6d5d018eb1dd.jpg",
+   "tags": []
+  },
+  {
+   "id": "270a0mmj",
+   "title": "BREAKPOINT - Record your podcast or interviews with West Digital Studios",
+   "startsAt": "2026-11-11T09:00:00.000Z",
+   "endsAt": "2026-11-18T19:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "West Digital Studios",
+   "address": "West Digital Studios, 59-65 Goldhawk Rd, London W12 8EG, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.502173,
+    "longitude": -0.22676900000000003
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/270a0mmj",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Kate Wilson"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": false,
+   "price": [
+    {
+     "name": "Ticket",
+     "cents": 25000,
+     "currency": "gbp"
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/tu/1778cc1e-c5b6-41a1-95ea-5b0e76dbb089.jpg",
+   "tags": []
+  },
+  {
+   "id": "zoyuihzw",
+   "title": "Forma Residency: Final Ship & Show | LIVE in London",
+   "startsAt": "2026-11-11T16:00:00.000Z",
+   "endsAt": "2026-11-11T20:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/zoyuihzw",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Forma",
+    "Farhaj Mayan",
+    "Ashwin Chandrasekaran",
+    "Francois Vu"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/qf/42ced054-a001-46dd-aa18-c9633aa67d92.png",
+   "tags": []
+  },
+  {
+   "id": "x26b420k",
+   "title": "Building on Solana: Colosseum & Founders",
+   "startsAt": "2026-11-11T18:00:00.000Z",
+   "endsAt": "2026-11-11T20:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Blackett Laboratory",
+   "address": "Blackett Laboratory, Imperial College, South Kensington, London SW7 2AZ, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.4996033,
+    "longitude": -0.1794334
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/x26b420k",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "UK AI Agents Lab",
+    "Ming m",
+    "Minghan Xiao",
+    "MAy Yu"
+   ],
+   "registrationStatus": "sold-out",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/1x/c7560266-1147-4fa9-b5b7-0386539d729f.png",
+   "tags": []
+  },
+  {
+   "id": "09gg4l1c",
+   "title": "LO:CK-IN Dinner",
+   "startsAt": "2026-11-11T20:15:00.000Z",
+   "endsAt": "2026-11-11T22:45:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/09gg4l1c",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Laurence Lewars"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/event-covers/8q/3b31b2f9-6f26-4428-acba-ca4c29d45a64.jpg",
+   "tags": []
+  },
+  {
+   "id": "sol-demo-day",
+   "title": "Solana Demo Day | London 2026",
+   "startsAt": "2026-11-12T10:00:00.000Z",
+   "endsAt": "2026-11-12T18:30:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/sol-demo-day",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Solana Foundation",
+    "Superteam UK"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/95/be7ca6db-ff64-4a83-aadb-422f7a328d8a.png",
+   "tags": []
+  },
+  {
+   "id": "lo-qqld",
+   "title": "The LOCAL W.M.C - Breakpoint/DAS Edition",
+   "startsAt": "2026-11-12T19:00:00.000Z",
+   "endsAt": "2026-11-13T01:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Bethnal Green Working Men's Club",
+   "address": "Bethnal Green Working Men's Club, 42-46 Pollard Row, London E2 6NB, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.5280761,
+    "longitude": -0.0638267
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/lo-qqld",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "LO:TECH Events",
+    "LO:TECH",
+    "Superteam UK",
+    "Stephen Duffy",
+    "Laurence Lewars"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/49/462441d6-c1ab-4e44-b235-6b545bb9a7e7.gif",
+   "tags": []
+  },
+  {
+   "id": "6xip72je",
+   "title": "200ms",
+   "startsAt": "2026-11-13T09:00:00.000Z",
+   "endsAt": "2026-11-13T18:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/6xip72je",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Jito Events"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/g4/3649135a-e803-4f4f-b02d-fe74e5b7255b.png",
+   "tags": []
+  },
+  {
+   "id": "intelligence-summit",
+   "title": "Solana Intelligence Summit",
+   "startsAt": "2026-11-13T10:00:00.000Z",
+   "endsAt": "2026-11-13T18:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Somerset House",
+   "address": "Somerset House, Strand, London WC2R 1LA, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.511058999999996,
+    "longitude": -0.11714799999999997
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/intelligence-summit",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Solana Foundation"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/eo/c3df31b2-c96d-4223-aff3-e7983c012476.jpg",
+   "tags": []
+  },
+  {
+   "id": "rszxbf8n",
+   "title": "Purple Table: Women Before Breakpoint (Invite-only)",
+   "startsAt": "2026-11-13T11:00:00.000Z",
+   "endsAt": "2026-11-13T14:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/rszxbf8n",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Mewtu T."
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/mj/5c0d3f5f-2e88-4929-a1a2-0a81b203b1bc.png",
+   "tags": []
+  },
+  {
+   "id": "v8zw0ubf",
+   "title": "Babes Net brunch at Breakpoint 💕 Women only",
+   "startsAt": "2026-11-13T11:30:00.000Z",
+   "endsAt": "2026-11-13T13:30:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/v8zw0ubf",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Babes Net",
+    "Flo Vuong",
+    "Camilla Parisotto",
+    "Camski",
+    "Angela S"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/9x/f4e4c503-f68d-4867-8d0c-8703217f4424.jpg",
+   "tags": []
+  },
+  {
+   "id": "afr82s1n",
+   "title": "Crypto Padel: Solana Breakpoint Week",
+   "startsAt": "2026-11-13T12:30:00.000Z",
+   "endsAt": "2026-11-13T15:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/afr82s1n",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "TechChain Talent",
+    "Sophie Al Hindi",
+    "Bawar Hamad",
+    "Julian Al-Mushadani"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/l4/7cd23b58-ab40-4b32-a077-3ccbc3d61143.png",
+   "tags": []
+  },
+  {
+   "id": "skuw5c5c",
+   "title": "Tennis + Drinks: Investor Edition | Solana Breakpoint Week",
+   "startsAt": "2026-11-13T15:30:00.000Z",
+   "endsAt": "2026-11-13T18:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/skuw5c5c",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Jonathan Ludwig",
+    "FANtium"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/pj/eaa7786f-3a27-49c2-b710-d12e7d727a19.png",
+   "tags": []
+  },
+  {
+   "id": "0j8gx7i1",
+   "title": "The Solana Ecosystem Call | London Special",
+   "startsAt": "2026-11-13T18:00:00.000Z",
+   "endsAt": "2026-11-13T19:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Online",
+   "address": null,
+   "area": null,
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "online",
+   "sourceUrl": "https://luma.com/0j8gx7i1",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "SOL BROTHERS Studio",
+    "Solana Foundation",
+    "Eno Sim",
+    "Simon Molitor"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/event-covers/kp/fe5fe8ac-5e54-4e0a-b8b5-fe23c650dcb7.png",
+   "tags": []
+  },
+  {
+   "id": "j5glptwa",
+   "title": "AI Verification x Crypto",
+   "startsAt": "2026-11-13T18:00:00.000Z",
+   "endsAt": "2026-11-13T21:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/j5glptwa",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Anshuman Singh",
+    "Encode Club"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/55/95de7808-953e-46a9-9a17-dd323b0c8e96.png",
+   "tags": []
+  },
+  {
+   "id": "go26cwv5",
+   "title": "LO:CK'In Dinner (Break Point Edition)",
+   "startsAt": "2026-11-13T18:00:00.000Z",
+   "endsAt": "2026-11-13T19:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Yogi's Kensington",
+   "address": "Yogi's Kensington, 118 Finborough Rd, London SW10 9ED, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.4865871,
+    "longitude": -0.19009959999999998
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/go26cwv5",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Laurence Lewars"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/aa/9904943e-76f9-46e8-a291-6001ead69ae9.jpg",
+   "tags": []
+  },
+  {
+   "id": "sol-community-awards",
+   "title": "Solana Community Awards 2026",
+   "startsAt": "2026-11-13T18:00:00.000Z",
+   "endsAt": "2026-11-13T21:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/sol-community-awards",
+   "observedAt": "2026-11-12",
+   "organizers": [
+    "Solana Foundation",
+    "bangerz"
+   ],
+   "registrationStatus": "check-organizer",
+   "approvalRequired": true,
+   "price": [
+    {
+     "name": "Standard",
+     "cents": null,
+     "currency": null
+    }
+   ],
+   "notes": [
+    "Registration listing starts 18:00; official Solana article identifies the awards ceremony as 19:00–21:00.",
+    "Exact address remains hidden on Luma; article publicly names Somerset House."
+   ],
+   "tags": [
+    "Community",
+    "Livestream"
+   ],
+   "area": null,
+   "isFree": false,
+   "coverUrl": null
+  },
+  {
+   "id": "klgng11i",
+   "title": "Pizza at Pimlico's 🍕 | Breakpoint 2026",
+   "startsAt": "2026-11-13T18:30:00.000Z",
+   "endsAt": "2026-11-13T21:30:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/klgng11i",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Kristof Gazso"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/41/d7890803-0e41-438b-bfc3-67d654bb81f2.png",
+   "tags": []
+  },
+  {
+   "id": "kf7cs2qb",
+   "title": "Meow | Exclusive London Mixer",
+   "startsAt": "2026-11-13T19:00:00.000Z",
+   "endsAt": "2026-11-13T21:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/kf7cs2qb",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Carson Cooke",
+    "Dustin Kamali",
+    "Matt Acker"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/4k/bf5c2e9b-f82c-4658-9dfc-a02df9550da8.png",
+   "tags": []
+  },
+  {
+   "id": "5sf70a63",
+   "title": "Solana ⚽ Cup by Cesto & BONK",
+   "startsAt": "2026-11-14T09:00:00.000Z",
+   "endsAt": "2026-11-14T15:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/5sf70a63",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Jason Rodrigues",
+    "Support B"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/fd/e0a72e1b-9492-4c53-a428-c4e2ee6a4e71.png",
+   "tags": []
+  },
+  {
+   "id": "n6r4k7vb",
+   "title": "445 CREW x Solana Breakpoint | Community Run",
+   "startsAt": "2026-11-14T09:15:00.000Z",
+   "endsAt": "2026-11-14T11:45:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Fulham Pier",
+   "address": "Fulham Pier, London SW6 6HH, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.474759399999996,
+    "longitude": -0.22236999999999998
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/n6r4k7vb",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Chars 445CREW"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/p0/d4a474a1-d588-4bd2-a8a3-b971a9057827.png",
+   "tags": []
+  },
+  {
+   "id": "scale-or-die-26",
+   "title": "Scale or Die",
+   "startsAt": "2026-11-14T09:30:00.000Z",
+   "endsAt": "2026-11-14T18:30:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/scale-or-die-26",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Solana Accelerate",
+    "Solana Foundation"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/ya/55315312-4b26-4b79-be90-7c38556ac574.jpg",
+   "tags": []
+  },
+  {
+   "id": "loajg3ik",
+   "title": "Build Across Chains: A Solana Builder Briefing, with NEAR Intents x Aurora Intents",
+   "startsAt": "2026-11-14T15:00:00.000Z",
+   "endsAt": "2026-11-14T17:30:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/loajg3ik",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "NEAR Events",
+    "NEAR Foundation",
+    "Aurora Intents",
+    "Encode Club"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/gr/2dd55bd9-aeaa-47ef-a46f-590701f785aa.png",
+   "tags": []
+  },
+  {
+   "id": "fkoham7n",
+   "title": "Riserva London | Stablecoins and compliance over wine",
+   "startsAt": "2026-11-14T17:00:00.000Z",
+   "endsAt": "2026-11-14T20:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/fkoham7n",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Range",
+    "Ivan Szef",
+    "Syed C",
+    "Andres Monty",
+    "Nora Bellotto"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/bf/8ecdd609-68c7-45b5-8b17-691952708dc3.png",
+   "tags": []
+  },
+  {
+   "id": "8n4yuczc",
+   "title": "Little Blue Door: FastShares After Hours, 6pm until late",
+   "startsAt": "2026-11-14T18:00:00.000Z",
+   "endsAt": "2026-11-14T21:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "The Little Blue Door",
+   "address": "The Little Blue Door, 871-873 Fulham Rd., London SW6 5HP, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.4739909,
+    "longitude": -0.20705459999999998
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/8n4yuczc",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Agridex",
+    "Millie",
+    "Henry Duckworth",
+    "Ayad M"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/8n/f11ca207-e277-49c4-b171-d008322c4480.png",
+   "tags": []
+  },
+  {
+   "id": "siqdcgdt",
+   "title": "Order, Order!",
+   "startsAt": "2026-11-14T19:00:00.000Z",
+   "endsAt": "2026-11-14T21:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/siqdcgdt",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Sujith Sizon",
+    "Kubi Mensah"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/6w/a0d5f45d-9202-42ac-b3af-662f3937060c.png",
+   "tags": []
+  },
+  {
+   "id": "y6zy8xy2",
+   "title": "Pints & Packs: Breakpoint Welcome Party",
+   "startsAt": "2026-11-14T19:00:00.000Z",
+   "endsAt": "2026-11-14T23:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/y6zy8xy2",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Dakota Campbell",
+    "Joe Munns",
+    "Karina Bland",
+    "Frisk A"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/ee/db879e67-50be-4d26-b370-e83ff12b4676.png",
+   "tags": []
+  },
+  {
+   "id": "46m6ienv",
+   "title": "PubPoint Meet & Greet: Etherfuse + Stellar",
+   "startsAt": "2026-11-14T19:00:00.000Z",
+   "endsAt": "2026-11-14T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "The Queen's Head, Hammersmith",
+   "address": "The Queen's Head, Hammersmith, 13 Brook Grn, London W6 7BL, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.495974499999996,
+    "longitude": -0.22071049999999998
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/46m6ienv",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Etherfuse Events",
+    "Brandon Rodriguez",
+    "Stellar Development Foundation",
+    "Estefania Ochoa",
+    "Alexis Tabak"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/9c/82756e78-4a85-40b7-b69e-b6b437b8db91.jpg",
+   "tags": []
+  },
+  {
+   "id": "frontier-traders-grand-final-london",
+   "title": "Frontier Traders: Grand Final",
+   "startsAt": "2026-11-14T20:00:00.000Z",
+   "endsAt": "2026-11-15T01:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/frontier-traders-grand-final-london",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Frontier Traders",
+    "Solana Foundation",
+    "matthew 💭",
+    "Ramzy Ali",
+    "Seraphim Cz"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/v9/b7dffe83-e820-48c2-9873-9a733c2871ae.png",
+   "tags": []
+  },
+  {
+   "id": "solanahiit",
+   "title": "Solana Fitness Zone: HIIT Class | Solana Foundation x Proxima x OFFLINE",
+   "startsAt": "2026-11-15T07:00:00.000Z",
+   "endsAt": "2026-11-15T07:45:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/solanahiit",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "OFFLINE",
+    "Lena Grundhoefer",
+    "Alice Chen",
+    "Proxima Events"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": false,
+   "price": [
+    {
+     "name": "Ticket",
+     "cents": 1000,
+     "currency": "usd"
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/aa/f5a47280-d607-4073-958d-7bf39fcfb7e6.png",
+   "tags": []
+  },
+  {
+   "id": "solanapilates1",
+   "title": "Solana Fitness Zone: Dynamic Pilates | Solana Foundation x Ottersec x OFFLINE",
+   "startsAt": "2026-11-15T08:00:00.000Z",
+   "endsAt": "2026-11-15T08:45:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/solanapilates1",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "OFFLINE",
+    "Lena Grundhoefer",
+    "Alice Chen",
+    "OtterSec"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": false,
+   "price": [
+    {
+     "name": "Ticket",
+     "cents": 1000,
+     "currency": "usd"
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/y7/187f2eaa-436d-4a89-8ec1-f9608f79ff36.png",
+   "tags": []
+  },
+  {
+   "id": "kk8dr4ty",
+   "title": "Tilt Pay Morning Coffee | Breakpoint '26",
+   "startsAt": "2026-11-15T08:30:00.000Z",
+   "endsAt": "2026-11-15T10:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/kk8dr4ty",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Elliot Boyer",
+    "Tilt Pay"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/cs/c6ce2305-da01-4ebc-aed6-b64673b4cde9.png",
+   "tags": []
+  },
+  {
+   "id": "xpl3s0mr",
+   "title": "QuillAudits 1:1 Meetings at Solana Breakpoint",
+   "startsAt": "2026-11-15T09:00:00.000Z",
+   "endsAt": "2026-11-17T21:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/xpl3s0mr",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "QuillAudits Events",
+    "QuillAudits"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/9q/82d1e748-41c9-4358-9e57-5d387923be02.png",
+   "tags": []
+  },
+  {
+   "id": "womenofsolana",
+   "title": "Solana Fitness Zone: Women of Solana Yoga | Solana Foundation x Proxima x OFFLINE",
+   "startsAt": "2026-11-15T09:00:00.000Z",
+   "endsAt": "2026-11-15T10:30:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/womenofsolana",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "OFFLINE",
+    "Lena Grundhoefer",
+    "Alice Chen",
+    "Proxima Events"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/ca/616de6bb-049b-4b72-a291-293d3dfdd14e.png",
+   "tags": []
+  },
+  {
+   "id": "dmxdc394",
+   "title": "BlockZero 2026",
+   "startsAt": "2026-11-15T09:30:00.000Z",
+   "endsAt": "2026-11-15T17:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "International Convention Centre at Olympia (ICC)",
+   "address": "International Convention Centre at Olympia (ICC), Hammersmith Rd, London W14 8UX, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.4954955,
+    "longitude": -0.21071499999999999
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/dmxdc394",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Chainflow POS",
+    "Brian Long",
+    "Alejandro M.",
+    "Michael Hubbard"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/br/7872a3e7-8772-4ce0-b8d8-01576275d9b4.png",
+   "tags": [],
+   "notes": [
+    "Current organiser listing starts 09:30 GMT. An older Solana guide says 08:30; current organiser takes precedence."
+   ]
+  },
+  {
+   "id": "solanareset",
+   "title": "Solana Fitness Zone: Mental Reset Workshop | Solana Foundation x Proxima x OFFLINE",
+   "startsAt": "2026-11-15T10:45:00.000Z",
+   "endsAt": "2026-11-15T11:45:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/solanareset",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "OFFLINE",
+    "Lena Grundhoefer",
+    "Alice Chen",
+    "Jessica Wright",
+    "Proxima Events"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": false,
+   "price": [
+    {
+     "name": "Ticket",
+     "cents": 1000,
+     "currency": "usd"
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/if/f9f131a2-ec87-424c-8ddb-9ae7aed5bec2.png",
+   "tags": []
+  },
+  {
+   "id": "7oly3746",
+   "title": "Powered by FastShares: London Walking Tour with STUK",
+   "startsAt": "2026-11-15T11:00:00.000Z",
+   "endsAt": "2026-11-15T14:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/7oly3746",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Agridex",
+    "Millie",
+    "Superteam UK",
+    "Ayad M",
+    "Ali Khan"
+   ],
+   "registrationStatus": "sold-out",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/jc/f15afa89-37b9-45a3-a701-5c32ebf4dabb.jpg",
+   "tags": []
+  },
+  {
+   "id": "btvqwap1",
+   "title": "BORN UP — Breakpoint London Community Networking Meetup",
+   "startsAt": "2026-11-15T11:30:00.000Z",
+   "endsAt": "2026-11-15T12:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Olympia",
+   "address": "Olympia, Hammersmith Rd, London W14 8UX, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.4957333,
+    "longitude": -0.2102299
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/btvqwap1",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "BORN.LIVE | Global Conferences, Side Events & Networking"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/8a/c4bdf157-fbef-4814-8932-92d2bb363e2d.png",
+   "tags": []
+  },
+  {
+   "id": "altitude-coffee-BP26",
+   "title": "Altitude Coffee Bar Pop-Up",
+   "startsAt": "2026-11-15T12:00:00.000Z",
+   "endsAt": "2026-11-15T15:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/altitude-coffee-BP26",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Altitude Events",
+    "Altitude"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/ci/73413a19-0448-4378-a15d-335cedea270d.gif",
+   "tags": []
+  },
+  {
+   "id": "f5s5psnj",
+   "title": "Chess with Chord Express | Breakpoint",
+   "startsAt": "2026-11-15T12:00:00.000Z",
+   "endsAt": "2026-11-15T15:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Olympia",
+   "address": "Olympia, Hammersmith Rd, London W14 8UX, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.496434799999996,
+    "longitude": -0.2103687
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/f5s5psnj",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Chord Express",
+    "Connor Campbell"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/i2/443ef86e-edbb-4338-9fbf-8ae2d53d0f48.png",
+   "tags": []
+  },
+  {
+   "id": "blockaid-ztbw",
+   "title": "Not Your Keys, Not Your Cheese: Wallet and Security for Solana 🍕",
+   "startsAt": "2026-11-15T12:00:00.000Z",
+   "endsAt": "2026-11-15T17:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Olympia",
+   "address": "Olympia, Hammersmith Rd, London W14 8UX, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.496434799999996,
+    "longitude": -0.2103687
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/blockaid-ztbw",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Blockaid Events",
+    "Utila .io",
+    "Ledger Events",
+    "OtterSec",
+    "Olympix"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/7f/34d07ca1-0fd4-44f5-9429-bf16d942da4a.jpg",
+   "tags": []
+  },
+  {
+   "id": "sfzfreestyle1",
+   "title": "Solana Fitness Zone: Content Freestyle | Solana Foundation x OFFLINE",
+   "startsAt": "2026-11-15T12:00:00.000Z",
+   "endsAt": "2026-11-15T13:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/sfzfreestyle1",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "OFFLINE",
+    "Lena Grundhoefer"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/28/5c10c3a8-7285-4f34-8ab9-0c0cd31b2b66.png",
+   "tags": []
+  },
+  {
+   "id": "vca7q67q",
+   "title": "Afternoon Provisions | Breakpoint 2026",
+   "startsAt": "2026-11-15T14:00:00.000Z",
+   "endsAt": "2026-11-15T16:30:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/vca7q67q",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Moonsong Labs",
+    "Kaleb Leija"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/vj/db4d615a-6a7e-41d0-adcf-6d8506a34cb7.png",
+   "tags": []
+  },
+  {
+   "id": "monkedao-nwio",
+   "title": "The House of Monke",
+   "startsAt": "2026-11-15T14:00:00.000Z",
+   "endsAt": "2026-11-15T17:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/monkedao-nwio",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "MonkeDAO Global",
+    "General MonkeDAO",
+    "MagicBlock Team"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/kp/a4f019c2-5aea-40cf-ab07-d923fcc0bdb3.png",
+   "tags": []
+  },
+  {
+   "id": "rtgpxj6h",
+   "title": "RWAs: From Tokenized to Traded",
+   "startsAt": "2026-11-15T15:30:00.000Z",
+   "endsAt": "2026-11-15T20:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/rtgpxj6h",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "RockawayX",
+    "Huma",
+    "Lui | Exponent",
+    "DGLD",
+    "OnRe"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/ub/a3958dce-dd2d-44e8-b220-66381db6568a.png",
+   "tags": []
+  },
+  {
+   "id": "h6w8v75y",
+   "title": "🚀 Breakpoint Trading Battle 🚀",
+   "startsAt": "2026-11-15T16:00:00.000Z",
+   "endsAt": "2026-11-17T16:00:00.000Z",
+   "timezone": "Europe/Warsaw",
+   "venue": null,
+   "address": null,
+   "area": null,
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/h6w8v75y",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Adam Targos",
+    "Michał"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/rq/fd53984d-da3c-4d20-98a6-3a0566cf09c2.jpg",
+   "tags": []
+  },
+  {
+   "id": "breakpoint2026",
+   "title": "Solana Breakpoint 2026",
+   "startsAt": "2026-11-15T16:00:00.000Z",
+   "endsAt": "2026-11-17T19:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Olympia",
+   "address": "Olympia, Hammersmith Rd, London W14 8UX, UK",
+   "coordinates": {
+    "longitude": -0.2107637,
+    "latitude": 51.4963566
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/breakpoint2026",
+   "observedAt": "2026-11-12",
+   "organizers": [
+    "Solana Foundation"
+   ],
+   "registrationStatus": "check-organizer",
+   "approvalRequired": false,
+   "price": [
+    {
+     "name": "General Admission",
+     "cents": 55000,
+     "currency": "usd"
+    }
+   ],
+   "tags": [
+    "Conference"
+   ],
+   "area": null,
+   "isFree": false,
+   "coverUrl": null
+  },
+  {
+   "id": "ir45fvzj",
+   "title": "Fish & Ships: A Jupiter Community Afternoon",
+   "startsAt": "2026-11-15T17:00:00.000Z",
+   "endsAt": "2026-11-15T20:30:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/ir45fvzj",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Jupiter",
+    "Alisha Thapa"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/og/b1a43f9a-868a-49f6-a1fc-6c3f7f2d06f8.png",
+   "tags": []
+  },
+  {
+   "id": "g7m59b0h",
+   "title": "Galactic Racer Live Watch Party",
+   "startsAt": "2026-11-15T17:00:00.000Z",
+   "endsAt": "2026-11-15T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": null,
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/g7m59b0h",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Super Phoenix Sports"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/7w/a507bb91-e25a-4b3e-bf8a-896d43c18140.png",
+   "tags": []
+  },
+  {
+   "id": "yn-dinner-london",
+   "title": "Capital & Liquidity Dinner by Yield Network, Bexlen, ZIG Finance, and Particula",
+   "startsAt": "2026-11-15T18:00:00.000Z",
+   "endsAt": "2026-11-15T21:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/yn-dinner-london",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Yield Network",
+    "ZIG Finance",
+    "Particula Ratings"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/qv/33512015-4809-4c9a-93e8-da4ba3b5103a.png",
+   "tags": []
+  },
+  {
+   "id": "meteorasupercycle",
+   "title": "Meteora Supercycle",
+   "startsAt": "2026-11-15T18:00:00.000Z",
+   "endsAt": "2026-11-15T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/meteorasupercycle",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Meteora",
+    "Syamiir Othman",
+    "Superteam UK"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/7s/1bdcbc6c-9529-44e2-9ef7-003fb85494f4.png",
+   "tags": []
+  },
+  {
+   "id": "3n5hl4c7",
+   "title": "Draper Dragon After Hours | Breakpoint Day 1",
+   "startsAt": "2026-11-15T18:00:00.000Z",
+   "endsAt": "2026-11-15T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/3n5hl4c7",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Draper Dragon",
+    "Ryo Tamura",
+    "Tank Chen",
+    "Byron Murphy"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/mo/0fb9dda3-9974-4043-80c9-8da78cc48a9e.png",
+   "tags": []
+  },
+  {
+   "id": "3xcgettl",
+   "title": "CAMMM ON INGERLANDDD 🍻",
+   "startsAt": "2026-11-15T18:00:00.000Z",
+   "endsAt": "2026-11-15T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Encode Hub",
+   "address": "Encode Hub, 41 Pitfield St, London N1 6DA, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.5275865,
+    "longitude": -0.08377020000000002
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/3xcgettl",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "KP P",
+    "Encode Club",
+    "Pub Club"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/92/5406ca1a-64ad-4bd0-99cc-946dd3478f7d.gif",
+   "tags": []
+  },
+  {
+   "id": "zkpwmk83",
+   "title": "Proof & Pour · London | A Private Cocktail Evening",
+   "startsAt": "2026-11-15T19:00:00.000Z",
+   "endsAt": "2026-11-15T21:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/zkpwmk83",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Certora Events",
+    "Mooly Sagiv",
+    "Arabdha (TG: @Arabdha)",
+    "Zhivko Todorov"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/12/25b5166e-e01e-4d0d-954c-93472383b38d.png",
+   "tags": []
+  },
+  {
+   "id": "6lo0x0u1",
+   "title": "FINANCE LEADERS CLUB | VIP Dinner & Cocktail Evening for Founders, Investors and Finance Leaders",
+   "startsAt": "2026-11-15T19:00:00.000Z",
+   "endsAt": "2026-11-16T00:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/6lo0x0u1",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Akash Sinha",
+    "Akash Srivastava",
+    "Sukesh Tedla"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/1x/a6fcfeb7-9e2d-4409-be74-32c4eea4bd25.png",
+   "tags": []
+  },
+  {
+   "id": "14g91az1",
+   "title": "Squid Dinner · London",
+   "startsAt": "2026-11-15T19:00:00.000Z",
+   "endsAt": "2026-11-15T21:30:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/14g91az1",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Squid Team"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/mm/e680e8fa-4b62-4b3a-b57f-1812fc1ff6d3.png",
+   "tags": []
+  },
+  {
+   "id": "obhye2at",
+   "title": "Showdown Poker Night: Founders vs Funders",
+   "startsAt": "2026-11-15T20:00:00.000Z",
+   "endsAt": "2026-11-16T01:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": null,
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/obhye2at",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Showdown"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/jn/8b1ccd70-f13e-4687-9fb3-6c4d3916a46d.png",
+   "tags": []
+  },
+  {
+   "id": "zcf6jo28",
+   "title": "Members Only",
+   "startsAt": "2026-11-15T20:00:00.000Z",
+   "endsAt": "2026-11-15T23:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/zcf6jo28",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Valentina Cross",
+    "Solana Foundation"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/fh/df03db25-268a-4962-a4c6-18e953a2fc13.jpg",
+   "tags": []
+  },
+  {
+   "id": "solanaboxing",
+   "title": "Solana Fitness Zone: Group Boxing | Solana Foundation x Proxima x OFFLINE",
+   "startsAt": "2026-11-16T07:00:00.000Z",
+   "endsAt": "2026-11-16T08:15:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/solanaboxing",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "OFFLINE",
+    "Lena Grundhoefer",
+    "Alice Chen",
+    "Lisa Bechina",
+    "Proxima Events"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": false,
+   "price": [
+    {
+     "name": "Ticket",
+     "cents": 1000,
+     "currency": "usd"
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/mp/3f5f2eed-a855-45fa-905b-f6da2db3fd93.png",
+   "tags": []
+  },
+  {
+   "id": "solanapilates2",
+   "title": "Solana Fitness Zone: Dynamic Pilates | Solana Foundation x OFFLINE",
+   "startsAt": "2026-11-16T08:30:00.000Z",
+   "endsAt": "2026-11-16T09:15:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/solanapilates2",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "OFFLINE",
+    "Lena Grundhoefer",
+    "Alice Chen"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": false,
+   "price": [
+    {
+     "name": "Ticket",
+     "cents": 1000,
+     "currency": "usd"
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/ws/d9314dc6-a40b-4801-83b6-ecc66a9aba52.png",
+   "tags": []
+  },
+  {
+   "id": "89bsaskb",
+   "title": "Proof of Coffee: Accuracy, Auditing & Accounting",
+   "startsAt": "2026-11-16T09:00:00.000Z",
+   "endsAt": "2026-11-16T11:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": null,
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/89bsaskb",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "onocoy",
+    "Luca Pausa",
+    "Klara Kovačević"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/5g/8d1dd34b-854d-4553-8a31-1e818c097e54.png",
+   "tags": []
+  },
+  {
+   "id": "monkesflow",
+   "title": "Solana Fitness Zone: Rise & Shine Yoga by MonkeDAO | Solana Foundation x OFFLINE",
+   "startsAt": "2026-11-16T09:30:00.000Z",
+   "endsAt": "2026-11-16T10:45:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/monkesflow",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "OFFLINE",
+    "Lena Grundhoefer",
+    "Alice Chen",
+    "Bibsee MonkeDAO",
+    "Camila prado"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/1m/2fb56a2c-1db2-4c6c-88b3-5769866edd4b.png",
+   "tags": []
+  },
+  {
+   "id": "dnb54th3",
+   "title": "What’s the TICKR? | Solana Breakpoint UK",
+   "startsAt": "2026-11-16T10:00:00.000Z",
+   "endsAt": "2026-11-17T17:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "West Hall at Olympia",
+   "address": "West Hall at Olympia, 4 Blythe Rd, London W14 0EX, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.498337899999996,
+    "longitude": -0.2182139
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/dnb54th3",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Tickr Money",
+    "MultiChain Team"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/4w/c469d7fa-64f0-4fdb-94a5-55d4bb58b56f.png",
+   "tags": []
+  },
+  {
+   "id": "ol25ta77",
+   "title": "CodeCup: AI x Solana Builder Arena — Breakpoint 2026",
+   "startsAt": "2026-11-16T10:00:00.000Z",
+   "endsAt": "2026-11-17T15:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "Olympia",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/ol25ta77",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Web3 World",
+    "CodeCupHQ"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/event-covers/l5/d23817ac-f384-4d6b-a7a0-1d421cfb0773.png",
+   "tags": []
+  },
+  {
+   "id": "a6xuo4c1",
+   "title": "Breakpoint Coffee for DeFi Builders & Traders",
+   "startsAt": "2026-11-16T10:00:00.000Z",
+   "endsAt": "2026-11-16T12:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Huddle Hammersmith | Coworking & Private Offices",
+   "address": "Huddle Hammersmith | Coworking & Private Offices, 3 Shortlands, London W6 8DA, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.492915499999995,
+    "longitude": -0.21971439999999998
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/a6xuo4c1",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Erik Ashdown",
+    "Anna Vladi",
+    "Yosef Cevallos",
+    "Nikhil Suri",
+    "QuickNode Marketing"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/cy/7588d1e0-9593-4a3f-8428-750a328a4479.png",
+   "tags": []
+  },
+  {
+   "id": "qe5u8rpd",
+   "title": "The Internet Capital Supermarket",
+   "startsAt": "2026-11-16T10:00:00.000Z",
+   "endsAt": "2026-11-17T16:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Olympia",
+   "address": "Olympia, Hammersmith Rd, London W14 8UX, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.4957333,
+    "longitude": -0.2102299
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/qe5u8rpd",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Amol Gharte"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/mu/99b528c1-003c-4d33-91fa-7e60f6985ae7.png",
+   "tags": []
+  },
+  {
+   "id": "builder-zone",
+   "title": "Builder Zone @ Breakpoint",
+   "startsAt": "2026-11-16T10:30:00.000Z",
+   "endsAt": "2026-11-17T19:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Olympia",
+   "address": "Olympia, Hammersmith Rd, London W14 8UX, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.496434799999996,
+    "longitude": -0.2103687
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/builder-zone",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Asymmetric Research"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/5q/0f458374-b91d-403e-816e-87540525e837.png",
+   "tags": []
+  },
+  {
+   "id": "jzlkn59s",
+   "title": "Zebu Live Arms: A Great British Pub Takeover, presented by AlphaWire",
+   "startsAt": "2026-11-16T11:00:00.000Z",
+   "endsAt": "2026-11-16T21:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "15-19 Goldhawk Rd",
+   "address": "15-19 Goldhawk Rd, London W12 8QQ, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.5028855,
+    "longitude": -0.2239376
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/jzlkn59s",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Flight3",
+    "Jolyon Layard Horsfall",
+    "Zebu Live",
+    "Harry Horsfall",
+    "AlphaWire"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/e8/f0d7599b-3000-4d05-a24f-37d0a8a0344f.png",
+   "tags": []
+  },
+  {
+   "id": "kzh1qgwg",
+   "title": "Solana Fitness Zone: Group Reiki Experience | Solana Foundation x Ottersec",
+   "startsAt": "2026-11-16T11:00:00.000Z",
+   "endsAt": "2026-11-16T12:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/kzh1qgwg",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "OFFLINE",
+    "Lena Grundhoefer",
+    "Alice Chen",
+    "Jennifer Haydock",
+    "OtterSec"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": false,
+   "price": [
+    {
+     "name": "Ticket",
+     "cents": 1000,
+     "currency": "usd"
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/bs/08ce657e-5a06-40f2-8fbb-88c4b1968278.png",
+   "tags": []
+  },
+  {
+   "id": "sfzfreestyle2",
+   "title": "Solana Fitness Zone: Content Freestyle | Solana Foundation x OFFLINE",
+   "startsAt": "2026-11-16T12:00:00.000Z",
+   "endsAt": "2026-11-16T13:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/sfzfreestyle2",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "OFFLINE",
+    "Lena Grundhoefer"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/mj/7b1cb561-a6fd-4c56-a176-703b4c4a3e29.png",
+   "tags": []
+  },
+  {
+   "id": "ti7vdsai",
+   "title": "FWDI Breakpoint Happy Hour",
+   "startsAt": "2026-11-16T15:00:00.000Z",
+   "endsAt": "2026-11-16T17:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/ti7vdsai",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Forward Industries",
+    "Garrison Yang"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/lg/caad0a72-546f-4be4-813f-b42691eb0488.webp",
+   "tags": []
+  },
+  {
+   "id": "wprc-breakpoint26",
+   "title": "Whitepaper Reading Club - After Alpenglow",
+   "startsAt": "2026-11-16T15:30:00.000Z",
+   "endsAt": "2026-11-16T17:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/wprc-breakpoint26",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Whitepaper Reading Club",
+    "Rongxin 00",
+    "Daniel Savu"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/d4/5e7341fb-f104-4586-ae24-fc40ab647c91.png",
+   "tags": []
+  },
+  {
+   "id": "a9yvvi96",
+   "title": "The RWA Pub at Breakpoint",
+   "startsAt": "2026-11-16T16:00:00.000Z",
+   "endsAt": "2026-11-16T19:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "The Swan",
+   "address": "The Swan, 46 Hammersmith Broadway, Greater, London W6 0DZ, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.49306060000001,
+    "longitude": -0.2249448
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/a9yvvi96",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Figure",
+    "Contact Us",
+    "Kamino",
+    "Formation"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/k5/e2cd2ffe-25fd-48ba-bd95-464fe3cbb361.png",
+   "tags": []
+  },
+  {
+   "id": "39ckiuiy",
+   "title": "GGC: GMGN Global Championship - London Finals | Breakpoint 2026",
+   "startsAt": "2026-11-16T16:00:00.000Z",
+   "endsAt": "2026-11-16T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/39ckiuiy",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "GMGN"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/bn/b240b716-8501-4ca1-b97e-5614e3d65404.png",
+   "tags": []
+  },
+  {
+   "id": "mkvzcqey",
+   "title": "Meet Your Match w/ CoW Swap @ Solana Breakpoint",
+   "startsAt": "2026-11-16T17:00:00.000Z",
+   "endsAt": "2026-11-16T20:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Lillie's Wine Bar & Restaurant",
+   "address": "Lillie's Wine Bar & Restaurant, Olympia, 2a Emberton Walk, London W14 8FJ, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.496807700000005,
+    "longitude": -0.2096142
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/mkvzcqey",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "CoW Swap CoW Swap"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/oe/7c09c695-80c2-4728-a48d-aba6b57dcd29.jpg",
+   "tags": []
+  },
+  {
+   "id": "4m0ksi3i",
+   "title": "Bullseye with Multicoin Capital",
+   "startsAt": "2026-11-16T17:00:00.000Z",
+   "endsAt": "2026-11-16T21:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Flight Club Victoria",
+   "address": "Flight Club Victoria, 6 Sir Simon Milton Sq, London SW1E 5DJ, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.4973775,
+    "longitude": -0.1429202
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/4m0ksi3i",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Multicoin Capital",
+    "John Reed",
+    "Kathryn Gough",
+    "Spencer Applebaum",
+    "Shayon Sengupta"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/9k/d0048f06-739d-46d0-9771-ea452dc62823.png",
+   "tags": []
+  },
+  {
+   "id": "altitude-rain-BP26",
+   "title": "Licence to Spend: an evening with Altitude and Rain",
+   "startsAt": "2026-11-16T17:00:00.000Z",
+   "endsAt": "2026-11-16T20:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Juno Italian Restaurant",
+   "address": "Juno Italian Restaurant, 50 Hammersmith Rd, London W14 8UX, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.496088199999996,
+    "longitude": -0.2087289
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/altitude-rain-BP26",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Altitude Events",
+    "Altitude",
+    "Jennifer Greenberg"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/zu/5bb6571c-404e-45a5-a4f5-cf2b3df7d22f.gif",
+   "tags": []
+  },
+  {
+   "id": "lajgsnqb",
+   "title": "Solana Breakpoint Security Drinks - by Fidesium",
+   "startsAt": "2026-11-16T17:00:00.000Z",
+   "endsAt": "2026-11-16T21:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "121 Hammersmith Rd",
+   "address": "121 Hammersmith Rd, London W14 0QR, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.494361299999994,
+    "longitude": -0.21269059999999998
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/lajgsnqb",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Greg Bock"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/9f/f8682003-10d9-422c-8fad-03426bcdf6e2.png",
+   "tags": []
+  },
+  {
+   "id": "1hdsvfdv",
+   "title": "Sports Meets Solana: The Future of Sports is On-chain ⚽",
+   "startsAt": "2026-11-16T17:00:00.000Z",
+   "endsAt": "2026-11-16T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/1hdsvfdv",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Chiliz Community Meetup",
+    "Chiliz The Sports Blockchain",
+    "Superteam Türkiye"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/2x/640c5c51-f555-46db-8c4e-d96dd1bfe847.png",
+   "tags": []
+  },
+  {
+   "id": "gsrcrypto-jmyt",
+   "title": "London After Hours I The Breakpoint Debrief by GSR x Arkham",
+   "startsAt": "2026-11-16T17:30:00.000Z",
+   "endsAt": "2026-11-16T20:30:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/gsrcrypto-jmyt",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "GSR Events",
+    "Alexander Lerangis",
+    "Chris Cox"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/6r/e01de98d-4677-4e3f-aab6-8f3750658454.png",
+   "tags": []
+  },
+  {
+   "id": "2hjd7dhn",
+   "title": "Fenwick Presents: A Proper London Knees-Up",
+   "startsAt": "2026-11-16T17:30:00.000Z",
+   "endsAt": "2026-11-16T20:30:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/2hjd7dhn",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Fenwick"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": null,
+   "tags": []
+  },
+  {
+   "id": "hos-breakpoint",
+   "title": "House of Sol: Breakpoint",
+   "startsAt": "2026-11-16T18:00:00.000Z",
+   "endsAt": "2026-11-16T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/hos-breakpoint",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "House of Sol"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/ho/5146313a-daa8-4cc8-bc97-aee941826267.png",
+   "tags": []
+  },
+  {
+   "id": "ds1wk8ak",
+   "title": "Capital x Counsel London",
+   "startsAt": "2026-11-16T18:00:00.000Z",
+   "endsAt": "2026-11-16T21:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/ds1wk8ak",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Gosai Law",
+    "Bash Sukhdeo"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/77/a920aa28-4768-471b-8951-c311d85a935e.png",
+   "tags": []
+  },
+  {
+   "id": "lr7mltq4",
+   "title": "Sol Noir: Institution Dinner | Socure x WalletConnect",
+   "startsAt": "2026-11-16T18:00:00.000Z",
+   "endsAt": "2026-11-16T21:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/lr7mltq4",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Socure",
+    "Socure Events",
+    "Steve Goldstein",
+    "Lena Grundhoefer",
+    "WalletConnect"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/69/8b5c4ffd-bf94-4fc1-8eb9-a73192f638f6.png",
+   "tags": []
+  },
+  {
+   "id": "gpxfy249",
+   "title": "SOL Calling: Solana Breakpoint Happy Hour",
+   "startsAt": "2026-11-16T18:00:00.000Z",
+   "endsAt": "2026-11-16T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/gpxfy249",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Foundation Capital",
+    "Alejandra Martinez",
+    "Tim Clarke",
+    "Matty Taylor",
+    "Matthew Nay"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/i5/89d46cf6-903a-42c8-9202-635db0b231e3.png",
+   "tags": []
+  },
+  {
+   "id": "fog_and_fortune",
+   "title": "Fog & Fortune",
+   "startsAt": "2026-11-16T18:00:00.000Z",
+   "endsAt": "2026-11-16T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/fog_and_fortune",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "MonkeDAO Global",
+    "General MonkeDAO",
+    "RedotPay Events"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/1r/365f3756-2107-4baf-abef-2b6cc5280beb.png",
+   "tags": []
+  },
+  {
+   "id": "cbiabn4m",
+   "title": "LONDON CALLING 🇬🇧",
+   "startsAt": "2026-11-16T18:00:00.000Z",
+   "endsAt": "2026-11-16T23:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/cbiabn4m",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "CryptoMondays London",
+    "Admin",
+    "Kaitlin Argeaux",
+    "Larry Trachtenberg",
+    "Rohith Biju"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/m9/1ca83471-5e9b-46b2-8e97-11fb3e4af15e.png",
+   "tags": []
+  },
+  {
+   "id": "xykfcf1a",
+   "title": "Money Layer @Breakpoint🇬🇧 Week",
+   "startsAt": "2026-11-16T18:30:00.000Z",
+   "endsAt": "2026-11-16T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/xykfcf1a",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Capvise",
+    "Capvise Global",
+    "Sahil (TG:@sahilxdev)"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": false,
+   "price": [
+    {
+     "name": "Ticket",
+     "cents": 49900,
+     "currency": "usd"
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/lk/cfe60d73-6e03-4be4-90a7-35bae378bc64.png",
+   "tags": []
+  },
+  {
+   "id": "6sdoouxp",
+   "title": "Breakpoint: Day Two Afterparty",
+   "startsAt": "2026-11-16T18:30:00.000Z",
+   "endsAt": "2026-11-16T23:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "St Paul's Hotel",
+   "address": "St Paul's Hotel, 153 Hammersmith Rd, London W14 0QL, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.4936094,
+    "longitude": -0.21532859999999998
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/6sdoouxp",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "The Financial News Network",
+    "Financial News",
+    "Georgia Hanias"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/8i/e45e7811-4b05-4547-819c-00cc4ef43858.jpg",
+   "tags": []
+  },
+  {
+   "id": "aqntywn2",
+   "title": "Pr1me [London Series] - Exclusive Dinner for Web3 Finance",
+   "startsAt": "2026-11-16T19:00:00.000Z",
+   "endsAt": "2026-11-16T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/aqntywn2",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Onchain Finance Institute",
+    "Breezing SA",
+    "Tester Testy",
+    "Paige Connor",
+    "Loris Macieira Coelho"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/sg/4db69bd6-e488-41c2-bfa1-849c830ddf63.png",
+   "tags": []
+  },
+  {
+   "id": "pyth-sq5v",
+   "title": "Fintech & Data: London Executive Dinner",
+   "startsAt": "2026-11-16T19:00:00.000Z",
+   "endsAt": "2026-11-16T23:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "London",
+   "address": "London, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.5072178,
+    "longitude": -0.12758619999999998
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/pyth-sq5v",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Pyth",
+    "Pyth Network"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/n2/4a7733f8-e984-4f7d-93bb-c2970a35e506.png",
+   "tags": []
+  },
+  {
+   "id": "snrmcp50",
+   "title": "Beyond Business: An Exclusive Dinner in Mayfair",
+   "startsAt": "2026-11-16T19:00:00.000Z",
+   "endsAt": "2026-11-16T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "34 Mayfair",
+   "address": "34 Mayfair, 34 Grosvenor Sq, S Audley St, London W1K 2HD, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.5102469,
+    "longitude": -0.1523196
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/snrmcp50",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Karlis Drikis",
+    "Rem Vasilenko"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/a4/3bf98dcf-ac49-44d7-81b4-ba43b846367c.png",
+   "tags": []
+  },
+  {
+   "id": "cnswgn30",
+   "title": "Forward Industries - Breakpoint Dinner",
+   "startsAt": "2026-11-16T19:00:00.000Z",
+   "endsAt": "2026-11-16T21:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/cnswgn30",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Forward Industries",
+    "Garrison Yang",
+    "Georgia Quinn",
+    "Nellina A",
+    "Mark Brazier"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/lg/caad0a72-546f-4be4-813f-b42691eb0488.webp",
+   "tags": []
+  },
+  {
+   "id": "frzpha3k",
+   "title": "BEYOND THE FRAME: An Immersive Art Activation by Render Network x Solana",
+   "startsAt": "2026-11-16T19:30:00.000Z",
+   "endsAt": "2026-11-16T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Frameless",
+   "address": "Frameless, 6 Marble Arch, London W1H 7AP, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.5136755,
+    "longitude": -0.1603609
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/frzpha3k",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Render Network Foundation"
+   ],
+   "registrationStatus": "waitlist",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/jx/abdae8cf-cb57-4e08-ab56-62535533bd0b.jpg",
+   "tags": []
+  },
+  {
+   "id": "yrxbkvmn",
+   "title": "🇬🇧 New Friendship Tech | London | Breakpoint 2026",
+   "startsAt": "2026-11-16T20:00:00.000Z",
+   "endsAt": "2026-11-17T02:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": null,
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/yrxbkvmn",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Eric Spivak",
+    "Nicol Perntova",
+    "Alex Bowman",
+    "Kaitlin Argeaux"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/fe/4c5362e1-865c-4298-a438-1ca87cfcaceb.gif",
+   "tags": []
+  },
+  {
+   "id": "breakpointmixer",
+   "title": "Breakpoint Executive Mixer w/ Halborn & MERGE 🍸",
+   "startsAt": "2026-11-16T20:00:00.000Z",
+   "endsAt": "2026-11-16T23:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Smith's Bar",
+   "address": "Smith's Bar, 170 Shepherds Bush Rd, London W6 7PB, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.497262299999996,
+    "longitude": -0.22296429999999998
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/breakpointmixer",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Halborn Security"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/09/7ba361dd-2730-47d2-be5e-cdad70c4456d.png",
+   "tags": []
+  },
+  {
+   "id": "3uvlhear",
+   "title": "edgerunners.app networking drinks @ Annabel's",
+   "startsAt": "2026-11-16T20:00:00.000Z",
+   "endsAt": "2026-11-17T01:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Annabel's",
+   "address": "Annabel's, 46 Berkeley Square, London W1J 5AT, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.509156999999995,
+    "longitude": -0.1462955
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/3uvlhear",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Lorenzo Tribaldini"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/m4/e991d37d-4171-4f69-a347-601e1d60ec1a.png",
+   "tags": []
+  },
+  {
+   "id": "3bwtn4jz",
+   "title": "Head Down 5K × Solana | 445 CREW",
+   "startsAt": "2026-11-17T04:45:00.000Z",
+   "endsAt": "2026-11-17T05:45:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "M&S Foodhall",
+   "address": "M&S Foodhall, 5 Lumen Lane, Nine Elms, London SW8 5BN, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.4808533,
+    "longitude": -0.1444914
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/3bwtn4jz",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Chars 445CREW"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/dz/1c0d9a23-406a-4a35-aa06-b9864dbb0018.jpg",
+   "tags": []
+  },
+  {
+   "id": "solanapilates3",
+   "title": "Solana Fitness Zone: Dynamic Pilates | Solana Foundation x OFFLINE",
+   "startsAt": "2026-11-17T07:00:00.000Z",
+   "endsAt": "2026-11-17T07:45:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/solanapilates3",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "OFFLINE",
+    "Lena Grundhoefer",
+    "Alice Chen"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": false,
+   "price": [
+    {
+     "name": "Ticket",
+     "cents": 1000,
+     "currency": "usd"
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/gx/a2acdd97-1d70-4f5f-a5f8-a766130a5d14.png",
+   "tags": []
+  },
+  {
+   "id": "solanahiits",
+   "title": "Solana Fitness Zone: HIIT Class | Solana Foundation x OFFLINE",
+   "startsAt": "2026-11-17T08:00:00.000Z",
+   "endsAt": "2026-11-17T08:45:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/solanahiits",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "OFFLINE",
+    "Lena Grundhoefer",
+    "Alice Chen"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": false,
+   "price": [
+    {
+     "name": "Ticket",
+     "cents": 1000,
+     "currency": "usd"
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/6o/5f788c44-493c-48f8-ae2e-80b06afbff20.png",
+   "tags": []
+  },
+  {
+   "id": "solanasoundheals",
+   "title": "Solana Fitness Zone: Sound Healing & Breathwork | Solana Foundation x Ottersec x OFFLINE",
+   "startsAt": "2026-11-17T09:00:00.000Z",
+   "endsAt": "2026-11-17T09:50:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/solanasoundheals",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "OFFLINE",
+    "Lena Grundhoefer",
+    "Alice Chen",
+    "OtterSec"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": false,
+   "price": [
+    {
+     "name": "Ticket",
+     "cents": 1000,
+     "currency": "usd"
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/pi/a59a4e41-5b9d-4549-b536-129acf15ca55.png",
+   "tags": []
+  },
+  {
+   "id": "th9m3zor",
+   "title": "Dev3pack Meetup - The Bridge Accelerator 🇬🇧",
+   "startsAt": "2026-11-17T09:30:00.000Z",
+   "endsAt": "2026-11-17T12:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": null,
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/th9m3zor",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Dev3pack Global"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/2s/71dd00e7-5e59-4c30-ad34-74502f6a8623.png",
+   "tags": []
+  },
+  {
+   "id": "solanaerial",
+   "title": "Solana Fitness Zone: Aerial Yoga | Solana Foundation x OFFLINE",
+   "startsAt": "2026-11-17T10:00:00.000Z",
+   "endsAt": "2026-11-17T11:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/solanaerial",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "OFFLINE",
+    "Lena Grundhoefer",
+    "Alice Chen",
+    "OtterSec"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": false,
+   "price": [
+    {
+     "name": "Ticket",
+     "cents": 1000,
+     "currency": "usd"
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/5q/8eb5d829-75a9-4819-8442-2d00d92c06db.png",
+   "tags": []
+  },
+  {
+   "id": "aecztdcz",
+   "title": "Privy Home: IRL London",
+   "startsAt": "2026-11-17T11:00:00.000Z",
+   "endsAt": "2026-11-17T17:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "bonbon Kensington",
+   "address": "bonbon Kensington, 197 Kensington High St, London W8 6BA, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.4997542,
+    "longitude": -0.19610609999999998
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/aecztdcz",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Privy, a Stripe company",
+    "Privy"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/bk/dcb2ff21-a4a0-4685-b2be-11d81ed31922.png",
+   "tags": []
+  },
+  {
+   "id": "z21jc9oq",
+   "title": "Pulsar Money // Coffee Meetup in London with LI.FI",
+   "startsAt": "2026-11-17T12:00:00.000Z",
+   "endsAt": "2026-11-17T14:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "Kensington",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/z21jc9oq",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Pulsar Money",
+    "Li Fi"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/i6/c9a9c7fa-d95c-4907-bc75-5814f8660ded.png",
+   "tags": []
+  },
+  {
+   "id": "LondonHappyHour",
+   "title": "London Happy Hour",
+   "startsAt": "2026-11-17T17:00:00.000Z",
+   "endsAt": "2026-11-17T20:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/LondonHappyHour",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Figment Events",
+    "Alyssa Quevillon",
+    "21 shares"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/u3/3dc1f74f-8482-431b-9339-aceb4926ae60.png",
+   "tags": []
+  },
+  {
+   "id": "blockaid-feke",
+   "title": "Institutional Mixer with Blockaid",
+   "startsAt": "2026-11-17T17:00:00.000Z",
+   "endsAt": "2026-11-17T23:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Brook Green Hotel",
+   "address": "Brook Green Hotel, 170 Shepherds Bush Rd, London W6 7PB, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.4973232,
+    "longitude": -0.22298279999999998
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/blockaid-feke",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Blockaid Events"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/i6/eb5d0e91-82f7-4938-a868-3bcaa656a8f1.jpg",
+   "tags": []
+  },
+  {
+   "id": "akashhousewarmingparty",
+   "title": "Housewarming! A Breakpoint Closing Party with Akash",
+   "startsAt": "2026-11-17T17:30:00.000Z",
+   "endsAt": "2026-11-17T21:30:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "50 Hammersmith Rd",
+   "address": "50 Hammersmith Rd, London W14 8UD, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.496070599999996,
+    "longitude": -0.2087374
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/akashhousewarmingparty",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Amanda Keay"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/ln/cac1a12f-a327-407b-9400-52b48028566a.png",
+   "tags": []
+  },
+  {
+   "id": "cjvk9099",
+   "title": "W3 Playbook Podcast Launch Party | Official Breakpoint 2026 Afterparty*",
+   "startsAt": "2026-11-17T17:30:00.000Z",
+   "endsAt": "2026-11-17T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "HUCKSTER London",
+   "address": "HUCKSTER London, 4 Kingdom St, London W2 6BD, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.519508099999996,
+    "longitude": -0.1826304
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/cjvk9099",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Lorae K",
+    "Superteam UK",
+    "Bash Sukhdeo"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/c6/b051e9e4-b7e4-480e-9a93-4bcaf635c031.png",
+   "tags": []
+  },
+  {
+   "id": "6a2t3pnw",
+   "title": "A GROUP SHOW",
+   "startsAt": "2026-11-17T18:00:00.000Z",
+   "endsAt": "2026-11-21T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "10 Greatorex St",
+   "address": "10 Greatorex St, London E1 5NF, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.5178304,
+    "longitude": -0.0670581
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/6a2t3pnw",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Caravana Presents",
+    "mallow art"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/ty/7e3c65a5-6806-4438-a040-bd4977d1f013.png",
+   "tags": []
+  },
+  {
+   "id": "BP26-After-Party",
+   "title": "Unofficial Official After Party to Breakpoint 2026: The Great British Pub Crawl",
+   "startsAt": "2026-11-17T18:00:00.000Z",
+   "endsAt": "2026-11-18T00:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Olympia",
+   "address": "Olympia, Hammersmith Rd, London W14 8UX, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.496434799999996,
+    "longitude": -0.2103687
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/BP26-After-Party",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Superteam",
+    "Superteam UK",
+    "Pub Club"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/hh/ea4c0f10-25fd-405e-b81a-c4c00adc6397.jpg",
+   "tags": []
+  },
+  {
+   "id": "uxoxg099",
+   "title": "StartingPoint: BP Scholar Mixer",
+   "startsAt": "2026-11-17T19:00:00.000Z",
+   "endsAt": "2026-11-17T21:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Hammersmith Road",
+   "address": "Hammersmith Road, Hammersmith Rd, London, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.495507985867526,
+    "longitude": -0.21070400084549634
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/uxoxg099",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Javier Bonilla",
+    "Amaan Meer"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/hv/89d7f89d-55ae-44ce-a19a-9220f6363229.png",
+   "tags": []
+  },
+  {
+   "id": "n41tqnps",
+   "title": "Breakpoint Pub Quiz",
+   "startsAt": "2026-11-17T19:00:00.000Z",
+   "endsAt": "2026-11-17T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Crown & Sceptre",
+   "address": "Crown & Sceptre, 34 Holland Rd, London W14 8BA, UK",
+   "area": null,
+   "coordinates": {
+    "latitude": 51.49797650000001,
+    "longitude": -0.20743440000000002
+   },
+   "venuePublic": true,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/n41tqnps",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Bryn Bennett",
+    "Marc Cross"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/x6/cdff09c0-9d33-4043-8eca-3d67ea0a2fd3.png",
+   "tags": []
+  },
+  {
+   "id": "ebtmwnmy",
+   "title": "LO:LIMIT Hold'em (Break Point Edition)",
+   "startsAt": "2026-11-17T19:00:00.000Z",
+   "endsAt": "2026-11-18T01:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/ebtmwnmy",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Laurence Lewars"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/mg/2446f836-9231-4e14-89e5-3dd0e13d3222.jpg",
+   "tags": []
+  },
+  {
+   "id": "blockc-eg04",
+   "title": "Blockchain.com: TYB Party",
+   "startsAt": "2026-11-17T20:00:00.000Z",
+   "endsAt": "2026-11-18T02:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/blockc-eg04",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Blockchain.com",
+    "James Maddison",
+    "Raaja Raikundalia",
+    "James Ambrose",
+    "Al Turnbull"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/gz/576f6fa3-6c7a-45c7-af47-78fb798f8f1a.png",
+   "tags": []
+  },
+  {
+   "id": "e9iw08nn",
+   "title": "NO MORE PITCHES",
+   "startsAt": "2026-11-17T22:00:00.000Z",
+   "endsAt": "2026-11-18T01:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/e9iw08nn",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Superteam",
+    "Akca Network",
+    "Superteam Türkiye"
+   ],
+   "registrationStatus": "sold-out",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/51/28bb9b52-4351-4f4a-92fc-a2bf56e71363.jpg",
+   "tags": []
+  },
+  {
+   "id": "eqwsf08t",
+   "title": "[ONLINE] Solana's Challenges, GetBlock's Solutions",
+   "startsAt": "2026-11-18T14:00:00.000Z",
+   "endsAt": "2026-11-18T15:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": "Online",
+   "address": null,
+   "area": null,
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "online",
+   "sourceUrl": "https://luma.com/eqwsf08t",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "Vladislav Sopov",
+    "Eugene Alekseev",
+    "Vasily Rudomanov"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": false,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/4r/07cd4d07-599b-4fcd-9f6a-3d404a1813f4.png",
+   "tags": []
+  },
+  {
+   "id": "6qnuusnh",
+   "title": "QFEX Private Dinner | Solana Breakpoint",
+   "startsAt": "2026-11-18T19:00:00.000Z",
+   "endsAt": "2026-11-18T22:00:00.000Z",
+   "timezone": "Europe/London",
+   "venue": null,
+   "address": null,
+   "area": "London",
+   "coordinates": null,
+   "venuePublic": false,
+   "locationType": "offline",
+   "sourceUrl": "https://luma.com/6qnuusnh",
+   "observedAt": "2026-11-13T07:46:13.663Z",
+   "organizers": [
+    "QFEX Events",
+    "QFEX"
+   ],
+   "registrationStatus": "open",
+   "approvalRequired": true,
+   "isFree": true,
+   "price": [
+    {
+     "name": "Free",
+     "cents": 0,
+     "currency": null
+    }
+   ],
+   "coverUrl": "https://images.lumacdn.com/uploads/m7/d0cc5712-0876-4044-89d2-fd575f9711a8.png",
+   "tags": []
+  }
+ ]
+}

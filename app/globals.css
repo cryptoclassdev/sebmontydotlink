@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* The Breakpoint guide (/breakpoint) is a separate app with its own stylesheet; keep its classes out of this one. */
+@source not "../breakpoint";
+@source not "../public/breakpoint";
+
 @custom-variant dark (&:is(.dark *));
 
 :root {

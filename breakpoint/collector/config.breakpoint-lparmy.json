@@ -1,0 +1,60 @@
+{
+  "siteUrl": "https://www.sebmonty.link/breakpoint",
+  "dailyBudgetUsd": 8,
+  "pollSeconds": 60,
+  "xEnabled": false,
+  "chunkSeconds": 30,
+  "summaryEveryChunks": 2,
+  "contextChunks": 6,
+  "sessionMode": "fixed",
+  "transcriptionProvider": "mlx",
+  "whisperModel": "mlx-community/whisper-large-v3-turbo",
+  "silenceRms": 150,
+  "ytFormat": "bestaudio/best[height<=360]/worst",
+  "simulateLive": false,
+  "llm": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "fallback": {
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5"
+    },
+    "prices": {
+      "claude-sonnet-5-5": {
+        "in": 2.0,
+        "cacheRead": 0.1,
+        "cacheWrite": 2.5,
+        "out": 10.0
+      },
+      "claude-haiku-5-5": {
+        "in": 0.1,
+        "cacheRead": 0.01,
+        "cacheWrite": 0.125,
+        "out": 0.5
+      },
+      "glm-5.1": {
+        "in": 1.4,
+        "cacheRead": 0.26,
+        "out": 4.4
+      }
+    }
+  },
+  "summaryReservePerCallUsd": 0.02,
+  "publishProvisional": true,
+  "publishKinds": [
+    "announcement",
+    "briefing"
+  ],
+  "followDeskAssignments": false,
+  "stages": [
+    {
+      "id": "lparmy",
+      "name": "LP Army",
+      "enabled": true,
+      "youtube": "desk",
+      "sessionId": "lparmy-day1",
+      "sessionTitle": "LP Army (Meteora), Breakpoint day 1",
+      "sourceUrl": "https://www.meteora.ag/"
+    }
+  ]
+}

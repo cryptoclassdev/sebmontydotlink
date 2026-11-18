@@ -31,5 +31,11 @@ next-env.d.ts
 # compiled articles (built from content/articles by lib/publishing/compile.mjs)
 /lib/publishing/.generated/
 
+# Breakpoint guide: its own dependencies and the collector's local state/secrets
+/breakpoint/node_modules/
+/breakpoint/.local/
+/breakpoint/.venv/
+__pycache__/
+
 # Studio local-dev uploads (production uses Vercel Blob)
 /public/studio-uploads/

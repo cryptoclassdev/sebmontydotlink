@@ -1,0 +1,3598 @@
+{
+  "updatedAt": "2026-11-14T00:00:00Z",
+  "note": "X accounts watched during Breakpoint 2026. Speakers: handles linked on the official speakers page (solana.com/breakpoint/speakers, read 14 Nov 2026). Companies: handle linked from the company website (source = that site) or checked on the X profile (display name, linked website and verification; source = the profile).",
+  "accounts": [
+    {
+      "handle": "adamcreates_",
+      "name": "Adam Bergeman",
+      "kind": "speaker",
+      "org": "Star",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-e81c0490bcbd0b",
+          "startsAt": "2026-11-16T14:00:00Z",
+          "title": "Star"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "ahmedzifzaf",
+      "name": "Ahmed Zifzaf",
+      "kind": "speaker",
+      "org": "Ramp",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-4ab36578d69de6",
+          "startsAt": "2026-11-16T11:00:00Z",
+          "title": "Why Should I Use Your Stablecoin?"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "alemartcard",
+      "name": "Alejandra Martinez",
+      "kind": "speaker",
+      "org": "Foundation Capital",
+      "projectId": null,
+      "talks": [],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "A_gutierro",
+      "name": "Alejandro Gutierrez",
+      "kind": "speaker",
+      "org": "Superteam Ireland",
+      "projectId": null,
+      "talks": [],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "ameliamariec",
+      "name": "Amelia Daly",
+      "kind": "speaker",
+      "org": "Solana Foundation",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-88dc31085f2828",
+          "startsAt": "2026-11-16T16:37:00Z",
+          "title": "The City Goes Onchain: From Closing Bell to Always On"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "amiravalliani",
+      "name": "Amira Valliani",
+      "kind": "speaker",
+      "org": "Solana Foundation",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-welcome",
+          "startsAt": "2026-11-16T10:00:00Z",
+          "title": "Welcome to Breakpoint 2026"
+        },
+        {
+          "sessionId": "bp26-7769914878c0a7",
+          "startsAt": "2026-11-17T10:30:00Z",
+          "title": "Welcome to Breakpoint Day 2"
+        },
+        {
+          "sessionId": "bp26-3823d8bbebe5c8",
+          "startsAt": "2026-11-17T17:11:00Z",
+          "title": "Closing Fireside: Michael Lewis"
+        },
+        {
+          "sessionId": "bp26-24c9a16b1d153d",
+          "startsAt": "2026-11-17T17:36:00Z",
+          "title": "See You at Breakpoint 2027!"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "toly",
+      "name": "Anatoly Yakovenko",
+      "kind": "speaker",
+      "org": "Solana / Solana Labs",
+      "projectId": "solana",
+      "talks": [
+        {
+          "sessionId": "bp26-d9f58db08370df",
+          "startsAt": "2026-11-17T12:37:00Z",
+          "title": "Debate: SOL Is Money"
+        },
+        {
+          "sessionId": "bp26-304d3a1036a4ca",
+          "startsAt": "2026-11-17T12:54:00Z",
+          "title": "Breakpoint 2027 Announcement"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "andreaMYellie",
+      "name": "Andrea Griffin Miele",
+      "kind": "speaker",
+      "org": "Beezie",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-34d4847224b531",
+          "startsAt": "2026-11-17T16:24:00Z",
+          "title": "Beauty, Fashion, Luxury: A New Kind of Onchain Shopping Experience"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "powerus_usa",
+      "name": "Andrew Fox",
+      "kind": "speaker",
+      "org": "Powerus",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-8a9713b390788f",
+          "startsAt": "2026-11-16T16:32:00Z",
+          "title": "Why We Went Onchain on Day 1"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "ajpprice",
+      "name": "Andrew Price",
+      "kind": "speaker",
+      "org": "xStocks",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-88dc31085f2828",
+          "startsAt": "2026-11-16T16:37:00Z",
+          "title": "The City Goes Onchain: From Closing Bell to Always On"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "annairrera",
+      "name": "Anna Irrera",
+      "kind": "speaker",
+      "org": "Bloomberg News",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-bceb651f743757",
+          "startsAt": "2026-11-16T17:19:00Z",
+          "title": "The Former White House Crypto Chief on the Future of Digital Assets"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "anthonysoohoo",
+      "name": "Anthony Soohoo",
+      "kind": "speaker",
+      "org": "MoneyGram",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-moneygram",
+          "startsAt": "2026-11-16T10:20:00Z",
+          "title": "MoneyGram Ramps: Connecting Digital Assets With Cash"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "archill",
+      "name": "Archill B",
+      "kind": "speaker",
+      "org": "House Of Sol",
+      "projectId": null,
+      "talks": [],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "armaniferrante",
+      "name": "Armani Ferrante",
+      "kind": "speaker",
+      "org": "Backpack",
+      "projectId": "backpack",
+      "talks": [
+        {
+          "sessionId": "bp26-backpack",
+          "startsAt": "2026-11-16T16:25:00Z",
+          "title": "Product Keynote: Backpack"
+        },
+        {
+          "sessionId": "bp26-eeaeebf8a96b13",
+          "startsAt": "2026-11-16T16:45:00Z",
+          "title": "Fireside: The Legend of Armani"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "0xdirichlet",
+      "name": "Arnold Lee",
+      "kind": "speaker",
+      "org": "Sphere Labs",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-957a1ad44478c8",
+          "startsAt": "2026-11-17T13:10:00Z",
+          "title": "The Last Blocker Is Meatspace: Why Compliance Is Where AI Meets Business Payments"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "cryptobecool",
+      "name": "Ben Brophy",
+      "kind": "speaker",
+      "org": "Solana Foundation",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-531d345e1baf5f",
+          "startsAt": "2026-11-16T14:27:00Z",
+          "title": "If You Build It, Will Flows Come?"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "reidbenj",
+      "name": "Ben Reid",
+      "kind": "speaker",
+      "org": "Bitso",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-f247ff0413e7f6",
+          "startsAt": "2026-11-16T11:35:00Z",
+          "title": "The Sleeping Power of the World's Other Stablecoins"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "billbar",
+      "name": "Bill Barhydt",
+      "kind": "speaker",
+      "org": "Abra",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-3c98da8acaeb9c",
+          "startsAt": "2026-11-16T15:39:00Z",
+          "title": "From Idle Collateral to Active Capital: TradFi Meets Solana"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "BorisJohnson",
+      "name": "Boris Johnson",
+      "kind": "speaker",
+      "org": "Former Prime Minister",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-d1fb9c555bace2",
+          "startsAt": "2026-11-16T14:00:00Z",
+          "title": "Debate: Crypto Is Key to the UK's Economic Future"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "bw_solana",
+      "name": "Brennan Watt",
+      "kind": "speaker",
+      "org": "Anza",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-2c1d33f9e1d647",
+          "startsAt": "2026-11-17T16:49:00Z",
+          "title": "State of the Solana Network"
+        },
+        {
+          "sessionId": "bp26-d7ed96529ed916",
+          "startsAt": "2026-11-17T16:56:00Z",
+          "title": "Inside the Bunker: Are We in Cryptography's End Days?"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "cailindoran",
+      "name": "Cailin Doran",
+      "kind": "speaker",
+      "org": "Malbec Labs (Doublezero)",
+      "projectId": null,
+      "talks": [],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "CapinUK",
+      "name": "Cap",
+      "kind": "speaker",
+      "org": "Superteam Uk",
+      "projectId": null,
+      "talks": [],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "CarlKVogel",
+      "name": "Carl Vogel",
+      "kind": "speaker",
+      "org": "6Th Man Ventures",
+      "projectId": null,
+      "talks": [],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "metaproph3t",
+      "name": "Charles Dalton",
+      "kind": "speaker",
+      "org": "MetaDAO",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-2a6b4b18ba1839",
+          "startsAt": "2026-11-17T15:17:00Z",
+          "title": "The Internet Will Put VCs Out of a Job"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "therealchaseeb",
+      "name": "Chase Barker",
+      "kind": "speaker",
+      "org": "Solana Foundation",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-eeaeebf8a96b13",
+          "startsAt": "2026-11-16T16:45:00Z",
+          "title": "Fireside: The Legend of Armani"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "realRockyChung",
+      "name": "Chris Chung",
+      "kind": "speaker",
+      "org": "Titan",
+      "projectId": null,
+      "talks": [],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "cpmontagano",
+      "name": "Chris Montagano",
+      "kind": "speaker",
+      "org": "Formation Securities",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-8584dadbd83137",
+          "startsAt": "2026-11-16T16:11:00Z",
+          "title": "Okay, Traders. Now, Let's Get in Formation"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "aliquotchris",
+      "name": "Chris Osborn",
+      "kind": "speaker",
+      "org": "Solana Labs",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-ff4f3b4d64da73",
+          "startsAt": "2026-11-17T16:14:00Z",
+          "title": "Leap: The High Performance Trading App"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "diogomonica",
+      "name": "Diogo Monica",
+      "kind": "speaker",
+      "org": "Haun Ventures",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-557793233a3a89",
+          "startsAt": "2026-11-16T16:59:00Z",
+          "title": "Defending Markets Against Machines"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "dom_kwok",
+      "name": "Dom Kwok",
+      "kind": "speaker",
+      "org": "EasyA",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-74aa752d52acf7",
+          "startsAt": "2026-11-16T13:30:00Z",
+          "title": "EasyA"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "platis_e",
+      "name": "Ellie Platis",
+      "kind": "speaker",
+      "org": "Solana Foundation",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-304d3a1036a4ca",
+          "startsAt": "2026-11-17T12:54:00Z",
+          "title": "Breakpoint 2027 Announcement"
+        },
+        {
+          "sessionId": "bp26-24c9a16b1d153d",
+          "startsAt": "2026-11-17T17:36:00Z",
+          "title": "See You at Breakpoint 2027!"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "0xErbil",
+      "name": "Erbil Karaman",
+      "kind": "speaker",
+      "org": "Huma",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-89cf6b8f031cce",
+          "startsAt": "2026-11-17T13:20:00Z",
+          "title": "Huma"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "ersoyerkazanci",
+      "name": "Ersoy Erkazanci",
+      "kind": "speaker",
+      "org": "Invest in Türkiye",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-d4b9c1baeee314",
+          "startsAt": "2026-11-16T17:14:00Z",
+          "title": "Growing Turkiye's Fintech Ecosystem"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "0xshittrader",
+      "name": "Eugene Chen",
+      "kind": "speaker",
+      "org": "Ellipsis Labs",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-19926fcefac253",
+          "startsAt": "2026-11-17T15:57:00Z",
+          "title": "Product Keynote: Phoenix"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "_evalawrence",
+      "name": "Eva Lawrence",
+      "kind": "speaker",
+      "org": "Figment",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-9597cd82eb822d",
+          "startsAt": "2026-11-17T16:30:00Z",
+          "title": "Understanding Solana's Institutional Delegation Program"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "farhaj",
+      "name": "Farhaj Mayan",
+      "kind": "speaker",
+      "org": "Forma",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-e6c5c3a2ddaa0c",
+          "startsAt": "2026-11-17T14:32:00Z",
+          "title": "What Would It Take for the UK to Win in Tech"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "ruh_gw",
+      "name": "George Ruhana",
+      "kind": "speaker",
+      "org": "PEAK6 / Clocked.",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-b606378781298e",
+          "startsAt": "2026-11-16T15:59:00Z",
+          "title": "Leverage Without Liquidations: Options Onchain"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "gordoncorera",
+      "name": "Gordon Corera",
+      "kind": "speaker",
+      "org": "The Rest Is Classified",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-557793233a3a89",
+          "startsAt": "2026-11-16T16:59:00Z",
+          "title": "Defending Markets Against Machines"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "grahamfergs",
+      "name": "Graham Ferguson",
+      "kind": "speaker",
+      "org": "Securitize",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-0e112dfd98430f",
+          "startsAt": "2026-11-17T15:50:00Z",
+          "title": "Bringing Equities Onchain: What's the Best Approach?"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "gregosuri",
+      "name": "Greg Osuri",
+      "kind": "speaker",
+      "org": "Akash",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-7e7aec4e525b3c",
+          "startsAt": "2026-11-17T10:57:00Z",
+          "title": "An Onchain Compute Order Book"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "umitanuki",
+      "name": "Hitoshi Harada",
+      "kind": "speaker",
+      "org": "Alpaca",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-0e112dfd98430f",
+          "startsAt": "2026-11-17T15:50:00Z",
+          "title": "Bringing Equities Onchain: What's the Best Approach?"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "iancr",
+      "name": "Ian Rogers",
+      "kind": "speaker",
+      "org": "Ledger",
+      "projectId": "ledger",
+      "talks": [
+        {
+          "sessionId": "bp26-ledger",
+          "startsAt": "2026-11-16T12:25:00Z",
+          "title": "Ledger Agent Intent, Ledger Atom & One More Thing"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "ilblackdragon",
+      "name": "Illia Polosukhin",
+      "kind": "speaker",
+      "org": "NEAR Protocol",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-1201162235c599",
+          "startsAt": "2026-11-16T17:00:00Z",
+          "title": "Privacy Fireside: NEAR and Helius"
+        },
+        {
+          "sessionId": "bp26-d7ed96529ed916",
+          "startsAt": "2026-11-17T16:56:00Z",
+          "title": "Inside the Bunker: Are We in Cryptography's End Days?"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "ivanhodl",
+      "name": "Ivan Soto-Wright",
+      "kind": "speaker",
+      "org": "Moonpay",
+      "projectId": null,
+      "talks": [],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "jacklouisp",
+      "name": "Jack Pearson",
+      "kind": "speaker",
+      "org": "RoboStrategy",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-b0ccd0cd3562f6",
+          "startsAt": "2026-11-17T12:00:00Z",
+          "title": "Humans Welcome: Investing in Physical AI"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "jacqmelinek",
+      "name": "Jacquelyn Melinek",
+      "kind": "speaker",
+      "org": "StrataMedia",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-0b5c7ba0eb1565",
+          "startsAt": "2026-11-16T15:09:00Z",
+          "title": "Rewiring the Market: Why the World's Biggest Financial Institutions Are Moving Onchain"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "0xjhk",
+      "name": "Jae Kim",
+      "kind": "speaker",
+      "org": "Nodit",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-7c37760a425413",
+          "startsAt": "2026-11-17T16:50:00Z",
+          "title": "All of Solana, Delivered: The Dataset Behind Institutional Finance"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "doublespends",
+      "name": "Jake Burden",
+      "kind": "speaker",
+      "org": "Solana Foundation",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-9597cd82eb822d",
+          "startsAt": "2026-11-17T16:30:00Z",
+          "title": "Understanding Solana's Institutional Delegation Program"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "proofofjamal",
+      "name": "Jamal Raees",
+      "kind": "speaker",
+      "org": "Solana Foundation",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-76a733517bcd3e",
+          "startsAt": "2026-11-17T14:30:00Z",
+          "title": "Interoperability Across Borders: Scaling Digital Assets for Global Finance"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "jeffplatt",
+      "name": "Jeff Platt",
+      "kind": "speaker",
+      "org": "World Series of Poker",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-df930d73015be3",
+          "startsAt": "2026-11-17T15:37:00Z",
+          "title": "Playing for Millions: Inside the Mind of Poker's 22-Year-Old Champion"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "Houlgrave",
+      "name": "Jess Houlgrave",
+      "kind": "speaker",
+      "org": "WalletConnect",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-770eb1482fb791",
+          "startsAt": "2026-11-17T13:50:00Z",
+          "title": "Where Tokenized Assets Meet Demand"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "jnthnvctr",
+      "name": "Jonathan Victor",
+      "kind": "speaker",
+      "org": "BitRobot",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-573c1503bf356c",
+          "startsAt": "2026-11-17T11:55:00Z",
+          "title": "BitRobot: The World Is the Dataset"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "Justin_Bons",
+      "name": "Justin Bons",
+      "kind": "speaker",
+      "org": "Cyber Capital",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-0088f2311ceb91",
+          "startsAt": "2026-11-17T16:44:00Z",
+          "title": "SOL, ZEC and Privacy"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "kashdhanda",
+      "name": "Kash Dhanda",
+      "kind": "speaker",
+      "org": "Jupiter",
+      "projectId": "jupiter",
+      "talks": [
+        {
+          "sessionId": "bp26-jupiter",
+          "startsAt": "2026-11-16T16:18:00Z",
+          "title": "Making Tokenisation Useful"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "mrstoad",
+      "name": "Kathrin Hamilton",
+      "kind": "speaker",
+      "org": "Baillie Gifford",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-531d345e1baf5f",
+          "startsAt": "2026-11-16T14:27:00Z",
+          "title": "If You Build It, Will Flows Come?"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "k_superteam",
+      "name": "Kinsleigh J",
+      "kind": "speaker",
+      "org": "Superteam Australia",
+      "projectId": null,
+      "talks": [],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "Krista_Lynch_",
+      "name": "Krista Lynch",
+      "kind": "speaker",
+      "org": "Grayscale",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-25e8b3c536cc98",
+          "startsAt": "2026-11-17T11:07:00Z",
+          "title": "The Machine Economy: How Digital Assets Could Help Fund Computing Power, Energy, and Data Centres"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "kristinsmith",
+      "name": "Kristin Smith",
+      "kind": "speaker",
+      "org": "Solana Policy Institute",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-5ff6d377e53e1f",
+          "startsAt": "2026-11-17T14:00:00Z",
+          "title": "Debate: DATs Are Just ETFs With Twitter Accounts and CEOs"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "KyleSamani",
+      "name": "Kyle Samani",
+      "kind": "speaker",
+      "org": "Forward Industries",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-5ff6d377e53e1f",
+          "startsAt": "2026-11-17T14:00:00Z",
+          "title": "Debate: DATs Are Just ETFs With Twitter Accounts and CEOs"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "calilyliu",
+      "name": "Lily Liu",
+      "kind": "speaker",
+      "org": "Solana Foundation",
+      "projectId": "solana",
+      "talks": [
+        {
+          "sessionId": "bp26-welcome",
+          "startsAt": "2026-11-16T10:00:00Z",
+          "title": "Welcome to Breakpoint 2026"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "loganjastremski",
+      "name": "Logan Jastremski",
+      "kind": "speaker",
+      "org": "Frictionless Capital",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-c1ba8b07f2db06",
+          "startsAt": "2026-11-17T14:52:00Z",
+          "title": "Champions in Conversation: Sol Campbell and Tristan Thompson on What It Takes to Win"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "buffalu__",
+      "name": "Lucas Bruder",
+      "kind": "speaker",
+      "org": "Jito Labs",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-aa65c6cb33402d",
+          "startsAt": "2026-11-17T16:02:00Z",
+          "title": "The Future of Investing Is Narratives"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "LukeJu22",
+      "name": "Lucas Jumalon",
+      "kind": "speaker",
+      "org": "World Series of Poker",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-df930d73015be3",
+          "startsAt": "2026-11-17T15:37:00Z",
+          "title": "Playing for Millions: Inside the Mind of Poker's 22-Year-Old Champion"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "ludrmiranda",
+      "name": "Luciana Miranda",
+      "kind": "speaker",
+      "org": "Solana Foundation",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-bef03b8fce07cf",
+          "startsAt": "2026-11-16T15:24:00Z",
+          "title": "Fireside: ICE Europe"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "Luketruitt",
+      "name": "Luke Truitt",
+      "kind": "speaker",
+      "org": "Orca (Formation)",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-9b32e5984c8be1",
+          "startsAt": "2026-11-17T17:00:00Z",
+          "title": "The Frontier of Capital Formation"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "mjc_101",
+      "name": "Malcolm Clarke",
+      "kind": "speaker",
+      "org": "Western Union",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-8829c093112ec6",
+          "startsAt": "2026-11-16T10:50:00Z",
+          "title": "The Stablecoin Nobody Notices: Moving Money Across 37 Markets in Seconds"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "kemartiti",
+      "name": "Marc Tillement",
+      "kind": "speaker",
+      "org": "Pyth Network / Pyth Data Association",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-0e112dfd98430f",
+          "startsAt": "2026-11-17T15:50:00Z",
+          "title": "Bringing Equities Onchain: What's the Best Approach?"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "StudholmeOne",
+      "name": "Mark Studholme",
+      "kind": "speaker",
+      "org": "FairClub",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-56ec37a70abcdf",
+          "startsAt": "2026-11-16T13:15:00Z",
+          "title": "FairClub"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "MartinGilbert83",
+      "name": "Martin Gilbert",
+      "kind": "speaker",
+      "org": "Revolut",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-8efbc567098f09",
+          "startsAt": "2026-11-17T10:35:00Z",
+          "title": "Fireside: Martin Gilbert, Chair, Revolut"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "Matt_Hougan",
+      "name": "Matt Hougan",
+      "kind": "speaker",
+      "org": "Bitwise",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-5ff6d377e53e1f",
+          "startsAt": "2026-11-17T14:00:00Z",
+          "title": "Debate: DATs Are Just ETFs With Twitter Accounts and CEOs"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "mattytay",
+      "name": "Matty Taylor",
+      "kind": "speaker",
+      "org": "Colosseum",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-30a53cc4c95a5b",
+          "startsAt": "2026-11-17T15:12:00Z",
+          "title": "Solana as a Decentralized Silicon Valley"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "caddlemaya",
+      "name": "Maya Caddle",
+      "kind": "speaker",
+      "org": "Solana Foundation",
+      "projectId": null,
+      "talks": [],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "mert",
+      "name": "Mert Mumtaz",
+      "kind": "speaker",
+      "org": "Helius",
+      "projectId": "helius",
+      "talks": [
+        {
+          "sessionId": "bp26-1201162235c599",
+          "startsAt": "2026-11-16T17:00:00Z",
+          "title": "Privacy Fireside: NEAR and Helius"
+        },
+        {
+          "sessionId": "bp26-d9f58db08370df",
+          "startsAt": "2026-11-17T12:37:00Z",
+          "title": "Debate: SOL Is Money"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "_mwc",
+      "name": "Michael Coates",
+      "kind": "speaker",
+      "org": "Solana Foundation",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-509fe0820c0f9e",
+          "startsAt": "2026-11-16T16:52:00Z",
+          "title": "Evading Kim Jong Un's Bot Army: A How To"
+        },
+        {
+          "sessionId": "bp26-557793233a3a89",
+          "startsAt": "2026-11-16T16:59:00Z",
+          "title": "Defending Markets Against Machines"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "marcryptonio",
+      "name": "Michael Marcantonio",
+      "kind": "speaker",
+      "org": "Temporal",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-d4fdb2f9dfb2f4",
+          "startsAt": "2026-11-17T15:52:00Z",
+          "title": "Temporal 2027: Exploring the Frontier"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "repetny",
+      "name": "Michael Repetny",
+      "kind": "speaker",
+      "org": "Marinade Labs",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-bf8b6cc5ec3cb3",
+          "startsAt": "2026-11-16T14:15:00Z",
+          "title": "Hold Forever, Spend Today"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "WeiszM",
+      "name": "Michael Weisz",
+      "kind": "speaker",
+      "org": "Kamino",
+      "projectId": "kamino",
+      "talks": [
+        {
+          "sessionId": "bp26-kamino",
+          "startsAt": "2026-11-16T12:00:00Z",
+          "title": "Unlocking the $200T Private Markets Opportunity"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "millercwl",
+      "name": "Miller Whitehouse-Levine",
+      "kind": "speaker",
+      "org": "Solana Policy Institute",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-5dec9510632a6c",
+          "startsAt": "2026-11-16T12:30:00Z",
+          "title": "London Calling: The City's Pitch for Building Here"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "NassDiba",
+      "name": "Nass Diba",
+      "kind": "speaker",
+      "org": "worm",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-15d8a6e6783508",
+          "startsAt": "2026-11-16T14:45:00Z",
+          "title": "Worm"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "nemild",
+      "name": "Nemil Dalal",
+      "kind": "speaker",
+      "org": "Y Combinator",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-4ab36578d69de6",
+          "startsAt": "2026-11-16T11:00:00Z",
+          "title": "Why Should I Use Your Stablecoin?"
+        },
+        {
+          "sessionId": "bp26-4f2dffb98f4086",
+          "startsAt": "2026-11-17T10:50:00Z",
+          "title": "AI and Raising Capital"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "0xNIC0",
+      "name": "Nicholas Grovell",
+      "kind": "speaker",
+      "org": "Reflect Money",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-788c1c9281c8b1",
+          "startsAt": "2026-11-16T17:15:00Z",
+          "title": "Founder Stories: Reflect Money"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "nickducoff",
+      "name": "Nick Ducoff",
+      "kind": "speaker",
+      "org": "Solana Foundation",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-8efbc567098f09",
+          "startsAt": "2026-11-17T10:35:00Z",
+          "title": "Fireside: Martin Gilbert, Chair, Revolut"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "nicCabrera_",
+      "name": "Nicolas Cabrera",
+      "kind": "speaker",
+      "org": "Tala",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-0b673687de05f7",
+          "startsAt": "2026-11-17T14:00:00Z",
+          "title": "Stablecoins Have Distribution. Now They Need Credit"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "patrickjwitt",
+      "name": "Patrick Witt",
+      "kind": "speaker",
+      "org": "The White House",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-bceb651f743757",
+          "startsAt": "2026-11-16T17:19:00Z",
+          "title": "The Former White House Crypto Chief on the Future of Digital Assets"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "Spiko_finance",
+      "name": "Paul-Adrien Hyppolite",
+      "kind": "speaker",
+      "org": "Spiko",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-7d7650fc33aee1",
+          "startsAt": "2026-11-17T15:35:00Z",
+          "title": "Corporate Treasury: Scaling Onchain Allocation"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "petecooling",
+      "name": "Pete Cooling",
+      "kind": "speaker",
+      "org": "Atum",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-f17a3e75786240",
+          "startsAt": "2026-11-17T13:40:00Z",
+          "title": "Atum: The Open Payments Network"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "PeterMooreUSA",
+      "name": "Peter Moore",
+      "kind": "speaker",
+      "org": "Owner, Wisla Krakow Football Club (Poland)",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-176de3d4319a9b",
+          "startsAt": "2026-11-16T15:30:00Z",
+          "title": "The Long and Winding Road: A Life of Risk, Reinvention, and Resilience"
+        },
+        {
+          "sessionId": "bp26-37a046ecf5c5af",
+          "startsAt": "2026-11-17T16:34:00Z",
+          "title": "The Lifetime Value of a Fan"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "kwok_phil",
+      "name": "Phil Kwok",
+      "kind": "speaker",
+      "org": "EasyA",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-74aa752d52acf7",
+          "startsAt": "2026-11-16T13:30:00Z",
+          "title": "EasyA"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "0xPlish",
+      "name": "Plish",
+      "kind": "speaker",
+      "org": "Hylo",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-db64aae698d129",
+          "startsAt": "2026-11-16T16:30:00Z",
+          "title": "Founder Stories: Hylo"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "rachelconlan",
+      "name": "Rachel Conlan",
+      "kind": "speaker",
+      "org": "Solana Foundation",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-welcome",
+          "startsAt": "2026-11-16T10:00:00Z",
+          "title": "Welcome to Breakpoint 2026"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "RaoulGMI",
+      "name": "Raoul Pal",
+      "kind": "speaker",
+      "org": "Real Vision / EXPAAM / GMI",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-21b16ee3c20b04",
+          "startsAt": "2026-11-17T11:27:00Z",
+          "title": "The TAM of Crypto Is Now Infinite"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "drrebekkarevel",
+      "name": "Rebekka Revel",
+      "kind": "speaker",
+      "org": "Solana Foundation",
+      "projectId": null,
+      "talks": [],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "rbrizido",
+      "name": "Ricardo Brizido",
+      "kind": "speaker",
+      "org": "Stake",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-272d2f382a9321",
+          "startsAt": "2026-11-16T12:20:00Z",
+          "title": "Fractions to Tokens: Real Estate Is Going Onchain"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "rohinlohe",
+      "name": "Rohin Lohe",
+      "kind": "speaker",
+      "org": "Cloudflare",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-d4740eeb3095ec",
+          "startsAt": "2026-11-16T11:55:00Z",
+          "title": "Cloudflare Is Making It Rain Micropayments"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "rosskempsell",
+      "name": "Ross Kempsell",
+      "kind": "speaker",
+      "org": "House of Lords",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-d1fb9c555bace2",
+          "startsAt": "2026-11-16T14:00:00Z",
+          "title": "Debate: Crypto Is Key to the UK's Economic Future"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "RasterlyRock",
+      "name": "Ryan Rasmussen",
+      "kind": "speaker",
+      "org": "Bitwise",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-87a53a4e06f409",
+          "startsAt": "2026-11-17T16:20:00Z",
+          "title": "The Three Most Important Questions for Valuing Solana"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "ryanxwen",
+      "name": "Ryan Wen",
+      "kind": "speaker",
+      "org": "Plume",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-49178fc9193a8f",
+          "startsAt": "2026-11-17T15:15:00Z",
+          "title": "What Plume and Fidelity Are Building on Solana"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "shadddowfax",
+      "name": "Saeed Badreg",
+      "kind": "speaker",
+      "org": "Sunrise",
+      "projectId": "sunrise",
+      "talks": [
+        {
+          "sessionId": "bp26-sunrise",
+          "startsAt": "2026-11-16T16:04:00Z",
+          "title": "The Capital Market Wars"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "seyong",
+      "name": "Se Yong Park",
+      "kind": "speaker",
+      "org": "fomo",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-8b47b8796cd17c",
+          "startsAt": "2026-11-17T16:07:00Z",
+          "title": "The Data Comes Last"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "sethpriebatsch",
+      "name": "Seth Priebatsch",
+      "kind": "speaker",
+      "org": "Groma",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-358ded9e0c1bbc",
+          "startsAt": "2026-11-17T15:05:00Z",
+          "title": "The Future of Real Estate Onchain"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "shayonsengupta",
+      "name": "Shayon Sengupta",
+      "kind": "speaker",
+      "org": "Multicoin",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-ef11df8e210405",
+          "startsAt": "2026-11-17T11:02:00Z",
+          "title": "Compute Capital Markets"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "shinsukewaka",
+      "name": "Shinsuke Waka",
+      "kind": "speaker",
+      "org": "Mitsui & Co.",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-ff979bf2efd803",
+          "startsAt": "2026-11-17T12:22:00Z",
+          "title": "Why a Top Japanese Trading House Is Bringing Commodities to Solana"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "shollsman",
+      "name": "Shola Akinlade",
+      "kind": "speaker",
+      "org": "Paystack",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-e1d17e70cc8124",
+          "startsAt": "2026-11-16T11:40:00Z",
+          "title": "Bringing Africa's 41 Currencies Onchain"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "griff71931",
+      "name": "Simon Griffin",
+      "kind": "speaker",
+      "org": "SoFi",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-f68d3b50e600b0",
+          "startsAt": "2026-11-16T11:45:00Z",
+          "title": "Bank to the Future: How SoFi Is Preparing for the Digital Assets Era"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "sajidjavid",
+      "name": "Sir Sajid Javid",
+      "kind": "speaker",
+      "org": "Former Chancellor Of The Exchequer",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-e6c5c3a2ddaa0c",
+          "startsAt": "2026-11-17T14:32:00Z",
+          "title": "What Would It Take for the UK to Win in Tech"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "SimkinStepan",
+      "name": "Stepan Simkin",
+      "kind": "speaker",
+      "org": "Squads",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-5e875c736f4b87",
+          "startsAt": "2026-11-16T11:50:00Z",
+          "title": "When Banks Become Plugins"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "vassallo",
+      "name": "Steve Vassallo",
+      "kind": "speaker",
+      "org": "Foundation Capital",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-25e8b3c536cc98",
+          "startsAt": "2026-11-17T11:07:00Z",
+          "title": "The Machine Economy: How Digital Assets Could Help Fund Computing Power, Energy, and Data Centres"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "cafe_suusiiee",
+      "name": "Susan Li",
+      "kind": "speaker",
+      "org": "Phantom",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-92231faadab9d8",
+          "startsAt": "2026-11-16T15:00:00Z",
+          "title": "Phantom"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "tadtweets",
+      "name": "Tad Smith",
+      "kind": "speaker",
+      "org": "Candy Digital",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-9d84abe2b914a8",
+          "startsAt": "2026-11-17T16:29:00Z",
+          "title": "From Auction House to Onchain With Candy Digital"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "tee_ganbold",
+      "name": "Tee Ganbold",
+      "kind": "speaker",
+      "org": "Frontier/1",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-d7ed96529ed916",
+          "startsAt": "2026-11-17T16:56:00Z",
+          "title": "Inside the Bunker: Are We in Cryptography's End Days?"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "ThomasGSy",
+      "name": "Thomas Sy",
+      "kind": "speaker",
+      "org": "New York Life Investment Management",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-7d7650fc33aee1",
+          "startsAt": "2026-11-17T15:35:00Z",
+          "title": "Corporate Treasury: Scaling Onchain Allocation"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "Mcdtv",
+      "name": "Todd McDonald",
+      "kind": "speaker",
+      "org": "R3",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-60b7e2593fa2eb",
+          "startsAt": "2026-11-16T14:42:00Z",
+          "title": "Why RWAs Need DeFi (and Vice Versa)"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "ThomasFarley",
+      "name": "Tom Farley",
+      "kind": "speaker",
+      "org": "Bullish",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-6601a3502be87c",
+          "startsAt": "2026-11-16T14:59:00Z",
+          "title": "The Next Generation of Market Infrastructure"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "treybuckingham",
+      "name": "Trey Buckingham",
+      "kind": "speaker",
+      "org": "Aon",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-c0524cbab17dfa",
+          "startsAt": "2026-11-17T14:20:00Z",
+          "title": "Why Enterprises Are Stuck in Pilot Mode: Settlement Is Solved. Treasury Isn’t."
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "tthompson",
+      "name": "Tristan Thompson",
+      "kind": "speaker",
+      "org": "Tristan Thompson",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-c1ba8b07f2db06",
+          "startsAt": "2026-11-17T14:52:00Z",
+          "title": "Champions in Conversation: Sol Campbell and Tristan Thompson on What It Takes to Win"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "tuomholmberg",
+      "name": "Tuom Holmberg",
+      "kind": "speaker",
+      "org": "Collector Crypt",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-dd868bfb6b23fe",
+          "startsAt": "2026-11-16T13:00:00Z",
+          "title": "Collector Crypt"
+        },
+        {
+          "sessionId": "bp26-d31d49e3322b64",
+          "startsAt": "2026-11-17T16:19:00Z",
+          "title": "$2M Pokemon Cards: Tokenisation Is Making Collectibles Cool Again"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "web4O",
+      "name": "Tzvi Wiesel",
+      "kind": "speaker",
+      "org": "BAXUS",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-802cc936d7e18b",
+          "startsAt": "2026-11-16T13:45:00Z",
+          "title": "BAXUS"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "vibhu",
+      "name": "Vibhu Norby",
+      "kind": "speaker",
+      "org": "Solana Foundation",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-a043d80e1bc1e5",
+          "startsAt": "2026-11-17T11:35:00Z",
+          "title": "The Next 12 Months of AI on Solana"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "vidor_solflare",
+      "name": "Vidor Gencel",
+      "kind": "speaker",
+      "org": "Solflare",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-ad64d37c479c25",
+          "startsAt": "2026-11-17T12:27:00Z",
+          "title": "Your Money. Your Business."
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "vinhonchain",
+      "name": "Vinh Tran",
+      "kind": "speaker",
+      "org": "WisdomTree Onchain",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-32e1a7ac1a9a21",
+          "startsAt": "2026-11-17T15:25:00Z",
+          "title": "What WisdomTree and MoonPay Are Building on Solana"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "zcabrams",
+      "name": "Zach Abrams",
+      "kind": "speaker",
+      "org": "Open Standard",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-9ec83178a80a07",
+          "startsAt": "2026-11-16T10:30:00Z",
+          "title": "Stablecoins Have an Alignment Problem"
+        }
+      ],
+      "source": "https://solana.com/breakpoint/speakers"
+    },
+    {
+      "handle": "kamino",
+      "name": "Kamino",
+      "kind": "company",
+      "org": "Kamino",
+      "projectId": "kamino",
+      "talks": [
+        {
+          "sessionId": "bp26-kamino",
+          "startsAt": "2026-11-16T12:00:00Z",
+          "title": "Unlocking the $200T Private Markets Opportunity"
+        }
+      ],
+      "source": "https://x.com/kamino"
+    },
+    {
+      "handle": "JupiterExchange",
+      "name": "Jupiter",
+      "kind": "company",
+      "org": "Jupiter",
+      "projectId": "jupiter",
+      "talks": [
+        {
+          "sessionId": "bp26-jupiter",
+          "startsAt": "2026-11-16T16:18:00Z",
+          "title": "Making Tokenisation Useful"
+        },
+        {
+          "sessionId": "bp26-7d7650fc33aee1",
+          "startsAt": "2026-11-17T15:35:00Z",
+          "title": "Corporate Treasury: Scaling Onchain Allocation"
+        }
+      ],
+      "source": "https://jup.ag/"
+    },
+    {
+      "handle": "MeteoraAG",
+      "name": "Meteora",
+      "kind": "company",
+      "org": "Meteora",
+      "projectId": "meteora",
+      "talks": [],
+      "source": "https://x.com/MeteoraAG"
+    },
+    {
+      "handle": "jito",
+      "name": "Jito",
+      "kind": "company",
+      "org": "Jito",
+      "projectId": "jito",
+      "talks": [
+        {
+          "sessionId": "bp26-aa65c6cb33402d",
+          "startsAt": "2026-11-17T16:02:00Z",
+          "title": "The Future of Investing Is Narratives"
+        }
+      ],
+      "source": "https://x.com/jito"
+    },
+    {
+      "handle": "jito_labs",
+      "name": "Jito Labs",
+      "kind": "company",
+      "org": "Jito Labs",
+      "projectId": "jito",
+      "talks": [
+        {
+          "sessionId": "bp26-aa65c6cb33402d",
+          "startsAt": "2026-11-17T16:02:00Z",
+          "title": "The Future of Investing Is Narratives"
+        }
+      ],
+      "source": "https://x.com/jito_labs"
+    },
+    {
+      "handle": "solana",
+      "name": "Solana",
+      "kind": "company",
+      "org": "Solana",
+      "projectId": "solana",
+      "talks": [
+        {
+          "sessionId": "bp26-welcome",
+          "startsAt": "2026-11-16T10:00:00Z",
+          "title": "Welcome to Breakpoint 2026"
+        },
+        {
+          "sessionId": "bp26-5dec9510632a6c",
+          "startsAt": "2026-11-16T12:30:00Z",
+          "title": "London Calling: The City's Pitch for Building Here"
+        },
+        {
+          "sessionId": "bp26-531d345e1baf5f",
+          "startsAt": "2026-11-16T14:27:00Z",
+          "title": "If You Build It, Will Flows Come?"
+        },
+        {
+          "sessionId": "bp26-bef03b8fce07cf",
+          "startsAt": "2026-11-16T15:24:00Z",
+          "title": "Fireside: ICE Europe"
+        },
+        {
+          "sessionId": "bp26-3c98da8acaeb9c",
+          "startsAt": "2026-11-16T15:39:00Z",
+          "title": "From Idle Collateral to Active Capital: TradFi Meets Solana"
+        },
+        {
+          "sessionId": "bp26-88dc31085f2828",
+          "startsAt": "2026-11-16T16:37:00Z",
+          "title": "The City Goes Onchain: From Closing Bell to Always On"
+        },
+        {
+          "sessionId": "bp26-eeaeebf8a96b13",
+          "startsAt": "2026-11-16T16:45:00Z",
+          "title": "Fireside: The Legend of Armani"
+        },
+        {
+          "sessionId": "bp26-509fe0820c0f9e",
+          "startsAt": "2026-11-16T16:52:00Z",
+          "title": "Evading Kim Jong Un's Bot Army: A How To"
+        },
+        {
+          "sessionId": "bp26-557793233a3a89",
+          "startsAt": "2026-11-16T16:59:00Z",
+          "title": "Defending Markets Against Machines"
+        },
+        {
+          "sessionId": "bp26-7769914878c0a7",
+          "startsAt": "2026-11-17T10:30:00Z",
+          "title": "Welcome to Breakpoint Day 2"
+        },
+        {
+          "sessionId": "bp26-8efbc567098f09",
+          "startsAt": "2026-11-17T10:35:00Z",
+          "title": "Fireside: Martin Gilbert, Chair, Revolut"
+        },
+        {
+          "sessionId": "bp26-a043d80e1bc1e5",
+          "startsAt": "2026-11-17T11:35:00Z",
+          "title": "The Next 12 Months of AI on Solana"
+        },
+        {
+          "sessionId": "bp26-f22b776c884471",
+          "startsAt": "2026-11-17T12:10:00Z",
+          "title": "Think Inside the PayBox: Agents on Solana"
+        },
+        {
+          "sessionId": "bp26-ff979bf2efd803",
+          "startsAt": "2026-11-17T12:22:00Z",
+          "title": "Why a Top Japanese Trading House Is Bringing Commodities to Solana"
+        },
+        {
+          "sessionId": "bp26-d9f58db08370df",
+          "startsAt": "2026-11-17T12:37:00Z",
+          "title": "Debate: SOL Is Money"
+        },
+        {
+          "sessionId": "bp26-304d3a1036a4ca",
+          "startsAt": "2026-11-17T12:54:00Z",
+          "title": "Breakpoint 2027 Announcement"
+        },
+        {
+          "sessionId": "bp26-5ff6d377e53e1f",
+          "startsAt": "2026-11-17T14:00:00Z",
+          "title": "Debate: DATs Are Just ETFs With Twitter Accounts and CEOs"
+        },
+        {
+          "sessionId": "bp26-62544901595584",
+          "startsAt": "2026-11-17T14:10:00Z",
+          "title": "Agents That Pay Anyone, Anywhere: Noah on Solana"
+        },
+        {
+          "sessionId": "bp26-76a733517bcd3e",
+          "startsAt": "2026-11-17T14:30:00Z",
+          "title": "Interoperability Across Borders: Scaling Digital Assets for Global Finance"
+        },
+        {
+          "sessionId": "bp26-30a53cc4c95a5b",
+          "startsAt": "2026-11-17T15:12:00Z",
+          "title": "Solana as a Decentralized Silicon Valley"
+        },
+        {
+          "sessionId": "bp26-49178fc9193a8f",
+          "startsAt": "2026-11-17T15:15:00Z",
+          "title": "What Plume and Fidelity Are Building on Solana"
+        },
+        {
+          "sessionId": "bp26-32e1a7ac1a9a21",
+          "startsAt": "2026-11-17T15:25:00Z",
+          "title": "What WisdomTree and MoonPay Are Building on Solana"
+        },
+        {
+          "sessionId": "bp26-ff4f3b4d64da73",
+          "startsAt": "2026-11-17T16:14:00Z",
+          "title": "Leap: The High Performance Trading App"
+        },
+        {
+          "sessionId": "bp26-87a53a4e06f409",
+          "startsAt": "2026-11-17T16:20:00Z",
+          "title": "The Three Most Important Questions for Valuing Solana"
+        },
+        {
+          "sessionId": "bp26-9597cd82eb822d",
+          "startsAt": "2026-11-17T16:30:00Z",
+          "title": "Understanding Solana's Institutional Delegation Program"
+        },
+        {
+          "sessionId": "bp26-2c1d33f9e1d647",
+          "startsAt": "2026-11-17T16:49:00Z",
+          "title": "State of the Solana Network"
+        },
+        {
+          "sessionId": "bp26-7c37760a425413",
+          "startsAt": "2026-11-17T16:50:00Z",
+          "title": "All of Solana, Delivered: The Dataset Behind Institutional Finance"
+        },
+        {
+          "sessionId": "bp26-3823d8bbebe5c8",
+          "startsAt": "2026-11-17T17:11:00Z",
+          "title": "Closing Fireside: Michael Lewis"
+        },
+        {
+          "sessionId": "bp26-32629ecc47d8a5",
+          "startsAt": "2026-11-17T17:14:00Z",
+          "title": "Tokenized Energy on Solana"
+        },
+        {
+          "sessionId": "bp26-24c9a16b1d153d",
+          "startsAt": "2026-11-17T17:36:00Z",
+          "title": "See You at Breakpoint 2027!"
+        }
+      ],
+      "source": "https://x.com/solana"
+    },
+    {
+      "handle": "Backpack",
+      "name": "Backpack",
+      "kind": "company",
+      "org": "Backpack",
+      "projectId": "backpack",
+      "talks": [
+        {
+          "sessionId": "bp26-backpack",
+          "startsAt": "2026-11-16T16:25:00Z",
+          "title": "Product Keynote: Backpack"
+        },
+        {
+          "sessionId": "bp26-eeaeebf8a96b13",
+          "startsAt": "2026-11-16T16:45:00Z",
+          "title": "Fireside: The Legend of Armani"
+        }
+      ],
+      "source": "https://backpack.exchange/"
+    },
+    {
+      "handle": "Helius",
+      "name": "Helius",
+      "kind": "company",
+      "org": "Helius",
+      "projectId": "helius",
+      "talks": [
+        {
+          "sessionId": "bp26-1201162235c599",
+          "startsAt": "2026-11-16T17:00:00Z",
+          "title": "Privacy Fireside: NEAR and Helius"
+        },
+        {
+          "sessionId": "bp26-d9f58db08370df",
+          "startsAt": "2026-11-17T12:37:00Z",
+          "title": "Debate: SOL Is Money"
+        }
+      ],
+      "source": "https://www.helius.dev/"
+    },
+    {
+      "handle": "sunrise",
+      "name": "Sunrise",
+      "kind": "company",
+      "org": "Sunrise",
+      "projectId": "sunrise",
+      "talks": [
+        {
+          "sessionId": "bp26-sunrise",
+          "startsAt": "2026-11-16T16:04:00Z",
+          "title": "The Capital Market Wars"
+        }
+      ],
+      "source": "https://sunrise.xyz/"
+    },
+    {
+      "handle": "Ledger",
+      "name": "Ledger",
+      "kind": "company",
+      "org": "Ledger",
+      "projectId": "ledger",
+      "talks": [
+        {
+          "sessionId": "bp26-ledger",
+          "startsAt": "2026-11-16T12:25:00Z",
+          "title": "Ledger Agent Intent, Ledger Atom & One More Thing"
+        }
+      ],
+      "source": "https://www.ledger.com/"
+    },
+    {
+      "handle": "SolanaFndn",
+      "name": "Solana Foundation",
+      "kind": "company",
+      "org": "Solana Foundation",
+      "projectId": "solana",
+      "talks": [
+        {
+          "sessionId": "bp26-welcome",
+          "startsAt": "2026-11-16T10:00:00Z",
+          "title": "Welcome to Breakpoint 2026"
+        },
+        {
+          "sessionId": "bp26-5dec9510632a6c",
+          "startsAt": "2026-11-16T12:30:00Z",
+          "title": "London Calling: The City's Pitch for Building Here"
+        },
+        {
+          "sessionId": "bp26-531d345e1baf5f",
+          "startsAt": "2026-11-16T14:27:00Z",
+          "title": "If You Build It, Will Flows Come?"
+        },
+        {
+          "sessionId": "bp26-bef03b8fce07cf",
+          "startsAt": "2026-11-16T15:24:00Z",
+          "title": "Fireside: ICE Europe"
+        },
+        {
+          "sessionId": "bp26-3c98da8acaeb9c",
+          "startsAt": "2026-11-16T15:39:00Z",
+          "title": "From Idle Collateral to Active Capital: TradFi Meets Solana"
+        },
+        {
+          "sessionId": "bp26-88dc31085f2828",
+          "startsAt": "2026-11-16T16:37:00Z",
+          "title": "The City Goes Onchain: From Closing Bell to Always On"
+        },
+        {
+          "sessionId": "bp26-eeaeebf8a96b13",
+          "startsAt": "2026-11-16T16:45:00Z",
+          "title": "Fireside: The Legend of Armani"
+        },
+        {
+          "sessionId": "bp26-509fe0820c0f9e",
+          "startsAt": "2026-11-16T16:52:00Z",
+          "title": "Evading Kim Jong Un's Bot Army: A How To"
+        },
+        {
+          "sessionId": "bp26-557793233a3a89",
+          "startsAt": "2026-11-16T16:59:00Z",
+          "title": "Defending Markets Against Machines"
+        },
+        {
+          "sessionId": "bp26-7769914878c0a7",
+          "startsAt": "2026-11-17T10:30:00Z",
+          "title": "Welcome to Breakpoint Day 2"
+        },
+        {
+          "sessionId": "bp26-8efbc567098f09",
+          "startsAt": "2026-11-17T10:35:00Z",
+          "title": "Fireside: Martin Gilbert, Chair, Revolut"
+        },
+        {
+          "sessionId": "bp26-a043d80e1bc1e5",
+          "startsAt": "2026-11-17T11:35:00Z",
+          "title": "The Next 12 Months of AI on Solana"
+        },
+        {
+          "sessionId": "bp26-f22b776c884471",
+          "startsAt": "2026-11-17T12:10:00Z",
+          "title": "Think Inside the PayBox: Agents on Solana"
+        },
+        {
+          "sessionId": "bp26-ff979bf2efd803",
+          "startsAt": "2026-11-17T12:22:00Z",
+          "title": "Why a Top Japanese Trading House Is Bringing Commodities to Solana"
+        },
+        {
+          "sessionId": "bp26-d9f58db08370df",
+          "startsAt": "2026-11-17T12:37:00Z",
+          "title": "Debate: SOL Is Money"
+        },
+        {
+          "sessionId": "bp26-304d3a1036a4ca",
+          "startsAt": "2026-11-17T12:54:00Z",
+          "title": "Breakpoint 2027 Announcement"
+        },
+        {
+          "sessionId": "bp26-5ff6d377e53e1f",
+          "startsAt": "2026-11-17T14:00:00Z",
+          "title": "Debate: DATs Are Just ETFs With Twitter Accounts and CEOs"
+        },
+        {
+          "sessionId": "bp26-62544901595584",
+          "startsAt": "2026-11-17T14:10:00Z",
+          "title": "Agents That Pay Anyone, Anywhere: Noah on Solana"
+        },
+        {
+          "sessionId": "bp26-76a733517bcd3e",
+          "startsAt": "2026-11-17T14:30:00Z",
+          "title": "Interoperability Across Borders: Scaling Digital Assets for Global Finance"
+        },
+        {
+          "sessionId": "bp26-30a53cc4c95a5b",
+          "startsAt": "2026-11-17T15:12:00Z",
+          "title": "Solana as a Decentralized Silicon Valley"
+        },
+        {
+          "sessionId": "bp26-49178fc9193a8f",
+          "startsAt": "2026-11-17T15:15:00Z",
+          "title": "What Plume and Fidelity Are Building on Solana"
+        },
+        {
+          "sessionId": "bp26-32e1a7ac1a9a21",
+          "startsAt": "2026-11-17T15:25:00Z",
+          "title": "What WisdomTree and MoonPay Are Building on Solana"
+        },
+        {
+          "sessionId": "bp26-ff4f3b4d64da73",
+          "startsAt": "2026-11-17T16:14:00Z",
+          "title": "Leap: The High Performance Trading App"
+        },
+        {
+          "sessionId": "bp26-87a53a4e06f409",
+          "startsAt": "2026-11-17T16:20:00Z",
+          "title": "The Three Most Important Questions for Valuing Solana"
+        },
+        {
+          "sessionId": "bp26-9597cd82eb822d",
+          "startsAt": "2026-11-17T16:30:00Z",
+          "title": "Understanding Solana's Institutional Delegation Program"
+        },
+        {
+          "sessionId": "bp26-2c1d33f9e1d647",
+          "startsAt": "2026-11-17T16:49:00Z",
+          "title": "State of the Solana Network"
+        },
+        {
+          "sessionId": "bp26-7c37760a425413",
+          "startsAt": "2026-11-17T16:50:00Z",
+          "title": "All of Solana, Delivered: The Dataset Behind Institutional Finance"
+        },
+        {
+          "sessionId": "bp26-3823d8bbebe5c8",
+          "startsAt": "2026-11-17T17:11:00Z",
+          "title": "Closing Fireside: Michael Lewis"
+        },
+        {
+          "sessionId": "bp26-32629ecc47d8a5",
+          "startsAt": "2026-11-17T17:14:00Z",
+          "title": "Tokenized Energy on Solana"
+        },
+        {
+          "sessionId": "bp26-24c9a16b1d153d",
+          "startsAt": "2026-11-17T17:36:00Z",
+          "title": "See You at Breakpoint 2027!"
+        }
+      ],
+      "source": "https://x.com/SolanaFndn"
+    },
+    {
+      "handle": "solanalabs",
+      "name": "Solana Labs",
+      "kind": "company",
+      "org": "Solana Labs",
+      "projectId": "solana",
+      "talks": [
+        {
+          "sessionId": "bp26-welcome",
+          "startsAt": "2026-11-16T10:00:00Z",
+          "title": "Welcome to Breakpoint 2026"
+        },
+        {
+          "sessionId": "bp26-5dec9510632a6c",
+          "startsAt": "2026-11-16T12:30:00Z",
+          "title": "London Calling: The City's Pitch for Building Here"
+        },
+        {
+          "sessionId": "bp26-531d345e1baf5f",
+          "startsAt": "2026-11-16T14:27:00Z",
+          "title": "If You Build It, Will Flows Come?"
+        },
+        {
+          "sessionId": "bp26-bef03b8fce07cf",
+          "startsAt": "2026-11-16T15:24:00Z",
+          "title": "Fireside: ICE Europe"
+        },
+        {
+          "sessionId": "bp26-3c98da8acaeb9c",
+          "startsAt": "2026-11-16T15:39:00Z",
+          "title": "From Idle Collateral to Active Capital: TradFi Meets Solana"
+        },
+        {
+          "sessionId": "bp26-88dc31085f2828",
+          "startsAt": "2026-11-16T16:37:00Z",
+          "title": "The City Goes Onchain: From Closing Bell to Always On"
+        },
+        {
+          "sessionId": "bp26-eeaeebf8a96b13",
+          "startsAt": "2026-11-16T16:45:00Z",
+          "title": "Fireside: The Legend of Armani"
+        },
+        {
+          "sessionId": "bp26-509fe0820c0f9e",
+          "startsAt": "2026-11-16T16:52:00Z",
+          "title": "Evading Kim Jong Un's Bot Army: A How To"
+        },
+        {
+          "sessionId": "bp26-557793233a3a89",
+          "startsAt": "2026-11-16T16:59:00Z",
+          "title": "Defending Markets Against Machines"
+        },
+        {
+          "sessionId": "bp26-7769914878c0a7",
+          "startsAt": "2026-11-17T10:30:00Z",
+          "title": "Welcome to Breakpoint Day 2"
+        },
+        {
+          "sessionId": "bp26-8efbc567098f09",
+          "startsAt": "2026-11-17T10:35:00Z",
+          "title": "Fireside: Martin Gilbert, Chair, Revolut"
+        },
+        {
+          "sessionId": "bp26-a043d80e1bc1e5",
+          "startsAt": "2026-11-17T11:35:00Z",
+          "title": "The Next 12 Months of AI on Solana"
+        },
+        {
+          "sessionId": "bp26-f22b776c884471",
+          "startsAt": "2026-11-17T12:10:00Z",
+          "title": "Think Inside the PayBox: Agents on Solana"
+        },
+        {
+          "sessionId": "bp26-ff979bf2efd803",
+          "startsAt": "2026-11-17T12:22:00Z",
+          "title": "Why a Top Japanese Trading House Is Bringing Commodities to Solana"
+        },
+        {
+          "sessionId": "bp26-d9f58db08370df",
+          "startsAt": "2026-11-17T12:37:00Z",
+          "title": "Debate: SOL Is Money"
+        },
+        {
+          "sessionId": "bp26-304d3a1036a4ca",
+          "startsAt": "2026-11-17T12:54:00Z",
+          "title": "Breakpoint 2027 Announcement"
+        },
+        {
+          "sessionId": "bp26-5ff6d377e53e1f",
+          "startsAt": "2026-11-17T14:00:00Z",
+          "title": "Debate: DATs Are Just ETFs With Twitter Accounts and CEOs"
+        },
+        {
+          "sessionId": "bp26-62544901595584",
+          "startsAt": "2026-11-17T14:10:00Z",
+          "title": "Agents That Pay Anyone, Anywhere: Noah on Solana"
+        },
+        {
+          "sessionId": "bp26-76a733517bcd3e",
+          "startsAt": "2026-11-17T14:30:00Z",
+          "title": "Interoperability Across Borders: Scaling Digital Assets for Global Finance"
+        },
+        {
+          "sessionId": "bp26-30a53cc4c95a5b",
+          "startsAt": "2026-11-17T15:12:00Z",
+          "title": "Solana as a Decentralized Silicon Valley"
+        },
+        {
+          "sessionId": "bp26-49178fc9193a8f",
+          "startsAt": "2026-11-17T15:15:00Z",
+          "title": "What Plume and Fidelity Are Building on Solana"
+        },
+        {
+          "sessionId": "bp26-32e1a7ac1a9a21",
+          "startsAt": "2026-11-17T15:25:00Z",
+          "title": "What WisdomTree and MoonPay Are Building on Solana"
+        },
+        {
+          "sessionId": "bp26-ff4f3b4d64da73",
+          "startsAt": "2026-11-17T16:14:00Z",
+          "title": "Leap: The High Performance Trading App"
+        },
+        {
+          "sessionId": "bp26-87a53a4e06f409",
+          "startsAt": "2026-11-17T16:20:00Z",
+          "title": "The Three Most Important Questions for Valuing Solana"
+        },
+        {
+          "sessionId": "bp26-9597cd82eb822d",
+          "startsAt": "2026-11-17T16:30:00Z",
+          "title": "Understanding Solana's Institutional Delegation Program"
+        },
+        {
+          "sessionId": "bp26-2c1d33f9e1d647",
+          "startsAt": "2026-11-17T16:49:00Z",
+          "title": "State of the Solana Network"
+        },
+        {
+          "sessionId": "bp26-7c37760a425413",
+          "startsAt": "2026-11-17T16:50:00Z",
+          "title": "All of Solana, Delivered: The Dataset Behind Institutional Finance"
+        },
+        {
+          "sessionId": "bp26-3823d8bbebe5c8",
+          "startsAt": "2026-11-17T17:11:00Z",
+          "title": "Closing Fireside: Michael Lewis"
+        },
+        {
+          "sessionId": "bp26-32629ecc47d8a5",
+          "startsAt": "2026-11-17T17:14:00Z",
+          "title": "Tokenized Energy on Solana"
+        },
+        {
+          "sessionId": "bp26-24c9a16b1d153d",
+          "startsAt": "2026-11-17T17:36:00Z",
+          "title": "See You at Breakpoint 2027!"
+        }
+      ],
+      "source": "https://x.com/solanalabs"
+    },
+    {
+      "handle": "anza_xyz",
+      "name": "Anza",
+      "kind": "company",
+      "org": "Anza",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-2c1d33f9e1d647",
+          "startsAt": "2026-11-17T16:49:00Z",
+          "title": "State of the Solana Network"
+        },
+        {
+          "sessionId": "bp26-d7ed96529ed916",
+          "startsAt": "2026-11-17T16:56:00Z",
+          "title": "Inside the Bunker: Are We in Cryptography's End Days?"
+        }
+      ],
+      "source": "https://x.com/anza_xyz"
+    },
+    {
+      "handle": "phantom",
+      "name": "Phantom",
+      "kind": "company",
+      "org": "Phantom",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-92231faadab9d8",
+          "startsAt": "2026-11-16T15:00:00Z",
+          "title": "Phantom"
+        }
+      ],
+      "source": "https://x.com/phantom"
+    },
+    {
+      "handle": "solflare",
+      "name": "Solflare",
+      "kind": "company",
+      "org": "Solflare",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-ad64d37c479c25",
+          "startsAt": "2026-11-17T12:27:00Z",
+          "title": "Your Money. Your Business."
+        }
+      ],
+      "source": "https://x.com/solflare"
+    },
+    {
+      "handle": "multisig",
+      "name": "Squads",
+      "kind": "company",
+      "org": "Squads",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-5e875c736f4b87",
+          "startsAt": "2026-11-16T11:50:00Z",
+          "title": "When Banks Become Plugins"
+        }
+      ],
+      "source": "https://squads.xyz/"
+    },
+    {
+      "handle": "MarinadeFinance",
+      "name": "Marinade",
+      "kind": "company",
+      "org": "Marinade",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-bf8b6cc5ec3cb3",
+          "startsAt": "2026-11-16T14:15:00Z",
+          "title": "Hold Forever, Spend Today"
+        }
+      ],
+      "source": "https://x.com/MarinadeFinance"
+    },
+    {
+      "handle": "MetaDAOProject",
+      "name": "MetaDAO",
+      "kind": "company",
+      "org": "MetaDAO",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-2a6b4b18ba1839",
+          "startsAt": "2026-11-17T15:17:00Z",
+          "title": "The Internet Will Put VCs Out of a Job"
+        }
+      ],
+      "source": "https://x.com/MetaDAOProject"
+    },
+    {
+      "handle": "PythNetwork",
+      "name": "Pyth Network",
+      "kind": "company",
+      "org": "Pyth Network",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-0e112dfd98430f",
+          "startsAt": "2026-11-17T15:50:00Z",
+          "title": "Bringing Equities Onchain: What's the Best Approach?"
+        }
+      ],
+      "source": "https://x.com/PythNetwork"
+    },
+    {
+      "handle": "doublezero",
+      "name": "DoubleZero",
+      "kind": "company",
+      "org": "DoubleZero",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-d9f58db08370df",
+          "startsAt": "2026-11-17T12:37:00Z",
+          "title": "Debate: SOL Is Money"
+        }
+      ],
+      "source": "https://x.com/doublezero"
+    },
+    {
+      "handle": "ellipsis_labs",
+      "name": "Ellipsis Labs",
+      "kind": "company",
+      "org": "Ellipsis Labs",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-19926fcefac253",
+          "startsAt": "2026-11-17T15:57:00Z",
+          "title": "Product Keynote: Phoenix"
+        }
+      ],
+      "source": "https://x.com/ellipsis_labs"
+    },
+    {
+      "handle": "orca_so",
+      "name": "Orca",
+      "kind": "company",
+      "org": "Orca",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-9b32e5984c8be1",
+          "startsAt": "2026-11-17T17:00:00Z",
+          "title": "The Frontier of Capital Formation"
+        }
+      ],
+      "source": "https://x.com/orca_so"
+    },
+    {
+      "handle": "colosseum",
+      "name": "Colosseum",
+      "kind": "company",
+      "org": "Colosseum",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-30a53cc4c95a5b",
+          "startsAt": "2026-11-17T15:12:00Z",
+          "title": "Solana as a Decentralized Silicon Valley"
+        }
+      ],
+      "source": "https://x.com/colosseum"
+    },
+    {
+      "handle": "akashnet",
+      "name": "Akash Network",
+      "kind": "company",
+      "org": "Akash Network",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-7e7aec4e525b3c",
+          "startsAt": "2026-11-17T10:57:00Z",
+          "title": "An Onchain Compute Order Book"
+        }
+      ],
+      "source": "https://x.com/akashnet"
+    },
+    {
+      "handle": "NEARProtocol",
+      "name": "NEAR Protocol",
+      "kind": "company",
+      "org": "NEAR Protocol",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-1201162235c599",
+          "startsAt": "2026-11-16T17:00:00Z",
+          "title": "Privacy Fireside: NEAR and Helius"
+        },
+        {
+          "sessionId": "bp26-d7ed96529ed916",
+          "startsAt": "2026-11-17T16:56:00Z",
+          "title": "Inside the Bunker: Are We in Cryptography's End Days?"
+        }
+      ],
+      "source": "https://x.com/NEARProtocol"
+    },
+    {
+      "handle": "WalletConnect",
+      "name": "WalletConnect",
+      "kind": "company",
+      "org": "WalletConnect",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-770eb1482fb791",
+          "startsAt": "2026-11-17T13:50:00Z",
+          "title": "Where Tokenized Assets Meet Demand"
+        }
+      ],
+      "source": "https://x.com/WalletConnect"
+    },
+    {
+      "handle": "plumenetwork",
+      "name": "Plume",
+      "kind": "company",
+      "org": "Plume",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-49178fc9193a8f",
+          "startsAt": "2026-11-17T15:15:00Z",
+          "title": "What Plume and Fidelity Are Building on Solana"
+        }
+      ],
+      "source": "https://x.com/plumenetwork"
+    },
+    {
+      "handle": "humafinance",
+      "name": "Huma",
+      "kind": "company",
+      "org": "Huma",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-89cf6b8f031cce",
+          "startsAt": "2026-11-17T13:20:00Z",
+          "title": "Huma"
+        }
+      ],
+      "source": "https://x.com/humafinance"
+    },
+    {
+      "handle": "hylo_so",
+      "name": "Hylo",
+      "kind": "company",
+      "org": "Hylo",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-db64aae698d129",
+          "startsAt": "2026-11-16T16:30:00Z",
+          "title": "Founder Stories: Hylo"
+        }
+      ],
+      "source": "https://x.com/hylo_so"
+    },
+    {
+      "handle": "BitRobotNetwork",
+      "name": "BitRobot",
+      "kind": "company",
+      "org": "BitRobot",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-573c1503bf356c",
+          "startsAt": "2026-11-17T11:55:00Z",
+          "title": "BitRobot: The World Is the Dataset"
+        }
+      ],
+      "source": "https://x.com/BitRobotNetwork"
+    },
+    {
+      "handle": "sphere_labs",
+      "name": "Sphere Labs",
+      "kind": "company",
+      "org": "Sphere Labs",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-957a1ad44478c8",
+          "startsAt": "2026-11-17T13:10:00Z",
+          "title": "The Last Blocker Is Meatspace: Why Compliance Is Where AI Meets Business Payments"
+        }
+      ],
+      "source": "https://spherepay.co/"
+    },
+    {
+      "handle": "temporal_xyz",
+      "name": "Temporal",
+      "kind": "company",
+      "org": "Temporal",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-d4fdb2f9dfb2f4",
+          "startsAt": "2026-11-17T15:52:00Z",
+          "title": "Temporal 2027: Exploring the Frontier"
+        }
+      ],
+      "source": "https://temporal.xyz/"
+    },
+    {
+      "handle": "Titan_Exchange",
+      "name": "Titan",
+      "kind": "company",
+      "org": "Titan",
+      "projectId": null,
+      "talks": [],
+      "source": "https://titan.exchange/"
+    },
+    {
+      "handle": "beezie",
+      "name": "Beezie",
+      "kind": "company",
+      "org": "Beezie",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-34d4847224b531",
+          "startsAt": "2026-11-17T16:24:00Z",
+          "title": "Beauty, Fashion, Luxury: A New Kind of Onchain Shopping Experience"
+        }
+      ],
+      "source": "https://beezie.io/"
+    },
+    {
+      "handle": "superstateinc",
+      "name": "Superstate",
+      "kind": "company",
+      "org": "Superstate",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-cee25ebc9d7fcb",
+          "startsAt": "2026-11-17T17:07:00Z",
+          "title": "Superstate"
+        }
+      ],
+      "source": "https://superstate.com/"
+    },
+    {
+      "handle": "FWDind",
+      "name": "Forward Industries",
+      "kind": "company",
+      "org": "Forward Industries",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-5ff6d377e53e1f",
+          "startsAt": "2026-11-17T14:00:00Z",
+          "title": "Debate: DATs Are Just ETFs With Twitter Accounts and CEOs"
+        }
+      ],
+      "source": "https://www.forwardindustries.com/"
+    },
+    {
+      "handle": "FrictionlessVC",
+      "name": "Frictionless Capital",
+      "kind": "company",
+      "org": "Frictionless Capital",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-c1ba8b07f2db06",
+          "startsAt": "2026-11-17T14:52:00Z",
+          "title": "Champions in Conversation: Sol Campbell and Tristan Thompson on What It Takes to Win"
+        }
+      ],
+      "source": "https://frictionless.capital/"
+    },
+    {
+      "handle": "reflectmoney",
+      "name": "Reflect",
+      "kind": "company",
+      "org": "Reflect",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-788c1c9281c8b1",
+          "startsAt": "2026-11-16T17:15:00Z",
+          "title": "Founder Stories: Reflect Money"
+        }
+      ],
+      "source": "https://reflect.money/"
+    },
+    {
+      "handle": "raincards",
+      "name": "Rain",
+      "kind": "company",
+      "org": "Rain",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-8829c093112ec6",
+          "startsAt": "2026-11-16T10:50:00Z",
+          "title": "The Stablecoin Nobody Notices: Moving Money Across 37 Markets in Seconds"
+        }
+      ],
+      "source": "https://www.rain.xyz/"
+    },
+    {
+      "handle": "Noah_HQ",
+      "name": "Noah",
+      "kind": "company",
+      "org": "Noah",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-62544901595584",
+          "startsAt": "2026-11-17T14:10:00Z",
+          "title": "Agents That Pay Anyone, Anywhere: Noah on Solana"
+        }
+      ],
+      "source": "https://noah.com/"
+    },
+    {
+      "handle": "NoditPlatform",
+      "name": "Nodit",
+      "kind": "company",
+      "org": "Nodit",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-7c37760a425413",
+          "startsAt": "2026-11-17T16:50:00Z",
+          "title": "All of Solana, Delivered: The Dataset Behind Institutional Finance"
+        }
+      ],
+      "source": "https://nodit.io/"
+    },
+    {
+      "handle": "fomo",
+      "name": "fomo",
+      "kind": "company",
+      "org": "fomo",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-8b47b8796cd17c",
+          "startsAt": "2026-11-17T16:07:00Z",
+          "title": "The Data Comes Last"
+        }
+      ],
+      "source": "https://fomo.family/"
+    },
+    {
+      "handle": "wormwtf",
+      "name": "Worm",
+      "kind": "company",
+      "org": "Worm",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-15d8a6e6783508",
+          "startsAt": "2026-11-16T14:45:00Z",
+          "title": "Worm"
+        }
+      ],
+      "source": "https://worm.wtf/"
+    },
+    {
+      "handle": "hellostake",
+      "name": "Stake",
+      "kind": "company",
+      "org": "Stake",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-272d2f382a9321",
+          "startsAt": "2026-11-16T12:20:00Z",
+          "title": "Fractions to Tokens: Real Estate Is Going Onchain"
+        }
+      ],
+      "source": "https://hellostake.com/"
+    },
+    {
+      "handle": "RampNetwork",
+      "name": "Ramp Network",
+      "kind": "company",
+      "org": "Ramp Network",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-4ab36578d69de6",
+          "startsAt": "2026-11-16T11:00:00Z",
+          "title": "Why Should I Use Your Stablecoin?"
+        }
+      ],
+      "source": "https://ramp.network/"
+    },
+    {
+      "handle": "digitalassets",
+      "name": "Fidelity Digital Assets",
+      "kind": "company",
+      "org": "Fidelity Digital Assets",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-49178fc9193a8f",
+          "startsAt": "2026-11-17T15:15:00Z",
+          "title": "What Plume and Fidelity Are Building on Solana"
+        }
+      ],
+      "source": "https://www.fidelitydigitalassets.com/"
+    },
+    {
+      "handle": "twinstake_io",
+      "name": "Twinstake",
+      "kind": "company",
+      "org": "Twinstake",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-9597cd82eb822d",
+          "startsAt": "2026-11-17T16:30:00Z",
+          "title": "Understanding Solana's Institutional Delegation Program"
+        }
+      ],
+      "source": "https://twinstake.io/"
+    },
+    {
+      "handle": "ZeroHashX",
+      "name": "zerohash",
+      "kind": "company",
+      "org": "zerohash",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-1e735fd3bf5931",
+          "startsAt": "2026-11-17T13:30:00Z",
+          "title": "Zerohash"
+        }
+      ],
+      "source": "https://zerohash.com/"
+    },
+    {
+      "handle": "BAXUSco",
+      "name": "BAXUS",
+      "kind": "company",
+      "org": "BAXUS",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-802cc936d7e18b",
+          "startsAt": "2026-11-16T13:45:00Z",
+          "title": "BAXUS"
+        }
+      ],
+      "source": "https://baxus.co/"
+    },
+    {
+      "handle": "xstocksfi",
+      "name": "xStocks",
+      "kind": "company",
+      "org": "xStocks",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-88dc31085f2828",
+          "startsAt": "2026-11-16T16:37:00Z",
+          "title": "The City Goes Onchain: From Closing Bell to Always On"
+        }
+      ],
+      "source": "https://xstocks.fi/"
+    },
+    {
+      "handle": "BitwiseInvest",
+      "name": "Bitwise",
+      "kind": "company",
+      "org": "Bitwise",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-5ff6d377e53e1f",
+          "startsAt": "2026-11-17T14:00:00Z",
+          "title": "Debate: DATs Are Just ETFs With Twitter Accounts and CEOs"
+        },
+        {
+          "sessionId": "bp26-87a53a4e06f409",
+          "startsAt": "2026-11-17T16:20:00Z",
+          "title": "The Three Most Important Questions for Valuing Solana"
+        }
+      ],
+      "source": "https://bitwiseinvestments.com/"
+    },
+    {
+      "handle": "multicoincap",
+      "name": "Multicoin Capital",
+      "kind": "company",
+      "org": "Multicoin Capital",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-ef11df8e210405",
+          "startsAt": "2026-11-17T11:02:00Z",
+          "title": "Compute Capital Markets"
+        }
+      ],
+      "source": "https://multicoin.capital/"
+    },
+    {
+      "handle": "HaunVentures",
+      "name": "Haun Ventures",
+      "kind": "company",
+      "org": "Haun Ventures",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-557793233a3a89",
+          "startsAt": "2026-11-16T16:59:00Z",
+          "title": "Defending Markets Against Machines"
+        }
+      ],
+      "source": "https://www.haun.co/"
+    },
+    {
+      "handle": "Anchorage",
+      "name": "Anchorage Digital",
+      "kind": "company",
+      "org": "Anchorage Digital",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-32629ecc47d8a5",
+          "startsAt": "2026-11-17T17:14:00Z",
+          "title": "Tokenized Energy on Solana"
+        }
+      ],
+      "source": "https://www.anchorage.com/"
+    },
+    {
+      "handle": "moonpay",
+      "name": "MoonPay",
+      "kind": "company",
+      "org": "MoonPay",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-f22b776c884471",
+          "startsAt": "2026-11-17T12:10:00Z",
+          "title": "Think Inside the PayBox: Agents on Solana"
+        },
+        {
+          "sessionId": "bp26-32e1a7ac1a9a21",
+          "startsAt": "2026-11-17T15:25:00Z",
+          "title": "What WisdomTree and MoonPay Are Building on Solana"
+        }
+      ],
+      "source": "https://www.moonpay.com/"
+    },
+    {
+      "handle": "MoneyGram",
+      "name": "MoneyGram",
+      "kind": "company",
+      "org": "MoneyGram",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-moneygram",
+          "startsAt": "2026-11-16T10:20:00Z",
+          "title": "MoneyGram Ramps: Connecting Digital Assets With Cash"
+        }
+      ],
+      "source": "https://www.moneygram.com/"
+    },
+    {
+      "handle": "AbraGlobal",
+      "name": "Abra",
+      "kind": "company",
+      "org": "Abra",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-3c98da8acaeb9c",
+          "startsAt": "2026-11-16T15:39:00Z",
+          "title": "From Idle Collateral to Active Capital: TradFi Meets Solana"
+        }
+      ],
+      "source": "https://www.abra.com/"
+    },
+    {
+      "handle": "Bullish",
+      "name": "Bullish",
+      "kind": "company",
+      "org": "Bullish",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-6601a3502be87c",
+          "startsAt": "2026-11-16T14:59:00Z",
+          "title": "The Next Generation of Market Infrastructure"
+        }
+      ],
+      "source": "https://bullish.com/"
+    },
+    {
+      "handle": "BitGo",
+      "name": "BitGo",
+      "kind": "company",
+      "org": "BitGo",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-0e112dfd98430f",
+          "startsAt": "2026-11-17T15:50:00Z",
+          "title": "Bringing Equities Onchain: What's the Best Approach?"
+        }
+      ],
+      "source": "https://www.bitgo.com/"
+    },
+    {
+      "handle": "FireblocksHQ",
+      "name": "Fireblocks",
+      "kind": "company",
+      "org": "Fireblocks",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-76a733517bcd3e",
+          "startsAt": "2026-11-17T14:30:00Z",
+          "title": "Interoperability Across Borders: Scaling Digital Assets for Global Finance"
+        }
+      ],
+      "source": "https://www.fireblocks.com/"
+    },
+    {
+      "handle": "AlpacaHQ",
+      "name": "Alpaca",
+      "kind": "company",
+      "org": "Alpaca",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-0e112dfd98430f",
+          "startsAt": "2026-11-17T15:50:00Z",
+          "title": "Bringing Equities Onchain: What's the Best Approach?"
+        }
+      ],
+      "source": "https://alpaca.markets/"
+    },
+    {
+      "handle": "SolanaInstitute",
+      "name": "Solana Policy Institute",
+      "kind": "company",
+      "org": "Solana Policy Institute",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-5dec9510632a6c",
+          "startsAt": "2026-11-16T12:30:00Z",
+          "title": "London Calling: The City's Pitch for Building Here"
+        },
+        {
+          "sessionId": "bp26-5ff6d377e53e1f",
+          "startsAt": "2026-11-17T14:00:00Z",
+          "title": "Debate: DATs Are Just ETFs With Twitter Accounts and CEOs"
+        }
+      ],
+      "source": "https://www.solanapolicyinstitute.org/"
+    },
+    {
+      "handle": "bitso",
+      "name": "Bitso",
+      "kind": "company",
+      "org": "Bitso",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-f247ff0413e7f6",
+          "startsAt": "2026-11-16T11:35:00Z",
+          "title": "The Sleeping Power of the World's Other Stablecoins"
+        }
+      ],
+      "source": "https://bitso.com/"
+    },
+    {
+      "handle": "talamobile",
+      "name": "Tala",
+      "kind": "company",
+      "org": "Tala",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-0b673687de05f7",
+          "startsAt": "2026-11-17T14:00:00Z",
+          "title": "Stablecoins Have Distribution. Now They Need Credit"
+        }
+      ],
+      "source": "https://tala.co/"
+    },
+    {
+      "handle": "Payoneer",
+      "name": "Payoneer",
+      "kind": "company",
+      "org": "Payoneer",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-4ab36578d69de6",
+          "startsAt": "2026-11-16T11:00:00Z",
+          "title": "Why Should I Use Your Stablecoin?"
+        }
+      ],
+      "source": "https://www.payoneer.com/"
+    },
+    {
+      "handle": "PrimeRevenue",
+      "name": "PrimeRevenue",
+      "kind": "company",
+      "org": "PrimeRevenue",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-62cbffd95bb468",
+          "startsAt": "2026-11-16T14:52:00Z",
+          "title": "The $2.5 Trillion Gap: Bringing Trade Finance Onchain"
+        }
+      ],
+      "source": "https://primerevenue.com/"
+    },
+    {
+      "handle": "GromaCorp",
+      "name": "Groma",
+      "kind": "company",
+      "org": "Groma",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-358ded9e0c1bbc",
+          "startsAt": "2026-11-17T15:05:00Z",
+          "title": "The Future of Real Estate Onchain"
+        }
+      ],
+      "source": "https://groma.com/"
+    },
+    {
+      "handle": "atumhq",
+      "name": "Atum",
+      "kind": "company",
+      "org": "Atum",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-f17a3e75786240",
+          "startsAt": "2026-11-17T13:40:00Z",
+          "title": "Atum: The Open Payments Network"
+        }
+      ],
+      "source": "https://atum.xyz/"
+    },
+    {
+      "handle": "cloudflare",
+      "name": "Cloudflare",
+      "kind": "company",
+      "org": "Cloudflare",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-d4740eeb3095ec",
+          "startsAt": "2026-11-16T11:55:00Z",
+          "title": "Cloudflare Is Making It Rain Micropayments"
+        }
+      ],
+      "source": "https://www.cloudflare.com/"
+    },
+    {
+      "handle": "zelle",
+      "name": "Zelle",
+      "kind": "company",
+      "org": "Zelle",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-74b22b9434a49a",
+          "startsAt": "2026-11-16T10:40:00Z",
+          "title": "Zelle Goes Global"
+        }
+      ],
+      "source": "https://www.zellepay.com/"
+    },
+    {
+      "handle": "Collector_Crypt",
+      "name": "Collector Crypt",
+      "kind": "company",
+      "org": "Collector Crypt",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-dd868bfb6b23fe",
+          "startsAt": "2026-11-16T13:00:00Z",
+          "title": "Collector Crypt"
+        },
+        {
+          "sessionId": "bp26-d31d49e3322b64",
+          "startsAt": "2026-11-17T16:19:00Z",
+          "title": "$2M Pokemon Cards: Tokenisation Is Making Collectibles Cool Again"
+        }
+      ],
+      "source": "https://x.com/Collector_Crypt"
+    },
+    {
+      "handle": "CandyDigital",
+      "name": "Candy Digital",
+      "kind": "company",
+      "org": "Candy Digital",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-9d84abe2b914a8",
+          "startsAt": "2026-11-17T16:29:00Z",
+          "title": "From Auction House to Onchain With Candy Digital"
+        }
+      ],
+      "source": "https://x.com/CandyDigital"
+    },
+    {
+      "handle": "Securitize",
+      "name": "Securitize",
+      "kind": "company",
+      "org": "Securitize",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-0e112dfd98430f",
+          "startsAt": "2026-11-17T15:50:00Z",
+          "title": "Bringing Equities Onchain: What's the Best Approach?"
+        }
+      ],
+      "source": "https://x.com/Securitize"
+    },
+    {
+      "handle": "Grayscale",
+      "name": "Grayscale",
+      "kind": "company",
+      "org": "Grayscale",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-25e8b3c536cc98",
+          "startsAt": "2026-11-17T11:07:00Z",
+          "title": "The Machine Economy: How Digital Assets Could Help Fund Computing Power, Energy, and Data Centres"
+        }
+      ],
+      "source": "https://x.com/Grayscale"
+    },
+    {
+      "handle": "foundationcap",
+      "name": "Foundation Capital",
+      "kind": "company",
+      "org": "Foundation Capital",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-25e8b3c536cc98",
+          "startsAt": "2026-11-17T11:07:00Z",
+          "title": "The Machine Economy: How Digital Assets Could Help Fund Computing Power, Energy, and Data Centres"
+        }
+      ],
+      "source": "https://x.com/foundationcap"
+    },
+    {
+      "handle": "CoWSwap",
+      "name": "CoW Swap",
+      "kind": "company",
+      "org": "CoW Swap",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-66e9476f07e477",
+          "startsAt": "2026-11-17T16:40:00Z",
+          "title": "Democratizing Access to the Token Supercycle"
+        }
+      ],
+      "source": "https://x.com/CoWSwap"
+    },
+    {
+      "handle": "EasyA_App",
+      "name": "EasyA",
+      "kind": "company",
+      "org": "EasyA",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-74aa752d52acf7",
+          "startsAt": "2026-11-16T13:30:00Z",
+          "title": "EasyA"
+        }
+      ],
+      "source": "https://x.com/EasyA_App"
+    },
+    {
+      "handle": "Mastercard",
+      "name": "Mastercard",
+      "kind": "company",
+      "org": "Mastercard",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-a7be968b3b1037",
+          "startsAt": "2026-11-16T11:30:00Z",
+          "title": "Stablecoin Doesn't Mean Dollar"
+        }
+      ],
+      "source": "https://x.com/Mastercard"
+    },
+    {
+      "handle": "WesternUnion",
+      "name": "Western Union",
+      "kind": "company",
+      "org": "Western Union",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-8829c093112ec6",
+          "startsAt": "2026-11-16T10:50:00Z",
+          "title": "The Stablecoin Nobody Notices: Moving Money Across 37 Markets in Seconds"
+        }
+      ],
+      "source": "https://x.com/WesternUnion"
+    },
+    {
+      "handle": "BNYglobal",
+      "name": "BNY",
+      "kind": "company",
+      "org": "BNY",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-531d345e1baf5f",
+          "startsAt": "2026-11-16T14:27:00Z",
+          "title": "If You Build It, Will Flows Come?"
+        }
+      ],
+      "source": "https://x.com/BNYglobal"
+    },
+    {
+      "handle": "The_DTCC",
+      "name": "DTCC",
+      "kind": "company",
+      "org": "DTCC",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-0b5c7ba0eb1565",
+          "startsAt": "2026-11-16T15:09:00Z",
+          "title": "Rewiring the Market: Why the World's Biggest Financial Institutions Are Moving Onchain"
+        }
+      ],
+      "source": "https://x.com/The_DTCC"
+    },
+    {
+      "handle": "Fiserv",
+      "name": "Fiserv",
+      "kind": "company",
+      "org": "Fiserv",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-76a733517bcd3e",
+          "startsAt": "2026-11-17T14:30:00Z",
+          "title": "Interoperability Across Borders: Scaling Digital Assets for Global Finance"
+        }
+      ],
+      "source": "https://x.com/Fiserv"
+    },
+    {
+      "handle": "WisdomTreeFunds",
+      "name": "WisdomTree",
+      "kind": "company",
+      "org": "WisdomTree",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-32e1a7ac1a9a21",
+          "startsAt": "2026-11-17T15:25:00Z",
+          "title": "What WisdomTree and MoonPay Are Building on Solana"
+        }
+      ],
+      "source": "https://x.com/WisdomTreeFunds"
+    },
+    {
+      "handle": "SoFi",
+      "name": "SoFi",
+      "kind": "company",
+      "org": "SoFi",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-f68d3b50e600b0",
+          "startsAt": "2026-11-16T11:45:00Z",
+          "title": "Bank to the Future: How SoFi Is Preparing for the Digital Assets Era"
+        }
+      ],
+      "source": "https://x.com/SoFi"
+    },
+    {
+      "handle": "Figment_io",
+      "name": "Figment",
+      "kind": "company",
+      "org": "Figment",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-9597cd82eb822d",
+          "startsAt": "2026-11-17T16:30:00Z",
+          "title": "Understanding Solana's Institutional Delegation Program"
+        }
+      ],
+      "source": "https://x.com/Figment_io"
+    },
+    {
+      "handle": "paystack",
+      "name": "Paystack",
+      "kind": "company",
+      "org": "Paystack",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-e1d17e70cc8124",
+          "startsAt": "2026-11-16T11:40:00Z",
+          "title": "Bringing Africa's 41 Currencies Onchain"
+        }
+      ],
+      "source": "https://x.com/paystack"
+    },
+    {
+      "handle": "ycombinator",
+      "name": "Y Combinator",
+      "kind": "company",
+      "org": "Y Combinator",
+      "projectId": null,
+      "talks": [
+        {
+          "sessionId": "bp26-4ab36578d69de6",
+          "startsAt": "2026-11-16T11:00:00Z",
+          "title": "Why Should I Use Your Stablecoin?"
+        },
+        {
+          "sessionId": "bp26-4f2dffb98f4086",
+          "startsAt": "2026-11-17T10:50:00Z",
+          "title": "AI and Raising Capital"
+        }
+      ],
+      "source": "https://x.com/ycombinator"
+    }
+  ]
+}
