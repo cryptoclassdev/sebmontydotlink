@@ -57,7 +57,7 @@ Newest first. One entry per pull request.
 ### Breakpoint: post-event page (replays instead of live coverage)
 
 - **Date:** 18 November 2026
-- **Pull request:** PR_LINK, branch `feat/post-event`.
+- **Pull request:** [#36](https://github.com/cryptoclassdev/sebmontydotlink/pull/36), branch `feat/post-event`.
 - **Status:** Ready for review. Goes live when merged; nothing to change on the Mac or in Vercel.
 - **Why:** Breakpoint 2026 ended on 17 November. The Mac coverage jobs and the coverage storage are off, so Watch live, Live notes, Catch up, Now and next, From the desk and Straight from X would show empty or stale sections. Visitors should see a finished guide with the replays.
 
