@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import type { Post } from '@/sanity/types'
+import type { Post } from '@/lib/blog/types'
 import { PostCard } from './PostCard'
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
 

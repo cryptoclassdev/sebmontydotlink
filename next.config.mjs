@@ -51,12 +51,18 @@ export default function nextConfig(phase) {
     },
     images: {
       remotePatterns: [
+        // Images uploaded in the Studio (Vercel Blob)
         {
           protocol: 'https',
-          hostname: 'cdn.sanity.io',
-          pathname: '/images/**',
+          hostname: '*.public.blob.vercel-storage.com',
         },
       ],
+    },
+    async redirects() {
+      return [
+        // The RoboStrategy post (from Sanity) was retired when the blog moved to the Studio
+        { source: '/blog/robostrategy-bot-solana', destination: '/blog', permanent: true },
+      ]
     },
     async rewrites() {
       return {

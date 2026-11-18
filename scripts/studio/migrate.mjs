@@ -1,5 +1,6 @@
-// Applies Studio database migrations (drizzle/*.sql) and fills empty category/author
-// lists from content/categories.yml and content/authors.yml.
+// Applies Studio database migrations (drizzle/*.sql), fills empty category/author lists
+// from content/categories.yml and content/authors.yml, and (once) copies the Markdown
+// articles in content/articles/ into the Studio. Set STUDIO_SKIP_MARKDOWN_IMPORT=1 to skip that.
 //
 //   pnpm studio:migrate          uses DATABASE_URL (or .env.local)
 //
@@ -13,6 +14,8 @@ import { drizzle } from 'drizzle-orm/node-postgres'
 import { migrate } from 'drizzle-orm/node-postgres/migrator'
 import pg from 'pg'
 import { parse as parseYaml } from 'yaml'
+
+import { importMarkdownArticles, markdownImportDone } from './import-markdown.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 for (const file of ['.env.local', '.env']) {
@@ -62,6 +65,11 @@ try {
       )
     }
     console.log(`[studio] added ${authors.length} authors from content/authors.yml`)
+  }
+
+  if (process.env.STUDIO_SKIP_MARKDOWN_IMPORT !== '1' && !(await markdownImportDone(client))) {
+    const { imported, skipped } = await importMarkdownArticles({ client, root, log: (line) => console.log(`[studio] ${line}`) })
+    console.log(`[studio] copied ${imported.length} Markdown article(s) into the Studio${skipped.length ? ` (${skipped.length} already there)` : ''}; this only happens once`)
   }
 } finally {
   if (!pooled) await client.query('SELECT pg_advisory_unlock($1)', [LOCK_ID]).catch(() => {})

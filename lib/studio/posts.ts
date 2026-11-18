@@ -32,6 +32,11 @@ export type PostListItem = {
 
 export type Result<T = object> = ({ ok: true } & T) | { ok: false; error: string; problems?: PublishProblem[] }
 
+/** A scheduled post whose time has come is live, so it shows as published. */
+export function effectiveStatus(row: { status: PostStatus; publishedAt: Date | null }): PostStatus {
+  return row.status === 'scheduled' && row.publishedAt && row.publishedAt.getTime() <= Date.now() ? 'published' : row.status
+}
+
 function sameDocument(a: PostDocument | null, b: PostDocument | null) {
   return JSON.stringify(a) === JSON.stringify(b)
 }
@@ -54,7 +59,7 @@ export async function listPosts(filter: { status?: PostStatus | 'all'; q?: strin
     id: row.id,
     title: row.draft.title || 'Untitled',
     slug: row.slug,
-    status: row.status,
+    status: effectiveStatus(row),
     coverSrc: row.draft.cover?.src || null,
     updatedAt: row.updatedAt.toISOString(),
     publishedAt: row.publishedAt?.toISOString() ?? null,
@@ -66,7 +71,12 @@ export async function getPost(id: string) {
   if (!/^[0-9a-f-]{36}$/i.test(id)) return null
   const [row] = await getDb().select().from(schema.post).where(eq(schema.post.id, id)).limit(1)
   if (!row) return null
-  return { ...row, draft: normalizeDocument(row.draft), published: row.published ? normalizeDocument(row.published) : null }
+  return {
+    ...row,
+    status: effectiveStatus(row),
+    draft: normalizeDocument(row.draft),
+    published: row.published ? normalizeDocument(row.published) : null,
+  }
 }
 
 export type StudioPost = NonNullable<Awaited<ReturnType<typeof getPost>>>

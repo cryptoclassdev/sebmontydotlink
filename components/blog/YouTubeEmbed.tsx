@@ -1,6 +1,6 @@
 import { ExternalLink } from 'lucide-react'
 
-import type { PortableTextBlock } from '@/sanity/types'
+import type { PortableTextBlock } from '@/lib/blog/types'
 
 function youtubeVideoId(value?: string) {
   if (!value) return null

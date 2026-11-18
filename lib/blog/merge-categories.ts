@@ -1,4 +1,4 @@
-import type { Category, Post } from '@/sanity/types'
+import type { Category, Post } from '@/lib/blog/types'
 
 // Pure helper (safe to use in client components): merges the permanent category list,
 // categories from Sanity and post counts into one sorted list.

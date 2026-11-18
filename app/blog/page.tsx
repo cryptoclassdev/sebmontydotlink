@@ -3,11 +3,8 @@ import Link from 'next/link'
 import { Search } from 'lucide-react'
 
 import { CategoryNav, FeaturedPost, PostCard } from '@/components/blog'
-import { filterBlogPosts, mergeBlogPosts } from '@/lib/blog/catalog'
-import { mergeBlogCategories } from '@/lib/blog/categories'
-import { client } from '@/sanity/client'
-import { categoriesQuery, postsQuery } from '@/sanity/queries'
-import type { Category, Post } from '@/sanity/types'
+import { filterBlogPosts } from '@/lib/blog/catalog'
+import { getCategories, getPostCards } from '@/lib/blog/source'
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -19,13 +16,8 @@ export const revalidate = 60
 type SearchParams = { category?: string }
 
 async function getData(categorySlug?: string) {
-  const [sanityPosts, sanityCategories] = await Promise.all([
-    client.fetch<Post[]>(postsQuery).catch(() => []),
-    client.fetch<Category[]>(categoriesQuery).catch(() => []),
-  ])
-
-  const allPosts = mergeBlogPosts(sanityPosts)
-  const categories = mergeBlogCategories(sanityCategories, allPosts)
+  const allPosts = await getPostCards()
+  const categories = await getCategories(allPosts)
   const activeCategory = categories.some((category) => category.slug === categorySlug) ? categorySlug : undefined
   const filteredPosts = filterBlogPosts(allPosts, activeCategory)
 

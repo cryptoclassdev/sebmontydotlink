@@ -2,7 +2,7 @@ import { PortableText, type PortableTextComponents } from '@portabletext/react'
 import { ChevronDown } from 'lucide-react'
 
 import { portableTextBlockText, type PreparedArticleContent, type PreparedImageBlock } from '@/lib/blog/article-content'
-import type { PortableTextBlock } from '@/sanity/types'
+import type { PortableTextBlock } from '@/lib/blog/types'
 import { ArticleImageTrigger } from './ArticleLightbox'
 import { CopyCodeBlock } from './CopyCodeBlock'
 import { MetricGridFigure, type MetricGridFigureProps } from './MetricGridFigure'
@@ -73,17 +73,17 @@ export function ArticleBody({ prepared, disclosure }: { prepared: PreparedArticl
     },
     block: {
       h2: ({ children, value }) => {
-        const block = value as unknown as import('@/sanity/types').PortableTextBlock
+        const block = value as unknown as import('@/lib/blog/types').PortableTextBlock
         const id = headingId(portableTextBlockText(block))
         return <h2 id={id}><a className="article-heading-anchor" href={`#${id}`} aria-label={`Link to ${portableTextBlockText(block)}`}>#</a>{children}</h2>
       },
       h3: ({ children, value }) => {
-        const block = value as unknown as import('@/sanity/types').PortableTextBlock
+        const block = value as unknown as import('@/lib/blog/types').PortableTextBlock
         const id = headingId(portableTextBlockText(block))
         return <h3 id={id}><a className="article-heading-anchor" href={`#${id}`} aria-label={`Link to ${portableTextBlockText(block)}`}>#</a>{children}</h3>
       },
       h4: ({ children, value }) => {
-        const block = value as unknown as import('@/sanity/types').PortableTextBlock
+        const block = value as unknown as import('@/lib/blog/types').PortableTextBlock
         const id = headingId(portableTextBlockText(block))
         return <h4 id={id}><a className="article-heading-anchor" href={`#${id}`} aria-label={`Link to ${portableTextBlockText(block)}`}>#</a>{children}</h4>
       },
