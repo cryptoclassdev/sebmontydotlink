@@ -16,7 +16,11 @@ Every change ships as a pull request against `main`; never push to `main` and ne
 
 New articles are Markdown files: `content/articles/<slug>.md`, images in `public/articles/<slug>/`. Read `docs/publishing.md` before writing or converting one, and run `pnpm articles:check`. The compiler is `lib/publishing/compile.mjs` (runs from `next.config.mjs` on every dev/build and fails the build on any invalid article); the app reads articles only through `lib/publishing/index.ts`. Each article is also served as Markdown at `/blog/<slug>.md` and listed in `/llms.txt`.
 
-The RoboStrategy post (`robostrategy-bot-solana`) still comes from Sanity (with text overrides in `lib/blog/editorial-overrides.ts`) until it is migrated; Sanity Studio is still at `/studio`.
+The RoboStrategy post (`robostrategy-bot-solana`) still comes from Sanity (with text overrides in `lib/blog/editorial-overrides.ts`); it is being dropped, not migrated. Sanity's Studio no longer exists at `/studio`.
+
+## Studio (/studio)
+
+The site's own password-gated article dashboard (replacing Sanity). Read `docs/studio.md` first. Code: `app/studio/` (pages and server actions), `components/studio/`, `lib/studio/` (database schema `lib/studio/db/schema.ts`, sign-in `auth.ts`, data functions), `app/api/studio/`, `scripts/studio/`, migrations `drizzle/`, login gate `proxy.ts`. Postgres via Drizzle, sign-in via Better Auth (email and password, no sign-up), images in Vercel Blob, article bodies in Portable Text edited with `@portabletext/editor` in the block shapes `components/blog/ArticleBody.tsx` renders. Every Studio page and server action must call `requireUser()` (or `requireAdmin()`). After a schema change run `pnpm studio:generate` and commit the migration. Until the blog is switched over, the public site still reads only the Markdown articles.
 
 ## Stack
 
@@ -38,6 +42,7 @@ There is **no working linter and no test runner**. `npm run lint` currently fail
 Required env vars (see `.env.example`):
 - `NEXT_PUBLIC_SANITY_PROJECT_ID`
 - `NEXT_PUBLIC_SANITY_DATASET` (defaults to `production` in `sanity/client.ts`)
+- Studio only: `DATABASE_URL`, `BETTER_AUTH_SECRET`, `BLOB_READ_WRITE_TOKEN`, `STUDIO_SETUP_TOKEN` (first admin), optional `BETTER_AUTH_URL`. Without them the site builds and `/studio` says it isn't connected.
 
 ## Gotchas
 
@@ -52,7 +57,7 @@ Required env vars (see `.env.example`):
 - `app/page.tsx` — homepage, renders `<BentoGrid />`
 - `app/layout.tsx` — root layout (Inter font, metadata, skip link)
 - `app/blog/` — blog listing, `[slug]`, `category/`, `search/`
-- `app/studio/[[...tool]]/` — embedded Sanity Studio
+- `app/studio/` — the Studio (article dashboard; see docs/studio.md)
 - `app/api/subscribe/` — email subscription endpoint
 
 ### Component layout
