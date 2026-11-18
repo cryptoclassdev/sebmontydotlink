@@ -70,7 +70,7 @@ Newest first. One entry per pull request.
 
 - **Date:** 12 November 2026
 - **Pull request:** [#10](https://github.com/cryptoclassdev/sebmontydotlink/pull/10), branch `studio/core`.
-- **Status:** Draft, waiting for Seb to approve the screenshots. Updated with `main` on 18 November 2026 (the Breakpoint guide work, #11 to #35); only `README.md`, `.env.example` and `.gitignore` needed merging, and the checks below were re-run on the merged branch. Step 1 of 3: this PR adds the Studio only. The next PR switches the public blog to read from it; then the same code is copied to validator.com.
+- **Status:** Ready for review. On 18 November 2026 Seb asked for it to be made ready to merge (screenshots were shared on 12 November). Updated with `main` on 18 November 2026 (the Breakpoint guide work, #11 to #35); only `README.md`, `.env.example` and `.gitignore` needed merging, and the checks below were re-run on the merged branch. Step 1 of 3: this PR adds the Studio only. The next PR switches the public blog to read from it; then the same code is copied to validator.com.
 
 #### What changed
 1. **A password-gated dashboard at `/studio`**, built into this site, replacing Sanity's Studio at that address. Articles will be written, scheduled and published there instead of by pull request. It looks and works like Sanity Studio: a post list beside the open document, fields grouped into Content, Details and SEO tabs, autosave, a green Publish button with the save state next to it, and revision history.
