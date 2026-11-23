@@ -69,7 +69,7 @@ Newest first. One entry per pull request.
 ### Studio editor: X posts and charts in articles
 
 - **Date:** 23 November 2026
-- **Pull request:** link added once the pull request is open, branch `studio/embeds-charts`.
+- **Pull request:** [#38](https://github.com/cryptoclassdev/sebmontydotlink/pull/38), branch `studio/embeds-charts`.
 - **Status:** Draft, waiting for Seb to approve the screenshots (new on the site: X post cards and chart designs inside articles; new in the Studio: **+ X post** and **+ Chart**). Step 3 of the Studio plan. Next: the same Studio for validator.com.
 
 #### What changed
