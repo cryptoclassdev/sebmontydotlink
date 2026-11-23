@@ -121,7 +121,7 @@ With the database connected to Preview (a database branch per preview keeps live
 - **RoboStrategy is gone** from the blog (redirected to `/blog`), as agreed.
 - **Comments are open to the public** on Studio articles; nothing appears without approval.
 - **The saved copy only refreshes through the Studio** (or once a day). A change made directly in the database, outside the Studio, shows on the site after the daily refresh or the next publish. If the database is down when a page needs data it has never saved (for example the first visit to a `.md` copy after a publish), that page falls back to the Markdown articles until the database is back.
-- **Neon Free plan limits:** if the 100 monthly compute hours or the 10 database branches ran out, Neon pauses the database until the next month (the blog falls back to the Markdown articles and the Studio goes offline). Upgrading to Neon's Launch plan, billed per use, restores it immediately.
+- **Neon Free plan limits:** if the 100 monthly compute hours ran out, Neon would pause the database until the next month (the blog falls back to the Markdown articles and the Studio goes offline); upgrading to Neon's Launch plan, billed per use, restores it immediately. If the 10 database branches are used up, new PR previews can't get their own database copy until old preview branches are deleted (Neon → Branches).
 
 #### Roll back
 Revert this PR's merge commit: the blog goes back to the Markdown articles and RoboStrategy returns. The Studio's posts, media and comments stay in the database untouched, ready for a second try.
