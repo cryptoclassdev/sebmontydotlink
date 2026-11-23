@@ -70,7 +70,7 @@ Newest first. One entry per pull request.
 
 - **Date:** 23 November 2026
 - **Pull request:** [#38](https://github.com/cryptoclassdev/sebmontydotlink/pull/38), branch `studio/embeds-charts`.
-- **Status:** Draft, waiting for Seb to approve the screenshots (new on the site: X post cards and chart designs inside articles; new in the Studio: **+ X post** and **+ Chart**). Step 3 of the Studio plan. Next: the same Studio for validator.com.
+- **Status:** Ready for review (23 November 2026). Seb approved the screenshots of the X post cards, the chart designs in articles and the new **+ X post** and **+ Chart** dialogs on 23 November 2026. Step 3 of the Studio plan. Next: the same Studio for validator.com.
 
 #### What changed
 1. **X posts in articles.** In the editor, **+ X post** takes a post's link (x.com or twitter.com). The Studio reads the post from X's public embed data (the data behind X's own embeds, no key) and saves a cleaned-up copy in the article: author, text with its links, up to 4 photos or a video or GIF, a link preview, and a quoted post. **Edit → Refresh from X** updates the copy. On the site the post is a card in the site's own style (name, handle, text, media, date, "View on X"), built from that copy: no X script runs, the card still shows if X is down or the post is later deleted, and a video loads only when the reader presses play. The cleaning code is adapted from the Breakpoint guide's X reader, copied into `lib/studio/xpost.ts` so the two can change independently.
