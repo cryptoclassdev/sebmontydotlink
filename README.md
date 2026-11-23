@@ -70,7 +70,7 @@ Newest first. One entry per pull request.
 
 - **Date:** 18 November 2026
 - **Pull request:** [#37](https://github.com/cryptoclassdev/sebmontydotlink/pull/37), branch `studio/blog-switch`.
-- **Status:** Draft, waiting for Seb to approve the screenshots (the Discussion section under articles and the preview bar are new on the site). Step 2 of 3 (step 1 was #10). Next: X post embeds and chart blocks in the Studio editor, then the copy for validator.com.
+- **Status:** Ready for review (23 November 2026). Seb approved the screenshots of the new Discussion section and preview bar on 23 November 2026, and the Studio's Vercel setup is done: Neon database and public Blob store connected to Production and Preview, secrets set, production redeployed, admin account and first team member created on the live Studio. Step 2 of 3 (step 1 was #10). Next: X post embeds and chart blocks in the Studio editor, then the copy for validator.com.
 
 #### What changed
 1. **The site reads articles from the Studio.** The blog list, article pages, category filter, search, the homepage's "Latest research" card, `/llms.txt` and the `/blog/<slug>.md` copies all come from the Studio's database (`lib/blog/source.ts`). Publishing, editing, unpublishing or scheduling in the Studio now changes the site within seconds, with no pull request.
@@ -94,7 +94,7 @@ Seb's plan for the Studio: articles are posted from the dashboard instead of by 
 - Removed: `sanity/` (client, queries, schemas, types), `sanity.config.ts`, `lib/blog/editorial-overrides.ts`, `lib/blog/categories.ts`.
 
 #### Before merging
-The Studio's Vercel setup from #10 (Neon database and Blob store for Production and Preview, `BETTER_AUTH_SECRET`, `STUDIO_SETUP_TOKEN`, `BETTER_AUTH_URL`) should be done first, so the merge build copies the articles into the Studio and the blog switches over in one step. If it isn't, the merge is still safe: the blog keeps showing the Markdown articles until the database is connected.
+The Studio's Vercel setup from #10 (Neon database and Blob store for Production and Preview, `BETTER_AUTH_SECRET`, `STUDIO_SETUP_TOKEN`, `BETTER_AUTH_URL`) must be done first, so the merge build copies the articles into the Studio and the blog switches over in one step. **Done on 23 November 2026.** (Had it not been, the merge would still be safe: the blog keeps showing the Markdown articles until the database is connected.)
 
 Neon settings (also in `docs/studio.md`): region matching the Vercel function region (Washington, D.C. by default), **Auth off** (the Studio has its own logins), Realtime off, Free plan; connect to Production and Preview, tick **Preview** under "Create database branch for deployment", leave Custom Prefix empty. The Free plan allows 10 database branches and each PR preview makes one, so also turn on GitHub's "Automatically delete head branches" and set Vercel's Pre-Production deployment retention to 7 days; preview databases are then removed after their PRs merge.
 
@@ -117,7 +117,7 @@ With the database connected to Preview (a database branch per preview keeps live
 
 #### Risks
 - **Content now lives in the database:** if the Studio database were unreachable, pages keep being served and rebuilt from the saved copy (item 11). Neon backs up the database.
-- **First production build after merge copies the articles**, uploading about 25 images to the Blob store. If that copy fails, the build fails and the live site stays on the previous version.
+- **First production build after merge copies the articles**, uploading about 25 images to the Blob store. If that copy fails, the build fails and the live site stays on the previous version. The preview build of this PR does the same copy into its own database branch, so the shared Blob store also holds a second, unused set of those images (a few MB); harmless.
 - **RoboStrategy is gone** from the blog (redirected to `/blog`), as agreed.
 - **Comments are open to the public** on Studio articles; nothing appears without approval.
 - **The saved copy only refreshes through the Studio** (or once a day). A change made directly in the database, outside the Studio, shows on the site after the daily refresh or the next publish. If the database is down when a page needs data it has never saved (for example the first visit to a `.md` copy after a publish), that page falls back to the Markdown articles until the database is back.
