@@ -10,6 +10,7 @@ export function Dialog({
   children,
   footer,
   wide,
+  extraClass,
   onSubmit,
 }: {
   open: boolean
@@ -18,6 +19,8 @@ export function Dialog({
   children: React.ReactNode
   footer?: React.ReactNode
   wide?: boolean
+  /** Extra class on the <dialog>, for dialogs with their own layout. */
+  extraClass?: string
   onSubmit?: () => void
 }) {
   const ref = useRef<HTMLDialogElement>(null)
@@ -45,7 +48,7 @@ export function Dialog({
   return (
     <dialog
       ref={ref}
-      className={`st-dialog${wide ? ' wide' : ''}`}
+      className={`st-dialog${wide ? ' wide' : ''}${extraClass ? ` ${extraClass}` : ''}`}
       onClose={onClose}
       onCancel={(event) => {
         event.preventDefault()

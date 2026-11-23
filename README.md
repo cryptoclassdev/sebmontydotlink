@@ -66,11 +66,58 @@ pnpm studio:generate           # after changing lib/studio/db/schema.ts: write a
 
 Newest first. One entry per pull request.
 
+### Studio editor: X posts and charts in articles
+
+- **Date:** 23 November 2026
+- **Pull request:** link added once the pull request is open, branch `studio/embeds-charts`.
+- **Status:** Draft, waiting for Seb to approve the screenshots (new on the site: X post cards and chart designs inside articles; new in the Studio: **+ X post** and **+ Chart**). Step 3 of the Studio plan. Next: the same Studio for validator.com.
+
+#### What changed
+1. **X posts in articles.** In the editor, **+ X post** takes a post's link (x.com or twitter.com). The Studio reads the post from X's public embed data (the data behind X's own embeds, no key) and saves a cleaned-up copy in the article: author, text with its links, up to 4 photos or a video or GIF, a link preview, and a quoted post. **Edit → Refresh from X** updates the copy. On the site the post is a card in the site's own style (name, handle, text, media, date, "View on X"), built from that copy: no X script runs, the card still shows if X is down or the post is later deleted, and a video loads only when the reader presses play. The cleaning code is adapted from the Breakpoint guide's X reader, copied into `lib/studio/xpost.ts` so the two can change independently.
+2. **Charts in articles.** **+ Chart** lists the 8 chart designs the site already draws (they came with the old Sanity article and had no way to be added until now): metric grid, stat strip, stacked bar, valuation bars, price timeline, premium to NAV, token comparison and source quote. A new chart opens filled with example data, with a form on the left and a live preview on the right made with the site's own components, laid out at article width. Lists (metrics, segments, rows, points) can be added, removed and reordered. A **JSON** tab shows the same data as JSON for pasting data from a script or an AI assistant. Each chart type is described once in `lib/studio/charts.ts`: its fields, example data and checks; the form, the publish checks and the editor's schema all come from it.
+3. **Publish checks** now also refuse an X post that was never loaded, and a chart with an empty required field, a non-number where a number belongs, the wrong number of items (exactly 4 for a metric grid, 3 for a stat strip), stacked-bar shares that don't add up to 100, a scale smaller than its largest value, or data still equal to the example. The block card in the editor shows the first problem.
+4. **Markdown copies** (`/blog/<slug>.md`, for AI agents): an X post becomes a quote with the author, date, text and a link to the post; a chart becomes its title, a table of its numbers, its caption and source.
+5. **Two layout fixes in the existing chart designs:** inside an article, the valuation bars showed list bullets and the stacked bar's legend was indented, because the article's list styles reached them.
+6. **Saved copy split:** the site's saved copy of Studio articles (from #37) is now one entry for the article list without bodies plus one entry per article body, instead of one entry with every body. Next.js does not cache entries over 2 MB, and the old single entry would have reached that as articles (and saved X posts) add up.
+7. The #37 entry below now says it is merged and checked live.
+
+No new packages and no database change.
+
+#### Why
+Seb asked for X post embeds and chart blocks in the Studio editor after #10. X's own embed script is heavy and tracks readers, so posts are saved and drawn by the site instead.
+
+#### Files touched
+- New: `lib/studio/xpost.ts`, `lib/studio/xpost-server.ts`, `lib/studio/charts.ts`, `components/studio/XPostDialog.tsx`, `components/studio/ChartEditor.tsx`, `components/blog/XPostEmbed.tsx`, `components/blog/XPostVideo.tsx`.
+- Changed: `components/studio/BodyEditor.tsx` (new toolbar buttons, block types and cards), `components/studio/Dialog.tsx` (extra class for the chart dialog), `app/studio/actions.ts` (`fetchXPostAction`), `app/studio/studio.css`, `components/blog/ArticleBody.tsx` (renders `xPost`), `app/globals.css` (X post card; list fix in two charts), `lib/studio/document.ts` (publish checks), `lib/studio/markdown.ts`, `lib/studio/public.ts` and `lib/blog/source.ts` (saved copy split), `docs/studio.md`, `AGENTS.md`, `README.md`.
+
+#### How to check it on the Vercel preview
+The preview has its own copy of the database, so nothing here reaches the live site. Sign in to `/studio` on the preview with your normal login.
+1. **+ New post** (or open a draft). **+ X post**, paste `https://x.com/solana/status/2122281304792125482`, press **Get post**: the card appears in the dialog. **Insert post**.
+2. **+ Chart** → **Metric grid**: the form and the preview open with example data. Change a number and watch the preview. Try the **JSON** tab. **Insert chart**.
+3. Fill the post's required fields and press **Publish** without changing the chart: it is refused with "It still has the example data". Change the chart's title, then publish.
+4. Open the article: the X post card (press play on the video) and the chart. On a phone, nothing scrolls sideways.
+5. Open `/blog/<slug>.md`: the post appears as a quote and the chart as a table.
+
+#### Checks run
+- `pnpm typecheck` and `pnpm build` pass with and without a database.
+- Browser test of a production build with a local Postgres: two X posts (one with a photo, one with a video) and all 8 chart types inserted from the editor; a non-X link gets a clear message; publishing was refused while one chart still had its example data and went through after editing it; the article page shows both X cards and all 8 charts; the video plays after pressing play; no sideways scrolling at 390 px and 768 px; the `.md` copy has the X post as a quote and the charts as tables; no console errors or failed requests.
+- The #37 tests (draft preview, publish, comments, scheduled posts, pages served from the saved copy with the database stopped) and the #10 Studio test still pass on this branch.
+
+#### Risks
+- **X's embed data is unofficial** (no key, no promise from X). If X changes it, inserting new posts fails with a message in the dialog; posts already saved in articles keep showing.
+- **Images and videos still come from X's servers** when someone reads the article, so X sees those file requests (no X script, and our address is not sent as the referrer). Videos load only when pressed. If X refuses a video, the card links to the post on X instead.
+- **The example-data check only catches untouched examples.** A chart with some example numbers left in passes, so check the numbers before publishing.
+- **The chart designs were made for one article** (the retired RoboStrategy post). Very long values can wrap; the preview shows that before publishing.
+- **First view of each article after a publish** reads its body from the database once (a small query), as the saved copy is now per article. If the database happened to be down at that moment, that one article would show an error page until it is back; articles already viewed keep being served from the saved copy (tested with the database stopped).
+
+#### Roll back
+Revert this PR's merge commit. The editor loses **+ X post** and **+ Chart**. Charts already in articles keep showing (the site drew them before this PR); X posts already in articles stop showing until the PR is back.
+
 ### The blog runs on the Studio: preview, comments, scheduled posts; Sanity removed
 
 - **Date:** 18 November 2026
 - **Pull request:** [#37](https://github.com/cryptoclassdev/sebmontydotlink/pull/37), branch `studio/blog-switch`.
-- **Status:** Ready for review (23 November 2026). Seb approved the screenshots of the new Discussion section and preview bar on 23 November 2026, and the Studio's Vercel setup is done: Neon database and public Blob store connected to Production and Preview, secrets set, production redeployed, admin account and first team member created on the live Studio. Step 2 of 3 (step 1 was #10). Next: X post embeds and chart blocks in the Studio editor, then the copy for validator.com.
+- **Status:** Merged on 23 November 2026 and checked on the live site the same day: the build copied the 3 articles into the live Studio with their images in the Blob store, `/blog` lists them (no RoboStrategy, whose link now goes to `/blog`), every article ends with the Discussion section, the homepage card, `/llms.txt` and the `.md` copies read from the Studio, and `/studio` shows the sign-in page. Seb approved the screenshots of the new Discussion section and preview bar on 23 November 2026, and the Studio's Vercel setup was done before the merge (Neon database and public Blob store for Production and Preview, secrets, admin account and team).
 
 #### What changed
 1. **The site reads articles from the Studio.** The blog list, article pages, category filter, search, the homepage's "Latest research" card, `/llms.txt` and the `/blog/<slug>.md` copies all come from the Studio's database (`lib/blog/source.ts`). Publishing, editing, unpublishing or scheduling in the Studio now changes the site within seconds, with no pull request.

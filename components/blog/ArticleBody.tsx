@@ -13,6 +13,7 @@ import { StackedBarFigure, type StackedBarFigureProps } from './StackedBarFigure
 import { StatStripFigure, type StatStripFigureProps } from './StatStripFigure'
 import { TokenComparisonFigure, type TokenComparisonFigureProps } from './TokenComparisonFigure'
 import { ValuationGrowthFigure, type ValuationGrowthFigureProps } from './ValuationGrowthFigure'
+import { XPostEmbed } from './XPostEmbed'
 import { YouTubeEmbed } from './YouTubeEmbed'
 
 const captionComponents: PortableTextComponents = {
@@ -70,6 +71,7 @@ export function ArticleBody({ prepared, disclosure }: { prepared: PreparedArticl
       tokenComparison: ({ value }) => <TokenComparisonFigure {...(value as unknown as TokenComparisonFigureProps)} />,
       valuationGrowth: ({ value }) => <ValuationGrowthFigure {...(value as unknown as ValuationGrowthFigureProps)} />,
       youtube: ({ value }) => <YouTubeEmbed value={value as PortableTextBlock} />,
+      xPost: ({ value }) => <XPostEmbed value={value as Parameters<typeof XPostEmbed>[0]['value']} />,
     },
     block: {
       h2: ({ children, value }) => {

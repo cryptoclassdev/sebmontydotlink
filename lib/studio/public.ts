@@ -124,7 +124,11 @@ async function approvedCounts(postIds: string[]) {
   return new Map(rows.map((row) => [row.postId, row.count]))
 }
 
-/** Published and scheduled posts with the time each goes live (cached; see the top of this file). */
+/**
+ * Published and scheduled posts with the time each goes live, without bodies (cached; see the top
+ * of this file). Bodies are cached one post at a time (readPostBody) so no cache entry grows with
+ * the number of articles: Next.js does not cache entries over 2 MB.
+ */
 const readPublishedPosts = cachedRead('posts', async (): Promise<Array<{ liveAt: string; post: Post }>> => {
   const [rows, lookup] = await Promise.all([
     getDb()
@@ -141,16 +145,27 @@ const readPublishedPosts = cachedRead('posts', async (): Promise<Array<{ liveAt:
     lookups(),
   ])
   const counts = await approvedCounts(rows.map((row) => row.id))
-  return rows.map((row) => ({
-    liveAt: (row.publishedAt as Date).toISOString(),
-    post: toPost(row, row.published as PostDocument, lookup, { status: 'published', commentCount: counts.get(row.id) }),
-  }))
+  return rows.map((row) => {
+    const { body: _body, ...card } = toPost(row, row.published as PostDocument, lookup, { status: 'published', commentCount: counts.get(row.id) })
+    return { liveAt: (row.publishedAt as Date).toISOString(), post: card }
+  })
 })
 
-/** Every live post, newest first, with bodies. */
+/** The published body of one post (cached per post). */
+const readPostBody = cachedRead('body', async (postId: string): Promise<Post['body']> => {
+  const [row] = await getDb().select({ published: schema.post.published }).from(schema.post).where(eq(schema.post.id, postId)).limit(1)
+  return row?.published ? (normalizeDocument(row.published).body as Post['body']) : []
+})
+
+/** Every live post, newest first, without bodies. */
 export async function getLiveStudioPosts(): Promise<Post[]> {
   const now = Date.now()
   return (await readPublishedPosts()).filter((entry) => Date.parse(entry.liveAt) <= now).map((entry) => entry.post)
+}
+
+/** A live post from getLiveStudioPosts() with its body. */
+export async function withStudioBody(card: Post): Promise<Post> {
+  return { ...card, body: await readPostBody(card._id) }
 }
 
 /** A Studio draft for preview, looked up by its draft slug (or its live slug). */
