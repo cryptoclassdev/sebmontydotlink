@@ -2,6 +2,8 @@
 // Body is Portable Text in the same block shapes components/blog/ArticleBody.tsx renders.
 import { z } from 'zod'
 
+import { CHART_SPECS, chartProblems, chartValues, isChartType } from './charts'
+
 export const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 export const WORDS_PER_MINUTE = 210
 export const COVER_POSITION_PATTERN = /^((left|right|center|top|bottom)( (left|right|center|top|bottom))?|\d{1,3}% \d{1,3}%)$/
@@ -180,6 +182,10 @@ export function publishProblems(doc: PostDocument, known: { categoryIds: string[
     }
     if (block._type === 'youtube' && !youtubeId(String(block.url || ''))) add('body', `${where}: that is not a YouTube link.`)
     if (block._type === 'code' && !String(block.code || '').trim()) add('body', `${where}: code block is empty.`)
+    if (block._type === 'xPost' && !(block.post as { id?: string } | undefined)?.id) add('body', `${where}: X post not loaded from X yet. Press Edit, then Get post.`)
+    if (isChartType(block._type)) {
+      for (const problem of chartProblems(block._type, chartValues(block))) add('body', `${where} (${CHART_SPECS[block._type].name}): ${problem}`)
+    }
   })
 
   return problems

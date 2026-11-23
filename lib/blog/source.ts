@@ -7,7 +7,7 @@ import type { Category, Post } from '@/lib/blog/types'
 import { FILE_ARTICLES, FILE_CATEGORIES, getFileArticleMarkdown } from '@/lib/publishing'
 import { isDatabaseConfigured } from '@/lib/studio/db'
 import { studioArticleMarkdown } from '@/lib/studio/markdown'
-import { getLiveStudioPosts, getStudioCategories, getStudioDraftPost } from '@/lib/studio/public'
+import { getLiveStudioPosts, getStudioCategories, getStudioDraftPost, withStudioBody } from '@/lib/studio/public'
 
 // The one place the public site reads articles from.
 // With the Studio's database connected, articles come from the Studio (docs/studio.md).
@@ -22,7 +22,10 @@ function byDateDesc(a: Post, b: Post) {
 
 const markdownPosts = () => FILE_ARTICLES.map((post) => ({ ...post, source: 'markdown' as const })).sort(byDateDesc)
 
-/** Every live article, newest first, with bodies. */
+/**
+ * Every live article, newest first. Studio articles come without their bodies (cards only);
+ * use getPost() for a full article.
+ */
 export const getAllPosts = cache(async (): Promise<Post[]> => {
   if (!isDatabaseConfigured()) return markdownPosts()
   try {
@@ -38,8 +41,20 @@ export async function getPostCards(): Promise<Post[]> {
   return (await getAllPosts()).map(({ body: _body, ...card }) => card)
 }
 
+/** One live article with its body, or null. */
 export async function getPost(slug: string): Promise<Post | null> {
-  return (await getAllPosts()).find((post) => post.slug === slug) ?? null
+  const card = (await getAllPosts()).find((post) => post.slug === slug)
+  if (!card) return null
+  if (card.source !== 'studio') return card
+  try {
+    return await withStudioBody(card)
+  } catch (error) {
+    // Database unreachable and this body not cached yet: use the Markdown copy if there is one.
+    // Otherwise rethrow, so an already-built page keeps being served instead of an empty article.
+    const fallback = markdownPosts().find((post) => post.slug === slug)
+    if (fallback) return fallback
+    throw error
+  }
 }
 
 /** A Studio draft, for signed-in editors previewing it (draft mode). */

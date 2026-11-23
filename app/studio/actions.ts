@@ -25,6 +25,7 @@ import {
 } from '@/lib/studio/posts'
 import { revalidatePublicPages } from '@/lib/studio/revalidate'
 import { requireAdmin, requireUser } from '@/lib/studio/session'
+import { fetchXPost } from '@/lib/studio/xpost-server'
 import { deleteAuthor, deleteCategory, saveAuthor, saveCategory } from '@/lib/studio/taxonomy'
 import { createTeamMember, removeTeamMember, resetPassword, setRole, userCount } from '@/lib/studio/users'
 
@@ -84,6 +85,14 @@ export async function restoreRevisionAction(postId: string, revisionId: string) 
   const result = await restoreRevision(postId, revisionId, user)
   revalidatePath('/studio/posts', 'layout')
   return result
+}
+
+// ---------------------------------------------------------------- X posts
+
+/** Reads an X post for the editor (the copy saved in the article). */
+export async function fetchXPostAction(url: string) {
+  await requireUser()
+  return fetchXPost(String(url || '').slice(0, 500))
 }
 
 // ---------------------------------------------------------------- media

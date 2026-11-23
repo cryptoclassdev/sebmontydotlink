@@ -17,12 +17,26 @@ import { EventListenerPlugin, NodePlugin } from '@portabletext/editor/plugins'
 import * as selectors from '@portabletext/editor/selectors'
 import { createContext, useContext, useEffect, useState } from 'react'
 
+import { CHART_SPECS, CHART_TYPES, chartExample, chartProblems, chartSummary, chartValues, isChartType, type ChartType, type FieldSpec } from '@/lib/studio/charts'
 import { estimatedReadTime, wordCount, youtubeId, type BodyBlock } from '@/lib/studio/document'
+import { xPostPlainText, type XPostSnapshot } from '@/lib/studio/xpost'
 
+import { ChartDialog, ChartPicker } from './ChartEditor'
 import { Dialog } from './Dialog'
 import { mediaToImage } from './ImageField'
 import { MediaPicker } from './MediaPicker'
 import type { UploadMode } from './upload'
+import { XPostDialog } from './XPostDialog'
+
+// Chart blocks keep every field the chart type defines (lib/studio/charts.ts); the editor drops
+// fields a block object does not declare.
+const fieldType = (field: FieldSpec) =>
+  field.kind === 'number' ? 'number' : field.kind === 'group' ? 'object' : field.kind === 'list' || field.kind === 'numbers' ? 'array' : 'string'
+const chartBlockObjects = CHART_TYPES.map((type) => ({
+  name: type,
+  title: CHART_SPECS[type].name,
+  fields: CHART_SPECS[type].fields.map((field) => ({ name: field.key, type: fieldType(field) })),
+}))
 
 // What the article body can contain. Must match components/blog/ArticleBody.tsx.
 const schemaDefinition = defineSchema({
@@ -67,6 +81,16 @@ const schemaDefinition = defineSchema({
         { name: 'language', type: 'string' },
       ],
     },
+    {
+      name: 'xPost',
+      title: 'X post',
+      fields: [
+        { name: 'url', type: 'string' },
+        { name: 'post', type: 'object' },
+        { name: 'fetchedAt', type: 'string' },
+      ],
+    },
+    ...(chartBlockObjects as Array<{ name: string; title: string; fields: Array<{ name: string; type: 'string' | 'number' | 'object' | 'array' }> }>),
   ],
   inlineObjects: [],
 })
@@ -122,6 +146,8 @@ const nodes = [
   defineBlockObject({ type: 'localImage', render: (props) => <BlockObjectCard {...props} /> }),
   defineBlockObject({ type: 'youtube', render: (props) => <BlockObjectCard {...props} /> }),
   defineBlockObject({ type: 'code', render: (props) => <BlockObjectCard {...props} /> }),
+  defineBlockObject({ type: 'xPost', render: (props) => <BlockObjectCard {...props} /> }),
+  ...CHART_TYPES.map((type) => defineBlockObject({ type, render: (props) => <BlockObjectCard {...props} /> })),
 ]
 
 function BlockObjectCard({ attributes, children, node, path, selected }: BlockObjectRenderProps) {
@@ -160,6 +186,36 @@ function BlockObjectCard({ attributes, children, node, path, selected }: BlockOb
           {!id && <div className="st-warn">Not a YouTube link</div>}
         </div>
       </>
+    )
+  } else if (value._type === 'xPost') {
+    kind = 'X post'
+    const post = value.post as XPostSnapshot | undefined
+    preview = (
+      <>
+        {post?.author.avatar ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={post.author.avatar} alt="" className="st-blockobj-avatar" referrerPolicy="no-referrer" />
+        ) : null}
+        <div className="st-blockobj-body">
+          <div className="st-kind">
+            {kind}
+            {post ? ` · ${post.author.name} @${post.author.handle}` : ''}
+          </div>
+          <div className="st-summary">{post ? xPostPlainText(post).slice(0, 200) || String(value.url || '') : String(value.url || '')}</div>
+          {!post && <div className="st-warn">Not loaded from X yet. Press Edit, then Get post.</div>}
+        </div>
+      </>
+    )
+  } else if (isChartType(value._type)) {
+    const type = value._type as ChartType
+    kind = `Chart · ${CHART_SPECS[type].name}`
+    const problems = chartProblems(type, chartValues(value))
+    preview = (
+      <div className="st-blockobj-body">
+        <div className="st-kind">{kind}</div>
+        <div className="st-summary">{chartSummary(type, value)}</div>
+        {problems.length > 0 && <div className="st-warn">{problems.length === 1 ? problems[0] : `${problems.length} things to fix before publishing`}</div>}
+      </div>
     )
   } else {
     kind = 'Code'
@@ -206,7 +262,7 @@ function BlockObjectCard({ attributes, children, node, path, selected }: BlockOb
 /** Stops toolbar buttons taking focus (and the text selection) away from the editor. */
 const keepFocus = (event: React.MouseEvent) => event.preventDefault()
 
-type Insert = 'image' | 'youtube' | 'code' | 'link' | null
+type Insert = 'image' | 'youtube' | 'code' | 'link' | 'xpost' | 'chart' | null
 
 function Toolbar({ onInsert }: { onInsert: (kind: Exclude<Insert, null>) => void }) {
   const editor = useEditor()
@@ -265,6 +321,12 @@ function Toolbar({ onInsert }: { onInsert: (kind: Exclude<Insert, null>) => void
       </button>
       <button type="button" className="st-tool" onMouseDown={keepFocus} onClick={() => onInsert('code')}>
         + Code
+      </button>
+      <button type="button" className="st-tool" onMouseDown={keepFocus} onClick={() => onInsert('xpost')}>
+        + X post
+      </button>
+      <button type="button" className="st-tool" onMouseDown={keepFocus} onClick={() => onInsert('chart')}>
+        + Chart
       </button>
       <span className="st-tool-sep" />
       <button type="button" className="st-tool" onMouseDown={keepFocus} title="Undo (Ctrl/⌘ Z)" aria-label="Undo" onClick={() => run({ type: 'history.undo' })}>
@@ -492,6 +554,8 @@ function Inserters({ insert, setInsert, uploadMode }: { insert: Insert; setInser
     node: Record<string, unknown>
   } | null>(null)
   const [creating, setCreating] = useState(false)
+  const [xPostEdit, setXPostEdit] = useState<{ path?: BlockObjectRenderProps['path']; node: Record<string, unknown> } | null>(null)
+  const [chartEdit, setChartEdit] = useState<{ path?: BlockObjectRenderProps['path']; type: ChartType; values: Record<string, unknown> } | null>(null)
 
   useEffect(() => {
     if (insert === 'youtube' || insert === 'code') {
@@ -499,15 +563,69 @@ function Inserters({ insert, setInsert, uploadMode }: { insert: Insert; setInser
       setCreating(true)
       setObjectEdit({ type: insert, node: insert === 'code' ? { language: 'Code' } : {} })
     }
+    if (insert === 'xpost') {
+      setInsert(null)
+      setCreating(true)
+      setXPostEdit({ node: {} })
+    }
   }, [insert, setInsert])
+
+  /** Insert a new block object, or replace the fields of an existing one (removing fields left empty). */
+  const saveObject = (path: BlockObjectRenderProps['path'] | undefined, type: string, props: Record<string, unknown>, previous: Record<string, unknown> = {}) => {
+    if (!path) {
+      editor.send({ type: 'insert.block object', blockObject: { name: type, value: props }, placement: 'auto' })
+    } else {
+      editor.send({ type: 'block.set', at: path, props })
+      const removed = Object.keys(previous).filter((key) => !key.startsWith('_') && !(key in props))
+      if (removed.length) editor.send({ type: 'block.unset', at: path, props: removed })
+    }
+    editor.send({ type: 'focus' })
+  }
 
   return (
     <EditObjectContext.Provider
       value={({ path, node }) => {
         setCreating(false)
+        if (node._type === 'xPost') return setXPostEdit({ path, node })
+        if (isChartType(String(node._type))) return setChartEdit({ path, type: node._type as ChartType, values: chartValues(node) })
         setObjectEdit({ type: node._type as 'youtube' | 'code' | 'localImage', path, node })
       }}
     >
+      <XPostDialog
+        edit={xPostEdit?.node ?? null}
+        creating={creating}
+        onClose={() => {
+          setXPostEdit(null)
+          setCreating(false)
+        }}
+        onSave={(value) => {
+          saveObject(xPostEdit?.path, 'xPost', value, xPostEdit?.node)
+          setXPostEdit(null)
+          setCreating(false)
+        }}
+      />
+      <ChartPicker
+        open={insert === 'chart'}
+        onClose={() => setInsert(null)}
+        onPick={(type) => {
+          setInsert(null)
+          setCreating(true)
+          setChartEdit({ type, values: chartExample(type) })
+        }}
+      />
+      <ChartDialog
+        edit={chartEdit}
+        creating={creating}
+        onClose={() => {
+          setChartEdit(null)
+          setCreating(false)
+        }}
+        onSave={(values) => {
+          if (chartEdit) saveObject(chartEdit.path, chartEdit.type, values, chartEdit.values)
+          setChartEdit(null)
+          setCreating(false)
+        }}
+      />
       <LinkDialog open={insert === 'link'} onClose={() => setInsert(null)} />
       <MediaPicker
         open={insert === 'image'}
