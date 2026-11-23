@@ -341,8 +341,8 @@ export const CHART_SPECS: Record<ChartType, ChartSpec> = {
         { position: 0, value: 34, date: 'Jun', label: '$34 first day' },
         { position: 0.25, value: 26, date: 'Jul' },
         { position: 0.5, value: 18, date: 'Aug', label: '$18 low', accent: 'low' },
-        { position: 0.75, value: 22, date: 'Sep' },
-        { position: 1, value: 24, date: 'Oct' },
+        { position: 0.75, value: 26, date: 'Sep' },
+        { position: 1, value: 30, date: 'Oct' },
       ],
       nav: [
         { position: 0, value: 20, date: 'Jun' },
