@@ -1,15 +1,15 @@
 // Serves the plain-Markdown copy of an article at /blog/<slug>.md (rewrite in next.config.mjs).
-import { FILE_ARTICLES, getFileArticleMarkdown } from '@/lib/publishing'
+import { getAllPosts, getArticleMarkdown } from '@/lib/blog/source'
 
-export const dynamic = 'force-static'
+export const revalidate = 60
 
-export function generateStaticParams() {
-  return FILE_ARTICLES.map((post) => ({ slug: post.slug }))
+export async function generateStaticParams() {
+  return (await getAllPosts()).map((post) => ({ slug: post.slug }))
 }
 
 export async function GET(_request: Request, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const markdown = getFileArticleMarkdown(slug)
+  const markdown = await getArticleMarkdown(slug)
   if (!markdown) return new Response('Not found\n', { status: 404, headers: { 'Content-Type': 'text/plain; charset=utf-8' } })
   return new Response(markdown, {
     headers: {

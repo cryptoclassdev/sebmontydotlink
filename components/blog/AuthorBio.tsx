@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { urlFor } from '@/sanity/client'
-import type { Author } from '@/sanity/types'
+import type { Author } from '@/lib/blog/types'
 
 interface AuthorBioProps {
   author: Author
@@ -9,9 +8,7 @@ interface AuthorBioProps {
 }
 
 export function AuthorBio({ author, variant = 'default' }: AuthorBioProps) {
-  const imageUrl = author.image
-    ? urlFor(author.image).width(160).height(160).url()
-    : null
+  const imageUrl = author.imageUrl || null
 
   if (variant === 'compact') {
     return (

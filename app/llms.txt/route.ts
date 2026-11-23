@@ -1,18 +1,11 @@
 // /llms.txt: a plain-text map of the site for AI agents, with a Markdown link for every article.
-import { mergeBlogPosts, getPostPublishedAt } from '@/lib/blog/catalog'
-import { FILE_ARTICLES } from '@/lib/publishing'
-import { client } from '@/sanity/client'
-import { postsQuery } from '@/sanity/queries'
-import type { Post } from '@/sanity/types'
+import { getPostPublishedAt } from '@/lib/blog/catalog'
+import { getPostCards, SITE_URL } from '@/lib/blog/source'
 
 export const revalidate = 300
 
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sebmonty.link').replace(/\/$/, '')
-
 export async function GET() {
-  const sanityPosts = await client.fetch<Post[]>(postsQuery).catch(() => [])
-  const markdownSlugs = new Set(FILE_ARTICLES.map((post) => post.slug))
-  const posts = mergeBlogPosts(sanityPosts)
+  const posts = await getPostCards()
 
   const lines = [
     '# Seb Montgomery',
@@ -25,7 +18,7 @@ export async function GET() {
     '',
     ...posts.map((post) => {
       const date = getPostPublishedAt(post).slice(0, 10)
-      const url = markdownSlugs.has(post.slug) ? `${SITE_URL}/blog/${post.slug}.md` : `${SITE_URL}/blog/${post.slug}`
+      const url = `${SITE_URL}/blog/${post.slug}.md`
       const summary = post.excerpt || post.subtitle
       return `- [${post.title}](${url}) (${date})${summary ? `: ${summary}` : ''}`
     }),

@@ -1,14 +1,17 @@
 import type { Metadata } from 'next'
 
 import { SearchClient } from '@/components/blog/SearchClient'
-import { PERMANENT_BLOG_CATEGORIES } from '@/lib/blog/categories'
-import { getFileArticleCards } from '@/lib/publishing'
+import { getCategories, getPostCards } from '@/lib/blog/source'
 
 export const metadata: Metadata = {
   title: 'Search the blog',
   description: 'Search published titles and article text.',
 }
 
-export default function SearchPage() {
-  return <SearchClient localPosts={getFileArticleCards()} permanentCategories={PERMANENT_BLOG_CATEGORIES} />
+export const revalidate = 60
+
+export default async function SearchPage() {
+  const posts = await getPostCards()
+  const categories = await getCategories(posts)
+  return <SearchClient posts={posts} categories={categories} />
 }

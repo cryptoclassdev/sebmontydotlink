@@ -1,4 +1,6 @@
-# Publishing an article
+# Publishing an article (old Markdown method)
+
+> **Retired.** Articles are now written and published in the Studio at `/studio`; see [studio.md](studio.md). The Markdown files in `content/articles/` were copied into the Studio once, and the site only reads them when the Studio's database isn't connected. Don't add new articles here.
 
 Articles are Markdown files in this repo. The site turns each file into a blog page, a blog card, a search result, and a plain-text copy that AI agents can read. Publishing means opening a pull request with the file and its images; the article goes live when a reviewer merges it.
 

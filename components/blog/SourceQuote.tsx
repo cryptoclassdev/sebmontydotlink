@@ -1,6 +1,6 @@
 import { ExternalLink, Quote } from 'lucide-react'
 
-import type { PortableTextBlock } from '@/sanity/types'
+import type { PortableTextBlock } from '@/lib/blog/types'
 
 type SourceQuoteProps = Pick<
   PortableTextBlock,

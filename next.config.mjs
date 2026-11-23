@@ -46,17 +46,28 @@ export default function nextConfig(phase) {
 
   return {
     poweredByHeader: false,
+    env: {
+      // Changes on every build, so the Studio's public data cache (lib/studio/public.ts)
+      // never serves entries saved by an earlier build (Vercel restores .next/cache).
+      STUDIO_BUILD_STAMP: String(Date.now()),
+    },
     turbopack: {
       root: projectRoot,
     },
     images: {
       remotePatterns: [
+        // Images uploaded in the Studio (Vercel Blob)
         {
           protocol: 'https',
-          hostname: 'cdn.sanity.io',
-          pathname: '/images/**',
+          hostname: '*.public.blob.vercel-storage.com',
         },
       ],
+    },
+    async redirects() {
+      return [
+        // The RoboStrategy post (from Sanity) was retired when the blog moved to the Studio
+        { source: '/blog/robostrategy-bot-solana', destination: '/blog', permanent: true },
+      ]
     },
     async rewrites() {
       return {

@@ -1,10 +1,12 @@
-// TypeScript types for Sanity documents
+// Shared blog types. Posts come from the Studio's database (lib/blog/source.ts), or from the
+// Markdown files in content/articles/ when the Studio isn't connected.
 
 export interface Author {
   _id: string
   name: string
   slug: string
-  image?: SanityImage
+  /** Photo URL (a site path or an https URL). */
+  imageUrl?: string
   bio?: string
   xHandle?: string
 }
@@ -25,7 +27,6 @@ export interface Post {
   subtitle?: string
   slug: string
   excerpt?: string
-  mainImage?: SanityImage
   author?: Author
   category?: Category
   categories?: string[]
@@ -37,10 +38,19 @@ export interface Post {
   body?: PortableTextBlock[]
   localMainImage?: LocalArticleImage
   hideEyebrowRules?: boolean
-  /** Markdown articles only: a closing note shown under the article, above Sources. */
+  /** A closing note shown under the article, above Sources. */
   disclosure?: string
-  /** Markdown articles only: drafts appear on local and preview builds, never in production. */
+  /** 'draft' only while previewing a Studio draft (or a Markdown draft on local and preview builds). */
   status?: 'published' | 'draft'
+  /** Where the post came from. Comments are only offered on Studio posts. */
+  source?: 'studio' | 'markdown'
+  seo?: {
+    title?: string
+    description?: string
+    image?: LocalArticleImage
+    canonicalUrl?: string
+    noindex?: boolean
+  }
 }
 
 export interface LocalArticleImage {
@@ -51,44 +61,6 @@ export interface LocalArticleImage {
   caption?: string
   /** CSS object-position for cards that crop the cover, e.g. "left". */
   position?: string
-}
-
-export interface Comment {
-  _id: string
-  author: string
-  content: string
-  createdAt: string
-  likes: number
-  parentComment?: string
-}
-
-export interface SiteSettings {
-  publicationName: string
-  tagline?: string
-  description?: string
-  subscriberCount?: number
-  logo?: SanityImage
-  socialLinks?: {
-    twitter?: string
-    instagram?: string
-    youtube?: string
-  }
-}
-
-export interface SanityImage {
-  _type: 'image'
-  asset: {
-    _ref: string
-    _type: 'reference'
-  }
-  alt?: string
-  caption?: string
-  hotspot?: {
-    x: number
-    y: number
-    height: number
-    width: number
-  }
 }
 
 export interface PortableTextBlock {

@@ -206,6 +206,13 @@ export const comment = pgTable(
   ],
 )
 
+/** Small key/value notes the Studio keeps about itself (e.g. whether the Markdown articles were imported). */
+export const meta = pgTable('studio_meta', {
+  key: text('key').primaryKey(),
+  value: jsonb('value').notNull(),
+  updatedAt: updatedAt(),
+})
+
 export type UserRow = typeof user.$inferSelect
 export type PostRow = typeof post.$inferSelect
 export type MediaRow = typeof media.$inferSelect
