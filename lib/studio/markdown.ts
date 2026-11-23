@@ -14,8 +14,9 @@ function absolute(url: string, siteUrl: string) {
   return url.startsWith('/') && !url.startsWith('//') ? `${siteUrl}${url}` : url
 }
 
+// "$" is left as is: it has no meaning in Markdown, and an escaped "\$29,937" reads badly to AI tools.
 function escapeText(text: string) {
-  return text.replace(/([\\`*_[\]$])/g, '\\$1')
+  return text.replace(/([\\`*_[\]])/g, '\\$1')
 }
 
 function cell(value: unknown) {

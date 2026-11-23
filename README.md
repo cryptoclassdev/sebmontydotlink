@@ -58,6 +58,7 @@ pnpm studio:generate           # after changing lib/studio/db/schema.ts: write a
 | Article components | `components/blog/` |
 | Site-wide colours, page width, header, footer, blog and article styles | `app/globals.css` |
 | Agent-readable copies | `/blog/<slug>.md` (`app/agent/articles/[slug]/route.ts`, Markdown made by `lib/studio/markdown.ts`), `/llms.txt` (`app/llms.txt/route.ts`) |
+| Search and AI readability (canonical links, share cards, structured data, robots, sitemap, feed, IndexNow) | `lib/seo.ts`, `lib/og.tsx`, `components/seo/`, `app/robots.txt/route.ts`, `app/sitemap.ts`, `app/blog/rss.xml/route.ts`, `app/og/`, `lib/indexnow.ts`; how it works and the per-article checklist: [docs/seo.md](docs/seo.md) |
 | Draft preview and reader comments | `app/api/studio/preview/`, `components/blog/PreviewBanner.tsx`; `components/blog/ArticleComments.tsx`, `components/blog/CommentForm.tsx` |
 | Breakpoint London 2026 guide (`/breakpoint`) | Source, data, tests and collector in `breakpoint/` (see `breakpoint/README.md`); built page in `public/breakpoint/`; API in `app/breakpoint/api/[...path]/route.ts` |
 | Studio (article dashboard) | Pages `app/studio/`, components `components/studio/`, logic and database schema `lib/studio/`, API `app/api/studio/`, migrations `drizzle/`, scripts `scripts/studio/`, login gate `proxy.ts` |
@@ -66,11 +67,123 @@ pnpm studio:generate           # after changing lib/studio/db/schema.ts: write a
 
 Newest first. One entry per pull request.
 
+### Search and AI readability: sitemap, robots, RSS, share cards, structured data
+
+- **Date:** 23 November 2026
+- **Pull request:** branch `seo/ai-search-upgrade` (PR number added in the next commit).
+- **Status:** Draft, waiting for Seb to approve the screenshots of the share cards, the homepage bio line and the "Updated" date. Plan: "sebmonty.link SEO and AI-search plan" (23 November 2026), approved by Seb the same day with all five recommended decisions.
+
+#### What changed
+1. **The site can be found.** New `/robots.txt` lets every crawler read the public site and keeps out `/api/`, `/studio`, `/agent/` and `/breakpoint/api/`. It also says AI tools may search, quote and learn from the site (`Content-Signal: search=yes, ai-input=yes, ai-train=yes`) and points to the new `/sitemap.xml`. The sitemap lists Home, Blog, every live article (with its Updated date), Skill Files and Breakpoint, and builds itself from the Studio, so new articles appear on their own. New `/blog/rss.xml` is an RSS feed of the 20 newest articles. Before this, robots, sitemap and feed all returned 404.
+2. **Every page has its own canonical link and full share tags.** Home, Blog, Skill Files and Search had no canonical, no share image and a small card.
+    - They now get a canonical, `og:url`, a 1200 x 630 share card and X's large card, through `pageMetadata()` in the new `lib/seo.ts`.
+    - Their descriptions run 140 to 155 characters, up from 74 to 76.
+    - The root layout sets defaults but deliberately no canonical, so no page claims to be the homepage.
+    - `next.config.mjs` now always puts the title, description and canonical in `<head>`, including for AI crawlers on `/blog`, which renders per request.
+3. **Share cards that don't crop.**
+    - New `/og/site` card: name, tagline and avatar.
+    - New `/og/blog/<slug>` card per article: its cover across the top, untouched, with the headline, category, date and "sebmonty.link" on a cream strip below.
+    - Drawn with Next.js's built-in `next/og` in the site's font. No new packages.
+    - Before, the 2400 x 960 banners were cropped by X and LinkedIn. A share image set in the Studio's SEO tab still takes priority.
+4. **Structured data (JSON-LD).**
+    - Every page: Person (Seb, with his X, YouTube, LinkedIn and Telegram profiles and his validator.com and thecommunication.link roles) and WebSite.
+    - Every article: BlogPosting, with the Sources list as citations, plus breadcrumbs.
+    - When an article has 2 or more question headings, an FAQ is built from those headings and the paragraphs under them. Today that's Binance (4 questions) and Papertrade (3).
+    - Before, there was none.
+5. **Article pages.**
+    - The title in search results and browser tabs drops " | Seb Montgomery", so it fits the roughly 60 characters Google shows.
+    - The byline shows "Updated 20 November 2026" (for example) when the Studio's Updated date is later than the publish date.
+    - The "#" link next to each heading is now drawn by CSS. It looks and works the same on hover, but heading text no longer starts with "#" for search engines and AI tools.
+    - The closing block, author box, comments and related posts sit after the `<article>` element rather than inside it. They look the same.
+6. **Homepage bio line** under the hero, as approved: "Seb Montgomery writes independent research on crypto, Solana and AI. He co-founded validator.com and runs thecommunication.link, a content and branding consultancy." The same sentence opens `/llms.txt`.
+7. **Files for AI tools.**
+    - `/llms.txt` gains an About section (bio and profile links), each article's Updated date, and links to the feed and sitemap.
+    - The `.md` copies stop writing `\$` before every dollar figure (Papertrade's copy had 80).
+    - `.md` copies replace their `noindex` header with a canonical link to the article page.
+8. **Instant notice to Bing (IndexNow)** after a Studio publish or unpublish: the article URL, `/blog` and `/`.
+    - Production only, sent after the Studio's response, so it never slows it down.
+    - Scheduled posts aren't pinged, because their address is a 404 until they go live; the sitemap lists them once live.
+    - The key file is `/bbb991b7e857dbb153321542a98303af.txt`, public by design.
+9. **Vercel Web Analytics** is mounted (`@vercel/analytics` was installed but never added). It starts counting once Web Analytics is turned on in the Vercel project.
+10. **Smaller fixes.**
+    - `/blog/search` is now `noindex, follow`, and its description no longer claims it searches article text.
+    - `/blog/category/<slug>` redirects permanently (308) instead of temporarily (307).
+    - `/blog?category=...` keeps `/blog` as its canonical.
+11. **New `docs/seo.md`**: how all of this works, and the checklist for every new article. The #38 entry below now says it is merged.
+
+No new packages and no database change.
+
+#### Why
+Seb asked (23 November 2026) for every article, page and piece of content on sebmonty.link to be easy for search engines and AI assistants to find and read. The audit scored the site 49/100:
+
+- No sitemap, robots file or feed.
+- No structured data, and thin metadata off the article pages.
+- Cropped share cards.
+- None of the three articles appeared in search for its own title.
+
+The articles themselves already had dated figures, question headings and linked sources, so the work was plumbing.
+
+#### Files touched
+- New:
+    - `lib/seo.ts`, `lib/og.tsx`, `lib/indexnow.ts`, `lib/blog/structured-data.ts`
+    - `components/seo/SiteJsonLd.tsx`, `components/seo/ArticleJsonLd.tsx`
+    - `app/robots.txt/route.ts`, `app/sitemap.ts`, `app/blog/rss.xml/route.ts`, `app/og/site/route.tsx`, `app/og/blog/[slug]/route.tsx`
+    - `public/bbb991b7e857dbb153321542a98303af.txt`, `docs/seo.md`
+- Changed:
+    - `app/layout.tsx`, `app/page.tsx`, `app/blog/page.tsx`, `app/blog/[slug]/page.tsx`, `app/blog/search/page.tsx`, `app/blog/category/[slug]/page.tsx`, `app/skill-files/page.tsx`
+    - `app/llms.txt/route.ts`, `app/agent/articles/[slug]/route.ts`
+    - `components/blog/ArticleBody.tsx`, `components/bento-grid.tsx`
+    - `app/globals.css`, `components/link-tree.module.css`
+    - `lib/blog/source.ts` (takes `SITE_URL` from `lib/seo.ts`), `lib/studio/markdown.ts`, `lib/studio/posts.ts` (IndexNow), `lib/studio/revalidate.ts` (also refreshes the sitemap, feed and share cards)
+    - `next.config.mjs`, `AGENTS.md`, `README.md`
+
+#### How to check it on the Vercel preview
+The preview has its own copy of the database, so its articles are the live ones. Addresses on the preview still name `https://www.sebmonty.link`, because that is the canonical host.
+1. Open `/robots.txt`, `/sitemap.xml` (7 addresses), `/blog/rss.xml` (3 articles) and `/llms.txt` (About section at the top).
+2. Open `/og/site` and `/og/blog/papertrade-saga?v=1`: the two share cards.
+3. Homepage: the bio line under "Clear, warm research from the friend who already read the whitepaper."
+4. Open an article and hover a heading: the "#" still appears. The page bottom (Keep reading, author box, comments, More from the blog) looks as before.
+5. Open `/blog/papertrade-saga.md`: dollar figures read `$29,937`, not `\$29,937`.
+6. Signed in to `/studio` on the preview, publish and unpublish a draft: both still work. The IndexNow ping only runs in production.
+7. Optional: copy an article's page source and paste it into Google's [Rich Results Test](https://search.google.com/test/rich-results) using the Code tab (the preview sits behind Vercel login). Expect Article and Breadcrumb with no errors.
+
+#### Steps outside the code (Seb)
+- **Vercel → Domains:** set `sebmonty.link` to redirect to `www.sebmonty.link` with **308 Permanent** (it is 307, temporary, today).
+- **Vercel → Analytics:** turn on Web Analytics for the project.
+- **Google Search Console and Bing Webmaster Tools:** verify the domain now. After this PR is live, submit `/sitemap.xml` and request indexing for the homepage, `/blog` and the three articles.
+- **Studio → each article → SEO tab:** the new search titles and 140 to 155 character descriptions from the plan, then Publish.
+
+#### Checks run
+- `pnpm typecheck` passes.
+- `pnpm build` passes without a database.
+- Against `pnpm start`, fetched as GPTBot, Home, Blog, Skill Files, Search and the three articles each have, before `</head>`:
+    - their own title and description
+    - a canonical on `https://www.sebmonty.link`, and a matching `og:url`
+    - a 1200 x 630 `og:image` and X's large card
+    - the RSS link, and on articles the Markdown link
+- JSON-LD parses on every page with the types listed above. FAQ appears on Binance and Papertrade only. Binance cites 56 sources, Papertrade 20, Meteora 9. Article headings carry no "#".
+- `robots.txt`, `sitemap.xml` and the RSS feed (valid XML) are correct. The `.md` copy sends the canonical link. A made-up article and a made-up share card return 404. `/studio/login` still works and stays `noindex`.
+- The Studio's Markdown generator, FAQ builder and citation builder were run on a test article: "$" no longer escaped, "*" still escaped, `updated:` in the front matter, FAQ answers stop at pictures.
+- Screenshots at 1440 and 390 px: homepage hero, article byline with an Updated date (set on a local copy only, not committed), heading hover and article ending. No sideways scrolling. The only console error is Vercel Analytics' script, which exists only on Vercel.
+- Not run: a build with a database. This session couldn't install the local Postgres stand-in used before. The Studio code this PR touches (the publish and unpublish functions, and the refresh list) is type-checked; check 6 above runs it on the preview's own database.
+
+#### Risks
+- **Fontshare:** share cards load General Sans from Fontshare when drawn. If Fontshare is unreachable, that card uses the plain built-in font. The site card is drawn at build time; article cards are redrawn on publish.
+- **Old cards cached elsewhere:** X and LinkedIn keep the card they saw for links already posted. New posts get the new cards.
+- **AI training permission:** `ai-train=yes` states permission for AI training (Seb's decision). To withdraw it, change the line in `app/robots.txt/route.ts`.
+- **Shorter tab titles:** article titles in search results and browser tabs no longer end with " | Seb Montgomery".
+- **FAQ quality** depends on writing: an FAQ answer is the paragraph under a question heading, so a heading whose first paragraph doesn't answer it gives a weak FAQ entry (see the checklist in `docs/seo.md`).
+- **Analytics script:** until Web Analytics is on in Vercel, its script returns 404 (one console error, readers see nothing). Vercel Web Analytics uses no cookies.
+- **Search Console notices:** Google may list the `.md` copies as "Alternate page with proper canonical tag". That's expected.
+
+#### Roll back
+Revert this PR's merge commit. Nothing in the database changes. `robots.txt`, the sitemap, feed, share cards and structured data disappear again, and the Studio stops pinging IndexNow.
+
 ### Studio editor: X posts and charts in articles
 
 - **Date:** 23 November 2026
 - **Pull request:** [#38](https://github.com/cryptoclassdev/sebmontydotlink/pull/38), branch `studio/embeds-charts`.
-- **Status:** Ready for review (23 November 2026). Seb approved the screenshots of the X post cards, the chart designs in articles and the new **+ X post** and **+ Chart** dialogs on 23 November 2026. Step 3 of the Studio plan. Next: the same Studio for validator.com.
+- **Status:** Merged on 23 November 2026 (12:54 UTC). Checked on the live site the same day: `/blog` and the three articles load, and their `.md` copies come from the Studio (images linked from the Blob store). No live article has an X post or chart yet, so those weren't seen live. Seb approved the screenshots of the X post cards, the chart designs in articles and the new **+ X post** and **+ Chart** dialogs on 23 November 2026. Step 3 of the Studio plan. Next: the same Studio for validator.com.
 
 #### What changed
 1. **X posts in articles.** In the editor, **+ X post** takes a post's link (x.com or twitter.com). The Studio reads the post from X's public embed data (the data behind X's own embeds, no key) and saves a cleaned-up copy in the article: author, text with its links, up to 4 photos or a video or GIF, a link preview, and a quoted post. **Edit → Refresh from X** updates the copy. On the site the post is a card in the site's own style (name, handle, text, media, date, "View on X"), built from that copy: no X script runs, the card still shows if X is down or the post is later deleted, and a video loads only when the reader presses play. The cleaning code is adapted from the Breakpoint guide's X reader, copied into `lib/studio/xpost.ts` so the two can change independently.

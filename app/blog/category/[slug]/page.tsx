@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { redirect } from 'next/navigation'
+import { permanentRedirect } from 'next/navigation'
 
 import { getCategories } from '@/lib/blog/source'
 
@@ -23,5 +23,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CategoryPage({ params }: Props) {
   const { slug } = await params
-  redirect(`/blog?category=${encodeURIComponent(slug)}`)
+  permanentRedirect(`/blog?category=${encodeURIComponent(slug)}`)
 }

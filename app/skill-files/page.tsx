@@ -1,15 +1,16 @@
-import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, ArrowUpRight, FolderOpen } from "lucide-react"
 import styles from "@/components/link-hub.module.css"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/skill-files",
   title: "Skill Files",
-  description: "Agent skills for crypto, research, and practical work from Seb Montgomery.",
-}
+  description: "Free agent skill files from Seb Montgomery for crypto research and Solana DeFi, starting with a Meteora DLMM liquidity skill for Claude and other agents.",
+})
 
 const skillFiles = [
   {

@@ -18,8 +18,11 @@ export function revalidatePublicPages(slugs: Array<string | null | undefined> = 
   revalidatePath('/')
   revalidatePath('/blog', 'layout')
   revalidatePath('/llms.txt')
+  revalidatePath('/sitemap.xml')
+  revalidatePath('/blog/rss.xml')
   for (const slug of new Set(slugs.filter(Boolean) as string[])) {
     revalidatePath(`/blog/${slug}`)
     revalidatePath(`/agent/articles/${slug}`)
+    revalidatePath(`/og/blog/${slug}`)
   }
 }

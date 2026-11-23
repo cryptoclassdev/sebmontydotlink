@@ -158,6 +158,11 @@ export function BentoGrid({ latestPost }: BentoGridProps = {}) {
                 <p className={styles.heroLede}>
                   Clear, warm research from the friend who already read the whitepaper.
                 </p>
+                {/* Plain answer to "who is Seb Montgomery" for readers, search engines and AI tools (same sentence in /llms.txt). */}
+                <p className={styles.heroBio}>
+                  Seb Montgomery writes independent research on crypto, Solana and AI. He co-founded validator.com and runs
+                  thecommunication.link, a content and branding consultancy.
+                </p>
                 <Link href="/blog" className={styles.primaryAction}>
                   Read my research <ArrowRight aria-hidden="true" />
                 </Link>

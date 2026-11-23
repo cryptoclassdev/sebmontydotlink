@@ -1,15 +1,17 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Search } from 'lucide-react'
 
 import { CategoryNav, FeaturedPost, PostCard } from '@/components/blog'
 import { filterBlogPosts } from '@/lib/blog/catalog'
 import { getCategories, getPostCards } from '@/lib/blog/source'
+import { pageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+// /blog?category=... keeps /blog as its canonical, so filtered views don't compete with it.
+export const metadata = pageMetadata({
+  path: '/blog',
   title: 'Blog',
-  description: 'Independent research on crypto, markets, and the products reshaping finance.',
-}
+  description: 'Long-form research on crypto markets, exchanges, DeFi and Solana by Seb Montgomery, with dated figures and a linked Sources list in every article.',
+})
 
 export const revalidate = 60
 

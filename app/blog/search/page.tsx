@@ -1,12 +1,14 @@
-import type { Metadata } from 'next'
-
 import { SearchClient } from '@/components/blog/SearchClient'
 import { getCategories, getPostCards } from '@/lib/blog/source'
+import { pageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+// Kept out of search results (it has no content of its own), but crawlers follow its links.
+export const metadata = pageMetadata({
+  path: '/blog/search',
   title: 'Search the blog',
-  description: 'Search published titles and article text.',
-}
+  description: 'Search article titles, summaries, categories and authors on the blog.',
+  robots: { index: false, follow: true },
+})
 
 export const revalidate = 60
 

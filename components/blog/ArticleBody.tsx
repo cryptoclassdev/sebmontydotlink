@@ -77,17 +77,17 @@ export function ArticleBody({ prepared, disclosure }: { prepared: PreparedArticl
       h2: ({ children, value }) => {
         const block = value as unknown as import('@/lib/blog/types').PortableTextBlock
         const id = headingId(portableTextBlockText(block))
-        return <h2 id={id}><a className="article-heading-anchor" href={`#${id}`} aria-label={`Link to ${portableTextBlockText(block)}`}>#</a>{children}</h2>
+        return <h2 id={id}><a className="article-heading-anchor" href={`#${id}`} aria-label={`Link to ${portableTextBlockText(block)}`} />{children}</h2>
       },
       h3: ({ children, value }) => {
         const block = value as unknown as import('@/lib/blog/types').PortableTextBlock
         const id = headingId(portableTextBlockText(block))
-        return <h3 id={id}><a className="article-heading-anchor" href={`#${id}`} aria-label={`Link to ${portableTextBlockText(block)}`}>#</a>{children}</h3>
+        return <h3 id={id}><a className="article-heading-anchor" href={`#${id}`} aria-label={`Link to ${portableTextBlockText(block)}`} />{children}</h3>
       },
       h4: ({ children, value }) => {
         const block = value as unknown as import('@/lib/blog/types').PortableTextBlock
         const id = headingId(portableTextBlockText(block))
-        return <h4 id={id}><a className="article-heading-anchor" href={`#${id}`} aria-label={`Link to ${portableTextBlockText(block)}`}>#</a>{children}</h4>
+        return <h4 id={id}><a className="article-heading-anchor" href={`#${id}`} aria-label={`Link to ${portableTextBlockText(block)}`} />{children}</h4>
       },
       blockquote: ({ children }) => <blockquote>{children}</blockquote>,
       normal: ({ children }) => <p>{children}</p>,

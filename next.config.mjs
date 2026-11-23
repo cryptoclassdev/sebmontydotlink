@@ -46,6 +46,10 @@ export default function nextConfig(phase) {
 
   return {
     poweredByHeader: false,
+    // Send every page's title, description and canonical in <head> for every visitor,
+    // including AI crawlers (GPTBot, ClaudeBot, PerplexityBot) that Next.js would otherwise
+    // get streamed metadata in <body> on pages rendered per request, such as /blog.
+    htmlLimitedBots: /.*/,
     env: {
       // Changes on every build, so the Studio's public data cache (lib/studio/public.ts)
       // never serves entries saved by an earlier build (Vercel restores .next/cache).

@@ -18,6 +18,10 @@ Articles are written and published in the Studio at `/studio` (see `docs/studio.
 
 The old Markdown publisher (`content/articles/*.md`, `lib/publishing/`, `docs/publishing.md`) is now only the source for the one-time import into the Studio and the fallback the site shows when the Studio database isn't connected (local work without `DATABASE_URL`). Don't add new articles there. Sanity has been removed; the retired RoboStrategy post redirects to `/blog`.
 
+## Search and AI readability
+
+Read `docs/seo.md` first. Every page's metadata goes through `pageMetadata()` in `lib/seo.ts` (own canonical, full Open Graph and X card, RSS link); never put a canonical in the root layout. Structured data: `components/seo/SiteJsonLd.tsx` (Person, WebSite on every page) and `components/seo/ArticleJsonLd.tsx` (BlogPosting, BreadcrumbList, FAQPage from question headings). `/robots.txt`, `/sitemap.xml`, `/blog/rss.xml`, `/llms.txt` and the share cards (`app/og/`, drawn in `lib/og.tsx`) build themselves from the Studio; anything new that changes what they show must be refreshed in `revalidatePublicPages()`. Studio publishes ping IndexNow in production (`lib/indexnow.ts`).
+
 ## Studio (/studio)
 
 The site's own password-gated article dashboard (replacing Sanity). Read `docs/studio.md` first. Code: `app/studio/` (pages and server actions), `components/studio/`, `lib/studio/` (database schema `lib/studio/db/schema.ts`, sign-in `auth.ts`, data functions, `public.ts` for what the site reads), `app/api/studio/`, `scripts/studio/`, migrations `drizzle/`, login gate `proxy.ts`. Postgres via Drizzle, sign-in via Better Auth (email and password, no sign-up), images in Vercel Blob, article bodies in Portable Text edited with `@portabletext/editor` in the block shapes `components/blog/ArticleBody.tsx` renders. Every Studio page and server action must call `requireUser()` (or `requireAdmin()`). After a schema change run `pnpm studio:generate` and commit the migration.
