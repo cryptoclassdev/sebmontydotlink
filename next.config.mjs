@@ -46,6 +46,11 @@ export default function nextConfig(phase) {
 
   return {
     poweredByHeader: false,
+    env: {
+      // Changes on every build, so the Studio's public data cache (lib/studio/public.ts)
+      // never serves entries saved by an earlier build (Vercel restores .next/cache).
+      STUDIO_BUILD_STAMP: String(Date.now()),
+    },
     turbopack: {
       root: projectRoot,
     },

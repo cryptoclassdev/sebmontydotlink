@@ -14,7 +14,7 @@ Every change ships as a pull request against `main`; never push to `main` and ne
 
 ## Articles (Studio)
 
-Articles are written and published in the Studio at `/studio` (see `docs/studio.md`), not by pull request. The public site reads them only through `lib/blog/source.ts` (Studio database via `lib/studio/public.ts`; Portable Text bodies rendered by `components/blog/ArticleBody.tsx`). Each article is also served as Markdown at `/blog/<slug>.md` (`lib/studio/markdown.ts`) and listed in `/llms.txt`. Draft preview uses Next.js draft mode (`app/api/studio/preview/`), and reader comments are moderated in the Studio.
+Articles are written and published in the Studio at `/studio` (see `docs/studio.md`), not by pull request. The public site reads them only through `lib/blog/source.ts` (Studio database via `lib/studio/public.ts`; Portable Text bodies rendered by `components/blog/ArticleBody.tsx`). Each article is also served as Markdown at `/blog/<slug>.md` (`lib/studio/markdown.ts`) and listed in `/llms.txt`. Draft preview uses Next.js draft mode (`app/api/studio/preview/`), and reader comments are moderated in the Studio. Public reads go through a cache tagged `studio-public` so the database can sleep between edits: any code that changes what the public site shows must call `revalidatePublicPages()` (`lib/studio/revalidate.ts`).
 
 The old Markdown publisher (`content/articles/*.md`, `lib/publishing/`, `docs/publishing.md`) is now only the source for the one-time import into the Studio and the fallback the site shows when the Studio database isn't connected (local work without `DATABASE_URL`). Don't add new articles there. Sanity has been removed; the retired RoboStrategy post redirects to `/blog`.
 
@@ -69,7 +69,7 @@ Required env vars (see `.env.example`):
 ### Blog data
 - `lib/blog/source.ts` — the only place pages read articles, categories, related posts and Markdown copies
 - `lib/blog/types.ts` — shared `Post`, `Author`, `Category` and Portable Text types
-- `lib/studio/public.ts` — Studio queries for live posts, draft previews and approved comments
+- `lib/studio/public.ts`: Studio queries for live posts, draft previews and approved comments (cached; see docs/studio.md)
 
 ### Design system (defined in `app/globals.css`)
 

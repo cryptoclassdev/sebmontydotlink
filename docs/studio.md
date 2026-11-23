@@ -19,11 +19,14 @@ Everything lives in this repo and in this project's own database and file store.
 
 Each post keeps two copies: the **draft** (what the Studio edits, saved automatically) and the **published** snapshot (what the site will show). They only differ while there are unpublished changes, so editing a live article never changes the site until someone presses **Publish changes**.
 
+**How the site reads it.** Public pages refresh every minute but read the database only through a saved copy (`lib/studio/public.ts`, cache tag `studio-public`). `revalidatePublicPages()` in `lib/studio/revalidate.ts` replaces it whenever something public changes (publish, unpublish, comment moderation or deletion, category or author edits), and it also refreshes once a day. Scheduled posts sit in the copy with their go-live time and are filtered on every render, so they appear on time without a database read. The database therefore sleeps between edits, which keeps it well inside Neon's free compute hours. Any new code that changes what the public site shows must call `revalidatePublicPages()`.
+
 ## One-time setup on Vercel
 
 Do these on the Vercel project for sebmonty.link (team `webdesign-sebmonty`). A team owner needs to do steps 1 and 2.
 
-1. **Database.** Storage → Connect database → Neon (Marketplace) → create a database for this project and connect it to **Production and Preview** (tick "Create a branch for each preview" if offered, so previews never touch live data). This adds `DATABASE_URL` and `DATABASE_URL_UNPOOLED`.
+1. **Database.** Storage → Create Database → Neon. Region: the one matching Settings → Functions → Function Region (Washington, D.C. by default). Turn **Auth off** (the Studio has its own logins) and leave Realtime off; the Free plan is enough. On **Connect to Project**: environments **Production and Preview**, tick **Preview** under "Create database branch for deployment" (so previews never touch live data), and leave **Custom Prefix** empty. This adds `DATABASE_URL` and `DATABASE_URL_UNPOOLED`.
+   On the Free plan (10 database branches), also turn on GitHub → Settings → General → **Automatically delete head branches**, and set Vercel → Settings → Build and Deployment → **Deployment Retention Policy** → Pre-Production to 7 days. A preview's database branch is deleted with its last preview deployment, so this clears them after their PRs merge.
 2. **File store.** Storage → Create → Blob → connect it to Production and Preview. This adds `BLOB_READ_WRITE_TOKEN`.
 3. **Secrets.** Settings → Environment Variables, for Production and Preview:
    - `BETTER_AUTH_SECRET`: a long random value (`openssl rand -hex 32`). Changing it later signs everyone out.

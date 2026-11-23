@@ -1,15 +1,31 @@
 import 'server-only'
 
-import { and, asc, desc, eq, inArray, isNotNull, lte, or, sql } from 'drizzle-orm'
+import { and, asc, desc, eq, inArray, isNotNull, or, sql } from 'drizzle-orm'
+import { unstable_cache } from 'next/cache'
 
 import type { Author, Category, Post } from '@/lib/blog/types'
 
 import { getDb, schema } from './db'
 import { estimatedReadTime, normalizeDocument, type PostDocument } from './document'
+import { PUBLIC_DATA_TAG } from './revalidate'
 
 // What the public site reads from the Studio: published posts as the blog's Post type.
 // A post is live when it has a published snapshot whose date has arrived
 // (so scheduled posts appear on their own once their time comes).
+//
+// Public pages re-render every minute, but they read the database only through the
+// cache below. It is refreshed when something public changes (revalidatePublicPages:
+// publish, unpublish, comment moderation, category or author edits) and once a day.
+// So the database can sleep between edits (Neon's free plan counts the hours it is awake).
+// Scheduled posts are in the cached list with their go-live time and are filtered on
+// every render, so they still appear on time without a database read.
+
+const CACHE_VERSION = process.env.STUDIO_BUILD_STAMP || 'dev' // new for every build (next.config.mjs)
+const DAY = 60 * 60 * 24
+
+function cachedRead<Args extends unknown[], Result>(name: string, read: (...args: Args) => Promise<Result>) {
+  return unstable_cache(read, ['studio-public', CACHE_VERSION, name], { tags: [PUBLIC_DATA_TAG], revalidate: DAY })
+}
 
 const BLOB_HOST = /^https:\/\/[a-z0-9-]+\.public\.blob\.vercel-storage\.com\//
 
@@ -90,11 +106,12 @@ function toPost(
   }
 }
 
-const isLive = () =>
+/** Published and scheduled posts, whether or not their time has come yet. */
+const hasPublishedSnapshot = () =>
   and(
     or(eq(schema.post.status, 'published'), eq(schema.post.status, 'scheduled')),
     isNotNull(schema.post.published),
-    lte(schema.post.publishedAt, new Date()),
+    isNotNull(schema.post.publishedAt),
   )
 
 async function approvedCounts(postIds: string[]) {
@@ -107,23 +124,33 @@ async function approvedCounts(postIds: string[]) {
   return new Map(rows.map((row) => [row.postId, row.count]))
 }
 
-/** Every live post, newest first, with bodies. */
-export async function getLiveStudioPosts(): Promise<Post[]> {
+/** Published and scheduled posts with the time each goes live (cached; see the top of this file). */
+const readPublishedPosts = cachedRead('posts', async (): Promise<Array<{ liveAt: string; post: Post }>> => {
   const [rows, lookup] = await Promise.all([
     getDb()
       .select({
         id: schema.post.id,
         published: schema.post.published,
+        publishedAt: schema.post.publishedAt,
         updatedAt: schema.post.updatedAt,
         lastPublishedAt: schema.post.lastPublishedAt,
       })
       .from(schema.post)
-      .where(isLive())
+      .where(hasPublishedSnapshot())
       .orderBy(desc(schema.post.publishedAt)),
     lookups(),
   ])
   const counts = await approvedCounts(rows.map((row) => row.id))
-  return rows.map((row) => toPost(row, row.published as PostDocument, lookup, { status: 'published', commentCount: counts.get(row.id) }))
+  return rows.map((row) => ({
+    liveAt: (row.publishedAt as Date).toISOString(),
+    post: toPost(row, row.published as PostDocument, lookup, { status: 'published', commentCount: counts.get(row.id) }),
+  }))
+})
+
+/** Every live post, newest first, with bodies. */
+export async function getLiveStudioPosts(): Promise<Post[]> {
+  const now = Date.now()
+  return (await readPublishedPosts()).filter((entry) => Date.parse(entry.liveAt) <= now).map((entry) => entry.post)
 }
 
 /** A Studio draft for preview, looked up by its draft slug (or its live slug). */
@@ -138,14 +165,14 @@ export async function getStudioDraftPost(slug: string): Promise<Post | null> {
   return toPost(row, row.draft, await lookups(), { status: 'draft' })
 }
 
-export async function getStudioCategories(): Promise<Category[]> {
+export const getStudioCategories = cachedRead('categories', async (): Promise<Category[]> => {
   const rows = await getDb().select().from(schema.category).orderBy(asc(schema.category.sortOrder), asc(schema.category.title))
   return rows.map((row) => ({ _id: row.id, title: row.title, slug: row.slug, description: row.description || undefined }))
-}
+})
 
 export type PublicComment = { id: string; name: string; body: string; createdAt: string }
 
-export async function getApprovedComments(postId: string): Promise<PublicComment[]> {
+export const getApprovedComments = cachedRead('comments', async (postId: string): Promise<PublicComment[]> => {
   const rows = await getDb()
     .select({ id: schema.comment.id, name: schema.comment.name, body: schema.comment.body, createdAt: schema.comment.createdAt })
     .from(schema.comment)
@@ -153,4 +180,4 @@ export async function getApprovedComments(postId: string): Promise<PublicComment
     .orderBy(asc(schema.comment.createdAt))
     .limit(500)
   return rows.map((row) => ({ ...row, createdAt: row.createdAt.toISOString() }))
-}
+})

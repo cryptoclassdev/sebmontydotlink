@@ -153,6 +153,7 @@ export async function moderateCommentAction(id: string, status: CommentStatus) {
 export async function deleteCommentAction(id: string) {
   await requireUser()
   const result = await deleteComment(id)
+  if (result.ok) revalidatePublicPages()
   revalidatePath('/studio', 'layout')
   return result
 }
@@ -171,6 +172,7 @@ export async function deleteCategoryAction(id: string) {
   await requireUser()
   const result = await deleteCategory(id)
   revalidatePath('/studio/categories')
+  if (result.ok) revalidatePublicPages()
   return result
 }
 
@@ -186,6 +188,7 @@ export async function deleteAuthorAction(id: string) {
   await requireUser()
   const result = await deleteAuthor(id)
   revalidatePath('/studio/authors')
+  if (result.ok) revalidatePublicPages()
   return result
 }
 
