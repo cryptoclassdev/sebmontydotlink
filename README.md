@@ -70,7 +70,7 @@ Newest first. One entry per pull request.
 ### Search and AI readability: sitemap, robots, RSS, share cards, structured data
 
 - **Date:** 23 November 2026
-- **Pull request:** branch `seo/ai-search-upgrade` (PR number added in the next commit).
+- **Pull request:** [#39](https://github.com/cryptoclassdev/sebmontydotlink/pull/39), branch `seo/ai-search-upgrade`.
 - **Status:** Draft, waiting for Seb to approve the screenshots of the share cards, the homepage bio line and the "Updated" date. Plan: "sebmonty.link SEO and AI-search plan" (23 November 2026), approved by Seb the same day with all five recommended decisions.
 
 #### What changed
