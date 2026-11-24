@@ -71,7 +71,7 @@ Newest first. One entry per pull request.
 
 - **Date:** 23 November 2026
 - **Pull request:** [#39](https://github.com/cryptoclassdev/sebmontydotlink/pull/39), branch `seo/ai-search-upgrade`.
-- **Status:** Draft, waiting for Seb to approve the screenshots of the share cards, the homepage bio line and the "Updated" date. Plan: "sebmonty.link SEO and AI-search plan" (23 November 2026), approved by Seb the same day with all five recommended decisions.
+- **Status:** Ready for review (24 November 2026). Seb approved the screenshots of the share cards, the homepage bio line and the "Updated" date on 24 November 2026. Plan: "sebmonty.link SEO and AI-search plan" (23 November 2026), approved by Seb the same day with all five recommended decisions.
 
 #### What changed
 1. **The site can be found.** New `/robots.txt` lets every crawler read the public site and keeps out `/api/`, `/studio`, `/agent/` and `/breakpoint/api/`. It also says AI tools may search, quote and learn from the site (`Content-Signal: search=yes, ai-input=yes, ai-train=yes`) and points to the new `/sitemap.xml`. The sitemap lists Home, Blog, every live article (with its Updated date), Skill Files and Breakpoint, and builds itself from the Studio, so new articles appear on their own. New `/blog/rss.xml` is an RSS feed of the 20 newest articles. Before this, robots, sitemap and feed all returned 404.
@@ -148,10 +148,13 @@ The preview has its own copy of the database, so its articles are the live ones.
 7. Optional: copy an article's page source and paste it into Google's [Rich Results Test](https://search.google.com/test/rich-results) using the Code tab (the preview sits behind Vercel login). Expect Article and Breadcrumb with no errors.
 
 #### Steps outside the code (Seb)
+- **Done 24 November 2026:**
+    - Google Search Console verified for `sebmonty.link` (Domain property, TXT record at Namecheap).
+    - Bing Webmaster Tools connected by import from Search Console.
+    - New search titles and 140 to 155 character descriptions published in the Studio for all three articles (checked live).
 - **Vercel → Domains:** set `sebmonty.link` to redirect to `www.sebmonty.link` with **308 Permanent** (it is 307, temporary, today).
 - **Vercel → Analytics:** turn on Web Analytics for the project.
-- **Google Search Console and Bing Webmaster Tools:** verify the domain now. After this PR is live, submit `/sitemap.xml` and request indexing for the homepage, `/blog` and the three articles.
-- **Studio → each article → SEO tab:** the new search titles and 140 to 155 character descriptions from the plan, then Publish.
+- **After this PR is live:** submit `/sitemap.xml` in Google and Bing, and request indexing for the homepage, `/blog` and the three articles.
 
 #### Checks run
 - `pnpm typecheck` passes.
