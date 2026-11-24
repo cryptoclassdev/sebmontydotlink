@@ -152,8 +152,8 @@ The preview has its own copy of the database, so its articles are the live ones.
     - Google Search Console verified for `sebmonty.link` (Domain property, TXT record at Namecheap).
     - Bing Webmaster Tools connected by import from Search Console.
     - New search titles and 140 to 155 character descriptions published in the Studio for all three articles (checked live).
-- **Vercel → Domains:** set `sebmonty.link` to redirect to `www.sebmonty.link` with **308 Permanent** (it is 307, temporary, today).
-- **Vercel → Analytics:** turn on Web Analytics for the project.
+    - Vercel Domains: `sebmonty.link` now redirects to `www.sebmonty.link` with **308 Permanent**, keeping the path (was 307; checked with curl).
+    - Vercel Web Analytics turned on for the project. Its "Get Started" panel stays until the first visits after this PR is live; its install steps are what this PR does.
 - **After this PR is live:** submit `/sitemap.xml` in Google and Bing, and request indexing for the homepage, `/blog` and the three articles.
 
 #### Checks run
@@ -176,7 +176,7 @@ The preview has its own copy of the database, so its articles are the live ones.
 - **AI training permission:** `ai-train=yes` states permission for AI training (Seb's decision). To withdraw it, change the line in `app/robots.txt/route.ts`.
 - **Shorter tab titles:** article titles in search results and browser tabs no longer end with " | Seb Montgomery".
 - **FAQ quality** depends on writing: an FAQ answer is the paragraph under a question heading, so a heading whose first paragraph doesn't answer it gives a weak FAQ entry (see the checklist in `docs/seo.md`).
-- **Analytics script:** until Web Analytics is on in Vercel, its script returns 404 (one console error, readers see nothing). Vercel Web Analytics uses no cookies.
+- **Analytics:** Web Analytics is now on in Vercel, so its script loads in production. Vercel Web Analytics uses no cookies.
 - **Search Console notices:** Google may list the `.md` copies as "Alternate page with proper canonical tag". That's expected.
 
 #### Roll back
