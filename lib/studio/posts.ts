@@ -1,6 +1,7 @@
 import 'server-only'
 
 import { and, desc, eq, ilike, ne, or, sql } from 'drizzle-orm'
+import { notifyIndexNow } from '@/lib/indexnow'
 
 import { getDb, schema } from './db'
 import {
@@ -187,6 +188,15 @@ export async function publishPost(id: string, version: number, user: StudioUser)
     await tx.insert(schema.revision).values({ postId: id, kind: 'publish', document: snapshot, createdBy: user.id })
   })
   revalidatePublicPages([doc.slug, previousSlug])
+  // Scheduled posts aren't pinged (their URL is still a 404); the sitemap lists them once live.
+  if (status === 'published') {
+    notifyIndexNow([
+      doc.seo?.noindex ? null : `/blog/${doc.slug}`,
+      previousSlug && previousSlug !== doc.slug ? `/blog/${previousSlug}` : null,
+      '/blog',
+      '/',
+    ])
+  }
   return { ok: true, status }
 }
 
@@ -199,6 +209,7 @@ export async function unpublishPost(id: string, user: StudioUser): Promise<Resul
     .set({ status: 'draft', published: null, publishedAt: null, updatedBy: user.id, updatedAt: new Date(), version: post.version + 1 })
     .where(eq(schema.post.id, id))
   revalidatePublicPages([post.published.slug])
+  notifyIndexNow([`/blog/${post.published.slug}`, '/blog', '/'])
   return { ok: true }
 }
 

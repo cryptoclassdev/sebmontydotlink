@@ -1123,6 +1123,8 @@
 .article-prose h3 { margin: 2.15em 0 .7em; font-size: clamp(23px, 2.4vw, 27px); letter-spacing: -.01em; line-height: 1.2; }
 .article-prose h4 { margin: 2em 0 .65em; font-size: 21px; line-height: 1.25; }
 .article-heading-anchor { position: absolute; top: 0; right: 100%; padding-right: 10px; color: var(--site-faint); font-family: inherit; font-size: .7em; opacity: 0; text-decoration: none; }
+/* The "#" is drawn by CSS so it is not part of the heading text that search engines and AI tools read. */
+.article-heading-anchor::before { content: "#"; content: "#" / ""; }
 .article-prose h2:hover .article-heading-anchor,
 .article-prose h3:hover .article-heading-anchor,
 .article-heading-anchor:focus-visible { opacity: 1; }

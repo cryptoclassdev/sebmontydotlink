@@ -5,6 +5,7 @@ import { cache } from 'react'
 import { mergeCategoryLists } from '@/lib/blog/merge-categories'
 import type { Category, Post } from '@/lib/blog/types'
 import { FILE_ARTICLES, FILE_CATEGORIES, getFileArticleMarkdown } from '@/lib/publishing'
+import { SITE_URL } from '@/lib/seo'
 import { isDatabaseConfigured } from '@/lib/studio/db'
 import { studioArticleMarkdown } from '@/lib/studio/markdown'
 import { getLiveStudioPosts, getStudioCategories, getStudioDraftPost, withStudioBody } from '@/lib/studio/public'
@@ -14,7 +15,7 @@ import { getLiveStudioPosts, getStudioCategories, getStudioDraftPost, withStudio
 // Without it (local work, or before the database is set up) the site falls back to the
 // Markdown files in content/articles/, so it never shows an empty blog.
 
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sebmonty.link').replace(/\/$/, '')
+export { SITE_URL }
 
 function byDateDesc(a: Post, b: Post) {
   return new Date(b.publishedAt || 0).getTime() - new Date(a.publishedAt || 0).getTime()

@@ -1,18 +1,37 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
+import { Analytics } from "@vercel/analytics/next"
 import { Agentation } from "agentation"
+import { SiteJsonLd } from "@/components/seo/SiteJsonLd"
+import { RSS_ALTERNATE, SITE_DESCRIPTION, SITE_LOCALE, SITE_NAME, SITE_SHARE_IMAGE, SITE_URL, X_HANDLE } from "@/lib/seo"
 import "./globals.css"
 
+// Defaults every page inherits. Deliberately no canonical link here: a canonical in the root
+// layout would make every page claim to be the homepage. Pages set their own through
+// pageMetadata() in lib/seo.ts (see docs/seo.md).
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.sebmonty.link"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Seb Montgomery | Independent research",
+    default: "Seb Montgomery | Crypto, Solana and AI research",
     template: "%s | Seb Montgomery",
   },
-  description: "Independent research on crypto, markets, and the products reshaping finance.",
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  authors: [{ name: SITE_NAME, url: `${SITE_URL}/` }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  alternates: { types: RSS_ALTERNATE },
   openGraph: {
     type: "website",
-    siteName: "Seb Montgomery",
+    siteName: SITE_NAME,
+    locale: SITE_LOCALE,
+    images: [SITE_SHARE_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: X_HANDLE,
+    creator: X_HANDLE,
+    images: [{ url: SITE_SHARE_IMAGE.url, alt: SITE_SHARE_IMAGE.alt }],
   },
 }
 
@@ -45,6 +64,8 @@ export default function RootLayout({
           Skip to main content
         </a>
         {children}
+        <SiteJsonLd />
+        <Analytics />
         {process.env.NODE_ENV === "development" && <Agentation />}
       </body>
     </html>

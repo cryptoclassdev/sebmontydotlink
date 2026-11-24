@@ -188,6 +188,14 @@
   line-height: 32px;
 }
 
+.heroBio {
+  max-width: 44ch;
+  margin: 14px 0 0;
+  color: var(--pitlane);
+  font-size: 15px;
+  line-height: 24px;
+}
+
 .primaryAction {
   width: fit-content;
   min-height: 48px;
