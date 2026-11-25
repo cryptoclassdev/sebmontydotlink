@@ -42,6 +42,8 @@ type Option = { id: string; label: string }
 type SaveState = 'saved' | 'dirty' | 'saving' | 'error'
 type Tab = 'content' | 'details' | 'seo'
 
+/** The slug a new post gets before it has a title (lib/studio/posts.ts createPost). */
+const PLACEHOLDER_SLUG = /^untitled-[a-z0-9]{8}$/
 const SAVE_DELAY_MS = 1200
 const FIELD_TAB: Record<string, Tab> = {
   title: 'content',
@@ -377,7 +379,22 @@ export function PostEditor({
           <div hidden={tab !== 'content'}>
             <div className={`st-field${problemFor('title') ? ' invalid' : ''}`}>
               <label htmlFor="title">Title</label>
-              <input id="title" className="st-input title" value={doc.title} placeholder="Headline" onChange={(event) => update({ title: event.target.value })} />
+              <input
+                id="title"
+                className="st-input title"
+                value={doc.title}
+                placeholder="Headline"
+                onChange={(event) => {
+                  const title = event.target.value
+                  update((current) => {
+                    // Until the post is first published, the slug follows the title, unless someone has typed their own.
+                    const neverPublished = !published && !post.lastPublishedAt
+                    const follows = neverPublished && (PLACEHOLDER_SLUG.test(current.slug) || current.slug === slugify(current.title))
+                    const slug = follows ? slugify(title) : ''
+                    return { ...current, title, ...(slug ? { slug } : {}) }
+                  })
+                }}
+              />
             </div>
             <div className={`st-field${problemFor('slug') ? ' invalid' : ''}`}>
               <label htmlFor="slug">Slug</label>
