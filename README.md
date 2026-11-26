@@ -71,7 +71,7 @@ Newest first. One entry per pull request.
 
 - **Date:** 25 November 2026
 - **Pull request:** link added once the pull request is open, branch `studio/editor-fixes`.
-- **Status:** Draft. The same three fixes shipped on validator.com in its PR #20 (`cryptoclassdev/vdot-v1`, merge commit `42cffe3`), whose Studio code was copied from this one; the code they touch was identical here.
+- **Status:** Ready for review (26 November 2026). Seb approved the screenshot of the cover field after a failed publish (only the alt text box red) on 26 November 2026. The same three fixes shipped on validator.com in its PR #20 (`cryptoclassdev/vdot-v1`, merge commit `42cffe3`), whose Studio code was copied from this one; the code they touch was identical here.
 
 #### What changed
 1. **Cover field: only the alt text box turns red.** With a cover image but no alt text, pressing Publish also turned the cover's caption and crop boxes red. The rule `.st-field.invalid .st-input` (and the same for `.st-textarea` and `.st-select`) in `app/studio/studio.css` matched every input inside an invalid field, and the cover field holds other fields. It now uses child combinators (`.st-field.invalid > .st-input`, `.st-field.invalid > .st-row > .st-input` for the slug, `> .st-textarea`, `> .st-select`), so only a field's own input turns red.
