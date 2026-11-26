@@ -4,10 +4,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useMemo, useState } from 'react'
 
-import { createPostAction } from '@/app/studio/actions'
 import type { PostListItem } from '@/lib/studio/posts'
 
 import { formatDate, timeAgo } from './format'
+import { NewPostButton } from './NewPostButton'
 
 const FILTERS = [
   { value: 'all', label: 'All' },
@@ -44,11 +44,7 @@ export function PostsPanes({ posts, children }: { posts: PostListItem[]; childre
         <div className="st-listpane-head">
           <div className="st-row" style={{ justifyContent: 'space-between' }}>
             <h1>Posts</h1>
-            <form action={createPostAction}>
-              <button type="submit" className="st-btn primary small">
-                + New post
-              </button>
-            </form>
+            <NewPostButton className="st-btn primary small" label="+ New post" />
           </div>
           <input
             type="search"

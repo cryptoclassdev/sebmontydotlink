@@ -67,11 +67,50 @@ pnpm studio:generate           # after changing lib/studio/db/schema.ts: write a
 
 Newest first. One entry per pull request.
 
+### Studio fixes: cover alt highlight, one draft per New post press, slug follows the title
+
+- **Date:** 25 November 2026
+- **Pull request:** [#40](https://github.com/cryptoclassdev/sebmontydotlink/pull/40), branch `studio/editor-fixes`.
+- **Status:** Ready for review (26 November 2026). Seb approved the screenshot of the cover field after a failed publish (only the alt text box red) on 26 November 2026. The same three fixes shipped on validator.com in its PR #20 (`cryptoclassdev/vdot-v1`, merge commit `42cffe3`), whose Studio code was copied from this one; the code they touch was identical here.
+
+#### What changed
+1. **Cover field: only the alt text box turns red.** With a cover image but no alt text, pressing Publish also turned the cover's caption and crop boxes red. The rule `.st-field.invalid .st-input` (and the same for `.st-textarea` and `.st-select`) in `app/studio/studio.css` matched every input inside an invalid field, and the cover field holds other fields. It now uses child combinators (`.st-field.invalid > .st-input`, `.st-field.invalid > .st-row > .st-input` for the slug, `> .st-textarea`, `> .st-select`), so only a field's own input turns red.
+2. **One draft per "New post" press.** A double-click created two drafts. The new `components/studio/NewPostButton.tsx` disables the button and shows "Creating…" while the draft is being created, and ignores a second submit that lands before that (allowed again after 5 seconds, in case creating fails). Both New post buttons use it: the big one on the Posts page and "+ New post" above the post list.
+3. **The slug follows the title until the first publish.** In `components/studio/PostEditor.tsx`, typing a title now fills the slug, as long as the post has never been published and the slug is still the placeholder (`untitled-` plus 8 characters, from `createPost`) or still matches the previous title. Once someone types their own slug, or the post has been published, the slug is left alone. A title that makes an empty slug (only symbols) keeps the current one. The "From title" button still works as before.
+
+No database change and no new packages. Readers see nothing different; only the Studio changes.
+
+#### Why
+Found while testing validator.com's Studio on its PR #19 preview and fixed there in PR #20. Same code here, so the same problems.
+
+#### Files touched
+- New: `components/studio/NewPostButton.tsx`.
+- Changed: `app/studio/studio.css`, `app/studio/(app)/posts/page.tsx`, `components/studio/PostsPanes.tsx`, `components/studio/PostEditor.tsx`, `README.md` (this entry, and #39's status set to merged).
+
+#### How to check it on the Vercel preview
+The preview has its own copy of the database, so nothing here reaches the live site. Sign in to `/studio` on the preview with your normal login.
+1. Double-click **+ New post**: one new draft opens and the post list grows by one. The button reads "Creating…" while it works.
+2. In that draft, type a title: the slug fills in as you type. Type your own slug, then change the title again: your slug stays.
+3. Open a published article and change its title: the slug does not change. (Undo the title change after.)
+4. In a draft, add a cover image, clear its alt text and press **Publish**: only the alt text box turns red; the caption and crop boxes stay grey.
+
+#### Checks run
+- `pnpm typecheck` and `pnpm build` pass.
+- Browser test of a production build with a local Postgres: a double-click on each New post button created exactly one draft (counted in the database), and the button showed "Creating…" and was disabled while working; typing "Hello Studio World" turned the placeholder slug into `hello-studio-world`; a typed slug (`my-own-slug`) was kept when the title changed and when it was cleared; a title of only symbols kept the slug; the published Papertrade article kept `papertrade-saga` while its title was edited; after Publish with a cover but empty alt text, only the alt box had a red border (title, slug, deck, excerpt and the crop box did not), with the screenshot Seb approved.
+- The existing Studio tests still pass: the Studio (#10), the blog switch (#37: preview, publish, comments, scheduled posts), the saved copy with the database stopped, and X posts and charts (#38). The only failed request in them was the Vercel Web Analytics script, which only exists on Vercel.
+
+#### Risks
+- **A slug that matches the title keeps following it** until the first publish. Editing the title of an unpublished draft whose slug was set to match the title changes the slug too; type a different slug to stop that.
+- Low otherwise: three small, contained changes, already running on validator.com.
+
+#### Roll back
+Revert this PR's merge commit. The three behaviours go back to before: a double-click can create two drafts, the cover's caption and crop boxes turn red with the alt text, and the slug is set by hand or with "From title".
+
 ### Search and AI readability: sitemap, robots, RSS, share cards, structured data
 
 - **Date:** 23 November 2026
 - **Pull request:** [#39](https://github.com/cryptoclassdev/sebmontydotlink/pull/39), branch `seo/ai-search-upgrade`.
-- **Status:** Ready for review (24 November 2026). Seb approved the screenshots of the share cards, the homepage bio line and the "Updated" date on 24 November 2026. Plan: "sebmonty.link SEO and AI-search plan" (23 November 2026), approved by Seb the same day with all five recommended decisions.
+- **Status:** Merged on 24 November 2026 (11:34 UTC). Seb approved the screenshots of the share cards, the homepage bio line and the "Updated" date on 24 November 2026. Plan: "sebmonty.link SEO and AI-search plan" (23 November 2026), approved by Seb the same day with all five recommended decisions.
 
 #### What changed
 1. **The site can be found.** New `/robots.txt` lets every crawler read the public site and keeps out `/api/`, `/studio`, `/agent/` and `/breakpoint/api/`. It also says AI tools may search, quote and learn from the site (`Content-Signal: search=yes, ai-input=yes, ai-train=yes`) and points to the new `/sitemap.xml`. The sitemap lists Home, Blog, every live article (with its Updated date), Skill Files and Breakpoint, and builds itself from the Studio, so new articles appear on their own. New `/blog/rss.xml` is an RSS feed of the 20 newest articles. Before this, robots, sitemap and feed all returned 404.

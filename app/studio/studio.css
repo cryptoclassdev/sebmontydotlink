@@ -327,9 +327,12 @@
   font-size: 12.5px;
 }
 
-.st-field.invalid .st-input,
-.st-field.invalid .st-textarea,
-.st-field.invalid .st-select {
+/* Only the field's own input turns red: a field can hold other fields (the cover image's
+   caption and crop sit inside the cover field), and those are fine on their own. */
+.st-field.invalid > .st-input,
+.st-field.invalid > .st-row > .st-input,
+.st-field.invalid > .st-textarea,
+.st-field.invalid > .st-select {
   border-color: var(--st-red);
 }
 
