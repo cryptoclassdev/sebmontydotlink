@@ -70,7 +70,7 @@ Newest first. One entry per pull request.
 ### Studio fixes: cover alt highlight, one draft per New post press, slug follows the title
 
 - **Date:** 25 November 2026
-- **Pull request:** link added once the pull request is open, branch `studio/editor-fixes`.
+- **Pull request:** [#40](https://github.com/cryptoclassdev/sebmontydotlink/pull/40), branch `studio/editor-fixes`.
 - **Status:** Ready for review (26 November 2026). Seb approved the screenshot of the cover field after a failed publish (only the alt text box red) on 26 November 2026. The same three fixes shipped on validator.com in its PR #20 (`cryptoclassdev/vdot-v1`, merge commit `42cffe3`), whose Studio code was copied from this one; the code they touch was identical here.
 
 #### What changed
